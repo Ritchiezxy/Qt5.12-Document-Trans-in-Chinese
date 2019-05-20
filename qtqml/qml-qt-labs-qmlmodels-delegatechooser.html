@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmldelegatecomponent.cpp -->
+  <title>DelegateChooser QML Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >DelegateChooser QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的DelegateChooser 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$DelegateChooser-brief -->
+<p>允许视图对模型中不同类型的项使用不同的委托。<a href="#details">更多… </a></p>
+<!-- @@@DelegateChooser -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import Qt.labs.qmlmodels 1.0</td></tr></table></div><ul>
+<li><a href="qml-qt-labs-qmlmodels-delegatechooser-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qt-labs-qmlmodels-delegatechooser.html#choices-prop">choices</a></b></b> : list&lt;DelegateChoice&gt;</li>
+<li class="fn"><b><b><a href="qml-qt-labs-qmlmodels-delegatechooser.html#role-prop">role</a></b></b> : string</li>
+</ul>
+<!-- $$$DelegateChooser-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p><a href="qml-qt-labs-qmlmodels-delegatechooser.html">DelegateChooser</a> 是一种特殊的<a href="qml-qtqml-component.html">Component（组件）</a> 类型，适用于视图需要组件并将其用作委托的场景。 <a href="qml-qt-labs-qmlmodels-delegatechooser.html">DelegateChooser</a> 装了一组<a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a>。 这些选项用于确定将为模型中的每个项实例化的委托。选项的选择是基于模型项对<a href="qml-qt-labs-qmlmodels-delegatechooser.html#role-prop">role（角色）</a>的值，也基于索引执行的。</p>
+<p><b>注意:</b>这种类型只适用于<a href="../qtquick/qml-qtquick-tableview.html">TableView</a> 和任何基于。<a href="qml-qtqml-models-delegatemodel.html">DelegateModel</a>的视图。内部不基于<a href="qml-qtqml-models-delegatemodel.html">DelegateModel</a> 的视图(包括用户定义的视图)需要显式地支持这种类型的组件，以使其像描述的那样工作。</p><p><b>请参见</b><a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a>。</p>
+<!-- @@@DelegateChooser -->
+<h2>属性文档</h2>
+<!-- $$$choices -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="choices-prop">
+<td class="tblQmlPropNode"><p>
+<a name="choices-prop"></a><span class="qmldefault">[default] </span><span class="name">choices</span> : <span class="type"><a href="qml-list.html">list</a></span>&lt;<span class="type"><a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a></span>&gt;</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>选择器的DelegateChoices列表。</p>
+<p>该列表被视为有序列表，其中将使用第一个要匹配的<a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a>作为视图。</p>
+<p>通常不需要引用<code>choices</code>e属性，因为它是<a href="qml-qt-labs-qmlmodels-delegatechooser.html">DelegateChooser</a> 默认属性，因此所有子项目都会被自动分配这个属性。</p>
+</div></div><!-- @@@choices -->
+<br/>
+<!-- $$$role -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="role-prop">
+<td class="tblQmlPropNode"><p>
+<a name="role-prop"></a><span class="name">role</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性包含用于确定给定模型项的委托的角色。</p>
+<p><b>请参见</b><a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a>。</p>
+</div></div><!-- @@@role -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

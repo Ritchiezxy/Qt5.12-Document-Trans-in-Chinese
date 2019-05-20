@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- basictypes.qdoc -->
+  <title>url QML Basic Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >url QML Basic Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#using-the-url-type">使用url类型</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的url类型</h1>
+<span class="subtitle"></span>
+<!-- $$$url-description -->
+<div class="descr"> <a name="details"></a>
+<p>资源定位器。</p>
+<p><code>url</code>类型引用资源定位器（例如，文件名）。它可以是绝对的，例如：&#x2e; &quot;http://qt-project.org&quot;，也可以是相对的，例如：&#x2e; &quot;pics/logo.png&quot;.相对URL相对于包含组件的URL进行解析。</p>
+<p>例如，下面的代码为<a href="../qtquick/qml-qtquick-image.html#source-prop">Image::source</a>属性分配了一个有效的URL，它的类型<code>url</code>:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> { <span class="name">source</span>: <span class="string">&quot;pics/logo.png&quot;</span> }
+
+</pre>
+<p>当与C++集成时，请注意，<a href="qtqml-cppintegration-data.html">从C++传递到QML</a>的任何。<a href="../qtcore/qurl.html">QUrl</a>值都会自动转换为<code>url</code>值，反之亦然</p>
+<a name="using-the-url-type"></a>
+<h2 id="using-the-url-type">使用url类型</h2>
+<p>当将相对URL写入<code>url</code> 类型属性时，其将被转换为URL对象，所以<b>将URL值与输入字符串值匹配将失败</b>相反，使用Qt.resolvedUrl()将字符串转换为URL，以便进行比较，并使用<code>toString()</code>获取URL的内容:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> {
+      <span class="name">source</span>: <span class="string">&quot;pics/logo.png&quot;</span>
+
+      <span class="name">Component</span>.onCompleted: {
+          <span class="comment">// This prints 'false'. Although &quot;pics/logo.png&quot; was the input string,</span>
+          <span class="comment">// it's been converted from a string to a URL, so these two are not the same.</span>
+          <span class="name">console</span>.<span class="name">log</span>(<span class="name">source</span> <span class="operator">==</span> <span class="string">&quot;pics/logo.png&quot;</span>)
+
+          <span class="comment">// This prints 'true' as Qt.resovledUrl() converts the string into a</span>
+          <span class="comment">// URL with the correctly resolved path</span>
+          <span class="name">console</span>.<span class="name">log</span>(<span class="name">source</span> <span class="operator">==</span> <span class="name">Qt</span>.<span class="name">resolvedUrl</span>(<span class="string">&quot;pics/logo.png&quot;</span>))
+
+          <span class="comment">// This prints the absolute path, e.g. &quot;file:///path/to/pics/logo.png&quot;</span>
+          <span class="name">console</span>.<span class="name">log</span>(<span class="name">source</span>.<span class="name">toString</span>())
+      }
+  }
+
+</pre>
+<p><b>注意:</b>当从QML中引用<a href="../qtcore/resources.html">Qt资源系统</a>存储的文件时，应该使用 &quot;qrc:///&quot;而不是&quot;:/&quot; ，因为QML需要URL路径。从该文件中解析的相对url将使用相同的协议。</p><p>此外，URL可能包含使用<a href="http://tools.ietf.org/html/rfc3986">RFC 3986</a>指定的“百分比编码”方案编码的字符。这些字符将保存在<code>url</code>类型的属性中，以允许QML代码构造精确的url值。 这个规则的一个例外是优先解码目录分隔符 (<code>'/'</code>) ——这些字符被解码以允许URL被正确分类。</p>
+<p>
+例如，一个包含“#”字符的本地文件，通常被解释为URL“fragment”元素的开头，可以通过编码文件名的字符来访问:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> { <span class="name">source</span>: <span class="name">encodeURIComponent</span>(<span class="string">&quot;/tmp/test#1.png&quot;</span>) }
+
+</pre>
+<p>这种基本类型由QML语言提供。</p>
+</div>
+<p><b>参见 </b><a href="qtqml-typesystem-basictypes.html">QML基本类型</a>。</p>
+<!-- @@@url -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
