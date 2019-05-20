@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- applicationdevelopers.qdoc -->
+  <title>QML Applications | Qt 5.12 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="index.html">Qt 5.12</a></td><td >QML Applications</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.12.3 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level2"><a href="#what-is-qml">什么是QML？</a></li>
+<li class="level2"><a href="#what-is-qt-quick">什么是Qt Quick?</a></li>
+<li class="level1"><a href="#qml-user-interfaces">QML用户界面</a></li>
+<li class="level2"><a href="#buttons-menus-and-other-controls">按钮, 菜单, 以及其他控件</a></li>
+<li class="level2"><a href="#special-effects">Special Effects</a></li>
+<li class="level2"><a href="#viewing-web-content-in-qml-applications">在QML应用程序中查看Web内容</a></li>
+<li class="level2"><a href="#sensors-gestures-and-touch-interfaces">传感器、手势和触摸界面</a></li>
+<li class="level1"><a href="#multimedia-content">多媒体内容</a></li>
+<li class="level1"><a href="#mobile-devices">移动设备</a></li>
+<li class="level1"><a href="#code-samples-and-demos">代码示例和演示</a></li>
+<li class="level1"><a href="#advanced-application-development-topics">高级应用程序开发主题</a></li>
+<li class="level1"><a href="#other-qml-modules">其他QML模块</a></li>
+<li class="level1"><a href="#related-topics">相关的话题</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML Applications</h1>
+<span class="subtitle"></span>
+<!-- $$$qmlapplications.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QQML是一种声明性语言，它允许根据用户界面的可视组件以及它们之间的交互和关系来描述用户界面。它是一种高度可读的语言，旨在以动态的方式使组件相互连接，并且允许组件在用户界面中容易重用和定制。使用<code>QtQuick</code>模块，设计人员和开发人员可以轻松地在QML中构建流畅的动画用户界面，并且可以选择将这些用户界面连接到任何后端c++库。</p>
+<a name="what-is-qml"></a>
+<h3 >什么是QML？</h3>
+<p>QML是一种用户界面规范和编程语言。它允许开发人员和设计人员创建高性能、流畅的动画和具有视觉吸引力的应用程序。QML提供了一种高度可读的、声明式的、类似json的语法，支持命令式JavaScript表达式和动态属性绑定。</p>
+<p>QML语言和引擎基础结构由<a href="../qtqml/qtqml-index.html">Qt QML</a>模块提供。有关QML语言的详细信息，请参阅<a href="../qtqml/qtqml-index.html">Qt QML</a> 模块文档。</p>
+<p>以下网页载有更多有关QML的资料:</p>
+<ul>
+<li><a href="qmlfirststeps.html">QML的第一步</a> - 从这些示例开始使用QML</li>
+<li><a href="http://doc.qt.io/qtcreator/quick-projects.html">在Qt Creator中创建Qt Quick项目</a></li>
+<li><a href="../qtqml/qmlreference.html">QML参考</a> - 有关QML构造和特性的参考资料</li>
+<li><a href="qml-codingconventions.html">QML编码惯例</a></li>
+<li><a href="qml-glossary.html">QML术语表</a></li>
+</ul>
+<a name="what-is-qt-quick"></a>
+<h3 >什么是Qt Quick?</h3>
+<p>Qt Quick是QML类型和功能的标准库。它包括可视类型、交互类型、动画、模型和视图、粒子效果和着色效果。QML应用程序开发人员可以使用一条import语句访问所有这些功能。</p>
+<p><code>QtQuick</code>QML库由<a href="../qtquick/qtquick-index.html">Qt Quick</a>模块提供。有关Qt Quick提供的各种QML类型和其他功能的详细信息，请参见<a href="../qtquick/qtquick-index.html">Qt Quick</a>模块文档。</p>
+<a name="qml-user-interfaces"></a>
+<h2 id="qml-user-interfaces">QML用户界面</h2>
+<p>为了创建或自定义图形用户界面，qt quick除了从qt qml添加标准qml类型之外，还添加了可视类型、动画类型和其他qml类型。Quick Designer集成在Qt Creator中，支持<code>QtQuick 2</code>(Qt Creator version 2.7及以后版本)。</p>
+<ul>
+<li><a href="qtquick-usecase-visual.html">QML中的可视类型</a></li>
+<li><a href="qtquick-usecase-userinput.html">响应QML中的用户输入</a></li>
+<li><a href="qtquick-usecase-animations.html">QML中的动画</a></li>
+<li><a href="qtquick-usecase-text.html">在QML中显示文本</a></li>
+<li><a href="qtquick-usecase-layouts.html">QML的布局</a></li>
+<li><a href="qtquick-usecase-styling.html">样式和主题支持</a></li>
+<li><a href="qtquick-usecase-integratingjs.html">在QML中集成JavaScript</a></li>
+<li><a href="scalability.html">可伸缩性</a></li>
+</ul>
+<a name="buttons-menus-and-other-controls"></a>
+<h3 >按钮、菜单和其他控件</h3>
+<p>对于一组基本的UI控件<a href="../qtquickcontrols/qtquickcontrols-index.html">Qt Quick Controls（Qt Quick控件）</a> 模块实现了几个控件，如按钮、菜单和视图。这些控件带有几个可以使用的内置样式，并且还支持创建自定义样式。</p>
+<ul>
+<li><a href="../qtquickcontrols/qtquickcontrols2-guidelines.html">Qt Quick Controls 2 Guidelines（Qt Quick 控件2 指南）</a></li>
+<li><a href="../qtquickcontrols/qtquicktemplates2-index.html">Qt Quick Templates 2（Qt Quick 模板2）</a></li>
+</ul>
+<a name="special-effects"></a>
+<h3 >特效</h3>
+<p>几个Qt模块提供了用于在应用程序中创建特殊效果的类型。它们各自的页面包含关于特定用途的更多信息。</p>
+<ul>
+<li><a href="../qtquick/qtquick-effects-particles.html">Particle Effects（粒子特效）</a></li>
+<li><a href="../qtgraphicaleffects/graphicaleffects.html">Graphical Effects（图形特效）</a> - 用于创建图片合成效果。</li>
+</ul>
+<a name="viewing-web-content-in-qml-applications"></a>
+<h3 >在QML应用程序中查看Web内容</h3>
+<p>QML类型，<a href="../qtwebengine/qml-qtwebengine-webengineview.html">WebEngineView</a> 和 <a href="../qtwebview/qml-qtwebview-webview.html">WebView</a>，呈现和显示动态web内容。两者之间的唯一区别是，如果可用，后者使用原生web视图。这两种类型都可以加载URL或HTML字符串。要了解更多关于它们的信息并查看代码示例，请参见<a href="../qtwebengine/qtwebengine-index.html">Qt WebEngine</a> 和 <a href="../qtwebview/qtwebview-index.html">Qt WebView</a>.</p>
+<a name="sensors-gestures-and-touch-interfaces"></a>
+<h3 >Sensors, Gestures, and Touch Interfaces（传感器、手势和触摸界面）</h3>
+<p><a href="../qtsensors/qtsensors-index.html">Qt Sensors（Qt传感器）</a>模块允许应用程序从传感器(如加速度计和倾斜传感器)读取信息。有一个针对不同平台的通用QML API，可以在c++中扩展。</p>
+<ul>
+<li><a href="../qtsensors/qtsensors-qmlmodule.html">Qt传感器QML类型</a></li>
+<li><a href="../qtsensors/qtsensors-examples.html">Qt传感器的实例</a></li>
+<li><a href="../qtsensors/compatmap.html">兼容性图</a> - 列出了对不同移动平台的支持级别</li>
+</ul>
+<a name="multimedia-content"></a>
+<h2 id="multimedia-content">Multimedia Content（多媒体内容）</h2>
+<p><a href="../qtmultimedia/qtmultimedia-index.html">Qt Multimedia（Qt 多媒体）</a>媒体模块使应用程序能够使用一组方便的QML类型处理各种媒体内容。这些QML类型可以在c++中扩展。</p>
+<ul>
+<li><a href="qt5-intro.html#multimedia">多媒体</a><ul>
+<li><a href="../qtmultimedia/audiooverview.html">音频概述</a></li>
+<li><a href="../qtmultimedia/videooverview.html">视频概述</a></li>
+<li><a href="../qtmultimedia/cameraoverview.html">相机的概述</a></li>
+<li><a href="../qtmultimedia/radiooverview.html">广播（无线电）概述</a></li>
+<li><a href="../qtmultimedia/qtaudioengine-qmlmodule.html">Qt音频引擎-</a> - 用于3D位置音频播放和内容管理。</li>
+</ul>
+</li>
+</ul>
+<a name="mobile-devices"></a>
+<h2 id="mobile-devices">Mobile Devices（移动设备）</h2>
+<p>几个Qt模块为网络和移动设备提供QML API。QML类型提供对蓝牙、近场通信(NFC)和支持GPS的设备的访问。</p>
+<ul>
+<li><a href="../qtpositioning/qtpositioning-index.html">Qt Positioning（Qt 定位API）</a></li>
+<li><a href="../qtlocation/qtlocation-index.html">Qt Location（Qt 位置API）</a></li>
+<li><a href="../qtbluetooth/qtbluetooth-index.html">Qt Bluetooth（Qt蓝牙API）</a></li>
+<li><a href="../qtnfc/qtnfc-index.html">Qt NFC（Qt NFC API）</a></li>
+</ul>
+<p>有关更多信息，请访问<a href="topics-network-connectivity.html">Networking and Connectivity（网络及连接）</a> 和 <a href="mobiledevelopment.html">Mobile APIs（移动API）</a> 页面。</p>
+<a name="code-samples-and-demos"></a>
+<h2 id="code-samples-and-demos">代码示例和演示</h2>
+<p>要了解更多关于QML代码的用法，有几个代码示例展示了如何使用QML类型。此外，还有几个示例演示了如何在应用程序中使用QML代码。</p>
+<ul>
+<li><a href="qtdoc-tutorials-alarms-example.html">开始使用Qt Quick编程-一个教程</a> - 展示如何创建一个简单的QML文本编辑器。</li>
+<li><a href="../qtquick/qtquick-codesamples.html">Qt Quick 示例和教程</a></li>
+</ul>
+<a name="advanced-application-development-topics"></a>
+<h2 id="advanced-application-development-topics">高级应用程序开发主题</h2>
+<ul>
+<li><a href="../qtqml/qtqml-cppintegration-topic.html">集成QML和c++</a></li>
+<li><a href="qtquick-deployment.html">部署QML应用程序</a></li>
+<li><a href="../qtquick/qtquick-bestpractices.html">QML和Qt Quick的最佳实践</a></li>
+<li><a href="qtquick-performance.html">性能考虑和建议</a></li>
+<li><a href="qtquick-internationalization.html">国际化和本地化</a></li>
+<li>测试和调试<ul>
+<li><a href="qtquick-qmlscene.html">原型与qmlscene</a></li>
+<li><a href="qtquick-debugging.html">调试QML应用程序</a></li>
+<li><a href="../qtqmltest/qtquicktest-index.html">Qt Quick 测试:QML单元测试框架</a></li>
+</ul>
+</li>
+</ul>
+<a name="other-qml-modules"></a>
+<h2 id="other-qml-modules">其他QML模块</h2>
+<p>Qt Quick只提供基本的可视类型，Qt的大部分功能通过其他模块暴露给QML。如果需要这些模块的功能，应该浏览它们的QML文档。</p>
+<p><a href="modules-qml.html">All QML APIs by Module（按模块划分的QML API）</a> Qt 5中所有QML模块的列表。</p>
+<a name="related-topics"></a>
+<h2 id="related-topics">相关的话题</h2>
+<ul>
+<li><a href="qtquick-porting-qt5.html">将QML应用程序移植到Qt 5</a></li>
+</ul>
+</div>
+<!-- @@@qmlapplications.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
