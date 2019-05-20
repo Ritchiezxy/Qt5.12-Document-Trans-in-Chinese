@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qmltypereference.qdoc -->
+  <title>Qt Quick QML Types | Qt Quick 5.11</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.11</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td >Qt Quick QML Types</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.11.1 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#submodules">子模块</a></li>
+<li class="level1"><a href="#basic-types">基本类型</a></li>
+<li class="level1"><a href="#object-types">对象类型</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick QML Types</h1>
+<span class="subtitle"></span>
+<!-- $$$QtQuick-description -->
+<div class="descr"> <a name="details"></a>
+<p><a href="qtquick-index.html">Qt Quick</a>模块提供图形化的基本类型。只有当QML文档导入<code>QtQuick</code>名字空间时，这些类型才在QML文档中可用。</p>
+<p><code>QtQuick</code>模块的当前版本是2.11版本，因此可以通过以下语句导入:</p>
+<pre class="qml">
+
+  import QtQuick 2.11
+
+</pre>
+<p>有关<a href="qtquick-index.html">Qt Quick</a>的核心概念的更多信息，请访问<code>QtQuick</code>模块文档。</p>
+<a name="submodules"></a>
+<h2 id="submodules">子模块</h2>
+<p>Qt Quick包含几个包含其他类型的子模块。</p>
+<ul>
+<li><a href="qtquick-xmllistmodel-qmlmodule.html">XML List Model</a> - 包含用于从XML数据创建模型的类型</li>
+<li><a href="qtquick-localstorage-qmlmodule.html">Local Storage</a> - 包含<a href="../qtsql/qtsql-attribution-sqlite.html#sqlite">SQLite</a>数据库的JavaScript接口的子模块</li>
+<li><a href="qtquick-particles-qmlmodule.html">Particles</a> - 为QML应用程序提供一个粒子系统</li>
+<li><a href="qtquick-window-qmlmodule.html">Window</a> - 包含用于创建顶层窗口和访问屏幕信息的类型</li>
+<li><a href="../qtquickdialogs/qtquick-dialogs-qmlmodule.html">Dialogs</a> - 包含用于创建和与系统对话框交互的类型</li>
+<li><a href="../qtquickcontrols/qtquick-controls-qmlmodule.html">Controls</a> - 提供一组可重用的UI组件</li>
+<li><a href="qtquick-layouts-qmlmodule.html">Layouts</a> - 包含用于在用户界面中排列项目的类型</li>
+<li><a href="qttest-qmlmodule.html">Tests</a> - 用于测试QML应用程序的类型。</li>
+</ul>
+<a name="basic-types"></a><a name="basic-types"></a>
+<h2 id="basic-types">基本类型</h2>
+<p>有很多<a href="../qtqml/qtqml-typesystem-basictypes.html">QML语言默认支持的类型</a>。</p>
+<p>此外，<code>QtQuick</code> import 提供了以下基本类型:<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-color.html">color</a></p></td><td class="tblDescr"><p>ARGB颜色值。颜色类型引用ARGB颜色值。它可以通过以下几种方式指定:</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-font.html">font</a></p></td><td class="tblDescr"><p>具有QFont属性的字体值。字体类型引用具有QFont属性的字体值</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-matrix4x4.html">matrix4x4</a></p></td><td class="tblDescr"><p>matrix4x4类型是一个4行4列的矩阵</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-quaternion.html">quaternion</a></p></td><td class="tblDescr"><p>quaternion类型具有scalar, x, y, z属性（分量）</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-vector2d.html">vector2d</a></p></td><td class="tblDescr"><p>vector2d类型具有x和y属性</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-vector3d.html">vector3d</a></p></td><td class="tblDescr"><p>具有x、y和z属性的值</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-vector4d.html">vector4d</a></p></td><td class="tblDescr"><p>vector4d类型具有x, y, z w四个属性</p></td></tr>
+</table></div>
+</p>
+<a name="object-types"></a>
+<h2 id="object-types">对象类型</h2>
+<p><code>QtQuick</code>import提供的所有对象类型都基于a href="qml-qtquick-item.html">Item</a> 类型，Item类型本身派生自<a href="../qtqml/qml-qtqml-qtobject.html">QtObject</a>。当您导入<code>QtQuick</code>时，Qt QML模块提供的<a href="../qtqml/qtqml-qmlmodule.html#object-types">QML 对象类型</a>（例如<a href="../qtqml/qml-qtqml-qtobject.html">QtObject</a>和<a href="../qtqml/qml-qtqml-component.html">Component</a>）也可用。</p>
+</div>
+<!-- @@@QtQuick -->
+<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-canvas.html">Canvas</a></p></td><td class="tblDescr"><p>提供一个2D画布项，通过JavaScript支持绘图</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-canvasgradient.html">CanvasGradient</a></p></td><td class="tblDescr"><p>提供一个不透明的CanvasGradient接口</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-canvasimagedata.html">CanvasImageData</a></p></td><td class="tblDescr"><p>包含RGBA顺序的图像像素数据</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-canvaspixelarray.html">CanvasPixelArray</a></p></td><td class="tblDescr"><p>提供对图像数据中每个像素的组件的有序和索引访问</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-context2d.html">Context2D</a></p></td><td class="tblDescr"><p>为画布项上的形状提供2D上下文</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-accessible.html">Accessible</a></p></td><td class="tblDescr"><p>启用QML项的可访问性</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-animatedimage.html">AnimatedImage</a></p></td><td class="tblDescr"><p>播放存储为一系列图片的动画</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-animatedsprite.html">AnimatedSprite</a></p></td><td class="tblDescr"><p>绘制精灵动画</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-borderimage.html">BorderImage</a></p></td><td class="tblDescr"><p>根据图像绘制边框</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-drag.html">Drag</a></p></td><td class="tblDescr"><p>用于指定移动项的拖放事件</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-dragevent.html">DragEvent</a></p></td><td class="tblDescr"><p>提供有关拖动事件的信息</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-droparea.html">DropArea</a></p></td><td class="tblDescr"><p>用于指定区域中的拖放处理</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-eventpoint.html">EventPoint</a></p></td><td class="tblDescr"><p>提供关于PointerEvent中单个点的信息</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-eventtouchpoint.html">EventTouchPoint</a></p></td><td class="tblDescr"><p>提供关于PointerEvent中单个接触点的信息</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-keyevent.html">KeyEvent</a></p></td><td class="tblDescr"><p>提供有关关键事件的信息</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-mouseevent.html">MouseEvent</a></p></td><td class="tblDescr"><p>提供有关鼠标事件的信息</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-pointerdevice.html">PointerDevice</a></p></td><td class="tblDescr"><p>提供有关指向设备的信息</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-pointerevent.html">PointerEvent</a></p></td><td class="tblDescr"><p>提供有关来自指向设备的事件的信息</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-wheelevent.html">WheelEvent</a></p></td><td class="tblDescr"><p>提供有关鼠标滚轮事件的信息</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-flickable.html">Flickable</a></p></td><td class="tblDescr"><p>提供一个可以&quot;flicked（轻抚）&quot;的界面</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-flipable.html">Flipable</a></p></td><td class="tblDescr"><p>提供一个可以翻转的界面</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-focusscope.html">FocusScope</a></p></td><td class="tblDescr"><p>显式地创建焦点范围</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-graphicsinfo.html">GraphicsInfo</a></p></td><td class="tblDescr"><p>提供有关使用Qt Quick后端的信息</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-gridview.html">GridView</a></p></td><td class="tblDescr"><p>用于指定模型提供的项的网格视图</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-image.html">Image</a></p></td><td class="tblDescr"><p>显示一个图片</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-enterkey.html">EnterKey</a></p></td><td class="tblDescr"><p>提供一个属性来操作屏幕键盘上Enter键的外观</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-item.html">Item</a></p></td><td class="tblDescr"><p>一个基本的可视化QML类型</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-keynavigation.html">KeyNavigation</a></p></td><td class="tblDescr"><p>支持键导航通过箭头键</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-keys.html">Keys</a></p></td><td class="tblDescr"><p>为项提供键处理</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-layoutmirroring.html">LayoutMirroring</a></p></td><td class="tblDescr"><p>用于镜像布局行为的属性</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-transform.html">Transform</a></p></td><td class="tblDescr"><p>用于指定项上的高级转换</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-anchoranimation.html">AnchorAnimation</a></p></td><td class="tblDescr"><p>动画化锚值的更改</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-parentanimation.html">ParentAnimation</a></p></td><td class="tblDescr"><p>动画化父值中的更改</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-pathanimation.html">PathAnimation</a></p></td><td class="tblDescr"><p>沿路径动画化一个项</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-itemgrabresult.html">ItemGrabResult</a></p></td><td class="tblDescr"><p>包含调用Item::grabToImage()的结果</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-viewtransition.html">ViewTransition</a></p></td><td class="tblDescr"><p>指定视图中正在转换的项</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-listview.html">ListView</a></p></td><td class="tblDescr"><p>提供模型提供的项的列表视图</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-loader.html">Loader</a></p></td><td class="tblDescr"><p>允许从URL或组件动态加载子树</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-mousearea.html">MouseArea</a></p></td><td class="tblDescr"><p>启用简单的鼠标处理</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-gestureevent.html">GestureEvent</a></p></td><td class="tblDescr"><p>参数给定与手势启动信号</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-multipointtoucharea.html">MultiPointTouchArea</a></p></td><td class="tblDescr"><p>允许处理多个接触点</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-touchpoint.html">TouchPoint</a></p></td><td class="tblDescr"><p>描述多点区域中的接触点</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-pathview.html">PathView</a></p></td><td class="tblDescr"><p>在路径上列出模型提供的项</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-pincharea.html">PinchArea</a></p></td><td class="tblDescr"><p>支持简单的缩放手势处理</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-pinchevent.html">PinchEvent</a></p></td><td class="tblDescr"><p>用于指定关于缩放事件的信息</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-column.html">Column</a></p></td><td class="tblDescr"><p>将其子元素置于列中</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-flow.html">Flow</a></p></td><td class="tblDescr"><p>将其子元素并排放置，必要时进行包装</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-grid.html">Grid</a></p></td><td class="tblDescr"><p>将其子元素置于网格中</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-positioner.html">Positioner</a></p></td><td class="tblDescr"><p>提供附加属性，这些属性包含有关定位程序中项存在位置的详细信息</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-row.html">Row</a></p></td><td class="tblDescr"><p>将它的子元素排成一排</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-gradient.html">Gradient</a></p></td><td class="tblDescr"><p>定义渐变填充</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-gradientstop.html">GradientStop</a></p></td><td class="tblDescr"><p>定义渐变中某一位置的颜色</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-rectangle.html">Rectangle</a></p></td><td class="tblDescr"><p>用可选边框绘制填充矩形</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-repeater.html">Repeater</a></p></td><td class="tblDescr"><p>使用提供的模型实例化许多基于项的组件</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-shadereffect.html">ShaderEffect</a></p></td><td class="tblDescr"><p>对矩形应用自定义着色器</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-borderimagemesh.html">BorderImageMesh</a></p></td><td class="tblDescr"><p>定义一个顶点排列类似于边框背景图的网格</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-gridmesh.html">GridMesh</a></p></td><td class="tblDescr"><p>定义在网格中排列顶点的网格</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-shadereffectsource.html">ShaderEffectSource</a></p></td><td class="tblDescr"><p>将Qt Quick项呈现到纹理中并显示它</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-sprite.html">Sprite</a></p></td><td class="tblDescr"><p>指定精灵动画</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-spritesequence.html">SpriteSequence</a></p></td><td class="tblDescr"><p>绘制精灵动画</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-anchorchanges.html">AnchorChanges</a></p></td><td class="tblDescr"><p>指定如何更改处于某种状态的项的锚</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-parentchange.html">ParentChange</a></p></td><td class="tblDescr"><p>指定如何在状态更改中重新为项重定义父级</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-text.html">Text</a></p></td><td class="tblDescr"><p>指定如何向场景添加格式化文本</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-textedit.html">TextEdit</a></p></td><td class="tblDescr"><p>显示可编辑格式化文本的多行</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-textinput.html">TextInput</a></p></td><td class="tblDescr"><p>显示可编辑的文本行</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-matrix4x4.html">Matrix4x4</a></p></td><td class="tblDescr"><p>提供一种将4x4转换矩阵应用于项的方法</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-rotation.html">Rotation</a></p></td><td class="tblDescr"><p>提供旋转项的方法</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-scale.html">Scale</a></p></td><td class="tblDescr"><p>提供缩放项的方法</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-translate.html">Translate</a></p></td><td class="tblDescr"><p>提供在不更改项的x或y属性的情况下移动项的方法</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-animation.html">Animation</a></p></td><td class="tblDescr"><p>是所有QML动画的基础</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-coloranimation.html">ColorAnimation</a></p></td><td class="tblDescr"><p>设置颜色值更改的动画 </p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></p></td><td class="tblDescr"><p>设置颜色值更改的动画</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-parallelanimation.html">ParallelAnimation</a></p></td><td class="tblDescr"><p>允许动画并行运行</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-pauseanimation.html">PauseAnimation</a></p></td><td class="tblDescr"><p>为动画提供暂停</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-propertyaction.html">PropertyAction</a></p></td><td class="tblDescr"><p>指定动画期间的即时属性更改</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-propertyanimation.html">PropertyAnimation</a></p></td><td class="tblDescr"><p>设置属性值更改的动画</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-rotationanimation.html">RotationAnimation</a></p></td><td class="tblDescr"><p>设置属性值更改的动画 </p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-scriptaction.html">ScriptAction</a></p></td><td class="tblDescr"><p>定义要在动画期间运行的脚本</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-sequentialanimation.html">SequentialAnimation</a></p></td><td class="tblDescr"><p>允许动画按顺序运行</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-vector3danimation.html">Vector3dAnimation</a></p></td><td class="tblDescr"><p>设置Qvector3D值更改的动画</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-animationcontroller.html">AnimationController</a></p></td><td class="tblDescr"><p>启用动画的手动控制 </p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-animator.html">Animator</a></p></td><td class="tblDescr"><p>是所有QML动画的基础 </p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-opacityanimator.html">OpacityAnimator</a></p></td><td class="tblDescr"><p>定义项的动画不透明度</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-rotationanimator.html">RotationAnimator</a></p></td><td class="tblDescr"><p>定义项的动画旋转效果</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-scaleanimator.html">ScaleAnimator</a></p></td><td class="tblDescr"><p>定义项的动画缩放比例</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-uniformanimator.html">UniformAnimator</a></p></td><td class="tblDescr"><p>定义ShaderEffect的一致性</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-xanimator.html">XAnimator</a></p></td><td class="tblDescr"><p>定义项的动画的x位置Type animates the x position of an Item</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-yanimator.html">YAnimator</a></p></td><td class="tblDescr"><p>定义项的动画的y位置</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-behavior.html">Behavior</a></p></td><td class="tblDescr"><p>为属性更改定义默认动画</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-fontloader.html">FontLoader</a></p></td><td class="tblDescr"><p>允许通过名称或URL加载字体</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-fontmetrics.html">FontMetrics</a></p></td><td class="tblDescr"><p>为给定字体提供度量</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-path.html">Path</a></p></td><td class="tblDescr"><p>定义一个路径供PathView和Shape使用</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-pathanglearc.html">PathAngleArc</a></p></td><td class="tblDescr"><p>定义具有给定半径和中心的弧</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-patharc.html">PathArc</a></p></td><td class="tblDescr"><p>定义具有给定半径的弧</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-pathattribute.html">PathAttribute</a></p></td><td class="tblDescr"><p>指定如何在路径中的给定位置设置属性</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-pathcubic.html">PathCubic</a></p></td><td class="tblDescr"><p>定义具有两个控制点的三次贝塞尔曲线</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-pathcurve.html">PathCurve</a></p></td><td class="tblDescr"><p>定义Catmull-Rom曲线上的一个点</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-pathelement.html">PathElement</a></p></td><td class="tblDescr"><p>基本路径类型</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-pathline.html">PathLine</a></p></td><td class="tblDescr"><p>定义一条直线</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-pathmove.html">PathMove</a></p></td><td class="tblDescr"><p>移动路径的位置</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-pathpercent.html">PathPercent</a></p></td><td class="tblDescr"><p>操作解释路径的方式</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-pathquad.html">PathQuad</a></p></td><td class="tblDescr"><p>定义带有控制点的二次贝塞尔曲线</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-pathsvg.html">PathSvg</a></p></td><td class="tblDescr"><p>使用SVG路径数据字符串定义路径</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-pathinterpolator.html">PathInterpolator</a></p></td><td class="tblDescr"><p>指定如何沿路径手动动画</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-propertychanges.html">PropertyChanges</a></p></td><td class="tblDescr"><p>描述状态的新属性绑定或值</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-shortcut.html">Shortcut</a></p></td><td class="tblDescr"><p>提供快捷键</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-smoothedanimation.html">SmoothedAnimation</a></p></td><td class="tblDescr"><p>允许属性平滑地跟踪值p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-springanimation.html">SpringAnimation</a></p></td><td class="tblDescr"><p>允许属性以类似spring的方式跟踪值</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-state.html">State</a></p></td><td class="tblDescr"><p>定义对象和属性的配置</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-statechangescript.html">StateChangeScript</a></p></td><td class="tblDescr"><p>指定如何在状态下运行脚本</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-stategroup.html">StateGroup</a></p></td><td class="tblDescr"><p>为非项类型提供内置的状态支持</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-systempalette.html">SystemPalette</a></p></td><td class="tblDescr"><p>提供对Qt调色板的访问</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-textmetrics.html">TextMetrics</a></p></td><td class="tblDescr"><p>为给定的字体和文本提供度量</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-transition.html">Transition</a></p></td><td class="tblDescr"><p>定义在状态更改时发生的动画转换</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-doublevalidator.html">DoubleValidator</a></p></td><td class="tblDescr"><p>定义非整数数字的验证器</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-intvalidator.html">IntValidator</a></p></td><td class="tblDescr"><p>为整数值定义验证器</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-regexpvalidator.html">RegExpValidator</a></p></td><td class="tblDescr"><p>提供字符串验证器</p></td></tr>
+</table></div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2018 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

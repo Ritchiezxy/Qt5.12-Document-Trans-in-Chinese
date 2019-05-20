@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>interactive.qml Example File | Qt Quick 5.11</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.11</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-effects-particles.html#shapes">Qt Quick Examples - Shapes</a></td><td >interactive.qml Example File</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.11.1 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">interactive.qml Example File</h1>
+<span class="subtitle">shapes/content/interactive.qml</span>
+<!-- $$$shapes/content/interactive.qml-description -->
+<div class="descr"> <a name="details"></a>
+<pre class="qml">
+
+  <span class="comment">/****************************************************************************
+  **
+  ** Copyright (C) 2016 The Qt Company Ltd.
+  ** Contact: https://www.qt.io/licensing/
+  **
+  ** This file is part of the QtQuick module of the Qt Toolkit.
+  **
+  ** $QT_BEGIN_LICENSE:BSD$
+  ** Commercial License Usage
+  ** Licensees holding valid commercial Qt licenses may use this file in
+  ** accordance with the commercial license agreement provided with the
+  ** Software or, alternatively, in accordance with the terms contained in
+  ** a written agreement between you and The Qt Company. For licensing terms
+  ** and conditions see https://www.qt.io/terms-conditions. For further
+  ** information use the contact form at https://www.qt.io/contact-us.
+  **
+  ** BSD License Usage
+  ** Alternatively, you may use this file under the terms of the BSD license
+  ** as follows:
+  **
+  ** &quot;Redistribution and use in source and binary forms, with or without
+  ** modification, are permitted provided that the following conditions are
+  ** met:
+  **   * Redistributions of source code must retain the above copyright
+  **     notice, this list of conditions and the following disclaimer.
+  **   * Redistributions in binary form must reproduce the above copyright
+  **     notice, this list of conditions and the following disclaimer in
+  **     the documentation and/or other materials provided with the
+  **     distribution.
+  **   * Neither the name of The Qt Company Ltd nor the names of its
+  **     contributors may be used to endorse or promote products derived
+  **     from this software without specific prior written permission.
+  **
+  **
+  ** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  ** &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  ** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  ** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  ** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  ** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  ** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  ** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  ** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  ** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&quot;
+  **
+  ** $QT_END_LICENSE$
+  **
+  ****************************************************************************/</span>
+
+  import QtQuick 2.9
+  import QtQuick.Shapes 1.0
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">root</span>
+      <span class="name">width</span>: <span class="number">1024</span>
+      <span class="name">height</span>: <span class="number">768</span>
+
+      property <span class="type"><a href="qml-color.html">color</a></span> <span class="name">col</span>: <span class="string">&quot;lightsteelblue&quot;</span>
+      <span class="name">gradient</span>: <span class="name">Gradient</span> {
+          <span class="type"><a href="qml-qtquick-gradientstop.html">GradientStop</a></span> { <span class="name">position</span>: <span class="number">0.0</span>; <span class="name">color</span>: <span class="name">Qt</span>.<span class="name">tint</span>(<span class="name">root</span>.<span class="name">col</span>, <span class="string">&quot;#20FFFFFF&quot;</span>) }
+          <span class="type"><a href="qml-qtquick-gradientstop.html">GradientStop</a></span> { <span class="name">position</span>: <span class="number">0.1</span>; <span class="name">color</span>: <span class="name">Qt</span>.<span class="name">tint</span>(<span class="name">root</span>.<span class="name">col</span>, <span class="string">&quot;#20AAAAAA&quot;</span>) }
+          <span class="type"><a href="qml-qtquick-gradientstop.html">GradientStop</a></span> { <span class="name">position</span>: <span class="number">0.9</span>; <span class="name">color</span>: <span class="name">Qt</span>.<span class="name">tint</span>(<span class="name">root</span>.<span class="name">col</span>, <span class="string">&quot;#20666666&quot;</span>) }
+          <span class="type"><a href="qml-qtquick-gradientstop.html">GradientStop</a></span> { <span class="name">position</span>: <span class="number">1.0</span>; <span class="name">color</span>: <span class="name">Qt</span>.<span class="name">tint</span>(<span class="name">root</span>.<span class="name">col</span>, <span class="string">&quot;#20000000&quot;</span>) }
+      }
+
+      property <span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">mode</span>: <span class="number">0</span>
+      property <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span> <span class="name">showResizers</span>: <span class="number">true</span>
+      property <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span> <span class="name">fill</span>: <span class="number">false</span>
+
+      <span class="type"><a href="qml-qtquick-row.html">Row</a></span> {
+          <span class="name">x</span>: <span class="number">20</span>
+          <span class="name">y</span>: <span class="number">10</span>
+          <span class="name">spacing</span>: <span class="number">20</span>
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">border</span>.color: <span class="string">&quot;black&quot;</span>
+              <span class="name">color</span>: <span class="name">root</span>.<span class="name">mode</span> <span class="operator">===</span> <span class="number">0</span> ? <span class="string">&quot;red&quot;</span> : <span class="string">&quot;transparent&quot;</span>
+              <span class="name">width</span>: <span class="number">100</span>
+              <span class="name">height</span>: <span class="number">40</span>
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+                  <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+                  <span class="name">text</span>: <span class="string">&quot;Line&quot;</span>
+              }
+              <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">onClicked</span>: <span class="name">root</span>.<span class="name">mode</span> <span class="operator">=</span> <span class="number">0</span>
+              }
+          }
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">border</span>.color: <span class="string">&quot;black&quot;</span>
+              <span class="name">color</span>: <span class="name">root</span>.<span class="name">mode</span> <span class="operator">===</span> <span class="number">1</span> ? <span class="string">&quot;red&quot;</span> : <span class="string">&quot;transparent&quot;</span>
+              <span class="name">width</span>: <span class="number">100</span>
+              <span class="name">height</span>: <span class="number">40</span>
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+                  <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+                  <span class="name">text</span>: <span class="string">&quot;Cubic&quot;</span>
+              }
+              <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">onClicked</span>: <span class="name">root</span>.<span class="name">mode</span> <span class="operator">=</span> <span class="number">1</span>
+              }
+          }
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">border</span>.color: <span class="string">&quot;black&quot;</span>
+              <span class="name">color</span>: <span class="name">root</span>.<span class="name">mode</span> <span class="operator">===</span> <span class="number">2</span> ? <span class="string">&quot;red&quot;</span> : <span class="string">&quot;transparent&quot;</span>
+              <span class="name">width</span>: <span class="number">100</span>
+              <span class="name">height</span>: <span class="number">40</span>
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+                  <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+                  <span class="name">text</span>: <span class="string">&quot;Quadratic&quot;</span>
+              }
+              <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">onClicked</span>: <span class="name">root</span>.<span class="name">mode</span> <span class="operator">=</span> <span class="number">2</span>
+              }
+          }
+
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls-slider.html">Slider</a></span> {
+              <span class="name">id</span>: <span class="name">widthSlider</span>
+              <span class="name">name</span>: <span class="string">&quot;Width&quot;</span>
+              <span class="name">min</span>: <span class="number">1</span>
+              <span class="name">max</span>: <span class="number">60</span>
+              <span class="name">init</span>: <span class="number">4</span>
+          }
+
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">border</span>.color: <span class="string">&quot;black&quot;</span>
+              <span class="name">color</span>: <span class="name">root</span>.<span class="name">showResizers</span> ? <span class="string">&quot;yellow&quot;</span> : <span class="string">&quot;transparent&quot;</span>
+              <span class="name">width</span>: <span class="number">50</span>
+              <span class="name">height</span>: <span class="number">40</span>
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+                  <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+                  <span class="name">text</span>: <span class="string">&quot;Manip&quot;</span>
+              }
+              <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">onClicked</span>: {
+                      <span class="name">root</span>.<span class="name">showResizers</span> <span class="operator">=</span> !<span class="name">root</span>.<span class="name">showResizers</span>;
+                      <span class="keyword">for</span> (<span class="keyword">var</span> <span class="name">i</span> = <span class="number">0</span>; <span class="name">i</span> <span class="operator">&lt;</span> <span class="name">canvas</span>.<span class="name">resizers</span>.<span class="name">length</span>; ++<span class="name">i</span>)
+                          <span class="name">canvas</span>.<span class="name">resizers</span>[<span class="name">i</span>].<span class="name">visible</span> <span class="operator">=</span> <span class="name">root</span>.<span class="name">showResizers</span>;
+                  }
+              }
+          }
+
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">border</span>.color: <span class="string">&quot;black&quot;</span>
+              <span class="name">color</span>: <span class="name">root</span>.<span class="name">fill</span> ? <span class="string">&quot;yellow&quot;</span> : <span class="string">&quot;transparent&quot;</span>
+              <span class="name">width</span>: <span class="number">50</span>
+              <span class="name">height</span>: <span class="number">40</span>
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+                  <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+                  <span class="name">text</span>: <span class="string">&quot;Fill&quot;</span>
+              }
+              <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">onClicked</span>: <span class="name">root</span>.<span class="name">fill</span> <span class="operator">=</span> !<span class="name">root</span>.<span class="name">fill</span>
+              }
+          }
+      }
+
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">canvas</span>
+          <span class="name">width</span>: <span class="name">root</span>.<span class="name">width</span> <span class="operator">-</span> <span class="number">40</span>
+          <span class="name">height</span>: <span class="name">root</span>.<span class="name">height</span> <span class="operator">-</span> <span class="number">120</span>
+          <span class="name">x</span>: <span class="number">20</span>
+          <span class="name">y</span>: <span class="number">100</span>
+
+          property <span class="type"><a href="../qtqml/qml-variant.html">variant</a></span> <span class="name">activePath</span>: <span class="number">null</span>
+
+          property <span class="type"><a href="../qtqml/qml-variant.html">variant</a></span> <span class="name">resizers</span>: []
+          property <span class="type"><a href="../qtqml/qml-variant.html">variant</a></span> <span class="name">funcs</span>
+
+          <span class="keyword">function</span> <span class="name">genResizer</span>(<span class="name">obj</span>, x, y, xprop, yprop, color) {
+              var <span class="name">ma</span> = <span class="name">Qt</span>.<span class="name">createQmlObject</span>(<span class="string">'import QtQuick 2.9; import QtQuick.Shapes 1.0; Rectangle { id: rr; property variant obj; color: &quot;'</span> <span class="operator">+</span> <span class="name">color</span> <span class="operator">+</span> <span class="string">'&quot;; width: 20; height: 20;'</span><span class="operator">+</span>
+                                           <span class="string">'MouseArea { anchors.fill: parent; hoverEnabled: true;'</span> <span class="operator">+</span>
+                                           <span class="string">'onEntered: color = &quot;yellow&quot;; onExited: color = &quot;'</span> <span class="operator">+</span> <span class="name">color</span> <span class="operator">+</span> <span class="string">'&quot;;'</span> <span class="operator">+</span>
+                                           <span class="string">'property bool a: false; onPressed: a = true; onReleased: a = false; '</span> <span class="operator">+</span>
+                                           <span class="string">'onPositionChanged: if (a) { var pt = mapToItem(rr.parent, mouse.x, mouse.y);'</span> <span class="operator">+</span>
+                                           <span class="string">'obj.'</span> <span class="operator">+</span> <span class="name">xprop</span> <span class="operator">+</span> <span class="string">' = pt.x; obj.'</span> <span class="operator">+</span> <span class="name">yprop</span> <span class="operator">+</span> <span class="string">' = pt.y; rr.x = pt.x - 10; rr.y = pt.y - 10; } } }'</span>,
+                                           <span class="name">canvas</span>, <span class="string">&quot;resizer_item&quot;</span>);
+              <span class="name">ma</span>.<span class="name">visible</span> <span class="operator">=</span> <span class="name">root</span>.<span class="name">showResizers</span>;
+              <span class="name">ma</span>.<span class="name">obj</span> <span class="operator">=</span> <span class="name">obj</span>;
+              <span class="name">ma</span>.<span class="name">x</span> <span class="operator">=</span> <span class="name">x</span> <span class="operator">-</span> <span class="number">10</span>;
+              <span class="name">ma</span>.<span class="name">y</span> <span class="operator">=</span> <span class="name">y</span> <span class="operator">-</span> <span class="number">10</span>;
+              <span class="name">resizers</span>.<span class="name">push</span>(<span class="name">ma</span>);
+              <span class="keyword">return</span> <span class="name">ma</span>;
+          }
+
+          <span class="name">Component</span>.onCompleted: {
+              <span class="name">funcs</span> <span class="operator">=</span> [
+                          { &quot;start&quot;: <span class="keyword">function</span>(<span class="name">x</span>, y) {
+                              var <span class="name">p</span> = <span class="name">Qt</span>.<span class="name">createQmlObject</span>(<span class="string">'import QtQuick 2.9; import QtQuick.Shapes 1.0; ShapePath {'</span> <span class="operator">+</span>
+                                                         <span class="string">'strokeColor: &quot;black&quot;; fillColor: &quot;transparent&quot;;'</span><span class="operator">+</span>
+                                                         <span class="string">'strokeWidth: '</span> <span class="operator">+</span> <span class="name">widthSlider</span>.<span class="name">value</span> <span class="operator">+</span> <span class="string">';'</span> <span class="operator">+</span>
+                                                         <span class="string">'startX: '</span> <span class="operator">+</span> <span class="name">x</span> <span class="operator">+</span> <span class="string">'; startY: '</span> <span class="operator">+</span> <span class="name">y</span> <span class="operator">+</span> <span class="string">';'</span> <span class="operator">+</span>
+                                                         <span class="string">'PathLine { x: '</span> <span class="operator">+</span> <span class="name">x</span> <span class="operator">+</span> <span class="string">' + 1; y: '</span> <span class="operator">+</span> <span class="name">y</span> <span class="operator">+</span> <span class="string">' + 1 } }'</span>,
+                                                         <span class="name">root</span>, <span class="string">&quot;dynamic_visual_path&quot;</span>);
+                              <span class="name">shape</span>.<span class="name">data</span>.<span class="name">push</span>(<span class="name">p</span>);
+                              <span class="name">activePath</span> <span class="operator">=</span> <span class="name">p</span>;
+                          }, &quot;move&quot;: <span class="keyword">function</span>(<span class="name">x</span>, y) {
+                              <span class="keyword">if</span> (!<span class="name">activePath</span>)
+                                  <span class="keyword">return</span>;
+                              var <span class="name">pathObj</span> = <span class="name">activePath</span>.<span class="name">pathElements</span>[<span class="number">0</span>];
+                              <span class="name">pathObj</span>.<span class="name">x</span> <span class="operator">=</span> <span class="name">x</span>;
+                              <span class="name">pathObj</span>.<span class="name">y</span> <span class="operator">=</span> <span class="name">y</span>;
+                          }, &quot;end&quot;: <span class="keyword">function</span>() {
+                              <span class="name">canvas</span>.<span class="name">genResizer</span>(<span class="name">activePath</span>, <span class="name">activePath</span>.<span class="name">startX</span>, <span class="name">activePath</span>.<span class="name">startY</span>, <span class="string">&quot;startX&quot;</span>, <span class="string">&quot;startY&quot;</span>, <span class="string">&quot;red&quot;</span>);
+                              var <span class="name">pathObj</span> = <span class="name">activePath</span>.<span class="name">pathElements</span>[<span class="number">0</span>];
+                              <span class="name">canvas</span>.<span class="name">genResizer</span>(<span class="name">pathObj</span>, <span class="name">pathObj</span>.<span class="name">x</span>, <span class="name">pathObj</span>.<span class="name">y</span>, <span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>, <span class="string">&quot;red&quot;</span>);
+                              <span class="name">activePath</span> <span class="operator">=</span> <span class="number">null</span>;
+                          }
+                          },
+                          { &quot;start&quot;: <span class="keyword">function</span>(<span class="name">x</span>, y) {
+                              var <span class="name">p</span> = <span class="name">Qt</span>.<span class="name">createQmlObject</span>(<span class="string">'import QtQuick 2.9; import QtQuick.Shapes 1.0; ShapePath {'</span> <span class="operator">+</span>
+                                                         <span class="string">'strokeColor: &quot;black&quot;; fillColor: &quot;'</span> <span class="operator">+</span> (<span class="name">root</span>.<span class="name">fill</span> ? <span class="string">'green'</span> : <span class="string">'transparent'</span>) <span class="operator">+</span> <span class="string">'&quot;;'</span><span class="operator">+</span>
+                                                         <span class="string">'strokeWidth: '</span> <span class="operator">+</span> <span class="name">widthSlider</span>.<span class="name">value</span> <span class="operator">+</span> <span class="string">';'</span> <span class="operator">+</span>
+                                                         <span class="string">'startX: '</span> <span class="operator">+</span> <span class="name">x</span> <span class="operator">+</span> <span class="string">'; startY: '</span> <span class="operator">+</span> <span class="name">y</span> <span class="operator">+</span> <span class="string">';'</span> <span class="operator">+</span>
+                                                         <span class="string">'PathCubic { x: '</span> <span class="operator">+</span> <span class="name">x</span> <span class="operator">+</span> <span class="string">' + 1; y: '</span> <span class="operator">+</span> <span class="name">y</span> <span class="operator">+</span> <span class="string">' + 1;'</span> <span class="operator">+</span>
+                                                         <span class="string">'control1X: '</span> <span class="operator">+</span> <span class="name">x</span> <span class="operator">+</span> <span class="string">' + 50; control1Y: '</span> <span class="operator">+</span> <span class="name">y</span> <span class="operator">+</span> <span class="string">' + 50; control2X: '</span> <span class="operator">+</span> <span class="name">x</span> <span class="operator">+</span> <span class="string">' + 150; control2Y: '</span> <span class="operator">+</span> <span class="name">y</span> <span class="operator">+</span> <span class="string">' + 50; } }'</span>,
+                                                         <span class="name">root</span>, <span class="string">&quot;dynamic_visual_path&quot;</span>);
+                              <span class="name">shape</span>.<span class="name">data</span>.<span class="name">push</span>(<span class="name">p</span>);
+                              <span class="name">activePath</span> <span class="operator">=</span> <span class="name">p</span>;
+                          }, &quot;move&quot;: <span class="keyword">function</span>(<span class="name">x</span>, y) {
+                              <span class="keyword">if</span> (!<span class="name">activePath</span>)
+                                  <span class="keyword">return</span>;
+                              var <span class="name">pathObj</span> = <span class="name">activePath</span>.<span class="name">pathElements</span>[<span class="number">0</span>];
+                              <span class="name">pathObj</span>.<span class="name">x</span> <span class="operator">=</span> <span class="name">x</span>;
+                              <span class="name">pathObj</span>.<span class="name">y</span> <span class="operator">=</span> <span class="name">y</span>;
+                          }, &quot;end&quot;: <span class="keyword">function</span>() {
+                              <span class="name">canvas</span>.<span class="name">genResizer</span>(<span class="name">activePath</span>, <span class="name">activePath</span>.<span class="name">startX</span>, <span class="name">activePath</span>.<span class="name">startY</span>, <span class="string">&quot;startX&quot;</span>, <span class="string">&quot;startY&quot;</span>, <span class="string">&quot;red&quot;</span>);
+                              var <span class="name">pathObj</span> = <span class="name">activePath</span>.<span class="name">pathElements</span>[<span class="number">0</span>];
+                              <span class="name">canvas</span>.<span class="name">genResizer</span>(<span class="name">pathObj</span>, <span class="name">pathObj</span>.<span class="name">x</span>, <span class="name">pathObj</span>.<span class="name">y</span>, <span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>, <span class="string">&quot;red&quot;</span>);
+                              <span class="name">canvas</span>.<span class="name">genResizer</span>(<span class="name">pathObj</span>, <span class="name">pathObj</span>.<span class="name">control1X</span>, <span class="name">pathObj</span>.<span class="name">control1Y</span>, <span class="string">&quot;control1X&quot;</span>, <span class="string">&quot;control1Y&quot;</span>, <span class="string">&quot;blue&quot;</span>);
+                              <span class="name">canvas</span>.<span class="name">genResizer</span>(<span class="name">pathObj</span>, <span class="name">pathObj</span>.<span class="name">control2X</span>, <span class="name">pathObj</span>.<span class="name">control2Y</span>, <span class="string">&quot;control2X&quot;</span>, <span class="string">&quot;control2Y&quot;</span>, <span class="string">&quot;lightBlue&quot;</span>);
+                              <span class="name">activePath</span> <span class="operator">=</span> <span class="number">null</span>;
+                          }
+                          },
+                          { &quot;start&quot;: <span class="keyword">function</span>(<span class="name">x</span>, y) {
+                              var <span class="name">p</span> = <span class="name">Qt</span>.<span class="name">createQmlObject</span>(<span class="string">'import QtQuick 2.9; import QtQuick.Shapes 1.0; ShapePath {'</span> <span class="operator">+</span>
+                                                         <span class="string">'strokeColor: &quot;black&quot;; fillColor: &quot;'</span> <span class="operator">+</span> (<span class="name">root</span>.<span class="name">fill</span> ? <span class="string">'green'</span> : <span class="string">'transparent'</span>) <span class="operator">+</span> <span class="string">'&quot;;'</span><span class="operator">+</span>
+                                                         <span class="string">'strokeWidth: '</span> <span class="operator">+</span> <span class="name">widthSlider</span>.<span class="name">value</span> <span class="operator">+</span> <span class="string">';'</span> <span class="operator">+</span>
+                                                         <span class="string">'startX: '</span> <span class="operator">+</span> <span class="name">x</span> <span class="operator">+</span> <span class="string">'; startY: '</span> <span class="operator">+</span> <span class="name">y</span> <span class="operator">+</span> <span class="string">';'</span> <span class="operator">+</span>
+                                                         <span class="string">'PathQuad { x: '</span> <span class="operator">+</span> <span class="name">x</span> <span class="operator">+</span> <span class="string">' + 1; y: '</span> <span class="operator">+</span> <span class="name">y</span> <span class="operator">+</span> <span class="string">' + 1;'</span> <span class="operator">+</span>
+                                                         <span class="string">'controlX: '</span> <span class="operator">+</span> <span class="name">x</span> <span class="operator">+</span> <span class="string">' + 50; controlY: '</span> <span class="operator">+</span> <span class="name">y</span> <span class="operator">+</span> <span class="string">' + 50 } }'</span>,
+                                                         <span class="name">root</span>, <span class="string">&quot;dynamic_visual_path&quot;</span>);
+                              <span class="name">shape</span>.<span class="name">data</span>.<span class="name">push</span>(<span class="name">p</span>);
+                              <span class="name">activePath</span> <span class="operator">=</span> <span class="name">p</span>;
+                          }, &quot;move&quot;: <span class="keyword">function</span>(<span class="name">x</span>, y) {
+                              <span class="keyword">if</span> (!<span class="name">activePath</span>)
+                                  <span class="keyword">return</span>;
+                              var <span class="name">pathObj</span> = <span class="name">activePath</span>.<span class="name">pathElements</span>[<span class="number">0</span>];
+                              <span class="name">pathObj</span>.<span class="name">x</span> <span class="operator">=</span> <span class="name">x</span>;
+                              <span class="name">pathObj</span>.<span class="name">y</span> <span class="operator">=</span> <span class="name">y</span>;
+                          }, &quot;end&quot;: <span class="keyword">function</span>() {
+                              <span class="name">canvas</span>.<span class="name">genResizer</span>(<span class="name">activePath</span>, <span class="name">activePath</span>.<span class="name">startX</span>, <span class="name">activePath</span>.<span class="name">startY</span>, <span class="string">&quot;startX&quot;</span>, <span class="string">&quot;startY&quot;</span>, <span class="string">&quot;red&quot;</span>);
+                              var <span class="name">pathObj</span> = <span class="name">activePath</span>.<span class="name">pathElements</span>[<span class="number">0</span>];
+                              <span class="name">canvas</span>.<span class="name">genResizer</span>(<span class="name">pathObj</span>, <span class="name">pathObj</span>.<span class="name">x</span>, <span class="name">pathObj</span>.<span class="name">y</span>, <span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>, <span class="string">&quot;red&quot;</span>);
+                              <span class="name">canvas</span>.<span class="name">genResizer</span>(<span class="name">pathObj</span>, <span class="name">pathObj</span>.<span class="name">controlX</span>, <span class="name">pathObj</span>.<span class="name">controlY</span>, <span class="string">&quot;controlX&quot;</span>, <span class="string">&quot;controlY&quot;</span>, <span class="string">&quot;blue&quot;</span>);
+                              <span class="name">activePath</span> <span class="operator">=</span> <span class="number">null</span>;
+                          }
+                          }
+                      ];
+          }
+
+          <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+              <span class="name">anchors</span>.fill: <span class="name">parent</span>
+              <span class="name">onPressed</span>: {
+                  <span class="name">canvas</span>.<span class="name">funcs</span>[<span class="name">root</span>.<span class="name">mode</span>].<span class="name">start</span>(<span class="name">mouse</span>.<span class="name">x</span>, <span class="name">mouse</span>.<span class="name">y</span>);
+              }
+              <span class="name">onPositionChanged</span>: {
+                  <span class="name">canvas</span>.<span class="name">funcs</span>[<span class="name">root</span>.<span class="name">mode</span>].<span class="name">move</span>(<span class="name">mouse</span>.<span class="name">x</span>, <span class="name">mouse</span>.<span class="name">y</span>);
+              }
+              <span class="name">onReleased</span>: {
+                  <span class="name">canvas</span>.<span class="name">funcs</span>[<span class="name">root</span>.<span class="name">mode</span>].<span class="name">end</span>();
+              }
+          }
+
+          <span class="type"><a href="qml-qtquick-particles-shape.html">Shape</a></span> {
+              <span class="name">id</span>: <span class="name">shape</span>
+              <span class="name">anchors</span>.fill: <span class="name">parent</span>
+
+              <span class="name">data</span>: []
+          }
+      }
+  }
+
+</pre>
+</div>
+<!-- @@@shapes/content/interactive.qml -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2018 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
