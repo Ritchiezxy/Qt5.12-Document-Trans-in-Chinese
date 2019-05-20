@@ -43,44 +43,44 @@
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">Prototyping with qmlscene</h1>
+<h1 class="title">用qmlscene进行原型化设计</h1>
 <span class="subtitle"></span>
 <!-- $$$qtquick-qmlscene.html-description -->
 <div class="descr"> <a name="details"></a>
-<p>Qt 5 includes <code>qmlscene</code>, a utility that loads and displays QML documents even before the application is complete. This utility also provides the following additional features that are useful while developing QML applications:</p>
+<p>Qt 5包含<code>qmlscene</code>这是一个实用程序，可以在应用程序完成之前加载和显示QML文档。这个实用程序还提供了以下额外的功能，这些功能在开发QML应用程序时非常有用:</p>
 <ul>
-<li>View the QML document in a maximized window.</li>
-<li>View the QML document in full-screen mode.</li>
-<li>Make the window transparent.</li>
-<li>Disable multi-sampling (anti-aliasing).</li>
-<li>Do not detect the version of the .qml file.</li>
-<li>Run all animations in slow motion.</li>
-<li>Resize the window to the size of the root item.</li>
-<li>Add the list of import paths.</li>
-<li>Add a named bundle.</li>
-<li>Use a translation file to set the language.</li>
+<li>在最大化窗口中查看QML文档。</li>
+<li>以全屏模式查看QML文档。</li>
+<li>使窗口透明。</li>
+<li>禁用多式样(反锯齿)。</li>
+<li>不要检测.qml文件的版本。</li>
+<li>以慢动作运行所有动画。</li>
+<li>将窗口大小调整为根项的大小。</li>
+<li>添加导入路径列表。</li>
+<li>添加一个命名包。</li>
+<li>使用翻译文件设置语言。</li>
 </ul>
-<p>The <code>qmlscene</code> utility is meant to be used for testing your QML applications, and not as a launcher in a production environment. To launch a QML application in a production environment, develop a custom C++ application or bundle the QML file in a module. See <a href="qtquick-deployment.html">Deploying QML applications</a> for more information.</p>
-<p>To load a .qml file, run the tool and select the file to be opened, or provide the file path on the command prompt:</p>
+<p><code>qmlscene</code>实用程序用于测试QML应用程序，而不是作为生产环境中的启动程序。要在生产环境中启动QML应用程序，请开发自定义c++应用程序或将QML文件打包到模块中。有关更多信息，请参见<a href="qtquick-deployment.html">部署QML应用程序</a>。</p>
+<p>要加载.qml文件，运行工具并选择要打开的文件，或者在命令提示符上提供文件路径:</p>
 <pre class="cpp">
 
   qmlscene myqmlfile<span class="operator">.</span>qml
 
 </pre>
-<p>To see the configuration options, run <code>qmlscene</code> with the <code>-help</code> argument.</p>
+<p>要查看配置选项，请使用<code>-help</code> 参数运行<code>qmlscene</code>。</p>
 <a name="adding-module-import-paths"></a>
-<h2 id="adding-module-import-paths">Adding Module Import Paths</h2>
-<p>Additional module import paths can be provided using the <code>-I</code> flag. For example, the <a href="../qtqml/qtqml-qmlextensionplugins-example.html">QML plugin example</a> creates a C++ plugin identified with the namespace, <code>TimeExample</code>. To load the plugin, you must run <code>qmlscene</code> with the <code>-I</code> flag from the example's base directory:</p>
+<h2 id="adding-module-import-paths">添加模块导入路径</h2>
+<p>可以使用code>-I</code>标志提供额外的模块导入路径。 例如，<a href="../qtqml/qtqml-qmlextensionplugins-example.html">QML插件示例</a>创建一个C++插件，该插件使用命名空间<code>TimeExample</code>标识。 要加载插件，你必须运行从例子的基本目录<code>qmlscene</code> 和 <code>-I</code> 标志:</p>
 <pre class="cpp">
 
   qmlscene <span class="operator">-</span>I imports plugins<span class="operator">.</span>qml
 
 </pre>
-<p>This adds the current directory to the import path so that <code>qmlscene</code> will find the plugin in the <code>imports</code> directory.</p>
-<p><b>Note: </b>By default, the current directory is included in the import search path, but modules in a namespace such as <code>TimeExample</code> are not found unless the path is explicitly added.</p><a name="loading-test-data"></a>
+<p>这将当前目录添加到导入路径，以便<code>qmlscene</code>在<code>imports（导入）</code>目录中找到插件。</p>
+<p><b>注意： </b>默认情况下，导入搜索路径中包含当前目录，但是除非显式添加路径，否则不会找到名称空间(如<code>TimeExample</code>）中的模块。</p><a name="loading-test-data"></a>
 <h2 id="loading-test-data">Loading Test Data</h2>
-<p>Often, QML applications are prototyped with test data that is later replaced by real data sources from C++ plugins. The <code>qmlscene</code> utility assists in this aspect by loading test data into the application context. It looks for a directory named <code>dummydata</code> in the same directory as the target QML file, and loads the .qml files in that directory as QML objects and bind them to the root context as properties named after the files.</p>
-<p>For example, the following QML document refers to a <code>lottoNumbers</code> property which does not exist within the document:</p>
+<p>通常，QML应用程序的原型是测试数据，这些测试数据稍后会被C++插件中的实际数据源替换。<code>qmlscene</code>实用程序通过将测试数据加载到应用程序上下文中，在这方面提供了帮助。它在与目标QML文件相同的目录中查找一个名为<code>dummydata</code> 的目录，并将该目录中的. QML文件作为QML对象加载，并将它们作为以文件命名的属性绑定到根上下文。</p>
+<p>例如，下面的QML文档引用了文档中不存在的<code>lottoNumbers</code>属性:</p>
 <pre class="qml">
 
   import QtQuick 2.3
@@ -92,7 +92,7 @@
   }
 
 </pre>
-<p>If, within the document's directory, there is a <code>dummydata</code> directory which contains a <code>lottoNumbers.qml</code> file like this:</p>
+<p>如果在文档的目录中有一个包含<code>lottoNumbers.qml</code>文件的目录<code>dummydata</code>， qml文件如下:</p>
 <pre class="qml">
 
   import QtQuick 2.3
@@ -104,22 +104,22 @@
   }
 
 </pre>
-<p>Then this model would be automatically loaded into the <a href="../qtquick/qml-qtquick-listview.html">ListView</a> in the previous document.</p>
-<p>Child properties are included when loaded from <code>dummydata</code>. The following document refers to a <code>clock.time</code> property:</p>
+<p>然后该模型将自动加载到前一个文档中的<a href="../qtquick/qml-qtquick-listview.html">ListView</a>中。</p>
+<p>当从<code>dummydata</code>加载时，将包含子属性。下面的文档应用了<code>clock.time</code>属性：</p>
 <pre class="qml">
 
   import QtQuick 2.3
   <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">clock</span>.<span class="name">time</span> }
 
 </pre>
-<p>The text value could be filled by a <code>dummydata/clock.qml</code> file with a <code>time</code> property in the root context:</p>
+<p>文本值可以由<code>dummydata/clock.qml</code>填充，一个在根上下文中具有 <code>time</code>属性的qml文件:</p>
 <pre class="qml">
 
   import QtQuick 2.3
   <span class="type"><a href="../qtqml/qml-qtqml-qtobject.html">QtObject</a></span> { property <span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">time</span>: <span class="number">54321</span> }
 
 </pre>
-<p>To replace this with real data, bind the real data object to the root context in C++ using <a href="../qtqml/qqmlcontext.html#setContextProperty">QQmlContext::setContextProperty</a>(). This is detailed in <a href="../qtqml/qtqml-cppintegration-topic.html">Integrating QML and C++</a>.</p>
+<p>要用实际数据替换它，可以使用 <a href="../qtqml/qqmlcontext.html#setContextProperty">QQmlContext::setContextProperty</a>(). 将实际数据对象绑定到C++中的根上下文。这将在 <a href="../qtqml/qtqml-cppintegration-topic.html">集成QML和c++时</a>里详细介绍。</p>
 </div>
 <!-- @@@qtquick-qmlscene.html -->
         </div>

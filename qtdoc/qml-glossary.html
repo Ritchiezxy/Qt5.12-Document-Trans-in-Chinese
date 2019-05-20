@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- glossary.qdoc -->
+  <title>Glossary Of QML Terms | Qt 5.12 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="index.html">Qt 5.12</a></td><td >QML术语表</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.12.3 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#common-terms">Glossary Of QML Terms</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">常见的术语</h1>
+<span class="subtitle"></span>
+<!-- $$$qml-glossary.html-description -->
+<div class="descr"> <a name="details"></a>
+<a name="common-terms"></a>
+<h2 id="common-terms">常见的术语/h2>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th >术语</th><th >定义</th></tr></thead>
+<tr valign="top" class="odd"><td >QML</td><td >编写QML应用程序的语言。语言体系结构和引擎由Qt QML模块实现。</td></tr>
+<tr valign="top" class="even"><td >Qt Quick</td><td >QML语言的类型和功能的标准库，由QtQuick模块提供，可以通过 &quot;import <a href="../qtqml/qtquick-qmlmodule.html">QtQuick</a> 2.3&quot;访问。</td></tr>
+<tr valign="top" class="odd"><td >Type（类型）</td><td >在QML中，<i>类型</i> 可以引用<a href="../qtqml/qtqml-typesystem-topic.html">基本类型</a>或<a href="../qtqml/qtqml-typesystem-topic.html">QML对象类型。</a>。<p>QML语言提供了许多内置的基本类型，<a href="../qtqml/qtqml-typesystem-basictypes.html">基本类型</a>, Qt Quick模块为构建QML应用程序提供了各种<a href="../qtquick/qtquick-qmlmodule.html">Qt Quick 类型</a> 类型还可以由第三方开发人员通过(<a href="../qtqml/qtqml-modules-topic.html">modules（模块）</a>） )或应用程序开发人员通过<a href="../qtqml/qtqml-documents-definetypes.html">QML文档（类似于术语html文档）</a>在应用程序本身中提供。</p>
+<p>有关详细信息，请参阅<a href="../qtqml/qtqml-typesystem-topic.html">QML类型系统</a>。</p>
+</td></tr>
+<tr valign="top" class="even"><td >Basic Type（基本类型）</td><td ><a href="../qtqml/qtqml-typesystem-topic.html">基本类型</a> 是简单的类型，如<code>int</code>, <code>string</code> 以及 <code>bool</code>。 与<a href="../qtqml/qtqml-typesystem-topic.html">object types（对象类型）</a>不同，对象不能从基本类型实例化;例如，不可能使用属性、方法、信号等创建<code>int</code>对象。<p>基本类型构建在QML语言中，而对象类型不能使用，除非导入了适当的<a href="../qtqml/qtqml-modules-topic.html">module（模块）</a>。</p>
+<p>有关详细信息，请参阅<a href="../qtqml/qtqml-typesystem-topic.html">QML类型系统</a>。</p>
+</td></tr>
+<tr valign="top" class="odd"><td >Object Type（对象类型）</td><td ><a href="../qtqml/qtqml-typesystem-topic.html">Object Type（QML对象类型）</a> 是可以由QML引擎实例化的类型。<p>QML类型可以由以大写字母开头的. QML文件中的文档定义，也可以由基于<a href="../qtcore/qobject.html">QObject</a>的C++类定义。</p>
+<p>有关详细信息，请参阅<a href="../qtqml/qtqml-typesystem-topic.html">QML类型系统</a>。</p>
+</td></tr>
+<tr valign="top" class="even"><td >Object（对象）</td><td >QML对象是<a href="../qtqml/qtqml-typesystem-topic.html">QML Object Type（QML对象类型）</a>的实例。<p>这些对象是由引擎在处理<a href="../qtqml/qtqml-syntax-basics.html">object declarations（对象声明）</a>时创建的，对象声明指定要创建的对象和为每个对象定义的属性。</p>
+<p>此外，可以在运行时通过Component.createObject()和Qt.createQmlObject()动态创建对象。</p>
+<p>参见<a href="qml-glossary.html#lazy-instantiation">Lazy Instantiation（延迟实例化）</a>。</p>
+</td></tr>
+<tr valign="top" class="odd"><td >Component（组件）</td><td >Component（组件）是创建QML对象或对象树的模板。它是在QML引擎加载文档时生成的。一旦加载了它，就可以使用它实例化它所表示的对象或对象树。<p>此外，<a href="../qtqml/qml-qtqml-component.html">Component（组件）</a> 类型是一种特殊类型，可以用于在文档中内联声明组件。还可以通过Qt.createComponent()动态创建组件对象，从而动态创建QML对象。</p>
+</td></tr>
+<tr valign="top" class="even"><td >Document（文档）</td><td ><a href="../qtqml/qtqml-documents-topic.html">QML Document（QML文档）</a>是一段自包含的QML源代码，它以一个或多个导入语句开始，包含一个顶级对象声明。文档可以驻留在.qml文件或文本字符串中。<p>如果将其放在名称以大写字母开头的. QML文件中，引擎将该文件识别为QML类型的定义。顶级对象声明封装了将由类型实例化的对象树。</p>
+</td></tr>
+<tr valign="top" class="odd"><td >Property（属性）</td><td >属性是具有名称和关联值的对象类型的属性; 这个值可以从外部读取(在大多数情况下，也可以写入)。<p>一个对象可以有一个或多个属性。一些属性与画布相关(例如&#x2e;, x, y, width, height, and opacity（透明度）) 而另一些属性可能是特定于该类型的数据(例如&#x2e;<a href="../qtquick/qml-qtquick-text.html">Text（文本）</a> 的&quot;text&quot; 属性）。</p>
+<p>有关详细信息，请参阅<a href="../qtqml/qtqml-syntax-objectattributes.html">QML对象属性</a>。</p>
+</td></tr>
+<tr valign="top" class="even"><td >Binding（绑定）</td><td >绑定是一个&quot;绑定&quot;到属性的JavaScript表达式。 属性在任意时刻的值将是通过计算该表达式返回的值得到的。<p>请参阅<a href="../qtqml/qtqml-syntax-propertybinding.html">属性绑定</a></p>
+</td></tr>
+<tr valign="top" class="odd"><td >Signal（信号）</td><td >信号是来自QML对象的通知。当一个对象发出一个信号时，其他对象可以通过<a href="../qtqml/qtqml-syntax-objectattributes.html#signal-attributes">信号处理程序</a>接收和处理这个信号。<p>QML对象的大多数属性都有一个更改信号，以及一个关联的更改信号处理程序，客户端可以定义该更改信号处理程序来实现功能。例如，可以在应用程序中定义<a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a> 实例的处理程序&quot;onClicked()&quot; 来处理播放声音事件。</p>
+<p>有关详细信息，请参见<a href="../qtqml/qtqml-syntax-signals.html">信号和处理程序事件系统</a>。</p>
+</td></tr>
+<tr valign="top" class="even"><td >Signal Handler（信号处理器）</td><td >信号处理程序是由信号触发的表达式(或函数)。它在C++中也称为&quot;slot&quot; <p>有关详细信息，请参见<a href="../qtqml/qtqml-syntax-signals.html">信号和处理程序事件系统</a>。</p>
+</td></tr>
+<tr valign="top" class="odd"><a name="lazy-instantiation"></a><td >Lazy Instantiation（延迟实例化）</td><td >可以在运行时&quot;lazily（延迟）&quot;实例化对象实例，以避免在需要之前执行不必要的工作。Qt Quick提供了<a href="../qtquick/qml-qtquick-loader.html">Loader(加载器)</a>类型，使延迟实例化更加方便。</td></tr>
+</table></div>
+</div>
+<!-- @@@qml-glossary.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

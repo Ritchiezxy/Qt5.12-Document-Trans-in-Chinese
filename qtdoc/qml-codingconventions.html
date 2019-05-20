@@ -38,11 +38,11 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#qml-object-declarations">QML Object Declarations</a></li>
-<li class="level1"><a href="#grouped-properties">Grouped Properties</a></li>
-<li class="level1"><a href="#lists">Lists</a></li>
-<li class="level1"><a href="#javascript-code">JavaScript Code</a></li>
-<li class="level1"><a href="#related-information">Related Information</a></li>
+<li class="level1"><a href="#qml-object-declarations">QML对象声明</a></li>
+<li class="level1"><a href="#grouped-properties">分组属性</a></li>
+<li class="level1"><a href="#lists">列表</a></li>
+<li class="level1"><a href="#javascript-code">JavaScript代码</a></li>
+<li class="level1"><a href="#related-information">相关信息</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
@@ -50,22 +50,22 @@
 <span class="subtitle"></span>
 <!-- $$$qml-codingconventions.html-description -->
 <div class="descr"> <a name="details"></a>
-<p>This document contains the QML coding conventions that we follow in our documentation and examples and recommend that others follow.</p>
+<p>本文档包含我们在文档和示例中遵循的QML编码约定，并建议其他人遵循这些约定。</p>
 <a name="qml-object-declarations"></a>
-<h2 id="qml-object-declarations">QML Object Declarations</h2>
-<p>Throughout our documentation and examples, <a href="../qtqml/qtqml-syntax-objectattributes.html">QML object attributes</a> are always structured in the following order:</p>
+<h2 id="qml-object-declarations">QML对象声明</h2>
+<p>在我们的文档和示例中，<a href="../qtqml/qtqml-syntax-objectattributes.html">QML object attributes（QML对象属性）</a> 总是按照以下顺序构造:</p>
 <ul>
-<li>id</li>
-<li>property declarations</li>
-<li>signal declarations</li>
-<li>JavaScript functions</li>
-<li>object properties</li>
-<li>child objects</li>
-<li>states</li>
-<li>transitions</li>
+<li>id - id标识</li>
+<li>property declarations - 属性声明</li>
+<li>signal declarations - 信号声明</li>
+<li>JavaScript functions - JavaScript函数</li>
+<li>object properties - 对象属性</li>
+<li>child objects - 子对象</li>
+<li>states - 状态</li>
+<li>transitions - 转换</li>
 </ul>
-<p>For better readability, we separate these different parts with an empty line.</p>
-<p>For example, a hypothetical <i>photo</i> QML object would look like this:</p>
+<p>为了更好的可读性，我们用空行分隔这些不同的部分。</p>
+<p>例如，假设一个<i>photo</i> QML  QML对象是这样的:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
@@ -117,9 +117,9 @@
 
 </pre>
 <a name="grouped-properties"></a>
-<h2 id="grouped-properties">Grouped Properties</h2>
-<p>If using multiple properties from a group of properties, consider using <i>group notation</i> instead of <i>dot notation</i> if it improves readability.</p>
-<p>For example, this:</p>
+<h2 id="grouped-properties">分组属性</h2>
+<p>如果使用一组属性中的多个属性，如果可以提高可读性，请考虑使用<i>组标记</i> 而不是 <i>点标记</i>。</p>
+<p>例如,这个:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
@@ -132,7 +132,7 @@
   }
 
 </pre>
-<p>could be written like this:</p>
+<p>应该写成这样:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
@@ -146,10 +146,10 @@
 
 </pre>
 <a name="lists"></a>
-<h2 id="lists">Lists</h2>
-<p>If a list contains only one element, we generally omit the square brackets.</p>
-<p>For example, it is very common for a component to only have one state.</p>
-<p>In this case, instead of:</p>
+<h2 id="lists">列表</h2>
+<p>如果列表只包含一个元素，我们通常省略方括号。</p>
+<p>例如，组件通常只有一个状态。</p>
+<p>在这种情况下，而不是:</p>
 <pre class="qml">
 
   <span class="name">states</span>: [
@@ -160,7 +160,7 @@
   ]
 
 </pre>
-<p>we will write this:</p>
+<p>而是写成这样</p>
 <pre class="qml">
 
   <span class="name">states</span>: <span class="name">State</span> {
@@ -170,14 +170,14 @@
 
 </pre>
 <a name="javascript-code"></a>
-<h2 id="javascript-code">JavaScript Code</h2>
-<p>If the script is a single expression, we recommend writing it inline:</p>
+<h2 id="javascript-code">JavaScript代码</h2>
+<p>如果脚本是一个表达式，我们建议内联:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> { <span class="name">color</span>: <span class="string">&quot;blue&quot;</span>; <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span> <span class="operator">/</span> <span class="number">3</span> }
 
 </pre>
-<p>If the script is only a couple of lines long, we generally use a block:</p>
+<p>如果脚本只有几行，我们通常使用块的形式:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
@@ -190,7 +190,7 @@
   }
 
 </pre>
-<p>If the script is more than a couple of lines long or can be used by different objects, we recommend creating a function and calling it like this:</p>
+<p>如果脚本超过几行或者可以被不同的对象使用，我们建议创建一个函数并像这样调用它:</p>
 <pre class="qml">
 
   <span class="keyword">function</span> <span class="name">calculateWidth</span>(object)
@@ -206,7 +206,7 @@
   <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> { <span class="name">color</span>: <span class="string">&quot;blue&quot;</span>; <span class="name">width</span>: <span class="name">calculateWidth</span>(<span class="name">parent</span>) }
 
 </pre>
-<p>For long scripts, we will put the functions in their own JavaScript file and import it like this:</p>
+<p>对于长脚本，我们会把函数放在自己的JavaScript文件中，然后像这样导入:</p>
 <pre class="qml">
 
   import &quot;myscript.js&quot; as Script
@@ -214,7 +214,7 @@
   <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> { <span class="name">color</span>: <span class="string">&quot;blue&quot;</span>; <span class="name">width</span>: <span class="name">Script</span>.<span class="name">calculateWidth</span>(<span class="name">parent</span>) }
 
 </pre>
-<p>If the code is longer than one line and hence within a block, we use semicolons to indicate the end of each statement:</p>
+<p>如果代码超过一行，因此要写在一个块中，我们使用分号来表示每个语句的结尾:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
@@ -227,9 +227,9 @@
 
 </pre>
 <a name="related-information"></a>
-<h2 id="related-information">Related Information</h2>
+<h2 id="related-information">相关信息</h2>
 <ul>
-<li><a href="../qtquick/qtquick-bestpractices.html">Best Practices for QML and Qt Quick</a></li>
+<li><a href="../qtquick/qtquick-bestpractices.html">QML和Qt Quick的最佳实践</a></li>
 </ul>
 </div>
 <!-- @@@qml-codingconventions.html -->
