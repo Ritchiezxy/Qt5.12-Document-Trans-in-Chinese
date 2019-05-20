@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qmlpluginex.qdoc -->
+  <title>QML Plugin Example | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >QML Plugin Example</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML插件例子</h1>
+<span class="subtitle"></span>
+<!-- $$$qmlextensionplugins-brief -->
+<p>这个例子通过子类化<a href="qqmlextensionplugin.html">QQmlExtensionPlugin</a>来创建一个C++插件扩展。</p>
+<!-- @@@qmlextensionplugins -->
+<!-- $$$qmlextensionplugins-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-plugins-example.png" alt="" /></p><p>要运行这个例子，在提示符上使用以下命令:</p>
+<pre class="cpp">
+
+  <span class="operator">&gt;</span> qmake
+  <span class="operator">&gt;</span> make
+  <span class="operator">&gt;</span> qmlscene <span class="operator">-</span>I imports plugins<span class="operator">.</span>qml
+
+</pre>
+<p>文件：</p>
+<ul>
+<li><a href="qtqml-qmlextensionplugins-imports-timeexample-clock-qml.html">qmlextensionplugins/imports/TimeExample/Clock.qml</a></li>
+<li><a href="qtqml-qmlextensionplugins-imports-timeexample-qmldir.html">qmlextensionplugins/imports/TimeExample/qmldir</a></li>
+<li><a href="qtqml-qmlextensionplugins-plugin-cpp.html">qmlextensionplugins/plugin.cpp</a></li>
+<li><a href="qtqml-qmlextensionplugins-plugins-qml.html">qmlextensionplugins/plugins.qml</a></li>
+<li><a href="qtqml-qmlextensionplugins-plugins-qmlproject.html">qmlextensionplugins/plugins.qmlproject</a></li>
+<li><a href="qtqml-qmlextensionplugins-qmlextensionplugins-pro.html">qmlextensionplugins/qmlextensionplugins.pro</a></li>
+</ul>
+<p>图片：</p>
+<ul>
+<li><a href="images/used-in-examples/qmlextensionplugins/imports/TimeExample/center.png">qmlextensionplugins/imports/TimeExample/center.png</a></li>
+<li><a href="images/used-in-examples/qmlextensionplugins/imports/TimeExample/clock.png">qmlextensionplugins/imports/TimeExample/clock.png</a></li>
+<li><a href="images/used-in-examples/qmlextensionplugins/imports/TimeExample/hour.png">qmlextensionplugins/imports/TimeExample/hour.png</a></li>
+<li><a href="images/used-in-examples/qmlextensionplugins/imports/TimeExample/minute.png">qmlextensionplugins/imports/TimeExample/minute.png</a></li>
+</ul>
+</div>
+<!-- @@@qmlextensionplugins -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

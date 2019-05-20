@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qmltypereference.qdoc -->
+  <title>date QML Basic Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >date QML Basic Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML 中的date基本类型</h1>
+<span class="subtitle"></span>
+<!-- $$$date-description -->
+<div class="descr"> <a name="details"></a>
+<p>一个日期值。</p>
+<p><code>date</code>类型引用日期值，包括当天的时间。</p>
+<p>要创建<code>date</code>值， 请将其指定为&quot;YYYY-MM-DDThh:mm:ss.zzzZ&quot;字符串形式。要创建日期值，请将其指定为“YYYY-MM-DDThh:mm:ss”。睡眠”字符串。(T为文字，YYYY为全年数字，MM、DD为月、日数字，hh、MM、ss为小时、分、秒，.zzz为毫秒，Z为时区偏移量。T和后面的时间是可选的。如果省略它们，则将日期处理为UTC日的开始，UTC日位于某些时区的其他日期。包含T时，为:ss.zzz或者.zzz部分可以省略。有或没有这些，可以省略区域偏移量，在这种情况下使用本地时间。例如:</p>
+<pre class="qml">
+
+  <span class="type">MyDatePicker</span> { <span class="name">minDate</span>: <span class="string">&quot;2000-01-01 0:0&quot;</span>; <span class="name">maxDate</span>: <span class="string">&quot;2020-12-31 23:59&quot;</span> }
+
+</pre>
+<p>要读取从C++扩展类返回的日期值，请使用<a href="qml-qtqml-qt.html#formatDate-method">Qt.formatDate()</a> 和 <a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime()</a>。</p>
+<p>当与C++集成时，请注意，<a href="qtqml-cppintegration-data.html">请注意，从C++传递到QML的任何</a><a href="../qtcore/qdate.html">QDate</a> 或 <a href="../qtcore/qdatetime.html">QDateTime</a>值都会自动转换为<code>date</code>值，反之亦然。但是，请注意，转换<a href="../qtcore/qdate.html">QDate</a> 将导致UTC开始一天的工作，而UTC在其他一些时区的日期是不同的。通过显式的<a href="../qtcore/qdatetime.html">QDateTime</a>转换<a href="../qtcore/qdate.html">QDate</a>通常更健壮，指定本地时间或相关时区，并选择可靠的时间(比如中午)(夏令时转换跳过一个小时，接近一天的一端或另一端)。</p>
+<p>这种基本类型由QML语言提供。它可以隐式地转换为<a href="qml-qtqml-date.html">Date</a>对象。</p>
+</div>
+<p><b>请参见</b><a href="qml-qtqml-date.html">QML Date对象</a> 和 <a href="qtqml-typesystem-basictypes.html">QML 基本类型</a>。</p>
+<!-- @@@date -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

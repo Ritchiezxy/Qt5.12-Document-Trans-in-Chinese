@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qmltypereference.qdoc -->
+  <title>rect QML Basic Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >rect QML Basic Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML基本类型rect </h1>
+<span class="subtitle"></span>
+<!-- $$$rect-description -->
+<div class="descr"> <a name="details"></a>
+<p>具有x、y、宽度和高度属性的值。</p>
+<p><code>rect</code> 类型引用具有<code>x</code>, <code>y</code>, <code>width</code> 和 <code>height</code>属性的值。</p>
+<p>例如，读取<a href="../qtquick/qml-qtquick-item.html">Item</a>的<a href="../qtquick/qml-qtquick-item.html#childrenRect.x-prop">childrenRect</a>的rect类型的 <code>width</code> 和 <code>height</code> 的属性:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="name">childrenRect</span>.<span class="name">width</span>
+      <span class="name">height</span>: <span class="name">childrenRect</span>.<span class="name">height</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> { <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span> }
+  }
+
+</pre>
+<p>要创建<code>rect</code>值，请使用&quot;x, y, width x height&quot;形式的字符串代码：</p>
+<pre class="qml">
+
+  <span class="type">CustomObject</span> { <span class="name">myRectProperty</span>: <span class="string">&quot;50,50,100x100&quot;</span> }
+
+</pre>
+<p>或者使用<a href="qml-qtqml-qt.html#rect-method">Qt.rect()</a>函数：</p>
+<pre class="qml">
+
+  <span class="type">CustomObject</span> { <span class="name">myRectProperty</span>: <span class="name">Qt</span>.<span class="name">rect</span>(<span class="number">50</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">100</span>) }
+
+</pre>
+<p><code>rect</code>类型还公开只读的<code>left</code>, <code>right</code>, <code>top</code> 和 <code>bottom</code>属性。它们与<a href="../qtcore/qrectf.html">C++中的对应项</a>相同。</p>
+<p>当与C++集成时，请注意，<a href="qtqml-cppintegration-data.html">从C++传递到QML</a>的任何<a href="../qtcore/qrect.html">QRect</a> 或 <a href="../qtcore/qrectf.html">QRectF</a>值都会自动转换为<code>rect</code>值，反之亦然。当一个<code>rect</code> 值传递给C++时，它会自动转换成一个<a href="../qtcore/qrectf.html">QRectF</a>值。</p>
+</div>
+<p><b>请参见</b><a href="qtqml-typesystem-basictypes.html">QML基本类型</a>。</p>
+<!-- @@@rect -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
