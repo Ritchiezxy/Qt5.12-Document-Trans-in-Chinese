@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- topic.qdoc -->
+  <title>Integrating QML and JavaScript | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Integrating QML and JavaScript</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#javascript-expressions">JavaScript表达式</a></li>
+<li class="level1"><a href="#javascript-resources">JavaScript资源</a></li>
+<li class="level1"><a href="#javascript-imports">JavaScript导入（import）</a></li>
+<li class="level1"><a href="#javascript-host-environment">JavaScript主机环境</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">集成QML和JavaScript</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-javascript-topic.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML语言使用类似JSON的语法，并允许将各种表达式和方法定义为JavaScript函数。它还允许用户导入JavaScript文件并使用这些导入提供的功能。</p>
+<p>这允许开发人员和设计人员利用他们拥有的JavaScript知识来快速开发用户界面和应用程序逻辑。</p>
+<a name="javascript-expressions"></a>
+<h2 id="javascript-expressions">JavaScript表达式</h2>
+<p>QML具有深入的JavaScript集成，并且允许在JavaScript中定义<a href="qtqml-syntax-objectattributes.html#signal-attributes">信号处理程序</a> 和 <a href="qtqml-syntax-objectattributes.html#method-attributes">方法</a> QML的另一个核心特性是能够使用属性绑定指定和强制对象属性之间的关系，<a href="qtqml-syntax-propertybinding.html">属性绑定</a>也是使用JavaScript定义的。</p>
+<p>有关在QML中使用JavaScript表达式的更多信息，请参阅标题为<a href="qtqml-javascript-expressions.html">QML文档中的JavaScript表达式</a>的文档页面。</p>
+<a name="javascript-resources"></a>
+<h2 id="javascript-resources">JavaScript资源</h2>
+<p>在JavaScript函数中定义的应用程序逻辑可以被分割成单独的JavaScript文件，称为JavaScript资源。有几种不同的JavaScript资源，它们具有不同的语义。</p>
+<p>有关为QML定义JavaScript资源的更多信息，请参阅文档页面<a href="qtqml-javascript-resources.html">在QML中定义JavaScript资源</a> for more information about defining JavaScript resources for QML.</p>
+<a name="javascript-imports"></a>
+<h2 id="javascript-imports">JavaScript导入（import）</h2>
+<p>QML文档可以导入JavaScript资源，JavaScript资源可以导入其他JavaScript资源以及QML模块。这允许应用程序开发人员在模块化、自包含的文件中提供应用程序逻辑。</p>
+<p>有关如何导入JavaScript资源以及如何使用它们提供的功能的更多信息，请参阅文档页面<a href="qtqml-javascript-imports.html">导入JavaScript资源</a>。</p>
+<a name="javascript-host-environment"></a>
+<h2 id="javascript-host-environment">JavaScript主机环境</h2>
+<p>QML引擎提供的JavaScript环境与web浏览器提供的JavaScript环境有一些不同。某些限制适用于在环境中运行的代码，QML引擎在根上下文中提供了各种JavaScript开发人员可能不熟悉的对象。</p>
+<p>这些限制和扩展记录在QML引擎提供的<a href="qtqml-javascript-hostenvironment.html">JavaScript Host Environment</a>描述中。</p>
+</div>
+<!-- @@@qtqml-javascript-topic.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

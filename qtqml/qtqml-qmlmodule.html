@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qmltypereference.qdoc -->
+  <title>Qt QML QML Types | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Qt QML QML Types</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#importing-qtqml">导入QtQml</a></li>
+<li class="level1"><a href="#basic-types">基本类型</a></li>
+<li class="level1"><a href="#object-types">Object类型</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML中的Qt QML类型</h1>
+<span class="subtitle"></span>
+<!-- $$$QtQml-description -->
+<div class="descr"> <a name="details"></a>
+<p><a href="qtqml-index.html">Qt QML</a>模块提供了可以与QML语言一起使用的各种便利类型的定义和实现，包括一些基本的QML类型，它们可以为QML语言的进一步扩展提供基础。<a href="qml-qtqml-qtobject.html">QtObject</a> 和 <a href="qml-qtqml-component.html">Component</a>t对象类型是非可视的，并且为QML扩展提供了构建块。</p>
+<a name="importing-qtqml"></a>
+<h2 id="importing-qtqml">导入QtQml</h2>
+<p><code>QtQml</code>模块提供的类型仅在QML文档中可用，如果该文档导入<code>QtQml</code> 名称空间(或者如果该文档导入<code>QtQuick</code>名称空间，如下所述)。</p>
+<p><code>QtQml</code>模块的当前版本为2.12版本，可以通过以下语句导入:</p>
+<pre class="qml">
+
+  import QtQml 2.12
+
+</pre>
+<p>大多数客户端永远不需要使用<code>QtQml</code>导入，因为所有类型都由<code>QtQuick</code>命名空间提供，可以导入如下:</p>
+<pre class="qml">
+
+  import QtQuick 2.12
+
+</pre>
+<p>有关<code>QtQuick</code>名称空间及其提供给QML应用程序开发人员的内容的更多信息，请参阅<a href="../qtquick/qtquick-index.html">Qt Quick</a>。</p>
+<p>用于创建列表和模型的QML类型(如<a href="qml-qtqml-models-listmodel.html">ListModel</a> 和 <a href="qml-qtqml-models-listelement.html">ListElement</a>)被移动到子模块<code>QtQml.Models</code>上。有关更多信息，请参阅<a href="qtqml-models-qmlmodule.html">Qt QML模块</a>。</p>
+<p>下面的类型文档同样适用于由<a href="../qtquick/qtquick-index.html">Qt Quick</a>模块提供的同名类型，因为它们实际上是相同的。</p>
+<a name="basic-types"></a>
+<h2 id="basic-types">基本类型</h2>
+<p>提供了以下<a href="qtqml-typesystem-basictypes.html">QML基本类型</a>:</p>
+<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-date.html">date</a></p></td><td class="tblDescr"><p>日期值</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-point.html">point</a></p></td><td class="tblDescr"><p>具有x和y属性的值</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-rect.html">rect</a></p></td><td class="tblDescr"><p>具有x、y、width和height属性的值</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-size.html">size</a></p></td><td class="tblDescr"><p>具有width和height属性的值</p></td></tr>
+</table></div>
+<a name="object-types"></a>
+<h2 id="object-types">Object类型</h2>
+<p>提供了以下<a href="qtqml-typesystem-objecttypes.html">QML object</a>类型：</p>
+</div>
+<!-- @@@QtQml -->
+<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-binding.html">Binding</a></p></td><td class="tblDescr"><p>支持任意属性绑定的创建</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-component.html">Component</a></p></td><td class="tblDescr"><p>封装QML组件定义</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-connections.html">Connections</a></p></td><td class="tblDescr"><p>描述到信号的广义连接</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-date.html">Date</a></p></td><td class="tblDescr"><p>提供日期功能</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-instantiator.html">Instantiator</a></p></td><td class="tblDescr"><p>动态创建对象</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-locale.html">Locale</a></p></td><td class="tblDescr"><p>提供特定于区域设置的属性和格式化数据</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-loggingcategory.html">LoggingCategory</a></p></td><td class="tblDescr"><p>在QML中定义日志记录类别</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-number.html">Number</a></p></td><td class="tblDescr"><p>该对象表示一个数值</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-qt.html">Qt</a></p></td><td class="tblDescr"><p>提供一个全局对象，其中包含有用的枚举和Qt中的函数</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-qtobject.html">QtObject</a></p></td><td class="tblDescr"><p>一个基本的QML类型</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-string.html">String</a></p></td><td class="tblDescr"><p>对象表示字符串值</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-timer.html">Timer</a></p></td><td class="tblDescr"><p>以指定的间隔触发处理程序</p></td></tr>
+</table></div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

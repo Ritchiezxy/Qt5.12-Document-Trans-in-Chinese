@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlconnections.cpp -->
+  <title>Connections QML Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >Connections QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#details">详细描述</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的Connections类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Connections-brief -->
+<p>描述到信号的广义连接。<a href="#details">更多…</a></p>
+<!-- @@@Connections -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr></table></div><ul>
+<li><a href="qml-qtqml-connections-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-connections.html#enabled-prop">enabled</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtqml-connections.html#ignoreUnknownSignals-prop">ignoreUnknownSignals</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtqml-connections.html#target-prop">target</a></b></b> : Object</li>
+</ul>
+<!-- $$$Connections-description -->
+<a name="details"></a>
+<h2 id="details">详细描述</h2>
+<p>Connections对象用于创建到QML信号的连接。</p>
+<p>当连接到QML中的信号时，通常的方法是创建一个&quot;on&lt;Signal&gt;&quot; 处理程序，当接收到信号时该处理程序会做出反应，如下所示:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+      <span class="name">onClicked</span>: { <span class="name">foo</span>(<span class="name">parameters</span>) }
+  }
+
+</pre>
+<p>然而，在某些情况下，例如:</p>
+<ul>
+<li>同一信号需要多个连接 </li>
+<li>在信号发送器范围之外创建连接</li>
+<li>连接到QML中没有定义的目标</li>
+</ul>
+<p>当需要使用这些类型时，可以使用Connections类型。</p>
+<p>例如，可以将上面的代码更改为使用Connections对象，如下所示:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+      <span class="type"><a href="qml-qtqml-connections.html">Connections</a></span> {
+          <span class="name">onClicked</span>: <span class="name">foo</span>(<span class="name">parameters</span>)
+      }
+  }
+
+</pre>
+<p>一般来说，连接对象可以是信号发送者以外的其他对象的子对象:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+      <span class="name">id</span>: <span class="name">area</span>
+  }
+  <span class="comment">// ...</span>
+
+</pre>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtqml-connections.html">Connections</a></span> {
+      <span class="name">target</span>: <span class="name">area</span>
+      <span class="name">onClicked</span>: <span class="name">foo</span>(<span class="name">parameters</span>)
+  }
+
+</pre>
+<p><b>参见</b><a href="qtqml-index.html">Qt QML</a>。</p>
+<!-- @@@Connections -->
+<h2>属性文档</h2>
+<!-- $$$enabled -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="enabled-prop">
+<td class="tblQmlPropNode"><p>
+<a name="enabled-prop"></a><span class="name">enabled</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存item（项）是否接受更改事件。</p>
+<p>默认情况下，此属性为<code>true</code>。</p>
+<p>这个属性是在Qt 5.7中引入的。</p>
+</div></div><!-- @@@enabled -->
+<br/>
+<!-- $$$ignoreUnknownSignals -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="ignoreUnknownSignals-prop">
+<td class="tblQmlPropNode"><p>
+<a name="ignoreUnknownSignals-prop"></a><span class="name">ignoreUnknownSignals</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>通常，连接到不存在的信号会产生运行时错误。</p>
+<p>如果将此属性设置为<code>true</code>，则忽略此类错误。如果您打算连接到不同类型的对象，为每个对象处理一组不同的信号，这将非常有用。</p>
+</div></div><!-- @@@ignoreUnknownSignals -->
+<br/>
+<!-- $$$target -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="target-prop">
+<td class="tblQmlPropNode"><p>
+<a name="target-prop"></a><span class="name">target</span> : <span class="type">Object</span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存发送信号的对象。</p>
+<p>如果未设置此属性，则<code>target(目标)</code> 默认为连接的父节点。</p>
+<p>如果设置为null，则不建立连接，并且忽略任何信号处理程序，直到目标不为空为止。</p>
+</div></div><!-- @@@target -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

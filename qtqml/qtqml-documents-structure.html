@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- structure.qdoc -->
+  <title>Structure of a QML Document | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Structure of a QML Document</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#imports">导入</a></li>
+<li class="level1"><a href="#the-root-object-declaration">根（root）对象声明</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML文档结构</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-documents-structure.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML文档是一段自包含的QML源代码，由两部分组成:</p>
+<ul>
+<li> <i>import（导入）</i>其语句</li>
+<li>一个root（根）对象声明</li>
+</ul>
+<p>按照惯例，一个空行将导入与对象层次结构定义分开。</p>
+<p>QML文档总是以UTF-8格式编码。</p>
+<a name="imports"></a>
+<h2 id="imports">导入</h2>
+<p>文档必须导入必要的模块或类型名称空间，以使引擎能够加载文档中引用的QML对象类型。默认情况下，文档可以访问同一目录中通过<code>.qml</code>文件定义的任何QML对象类型;如果文档需要引用任何其他对象类型，则必须导入这些已注册类型到其中的类型名称空间。</p>
+<p>与C或C++不同，QML<i>没有</i>在将文档呈现给 <a href="qqmlengine.html">QML引擎</a>之前修改文档的预处理程序。<code>import</code> 语句不复制文档中的代码并将其前置，而是指导QML引擎如何解析文档中找到的类型引用。QML文档中出现的任何类型引用(如<code>Rectangle</code> 和 <code>ListView</code>)，包括在<a href="qtqml-javascript-expressions.html">JavaScript块</a> 或 <a href="qtqml-syntax-propertybinding.html">属性绑定</a>中生成的引用，都完全基于import语句进行解析。必须至少提供一条<code>import</code>导入语句，比如 <code>import QtQuick 2.0</code>。</p>
+<p>Please see the <a href="qtqml-syntax-imports.html">QML Syntax - Import Statements</a> documentation for in-depth information about QML imports.</p>
+<a name="the-root-object-declaration"></a>
+<h2 id="the-root-object-declaration">根（root）对象声明</h2>
+<p>QML文档描述可以实例化的对象层次结构。每个对象定义都有一定的结构;它有一个类型，它可以有一个id和一个对象名，它可以有属性，它可以有方法，它可以有信号它可以有信号处理器。</p>
+<p>QML文件必须只包含<b>只有一个根对象定义</b>。以下内容无效，将产生错误:</p>
+<pre class="cpp">
+
+  <span class="comment">// MyQmlFile.qml</span>
+  import <span class="type">QtQuick</span> <span class="number">2.0</span>
+
+  Rectangle { width: <span class="number">200</span>; height: <span class="number">200</span>; color: <span class="string">&quot;red&quot;</span> }
+  Rectangle { width: <span class="number">200</span>; height: <span class="number">200</span>; color: <span class="string">&quot;blue&quot;</span> }    <span class="comment">// invalid!</span>
+
+</pre>
+<p>这是因为. QML文件自动定义了QML类型，它封装了<i>独一个的</i> QML对象定义。这将在<a href="qtqml-documents-definetypes.html">作为QML对象类型定义的文档</a>中进一步讨论。</p>
+</div>
+<!-- @@@qtqml-documents-structure.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

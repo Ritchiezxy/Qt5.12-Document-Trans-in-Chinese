@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qtjavascript.qdoc -->
+  <title>Making Applications Scriptable | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Making Applications Scriptable</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#scripting-classes">脚本类</a></li>
+<li class="level1"><a href="#basic-usage">基本用法</a></li>
+<li class="level1"><a href="#making-a-qobject-available-to-the-script-engine">使QObject对脚本引擎可用</a></li>
+<li class="level1"><a href="#implications-for-application-security">对应用程序安全性的影响</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">使应用程序可编写脚本化 </h1>
+<span class="subtitle"></span>
+<!-- $$$qtjavascript.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>Qt支持使用JavaScript编写应用程序脚本。下面的指南和参考资料涵盖了使用JavaScript和Qt编程的各个方面。</p>
+<a name="scripting-classes"></a>
+<h2 id="scripting-classes">脚本类</h2>
+<p>下面的类向Qt应用程序添加脚本功能。.</p>
+<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="qjsengine.html">QJSEngine</a></p></td><td class="tblDescr"><p>Environment for evaluating JavaScript code</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qjsvalue.html">QJSValue</a></p></td><td class="tblDescr"><p>Acts as a container for Qt/JavaScript data types</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qjsvalueiterator.html">QJSValueIterator</a></p></td><td class="tblDescr"><p>Java-style iterator for QJSValue</p></td></tr>
+</table></div>
+<a name="basic-usage"></a>
+<h2 id="basic-usage">基本用法</h2>
+<p>要计算脚本代码，您需要创建一个<a href="qjsengine.html">QJSEngine</a>并调用它的evaluate()函数，将要计算的脚本代码(文本)作为参数传递。</p>
+<pre class="cpp">
+
+  <span class="type"><a href="qjsengine.html">QJSEngine</a></span> engine;
+  <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;the magic number is:&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> engine<span class="operator">.</span>evaluate(<span class="string">&quot;1 + 2&quot;</span>)<span class="operator">.</span>toNumber();
+
+</pre>
+<p>返回值将是计算的结果(表示为<a href="qjsvalue.html">QJSValue</a>对象);这可以转换为标准的C++和Qt类型。</p>
+<p>通过在脚本引擎中注册自定义属性，脚本可以使用它们。通过设置脚本引擎的<i>全局对象</i>的属性，这是最容易做到的:</p>
+<pre class="cpp">
+
+  engine<span class="operator">.</span>globalObject()<span class="operator">.</span>setProperty(<span class="string">&quot;foo&quot;</span><span class="operator">,</span> <span class="number">123</span>);
+  <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;foo times two is:&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> engine<span class="operator">.</span>evaluate(<span class="string">&quot;foo * 2&quot;</span>)<span class="operator">.</span>toNumber();
+
+</pre>
+<p>这将属性放置在脚本环境中，从而使它们对脚本代码可用。</p>
+<a name="making-a-qobject-available-to-the-script-engine"></a>
+<h2 id="making-a-qobject-available-to-the-script-engine">使QObject对脚本引擎可用</h2>
+<p>任何基于<a href="../qtcore/qobject.html">QObject</a>的实例都可以与脚本一起使用。</p>
+<p>当<a href="../qtcore/qobject.html">QObject</a>传递给<a href="qjsengine.html#newQObject">QJSEngine::newQObject</a>() 函数时，将创建Qt脚本包装器对象，用于使<a href="../qtcore/qobject.html">QObject</a>的信号、槽、属性和子对象对脚本可用。</p>
+<p>下面是一个例子，让一个<a href="../qtcore/qobject.html">QObject</a><code>&quot;myObject&quot;</code>子类的实例在脚本代码“myObject”下可用:</p>
+<pre class="cpp">
+
+  <span class="type"><a href="qjsengine.html">QJSEngine</a></span> engine;
+  <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>someObject <span class="operator">=</span> <span class="keyword">new</span> MyObject;
+  <span class="type"><a href="qjsvalue.html">QJSValue</a></span> objectValue <span class="operator">=</span> engine<span class="operator">.</span>newQObject(someObject);
+  engine<span class="operator">.</span>globalObject()<span class="operator">.</span>setProperty(<span class="string">&quot;myObject&quot;</span><span class="operator">,</span> objectValue);
+
+</pre>
+<p>这将在脚本环境中创建一个名为<code>myObject</code>的全局变量。该变量充当底层C++对象的代理。注意，脚本变量的名称可以是任何名称;即&#x2e;, 它不依赖于<a href="../qtcore/qobject.html#objectName-prop">QObject::objectName</a>()。</p>
+<a name="implications-for-application-security"></a>
+<h2 id="implications-for-application-security">Implications for Application Security</h2>
+<p>
+使用JavaScript编写应用程序脚本的安全模型遵循与C++代码相同的模型:用户以与安装Qt应用程序相同的方式安装运行他们信任的脚本。</p>
+<p>为了维护用户的信任，应用程序开发人员不应该评估任意的JavaScript代码。JavaScript引擎的沙箱只是一个语义障碍。脚本在与应用程序其余部分相同的进程中以相同的特权进行计算，并共享相同的内存。因此，可以访问暴露给脚本的C++对象，而不需要额外的安全保护。</p>
+</div>
+<!-- @@@qtjavascript.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
