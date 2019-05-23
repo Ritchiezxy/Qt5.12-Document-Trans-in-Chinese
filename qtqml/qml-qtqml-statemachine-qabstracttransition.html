@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- signaltransition.cpp -->
+  <title>QAbstractTransition QML Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >QAbstractTransition QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#signals">信号</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的QAbstractTransition类型</h1>
+<span class="subtitle"></span>
+<!-- $$$QAbstractTransition-brief -->
+<p><a href="qml-qtqml-statemachine-qabstracttransition.html">QAbstractTransition</a>类型是<a href="qml-qtqml-statemachine-qabstractstate.html">QAbstractState</a>对象之间转换的基本类型。<a href="#details">更多…</a></p>
+<!-- @@@QAbstractTransition -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml.StateMachine 1.12</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.4</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtqml-statemachine-qsignaltransition.html">QSignalTransition</a></p>
+</td></tr></table></div><ul>
+<li><a href="qml-qtqml-statemachine-qabstracttransition-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-statemachine-qabstracttransition.html#sourceState-prop">sourceState</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtqml-statemachine-qabstracttransition.html#targetState-prop">targetState</a></b></b> : QAbstractState</li>
+<li class="fn"><b><b><a href="qml-qtqml-statemachine-qabstracttransition.html#targetStates-prop">targetStates</a></b></b> : list&lt;QAbstractState&gt;</li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">信号</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-statemachine-qabstracttransition.html#triggered-signal">triggered</a></b></b>()</li>
+</ul>
+<!-- $$$QAbstractTransition-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p><a href="qml-qtqml-statemachine-qabstracttransition.html">QAbstractTransition</a>类型是<a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a>的状态间转换(<a href="qml-qtqml-statemachine-qabstractstate.html">QAbstractState</a> 对象)的抽象基类型。 <a href="qml-qtqml-statemachine-qabstracttransition.html">QAbstractTransition</a>是 <a href="qmlstatemachine.html">声明状态机框架</a>的一部分。</p>
+<p>属性拥有转换的源。 <a href="qml-qtqml-statemachine-qabstracttransition.html#targetState-prop">targetState</a> 和 <a href="qml-qtqml-statemachine-qabstracttransition.html#targetStates-prop">targetStates</a>属性返回转换的目标。</p>
+<p>当触发转换时，将发出<a href="qml-qtqml-statemachine-qabstracttransition.html#triggered-signal">triggered()</a>信号。</p>
+<p>不要直接使用<a href="qml-qtqml-statemachine-qabstracttransition.html">QAbstractTransition</a>；而是使用 <a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a> 或 <a href="qml-qtqml-statemachine-timeouttransition.html">TimeoutTransition</a>。</p>
+<p><b>参见</b><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a> 和 <a href="qml-qtqml-statemachine-timeouttransition.html">TimeoutTransition</a>。</p>
+<!-- @@@QAbstractTransition -->
+<h2>属性文档 </h2>
+<!-- $$$sourceState -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="sourceState-prop">
+<td class="tblQmlPropNode"><p>
+<a name="sourceState-prop"></a><span class="qmlreadonly">[read-only] </span><span class="name">sourceState</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此转换的源状态（父级）。 </p>
+</div></div><!-- @@@sourceState -->
+<br/>
+<!-- $$$targetState -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="targetState-prop">
+<td class="tblQmlPropNode"><p>
+<a name="targetState-prop"></a><span class="name">targetState</span> : <span class="type"><a href="qml-qtqml-statemachine-qabstractstate.html">QAbstractState</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此转换的目标状态。</p>
+<p>如果转换没有目标状态，则仍然可以触发转换，但这不会导致状态机的配置发生更改(即不会退出和重新输入当前状态)。</p>
+</div></div><!-- @@@targetState -->
+<br/>
+<!-- $$$targetStates -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="targetStates-prop">
+<td class="tblQmlPropNode"><p>
+<a name="targetStates-prop"></a><span class="name">targetStates</span> : <span class="type"><a href="qml-list.html">list</a></span>&lt;<span class="type"><a href="qml-qtqml-statemachine-qabstractstate.html">QAbstractState</a></span>&gt;</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>过渡的目标状态。</p>
+<p>如果指定了多个状态，则它们都必须是相同并行组状态的后代。</p>
+</div></div><!-- @@@targetStates -->
+<br/>
+<h2>信号文档</h2>
+<!-- $$$triggered -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="triggered-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="triggered-signal"></a><span class="name">triggered</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此信号在触发转换时发出。</p>
+<p>对应的处理程序是<code>onTriggered</code>。</p>
+</div></div><!-- @@@triggered -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- number.qdoc -->
+  <title>Number QML Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >Number QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#methods">方法</a></li>
+<li class="level1"><a href="#details">详细描述</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的Number类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Number-brief -->
+<p>对象提供的数字表示数字值。<a href="#details">更多…</a></p>
+<!-- @@@Number -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr></table></div><ul>
+<li><a href="qml-qtqml-number-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="methods"></a>
+<h2 id="methods">方法</h2>
+<ul>
+<li class="fn">string <b><b><a href="qml-qtqml-number.html#fromLocaleString-method">fromLocaleString</a></b></b>(<i>locale</i>, <i>number</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-number.html#toLocaleCurrencyString-method">toLocaleCurrencyString</a></b></b>(<i>locale</i>, <i>symbol</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-number.html#toLocaleString-method">toLocaleString</a></b></b>(<i>locale</i>, <i>format</i>, <i>precision</i>)</li>
+</ul>
+<!-- $$$Number-description -->
+<a name="details"></a>
+<h2 id="details">详细描述</h2>
+<p>QML Number对象使用区域设置感知函数扩展了JS Number对象。</p>
+<p><b>参见</b><a href="qml-qtqml-locale.html">Locale（本地化）</a>。</p>
+<!-- @@@Number -->
+<h2>方法文档</h2>
+<!-- $$$fromLocaleString -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="fromLocaleString-method">
+<td class="tblQmlFuncNode"><p>
+<a name="fromLocaleString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">fromLocaleString</span>(<i>locale</i>, <i>number</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>通过使用提供的<i>本地化</i>设置的约定解析数字，返回一个<i>数字</i>。</p>
+<p>如果没有提供<i>区域</i>，则使用默认区域。</p>
+<p>例如，使用德语语言环境:</p>
+<pre class="cpp">
+
+  var german <span class="operator">=</span> <span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale(<span class="string">&quot;de_DE&quot;</span>);
+  var d;
+  d <span class="operator">=</span> Number<span class="operator">.</span>fromLocaleString(german<span class="operator">,</span> <span class="string">&quot;1234,56&quot;</span>)   <span class="comment">// d == 1234.56</span>
+  d <span class="operator">=</span> Number<span class="operator">.</span>fromLocaleString(german<span class="operator">,</span> <span class="string">&quot;1.234,56&quot;</span>) <span class="comment">// d == 1234.56</span>
+  d <span class="operator">=</span> Number<span class="operator">.</span>fromLocaleString(german<span class="operator">,</span> <span class="string">&quot;1234.56&quot;</span>)  <span class="comment">// throws exception</span>
+  d <span class="operator">=</span> Number<span class="operator">.</span>fromLocaleString(german<span class="operator">,</span> <span class="string">&quot;1.234&quot;</span>)    <span class="comment">// d == 1234.0</span>
+
+</pre>
+</div></div><!-- @@@fromLocaleString -->
+<br/>
+<!-- $$$toLocaleCurrencyString -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="toLocaleCurrencyString-method">
+<td class="tblQmlFuncNode"><p>
+<a name="toLocaleCurrencyString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">toLocaleCurrencyString</span>(<i>locale</i>, <i>symbol</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>使用指定<i>区域</i>设置的货币和约定将数字转换为货币。如果指定了符号，它将用作货币符号。</p>
+<p><b>参见</b><a href="qml-qtqml-locale.html#currencySymbol-method">Locale::currencySymbol()</a>。</p>
+</div></div><!-- @@@toLocaleCurrencyString -->
+<br/>
+<!-- $$$toLocaleString -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="toLocaleString-method">
+<td class="tblQmlFuncNode"><p>
+<a name="toLocaleString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">toLocaleString</span>(<i>locale</i>, <i>format</i>, <i>precision</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>以指定格式将数字转换为适合指定<i>本地化</i>设置的字符串，并具有指定的精度。</p>
+<p>有效的格式是:</p>
+<ul>
+<li>'f' 十进制浮点数，例如&#x2e; 248.65</li>
+<li>'e' 使用e字符的科学符号，例如&#x2e; 2.4865e+2</li>
+<li>'E' 使用E字符的科学符号，例如&#x2e; 2.4865E+2</li>
+<li>'g' 用e或f中较短的那个</li>
+<li>'G' 用E或f中较短的那个</li>
+</ul>
+<p>如果没有指定精度，则精度为2。</p>
+<p>如果格式没有指定，将使用“f”。</p>
+<p>如果没有指定区域设置，则使用默认区域设置。</p>
+<p>下面的示例显示了一个针对德语地区格式化的数字:</p>
+<pre class="cpp">
+
+  import <span class="type">QtQuick</span> <span class="number">2.0</span>
+
+  Text {
+      text: <span class="string">&quot;The value is: &quot;</span> <span class="operator">+</span>  Number(<span class="number">4742378.423</span>)<span class="operator">.</span>toLocaleString(<span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale(<span class="string">&quot;de_DE&quot;</span>))
+  }
+
+</pre>
+<p>您可以直接将toLocaleString() 应用于常量，前提是十进制包含在常量中，例如&#x2e;</p>
+<pre class="cpp">
+
+  <span class="number">123.0.toLocaleString</span>(<span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale(<span class="string">&quot;de_DE&quot;</span>)) <span class="comment">// OK</span>
+  <span class="number">123..toLocaleString</span>(<span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale(<span class="string">&quot;de_DE&quot;</span>))  <span class="comment">// OK</span>
+  <span class="number">123.toLocaleString</span>(<span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale(<span class="string">&quot;de_DE&quot;</span>))   <span class="comment">// fails</span>
+
+</pre>
+</div></div><!-- @@@toLocaleString -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
