@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- portingqmlapp.qdoc -->
+  <title>Porting QML Applications to Qt 5 Example | Qt 5.12 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="index.html">Qt 5.12</a></td><td >Porting QML Applications to Qt 5 Example</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.12.3 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#related-topics">Related Topics</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">将QML应用程序移植到Qt 5示例</h1>
+<span class="subtitle"></span>
+<!-- $$$portingqmlapp.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>Qt 5中Qt Quick的新版本对QML应用程序的开发方式进行了一些更改。有关影响现有QML应用程序的完整更改列表，请参阅<a href="qtquick-porting-qt5.html">将QML应用程序移植到Qt 5</a>。</p>
+<p>本主题将介绍如何在Qt 5上实现Qt 4 QML的<code>flickr</code>（网络相簿） 演示。如果您安装了基于Qt 4.8的SDK，您可以在<code>&lt;install_dir_root&gt;/Examples/4.x/declarative/demos/</code>下找到这个演示应用程序。</p>
+<p>按照以下步骤说明将Qt 4 QML的<i>flickr</i> 应用程序工作移植到Qt 5:</p>
+<ol class="1" type="1"><li>使用Qt Creator打开<i>flickr</i>项目。</li>
+<li>编辑所有<code>.qml</code> 文件，用<code>import QtQuick 1.0</code> 替换 <code>import QtQuick 2.3</code>语句。</li>
+<li>将附加的<code>import QtQuick.XmlListModel 2.0</code> 语句添加到 <code>qml/common/RssModel.qml</code>。<p><b>注意： </b><a href="../qtxmlpatterns/qtquick-xmllistmodel-qmlmodule.html">XmlListModel</a> 是 <code>QtQuick</code> 子模块的一部分，必须显式导入它才能使用。</p></li>
+<li>对<code>qmlapplicationviewer/qmlapplicationviewer.h</code>进行以下更改:<ul>
+<li>用<code>#include &lt;QtDeclarative/QDeclarativeView&gt;</code> 替换 <code>#include &lt;QQuickView&gt;</code>。</li>
+<li>在 <code>QDeclarativeView</code> 的类声明中，用 <code>QQuickView</code> 替换 <code>QmlApplicationViewer</code>。</li>
+<li>将<code>QmlApplicationViewer</code> 构造函数的参数从 <code>QWidget</code> 替换为 <code>QWindow</code>。</li>
+</ul>
+</li>
+<li>对<code>qmlapplicationviewer/qmlapplicationviewer.cpp</code>进行以下更改:<ul>
+<li>用以下语句替换所有<code>QtCore</code> 和 <code>QtDeclarative</code> 的include语句:<pre class="cpp">
+
+  <span class="preprocessor">#include &lt;QCoreApplication&gt;</span>
+  <span class="preprocessor">#include &lt;QDir&gt;</span>
+  <span class="preprocessor">#include &lt;QFileInfo&gt;</span>
+  <span class="preprocessor">#include &lt;QQmlComponent&gt;</span>
+  <span class="preprocessor">#include &lt;QQmlEngine&gt;</span>
+  <span class="preprocessor">#include &lt;QQmlContext&gt;</span>
+  <span class="preprocessor">#include &lt;QDebug&gt;</span>
+
+</pre>
+</li>
+<li>用<code>QWidget</code> 替换 <code>QWindow</code>的所有实例，用 <code>QDeclarativeView</code> 替换 <code>QQuickView</code>。</li>
+<li>删除<code>#if defined(Q_OS_SYMBIAN)</code> 和 <code>#endif</code> 宏之间的代码，因为Qt 5不支持Symbian平台。</li>
+<li>最后删除<code>#if QT_VERSION &lt; 0x040702</code> 和 <code>#else</code>之间的代码，以及<code>#endif // QT_VERSION &lt; 0x040702</code> 宏之间的代码。</li>
+</ul>
+</li>
+<li>保存对项目的更改并运行应用程序。</li>
+</ol>
+<p>看到运行的应用程序后，检查它的行为是否如预期的那样。下面是运行在Ubuntu v12.04上的应用程序的快照:</p>
+<p class="centerAlign"><img src="images/flickr_application.png" alt="" /></p><a name="related-topics"></a>
+<h2 id="related-topics">相关的话题</h2>
+<p><a href="qtquick-porting-qt5.html">将QML应用程序移植到Qt 5</a></p>
+</div>
+<!-- @@@portingqmlapp.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
