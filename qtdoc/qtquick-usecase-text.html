@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- text.qdoc -->
+  <title>Use Case - Displaying Text In QML | Qt 5.12 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="index.html">Qt 5.12</a></td><td >Use Case - Displaying Text In QML</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.12.3 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#displaying-and-formatting-text">显示和格式化Text</a></li>
+<li class="level1"><a href="#laying-out-text">布局Text</a></li>
+<li class="level1"><a href="#example-code">示例代码</a></li>
+<li class="level1"><a href="#internationalization-and-scalability">国际化和可伸缩性</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">用例-在QML中显示 Text</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-usecase-text.html-description -->
+<div class="descr"> <a name="details"></a>
+<a name="displaying-and-formatting-text"></a>
+<h2 id="displaying-and-formatting-text">显示和格式化 Text</h2>
+<p>要在QML中显示文本，请创建一个Text项并将text属性设置为希望显示的文本。Text项现在将显示该text属性指定的文本。</p>
+<p>可以在Text项上设置几个属性来设置整个文本块的样式。这些包括颜色、字体族、字体大小、粗体和斜体。有关属性的完整列表，请参阅<a href="../qtquick/qml-qtquick-text.html">Text</a>类型文档</p>
+<p>类似标记的富文本可用于有选择地为文本的特定部分设置文本项的样式。将 <a href="../qtquick/qml-qtquick-text.html#textFormat-prop">Text::textFormat</a>设置为Text.StyledText使用此功能。更多细节可以在<a href="../qtquick/qml-qtquick-text.html">Text</a>类型的文档中找到。</p>
+<a name="laying-out-text"></a>
+<h2 id="laying-out-text">布局Text</h2>
+<p>默认情况下，Text将文本显示为单行，除非它包含内嵌的换行。若要换行，请设置wrapMode属性，并为文本指定要换行的显式宽度。如果没有显式设置宽度或高度，则读取这些属性将返回文本的边界矩形的参数(如果显式设置了宽度或高度，则仍然可以使用paintedWidth和paintedHeight)。考虑到这些参数， Text本可以像任何其他Item一样定位。</p>
+<a name="example-code"></a>
+<h2 id="example-code">示例代码</h2>
+<pre class="qml">
+
+  import QtQuick 2.3
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">root</span>
+      <span class="name">width</span>: <span class="number">480</span>
+      <span class="name">height</span>: <span class="number">320</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">color</span>: <span class="string">&quot;#272822&quot;</span>
+          <span class="name">width</span>: <span class="number">480</span>
+          <span class="name">height</span>: <span class="number">320</span>
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-column.html">Column</a></span> {
+          <span class="name">spacing</span>: <span class="number">20</span>
+
+          <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+              <span class="name">text</span>: <span class="string">'I am the very model of a modern major general!'</span>
+
+              <span class="comment">// color can be set on the entire element with this property</span>
+              <span class="name">color</span>: <span class="string">&quot;yellow&quot;</span>
+
+          }
+
+          <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+              <span class="comment">// For text to wrap, a width has to be explicitly provided</span>
+              <span class="name">width</span>: <span class="name">root</span>.<span class="name">width</span>
+
+              <span class="comment">// This setting makes the text wrap at word boundaries when it goes</span>
+              <span class="comment">// past the width of the Text object</span>
+              <span class="name">wrapMode</span>: <span class="name">Text</span>.<span class="name">WordWrap</span>
+
+              <span class="comment">// You can use \ to escape quotation marks, or to add new lines (\n).</span>
+              <span class="comment">//  Use \\ to get a \ in the string</span>
+              <span class="name">text</span>: <span class="string">'I am the very model of a modern major general. I\'ve information \
+                    vegetable, animal and mineral. I know the kings of england and I \
+                    quote the fights historical; from Marathon to Waterloo in order categorical.'</span>
+
+              <span class="comment">// color can be set on the entire element with this property</span>
+              <span class="name">color</span>: <span class="string">&quot;white&quot;</span>
+
+          }
+
+          <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+              <span class="name">text</span>: <span class="string">'I am the very model of a modern major general!'</span>
+
+              <span class="comment">// color can be set on the entire element with this property</span>
+              <span class="name">color</span>: <span class="string">&quot;yellow&quot;</span>
+
+              <span class="comment">// font properties can be set effciently on the whole string at once</span>
+              <span class="type"><a href="../qtquick/qml-font.html">font</a></span> { <span class="name">family</span>: <span class="string">'Courier'</span>; <span class="name">pixelSize</span>: <span class="number">20</span>; <span class="name">italic</span>: <span class="number">true</span>; <span class="name">capitalization</span>: <span class="name">Font</span>.<span class="name">SmallCaps</span> }
+
+          }
+
+          <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+              <span class="comment">// HTML like markup can also be used</span>
+              <span class="name">text</span>: <span class="string">'&lt;font color=&quot;white&quot;&gt;I am the &lt;b&gt;very&lt;/b&gt; model of a modern &lt;i&gt;major general&lt;/i&gt;!&lt;/font&gt;'</span>
+
+              <span class="comment">// This could also be written font { pointSize: 14 }. Both syntaxes are valid.</span>
+              <span class="name">font</span>.pointSize: <span class="number">14</span>
+
+              <span class="comment">// StyledText format supports fewer tags, but is more efficient than RichText</span>
+              <span class="name">textFormat</span>: <span class="name">Text</span>.<span class="name">StyledText</span>
+          }
+      }
+  }
+
+</pre>
+<p class="centerAlign"><img src="images/qml-uses-text.png" alt="" /></p><a name="internationalization-and-scalability"></a>
+<h2 id="internationalization-and-scalability">国际化和可伸缩性</h2>
+<p>在处理文本时，应用程序必须考虑各种主题，比如设备的方向和语言设置。</p>
+<p>
+以下几个页面将详细介绍这些主题。</p>
+<ul>
+<li><a href="../qtquick/qtquick-positioning-righttoleft.html">从右到左的用户界面</a></li>
+<li><a href="qtquick-internationalization.html">使用Qt Quick实现国际化和本地化</a></li>
+<li><a href="scalability.html">可伸缩性</a></li>
+</ul>
+</div>
+<!-- @@@qtquick-usecase-text.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

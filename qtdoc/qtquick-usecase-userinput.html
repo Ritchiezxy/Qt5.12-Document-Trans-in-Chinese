@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- userinput.qdoc -->
+  <title>Use Case - Responding To User Input in QML | Qt 5.12 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="index.html">Qt 5.12</a></td><td >Use Case - Responding To User Input in QML</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.12.3 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#supported-types-of-user-input">支持用户输入的类型</a></li>
+<li class="level2"><a href="#mouse-and-touch-events">鼠标和触摸事件</a></li>
+<li class="level2"><a href="#keyboard-and-button-events">键盘和按钮事件</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">用例——响应QML中的用户输入</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-usecase-userinput.html-description -->
+<div class="descr"> <a name="details"></a>
+<a name="supported-types-of-user-input"></a>
+<h2 id="supported-types-of-user-input">支持用户输入的类型</h2>
+<p><a href="../qtquick/qtquick-index.html">Qt Quick</a>模块支持最常见的用户输入类型，包括鼠标和触摸事件、文本输入和按键事件。其他模块支持其他类型的用户输入，例如<a href="../qtsensors/qtsensors-index.html">Qt Sensors</a> 模块支持QML应用程序中的震动手势。</p>
+<p>本文介绍了如何处理基本的用户输入;有关运动-手势支持的更多信息，请参阅<a href="../qtsensors/qtsensors-index.html">Qt Sensors</a>文档。有关视听输入的信息，请参阅<a href="../qtmultimedia/qtmultimedia-index.html"> Qt多媒体</a>文档。</p>
+<a name="mouse-and-touch-events"></a>
+<h3 >鼠标和触摸事件</h3>
+<p><a href="../qtquick/qtquickhandlers-index.html#input-handlers">输入处理程序</a>允许QML应用程序处理鼠标和触摸事件。例如，可以通过向Image项或包含<a href="../qtquick/qml-qtquick-text.html">Text</a>对象的<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>添加 <a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a>来创建按钮。<a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a> 响应任何类型的指向设备上的轻击或单击。</p>
+<pre class="qml">
+
+  import QtQuick 2.12
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">root</span>
+
+      <span class="name">width</span>: <span class="number">320</span>
+      <span class="name">height</span>: <span class="number">480</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">color</span>: <span class="string">&quot;#272822&quot;</span>
+          <span class="name">width</span>: <span class="number">320</span>
+          <span class="name">height</span>: <span class="number">480</span>
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">rectangle</span>
+          <span class="name">x</span>: <span class="number">40</span>
+          <span class="name">y</span>: <span class="number">20</span>
+          <span class="name">width</span>: <span class="number">120</span>
+          <span class="name">height</span>: <span class="number">120</span>
+          <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+
+          <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+              <span class="name">onTapped</span>: <span class="name">rectangle</span>.<span class="name">width</span> <span class="operator">+=</span> <span class="number">10</span>
+          }
+      }
+  }
+
+</pre>
+<p>有关更高级的用例，如拖动、缩放手势，请参阅<a href="../qtquick/qml-qtquick-draghandler.html">DragHandler</a> 和 <a href="../qtquick/qml-qtquick-pinchhandler.html">PinchHandler</a> 类型的文档。</p>
+<p><b>注意:</b>有些类型有自己的内置输入处理。例如，<a href="../qtquick/qml-qtquick-flickable.html">Flickable</a> 响应鼠标拖动和鼠标滚轮滚动。它通过在不处理触摸事件时创建的合成鼠标事件来处理触摸拖动和滑动。</p><a name="keyboard-and-button-events"></a>
+<h3 >键盘和按钮事件</h3>
+<p>从设备上的按钮、小键盘或键盘上的按钮和按键都可以使用<a href="../qtquick/qml-qtquick-keys.html">Keys</a>附加属性来处理。此附加属性可用于所有<a href="../qtquick/qml-qtquick-item.html">Item</a>的派生类型，并与 <a href="../qtquick/qml-qtquick-item.html#focus-prop">Item::focus</a> 属性一起工作，以确定哪个类型接收键事件。对于简单的键处理，您可以将单个<a href="../qtquick/qml-qtquick-item.html">Item</a>的焦点设置为true，并在其中执行所有键处理。</p>
+<pre class="qml">
+
+  import QtQuick 2.3
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">root</span>
+
+      <span class="name">width</span>: <span class="number">320</span>
+      <span class="name">height</span>: <span class="number">480</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">color</span>: <span class="string">&quot;#272822&quot;</span>
+          <span class="name">width</span>: <span class="number">320</span>
+          <span class="name">height</span>: <span class="number">480</span>
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">rectangle</span>
+          <span class="name">x</span>: <span class="number">40</span>
+          <span class="name">y</span>: <span class="number">20</span>
+          <span class="name">width</span>: <span class="number">120</span>
+          <span class="name">height</span>: <span class="number">120</span>
+          <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+
+          <span class="name">focus</span>: <span class="number">true</span>
+          <span class="name">Keys</span>.onUpPressed: <span class="name">rectangle</span>.<span class="name">y</span> <span class="operator">-=</span> <span class="number">10</span>
+          <span class="name">Keys</span>.onDownPressed: <span class="name">rectangle</span>.<span class="name">y</span> <span class="operator">+=</span> <span class="number">10</span>
+          <span class="name">Keys</span>.onLeftPressed: <span class="name">rectangle</span>.<span class="name">x</span> <span class="operator">+=</span> <span class="number">10</span>
+          <span class="name">Keys</span>.onRightPressed: <span class="name">rectangle</span>.<span class="name">x</span> <span class="operator">-=</span> <span class="number">10</span>
+      }
+  }
+
+</pre>
+<p>对于文本输入，我们有几种QML类型可供选择。<a href="../qtquick/qml-qtquick-textinput.html">TextInput</a> 提供无样式的单行可编辑文本，而<a href="../qtquickcontrols/qml-qtquick-controls2-textfield.html">TextField</a> 更适合应用程序中的表单字段。<a href="../qtquick/qml-qtquick-textedit.html">TextEdit</a> 可以处理多行可编辑文本，但是<a href="../qtquickcontrols/qml-qtquick-controls2-textarea.html">TextArea</a>是更好的选择，因为它添加了样式。</p>
+<p>下面的代码片段演示了如何在应用程序中使用这些类型:</p>
+<pre class="qml">
+
+  import QtQuick 2.12
+  import QtQuick.Controls 2.4
+  import QtQuick.Layouts 1.3
+
+  <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a></span> {
+      <span class="name">width</span>: <span class="number">300</span>
+      <span class="name">height</span>: <span class="number">200</span>
+      <span class="name">visible</span>: <span class="number">true</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-layouts-columnlayout.html">ColumnLayout</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-textfield.html">TextField</a></span> {
+              <span class="name">id</span>: <span class="name">singleline</span>
+              <span class="name">text</span>: <span class="string">&quot;Initial Text&quot;</span>
+              <span class="name">Layout</span>.alignment: <span class="name">Qt</span>.<span class="name">AlignHCenter</span> <span class="operator">|</span> <span class="name">Qt</span>.<span class="name">AlignTop</span>
+              <span class="name">Layout</span>.margins: <span class="number">5</span>
+              <span class="name">background</span>: <span class="name">Rectangle</span> {
+                 <span class="name">implicitWidth</span>: <span class="number">200</span>
+                 <span class="name">implicitHeight</span>: <span class="number">40</span>
+                 <span class="name">border</span>.color: <span class="name">singleline</span>.<span class="name">focus</span> ? <span class="string">&quot;#21be2b&quot;</span> : <span class="string">&quot;lightgray&quot;</span>
+                 <span class="name">color</span>: <span class="name">singleline</span>.<span class="name">focus</span> ? <span class="string">&quot;lightgray&quot;</span> : <span class="string">&quot;transparent&quot;</span>
+              }
+          }
+
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-textarea.html">TextArea</a></span> {
+              <span class="name">id</span>: <span class="name">multiline</span>
+              <span class="name">placeholderText</span>: <span class="string">&quot;Initial text\n...\n...\n&quot;</span>
+              <span class="name">Layout</span>.alignment: <span class="name">Qt</span>.<span class="name">AlignLeft</span>
+              <span class="name">Layout</span>.fillWidth: <span class="number">true</span>
+              <span class="name">Layout</span>.fillHeight: <span class="number">true</span>
+              <span class="name">Layout</span>.margins: <span class="number">5</span>
+              <span class="name">background</span>: <span class="name">Rectangle</span> {
+                 <span class="name">implicitWidth</span>: <span class="number">200</span>
+                 <span class="name">implicitHeight</span>: <span class="number">100</span>
+                 <span class="name">border</span>.color: <span class="name">multiline</span>.<span class="name">focus</span> ? <span class="string">&quot;#21be2b&quot;</span> : <span class="string">&quot;lightgray&quot;</span>
+                 <span class="name">color</span>: <span class="name">multiline</span>.<span class="name">focus</span> ? <span class="string">&quot;lightgray&quot;</span> : <span class="string">&quot;transparent&quot;</span>
+              }
+          }
+      }
+  }
+
+</pre>
+</div>
+<!-- @@@qtquick-usecase-userinput.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

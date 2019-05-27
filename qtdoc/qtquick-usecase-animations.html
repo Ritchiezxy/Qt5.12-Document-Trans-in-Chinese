@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- animations.qdoc -->
+  <title>Use case - Animations In QML | Qt 5.12 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="index.html">Qt 5.12</a></td><td >Use case - Animations In QML</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.12.3 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#fluid-uis">流体UI</a></li>
+<li class="level2"><a href="#states-and-transitions">状态和转换</a></li>
+<li class="level2"><a href="#animating-property-changes">动画属性变更。</a></li>
+<li class="level1"><a href="#other-animations">其他动画</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">用例- QML中的动画</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-usecase-animations.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><a href="../qtquick/qtquick-index.html">Qt Quick</a>提供了动画属性的功能。动画属性允许属性值通过中间值渐进变化，而不是立即更改为目标值。要对项的位置进行动画化，可以对控制项位置的属性(例如x和y)进行动画，以便在到达目标位置的过程中更改项的位置。</p>
+<a name="fluid-uis"></a>
+<h2 id="fluid-uis">流体UI</h2>
+<p>QML被设计用于流体UI的创建。这样的用户界面，其UI组件是动态的，而不是突然出现、消失或跳转。Qt Quick提供了两种简单的方法让UI组件随着动画移动，而不是立即出现在它们的新位置。</p>
+<a name="states-and-transitions"></a>
+<h3 >状态和转换</h3>
+<p>Qt Quick允许您在<a href="../qtqml/qml-qtqml-statemachine-state.html">State</a> 对象中声明各种UI状态。这些状态由基本状态的属性更改组成，可以作为组织UI逻辑的有用方法。 Transitions 是一种对象，您可以将其与项关联，以定义其属性在因状态更改而更改时将如何动画。</p>
+<p>可以使用<a href="../qtquick/qml-qtquick-item.html#states-prop">Item::states</a> 和 <a href="../qtquick/qml-qtquick-item.html#transitions-prop">Item::transitions</a>属性声明项的状态和转换。状态在项的状态列表属性中声明，通常是组件的根项。在同一项上定义的转换用于动画化状态中的更改。这里有一个例子。</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">container</span>
+      <span class="name">width</span>: <span class="number">320</span>
+      <span class="name">height</span>: <span class="number">120</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">rect</span>
+          <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+          <span class="name">width</span>: <span class="number">120</span>
+          <span class="name">height</span>: <span class="number">120</span>
+
+          <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+              <span class="name">onTapped</span>: <span class="name">container</span>.<span class="name">state</span> <span class="operator">===</span> <span class="string">''</span> ? <span class="name">container</span>.<span class="name">state</span> <span class="operator">=</span> <span class="string">'other'</span> : <span class="name">container</span>.<span class="name">state</span> <span class="operator">=</span> <span class="string">''</span>
+          }
+      }
+      <span class="name">states</span>: [
+          <span class="comment">// This adds a second state to the container where the rectangle is farther to the right</span>
+
+          <span class="type"><a href="../qtqml/qml-qtqml-statemachine-state.html">State</a></span> { <span class="name">name</span>: <span class="string">&quot;other&quot;</span>
+
+              <span class="type"><a href="../qtquick/qml-qtquick-propertychanges.html">PropertyChanges</a></span> {
+                  <span class="name">target</span>: <span class="name">rect</span>
+                  <span class="name">x</span>: <span class="number">200</span>
+              }
+          }
+      ]
+      <span class="name">transitions</span>: [
+          <span class="comment">// This adds a transition that defaults to applying to all state changes</span>
+
+          <span class="type"><a href="../qtquick/qml-qtquick-transition.html">Transition</a></span> {
+
+              <span class="comment">// This applies a default NumberAnimation to any changes a state change makes to x or y properties</span>
+              <span class="type"><a href="../qtquick/qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">properties</span>: <span class="string">&quot;x,y&quot;</span> }
+          }
+      ]
+  }
+
+</pre>
+<a name="animating-property-changes"></a>
+<h3 >动画属性变更。</h3>
+<p>Behavior可用于指定属性更改时使用的动画。然后，这将应用于所有更改，不管它们的源是什么。下面的示例使用行为在屏幕上移动一个按钮。</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">320</span>
+      <span class="name">height</span>: <span class="number">120</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">color</span>: <span class="string">&quot;green&quot;</span>
+          <span class="name">width</span>: <span class="number">120</span>
+          <span class="name">height</span>: <span class="number">120</span>
+
+          <span class="comment">// This is the behavior, and it applies a NumberAnimation to any attempt to set the x property</span>
+          Behavior on <span class="name">x</span> {
+
+              <span class="type"><a href="../qtquick/qml-qtquick-numberanimation.html">NumberAnimation</a></span> {
+                  <span class="comment">//This specifies how long the animation takes</span>
+                  <span class="name">duration</span>: <span class="number">600</span>
+                  <span class="comment">//This selects an easing curve to interpolate with, the default is Easing.Linear</span>
+                  <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutBounce</span>
+              }
+          }
+
+          <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+              <span class="name">onTapped</span>: <span class="name">parent</span>.<span class="name">x</span> <span class="operator">==</span> <span class="number">0</span> ? <span class="name">parent</span>.<span class="name">x</span> <span class="operator">=</span> <span class="number">200</span> : <span class="name">parent</span>.<span class="name">x</span> <span class="operator">=</span> <span class="number">0</span>
+          }
+      }
+  }
+
+</pre>
+<a name="other-animations"></a>
+<h2 id="other-animations">其他动画</h2>
+<p>并非所有动画都必须绑定到特定的属性或状态。您还可以更一般地创建动画，并在动画中指定目标项和属性。下面是一些不同的方法:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">320</span>
+      <span class="name">height</span>: <span class="number">120</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">color</span>: <span class="string">&quot;blue&quot;</span>
+          <span class="name">width</span>: <span class="number">120</span>
+          <span class="name">height</span>: <span class="number">120</span>
+
+          <span class="comment">// By setting this SequentialAnimation on x, it and animations within it will automatically animate</span>
+          <span class="comment">// the x property of this element</span>
+          SequentialAnimation on <span class="name">x</span> {
+              <span class="name">id</span>: <span class="name">xAnim</span>
+              <span class="comment">// Animations on properties start running by default</span>
+              <span class="name">running</span>: <span class="number">false</span>
+              <span class="name">loops</span>: <span class="name">Animation</span>.<span class="name">Infinite</span> <span class="comment">// The animation is set to loop indefinitely</span>
+              <span class="type"><a href="../qtquick/qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">from</span>: <span class="number">0</span>; <span class="name">to</span>: <span class="number">200</span>; <span class="name">duration</span>: <span class="number">500</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutQuad</span> }
+              <span class="type"><a href="../qtquick/qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">from</span>: <span class="number">200</span>; <span class="name">to</span>: <span class="number">0</span>; <span class="name">duration</span>: <span class="number">500</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutQuad</span> }
+              <span class="type"><a href="../qtquick/qml-qtquick-pauseanimation.html">PauseAnimation</a></span> { <span class="name">duration</span>: <span class="number">250</span> } <span class="comment">// This puts a bit of time between the loop</span>
+          }
+
+          <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+              <span class="comment">// The animation starts running when you click within the rectangle</span>
+              <span class="name">onTapped</span>: <span class="name">xAnim</span>.<span class="name">running</span> <span class="operator">=</span> <span class="number">true</span>
+          }
+      }
+  }
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">320</span>
+      <span class="name">height</span>: <span class="number">120</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">rectangle</span>
+          <span class="name">color</span>: <span class="string">&quot;yellow&quot;</span>
+          <span class="name">width</span>: <span class="number">120</span>
+          <span class="name">height</span>: <span class="number">120</span>
+
+          <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+              <span class="comment">// The animation starts running when you click within the rectange</span>
+              <span class="name">onTapped</span>: <span class="name">anim</span>.<span class="name">running</span> <span class="operator">=</span> <span class="number">true</span>;
+          }
+      }
+
+      <span class="comment">// This animation specifically targets the Rectangle's properties to animate</span>
+      <span class="type"><a href="../qtquick/qml-qtquick-sequentialanimation.html">SequentialAnimation</a></span> {
+          <span class="name">id</span>: <span class="name">anim</span>
+          <span class="comment">// Animations on their own are not running by default</span>
+          <span class="comment">// The default number of loops is one, restart the animation to see it again</span>
+
+          <span class="type"><a href="../qtquick/qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">target</span>: <span class="name">rectangle</span>; <span class="name">property</span>: <span class="string">&quot;x&quot;</span>; <span class="name">from</span>: <span class="number">0</span>; <span class="name">to</span>: <span class="number">200</span>; <span class="name">duration</span>: <span class="number">500</span> }
+
+          <span class="type"><a href="../qtquick/qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">target</span>: <span class="name">rectangle</span>; <span class="name">property</span>: <span class="string">&quot;x&quot;</span>; <span class="name">from</span>: <span class="number">200</span>; <span class="name">to</span>: <span class="number">0</span>; <span class="name">duration</span>: <span class="number">500</span> }
+      }
+  }
+
+</pre>
+<p class="centerAlign"><img src="images/qml-uses-animation.png" alt="" /></p><p>有关动画的更多信息可以在<a href="../qtquick/qtquick-statesanimations-topic.html">Qt Quick状态、转换和动画页面的重要概念</a>上找到。</p>
+</div>
+<!-- @@@qtquick-usecase-animations.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
