@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- layouts.qdoc -->
+  <title>Use Case - Positioners and Layouts In QML | Qt 5.12 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="index.html">Qt 5.12</a></td><td >Use Case - Positioners and Layouts In QML</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.12.3 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#manual-positioning">手动定位</a></li>
+<li class="level1"><a href="#anchors">锚</a></li>
+<li class="level1"><a href="#positioners">定位器</a></li>
+<li class="level1"><a href="#layout-types">Layout类型</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">用例—定位器和QML中的布局</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-usecase-layouts.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>有几种方法可以在QML中定位项。</p>
+<p>下面是一个简要的概述。有关更多细节，请参见<a href="../qtquick/qtquick-positioning-topic.html">Qt Quick定位中的重要概念</a>。</p>
+<a name="manual-positioning"></a>
+<h2 id="manual-positioning">手动定位</h2>
+<p>通过设置项目的x、y属性，可以将项目放置在屏幕上特定的x、y坐标上。这将根据<a href="../qtquick/qtquick-visualcanvas-coordinates.html">可视坐标系统</a>规则设置它们相对于父类左上角的位置。</p>
+<p>通过为这些属性使用<a href="../qtqml/qtqml-syntax-propertybinding.html">绑定</a>而不是常量，通过将x和y坐标设置为适当的绑定，也可以轻松地完成相对定位。</p>
+<pre class="qml">
+
+  import QtQuick 2.3
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="comment">// Manually positioned at 20,20</span>
+          <span class="name">x</span>: <span class="number">20</span>
+          <span class="name">y</span>: <span class="number">20</span>
+          <span class="name">width</span>: <span class="number">80</span>
+          <span class="name">height</span>: <span class="number">80</span>
+          <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+      }
+  }
+
+</pre>
+<p class="centerAlign"><img src="images/qml-uses-layouts-direct.png" alt="" /></p><a name="anchors"></a>
+<h2 id="anchors">锚</h2>
+<p><code>Item</code>类型提供了锚定到其他<a href="../qtquick/qml-qtquick-item.html">Item</a>类型的能力。每个项目有7条锚线:<i>left</i>（左）、 <i>right</i>（右）、 <i>vertical center</i>（垂直中心）、<i>top</i>（顶部）、 <i>bottom</i>（底部）、<i>baseline</i>（基线） 和 <i>horizontal center</i>（水平中心）。 三根垂直锚线可以锚定在另一项的三根垂直锚线中的任意一根上，四根水平锚线可以锚定在另一项的水平锚线上。</p>
+<p>有关详细信息，请参见<a href="../qtquick/qtquick-positioning-anchors.html">使用锚定位</a> 和<a href="../qtquick/qml-qtquick-item.html#anchors.top-prop">锚属性</a>的文档。</p>
+<pre class="qml">
+
+  import QtQuick 2.3
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="comment">// Anchored to 20px off the top right corner of the parent</span>
+          <span class="name">anchors</span>.right: <span class="name">parent</span>.<span class="name">right</span>
+          <span class="name">anchors</span>.top: <span class="name">parent</span>.<span class="name">top</span>
+          <span class="name">anchors</span>.margins: <span class="number">20</span> <span class="comment">// Sets all margins at once</span>
+
+          <span class="name">width</span>: <span class="number">80</span>
+          <span class="name">height</span>: <span class="number">80</span>
+          <span class="name">color</span>: <span class="string">&quot;orange&quot;</span>
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="comment">// Anchored to 20px off the top center corner of the parent.</span>
+          <span class="comment">// Notice the different group property syntax for 'anchors' compared to</span>
+          <span class="comment">// the previous Rectangle. Both are valid.</span>
+          <span class="type">anchors</span> { <span class="name">horizontalCenter</span>: <span class="name">parent</span>.<span class="name">horizontalCenter</span>; <span class="name">top</span>: <span class="name">parent</span>.<span class="name">top</span>; <span class="name">topMargin</span>: <span class="number">20</span> }
+
+          <span class="name">width</span>: <span class="number">80</span>
+          <span class="name">height</span>: <span class="number">80</span>
+          <span class="name">color</span>: <span class="string">&quot;green&quot;</span>
+      }
+  }
+
+</pre>
+<p class="centerAlign"><img src="images/qml-uses-layouts-anchors.png" alt="" /></p><a name="positioners"></a>
+<h2 id="positioners">定位器</h2>
+<p>对于希望以常规模式定位一组类型的常见情况，Qt Quick提供了一些定位器类型。放置在定位器中的项以某种方式自动定位;例如，<a href="../qtquick/qml-qtquick-row.html">Row</a>将项目定位为水平相邻(形成一行)。</p>
+<p>有关详细信息，请参阅<a href="../qtquick/qtquick-positioning-layouts.html">Item 定位器</a> 和 <a href="../qtpositioning/qtpositioning-qmlmodule.html">定位器类型</a>的文档。</p>
+<pre class="qml">
+
+  import QtQuick 2.3
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">300</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-row.html">Row</a></span> { <span class="comment">// The &quot;Row&quot; type lays out its child items in a horizontal line</span>
+          <span class="name">spacing</span>: <span class="number">20</span> <span class="comment">// Places 20px of space between items</span>
+
+          <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> { <span class="name">width</span>: <span class="number">80</span>; <span class="name">height</span>: <span class="number">80</span>; <span class="name">color</span>: <span class="string">&quot;red&quot;</span> }
+          <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> { <span class="name">width</span>: <span class="number">80</span>; <span class="name">height</span>: <span class="number">80</span>; <span class="name">color</span>: <span class="string">&quot;green&quot;</span> }
+          <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> { <span class="name">width</span>: <span class="number">80</span>; <span class="name">height</span>: <span class="number">80</span>; <span class="name">color</span>: <span class="string">&quot;blue&quot;</span> }
+      }
+  }
+
+</pre>
+<p class="centerAlign"><img src="images/qml-uses-layouts-positioners.png" alt="" /></p><a name="layout-types"></a>
+<h2 id="layout-types">Layout类型</h2>
+<p><i>Layout 类型</i>的功能与定位器类似，但允许对布局进行进一步细化或限制。具体来说，布局类型允许您:</p>
+<ul>
+<li>设置文本和其他项的对齐方式</li>
+<li>自动调整和填充被分配的应用程序区域</li>
+<li>设置大小约束，如最小或最大尺寸</li>
+<li>设置布局中项之间的间距</li>
+</ul>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-groupbox.html">GroupBox</a></span> {
+      <span class="name">id</span>: <span class="name">gridBox</span>
+      <span class="name">title</span>: <span class="string">&quot;Grid layout&quot;</span>
+      <span class="name">Layout</span>.fillWidth: <span class="number">true</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-layouts-gridlayout.html">GridLayout</a></span> {
+          <span class="name">id</span>: <span class="name">gridLayout</span>
+          <span class="name">rows</span>: <span class="number">3</span>
+          <span class="name">flow</span>: <span class="name">GridLayout</span>.<span class="name">TopToBottom</span>
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-label.html">Label</a></span> { <span class="name">text</span>: <span class="string">&quot;Line 1&quot;</span> }
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-label.html">Label</a></span> { <span class="name">text</span>: <span class="string">&quot;Line 2&quot;</span> }
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-label.html">Label</a></span> { <span class="name">text</span>: <span class="string">&quot;Line 3&quot;</span> }
+
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-textfield.html">TextField</a></span> { }
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-textfield.html">TextField</a></span> { }
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-textfield.html">TextField</a></span> { }
+
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-textarea.html">TextArea</a></span> {
+              <span class="name">text</span>: <span class="string">&quot;This widget spans over three rows in the GridLayout.\n&quot;</span>
+                    <span class="operator">+</span> <span class="string">&quot;All items in the GridLayout are implicitly positioned from top to bottom.&quot;</span>
+              <span class="name">Layout</span>.rowSpan: <span class="number">3</span>
+              <span class="name">Layout</span>.fillHeight: <span class="number">true</span>
+              <span class="name">Layout</span>.fillWidth: <span class="number">true</span>
+          }
+      }
+  }
+
+</pre>
+<p>上面的代码片段来自 <a href="../qtquick/qtquick-layouts-example.html">基本布局</a> 示例。该代码片段显示了在布局中添加各种字段和项的简单性。<a href="../qtquick/qml-qtquick-layouts-gridlayout.html">GridLayout</a> 可以调整大小，它的格式可以通过各种属性定制。</p>
+<p>有关布局类型的详细资料，请浏览:</p>
+<ul>
+<li><a href="../qtquick/qtquicklayouts-overview.html">Qt Quick布局概述</a></li>
+<li><a href="../qtquick/qtquick-layouts-example.html">基本布局</a> 示例</li>
+</ul>
+<p><b>注意:</b><a href="../qtquick/qtquicklayouts-index.html">Qt Quick Layouts</a>是在Qt 5.1中引入的，需要<a href="../qtquick/qtquick-index.html">Qt Quick</a> 2.1&#x2e;</p></div>
+<!-- @@@qtquick-usecase-layouts.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
