@@ -3,4 +3,4 @@
 <a href="https://me.csdn.net/u012579905">CSDN主页</a> 
 QQ:1300693335
 mail:ritchiezxy@163.com
-如有问题或你想加入翻译请联系我。
+如有问题或你想加入翻译请联系我。。。
