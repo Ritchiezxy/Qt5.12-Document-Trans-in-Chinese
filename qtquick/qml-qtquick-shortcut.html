@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qquickshortcut.cpp -->
+  <title>Shortcut QML Type | Qt Quick 5.11</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.11</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-qmlmodule.html">QML Types</a></td><td >Shortcut QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.11.1 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#signals">信号</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的Shortcut类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Shortcut-brief -->
+<p>提供了快捷键。<a href="#details">更多…</a></p>
+<!-- @@@Shortcut -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQuick 2.11</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.5</td></tr></table></div><ul>
+<li><a href="qml-qtquick-shortcut-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-shortcut.html#autoRepeat-prop">autoRepeat</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-shortcut.html#context-prop">context</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtquick-shortcut.html#enabled-prop">enabled</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-shortcut.html#nativeText-prop">nativeText</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtquick-shortcut.html#portableText-prop">portableText</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtquick-shortcut.html#sequence-prop">sequence</a></b></b> : keysequence</li>
+<li class="fn"><b><b><a href="qml-qtquick-shortcut.html#sequences-prop">sequences</a></b></b> : list&lt;keysequence&gt;</li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">信号</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-shortcut.html#activated-signal">activated</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtquick-shortcut.html#activatedAmbiguously-signal">activatedAmbiguously</a></b></b>()</li>
+</ul>
+<!-- $$$Shortcut-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p>Shortcut类型提供了一种处理键盘快捷方式的方法。快捷方式可以设置为<a href="../qtgui/qkeysequence.html#StandardKey-enum">标准键盘快捷</a>方式之一，也可以用包含最多四个按键序列的字符串来描述，这些按键序列是<a href="qml-qtquick-shortcut.html#activated-signal">activate（激活）</a> 快捷方式所必需的。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">view</span>
+
+      property <span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">currentIndex</span>
+
+      <span class="type"><a href="qml-qtquick-shortcut.html">Shortcut</a></span> {
+          <span class="name">sequence</span>: <span class="name">StandardKey</span>.<span class="name">NextChild</span>
+          <span class="name">onActivated</span>: view.currentIndex++
+      }
+  }
+
+</pre>
+<p>还可以设置多个快捷键<a href="qml-qtquick-shortcut.html#sequences-prop">sequences</a>（序列），以便通过几个不同的按键序列<a href="qml-qtquick-shortcut.html#activated-signal">activated</a>（激活）快捷键。</p>
+<p><b>请参阅</b><a href="qml-qtquick-keys.html">Keys</a> 和  <a href="qml-qtquick-keys.html#shortcutOverride-signal">shortcutOverride()</a>。</p>
+<!-- @@@Shortcut -->
+<h2>属性文档</h2>
+<!-- $$$autoRepeat -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="autoRepeat-prop">
+<td class="tblQmlPropNode"><p>
+<a name="autoRepeat-prop"></a><span class="name">autoRepeat</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存快捷方式是否可以自动重复。</p>
+<p>其默认值是<code>true</code>。</p>
+</div></div><!-- @@@autoRepeat -->
+<br/>
+<!-- $$$context -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="context-prop">
+<td class="tblQmlPropNode"><p>
+<a name="context-prop"></a><span class="name">context</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存<a href="../qtcore/qt.html#ShortcutContext-enum">快捷键上下文</a>。</p>
+<p>支持的值是:</p>
+<ul>
+<li><code>Qt.WindowShortcut</code> (默认)- 当快捷方式的父项位于活动的顶层窗口中时，快捷方式是被激活的。</li>
+<li><code>Qt.ApplicationShortcut</code> - 当应用程序的一个窗口处于活动状态时，该快捷方式是激活的。</li>
+</ul>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-shortcut.html">Shortcut</a></span> {
+      <span class="name">sequence</span>: <span class="name">StandardKey</span>.<span class="name">Quit</span>
+      <span class="name">context</span>: <span class="name">Qt</span>.<span class="name">ApplicationShortcut</span>
+      <span class="name">onActivated</span>: <span class="name">Qt</span>.<span class="name">quit</span>()
+  }
+
+</pre>
+</div></div><!-- @@@context -->
+<br/>
+<!-- $$$enabled -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="enabled-prop">
+<td class="tblQmlPropNode"><p>
+<a name="enabled-prop"></a><span class="name">enabled</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存是否启用快捷方式。</p>
+<p>默认值为<code>true</code>。</p>
+</div></div><!-- @@@enabled -->
+<br/>
+<!-- $$$nativeText -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="nativeText-prop">
+<td class="tblQmlPropNode"><p>
+<a name="nativeText-prop"></a><span class="name">nativeText</span> : <span class="type"><a href="../qtqml/qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性将快捷方式的键序列作为特定于平台的字符串提供。这意味着它将被翻译出来，在<a href="../qtdoc/internationalization.html#macos">macOS</a>上它将类似于菜单栏中的键序列。最好将此文本显示给用户(例如，在工具提示上)。</p>
+<p>该QML属性是在Qt 5.6中引入的。</p>
+<p><b>参见</b><a href="qml-qtquick-shortcut.html#sequence-prop">sequence</a> 和 <a href="qml-qtquick-shortcut.html#portableText-prop">portableText</a>。</p>
+</div></div><!-- @@@nativeText -->
+<br/>
+<!-- $$$portableText -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="portableText-prop">
+<td class="tblQmlPropNode"><p>
+<a name="portableText-prop"></a><span class="name">portableText</span> : <span class="type"><a href="../qtqml/qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性以“可移植”格式提供快捷方式的键序列作为字符串，适合对文件进行读写。在许多情况下，它看起来与Windows和X11上的本机文本相似。</p>
+<p>该QML属性是在Qt 5.6中引入的。</p>
+<p><b>参见</b><a href="qml-qtquick-shortcut.html#sequence-prop">sequence</a> 和 <a href="qml-qtquick-shortcut.html#nativeText-prop">nativeText</a>。</p>
+</div></div><!-- @@@portableText -->
+<br/>
+<!-- $$$sequence -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="sequence-prop">
+<td class="tblQmlPropNode"><p>
+<a name="sequence-prop"></a><span class="name">sequence</span> : <span class="type">keysequence</span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存快捷方式的键序列。键序列可以设置为<a href="../qtgui/qkeysequence.html#StandardKey-enum">标准键盘快捷</a>方式之一，也可以用包含最多四个按键序列的字符串来描述，这些按键序列是<a href="qml-qtquick-shortcut.html#activated-signal">activate（激活）</a>快捷方式所必需的。</p>
+<p>默认值是一个空键序列。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-shortcut.html">Shortcut</a></span> {
+      <span class="name">sequence</span>: <span class="string">&quot;Ctrl+E,Ctrl+W&quot;</span>
+      <span class="name">onActivated</span>: <span class="name">edit</span>.<span class="name">wrapMode</span> <span class="operator">=</span> <span class="name">TextEdit</span>.<span class="name">Wrap</span>
+  }
+
+</pre>
+<p><b>参见</b><a href="qml-qtquick-shortcut.html#sequences-prop">sequences</a>（序列）。</p>
+</div></div><!-- @@@sequence -->
+<br/>
+<!-- $$$sequences -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="sequences-prop">
+<td class="tblQmlPropNode"><p>
+<a name="sequences-prop"></a><span class="name">sequences</span> : <span class="type"><a href="../qtqml/qml-list.html">list</a></span>&lt;<span class="type">keysequence</span>&gt;</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性包含快捷方式的多个键序列。键序列可以设置为<a href="../qtgui/qkeysequence.html#StandardKey-enum">标准键盘快捷</a>方式之一，也可以用包含最多四个按键序列的字符串来描述，这些字符串包含<a href="qml-qtquick-shortcut.html#activated-signal">activate</a>（激活） 快捷方式所需的序列。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-shortcut.html">Shortcut</a></span> {
+      <span class="name">sequences</span>: [<span class="name">StandardKey</span>.<span class="name">Cut</span>, <span class="string">&quot;Ctrl+X&quot;</span>, <span class="string">&quot;Shift+Del&quot;</span>]
+      <span class="name">onActivated</span>: <span class="name">edit</span>.<span class="name">cut</span>()
+  }
+
+</pre>
+<p>该QML属性在Qt 5.9中引入。</p>
+</div></div><!-- @@@sequences -->
+<br/>
+<h2>信号文档</h2>
+<!-- $$$activated -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="activated-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="activated-signal"></a><span class="name">activated</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此信号在激活快捷方式时发出。</p>
+<p>对应的处理程序是<code>onActivated</code>。</p>
+</div></div><!-- @@@activated -->
+<br/>
+<!-- $$$activatedAmbiguously -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="activatedAmbiguously-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="activatedAmbiguously-signal"></a><span class="name">activatedAmbiguously</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>当模糊地激活快捷方式时将发出此信号，这意味着它匹配多个快捷方式的开头。</p>
+<p>对应的处理程序是<code>onActivatedAmbiguously</code>。</p>
+</div></div><!-- @@@activatedAmbiguously -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2018 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
