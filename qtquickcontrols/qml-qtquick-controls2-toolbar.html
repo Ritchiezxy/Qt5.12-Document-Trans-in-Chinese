@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qquicktoolbar.cpp -->
+  <title>ToolBar QML Type | Qt Quick Controls 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquickcontrols-index.html">Qt Quick Controls</a></td><td ><a href="qtquick-controls2-qmlmodule.html">QML Types</a></td><td >ToolBar QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquickcontrols-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">类型</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的ToolBar（工具栏）类型</h1>
+<span class="subtitle"></span>
+<!-- $$$ToolBar-brief -->
+<p>上下文敏感控件的容器。<a href="#details">更多……</a></p>
+<!-- @@@ToolBar -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQuick.Controls 2.5</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.7</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtquick-controls2-pane.html">Pane</a></p>
+</td></tr></table></div><ul>
+<li><a href="qml-qtquick-controls2-toolbar-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">类型</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-controls2-toolbar.html#position-prop">position</a></b></b> : enumeration</li>
+</ul>
+<!-- $$$ToolBar-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p><a href="qml-qtquick-controls2-toolbar.html">ToolBar</a> 是应用程序范围和上下文敏感的操作和控件的容器，例如导航按钮和搜索字段。 <a href="qml-qtquick-controls2-toolbar.html">ToolBar</a> 通常用作<a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow（应用程序窗口）</a>的<a href="qml-qtquick-controls2-applicationwindow.html#header-attached-prop">header（工具栏）</a> 或 <a href="qml-qtquick-controls2-applicationwindow.html#footer-attached-prop">footer（页脚）</a>。</p>
+<p><a href="qml-qtquick-controls2-toolbar.html">ToolBar</a>不提供自己的布局，所以要求您对其内容进行定位，例如通过创建<a href="../qtquick/qml-qtquick-layouts-rowlayout.html">RowLayout</a>来布局。如果 <a href="qml-qtquick-controls2-toolbar.html">ToolBar</a>中只使用一个项目，它将调整大小以适应其包含项目的隐式大小。这使得它特别适合与布局一起使用。</p>
+<p class="centerAlign"><img src="images/qtquickcontrols2-toolbar.png" alt="" /></p><pre class="cpp">
+
+  ApplicationWindow {
+      visible:<span class="keyword">true</span>
+
+      header: ToolBar {
+          RowLayout {
+              anchors<span class="operator">.</span>fill: parent
+              ToolButton {
+                  text: qsTr(<span class="string">&quot;‹&quot;</span>)
+                  onClicked: stack<span class="operator">.</span>pop()
+              }
+              Label {
+                  text: <span class="string">&quot;Title&quot;</span>
+                  elide: Label<span class="operator">.</span>ElideRight
+                  horizontalAlignment: <span class="type"><a href="../qtqml/qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>AlignHCenter
+                  verticalAlignment: <span class="type"><a href="../qtqml/qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>AlignVCenter
+                  Layout<span class="operator">.</span>fillWidth: <span class="keyword">true</span>
+              }
+              ToolButton {
+                  text: qsTr(<span class="string">&quot;⋮&quot;</span>)
+                  onClicked: menu<span class="operator">.</span>open()
+              }
+          }
+      }
+
+      StackView {
+          id: stack
+          anchors<span class="operator">.</span>fill: parent
+      }
+  }
+
+</pre>
+<p><b>参见</b><a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a>, <a href="qml-qtquick-controls2-toolbutton.html">ToolButton</a>, <a href="qtquickcontrols2-customize.html#customizing-toolbar">Customizing ToolBar</a>和 <a href="qtquickcontrols2-containers.html">Container Controls（容器控件）</a>。</p>
+<!-- @@@ToolBar -->
+<h2>属性文档</h2>
+<!-- $$$position -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="position-prop">
+<td class="tblQmlPropNode"><p>
+<a name="position-prop"></a><span class="name">position</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存工具栏的位置。</p>
+<p><b>注意：</b>如果将工具栏指定为<a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a> 或 <a href="qml-qtquick-controls2-page.html">Page</a>的页眉或页脚，则会自动设置适当的位置。</p><p>可能的值:</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">变量</th><th class="tbldscr">描述</th></tr>
+<tr><td class="topAlign"><code>ToolBar.Header</code></td><td class="topAlign">工具栏位于顶部，作为窗口或页眉。</td></tr>
+<tr><td class="topAlign"><code>ToolBar.Footer</code></td><td class="topAlign">工具栏位于底部，作为窗口或页脚。</td></tr>
+</table></div>
+<p>默认值是特定于样式的。</p>
+<p><b>参见</b><a href="qml-qtquick-controls2-applicationwindow.html#header-attached-prop">ApplicationWindow::header</a>, <a href="qml-qtquick-controls2-applicationwindow.html#footer-attached-prop">ApplicationWindow::footer</a>, <a href="qml-qtquick-controls2-page.html#header-prop">Page::header</a>和<a href="qml-qtquick-controls2-page.html#footer-prop">Page::footer</a>。</p>
+</div></div><!-- @@@position -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
