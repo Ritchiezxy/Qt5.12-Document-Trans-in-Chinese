@@ -241,7 +241,7 @@
 <td class="tblQmlPropNode"><p>
 <a name="menuBar-prop"></a><span class="name">menuBar</span> : <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This property holds the window menu bar. The menu bar is positioned at the top of the window, above the header, and resized to the width of the window. The default value is <code>null</code>.</p>
+</div><div class="qmldoc"><p>此属性保存窗口菜单栏。菜单栏位于窗口顶部，在标题上方，并被自动调整为窗口的宽度。默认值为<code>null</code>。</p>
 <pre class="cpp">
 
   ApplicationWindow {
@@ -251,7 +251,7 @@
   }
 
 </pre>
-<p>This property was introduced in  QtQuick.Controls 2.3 (Qt 5.10).</p>
+<p>这个属性是在QtQuick.Controls 2.3 (Qt 5.10)被引入的。</p>
 <p><b>请参见 </b><a href="qml-qtquick-controls2-applicationwindow.html#header-attached-prop">header</a>, <a href="qml-qtquick-controls2-applicationwindow.html#footer-attached-prop">footer</a>, and <a href="qml-qtquick-controls2-menubar.html">MenuBar</a>.</p>
 </div></div><!-- @@@menuBar -->
 <br/>
@@ -262,23 +262,23 @@
 <td class="tblQmlPropNode"><p>
 <a name="palette-prop"></a><span class="name">palette</span> : <span class="type"><a href="qml-palette.html">palette</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This property holds the palette currently set for the window.</p>
-<p>The default palette depends on the system environment. <a href="../qtgui/qguiapplication.html">QGuiApplication</a> maintains a system/theme palette which serves as a default for all application windows. You can also set the default palette for windows by passing a custom palette to <a href="../qtgui/qguiapplication.html#setPalette">QGuiApplication::setPalette()</a>, before loading any QML.</p>
-<p><a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a> propagates explicit palette properties to child controls. If you change a specific property on the window's palette, that property propagates to all child controls in the window, overriding any system defaults for that property.</p>
-<p>This property was introduced in  QtQuick.Controls 2.3 (Qt 5.10).</p>
-<p><b>请参见 </b><a href="qml-qtquick-controls2-control.html#palette-prop">Control::palette</a>, <a href="qml-qtquick-controls2-popup.html#palette-prop">Popup::palette</a>, and <a href="qml-palette.html#qtquickcontrols2-palette">palette QML Basic Type</a>.</p>
+</div><div class="qmldoc"><p>此属性保存当前为窗口设置的调色板。</p>
+<p>默认调色板取决于系统环境。 <a href="../qtgui/qguiapplication.html">QGuiApplication</a>维护一个system/theme调色板，它作为所有应用程序窗口的默认选项。在加载任何QML之前，还可以通过将自定义调色板传递给<a href="../qtgui/qguiapplication.html#setPalette">QGuiApplication::setPalette()</a>来设置windows的默认调色板。</p>
+<p><a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a> 将显式调色板属性传播到子控件。如果更改窗口调色板上的特定属性，该属性将传播到窗口中的所有子控件，并覆盖该属性的任何系统默认值。</p>
+<p>这个属性是在QtQuick.Controls 2.3 (Qt 5.10)中引入的。</p>
+<p><b>请参见 </b><a href="qml-qtquick-controls2-control.html#palette-prop">Control::palette</a>，<a href="qml-qtquick-controls2-popup.html#palette-prop">Popup::palette</a>，和 <a href="qml-palette.html#qtquickcontrols2-palette">QML中的palette基本属性</a>。</p>
 </div></div><!-- @@@palette -->
 <br/>
-<h2>Attached Property Documentation</h2>
+<h2>附加的属性文档</h2>
 <!-- $$$activeFocusControl -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
 <tr valign="top" class="odd" id="activeFocusControl-attached-prop">
 <td class="tblQmlPropNode"><p>
-<a name="activeFocusControl-attached-prop"></a><span class="qmlreadonly">[read-only] </span><span class="name">ApplicationWindow.activeFocusControl</span> : <span class="type"><a href="qml-qtquick-controls2-control.html">Control</a></span></p></td></tr>
+<a name="activeFocusControl-attached-prop"></a><span class="qmlreadonly">[只读] </span><span class="name">ApplicationWindow.activeFocusControl</span> : <span class="type"><a href="qml-qtquick-controls2-control.html">Control</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This attached property holds the control that currently has active focus, or <code>null</code> if there is no control with active focus. The property can be attached to any item. The value is <code>null</code> if the item is not in a window, or the window has no active focus.</p>
-<p><b>请参见 </b><a href="../qtquick/qml-qtquick-window-window.html#activeFocusItem-attached-prop">Window::activeFocusItem</a> and <a href="qml-qtquick-controls2-applicationwindow.html#attached-applicationwindow-properties">附加的ApplicationWindow属性</a>.</p>
+</div><div class="qmldoc"><p>此附加属性持有当前具有活动焦点的控件，如果没有具有活动焦点的控件，则为null。属性可以附加到任何项。如果项不在窗口中，或者窗口没有活动焦点，则该值为<code>null</code>。</p>
+<p><b>请参见 </b><a href="../qtquick/qml-qtquick-window-window.html#activeFocusItem-attached-prop">Window::activeFocusItem</a> 和 <a href="qml-qtquick-controls2-applicationwindow.html#attached-applicationwindow-properties">附加的ApplicationWindow属性</a>。</p>
 </div></div><!-- @@@activeFocusControl -->
 <br/>
 <!-- $$$contentItem -->
@@ -286,9 +286,9 @@
 <div class="table"><table class="qmlname">
 <tr valign="top" class="odd" id="contentItem-attached-prop">
 <td class="tblQmlPropNode"><p>
-<a name="contentItem-attached-prop"></a><span class="qmlreadonly">[read-only] </span><span class="name">ApplicationWindow.contentItem</span> : <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span></p></td></tr>
+<a name="contentItem-attached-prop"></a><span class="qmlreadonly">[只读] </span><span class="name">ApplicationWindow.contentItem</span> ： <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This attached property holds the window content item. The property can be attached to any item. The value is <code>null</code> if the item is not in an <a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a>.</p>
+</div><div class="qmldoc"><p>此附加属性保存窗口内容项。该属性可以附加到任何项。如果该项不在<a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a>中，则该值为<code>null</code> 。</p>
 <p><b>请参见 </b><a href="qml-qtquick-controls2-applicationwindow.html#attached-applicationwindow-properties">附加的ApplicationWindow属性</a>.</p>
 </div></div><!-- @@@contentItem -->
 <br/>
@@ -297,10 +297,10 @@
 <div class="table"><table class="qmlname">
 <tr valign="top" class="odd" id="footer-attached-prop">
 <td class="tblQmlPropNode"><p>
-<a name="footer-attached-prop"></a><span class="qmlreadonly">[read-only] </span><span class="name">ApplicationWindow.footer</span> : <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span></p></td></tr>
+<a name="footer-attached-prop"></a><span class="qmlreadonly">[只读] </span><span class="name">ApplicationWindow.footer</span> : <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This attached property holds the window footer item. The property can be attached to any item. The value is <code>null</code> if the item is not in an <a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a>, or the window has no footer item.</p>
-<p><b>请参见 </b><a href="qml-qtquick-controls2-applicationwindow.html#attached-applicationwindow-properties">附加的ApplicationWindow属性</a>.</p>
+</div><div class="qmldoc"><p>此附加属性保存了窗口页脚项。该属性可以附加到任何项。如果项目不在<a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a>中，或者该窗口没有页脚项，则该值为<code>null</code>。</p>
+<p><b>请参见 </b><a href="qml-qtquick-controls2-applicationwindow.html#attached-applicationwindow-properties">附加的ApplicationWindow属性</a>。</p>
 </div></div><!-- @@@footer -->
 <br/>
 <!-- $$$header -->
@@ -308,10 +308,10 @@
 <div class="table"><table class="qmlname">
 <tr valign="top" class="odd" id="header-attached-prop">
 <td class="tblQmlPropNode"><p>
-<a name="header-attached-prop"></a><span class="qmlreadonly">[read-only] </span><span class="name">ApplicationWindow.header</span> : <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span></p></td></tr>
+<a name="header-attached-prop"></a><span class="qmlreadonly">[只读] </span><span class="name">ApplicationWindow.header</span> : <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This attached property holds the window header item. The property can be attached to any item. The value is <code>null</code> if the item is not in an <a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a>, or the window has no header item.</p>
-<p><b>请参见 </b><a href="qml-qtquick-controls2-applicationwindow.html#attached-applicationwindow-properties">附加的ApplicationWindow属性</a>.</p>
+</div><div class="qmldoc"><p>此附加属性包含窗口标题项。该属性可以附加到任何项。如果项目不在<a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a>中，或者该窗口没有标题项，则该值为<code>null</code>。</p>
+<p><b>请参见 </b><a href="qml-qtquick-controls2-applicationwindow.html#attached-applicationwindow-properties">附加的ApplicationWindow属性</a>。</p>
 </div></div><!-- @@@header -->
 <br/>
 <!-- $$$menuBar -->
@@ -319,11 +319,11 @@
 <div class="table"><table class="qmlname">
 <tr valign="top" class="odd" id="menuBar-attached-prop">
 <td class="tblQmlPropNode"><p>
-<a name="menuBar-attached-prop"></a><span class="qmlreadonly">[read-only] </span><span class="name">ApplicationWindow.menuBar</span> : <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span></p></td></tr>
+<a name="menuBar-attached-prop"></a><span class="qmlreadonly">[只读] </span><span class="name">ApplicationWindow.menuBar</span> : <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This attached property holds the window menu bar. The property can be attached to any item. The value is <code>null</code> if the item is not in an <a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a>, or the window has no menu bar.</p>
-<p>This property was introduced in  QtQuick.Controls 2.3 (Qt 5.10).</p>
-<p><b>请参见 </b><a href="qml-qtquick-controls2-applicationwindow.html#attached-applicationwindow-properties">附加的ApplicationWindow属性</a>.</p>
+</div><div class="qmldoc"><p>此附加属性包含窗口菜单栏。该属性可以附加到任何项。如果项目不在<a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a>中，或者该窗口没有菜单栏，则该值为<code>null</code>。</p>
+<p>这个属性是在QtQuick.Controls 2.3 (Qt 5.10)中引入的。</p>
+<p><b>请参见 </b><a href="qml-qtquick-controls2-applicationwindow.html#attached-applicationwindow-properties">附加的ApplicationWindow属性</a>。</p>
 </div></div><!-- @@@menuBar -->
 <br/>
 <!-- $$$window -->
@@ -333,7 +333,7 @@
 <td class="tblQmlPropNode"><p>
 <a name="window-attached-prop"></a><span class="qmlreadonly">[read-only] </span><span class="name">ApplicationWindow.window</span> : <span class="type"><a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This attached property holds the application window. The property can be attached to any item. The value is <code>null</code> if the item is not in an <a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a>.</p>
+</div><div class="qmldoc"><p>此附加属性保存应用程序窗口。该属性可以附加到任何项。如果项目不在<a href="qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a>中，则该值为<code>null</code>。</p>
 <p><b>请参见 </b><a href="qml-qtquick-controls2-applicationwindow.html#attached-applicationwindow-properties">附加的ApplicationWindow属性</a>.</p>
 </div></div><!-- @@@window -->
 <br/>
