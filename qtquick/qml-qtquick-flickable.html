@@ -1,0 +1,831 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qquickflickable.cpp -->
+  <title>Flickable QML Type | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-qmlmodule.html">QML Types</a></td><td >Flickable QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">详细描述</a></li>
+<li class="level1"><a href="#signals">信号</a></li>
+<li class="level1"><a href="#methods">方法</a></li>
+<li class="level1"><a href="#details">详细描述</a></li>
+<li class="level2"><a href="#example-usage">示例用法</a></li>
+<li class="level2"><a href="#examples-of-contentx-and-contenty">contentX和contentY的例子</a></li>
+<li class="level2"><a href="#limitations">局限性</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的Flickable（轻轻弹动）类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Flickable-brief -->
+<p>提供一个可以&quot;轻弹&quot;的表面。<a href="#details">更多…</a></p>
+<!-- @@@Flickable -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQuick 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtquick-item.html">Item</a></p>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtquick-gridview.html">GridView</a>, <a href="qml-qtquick-listview.html">ListView</a>, and <a href="qml-qtquick-tableview.html">TableView</a></p>
+</td></tr></table></div><ul>
+<li><a href="qml-qtquick-flickable-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">详细描述</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#atXBeginning-prop">atXBeginning</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#atXEnd-prop">atXEnd</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#atYBeginning-prop">atYBeginning</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#atYEnd-prop">atYEnd</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#bottomMargin-prop">bottomMargin</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#boundsBehavior-prop">boundsBehavior</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#boundsMovement-prop">boundsMovement</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#contentHeight-prop">contentHeight</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#contentItem-prop">contentItem</a></b></b> : Item</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#contentWidth-prop">contentWidth</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#contentX-prop">contentX</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#contentY-prop">contentY</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#dragging-prop">dragging</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#draggingHorizontally-prop">draggingHorizontally</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#draggingVertically-prop">draggingVertically</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#flickDeceleration-prop">flickDeceleration</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#flickableDirection-prop">flickableDirection</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#flicking-prop">flicking</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#flickingHorizontally-prop">flickingHorizontally</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#flickingVertically-prop">flickingVertically</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#horizontalOvershoot-prop">horizontalOvershoot</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#horizontalVelocity-prop">horizontalVelocity</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#interactive-prop">interactive</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#leftMargin-prop">leftMargin</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#maximumFlickVelocity-prop">maximumFlickVelocity</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#moving-prop">moving</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#movingHorizontally-prop">movingHorizontally</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#movingVertically-prop">movingVertically</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#originX-prop">originX</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#originY-prop">originY</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#pixelAligned-prop">pixelAligned</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#pressDelay-prop">pressDelay</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#rebound-prop">rebound</a></b></b> : Transition</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#rightMargin-prop">rightMargin</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#synchronousDrag-prop">synchronousDrag</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#topMargin-prop">topMargin</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#verticalOvershoot-prop">verticalOvershoot</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#verticalVelocity-prop">verticalVelocity</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#visibleArea-prop">visibleArea</a></b></b><ul>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#visibleArea.xPosition-prop">visibleArea.xPosition</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#visibleArea.widthRatio-prop">visibleArea.widthRatio</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#visibleArea.yPosition-prop">visibleArea.yPosition</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#visibleArea.heightRatio-prop">visibleArea.heightRatio</a></b></b> : real</li>
+</ul>
+</li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">信号</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#flickEnded-signal">flickEnded</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#flickStarted-signal">flickStarted</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#movementEnded-signal">movementEnded</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#movementStarted-signal">movementStarted</a></b></b>()</li>
+</ul>
+<a name="methods"></a>
+<h2 id="methods">方法</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#cancelFlick-method">cancelFlick</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#flick-method">flick</a></b></b>(qreal <i>xVelocity</i>,  qreal <i>yVelocity</i>)</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#resizeContent-method">resizeContent</a></b></b>(real <i>width</i>,  real <i>height</i>,  QPointF <i>center</i>)</li>
+<li class="fn"><b><b><a href="qml-qtquick-flickable.html#returnToBounds-method">returnToBounds</a></b></b>()</li>
+</ul>
+<!-- $$$Flickable-description -->
+<a name="details"></a>
+<h2 id="details">详细描述</h2>
+<p>Flickable将其子项放置在可拖动和轻弹的一个面上，从而导致子项上的视图滚动。这种行为构成了那些项目旨在显示大量的子项目的基础，如<a href="qml-qtquick-listview.html">ListView</a> 和 <a href="qml-qtquick-gridview.html">GridView</a>。</p>
+<p>在传统的用户界面中，视图可以使用标准控件滚动，比如滚动条和箭头按钮。在某些情况下，还可以在移动光标时按住鼠标按钮直接拖动视图。在基于触摸的用户界面中，这种拖拽操作通常与轻轻弹动的操作相辅相成，在用户停止触摸视图后继续滚动。</p>
+<p>Flickable不会自动剪辑其内容。如果它不作为全屏项目使用，您应该考虑将<a href="qml-qtquick-item.html#clip-prop">clip</a>属性设置为true。</p>
+<a name="example-usage"></a>
+<h2 id="example-usage">示例用法</h2>
+<div class="float-right"><p><img src="images/flickable.gif" alt="" /></p>
+</div><p>下面的示例显示了一个大图像上的小视图，用户可以在其中拖动或使图像轻轻弹动，以查看图像的不同部分。</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="qml-qtquick-flickable.html">Flickable</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">200</span>
+      <span class="name">contentWidth</span>: <span class="name">image</span>.<span class="name">width</span>; <span class="name">contentHeight</span>: <span class="name">image</span>.<span class="name">height</span>
+
+      <span class="type"><a href="qml-qtquick-image.html">Image</a></span> { <span class="name">id</span>: <span class="name">image</span>; <span class="name">source</span>: <span class="string">&quot;bigImage.png&quot;</span> }
+  }
+
+</pre>
+<br style="clear: both" /><p>声明为Flickable子元素的项将自动作为Flickable的<a href="qml-qtquick-flickable.html#contentItem-prop">contentItem</a>内容的父元素。 在对Flickable的子程序进行操作时应考虑到这一点; 通常与之相关的是<code>contentItem</code>的子元素。例如，添加到的项目的绑定将由<code>contentItem.childrenRect</code>提供。</p>
+<a name="examples-of-contentx-and-contenty"></a>
+<h2 id="examples-of-contentx-and-contenty">contentX和contentY的例子</h2>
+<p>下面的图片演示了一个可向不同方向轻轻弹动的控件，以及由此产生的<a href="qml-qtquick-flickable.html#contentX-prop">contentX</a> 和 <a href="qml-qtquick-flickable.html#contentY-prop">contentY</a>值。蓝色方块表示闪烁的内容，黑色边框表示闪烁的边界。</p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><p class="centerAlign"><img src="images/flickable-contentXY-resting.png" alt="" /></p></td><td >The <code>contentX</code> and <code>contentY</code> are both <code>0</code>.</td></tr>
+<tr valign="top" class="even"><td ><p class="centerAlign"><img src="images/flickable-contentXY-top-left.png" alt="" /></p></td><td >The <code>contentX</code> and the <code>contentY</code> are both <code>50</code>.</td></tr>
+<tr valign="top" class="odd"><td ><p class="centerAlign"><img src="images/flickable-contentXY-top-right.png" alt="" /></p></td><td >The <code>contentX</code> is <code>-50</code> and the <code>contentY</code> is <code>50</code>.</td></tr>
+<tr valign="top" class="even"><td ><p class="centerAlign"><img src="images/flickable-contentXY-bottom-right.png" alt="" /></p></td><td >The <code>contentX</code> and the <code>contentY</code> are both <code>-50</code>.</td></tr>
+<tr valign="top" class="odd"><td ><p class="centerAlign"><img src="images/flickable-contentXY-bottom-left.png" alt="" /></p></td><td >The <code>contentX</code> is <code>50</code> and the <code>contentY</code> is <code>-50</code>.</td></tr>
+</table></div>
+<a name="limitations"></a>
+<h2 id="limitations">局限性</h2>
+<p><b>注意: </b>由于实现细节，放置在Flickable中的项不能锚定到Flickable。相反，应该使用 <a href="qml-qtquick-item.html#parent-prop">parent</a>引用Flickable的<a href="qml-qtquick-flickable.html#contentItem-prop">contentItem</a>。内容项的大小由<a href="qml-qtquick-flickable.html#contentWidth-prop">contentWidth</a> 和 <a href="qml-qtquick-flickable.html#contentHeight-prop">contentHeight</a>内容权决定。</p><!-- @@@Flickable -->
+<h2>属性文档</h2>
+<!-- $$$atXBeginning -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="atXBeginning-prop">
+<td class="tblQmlPropNode"><p>
+<a name="atXBeginning-prop"></a><span class="name">atXBeginning</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>如果轻轻弹动的视图分别位于开始和结束位置，则该属性为真。</p>
+</div></div><!-- @@@atXBeginning -->
+<br/>
+<!-- $$$atXEnd -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="atXEnd-prop">
+<td class="tblQmlPropNode"><p>
+<a name="atXEnd-prop"></a><span class="name">atXEnd</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>如果闪烁视图分别位于开始和结束位置，则这些属性为真。</p>
+</div></div><!-- @@@atXEnd -->
+<br/>
+<!-- $$$atYBeginning -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="atYBeginning-prop">
+<td class="tblQmlPropNode"><p>
+<a name="atYBeginning-prop"></a><span class="name">atYBeginning</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>如果轻轻弹动的视图分别位于开始和结束位置，则该属性为真。</p>
+</div></div><!-- @@@atYBeginning -->
+<br/>
+<!-- $$$atYEnd -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="atYEnd-prop">
+<td class="tblQmlPropNode"><p>
+<a name="atYEnd-prop"></a><span class="name">atYEnd</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>如果闪烁视图分别位于开始和结束位置，则该属性为真。</p>
+</div></div><!-- @@@atYEnd -->
+<br/>
+<!-- $$$bottomMargin -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="bottomMargin-prop">
+<td class="tblQmlPropNode"><p>
+<a name="bottomMargin-prop"></a><span class="name">bottomMargin</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>该属性保留了内容周围的空白。除了<a href="qml-qtquick-flickable.html#contentWidth-prop">contentWidth</a> 和 <a href="qml-qtquick-flickable.html#contentHeight-prop">contentHeight</a>之外，还保留了这个空间。</p>
+</div></div><!-- @@@bottomMargin -->
+<br/>
+<!-- $$$boundsBehavior -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="boundsBehavior-prop">
+<td class="tblQmlPropNode"><p>
+<a name="boundsBehavior-prop"></a><span class="name">boundsBehavior</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性适用于表面是否可以被拖动到Flickable的边界之外，或者在被轻弹时超出Flickable的边界。</p>
+<p>当<a href="qml-qtquick-flickable.html#boundsMovement-prop">boundsMovement</a> 是 <code>Flickable.FollowBoundsBehavior</code>时， <code>Flickable.StopAtBounds</code>之外的值会让人感觉视图的边缘是软的，而不是硬的物理边界。</p>
+<p><code>boundsBehavior</code>可以是:</p>
+<ul>
+<li>Flickable.StopAtBounds - 内容不能拖拽到flickable的边界之外，并且flicks不会超调。</li>
+<li>Flickable.DragOverBounds - 内容不能拖拽到flickable的边界之外，并且flicks不会超调。</li>
+<li>Flickable.OvershootBounds - 当被弹动时，内容可以超过边界，但不能将内容拖出flickable的边界。 （因为 <code>QtQuick 2.5</code>）</li>
+<li>Flickable.DragAndOvershootBounds (default) - 内容可以拖拽到可flickable的边界之外，并且可以在被弹动时超过边界。</li>
+</ul>
+<p><b>参见</b><a href="qml-qtquick-flickable.html#horizontalOvershoot-prop">horizontalOvershoot</a>, <a href="qml-qtquick-flickable.html#verticalOvershoot-prop">verticalOvershoot</a>和<a href="qml-qtquick-flickable.html#boundsMovement-prop">boundsMovement</a>。</p>
+</div></div><!-- @@@boundsBehavior -->
+<br/>
+<!-- $$$boundsMovement -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="boundsMovement-prop">
+<td class="tblQmlPropNode"><p>
+<a name="boundsMovement-prop"></a><span class="name">boundsMovement</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这个属性决定了闪烁是否会让人感觉视图的边缘是软的，而不是硬的物理边界。</p>
+<p><code>boundsMovement</code>可以是:</p>
+<ul>
+<li>Flickable.StopAtBounds - 这允许实现自定义边缘效果，其中内容不会跟随拖动或移动超出flickable的范围。 <a href="qml-qtquick-flickable.html#horizontalOvershoot-prop">horizontalOvershoot</a> and <a href="qml-qtquick-flickable.html#verticalOvershoot-prop">verticalOvershoot</a> 和垂直超调的值可以用来实现自定义边缘效果。</li>
+<li>Flickable.FollowBoundsBehavior (default) - 内容是否跟随drag或flick了可闪烁的范围是由<a href="qml-qtquick-flickable.html#boundsBehavior-prop">boundsBehavior</a>决定的。</li>
+</ul>
+<p>下面的示例将内容保持在范围内，并在水平范围上翻转时应用翻转效果:</p>
+<pre class="cpp">
+
+  Flickable {
+      id: flickable
+      boundsMovement: Flickable<span class="operator">.</span>StopAtBounds
+      boundsBehavior: Flickable<span class="operator">.</span>DragAndOvershootBounds
+      transform: Rotation {
+          axis { x: <span class="number">0</span>; y: <span class="number">1</span>; z: <span class="number">0</span> }
+          origin<span class="operator">.</span>x: flickable<span class="operator">.</span>width <span class="operator">/</span> <span class="number">2</span>
+          origin<span class="operator">.</span>y: flickable<span class="operator">.</span>height <span class="operator">/</span> <span class="number">2</span>
+          angle: Math<span class="operator">.</span>min(<span class="number">30</span><span class="operator">,</span> Math<span class="operator">.</span>max(<span class="operator">-</span><span class="number">30</span><span class="operator">,</span> flickable<span class="operator">.</span>horizontalOvershoot))
+      }
+  }
+
+</pre>
+<p>下面的示例将内容保持在边界内，并在拖动垂直边界时应用不透明度效果:</p>
+<pre class="cpp">
+
+  Flickable {
+      boundsMovement: Flickable<span class="operator">.</span>StopAtBounds
+      boundsBehavior: Flickable<span class="operator">.</span>DragOverBounds
+      opacity: Math<span class="operator">.</span>max(<span class="number">0.5</span><span class="operator">,</span> <span class="number">1.0</span> <span class="operator">-</span> Math<span class="operator">.</span>abs(verticalOvershoot) <span class="operator">/</span> height)
+  }
+
+</pre>
+<p>这个属性是在Qt 5.10中引入的。</p>
+<p><b>参见</b><a href="qml-qtquick-flickable.html#boundsBehavior-prop">boundsBehavior</a>, <a href="qml-qtquick-flickable.html#verticalOvershoot-prop">verticalOvershoot</a>, 和 <a href="qml-qtquick-flickable.html#horizontalOvershoot-prop">horizontalOvershoot</a>。</p>
+</div></div><!-- @@@boundsMovement -->
+<br/>
+<!-- $$$contentHeight -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="contentHeight-prop">
+<td class="tblQmlPropNode"><p>
+<a name="contentHeight-prop"></a><span class="name">contentHeight</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>下面的示例将内容保持在边界内，并在拖动垂直边界时应用不透明度效果:</p>
+<p>下面的代码片段显示了如何使用这些属性来显示比flickable项本身更大的图像:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="qml-qtquick-flickable.html">Flickable</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">200</span>
+      <span class="name">contentWidth</span>: <span class="name">image</span>.<span class="name">width</span>; <span class="name">contentHeight</span>: <span class="name">image</span>.<span class="name">height</span>
+
+      <span class="type"><a href="qml-qtquick-image.html">Image</a></span> { <span class="name">id</span>: <span class="name">image</span>; <span class="name">source</span>: <span class="string">&quot;bigImage.png&quot;</span> }
+  }
+
+</pre>
+<p>在某些情况下，可以根据<a href="qml-qtquick-flickable.html#contentItem-prop">contentItem</a>的<a href="qml-qtquick-item.html#childrenRect.width-prop">childrenRect.width</a> 和 <a href="qml-qtquick-item.html#childrenRect.height-prop">childrenRect.height</a> 属性自动设置内容维度。例如，前面的代码片段可以重写为：</p>
+<pre class="cpp">
+
+  contentWidth: contentItem<span class="operator">.</span>childrenRect<span class="operator">.</span>width; contentHeight: contentItem<span class="operator">.</span>childrenRect<span class="operator">.</span>height
+
+</pre>
+<p>虽然这假设childrenRect的原点是0,0。</p>
+</div></div><!-- @@@contentHeight -->
+<br/>
+<!-- $$$contentItem -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="contentItem-prop">
+<td class="tblQmlPropNode"><p>
+<a name="contentItem-prop"></a><span class="name">contentItem</span> : <span class="type"><a href="qml-qtquick-item.html">Item</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>该项是包含要在Flickable项中移动的项的内部项。</p>
+<p>被声明为Flickable子元素的项将自动作为Flickable内容的父元素。</p>
+<p>动态创建的项需要显式地插入到<i>contentItem</i>中。</p>
+<pre class="cpp">
+
+  Flickable {
+      id: myFlickable
+      function addItem(file) {
+          var component <span class="operator">=</span> <span class="type"><a href="../qtqml/qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>createComponent(file)
+          component<span class="operator">.</span>createObject(myFlickable<span class="operator">.</span>contentItem);
+      }
+  }
+
+</pre>
+</div></div><!-- @@@contentItem -->
+<br/>
+<!-- $$$contentWidth -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="contentWidth-prop">
+<td class="tblQmlPropNode"><p>
+<a name="contentWidth-prop"></a><span class="name">contentWidth</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>内容的尺寸(由Flickable控制的表面)。这通常应该设置为放置在中的项的组合大小。</p>
+<p>下面的代码片段显示了如何使用这些属性来显示比闪烁项本身更大的图像:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="qml-qtquick-flickable.html">Flickable</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">200</span>
+      <span class="name">contentWidth</span>: <span class="name">image</span>.<span class="name">width</span>; <span class="name">contentHeight</span>: <span class="name">image</span>.<span class="name">height</span>
+
+      <span class="type"><a href="qml-qtquick-image.html">Image</a></span> { <span class="name">id</span>: <span class="name">image</span>; <span class="name">source</span>: <span class="string">&quot;bigImage.png&quot;</span> }
+  }
+
+</pre>
+<p>在某些情况下，可以根据contentItem的<a href="qml-qtquick-item.html#childrenRect.width-prop">childrenRect.width</a> 和 <a href="qml-qtquick-item.html#childrenRect.height-prop">childrenRect.height</a> 自动设置内容维度。<a href="qml-qtquick-flickable.html#contentItem-prop">contentItem</a>。例如，前面的代码片段可以重写为:</p>
+<pre class="cpp">
+
+  contentWidth: contentItem<span class="operator">.</span>childrenRect<span class="operator">.</span>width; contentHeight: contentItem<span class="operator">.</span>childrenRect<span class="operator">.</span>height
+
+</pre>
+<p>虽然这假设childrenRect的原点是0,0。</p>
+</div></div><!-- @@@contentWidth -->
+<br/>
+<!-- $$$contentX -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="contentX-prop">
+<td class="tblQmlPropNode"><p>
+<a name="contentX-prop"></a><span class="name">contentX</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性包含当前可闪烁的左上角的表面坐标。例如，如果您将图像向上弹100个像素， <code>contentY</code>将增加100个像素。</p>
+<p><b>注意：</b>如果你弹回到原点(左上角)，在反弹动画之后，<code>contentX</code> 将与 <code>originX</code>值相同，而<code>contentY</code> 将与 <code>originY</code>值相同。这些通常是(0,0)，但是<a href="qml-qtquick-listview.html">ListView</a> 和 <a href="qml-qtquick-gridview.html">GridView</a>可能有一个任意的原点，原因是委托大小的变化，或者在可见区域之外插入/删除项。因此，如果您想实现垂直滚动条之类的东西，一种方法是使用 <code>y: (contentY - originY) * (height / contentHeight)</code>位置;另一种方法是使用<a href="qml-qtquick-flickable.html#visibleArea-prop">visibleArea</a>.</p><p><b>中的规范化值。</b><a href="qml-qtquick-flickable.html#examples-of-contentx-and-contenty">contentX和contentY的例子</a>, <a href="qml-qtquick-flickable.html#originX-prop">originX</a>，和 <a href="qml-qtquick-flickable.html#originY-prop">originY</a>。</p>
+</div></div><!-- @@@contentX -->
+<br/>
+<!-- $$$contentY -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="contentY-prop">
+<td class="tblQmlPropNode"><p>
+<a name="contentY-prop"></a><span class="name">contentY</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性包含当前Flickable的左上角的表面坐标。例如，如果您将图像向上弹100个像素， <code>contentY</code> 将增加100个像素。</p>
+<p><b>注意： </b>如果在反弹动画之后,你弹回到原点(左上角)，<code>contentX</code> 将与 <code>originX</code>值相同，而<code>contentY</code> 将与 <code>originY</code>值相同。 这些通常是(0,0)，但是<a href="qml-qtquick-listview.html">ListView</a> 和 <a href="qml-qtquick-gridview.html">GridView</a> 可能有一个任意的原点，原因是委托大小的变化，或者在可见区域之外插入/删除项。因此，如果您想实现垂直滚动条之类的东西，一种方法是使用<code>y: (contentY - originY) * (height / contentHeight)</code>作为位置;另一种方法是使用<a href="qml-qtquick-flickable.html#visibleArea-prop">visibleArea</a>中的规范化值。</p><p><b>参见</b><a href="qml-qtquick-flickable.html#examples-of-contentx-and-contenty">contentX和contentY的例子</a>, <a href="qml-qtquick-flickable.html#originX-prop">originX</a>, 以及 <a href="qml-qtquick-flickable.html#originY-prop">originY</a>。</p>
+</div></div><!-- @@@contentY -->
+<br/>
+<!-- $$$dragging -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="dragging-prop">
+<td class="tblQmlPropNode"><p>
+<a name="dragging-prop"></a><span class="name">dragging</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性描述了由于用户拖动视图，视图当前是水平移动、垂直移动还是向任意方向移动的。</p>
+</div></div><!-- @@@dragging -->
+<br/>
+<!-- $$$draggingHorizontally -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="draggingHorizontally-prop">
+<td class="tblQmlPropNode"><p>
+<a name="draggingHorizontally-prop"></a><span class="name">draggingHorizontally</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性描述了由于用户拖动视图，视图当前是水平移动、垂直移动还是向任意方向移动的。</p>
+</div></div><!-- @@@draggingHorizontally -->
+<br/>
+<!-- $$$draggingVertically -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="draggingVertically-prop">
+<td class="tblQmlPropNode"><p>
+<a name="draggingVertically-prop"></a><span class="name">draggingVertically</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性描述了由于用户拖动视图，视图当前是水平移动、垂直移动还是向任意方向移动的。</p>
+</div></div><!-- @@@draggingVertically -->
+<br/>
+<!-- $$$flickDeceleration -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="flickDeceleration-prop">
+<td class="tblQmlPropNode"><p>
+<a name="flickDeceleration-prop"></a><span class="name">flickDeceleration</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这个属性保存了一个轻轻谭东减速过程中的速度。</p>
+<p>默认值依赖于平台。</p>
+</div></div><!-- @@@flickDeceleration -->
+<br/>
+<!-- $$$flickableDirection -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="flickableDirection-prop">
+<td class="tblQmlPropNode"><p>
+<a name="flickableDirection-prop"></a><span class="name">flickableDirection</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性确定视图可以被弹向哪个方向。</p>
+<ul>
+<li>Flickable.AutoFlickDirection (default) - 如果 <i>contentHeight</i> 不等于Flickable的<i>height</i>。如果<i>contentWidth</i>不等于Flickable<i>width</i>，则允许水平移动。</li>
+<li>Flickable.AutoFlickIfNeeded - 如果<i>contentHeight</i> 大于<i>height</i> 的高度，则允许垂直翻转。 如果<i>contentWidth</i> 大于Flickable的 <i>width</i> of the Flickable.，则允许水平翻转。（从<code>QtQuick 2.7</code>开始）</li>
+<li>Flickable.HorizontalFlick - 允许横向移动。</li>
+<li>Flickable.VerticalFlick - 允许垂直移动。</li>
+<li>Flickable.HorizontalAndVerticalFlick - 允许双向弹射。</li>
+</ul>
+</div></div><!-- @@@flickableDirection -->
+<br/>
+<!-- $$$flicking -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="flicking-prop">
+<td class="tblQmlPropNode"><p>
+<a name="flicking-prop"></a><span class="name">flicking</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性描述了当前视图是否在水平、垂直或任意方向移动，这是由于用户在轻弹视图。</p>
+</div></div><!-- @@@flicking -->
+<br/>
+<!-- $$$flickingHorizontally -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="flickingHorizontally-prop">
+<td class="tblQmlPropNode"><p>
+<a name="flickingHorizontally-prop"></a><span class="name">flickingHorizontally</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性描述了当前视图是否在水平、垂直或任意方向移动，这是由于用户在轻弹视图。</p>
+</div></div><!-- @@@flickingHorizontally -->
+<br/>
+<!-- $$$flickingVertically -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="flickingVertically-prop">
+<td class="tblQmlPropNode"><p>
+<a name="flickingVertically-prop"></a><span class="name">flickingVertically</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性描述了当前视图是否在水平、垂直或任意方向移动，这是由于用户在轻弹视图。</p>
+</div></div><!-- @@@flickingVertically -->
+<br/>
+<!-- $$$horizontalOvershoot -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="horizontalOvershoot-prop">
+<td class="tblQmlPropNode"><p>
+<a name="horizontalOvershoot-prop"></a><span class="name">horizontalOvershoot</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存水平超调，即内容被拖拽或轻弹超过闪烁边框的水平距离。当内容被拖拽或弹移到开头之外时，值为负;当内容被拖拽或弹移到结尾之外时，值为正;其他情况为<code>0.0</code>。</p>
+<p>是否报告用于拖放和/或翻转的值由<a href="qml-qtquick-flickable.html#boundsBehavior-prop">boundsBehavior</a>决定。即使<a href="qml-qtquick-flickable.html#boundsMovement-prop">boundsMovement</a> 是 <code>Flickable.StopAtBounds</code>也会报告超调距离。</p>
+<p>这个属性是在Qt 5.9中引入的。</p>
+<p><b>参见 </b><a href="qml-qtquick-flickable.html#verticalOvershoot-prop">verticalOvershoot</a>, <a href="qml-qtquick-flickable.html#boundsBehavior-prop">boundsBehavior</a>，和 <a href="qml-qtquick-flickable.html#boundsMovement-prop">boundsMovement</a>。</p>
+</div></div><!-- @@@horizontalOvershoot -->
+<br/>
+<!-- $$$horizontalVelocity -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="horizontalVelocity-prop">
+<td class="tblQmlPropNode"><p>
+<a name="horizontalVelocity-prop"></a><span class="name">horizontalVelocity</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>沿x轴和y轴运动的瞬时速度，单位为像素/秒。</p>
+<p>报告的速度是平滑的，以避免不稳定的输出。</p>
+<p>注意，对于内容大小较大的视图(超过视图大小的10倍)，在多次快速连续播放的情况下，轻弹的速度可能超过触摸的速度。这允许用户快速浏览大量内容。</p>
+</div></div><!-- @@@horizontalVelocity -->
+<br/>
+<!-- $$$interactive -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="interactive-prop">
+<td class="tblQmlPropNode"><p>
+<a name="interactive-prop"></a><span class="name">interactive</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性描述用户是否可以与Flickable交互。用户不能拖动或轻弹非交互式的Flickable项。</p>
+<p>默认情况下，此属性为true。</p>
+<p>此属性对于临时禁用翻页非常有用。这允许与Flickable的孩子进行特殊的交互;例如，您可能希望在滚动Flickable的子对话框时冻结一个Flickable地图。</p>
+</div></div><!-- @@@interactive -->
+<br/>
+<!-- $$$leftMargin -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="leftMargin-prop">
+<td class="tblQmlPropNode"><p>
+<a name="leftMargin-prop"></a><span class="name">leftMargin</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性保留了内容周围的空白。除了<a href="qml-qtquick-flickable.html#contentWidth-prop">contentWidth</a> 和 <a href="qml-qtquick-flickable.html#contentHeight-prop">contentHeight</a>之外，还保留了这个空间。</p>
+</div></div><!-- @@@leftMargin -->
+<br/>
+<!-- $$$maximumFlickVelocity -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="maximumFlickVelocity-prop">
+<td class="tblQmlPropNode"><p>
+<a name="maximumFlickVelocity-prop"></a><span class="name">maximumFlickVelocity</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存用户可以以像素/秒为单位快速浏览视图的最大速度。</p>
+<p>默认值依赖于平台。</p>
+</div></div><!-- @@@maximumFlickVelocity -->
+<br/>
+<!-- $$$moving -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="moving-prop">
+<td class="tblQmlPropNode"><p>
+<a name="moving-prop"></a><span class="name">moving</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性描述视图当前是水平移动、垂直移动还是向任意方向移动，这是由于用户拖拽或轻弹视图造成的。</p>
+</div></div><!-- @@@moving -->
+<br/>
+<!-- $$$movingHorizontally -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="movingHorizontally-prop">
+<td class="tblQmlPropNode"><p>
+<a name="movingHorizontally-prop"></a><span class="name">movingHorizontally</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性描述视图当前是水平移动、垂直移动还是向任意方向移动，这是由于用户拖拽或轻弹视图造成的。</p>
+</div></div><!-- @@@movingHorizontally -->
+<br/>
+<!-- $$$movingVertically -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="movingVertically-prop">
+<td class="tblQmlPropNode"><p>
+<a name="movingVertically-prop"></a><span class="name">movingVertically</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性描述视图当前是水平移动、垂直移动还是向任意方向移动，这是由于用户拖拽或轻弹视图造成的。</p>
+</div></div><!-- @@@movingVertically -->
+<br/>
+<!-- $$$originX -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="originX-prop">
+<td class="tblQmlPropNode"><p>
+<a name="originX-prop"></a><span class="name">originX</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性包含内容的原点。无论布局方向如何，此值始终指向内容的左上角。</p>
+<p>这通常是(0,0)，但是<a href="qml-qtquick-listview.html">ListView</a> 和 <a href="qml-qtquick-gridview.html">GridView</a>可能有一个任意的原点，原因是委托大小的变化，或者在可见区域之外插入/删除项。</p>
+<p><b>参见</b><a href="qml-qtquick-flickable.html#contentX-prop">contentX</a> 和 <a href="qml-qtquick-flickable.html#contentY-prop">contentY</a>。</p>
+</div></div><!-- @@@originX -->
+<br/>
+<!-- $$$originY -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="originY-prop">
+<td class="tblQmlPropNode"><p>
+<a name="originY-prop"></a><span class="name">originY</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性包含内容的原点。无论布局方向如何，此值始终指向内容的左上角。</p>
+<p>这通常是(0,0)，但是<a href="qml-qtquick-listview.html">ListView</a> 和 <a href="qml-qtquick-gridview.html">GridView</a> 可能有一个任意的原点，原因是委托大小的变化，或者在可见区域之外插入/删除项。</p>
+<p><b>参见 </b><a href="qml-qtquick-flickable.html#contentX-prop">contentX</a> 和 <a href="qml-qtquick-flickable.html#contentY-prop">contentY</a>。</p>
+</div></div><!-- @@@originY -->
+<br/>
+<!-- $$$pixelAligned -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="pixelAligned-prop">
+<td class="tblQmlPropNode"><p>
+<a name="pixelAligned-prop"></a><span class="name">pixelAligned</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性将<a href="qml-qtquick-flickable.html#contentX-prop">contentX</a> 和 <a href="qml-qtquick-flickable.html#contentY-prop">contentY</a> 的对齐设置为像素(<code>true</code>)或子像素(<code>false</code>)。</p>
+<p>启用像素对齐，以优化静态内容或具有高对比边的移动内容，如单像素宽的行、文本或矢量图形。在优化动画质量时禁用像素对齐。</p>
+<p>默认值为<code>false</code>。</p>
+</div></div><!-- @@@pixelAligned -->
+<br/>
+<!-- $$$pressDelay -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="pressDelay-prop">
+<td class="tblQmlPropNode"><p>
+<a name="pressDelay-prop"></a><span class="name">pressDelay</span> : <span class="type"><a href="../qtqml/qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存延迟(ms)向Flickable的子元素传递press的时间。当在轻弹动作之前对压力做出反应会产生不良影响时，这种方法非常有用。</p>
+<p>如果在延迟超时之前将轻弹项拖拽/轻弹，则不会交付press事件。如果在超时时间内释放按钮，则会同时发送press和release。</p>
+<p>注意，对于具有pressDelay集的嵌套轻弹，外部轻弹的pressDelay将被内部轻弹覆盖。如果拖动超过平台拖动阈值，则无论该属性如何传递press事件。</p>
+<p><b>参见</b><a href="../qtgui/qstylehints.html">QStyleHints</a>。</p>
+</div></div><!-- @@@pressDelay -->
+<br/>
+<!-- $$$rebound -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="rebound-prop">
+<td class="tblQmlPropNode"><p>
+<a name="rebound-prop"></a><span class="name">rebound</span> : <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>当content视图切换回flickable的边界时，它保存要应用到该视图的转换。当视图被弹动或拖过内容区域边缘时，或者当调用<a href="qml-qtquick-flickable.html#returnToBounds-method">returnToBounds()</a>时，将触发转换。</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="qml-qtquick-flickable.html">Flickable</a></span> {
+      <span class="name">width</span>: <span class="number">150</span>; <span class="name">height</span>: <span class="number">150</span>
+      <span class="name">contentWidth</span>: <span class="number">300</span>; <span class="name">contentHeight</span>: <span class="number">300</span>
+
+      <span class="name">rebound</span>: <span class="name">Transition</span> {
+          <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> {
+              <span class="name">properties</span>: <span class="string">&quot;x,y&quot;</span>
+              <span class="name">duration</span>: <span class="number">1000</span>
+              <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutBounce</span>
+          }
+      }
+
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">width</span>: <span class="number">300</span>; <span class="name">height</span>: <span class="number">300</span>
+          <span class="name">gradient</span>: <span class="name">Gradient</span> {
+              <span class="type"><a href="qml-qtquick-gradientstop.html">GradientStop</a></span> { <span class="name">position</span>: <span class="number">0.0</span>; <span class="name">color</span>: <span class="string">&quot;lightsteelblue&quot;</span> }
+              <span class="type"><a href="qml-qtquick-gradientstop.html">GradientStop</a></span> { <span class="name">position</span>: <span class="number">1.0</span>; <span class="name">color</span>: <span class="string">&quot;blue&quot;</span> }
+          }
+      }
+  }
+
+</pre>
+<p>当上述视图被弹到超出其边界时，它将使用指定的转换返回到其边界:</p>
+<p class="centerAlign"><img src="images/flickable-rebound.gif" alt="" /></p><p>如果未设置此属性，则应用默认动画。</p>
+</div></div><!-- @@@rebound -->
+<br/>
+<!-- $$$rightMargin -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="rightMargin-prop">
+<td class="tblQmlPropNode"><p>
+<a name="rightMargin-prop"></a><span class="name">rightMargin</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性保留了内容周围的空白。除了 <a href="qml-qtquick-flickable.html#contentWidth-prop">contentWidth</a> 和 <a href="qml-qtquick-flickable.html#contentHeight-prop">contentHeight</a>之外，还保留了这个空间。</p>
+</div></div><!-- @@@rightMargin -->
+<br/>
+<!-- $$$synchronousDrag -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="synchronousDrag-prop">
+<td class="tblQmlPropNode"><p>
+<a name="synchronousDrag-prop"></a><span class="name">synchronousDrag</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>如果将此属性设置为true，那么当鼠标或接触点移动到足以开始拖动内容时，内容将会跳转，以便按下时位于光标或接触点下方的内容像素仍然位于该点下方。</p>
+<p>默认值为<code>false</code>，它提供了更流畅的体验(没有跳转)，代价是在开始时&quot;丢失&quot;了一些拖动距离。</p>
+<p>这个属性是在Qt 5.12中引入的。</p>
+</div></div><!-- @@@synchronousDrag -->
+<br/>
+<!-- $$$topMargin -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="topMargin-prop">
+<td class="tblQmlPropNode"><p>
+<a name="topMargin-prop"></a><span class="name">topMargin</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性保留了内容周围的空白。除了<a href="qml-qtquick-flickable.html#contentWidth-prop">contentWidth</a> 和 <a href="qml-qtquick-flickable.html#contentHeight-prop">contentHeight</a>。</p>
+</div></div><!-- @@@topMargin -->
+<br/>
+<!-- $$$verticalOvershoot -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="verticalOvershoot-prop">
+<td class="tblQmlPropNode"><p>
+<a name="verticalOvershoot-prop"></a><span class="name">verticalOvershoot</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性包含垂直超调，即内容被拖动或轻弹超过闪烁边框的垂直距离。当内容被拖拽或弹移到开头之外时，值为负;当内容被拖拽或弹移到结尾之外时，值为正;其他的值<code>0.0</code>。</p>
+<p>是否报告用于拖放和/或翻转的值由<a href="qml-qtquick-flickable.html#boundsBehavior-prop">boundsBehavior</a>决定。即使<a href="qml-qtquick-flickable.html#boundsMovement-prop">boundsMovement</a> 是 <code>Flickable.StopAtBounds</code>，也会报告超调距离。</p>
+<p>这个属性是在Qt 5.9中引入的。</p>
+<p><b>参见</b><a href="qml-qtquick-flickable.html#horizontalOvershoot-prop">horizontalOvershoot</a>, <a href="qml-qtquick-flickable.html#boundsBehavior-prop">boundsBehavior</a>, 和 <a href="qml-qtquick-flickable.html#boundsMovement-prop">boundsMovement</a>。</p>
+</div></div><!-- @@@verticalOvershoot -->
+<br/>
+<!-- $$$verticalVelocity -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="verticalVelocity-prop">
+<td class="tblQmlPropNode"><p>
+<a name="verticalVelocity-prop"></a><span class="name">verticalVelocity</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>沿x轴和y轴运动的瞬时速度，单位为像素/秒。</p>
+<p>报告的速度是平滑的，以避免不稳定的输出。</p>
+<p>注意，对于内容大小较大的视图(超过视图大小的10倍)，在多次快速连续播放的情况下，轻弹的速度可能超过触摸的速度。这允许用户快速浏览大量内容。</p>
+</div></div><!-- @@@verticalVelocity -->
+<br/>
+<!-- $$$visibleArea -->
+<div class="qmlitem"><div class="qmlproto"><div class="table"><table class="qmlname"><tr valign="top" class="even" id="visibleArea-prop"><th class="centerAlign"><p><a name="visibleArea-prop"></a><b>visibleArea group</b></p></th></tr><tr valign="top" class="odd" id="visibleArea.xPosition-prop"><td class="tblQmlPropNode"><p><a name="visibleArea.xPosition-prop"></a><span class="name">visibleArea.xPosition</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr><tr valign="top" class="odd" id="visibleArea.widthRatio-prop"><td class="tblQmlPropNode"><p><a name="visibleArea.widthRatio-prop"></a><span class="name">visibleArea.widthRatio</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr><tr valign="top" class="odd" id="visibleArea.yPosition-prop"><td class="tblQmlPropNode"><p><a name="visibleArea.yPosition-prop"></a><span class="name">visibleArea.yPosition</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr><tr valign="top" class="odd" id="visibleArea.heightRatio-prop"><td class="tblQmlPropNode"><p><a name="visibleArea.heightRatio-prop"></a><span class="name">visibleArea.heightRatio</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr></table></div></div><div class="qmldoc"><p>这些属性描述当前查看区域的位置和大小。大小定义为当前可见的完整视图的百分比，缩放到0.0 - 1.0&#x2e; 页面位置通常在0.0(开始)到1.0- size ratio(结束)的范围内，即 <code>yPosition</code> 在0.0到1.0-<code>heightRatio</code>的范围内。但是，也有可能将内容拖到正常范围之外，导致页面位置也在正常范围之外。</p>
+<p>这些属性通常用于绘制滚动条。例如:</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type"><a href="qml-qtquick-flickable.html">Flickable</a></span> {
+          <span class="name">id</span>: <span class="name">flickable</span>
+          ...
+      }
+
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">scrollbar</span>
+          <span class="name">anchors</span>.right: <span class="name">flickable</span>.<span class="name">right</span>
+          <span class="name">y</span>: <span class="name">flickable</span>.<span class="name">visibleArea</span>.<span class="name">yPosition</span> <span class="operator">*</span> <span class="name">flickable</span>.<span class="name">height</span>
+          <span class="name">width</span>: <span class="number">10</span>
+          <span class="name">height</span>: <span class="name">flickable</span>.<span class="name">visibleArea</span>.<span class="name">heightRatio</span> <span class="operator">*</span> <span class="name">flickable</span>.<span class="name">height</span>
+          <span class="name">color</span>: <span class="string">&quot;black&quot;</span>
+      }
+  }
+
+</pre>
+<p><b>See also </b><a href="qtquick-customitems-scrollbar-example.html">UI Components: Scrollbar Example</a>.</p>
+</div></div><!-- @@@visibleArea -->
+<br/>
+<h2>Signal Documentation</h2>
+<!-- $$$flickEnded -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="flickEnded-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="flickEnded-signal"></a><span class="name">flickEnded</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>This signal is emitted when the view stops moving due to a flick.</p>
+<p>The corresponding handler is <code>onFlickEnded</code>.</p>
+</div></div><!-- @@@flickEnded -->
+<br/>
+<!-- $$$flickStarted -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="flickStarted-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="flickStarted-signal"></a><span class="name">flickStarted</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>This signal is emitted when the view is flicked. A flick starts from the point that the mouse or touch is released, while still in motion.</p>
+<p>The corresponding handler is <code>onFlickStarted</code>.</p>
+</div></div><!-- @@@flickStarted -->
+<br/>
+<!-- $$$movementEnded -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="movementEnded-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="movementEnded-signal"></a><span class="name">movementEnded</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>This signal is emitted when the view stops moving due to user interaction or a generated <a href="qml-qtquick-flickable.html#flick-method">flick()</a>. If a flick was active, this signal will be emitted once the flick stops. If a flick was not active, this signal will be emitted when the user stops dragging - i.e&#x2e; a mouse or touch release.</p>
+<p>The corresponding handler is <code>onMovementEnded</code>.</p>
+</div></div><!-- @@@movementEnded -->
+<br/>
+<!-- $$$movementStarted -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="movementStarted-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="movementStarted-signal"></a><span class="name">movementStarted</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>This signal is emitted when the view begins moving due to user interaction or a generated <a href="qml-qtquick-flickable.html#flick-method">flick()</a>.</p>
+<p>The corresponding handler is <code>onMovementStarted</code>.</p>
+</div></div><!-- @@@movementStarted -->
+<br/>
+<h2>Method Documentation</h2>
+<!-- $$$cancelFlick -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="cancelFlick-method">
+<td class="tblQmlFuncNode"><p>
+<a name="cancelFlick-method"></a><span class="name">cancelFlick</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>Cancels the current flick animation.</p>
+</div></div><!-- @@@cancelFlick -->
+<br/>
+<!-- $$$flick -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="flick-method">
+<td class="tblQmlFuncNode"><p>
+<a name="flick-method"></a><span class="name">flick</span>(<span class="type">qreal</span> <i>xVelocity</i>,  <span class="type">qreal</span> <i>yVelocity</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>Flicks the content with <i>xVelocity</i> horizontally and <i>yVelocity</i> vertically in pixels/sec.</p>
+<p>Calling this method will update the corresponding moving and flicking properties and signals, just like a real flick.</p>
+</div></div><!-- @@@flick -->
+<br/>
+<!-- $$$resizeContent -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="resizeContent-method">
+<td class="tblQmlFuncNode"><p>
+<a name="resizeContent-method"></a><span class="name">resizeContent</span>(<span class="type"><a href="../qtqml/qml-real.html">real</a></span> <i>width</i>,  <span class="type"><a href="../qtqml/qml-real.html">real</a></span> <i>height</i>,  <span class="type">QPointF</span> <i>center</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>Resizes the content to <i>width</i> x <i>height</i> about <i>center</i>.</p>
+<p>This does not scale the contents of the Flickable - it only resizes the <a href="qml-qtquick-flickable.html#contentWidth-prop">contentWidth</a> and <a href="qml-qtquick-flickable.html#contentHeight-prop">contentHeight</a>.</p>
+<p>Resizing the content may result in the content being positioned outside the bounds of the Flickable. Calling <a href="qml-qtquick-flickable.html#returnToBounds-method">returnToBounds()</a> will move the content back within legal bounds.</p>
+</div></div><!-- @@@resizeContent -->
+<br/>
+<!-- $$$returnToBounds -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="returnToBounds-method">
+<td class="tblQmlFuncNode"><p>
+<a name="returnToBounds-method"></a><span class="name">returnToBounds</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>Ensures the content is within legal bounds.</p>
+<p>This may be called to ensure that the content is within legal bounds after manually positioning the content.</p>
+</div></div><!-- @@@returnToBounds -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
