@@ -722,10 +722,10 @@
   }
 
 </pre>
-<p><b>See also </b><a href="qtquick-customitems-scrollbar-example.html">UI Components: Scrollbar Example</a>.</p>
+<p><b>参见 </b><a href="qtquick-customitems-scrollbar-example.html">UI组件:滚动条示例</a>。</p>
 </div></div><!-- @@@visibleArea -->
 <br/>
-<h2>Signal Documentation</h2>
+<h2>信号文档</h2>
 <!-- $$$flickEnded -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
@@ -733,8 +733,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="flickEnded-signal"></a><span class="name">flickEnded</span>()</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This signal is emitted when the view stops moving due to a flick.</p>
-<p>The corresponding handler is <code>onFlickEnded</code>.</p>
+</div><div class="qmldoc"><p>当视图由于轻弹而停止移动时，将发出此信号。</p>
+<p>对应的处理程序<code>onFlickEnded</code>。</p>
 </div></div><!-- @@@flickEnded -->
 <br/>
 <!-- $$$flickStarted -->
@@ -744,8 +744,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="flickStarted-signal"></a><span class="name">flickStarted</span>()</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This signal is emitted when the view is flicked. A flick starts from the point that the mouse or touch is released, while still in motion.</p>
-<p>The corresponding handler is <code>onFlickStarted</code>.</p>
+</div><div class="qmldoc"><p>此信号在视图被弹动时发出。当鼠标或触摸在运动中被释放时，轻弹就开始了。</p>
+<p>相应的处理程序是<code>onFlickStarted</code>。</p>
 </div></div><!-- @@@flickStarted -->
 <br/>
 <!-- $$$movementEnded -->
@@ -755,8 +755,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="movementEnded-signal"></a><span class="name">movementEnded</span>()</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This signal is emitted when the view stops moving due to user interaction or a generated <a href="qml-qtquick-flickable.html#flick-method">flick()</a>. If a flick was active, this signal will be emitted once the flick stops. If a flick was not active, this signal will be emitted when the user stops dragging - i.e&#x2e; a mouse or touch release.</p>
-<p>The corresponding handler is <code>onMovementEnded</code>.</p>
+</div><div class="qmldoc"><p>当视图由于用户交互或生成的<a href="qml-qtquick-flickable.html#flick-method">flick()</a>而停止移动时，将发出此信号。如果一个轻弹是活动的，这个信号将在轻弹停止后发出。如果一个轻弹没有被激活，当用户停止拖动时，即鼠标或触摸释放，将发出这个信号。</p>
+<p>相应的处理程序是<code>onMovementEnded</code>。</p>
 </div></div><!-- @@@movementEnded -->
 <br/>
 <!-- $$$movementStarted -->
@@ -766,11 +766,11 @@
 <td class="tblQmlFuncNode"><p>
 <a name="movementStarted-signal"></a><span class="name">movementStarted</span>()</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This signal is emitted when the view begins moving due to user interaction or a generated <a href="qml-qtquick-flickable.html#flick-method">flick()</a>.</p>
-<p>The corresponding handler is <code>onMovementStarted</code>.</p>
+</div><div class="qmldoc"><p>当视图由于用户交互或生成的<a href="qml-qtquick-flickable.html#flick-method">flick()</a>而开始移动时，将发出此信号。</p>
+<p>相应的处理程序是<code>onMovementStarted</code>。</p>
 </div></div><!-- @@@movementStarted -->
 <br/>
-<h2>Method Documentation</h2>
+<h2>方法文档</h2>
 <!-- $$$cancelFlick -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
@@ -778,7 +778,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="cancelFlick-method"></a><span class="name">cancelFlick</span>()</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Cancels the current flick animation.</p>
+</div><div class="qmldoc"><p>取消当前的弹动动画。</p>
 </div></div><!-- @@@cancelFlick -->
 <br/>
 <!-- $$$flick -->
@@ -788,8 +788,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="flick-method"></a><span class="name">flick</span>(<span class="type">qreal</span> <i>xVelocity</i>,  <span class="type">qreal</span> <i>yVelocity</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Flicks the content with <i>xVelocity</i> horizontally and <i>yVelocity</i> vertically in pixels/sec.</p>
-<p>Calling this method will update the corresponding moving and flicking properties and signals, just like a real flick.</p>
+</div><div class="qmldoc"><p>用<i>xVelocity</i> 水平移动内容，<i>yVelocity</i>垂直移动内容(以像素/秒为单位)。</p>
+<p>调用此方法将更新相应的移动和轻弹属性和信号，就像真正的轻弹一样。</p>
 </div></div><!-- @@@flick -->
 <br/>
 <!-- $$$resizeContent -->
@@ -799,9 +799,9 @@
 <td class="tblQmlFuncNode"><p>
 <a name="resizeContent-method"></a><span class="name">resizeContent</span>(<span class="type"><a href="../qtqml/qml-real.html">real</a></span> <i>width</i>,  <span class="type"><a href="../qtqml/qml-real.html">real</a></span> <i>height</i>,  <span class="type">QPointF</span> <i>center</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Resizes the content to <i>width</i> x <i>height</i> about <i>center</i>.</p>
-<p>This does not scale the contents of the Flickable - it only resizes the <a href="qml-qtquick-flickable.html#contentWidth-prop">contentWidth</a> and <a href="qml-qtquick-flickable.html#contentHeight-prop">contentHeight</a>.</p>
-<p>Resizing the content may result in the content being positioned outside the bounds of the Flickable. Calling <a href="qml-qtquick-flickable.html#returnToBounds-method">returnToBounds()</a> will move the content back within legal bounds.</p>
+</div><div class="qmldoc"><p>将内容调整为相对于<i>center</i>的<i>width</i> x <i>height</i>大小。</p>
+<p>这并不缩放可轻弹的内容——它只调整<a href="qml-qtquick-flickable.html#contentWidth-prop">contentWidth</a> 和 <a href="qml-qtquick-flickable.html#contentHeight-prop">contentHeight</a>的大小。</p>
+<p>调整内容的大小可能会导致内容被放置在轻弹的边界之外。调用<a href="qml-qtquick-flickable.html#returnToBounds-method">returnToBounds()</a>将把内容移回合法范围内。</p>
 </div></div><!-- @@@resizeContent -->
 <br/>
 <!-- $$$returnToBounds -->
@@ -811,8 +811,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="returnToBounds-method"></a><span class="name">returnToBounds</span>()</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Ensures the content is within legal bounds.</p>
-<p>This may be called to ensure that the content is within legal bounds after manually positioning the content.</p>
+</div><div class="qmldoc"><p>确保内容在合法范围内。</p>
+<p>在手动定位内容之后，可以调用此函数来确保内容在合法范围内。</p>
 </div></div><!-- @@@returnToBounds -->
 <br/>
         </div>
