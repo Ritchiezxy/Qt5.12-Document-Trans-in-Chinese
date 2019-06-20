@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlbind.cpp -->
+  <title>Binding QML Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >Binding QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#details">详细描述</a></li>
+<li class="level2"><a href="#binding-to-an-inaccessible-property">绑定到不可访问的属性</a></li>
+<li class="level2"><a href="#conditional-bindings">有条件的绑定</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的Binding（绑定）类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Binding-brief -->
+<p>支持任意属性绑定的创建。<a href="#details">更多…</a></p>
+<!-- @@@Binding -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr></table></div><ul>
+<li><a href="qml-qtqml-binding-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-binding.html#delayed-prop">delayed</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtqml-binding.html#property-prop">property</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-binding.html#target-prop">target</a></b></b> : Object</li>
+<li class="fn"><b><b><a href="qml-qtqml-binding.html#value-prop">value</a></b></b> : any</li>
+<li class="fn"><b><b><a href="qml-qtqml-binding.html#when-prop">when</a></b></b> : bool</li>
+</ul>
+<!-- $$$Binding-description -->
+<a name="details"></a>
+<h2 id="details">详细描述</h2>
+<p>在QML中，属性绑定导致不同对象的属性之间存在依赖关系。</p>
+<a name="binding-to-an-inaccessible-property"></a>
+<h2 id="binding-to-an-inaccessible-property">绑定到不可访问的属性</h2>
+<p>有时有必要将对象的属性绑定到QML没有直接实例化的另一个对象的属性，例如C++导出到QML的类的属性。您可以使用绑定类型来建立这种依赖关系;将任何值绑定到任何对象的属性。</p>
+<p>例如，在将&quot;app.enteredText&quot;属性映射到QML的C++应用程序中，可以使用绑定更新enteredText属性。</p>
+<pre class="cpp">
+
+  TextEdit { id: myTextField; text: <span class="string">&quot;Please type here...&quot;</span> }
+  Binding { target: app; property: <span class="string">&quot;enteredText&quot;</span>; value: myTextField<span class="operator">.</span>text }
+
+</pre>
+<p>当<code>text（文本）</code> 发生更改时，C++属性<code>enteredText</code>将自动更新。</p>
+<a name="conditional-bindings"></a>
+<h2 id="conditional-bindings">有条件的绑定</h2>
+<p>在某些情况下，您可能希望在满足特定条件时修改属性的值，但在其他情况下不修改它。通常，使用直接绑定是不可能做到这一点的，因为您必须为所有可能的分支提供值。</p>
+<p>例如，无论何时释放鼠标，下面的代码片段都会发出警告。这是因为没有按下鼠标时绑定的值是未定义的。</p>
+<pre class="qml">
+
+  // produces warning: &quot;Unable to assign [undefined] to double value&quot;
+  value: if (mouse.pressed) mouse.mouseX
+
+</pre>
+<p>Binding类型可以防止此警告。</p>
+<pre class="qml">
+
+  Binding on value {
+      when: mouse.pressed
+      value: mouse.mouseX
+  }
+
+</pre>
+<p>绑定类型恢复属性上以前设置的任何直接绑定。</p>
+<p><b>See also </b><a href="qtqml-index.html">Qt QML</a>。</p>
+<!-- @@@Binding -->
+<h2>属性文档</h2>
+<!-- $$$delayed -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="delayed-prop">
+<td class="tblQmlPropNode"><p>
+<a name="delayed-prop"></a><span class="name">delayed</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存是否应该延迟绑定。</p>
+<p>延迟绑定不会立即更新目标，而是等待事件队列被清除。这可以用作优化，或者防止分配中间值。</p>
+<pre class="cpp">
+
+  Binding {
+      target: contactName; property: <span class="char">'text'</span>
+      value: givenName <span class="operator">+</span> <span class="string">&quot; &quot;</span> <span class="operator">+</span> familyName; when: list<span class="operator">.</span>ListView<span class="operator">.</span>isCurrentItem
+      delayed: <span class="keyword">true</span>
+  }
+
+</pre>
+<p>这个属性是在Qt 5.8中引入的。</p>
+</div></div><!-- @@@delayed -->
+<br/>
+<!-- $$$property -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="property-prop">
+<td class="tblQmlPropNode"><p>
+<a name="property-prop"></a><span class="name">property</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>要更新的属性。</p>
+<p>如果表达式导致需要访问<a href="qtqml-typesystem-basictypes.html">value类型</a>的属性，则可以使用group属性。例如:</p>
+<pre class="qml">
+
+  Item {
+      id: item
+
+      property rect rectangle: Qt.rect(0, 0, 200, 200)
+  }
+
+  Binding {
+      target: item
+      property: &quot;rectangle.x&quot;
+      value: 100
+  }
+
+</pre>
+</div></div><!-- @@@property -->
+<br/>
+<!-- $$$target -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="target-prop">
+<td class="tblQmlPropNode"><p>
+<a name="target-prop"></a><span class="name">target</span> : <span class="type">Object</span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>要更新的对象。</p>
+</div></div><!-- @@@target -->
+<br/>
+<!-- $$$value -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="value-prop">
+<td class="tblQmlPropNode"><p>
+<a name="value-prop"></a><span class="name">value</span> : <span class="type">any</span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>要在目标对象和属性上设置的值。这可以是一个常量(这不是很有用)，也可以是一个绑定表达式。</p>
+</div></div><!-- @@@value -->
+<br/>
+<!-- $$$when -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="when-prop">
+<td class="tblQmlPropNode"><p>
+<a name="when-prop"></a><span class="name">when</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性在绑定活动时保持有效。当您希望绑定处于活动状态时，应该将该值设置为true的表达式。</p>
+<pre class="cpp">
+
+  Binding {
+      target: contactName; property: <span class="char">'text'</span>
+      value: name; when: list<span class="operator">.</span>ListView<span class="operator">.</span>isCurrentItem
+  }
+
+</pre>
+<p>当绑定再次变为不活动时，将恢复以前在属性上设置的任何直接绑定。</p>
+</div></div><!-- @@@when -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

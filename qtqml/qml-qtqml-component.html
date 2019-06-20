@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlcomponent.cpp -->
+  <title>Component QML Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >Component QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#attached-signals">附加信号</a></li>
+<li class="level1"><a href="#methods">方法</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+<li class="level2"><a href="#creation-context">创建上下文</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的Component（组件）类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Component-brief -->
+<p>封装QML组件定义。<a href="#details">更多…</a></p>
+<!-- @@@Component -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Instantiates:</td><td class="memItemRight bottomAlign"> <a href="qml-qtqml-component.html"><a href="qqmlcomponent.html">QQmlComponent</a></td></tr></table></div><ul>
+<li><a href="qml-qtqml-component-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-component.html#progress-prop">progress</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtqml-component.html#status-prop">status</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtqml-component.html#url-prop">url</a></b></b> : url</li>
+</ul>
+<a name="attached-signals"></a>
+<h2 id="attached-signals">附加信号</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-component.html#completed-signal">completed</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtqml-component.html#destruction-signal">destruction</a></b></b>()</li>
+</ul>
+<a name="methods"></a>
+<h2 id="methods">方法</h2>
+<ul>
+<li class="fn">object <b><b><a href="qml-qtqml-component.html#createObject-method">createObject</a></b></b>(QtObject <i>parent</i>,  object <i>properties</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-component.html#errorString-method">errorString</a></b></b>()</li>
+<li class="fn">object <b><b><a href="qml-qtqml-component.html#incubateObject-method">incubateObject</a></b></b>(Item <i>parent</i>,  object <i>properties</i>,  enumeration <i>mode</i>)</li>
+</ul>
+<!-- $$$Component-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p>组件是可重用的封装QML类型，具有定义良好的接口。</p>
+<p>组件通常由<a href="qtqml-documents-topic.html">组件文件</a>定义——即<code>.qml</code>文件。 <i>Component</i>类型本质上允许在<a href="qtqml-documents-topic.html">QML文档</a>中内联定义QML组件，而不是作为单独的QML文件。</p>
+<p>例如，这里有一个由多个<a href="../qtquick/qml-qtquick-loader.html">Loader（加载器）</a>对象使用的组件。它包含一个单一的项，一个<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle（矩形）</a>:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      <span class="type"><a href="qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">redSquare</span>
+
+          <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+              <span class="name">width</span>: <span class="number">10</span>
+              <span class="name">height</span>: <span class="number">10</span>
+          }
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-loader.html">Loader</a></span> { <span class="name">sourceComponent</span>: <span class="name">redSquare</span> }
+      <span class="type"><a href="../qtquick/qml-qtquick-loader.html">Loader</a></span> { <span class="name">sourceComponent</span>: <span class="name">redSquare</span>; <span class="name">x</span>: <span class="number">20</span> }
+  }
+
+</pre>
+<p>注意，虽然<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle（矩形）</a>本身会自动呈现和显示，但上面的矩形不是这样，因为它是在<code>Component</code>中定义的。组件将QML类型封装在其中，就好像它们是在一个单独的QML文件中定义的一样，直到请求(在本例中，由两个<a href="../qtquick/qml-qtquick-loader.html">Loader（加载器）</a> 对象请求)时才加载它们。因为组件不是从Item派生的，所以不能将任何东西锚定到它。</p>
+<p>定义<code>Component</code>类似于定义<a href="qtqml-documents-topic.html">QML文档</a>。 QML文档有一个定义该组件的行为和属性的顶级项，并且不能定义该顶级项目之外的属性或行为。同样， <code>Component</code> 定义包含一个顶层项目(在上面的例子中是一个<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>)，除了<i>id</i> (在上面的例子中是<i>redSquare</i>)之外，不能定义该项目之外的任何数据。</p>
+<p> <code>Component</code>类型通常用于为视图提供图形化组件。例如<a href="../qtquick/qml-qtquick-listview.html#delegate-prop">ListView::delegate</a>属性需要一个<code>Component</code>来指定如何显示每个列表项。</p>
+<p>还可以使用<a href="qml-qtqml-qt.html#createComponent-method">Qt.createComponent()</a>动态创建<code>Component</code>对象。</p>
+<a name="creation-context"></a>
+<h3 >创建上下文</h3>
+<p>组件的创建的上下文对应于组件声明的上下文。当组件由<a href="../qtquick/qml-qtquick-listview.html">ListView</a>或Loader（加载器）等对象实例化时，此上下文用作父上下文（创建<a href="qtqml-documents-scope.html#component-instance-hierarchy">context hierarchy（上下文层次结构）</a>）。 </p>
+<p>在下面的示例中，在的根上下文中创建了<code>comp1</code>。从该组件实例化的任何对象都可以访问该上下文中的id和属性，比如<code>internalSettings.color</code>。当<code>comp1</code> 在另一个上下文中用作<a href="../qtquick/qml-qtquick-listview.html">ListView</a> 委托时(如下面的main.qml所示），它将继续访问其创建上下文的属性(否则对外部用户是私有的)。</p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td >MyItem.qml</td><td ><pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      property <span class="type"><a href="qml-qtqml-component.html">Component</a></span> <span class="name">mycomponent</span>: <span class="name">comp1</span>
+
+      <span class="type"><a href="qml-qtqml-qtobject.html">QtObject</a></span> {
+          <span class="name">id</span>: <span class="name">internalSettings</span>
+          property <span class="type"><a href="../qtquick/qml-color.html">color</a></span> <span class="name">color</span>: <span class="string">&quot;green&quot;</span>
+      }
+
+      <span class="type"><a href="qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">comp1</span>
+          <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> { <span class="name">color</span>: <span class="name">internalSettings</span>.<span class="name">color</span>; <span class="name">width</span>: <span class="number">400</span>; <span class="name">height</span>: <span class="number">50</span> }
+      }
+  }
+
+</pre>
+</td></tr>
+<tr valign="top" class="even"><td >main.qml</td><td ><pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-listview.html">ListView</a></span> {
+      <span class="name">width</span>: <span class="number">400</span>; <span class="name">height</span>: <span class="number">400</span>
+      <span class="name">model</span>: <span class="number">5</span>
+      <span class="name">delegate</span>: <span class="name">myItem</span>.<span class="name">mycomponent</span>    <span class="comment">//will create green Rectangles</span>
+
+      <span class="type">MyItem</span> { <span class="name">id</span>: <span class="name">myItem</span> }
+  }
+
+</pre>
+</td></tr>
+</table></div>
+<p>重要的是，创建上下文的生命周期比任何创建的对象都长。有关详细信息，请参见<a href="qtqml-javascript-dynamicobjectcreation.html#maintaining-dynamically-created-objects">维护动态创建的对象</a>。</p>
+<!-- @@@Component -->
+<h2>属性文档</h2>
+<!-- $$$progress -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="progress-prop">
+<td class="tblQmlPropNode"><p>
+<a name="progress-prop"></a><span class="name">progress</span> : <span class="type"><a href="qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>加载组件的过程，从0.0(未加载)到1.0(已完成)。</p>
+</div></div><!-- @@@progress -->
+<br/>
+<!-- $$$status -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="status-prop">
+<td class="tblQmlPropNode"><p>
+<a name="status-prop"></a><span class="name">status</span> : <span class="type"><a href="qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存了组件加载状态。状态可以是以下之一:</p>
+<ul>
+<li>Component.Null - 组件没有可用的数据</li>
+<li>Component.Ready - 组件已经加载，可以用来创建实例。</li>
+<li>Component.Loading - 组件当前正在加载</li>
+<li>Component.Error - 加载组件时发生错误。调用<a href="qml-qtqml-component.html#errorString-method">errorString()</a> 将提供人类可读的任何错误描述。</li>
+</ul>
+</div></div><!-- @@@status -->
+<br/>
+<!-- $$$url -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="url-prop">
+<td class="tblQmlPropNode"><p>
+<a name="url-prop"></a><span class="name">url</span> : <span class="type"><a href="qml-url.html">url</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>组件的URL。这是用于构造组件的URL。</p>
+</div></div><!-- @@@url -->
+<br/>
+<h2>附加信号的文档</h2>
+<!-- $$$completed -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="completed-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="completed-signal"></a><span class="name">completed</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>对象实例化后发出。这可以用于在启动时执行脚本代码，一旦建立了完整的QML环境。</p>
+<p>对应的处理程序是<code>onCompleted</code>。它可以在任何对象上声明。运行<code>onCompleted</code>处理程序的顺序未定义。</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">Component</span>.onCompleted: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Completed Running!&quot;</span>)
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">Component</span>.onCompleted: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Nested Completed Running!&quot;</span>)
+      }
+  }
+
+</pre>
+</div></div><!-- @@@completed -->
+<br/>
+<!-- $$$destruction -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="destruction-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="destruction-signal"></a><span class="name">destruction</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>在对象开始破坏时发出。这可以用来撤消对<a href="qml-qtqml-component.html#completed-signal">completed()</a>信号或应用程序中的其他命令代码所做的响应工作。</p>
+<p>对应的处理程序是<code>onDestruction</code>。它可以在任何对象上声明。运行<code>onDestruction</code>处理程序的顺序没有定义。</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">Component</span>.onDestruction: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Destruction Beginning!&quot;</span>)
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">Component</span>.onDestruction: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Nested Destruction Beginning!&quot;</span>)
+      }
+  }
+
+</pre>
+<p><b>参见</b><a href="qtqml-index.html">Qt QML</a>。</p>
+</div></div><!-- @@@destruction -->
+<br/>
+<h2>方法文档</h2>
+<!-- $$$createObject -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="createObject-method">
+<td class="tblQmlFuncNode"><p>
+<a name="createObject-method"></a><span class="type">object</span> <span class="name">createObject</span>(<span class="type"><a href="qml-qtqml-qtobject.html">QtObject</a></span> <i>parent</i>,  <span class="type">object</span> <i>properties</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>创建并返回此组件的对象实例，该实例将具有给定的<i>parent</i> 和 <i>properties</i>。<i>properties</i>参数是可选的。如果对象创建失败，则返回null。</p>
+<p>对象将在与创建组件的上下文相同的上下文中创建。当调用QML中没有创建的组件时，该函数总是返回null。</p>
+<p>如果希望在不设置父对象的情况下创建对象，请为<i>parent</i>值指定<code>null</code> 。注意，如果要显示返回的对象，必须提供一个有效的<i>parent</i> 值或设置返回对象的<a href="../qtquick/qml-qtquick-item.html#parent-prop">parent</a>属性，否则该对象将不可见。</p>
+<p>如果没有向createObject()提供<i>parent</i>对象，则必须保存对返回对象的引用，以便垃圾收集器不会销毁它。无论事后是否设置<a href="../qtquick/qml-qtquick-item.html#parent-prop">Item::parent</a>，这都是正确的，因为设置项父级不会更改对象的所有权。只更改了图形化父节点。</p>
+<p>从<code>QtQuick 1.1</code>开始，这个方法接受一个可选的<i>properties</i>参数，该参数为创建的对象指定初始属性值的映射。这些值在对象创建完成之前应用。这比在对象创建之后设置属性值更有效，特别是在定义了大量属性值的地方，而且还允许在创建对象之前设置属性绑定(使用<a href="qml-qtqml-qt.html#binding-method">Qt.binding</a>)。</p>
+<p><i>properties</i>参数指定为属性值项的映射。例如，下面的代码创建了一个初始<code>x</code> 和 <code>y</code>值分别为100和100的对象:</p>
+<pre class="js">
+
+  var component = <span class="name">Qt</span>.<span class="name">createComponent</span>(<span class="string">&quot;Button.qml&quot;</span>);
+  <span class="keyword">if</span> (<span class="name">component</span>.<span class="name">status</span> <span class="operator">==</span> <span class="name">Component</span>.<span class="name">Ready</span>)
+      <span class="name">component</span>.<span class="name">createObject</span>(<span class="name">parent</span>, {&quot;x&quot;: <span class="number">100</span>, &quot;y&quot;: <span class="number">100</span>});
+
+</pre>
+<p>可以使用<code>destroy()</code>方法删除动态创建的实例。有关更多信息，请参见<a href="qtqml-javascript-dynamicobjectcreation.html">从JavaScript创建动态QML对象</a> 。</p>
+<p><b>参见 </b><a href="qml-qtqml-component.html#incubateObject-method">incubateObject()</a>。</p>
+</div></div><!-- @@@createObject -->
+<br/>
+<!-- $$$errorString -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="errorString-method">
+<td class="tblQmlFuncNode"><p>
+<a name="errorString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">errorString</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>返回人类可读的任何错误描述。</p>
+<p>字符串包括每个错误的文件、位置和描述。如果出现多个错误，则用换行符分隔它们。</p>
+<p>如果没有错误，则返回一个空字符串。</p>
+</div></div><!-- @@@errorString -->
+<br/>
+<!-- $$$incubateObject -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="incubateObject-method">
+<td class="tblQmlFuncNode"><p>
+<a name="incubateObject-method"></a><span class="type">object</span> <span class="name">incubateObject</span>(<span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> <i>parent</i>,  <span class="type">object</span> <i>properties</i>,  <span class="type"><a href="qml-enumeration.html">enumeration</a></span> <i>mode</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>为该组件的实例创建孵化器。孵化器允许异步实例化新组件实例，并且不会在UI中导致冻结。</p>
+<p><i>parent</i> 参数指定创建的实例将具有的父参数。省略参数或传递null将创建一个没有父对象的对象。在这种情况下，必须保存对创建对象的引用，以便垃圾收集器不会销毁它。</p>
+<p><i>properties</i>参数指定为属性值项的映射，该映射将在创建对象的构造过程中对其进行设置。<i>mode</i>（模式）可以是Qt.Synchronous 或 Qt.Asynchronous，控制实例是同步创建的还是异步创建的。默认情况是异步的。在某些情况下，即使指定了Qt.Synchronous，孵化器也可能异步创建对象。如果调用incubateObject()的组件本身是异步创建的，则会发生这种情况。</p>
+<p>这三个参数都是可选的。.</p>
+<p>如果成功，该方法返回孵化器，否则为空。孵化器具有以下特性:</p>
+<ul>
+<li>孵化器的状态。有效值是Component.Ready, Component.Loading 和 Component.Error。</li>
+<li>对象创建的对象实例。只有当孵化器处于就绪状态时才可用。</li>
+<li>指定状态更改时要调用的回调函数。状态作为参数传递给回调函数。</li>
+<li>forceCompletion()调用同步完成孵化。</li>
+</ul>
+<p>下面的例子演示了如何使用孵化器:</p>
+<pre class="js">
+
+  var component = <span class="name">Qt</span>.<span class="name">createComponent</span>(<span class="string">&quot;Button.qml&quot;</span>);
+
+  var incubator = <span class="name">component</span>.<span class="name">incubateObject</span>(<span class="name">parent</span>, { x: <span class="number">10</span>, y: <span class="number">10</span> });
+  <span class="keyword">if</span> (<span class="name">incubator</span>.<span class="name">status</span> <span class="operator">!=</span> <span class="name">Component</span>.<span class="name">Ready</span>) {
+      <span class="name">incubator</span>.<span class="name">onStatusChanged</span> <span class="operator">=</span> <span class="keyword">function</span>(status) {
+          <span class="keyword">if</span> (<span class="name">status</span> <span class="operator">==</span> <span class="name">Component</span>.<span class="name">Ready</span>) {
+              <span class="name">print</span> (<span class="string">&quot;Object&quot;</span>, <span class="name">incubator</span>.<span class="name">object</span>, <span class="string">&quot;is now ready!&quot;</span>);
+          }
+      }
+  } <span class="keyword">else</span> {
+      <span class="name">print</span> (<span class="string">&quot;Object&quot;</span>, <span class="name">incubator</span>.<span class="name">object</span>, <span class="string">&quot;is ready immediately!&quot;</span>);
+  }
+
+</pre>
+<p>可以使用<code>destroy()</code>方法删除动态创建的实例。有关更多信息，请参见<a href="qtqml-javascript-dynamicobjectcreation.html">从JavaScript创建动态QML对象</a>。</p>
+<p><b>参见</b><a href="qml-qtqml-component.html#createObject-method">createObject()</a>。</p>
+</div></div><!-- @@@incubateObject -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

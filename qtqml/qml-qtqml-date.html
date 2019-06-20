@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- date.qdoc -->
+  <title>Date QML Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >Date QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#methods">方法</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的Date类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Date-brief -->
+<p>提供日期功能。<a href="#details">更多…</a></p>
+<!-- @@@Date -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr></table></div><ul>
+<li><a href="qml-qtqml-date-members.html">所有成员的列表,包括继承的成员</a></li>
+</ul>
+<a name="methods"></a>
+<h2 id="methods">方法</h2>
+<ul>
+<li class="fn">string <b><b><a href="qml-qtqml-date.html#fromLocaleDateString-method">fromLocaleDateString</a></b></b>(<i>locale</i>, <i>dateString</i>, <i>format</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-date.html#fromLocaleString-method">fromLocaleString</a></b></b>(<i>locale</i>, <i>dateTimeString</i>, <i>format</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-date.html#fromLocaleTimeString-method">fromLocaleTimeString</a></b></b>(<i>locale</i>, <i>timeString</i>, <i>format</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-date.html#timeZoneUpdated-method">timeZoneUpdated</a></b></b>()</li>
+<li class="fn">string <b><b><a href="qml-qtqml-date.html#toLocaleDateString-method">toLocaleDateString</a></b></b>(<i>locale</i>, <i>format</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-date.html#toLocaleString-method">toLocaleString</a></b></b>(<i>locale</i>, <i>format</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-date.html#toLocaleTimeString-method">toLocaleTimeString</a></b></b>(<i>locale</i>, <i>format</i>)</li>
+</ul>
+<!-- $$$Date-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p>QML Date对象使用区域设置感知函数扩展<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">JS日期对象</a>。</p>
+<p>接受区域设置格式的函数可以是以下枚举值:</p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td >Locale.LongFormat</td><td >字符串的长版本;例如，返回&quot;January&quot; 作为月份名。</td></tr>
+<tr valign="top" class="even"><td >Locale.ShortFormat</td><td >字符串的短版本;例如，返回&quot;Jan&quot; 作为月份名。</td></tr>
+<tr valign="top" class="odd"><td >Locale.NarrowFormat</td><td >空间有限时使用的专用版本;例如，返回 &quot;J&quot; 为月份名。注意，窄格式可能在不同的月份和日期包含相同的文本，或者如果地区不支持窄名称，它甚至可能是空字符串，所以应该避免将其用于日期格式化。此外，对于系统区域设置，这种格式与short格式相同。</td></tr>
+</table></div>
+<p>或指定格式的字符串，这些表达式可用于格式日期:</p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th >表达式</th><th >输出</th></tr></thead>
+<tr valign="top" class="odd"><td >d</td><td >没有前导0的日(1到31)</td></tr>
+<tr valign="top" class="even"><td >dd</td><td >以0开头的日期(01至31)</td></tr>
+<tr valign="top" class="odd"><td >ddd</td><td >缩写的本地化日名(例如&#x2e; 'Mon' 到 'Sun')。</td></tr>
+<tr valign="top" class="even"><td >dddd</td><td >长时间的本地化日名(例如&#x2e; 'Monday' 到 'Sunday')。</td></tr>
+<tr valign="top" class="odd"><td >M</td><td >没有前导0的月份(1到12)</td></tr>
+<tr valign="top" class="even"><td >MM</td><td >以0开头的月份(01至12)</td></tr>
+<tr valign="top" class="odd"><td >MMM</td><td >缩写的本地化月份名(例如&#x2e; 'Jan' 到 'Dec')。</td></tr>
+<tr valign="top" class="even"><td >MMMM</td><td >长本地化月份名(例如&#x2e; 'January' 到 'December')。</td></tr>
+<tr valign="top" class="odd"><td >yy</td><td >以两位数表示的年份(00至99)</td></tr>
+<tr valign="top" class="even"><td >yyyy</td><td >年作为四位数。如果年份是负数，则在前面加上一个负号。</td></tr>
+</table></div>
+<p>所有其他输入字符将被忽略。任何包含在单引号中的字符序列都将被视为文本，而不是用作表达式。输出中两个连续的单引号 (&quot;''&quot;) 被一个单引号替换。</p>
+<p>示例格式字符串(假设日期是1969年7月20日):</p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th >Format</th><th >Result</th></tr></thead>
+<tr valign="top" class="odd"><td >dd.MM.yyyy</td><td >20.07.1969</td></tr>
+<tr valign="top" class="even"><td >ddd MMMM d yy</td><td >Sun July 20 69</td></tr>
+<tr valign="top" class="odd"><td >'The day is' dddd</td><td >The day is Sunday</td></tr>
+</table></div>
+<p>这些表达式可用于格式化时间:</p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th >表达式</th><th >输出</th></tr></thead>
+<tr valign="top" class="odd"><td >h</td><td >没有前导0的小时(即使有AM/PM显示也是0到23)</td></tr>
+<tr valign="top" class="even"><td >hh</td><td >以0开头的时间(00至23，如果是AM/PM显示则是01至12)</td></tr>
+<tr valign="top" class="odd"><td >H</td><td >没有前导0的小时(即使有AM/PM显示也是0到23)</td></tr>
+<tr valign="top" class="even"><td >HH</td><td >以0开头的时间(00至23，如果是AM/PM显示则是01至12)</td></tr>
+<tr valign="top" class="odd"><td >m</td><td >没有前导0的分钟(0到59)</td></tr>
+<tr valign="top" class="even"><td >mm</td><td >以0开头的分钟(00到59)</td></tr>
+<tr valign="top" class="odd"><td >s</td><td >没有前导0的秒(0到59)</td></tr>
+<tr valign="top" class="even"><td >ss</td><td >有前导0的秒(0到59)</td></tr>
+<tr valign="top" class="odd"><td >z</td><td >不带前导零的毫秒数(0到999)</td></tr>
+<tr valign="top" class="even"><td >zzz</td><td >以0开头的毫秒数(000到999)</td></tr>
+<tr valign="top" class="odd"><td >AP 或 A</td><td >使用AM / PM显示。 <i>AP</i> 将被 &quot;AM&quot; 或 &quot;PM&quot;替换。</td></tr>
+<tr valign="top" class="even"><td >ap 或 a</td><td >使用AM / PM显示。 <i>ap</i> 将被 &quot;am&quot; 或 &quot;pm&quot;。</td></tr>
+<tr valign="top" class="odd"><td >t</td><td >时区(例如&quot;CEST&quot;)</td></tr>
+</table></div>
+<p>所有其他输入字符将被忽略。任何包含在单引号中的字符序列都将被视为文本，而不是用作表达式。输出中两个连续的单引号（&quot;''&quot;）被一个单引号替换。</p>
+<p>示例格式字符串（假设<a href="../qtcore/qtime.html">QTime</a> 是 14:13:09.04）</p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th >Format</th><th >Result</th></tr></thead>
+<tr valign="top" class="odd"><td >hh:mm:ss.zzz</td><td >14:13:09.042</td></tr>
+<tr valign="top" class="even"><td >h:m:s ap</td><td >2:13:9 pm</td></tr>
+<tr valign="top" class="odd"><td >H:m:s a</td><td >14:13:9 pm</td></tr>
+</table></div>
+<p>如果日期无效，将返回一个空字符串。</p>
+<p>注意:由于Qt和JS之间的规范不一致，使用支持语言环境的函数来执行日期或时间格式化可能导致时间格式不正确。ECMA-262指定应该通过将当前的日光节约规则投射到过去的年份来研究历史日期，而Qt使用历史数据(在可用的情况下)来确定日光节约是否对给定的日期有效。因此，如果DST当前有效，而它没有达到指定的时间，或者反之亦然，那么用JS构造一个日期值并使用具有语言环境感知的函数将其转换为字符串，可能会产生一个小时的错误结果。</p>
+<p>注:不同的日期格式对负数年份的理解也不同。人类共同的语言没有0年。公元前1年后是公元1年。当以ECMAScript没有标准化的格式之一打印或解析日期时，就会反映出这种理解。也就是说:toString(), <a href="qml-qtqml-date.html#toLocaleString-method">toLocaleString()</a>, toUTCString() 和 friends. 这是调用toISOString()时得到的结果。这种格式包括年份0，在其他格式中是1BC。因此，当使用toISOString()和toString()打印负日期时，会得到不同的年份。</p>
+<p>当使用Date构造函数或set(UTC)FullYear()设置年份时，即使用ISO 8601设置的约定，0是有效年份。这意味着使用构造函数或set(UTC)FullYear()设置的负年份是从零开始的，因此与使用toString()和friends打印的年份相差一年。解析任何to*String()方法的输出都将生成与打印的日期相同的值。parse()将识别不同的格式及其关于0年存在的约定。</p>
+<p>注意，所有这些都与其他JavaScript实现不同，其他JavaScript实现通常将年份0作为所有字符串表示的有效年份。由于日期格式在ECMAScript标准中是“依赖于实现的”，所以这仍然是有效的。</p>
+<p><b>参见</b><a href="qml-qtqml-locale.html">Locale</a>（本地化）。</p>
+<!-- @@@Date -->
+<h2>方法文档</h2>
+<!-- $$$fromLocaleDateString -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="fromLocaleDateString-method">
+<td class="tblQmlFuncNode"><p>
+<a name="fromLocaleDateString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">fromLocaleDateString</span>(<i>locale</i>, <i>dateString</i>, <i>format</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>使用 <i>locale</i>和<i>format</i>将日期字符串 <i>dateString</i> 转换为<a href="qml-qtqml-date.html">Date</a> 对象。</p>
+<p>如果没有指定<i>format</i>，则使用<a href="qml-qtqml-locale.html">Locale.LongFormat</a> 。</p>
+<p>如果没有指定<i>locale</i> ，则使用默认区域设置。</p>
+<p>下面的示例显示了当前日期，首先使用默认地区和格式将其格式化为日期字符串，然后以相同的方式再次解析:</p>
+<pre class="cpp">
+
+  import <span class="type">QtQml</span> <span class="number">2.0</span>
+
+  <span class="type"><a href="qml-qtqml-qtobject.html">QtObject</a></span> {
+      property var locale: <span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale()
+      property date currentDate: <span class="keyword">new</span> Date()
+      property string dateString
+
+      Component<span class="operator">.</span>onCompleted: {
+          dateString <span class="operator">=</span> currentDate<span class="operator">.</span>toLocaleDateString();
+          print(Date<span class="operator">.</span>fromLocaleDateString(dateString));
+      }
+  }
+
+</pre>
+</div></div><!-- @@@fromLocaleDateString -->
+<br/>
+<!-- $$$fromLocaleString -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="fromLocaleString-method">
+<td class="tblQmlFuncNode"><p>
+<a name="fromLocaleString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">fromLocaleString</span>(<i>locale</i>, <i>dateTimeString</i>, <i>format</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>使用<i>locale</i> 和 <i>format</i>将datetime字符串<i>dateTimeString</i> 转换为<a href="qml-qtqml-date.html">Date</a>对象。</p>
+<p>如果没有指定<i>format</i> ，则使用 <a href="qml-qtqml-locale.html">Locale.LongFormat</a>。</p>
+<p>如果没有指定<i>locale</i> ，则使用默认区域设置。</p>
+<p>下面的例子显示了一个datetime，它使用默认的语言环境，以特定的格式从一个datetime字符串中解析出来:</p>
+<pre class="cpp">
+
+  import <span class="type">QtQml</span> <span class="number">2.0</span>
+
+  <span class="type"><a href="qml-qtqml-qtobject.html">QtObject</a></span> {
+      property var locale: <span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale()
+      property string dateTimeString: <span class="string">&quot;Tue 2013-09-17 10:56:06&quot;</span>
+
+      Component<span class="operator">.</span>onCompleted: {
+          print(Date<span class="operator">.</span>fromLocaleString(locale<span class="operator">,</span> dateTimeString<span class="operator">,</span> <span class="string">&quot;ddd yyyy-MM-dd hh:mm:ss&quot;</span>));
+      }
+  }
+
+</pre>
+</div></div><!-- @@@fromLocaleString -->
+<br/>
+<!-- $$$fromLocaleTimeString -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="fromLocaleTimeString-method">
+<td class="tblQmlFuncNode"><p>
+<a name="fromLocaleTimeString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">fromLocaleTimeString</span>(<i>locale</i>, <i>timeString</i>, <i>format</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>使用<i>locale</i> 和 <i>format</i>将时间字符串<i>timeString</i>转换为<a href="qml-qtqml-date.html">Date</a> 对象。</p>
+<p>如果没有指定<i>format</i>，则使用<a href="qml-qtqml-locale.html">Locale.LongFormat</a>。</p>
+<p>如果没有指定<i>locale</i> ，则使用默认区域设置。</p>
+<p>下面的例子显示了当前时间首先被格式化为一个使用默认的地区和一个简短的格式的时间字符串，然后再以相同的方式解析回来:</p>
+<pre class="cpp">
+
+  import <span class="type">QtQml</span> <span class="number">2.2</span>
+
+  <span class="type"><a href="qml-qtqml-qtobject.html">QtObject</a></span> {
+      property var locale: <span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale()
+      property date currentTime: <span class="keyword">new</span> Date()
+      property string timeString
+
+      Component<span class="operator">.</span>onCompleted: {
+          timeString <span class="operator">=</span> currentTime<span class="operator">.</span>toLocaleTimeString(locale<span class="operator">,</span> Locale<span class="operator">.</span>ShortFormat);
+          print(Date<span class="operator">.</span>fromLocaleTimeString(locale<span class="operator">,</span> timeString<span class="operator">,</span> Locale<span class="operator">.</span>ShortFormat));
+      }
+  }
+
+</pre>
+</div></div><!-- @@@fromLocaleTimeString -->
+<br/>
+<!-- $$$timeZoneUpdated -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="timeZoneUpdated-method">
+<td class="tblQmlFuncNode"><p>
+<a name="timeZoneUpdated-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">timeZoneUpdated</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>通知JS引擎系统的时区已经更改，这对于正确操作datetime数据是必要的。</p>
+<p>JS以UTC时间存储日期对象;在本地时间对Date组件的所有访问和从Date组件的访问都涉及到对UTC的当前偏移量的应用。如果当前偏移量由于时区的更新而发生变化，则需要通知JS引擎，以便它可以重新计算偏移量。</p>
+<p>这个函数应该在系统的时区更新之后调用。</p>
+<p>例如，更改时区的应用程序将在设置新时区之后调用timeZoneUpdated():</p>
+<pre class="cpp">
+
+  property string selectedTimeZone
+
+  onSelectedTimeZoneChanged: {
+      MyFunctions<span class="operator">.</span>setSystemTimeZone(selectedTimeZone)
+      Date<span class="operator">.</span>timeZoneUpdated()
+  }
+
+</pre>
+</div></div><!-- @@@timeZoneUpdated -->
+<br/>
+<!-- $$$toLocaleDateString -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="toLocaleDateString-method">
+<td class="tblQmlFuncNode"><p>
+<a name="toLocaleDateString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">toLocaleDateString</span>(<i>locale</i>, <i>format</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>将日期转换为一个字符串，该字符串包含以指定<i>format</i>适合于指定<i>locale</i>的日期。</p>
+<p>如果没有指定<i>format</i> ，则使用<a href="qml-qtqml-locale.html">Locale.LongFormat</a>。</p>
+<p>如果没有指定<i>locale</i>设置，则使用默认区域设置。</p>
+<p>下面的示例显示了为德语地区格式化的当前日期:</p>
+<pre class="cpp">
+
+  import <span class="type">QtQuick</span> <span class="number">2.0</span>
+
+  Text {
+      text: <span class="string">&quot;The date is: &quot;</span> <span class="operator">+</span> <span class="keyword">new</span> Date()<span class="operator">.</span>toLocaleDateString(<span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale(<span class="string">&quot;de_DE&quot;</span>))
+  }
+
+</pre>
+</div></div><!-- @@@toLocaleDateString -->
+<br/>
+<!-- $$$toLocaleString -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="toLocaleString-method">
+<td class="tblQmlFuncNode"><p>
+<a name="toLocaleString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">toLocaleString</span>(<i>locale</i>, <i>format</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>将Date转换为包含适合于指定<i>locale</i> 的日期和时间的字符串，并使用指定的<i>format</i>。</p>
+<p>如果没有指定<i>format</i>，则使用<a href="qml-qtqml-locale.html">Locale.LongFormat</a>。</p>
+<p>如果没有指定<i>locale</i> ，则使用默认区域设置。</p>
+<p>下面的示例显示了为德语地区格式化的当前日期和时间:</p>
+<pre class="cpp">
+
+  import <span class="type">QtQuick</span> <span class="number">2.0</span>
+
+  Text {
+      text: <span class="string">&quot;The date is: &quot;</span> <span class="operator">+</span> <span class="keyword">new</span> Date()<span class="operator">.</span>toLocaleString(<span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale(<span class="string">&quot;de_DE&quot;</span>))
+  }
+
+</pre>
+</div></div><!-- @@@toLocaleString -->
+<br/>
+<!-- $$$toLocaleTimeString -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="toLocaleTimeString-method">
+<td class="tblQmlFuncNode"><p>
+<a name="toLocaleTimeString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">toLocaleTimeString</span>(<i>locale</i>, <i>format</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>将日期转换为包含适合于指定<i>locale</i>的时间的字符串，格式为指定的<i>format</i>。</p>
+<p>如果没有指定<i>format</i> ，则使用<a href="qml-qtqml-locale.html">Locale.LongFormat</a>。</p>
+<p>如果没有指定<i>locale</i> ，则使用默认区域设置。</p>
+<p>下面的示例显示了针对德语地区格式化的当前时间:</p>
+<pre class="cpp">
+
+  import <span class="type">QtQuick</span> <span class="number">2.0</span>
+
+  Text {
+      text: <span class="string">&quot;The date is: &quot;</span> <span class="operator">+</span> <span class="keyword">new</span> Date()<span class="operator">.</span>toLocaleTimeString(<span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale(<span class="string">&quot;de_DE&quot;</span>))
+  }
+
+</pre>
+</div></div><!-- @@@toLocaleTimeString -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
