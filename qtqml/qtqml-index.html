@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qtqml.qdoc -->
+  <title>Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td >Qt QML</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.12.3 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#getting-started">开始</a></li>
+<li class="level1"><a href="#qml-and-qml-types">QML和QML类型</a></li>
+<li class="level2"><a href="#lists-and-models">Lists and Models</a></li>
+<li class="level1"><a href="#javascript-environment-for-qml-applications">用于QML应用程序的JavaScript环境</a></li>
+<li class="level1"><a href="#integrating-qml-with-c-applications">将QML与C++应用程序集成</a></li>
+<li class="level1"><a href="#additional-frameworks">额外的框架</a></li>
+<li class="level1"><a href="#licenses-and-attributions">许可证和归因</a></li>
+<li class="level1"><a href="#guides-and-other-information">指南及其他资料</a></li>
+<li class="level2"><a href="#reference">引用</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt QML</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-index.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>Qt QML模块为使用<a href="../qtdoc/qmlapplications.html">QML语言</a>开发应用程序和库提供了一个框架。它定义并实现了语言和引擎基础设施，并提供了一个API，使应用程序开发人员能够使用定制类型扩展QML语言，并将QML代码与JavaScript和C++集成在一起。Qt QML模块同时提供<a href="qtqml-qmlmodule.html">QML API</a> 和 <a href="qtqml-module.html">C++ API</a>。</p>
+<p>请注意，Qt QML模块为QML应用程序提供了语言和基础设施，<a href="../qtquick/qtquick-index.html">Qt Quick</a>模块为构建用户界面提供了许多可视化组件、模型-视图支持、动画框架等。</p>
+<p>有关QML和Qt Quick的新特性，请参阅<a href="../qtdoc/qmlapplications.html">QML应用程序</a>，了解编写QML应用程序的介绍。</p>
+<a name="getting-started"></a>
+<h2 id="getting-started">开始</h2>
+<p>要包含模块类的定义，请使用以下指令:</p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &lt;QtQml&gt;</span>
+
+</pre>
+<p>Qt QML中的QML类型可以通过<code>QtQml</code>导入获得。要使用这些类型，请将以下import语句添加到.qml文件中:</p>
+<pre class="qml">
+
+  import QtQml 2.12
+
+</pre>
+<p>要链接到模块，请将这一行添加到<a href="../qmake/qmake-manual.html">qmake</a> <code>.pro</code>文件中:</p>
+<pre class="cpp">
+
+  QT <span class="operator">+</span><span class="operator">=</span> qml
+
+</pre>
+<a name="qml-and-qml-types"></a>
+<h2 id="qml-and-qml-types">QML和QML类型</h2>
+<p>Qt QML模块包含QML框架和应用程序中使用的重要QML类型。QML的构造在 <a href="qmlreference.html">QML引用</a>中进行了描述。</p>
+<p>除了<a href="qtqml-typesystem-basictypes.html">QML基本类型</a>外，模块还提供了以下QML对象类型:</p>
+<ul>
+<li><a href="qml-qtqml-component.html">Component（组件）</a></li>
+<li><a href="qml-qtqml-qtobject.html">QtObject（Qt 对象）</a></li>
+<li><a href="qml-qtqml-binding.html">Binding（绑定）</a></li>
+<li><a href="qml-qtqml-connections.html">Connections（连接）</a></li>
+<li><a href="qml-qtqml-timer.html">Timer（计时器）</a></li>
+</ul>
+<p><a href="qml-qtqml-qt.html">Qt</a>全局对象为各种QML类型提供了有用的枚举和函数。</p>
+<a name="lists-and-models"></a>
+<h3 >列表和模型</h3>
+<p>新的Qt 5.1中，模型类型被移动到子模块<code>QtQml.Models</code>。 有关于此，在<a href="qtqml-models-qmlmodule.html">Qt QML Models</a>页面有更多信息。</p>
+<ul>
+<li><a href="qml-qtqml-models-delegatemodel.html">DelegateModel（代理模型）</a></li>
+<li><a href="qml-qtqml-models-delegatemodelgroup.html">DelegateModelGroup（代理模型组）</a></li>
+<li><a href="qml-qtqml-models-listelement.html">ListElement（链表元素）</a></li>
+<li><a href="qml-qtqml-models-listmodel.html">ListModel（链表模型）</a></li>
+<li><a href="qml-qtqml-models-objectmodel.html">ObjectModel（对象模型）</a></li>
+</ul>
+<a name="javascript-environment-for-qml-applications"></a>
+<h2 id="javascript-environment-for-qml-applications">用于QML应用程序的JavaScript环境</h2>
+<p>JavaScript表达式允许QML代码包含应用程序逻辑。Qt QML提供了在QML和C++中运行JavaScript表达式的框架。</p>
+<p>以下部分来自<a href="qmlreference.html">QML引用</a>。</p>
+<ul>
+<li><a href="qtqml-javascript-topic.html">集成QML和JavaScript</a></li>
+<li><a href="qtqml-javascript-expressions.html">使用带有QML的JavaScript表达式</a></li>
+<li><a href="qtqml-javascript-dynamicobjectcreation.html">从JavaScript动态创建QML对象</a></li>
+<li><a href="qtqml-javascript-resources.html">在QML中定义JavaScript资源</a></li>
+<li><a href="qtqml-javascript-imports.html">导入QML中的JavaScript资源</a></li>
+<li><a href="qtqml-javascript-hostenvironment.html">JavaScript主机环境</a></li>
+</ul>
+<a name="integrating-qml-with-c-applications"></a>
+<h2 id="integrating-qml-with-c-applications">将QML与C++应用程序集成</h2>
+<p>该模块还提供了运行QML应用程序的框架。QML框架允许QML代码包含JavaScript表达式，并允许QML代码与C++代码交互。</p>
+<ul>
+<li><a href="qtqml-cppclasses-topic.html">Qt QML模块提供的重要C++类</a></li>
+<li><a href="qtqml-cppintegration-topic.html">集成QML和C++</a></li>
+</ul>
+<a name="additional-frameworks"></a>
+<h2 id="additional-frameworks">额外的框架</h2>
+<ul>
+<li><a href="qmlstatemachine.html">声明性状态机框架</a></li>
+</ul>
+<a name="licenses-and-attributions"></a>
+<h2 id="licenses-and-attributions">许可证和归因</h2>
+<p>Qt QML在<a href="http://www.qt.io/about-us/">Qt公司</a>的商业许可下可用。此外，它在自由软件许可下可用。从Qt 5.4开始，这些自由软件许可证就是<a href="http://www.gnu.org/licenses/lgpl-3.0.html">GNU Lesser General Public License, version 3（GNU更小的通用许可证版本3）</a>，或<a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License, version 2（GNU更小的通用许可证版本2）</a>。有关更多细节，请参见<a href="../qtdoc/licensing.html">Qt授权</a>。</p>
+<p>此外，Qt 5.12.3中的Qt QML可能包含第三方模块，其许可协议如下:</p>
+<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtqml-attribution-masm.html">JavaScriptCore Macro Assembler（JavaScriptCore宏汇编程序）</a></p></td><td class="tblDescr"><p>BSD 2-clause &quot;Simplified&quot; License（BSD 2-子句“简化”许可）</p></td></tr>
+</table></div>
+<a name="guides-and-other-information"></a>
+<h2 id="guides-and-other-information">指南及其他资料</h2>
+<p>编写QML应用程序的进一步信息如下:</p>
+<ul>
+<li><a href="qmlreference.html">QML参考</a></li>
+<li><a href="../qtdoc/qmlapplications.html">QML应用程序</a> - 使用QML和Qt Quick开发应用程序的基本信息</li>
+<li><a href="../qtquick/qtquick-index.html">Qt Quick</a> - 一个模块，它提供了一组QML类型和C++类，用于用QML构建用户界面和应用程序</li>
+</ul>
+<a name="reference"></a>
+<h3 >引用</h3>
+<ul>
+<li><a href="qtqml-module.html">C++类</a></li>
+<li><a href="qtqml-qmlmodule.html">QML类型</a></li>
+<li><a href="qmlextendingexamples.html">例子</a></li>
+</ul>
+</div>
+<!-- @@@qtqml-index.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
