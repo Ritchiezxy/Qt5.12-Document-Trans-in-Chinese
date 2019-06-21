@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- objecttypes.qdoc -->
+  <title>QML Object Types | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >QML Object Types</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#defining-object-types-from-qml">从QML定义对象类型</a></li>
+<li class="level2"><a href="#defining-object-types-through-qml-documents">通过QML文档定义对象类型</a></li>
+<li class="level2"><a href="#defining-anonymous-types-with-component">使用Component（组件）定义匿名类型</a></li>
+<li class="level1"><a href="#defining-object-types-from-c">从C++定义对象类型</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML对象类型</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-typesystem-objecttypes.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML对象类型是可以实例化QML对象的类型。</p>
+<p>在语法术语中，QML对象类型是一种可以通过指定<i>type name</i>（类型名称）后面跟着一组花括号来声明对象的类型，这些花括号包含该对象的属性。这与 <i>basic types</i>（基本类型）不同，基本类型不能以相同的方式使用。例如， <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 是QML对象类型:它可以用来创建<code>Rectangle</code>类型对象。这不能用诸如<code>int</code> 和 <code>bool</code>之类的基本类型来实现，它们用于保存简单的数据类型而不是对象。</p>
+<p>自定义QML对象类型可以通过创建定义该类型的.qml文件来定义，正如在“<a href="qtqml-documents-definetypes.html">作为QML对象类型定义的文档</a>”所讨论的，，也可以通过从C++中定义QML类型并向QML引擎注册该类型来定义，如在<a href="qtqml-cppintegration-definetypes.html">从C++中定义QML类型</a>中所讨论的。 注意，在这两种情况下，类型名称必须以大写字母开头，以便在QML文件中声明为QML对象类型。</p>
+<a name="defining-object-types-from-qml"></a>
+<h2 id="defining-object-types-from-qml">从QML定义对象类型</h2>
+<a name="defining-object-types-through-qml-documents"></a>
+<h3 >通过QML文档定义对象类型</h3>
+<p>插件作者和应用程序开发人员可以提供定义为QML文档的类型。QML导入系统可见的QML文档定义了一个类型，该类型由文件名减去文件扩展名来标识。</p>
+<p>因此，如果QML文档名为&quot;MyButton.qml&quot;。它提供了&quot;MyButton&quot; 类型的定义，可以在QML应用程序中使用。</p>
+<p>有关如何定义QML文档和QML语言语法的信息，请参阅<a href="qtqml-documents-topic.html">QML文档</a>的文档。一旦您熟悉了QML语言以及如何定义QML文档，请参阅如何<a href="qtqml-documents-definetypes.html">在QML文档中定义并使用自己的可重用QML类型</a>的文档。</p>
+<p>有关更多信息，请参见<a href="qtqml-documents-definetypes.html">通过QML文档定义对象类型</a>。</p>
+<a name="defining-anonymous-types-with-component"></a>
+<h3 >使用Component（组件）定义匿名类型</h3>
+<p>从QML中创建对象类型的另一种方法是使用<a href="qml-qtqml-component.html">Component</a>类型。这允许在QML文档中内联定义类型，而不是使用<code>.qml</code>文件中的单独文档。</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">root</span>
+      <span class="name">width</span>: <span class="number">500</span>; <span class="name">height</span>: <span class="number">500</span>
+
+      <span class="type"><a href="qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">myComponent</span>
+          <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> { <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>; <span class="name">color</span>: <span class="string">&quot;red&quot;</span> }
+      }
+
+      <span class="name">Component</span>.onCompleted: {
+          <span class="name">myComponent</span>.<span class="name">createObject</span>(<span class="name">root</span>)
+          <span class="name">myComponent</span>.<span class="name">createObject</span>(<span class="name">root</span>, {&quot;x&quot;: <span class="number">200</span>})
+      }
+  }
+
+</pre>
+<p>这里，<code>myComponent</code> 对象本质上定义了一个匿名类型，可以使用<a href="qml-qtqml-component.html#createObject-method">Component::createObject</a>来实例化该匿名类型的对象。</p>
+<p>内联组件共享常规顶级组件的所有特性，并使用与其包含的QML文档相同的<code>import</code>（导入）列表。</p>
+<p>注意，每个<a href="qml-qtqml-component.html">Component</a>对象声明都创建自己的<i>component scope</i>（组件域）。 在<a href="qml-qtqml-component.html">Component</a>对象声明中使用和引用的任何<i>id</i>值在该范围内必须是惟一的，但在声明内联组件的文档中不需要是惟一的。因此，在<code>myComponent</code>对象声明中声明的<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>可以有一个<code>root</code>的<i>id</i>，而不会与同一文档中为<a href="../qtquick/qml-qtquick-item.html">Item</a>对象声明的<code>root</code> 相冲突，因为这两个<i>id</i> 值是在不同的组件范围中声明的。</p>
+<p>有关详细信息，请参见<a href="qtqml-documents-scope.html">范围和命名解析</a>。</p>
+<a name="defining-object-types-from-c"></a>
+<h2 id="defining-object-types-from-c">从C++定义对象类型</h2>
+<p>C++插件作者和应用程序开发人员可以通过Qt QML模块提供的API注册C++中定义的类型。有许多不同的注册功能，每个注册功能允许实现不同的用例。有关这些注册函数的更多信息，以及将自定义C++类型公开给QML的详细信息，请参阅有关<a href="qtqml-cppintegration-definetypes.html">从C++定义QML类型的文档</a>。</p>
+<p>QML类型系统依赖于导入、插件和扩展被安装到一个已知的导入路径中。插件可以由第三方开发人员提供，并由客户机应用程序开发人员重用。有关如何创建和部署QML扩展模块的更多信息，请参阅有关<a href="qtqml-modules-topic.html">QML模块</a>的文档。</p>
+</div>
+<!-- @@@qtqml-typesystem-objecttypes.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
