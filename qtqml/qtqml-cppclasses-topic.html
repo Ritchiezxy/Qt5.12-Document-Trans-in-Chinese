@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- topic.qdoc -->
+  <title>Important C++ Classes Provided By The Qt QML Module | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Important C++ Classes Provided By The Qt QML Module</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#qml-runtime">QML运行时</a></li>
+<li class="level2"><a href="#the-qqmlengine-class">QQmlEngine类</a></li>
+<li class="level2"><a href="#the-qqmlcontext-class">QQmlContext类</a></li>
+<li class="level1"><a href="#dynamic-object-instantiation-and-expression-evaluation">动态对象实例化和表达式计算</a></li>
+<li class="level2"><a href="#the-qqmlcomponent-class">QQmlComponent类</a></li>
+<li class="level2"><a href="#the-qqmlexpression-class">QQmlExpression类</a></li>
+<li class="level1"><a href="#usage-of-the-classes-within-qml-applications">使用QML应用程序中的类</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt QML模块提供的重要C++类</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-cppclasses-topic.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><a href="qtqml-index.html">Qt QML</a>模块提供了实现QML框架的C++类。客户机可以使用这些类与QML运行时进行交互(例如，通过向对象注入数据或调用方法)，并从QML文档实例化对象的层次结构。Qt QML模块提供了比这里列出的类更多的C++ API，但是这里列出的类提供了QML运行时的基础和QML的核心概念。</p>
+<a name="qml-runtime"></a>
+<h2 id="qml-runtime">QML运行时</h2>
+<p>具C++入口点的典型QML应用程序将实例化<a href="qqmlengine.html">QQmlEngine</a>，然后使用<a href="qqmlcomponent.html">QQmlComponent</a>加载QML文档。该引擎提供一个默认的<a href="qqmlcontext.html">QQmlContext</a>，它将是用于评估QML文档中定义的函数和表达式的顶级评估上下文。在QML文档中定义的对象层次结构将通过调用<a href="qqmlcomponent.html">QQmlComponent</a>实例的<a href="qqmlcomponent.html#create">create()</a>函数来实例化，假设在文档加载期间没有遇到错误。</p>
+<p>客户端可能希望通过将属性或对象注入上下文来修改引擎提供的<a href="qqmlcontext.html">QQmlContext</a>。它们可以调用<a href="qqmlengine.html#rootContext">QQmlEngine::rootContext</a>()函数来访问顶级上下文。</p>
+<p>实例化对象之后，客户机通常将控制权传递给应用程序事件循环，以便应用程序可以交付和处理用户输入事件(如鼠标单击)。</p>
+<p><b>注意:</b>Qt Quick模块提供了一个方便的类<a href="../qtquick/qquickview.html">QQuickView</a>，它提供了一个QML运行时和显示QML应用程序的可视窗口。</p><a name="the-qqmlengine-class"></a>
+<h3 >QQmlEngine类</h3>
+<p><a href="qqmlengine.html">QQmlEngine</a>类提供了一个可以管理QML文档中定义的对象层次结构的引擎。它提供一个根QML上下文，在其中计算表达式，并确保在需要时正确更新对象的属性。</p>
+<p><a href="qqmlengine.html">QQmlEngine</a>允许配置全局设置，应用于它管理的所有对象;例如，用于网络通信的QNetworkAccessManager和用于持久存储的文件路径。允许配置全局设置，应用于它管理的所有对象;例如，用于网络通信的QNetworkAccessManager和用于持久存储的文件路径。</p>
+<p>有关<a href="qqmlengine.html">QQmlEngine</a>类提供什么以及如何在应用程序中使用它的详细信息，请参阅<a href="qqmlengine.html">QQmlEngine</a> 类文档。</p>
+<a name="the-qqmlcontext-class"></a>
+<h3 >QQmlContext类</h3>
+<p><a href="qqmlcontext.html">QQmlContext</a>类为对象实例化和表达式计算提供了上下文。所有对象都在特定上下文中实例化，并且在应用程序运行时计算的所有表达式都在特定上下文中计算。这个上下文定义了符号是如何解析的，因此定义了表达式所操作的值。</p>
+<p>有关如何通过添加或删除<a href="qqmlcontext.html">QQmlContext</a>的属性来修改对象的计算上下文以及如何访问对象的上下文的详细信息，请参阅<a href="qqmlcontext.html">QQmlContext</a>类文档。</p>
+<a name="dynamic-object-instantiation-and-expression-evaluation"></a>
+<h2 id="dynamic-object-instantiation-and-expression-evaluation">动态对象实例化和表达式计算</h2>
+<p>动态对象实例化和动态表达式计算都是QML中的核心概念。QML文档定义了可以在运行时使用<a href="qqmlcomponent.html">QQmlComponent</a>实例化的对象类型。<a href="qqmlcomponent.html">QQmlComponent</a> 类的实例可以直接用C++创建，也可以通过命令式QML代码中的<a href="qml-qtqml-qt.html#createComponent-method">Qt.createComponent()</a> 函数创建。可以通过<a href="qqmlexpression.html">QQmlExpression</a>类在C++中计算任意表达式，这些表达式可以直接与QML上下文交互。</p>
+<a name="the-qqmlcomponent-class"></a>
+<h3 >QQmlComponent类</h3>
+<p>可以使用<a href="qqmlcomponent.html">QQmlComponent</a>类加载QML文档。它需要一个<a href="qqmlengine.html">QQmlEngine</a>来实例化QML文档中定义的对象层次结构。</p>
+<p>有关如何使用 <a href="qqmlcomponent.html">QQmlComponent</a>的详细信息，请参阅<a href="qqmlcomponent.html">QQmlComponent</a>类文档。</p>
+<a name="the-qqmlexpression-class"></a>
+<h3 >QQmlExpression类</h3>
+<p><a href="qqmlexpression.html">QQmlExpression</a>类为客户端提供了一种方法，可以使用特定的QML计算上下文从C++计算JavaScript表达式。例如，这允许客户端通过id访问QML对象。计算的结果作为<a href="../qtcore/qvariant.html">QVariant</a>返回，并且转换规则由QML引擎定义。</p>
+<p>有关如何在应用程序中使用<a href="qqmlexpression.html">QQmlExpression</a>的详细信息，请参阅<a href="qqmlexpression.html">QQmlExpression</a>类文档。</p>
+<a name="usage-of-the-classes-within-qml-applications"></a>
+<h2 id="usage-of-the-classes-within-qml-applications">使用QML应用程序中的类</h2>
+<p>这些页面描述了如何创建与C++类交互的QML应用程序:</p>
+<ul>
+<li><a href="qtqml-cppintegration-topic.html">集成QML和C++</a><ul>
+<li><a href="qtqml-cppintegration-exposecppattributes.html">将C++类的属性公开给QML</a></li>
+<li><a href="qtqml-cppintegration-definetypes.html">从C++定义QML类型</a></li>
+<li><a href="qtqml-cppintegration-contextproperties.html">使用上下文属性将C++对象嵌入QML</a></li>
+<li><a href="qtqml-cppintegration-interactqmlfromcpp.html">与来自C++的QML对象交互</a></li>
+<li><a href="qtqml-cppintegration-data.html">QML和C++之间的数据类型转换</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<!-- @@@qtqml-cppclasses-topic.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

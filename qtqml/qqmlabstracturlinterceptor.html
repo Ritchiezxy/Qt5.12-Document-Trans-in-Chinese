@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlabstracturlinterceptor.cpp -->
+  <title>QQmlAbstractUrlInterceptor Class | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-module.html">C++ Classes</a></td><td >QQmlAbstractUrlInterceptor</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">公共类型</a></li>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QQmlAbstractUrlInterceptor类</h1>
+<!-- $$$QQmlAbstractUrlInterceptor-brief -->
+<p>允许您控制QML文件加载。<a href="#details">更多…</a></p>
+<!-- @@@QQmlAbstractUrlInterceptor -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlAbstractUrlInterceptor&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr></table></div><ul>
+<li><a href="qqmlabstracturlinterceptor-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">公共类型</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qqmlabstracturlinterceptor.html#DataType-enum">DataType</a></b> { QmldirFile, JavaScriptFile, QmlFile, UrlString }</td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlabstracturlinterceptor.html#QQmlAbstractUrlInterceptor">QQmlAbstractUrlInterceptor</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qqmlabstracturlinterceptor.html#dtor.QQmlAbstractUrlInterceptor">~QQmlAbstractUrlInterceptor</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QUrl </td><td class="memItemRight bottomAlign"><b><a href="qqmlabstracturlinterceptor.html#intercept">intercept</a></b>(const QUrl &amp;<i>url</i>, QQmlAbstractUrlInterceptor::DataType <i>type</i>) = 0</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$QQmlAbstractUrlInterceptor-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p>允许您控制QML文件加载。</p>
+<p><a href="qqmlabstracturlinterceptor.html">QQmlAbstractUrlInterceptor</a> 是一个接口，可以在QML引擎使用URL之前修改它们。这主要用于将文件url更改为其他文件url，例如为当前平台选择不同的图形化资产。</p>
+<p>相对url在根据当前QML上下文的文件路径解析后被拦截。URL拦截也发生在为加载的QML文件设置基本路径之后。这意味着为该QML文件加载的内容使用拦截的URL，但是在文件中，预拦截的URL用于解析相对路径。这允许拦截.qml文件加载，而不需要在拦截的内容中插入所有路径(或本地类型)来插入不同的相对路径。</p>
+<p>与setNetworkAccessManagerFactory相比，<a href="qqmlabstracturlinterceptor.html">QQmlAbstractUrlInterceptor</a>影响所有url和路径，包括本地文件和嵌入式资源文件。<a href="qqmlabstracturlinterceptor.html">QQmlAbstractUrlInterceptor</a> 是同步的，对于异步文件，必须返回带有异步模式的url(例如http或由您自己的自定义QNetworkAccessManager处理的自定义模式)。您可以使用<a href="qqmlabstracturlinterceptor.html">QQmlAbstractUrlInterceptor</a>将文件url更改为由您自己的自定义QNetworkAccessManager处理的网络url。</p>
+<p>要实现对自定义网络方案的支持，请参见setNetworkAccessManagerFactory。</p>
+</div>
+<!-- @@@QQmlAbstractUrlInterceptor -->
+<div class="types">
+<h2>成员类型文档</h2>
+<!-- $$$DataType$$$QmlFile$$$JavaScriptFile$$$QmldirFile$$$UrlString -->
+<h3 class="fn" id="DataType-enum"><a name="DataType-enum"></a>enum QQmlAbstractUrlInterceptor::<span class="name">DataType</span></h3>
+<p>指定URL拦截发生在何处。</p>
+<p>因为QML加载用于定位类型的qmldir文件，所以在加载QML类型时涉及两个url。用于定位类型的(可能是隐式的)qmldir的URL，以及定义该类型的文件的URL。拦截两者都会导致对同一个文件进行复杂的URL替换或双URL替换。</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">常量</th><th class="tblval">值</th><th class="tbldscr">详细信息</th></tr>
+<tr><td class="topAlign"><code>QQmlAbstractUrlInterceptor::QmldirFile</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">正在拦截的URL是一个Qmldir文件的URL。拦截它，但不拦截QmlFile，允许交换整个子树。</td></tr>
+<tr><td class="topAlign"><code>QQmlAbstractUrlInterceptor::JavaScriptFile</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">被截获的URL是Javascript文件的导入。</td></tr>
+<tr><td class="topAlign"><code>QQmlAbstractUrlInterceptor::QmlFile</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">被截获的URL是一个Qml文件的URL。拦截这个文件，但不拦截Qmldir文件，会使QML文件的基本目录保持不变，其行为类似于用另一个文件替换该文件。</td></tr>
+<tr><td class="topAlign"><code>QQmlAbstractUrlInterceptor::UrlString</code></td><td class="topAlign tblval"><code>0x1000</code></td><td class="topAlign">被拦截的URL是QML文件中的URL属性，不用于通过引擎加载文件。</td></tr>
+</table></div>
+<!-- @@@DataType -->
+</div>
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QQmlAbstractUrlInterceptor[overload1]$$$QQmlAbstractUrlInterceptor -->
+<h3 class="fn" id="QQmlAbstractUrlInterceptor"><a name="QQmlAbstractUrlInterceptor"></a>QQmlAbstractUrlInterceptor::<span class="name">QQmlAbstractUrlInterceptor</span>()</h3>
+<p><a href="qqmlabstracturlinterceptor.html">QQmlAbstractUrlInterceptor</a>的构造函数。</p>
+<!-- @@@QQmlAbstractUrlInterceptor -->
+<!-- $$$~QQmlAbstractUrlInterceptor[overload1]$$$~QQmlAbstractUrlInterceptor -->
+<h3 class="fn" id="dtor.QQmlAbstractUrlInterceptor"><a name="dtor.QQmlAbstractUrlInterceptor"></a><code>[virtual] </code>QQmlAbstractUrlInterceptor::<span class="name">~QQmlAbstractUrlInterceptor</span>()</h3>
+<p><a href="qqmlabstracturlinterceptor.html">QQmlAbstractUrlInterceptor</a>的析构函数。</p>
+<!-- @@@~QQmlAbstractUrlInterceptor -->
+<!-- $$$intercept[overload1]$$$interceptconstQUrl&QQmlAbstractUrlInterceptor::DataType -->
+<h3 class="fn" id="intercept"><a name="intercept"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qurl.html">QUrl</a></span> QQmlAbstractUrlInterceptor::<span class="name">intercept</span>(const <span class="type"><a href="../qtcore/qurl.html">QUrl</a></span> &amp;<i>url</i>, <span class="type"><a href="qqmlabstracturlinterceptor.html#DataType-enum">QQmlAbstractUrlInterceptor::DataType</a></span> <i>type</i>)</h3>
+<p>一个可以拦截<i>url</i>. 的纯虚拟函数。返回的值作为url的新值。被拦截url的类型由<i>type</i> 变量给出。</p>
+<p>这个函数的实现必须是线程安全的，因为可以同时从多个线程调用它。</p>
+<!-- @@@intercept -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

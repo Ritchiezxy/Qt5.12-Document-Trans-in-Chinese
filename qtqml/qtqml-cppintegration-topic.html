@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- topic.qdoc -->
+  <title>Integrating QML and C++ | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Integrating QML and C++</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">集成QML和C++</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-cppintegration-topic.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML应用程序通常需要在C++中处理更高级和性能密集型的任务。最常见和最快的方法是将C++类公开给QML运行时，前提是C++实现派生自<a href="../qtcore/qobject.html">QObject</a>。假设您已经安装了Qt 5.7或更高版本，下面的逐步说明将指导您在QML应用程序中使用C++类的过程:</p>
+<ol class="1" type="1"><li>使用Qt Creator中的&quot;Qt Quick应用程序&quot; 模板创建一个新项目<p><b>注意：</b>在<b>新建项目向导</b>的<b>定义项目详细信息</b>部分中，取消选中<b>With ui.qml file</b> 选项。</p></li>
+<li>向项目中添加一个名为<code>BackEnd</code>的C++新类，并将其头文件内容替换为:<pre class="cpp">
+
+  <span class="preprocessor">#ifndef BACKEND_H</span>
+  <span class="preprocessor">#define BACKEND_H</span>
+
+  <span class="preprocessor">#include &lt;QObject&gt;</span>
+  <span class="preprocessor">#include &lt;QString&gt;</span>
+
+  <span class="keyword">class</span> BackEnd : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
+  {
+      Q_OBJECT
+      Q_PROPERTY(<span class="type"><a href="../qtcore/qstring.html">QString</a></span> userName READ userName WRITE setUserName NOTIFY userNameChanged)
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> BackEnd(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> userName();
+      <span class="type">void</span> setUserName(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>userName);
+
+  <span class="keyword">signals</span>:
+      <span class="type">void</span> userNameChanged();
+
+  <span class="keyword">private</span>:
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> m_userName;
+  };
+
+  <span class="preprocessor">#endif // BACKEND_H</span>
+
+</pre>
+<p><code>Q_PROPERTY</code>宏声明一个可以从QML访问的属性。</p>
+</li>
+<li>将其C++文件内容替换为:<pre class="cpp">
+
+  <span class="preprocessor">#include &quot;backend.h&quot;</span>
+
+  BackEnd<span class="operator">::</span>BackEnd(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent) :
+      <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>(parent)
+  {
+  }
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> BackEnd<span class="operator">::</span>userName()
+  {
+      <span class="keyword">return</span> m_userName;
+  }
+
+  <span class="type">void</span> BackEnd<span class="operator">::</span>setUserName(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>userName)
+  {
+      <span class="keyword">if</span> (userName <span class="operator">=</span><span class="operator">=</span> m_userName)
+          <span class="keyword">return</span>;
+
+      m_userName <span class="operator">=</span> userName;
+      <span class="keyword">emit</span> userNameChanged();
+  }
+
+</pre>
+<p>每次<code>m_userName</code>值发生变化时，<code>setUserName</code> 函数都会发出<code>userNameChanged</code>信号。可以使用<code>onUserNameChanged</code>处理程序从QML处理该信号。</p>
+</li>
+<li>在<code>main.cpp</code>中包含<code>&quot;backend.h&quot;</code>，并在导入URL下注册该类为QML类型，如下所示:<pre class="cpp">
+
+  <span class="preprocessor">#include &lt;QGuiApplication&gt;</span>
+  <span class="preprocessor">#include &lt;QQmlApplicationEngine&gt;</span>
+
+  <span class="preprocessor">#include &quot;backend.h&quot;</span>
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span>argv<span class="operator">[</span><span class="operator">]</span>)
+  {
+      <span class="type"><a href="../qtgui/qguiapplication.html">QGuiApplication</a></span> app(argc<span class="operator">,</span> argv);
+
+      qmlRegisterType<span class="operator">&lt;</span>BackEnd<span class="operator">&gt;</span>(<span class="string">&quot;io.qt.examples.backend&quot;</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="string">&quot;BackEnd&quot;</span>);
+
+      <span class="type"><a href="qqmlapplicationengine.html">QQmlApplicationEngine</a></span> engine;
+      engine<span class="operator">.</span>load(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span>(<span class="type"><a href="../qtcore/qstring.html#QStringLiteral">QStringLiteral</a></span>(<span class="string">&quot;qrc:/main.qml&quot;</span>)));
+
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+</pre>
+<p>类被注册为一个类型，可以通过导入URL&quot;<code>io.qt.examples.backend 1.0</code>&quot;从QML访问该类型。</p>
+</li>
+<li>用以下代码替换<code>main.qml</code>的内容:<pre class="qml">
+
+  import QtQuick 2.6
+  import QtQuick.Controls 2.0
+  import io.qt.examples.backend 1.0
+
+  <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-applicationwindow.html">ApplicationWindow</a></span> {
+      <span class="name">id</span>: <span class="name">root</span>
+      <span class="name">width</span>: <span class="number">300</span>
+      <span class="name">height</span>: <span class="number">480</span>
+      <span class="name">visible</span>: <span class="number">true</span>
+
+      <span class="type">BackEnd</span> {
+          <span class="name">id</span>: <span class="name">backend</span>
+      }
+
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-textfield.html">TextField</a></span> {
+          <span class="name">text</span>: <span class="name">backend</span>.<span class="name">userName</span>
+          <span class="name">placeholderText</span>: <span class="name">qsTr</span>(<span class="string">&quot;User name&quot;</span>)
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+
+          <span class="name">onTextChanged</span>: <span class="name">backend</span>.<span class="name">userName</span> <span class="operator">=</span> <span class="name">text</span>
+      }
+  }
+
+</pre>
+<p><code>BackEnd</code>允许您访问<code>userName</code>属性，该属性在<a href="../qtquickcontrols/qml-qtquick-controls2-textfield.html">TextField</a>的<code>text</code>属性发生更改时更新。</p>
+</li>
+</ol>
+<p>现在可以运行应用程序了。</p>
+<div class="border"><p class="centerAlign"><img src="images/cppintegration-ex.png" alt="" /></p></div><p class="figCaption">这是运行在Ubuntu上的应用程序</p>
+<p>Qt提供了几种方法来集成C++和QML，本教程中讨论的方法只是其中之一。有关这些方法的详细信息，请参阅<a href="qtqml-cppintegration-overview.html">概述 - QML和C++集成</a>。</p>
+</div>
+<!-- @@@qtqml-cppintegration-topic.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

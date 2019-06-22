@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- basictypes.qdoc -->
+  <title>variant QML Basic Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >variant QML Basic Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#using-scarce-resources-with-the-variant-type">使用具有varint类型的稀缺资源</a></li>
+<li class="level1"><a href="#storing-arrays-and-objects">存储数组和对象</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"> QML 的variant（变体）基本类型</h1>
+<span class="subtitle"></span>
+<!-- $$$variant-description -->
+<div class="descr"> <a name="details"></a>
+<p>泛型属性类型。</p>
+<p><code>variant</code>类型是泛型属性类型。它已经过时，只支持旧的应用程序;新的应用程序应该使用<a href="qml-var.html">var</a>类型属性。</p>
+<p>variant类型属性可以包含任何<a href="qtqml-typesystem-basictypes.html">基本类型</a>值:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      property <span class="type"><a href="qml-variant.html">variant</a></span> <span class="name">aNumber</span>: <span class="number">100</span>
+      property <span class="type"><a href="qml-variant.html">variant</a></span> <span class="name">aString</span>: <span class="string">&quot;Hello world!&quot;</span>
+      property <span class="type"><a href="qml-variant.html">variant</a></span> <span class="name">aBool</span>: <span class="number">false</span>
+  }
+
+</pre>
+<p>当与C++集成时，请注意，<a href="qtqml-cppintegration-data.html">从C++传递到QML</a>的任何<a href="../qtcore/qvariant.html">QVariant</a> 值都会自动转换为一个<code>variant</code>值，反之亦然。 </p>
+<a name="using-scarce-resources-with-the-variant-type"></a>
+<h2 id="using-scarce-resources-with-the-variant-type">使用具有varint类型的稀缺资源</h2>
+<p><code>variant</code>变体类型属性还可以保存image（图片） 或 pixmap（像素图）。包含<a href="../qtgui/qpixmap.html">QPixmap</a>或<a href="../qtgui/qimage.html">QImage</a> 的<code>variant</code> 称为“稀缺资源”，声明引擎将在评估完任何需要复制的JavaScript表达式后自动释放这些资源。</p>
+<p>客户端可以通过在JavaScript中调用<code>variant</code>属性上的“&quot;destroy&quot; 方法显式地释放这样一个稀缺的资源。它们还可以通过在JavaScript中调用<code>variant</code> 属性上的&quot;preserve&quot;方法显式地保存稀缺资源。</p>
+<a name="storing-arrays-and-objects"></a>
+<h2 id="storing-arrays-and-objects">存储数组和对象</h2>
+<p><code>variant</code>类型也可以</p>
+<ul>
+<li><a href="qtqml-typesystem-basictypes.html">基本类型</a>值的数组</li>
+<li>键值对与<a href="qtqml-typesystem-basictypes.html">基类型</a> 值的映射</li>
+</ul>
+<p>例如，下面是一个<code>item</code>数组和一个 <code>attributes</code>映射。可以使用JavaScript <code>for</code> 循环检查它们的内容。单个数组值可按索引访问，单个映射值可按键访问:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      property <span class="type"><a href="qml-variant.html">variant</a></span> <span class="name">items</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">&quot;four&quot;</span>, <span class="string">&quot;five&quot;</span>]
+      property <span class="type"><a href="qml-variant.html">variant</a></span> <span class="name">attributes</span>: { 'color': <span class="string">'red'</span>, 'width': <span class="number">100</span> }
+
+      <span class="name">Component</span>.onCompleted: {
+          <span class="keyword">for</span> (var i = 0; <span class="name">i</span> <span class="operator">&lt;</span> <span class="name">items</span>.<span class="name">length</span>; i++)
+              <span class="name">console</span>.<span class="name">log</span>(<span class="name">items</span>[<span class="name">i</span>])
+
+          <span class="keyword">for</span> (var prop in <span class="name">attributes</span>)
+              <span class="name">console</span>.<span class="name">log</span>(<span class="name">prop</span>, <span class="string">&quot;=&quot;</span>, <span class="name">attributes</span>[<span class="name">prop</span>])
+      }
+  }
+
+</pre>
+<p>虽然这是存储数组和映射类型值的一种方便方法，但是必须注意，上面的<code>item</code> 和 <code>attributes</code>属性<i>不是</i> QML对象(当然也不是JavaScript对象)，<code>attribute</code>中的键值对也 <i>不是</i> QML属性。相反，<code>items</code> 包含一个值数组，而<code>attributes</code> 包含一组键值对。由于它们是作为一组值存储的，而不是作为一个对象，所以它们的内容<i>不能</i>单独修改:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      property <span class="type"><a href="qml-variant.html">variant</a></span> <span class="name">items</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">&quot;four&quot;</span>, <span class="string">&quot;five&quot;</span>]
+      property <span class="type"><a href="qml-variant.html">variant</a></span> <span class="name">attributes</span>: { 'color': <span class="string">'red'</span>, 'width': <span class="number">100</span> }
+
+      <span class="name">Component</span>.onCompleted: {
+          <span class="name">items</span>[<span class="number">0</span>] <span class="operator">=</span> <span class="number">10</span>
+          <span class="name">console</span>.<span class="name">log</span>(<span class="name">items</span>[<span class="number">0</span>])     <span class="comment">// This will still be '1'!</span>
+          <span class="name">attributes</span>.<span class="name">color</span> <span class="operator">=</span> <span class="string">'blue'</span>
+          <span class="name">console</span>.<span class="name">log</span>(<span class="name">attributes</span>.<span class="name">color</span>)     <span class="comment">// This will still be 'red'!</span>
+      }
+  }
+
+</pre>
+<p>由于不可能从存储在<code>variant</code>中的列表或对象中单独添加或删除item，因此修改其内容的唯一方法是重新分配一个新值。但是，这并不有效，因为这会导致值被序列化和反序列化。</p>
+<p>此外，由于<code>item</code> 和 <code>attribute</code> 不是QML对象，更改它们各自的值不会触发属性更改通知。如果上面的例子中有<code>onNumberChanged</code> 或 <code>onAnimalChanged</code>信号处理程序，则不会调用它们。但是，如果将<code>item</code> 或 <code>attribute</code> 本身重新分配到不同的值，则会调用此类处理程序。 </p>
+<p>JavaScript程序员还应该注意，当JavaScript对象被复制到数组或map属性时，对象的<i>content</i> (即键值属性)被复制，而不是对象本身。该属性不包含对原始JavaScript对象的引用，并且在此过程中还丢失了诸如对象的JavaScript原型链之类的额外数据。</p>
+<p>这种基本类型由QML语言提供。</p>
+</div>
+<p><b>参见</b><a href="qtqml-typesystem-basictypes.html">QML基本类型</a>。</p>
+<!-- @@@variant -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlincubator.cpp -->
+  <title>QQmlIncubationController Class | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-module.html">C++ Classes</a></td><td >QQmlIncubationController</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#protected-functions">私有函数</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QQmlIncubationController类</h1>
+<!-- $$$QQmlIncubationController-brief -->
+<p><a href="qqmlincubationcontroller.html">QQmlIncubationController</a> 实例驱动QQmlIncubator的进程。<a href="#details">更多…</a></p>
+<!-- @@@QQmlIncubationController -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlIncubationController&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr></table></div><ul>
+<li><a href="qqmlincubationcontroller-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlincubationcontroller.html#QQmlIncubationController">QQmlIncubationController</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QQmlEngine *</td><td class="memItemRight bottomAlign"><b><a href="qqmlincubationcontroller.html#engine">engine</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlincubationcontroller.html#incubateFor">incubateFor</a></b>(int <i>msecs</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlincubationcontroller.html#incubateWhile">incubateWhile</a></b>(volatile bool *<i>flag</i>, int <i>msecs</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qqmlincubationcontroller.html#incubatingObjectCount">incubatingObjectCount</a></b>() const</td></tr>
+</table></div>
+<a name="protected-functions"></a>
+<h2 id="protected-functions">私有函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qqmlincubationcontroller.html#incubatingObjectCountChanged">incubatingObjectCountChanged</a></b>(int <i>incubatingObjectCount</i>)</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$QQmlIncubationController-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><a href="qqmlincubationcontroller.html">QQmlIncubationController</a> 实例驱动QQmlIncubator的进程。</p>
+<p>为了在应用程序中异步地运行，并且不引入卡顿或死机，必须只在应用程序空闲期间驱动创建QQmlIncubators对象的过程。<a href="qqmlincubationcontroller.html">QQmlIncubationController</a> 允许应用程序精确地控制处理发生的时间、频率和时间。</p>
+<p>应该通过调用<a href="qqmlengine.html#setIncubationController">QQmlEngine::setIncubationController</a>()方法在<a href="qqmlengine.html">QQmlEngine</a>上创建并设置<a href="qqmlincubationcontroller.html">QQmlIncubationController</a>派生的实例。然后，根据应用程序的需求调用<a href="qqmlincubationcontroller.html#incubateFor">QQmlIncubationController::incubateFor</a>() 或 <a href="qqmlincubationcontroller.html#incubateWhile">QQmlIncubationController::incubateWhile</a>() 方法来控制处理。</p>
+<p>例如，这是一个孵化控制器的例子，它每16毫秒中最多孵化5毫秒。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> PeriodicIncubationController : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span>
+                                       <span class="keyword">public</span> <span class="type"><a href="qqmlincubationcontroller.html#QQmlIncubationController">QQmlIncubationController</a></span>
+  {
+  <span class="keyword">public</span>:
+      PeriodicIncubationController() {
+          startTimer(<span class="number">16</span>);
+      }
+
+  <span class="keyword">protected</span>:
+      <span class="type">void</span> timerEvent(<span class="type"><a href="../qtcore/qtimerevent.html">QTimerEvent</a></span> <span class="operator">*</span>) override {
+          incubateFor(<span class="number">5</span>);
+      }
+  };
+
+</pre>
+<p>
+尽管前面的示例可以工作，但它不是最优的。现实世界中的孵化控制器应该在不干扰应用程序的情况下尽量最大化它们所消耗的空闲时间，而不是静态的5毫秒。</p>
+</div>
+<!-- @@@QQmlIncubationController -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QQmlIncubationController[overload1]$$$QQmlIncubationController -->
+<h3 class="fn" id="QQmlIncubationController"><a name="QQmlIncubationController"></a>QQmlIncubationController::<span class="name">QQmlIncubationController</span>()</h3>
+<p>创建一个新的孵化控制器。</p>
+<!-- @@@QQmlIncubationController -->
+<!-- $$$engine[overload1]$$$engine -->
+<h3 class="fn" id="engine"><a name="engine"></a><span class="type"><a href="qqmlengine.html">QQmlEngine</a></span> *QQmlIncubationController::<span class="name">engine</span>() const</h3>
+<p>返回该孵化控制器设置为<a href="qqmlengine.html">QQmlEngine</a>，如果没有在任何引擎上设置，则返回0。</p>
+<!-- @@@engine -->
+<!-- $$$incubateFor[overload1]$$$incubateForint -->
+<h3 class="fn" id="incubateFor"><a name="incubateFor"></a><span class="type">void</span> QQmlIncubationController::<span class="name">incubateFor</span>(<span class="type">int</span> <i>msecs</i>)</h3>
+<p>为<i>msecs</i>孵化对象，或者直到没有更多的对象可以孵化为止。</p>
+<!-- @@@incubateFor -->
+<!-- $$$incubateWhile[overload1]$$$incubateWhilevolatilebool*int -->
+<h3 class="fn" id="incubateWhile"><a name="incubateWhile"></a><span class="type">void</span> QQmlIncubationController::<span class="name">incubateWhile</span>(<span class="type">volatile</span> <span class="type">bool</span> *<i>flag</i>, <span class="type">int</span> <i>msecs</i> = 0)</h3>
+<p>当<i>flag</i>指向的bool值为true时孵化对象，或者直到没有更多的对象要孵化，或者直到 <i>msecs</i> 不为零时才孵化对象。</p>
+<p>通常，此方法与线程或UNIX信号一起使用，当希望中断孵化时，该线程或UNIX信号将<i>flag</i>指向的bool值设置为false。</p>
+<!-- @@@incubateWhile -->
+<!-- $$$incubatingObjectCount[overload1]$$$incubatingObjectCount -->
+<h3 class="fn" id="incubatingObjectCount"><a name="incubatingObjectCount"></a><span class="type">int</span> QQmlIncubationController::<span class="name">incubatingObjectCount</span>() const</h3>
+<p>返回当前正在孵化的对象的数量。</p>
+<!-- @@@incubatingObjectCount -->
+<!-- $$$incubatingObjectCountChanged[overload1]$$$incubatingObjectCountChangedint -->
+<h3 class="fn" id="incubatingObjectCountChanged"><a name="incubatingObjectCountChanged"></a><code>[virtual protected] </code><span class="type">void</span> QQmlIncubationController::<span class="name">incubatingObjectCountChanged</span>(<span class="type">int</span> <i>incubatingObjectCount</i>)</h3>
+<p>当孵化对象的数量发生变化时调用。 <i>incubatingObjectCount</i>是孵化对象的新数量。</p>
+<p>默认实现什么也不做。</p>
+<!-- @@@incubatingObjectCountChanged -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

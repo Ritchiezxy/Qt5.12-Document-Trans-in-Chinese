@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- definetypes.qdoc -->
+  <title>Defining Object Types through QML Documents | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Defining Object Types through QML Documents</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#defining-an-object-type-with-a-qml-file">使用QML文件定义对象类型</a></li>
+<li class="level2"><a href="#naming-custom-qml-object-types">命名自定义QML对象类型</a></li>
+<li class="level2"><a href="#custom-qml-type-definition">自定义QML类型定义</a></li>
+<li class="level2"><a href="#importing-types-defined-outside-the-current-directory">导入当前目录之外定义的类型</a></li>
+<li class="level1"><a href="#accessible-attributes-of-custom-types">自定义类型的可访问属性</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">通过QML文档定义对象类型</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-documents-definetypes.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML的核心特性之一是，它允许通过QML文档以轻量级的方式轻松定义QML对象类型，以满足各个QML应用程序的需要。标准<a href="../qtquick/qtquick-index.html">Qt Quick</a> 模块为构建QML应用程序提供了<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>、 <a href="../qtquick/qml-qtquick-text.html">Text</a> 和 <a href="../qtquick/qml-qtquick-image.html">Image</a> 等多种类型;除此之外，还可以轻松定义自己的QML类型，以便在应用程序中重用。这种创建自己类型的能力构成了任何QML应用程序的构建块。</p>
+<a name="defining-an-object-type-with-a-qml-file"></a>
+<h2 id="defining-an-object-type-with-a-qml-file">使用QML文件定义对象类型</h2>
+<a name="naming-custom-qml-object-types"></a>
+<h3 >命名自定义QML对象类型</h3>
+<p>要创建对象类型，应该将QML文档放入名为<i>&lt;TypeName&gt;.qml</i> 的文本文件中，其中<i>&lt;TypeName&gt;</i> 是该类型的期望名称。类型名称有以下要求:</p>
+<ul>
+<li>它必须由字母数字字符或下划线组成。</li>
+<li>它必须以大写字母开头。</li>
+</ul>
+<p>然后，引擎自动将该文档识别为QML类型的定义。此外，在解析QML类型名称时，当引擎在立即目录中搜索时，以这种方式定义的类型将自动对同一目录中的其他QML文件可用。</p>
+<a name="custom-qml-type-definition"></a>
+<h3 >自定义QML类型定义</h3>
+<p>例如，下面是一个文档，它声明了一个带有子<a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 的矩形。文件已保存到名为<code>SquareButton.qml</code>的文件中:</p>
+<pre class="qml">
+
+  <span class="comment">// SquareButton.qml</span>
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      property <span class="type"><a href="qml-int.html">int</a></span> <span class="name">side</span>: <span class="number">100</span>
+      <span class="name">width</span>: <span class="name">side</span>; <span class="name">height</span>: <span class="name">side</span>
+      <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Button clicked!&quot;</span>)
+      }
+  }
+
+</pre>
+<p>因为文件名为<code>SquareButton.qml</code>, 现在，同一目录中的任何其他QML文件都可以将<b>此类型用作名为 <code>SquareButton</code> 的类型。</b>例如，如果有一个<code>myapplication.qml</code> f文件，它可以引用 <code>SquareButton</code> 类型:</p>
+<pre class="qml">
+
+  <span class="comment">// myapplication.qml</span>
+  import QtQuick 2.0
+
+  <span class="type">SquareButton</span> {}
+
+</pre>
+<p class="centerAlign"><img src="images/documents-definetypes-simple.png" alt="" /></p><p>这将创建一个带有内部<a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a>的100 x 100红色<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> ，如<code>SquareButton.qml</code>中定义的那样。当引擎加载这个<code>myapplication.qml</code>文档时，它将SquareButton.qml文档作为组件加载，并实例化它来创建<code>SquareButton</code>对象。</p>
+<p><code>SquareButton</code> 类型封装了在<code>SquareButton.qml</code>中声明的QML对象树。 当QML引擎从该类型实例化 <code>SquareButton</code>对象时，它是从<code>SquareButton.qml</code>中声明的<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>树实例化对象。</p>
+<p><b>注意:</b>文件名的字母大小写对某些(尤其是UNIX)文件系统非常重要。建议文件名大小写与所需QML类型名称的大小写完全匹配——例如，无论QML类型将部署到哪个平台=，对于一个Box类型应该是<code>Box.qml</code> 而不是 <code>BoX.qml</code> 。</p><a name="importing-types-defined-outside-the-current-directory"></a>
+<h3 >导入当前目录之外定义的类型</h3>
+<p>如果 <code>SquareButton.qml</code>不在与<code>myapplication.qml</code>相同的目录中，则需要通过<code>myapplication.qml</code>中的<i>import</i>语句特别提供<code>SquareButton</code>类型。可以从文件系统上的相对路径导入，也可以作为已安装模块导入;有关详细信息，请参见 <a href="qtqml-modules-topic.html">模块</a> 。</p>
+<a name="accessible-attributes-of-custom-types"></a>
+<h2 id="accessible-attributes-of-custom-types">自定义类型的可访问属性</h2>
+<p>.qml文件中的<b>根对象</b>定义<b>定义了QML类型可用的属性</b>。属于这个根对象的所有属性、信号和方法——无论是自定义声明的，还是来自根对象的QML类型的——都可以从外部访问，并且可以为这种类型的对象读取和修改。 </p>
+<p>例如，上面<code>SquareButton.qml</code> 文件中的根对象类型是<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>。 这意味着可以为<code>SquareButton</code>对象修改<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>类型定义的任何属性。下面的代码为<code>SquareButton</code> 类型的根<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>对象的某些属性定义了三个<code>SquareButton</code>对象，它们具有自定义的值:</p>
+<pre class="qml">
+
+  <span class="comment">// application.qml</span>
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-column.html">Column</a></span> {
+      <span class="type">SquareButton</span> { <span class="name">side</span>: <span class="number">50</span> }
+      <span class="type">SquareButton</span> { <span class="name">x</span>: <span class="number">50</span>; <span class="name">color</span>: <span class="string">&quot;blue&quot;</span> }
+      <span class="type">SquareButton</span> { <span class="name">radius</span>: <span class="number">10</span> }
+  }
+
+</pre>
+<p class="centerAlign"><img src="images/documents-definetypes-attributes.png" alt="" /></p><p>自定义QML类型的对象可以访问的属性包括为对象额外定义的任何<a href="qtqml-syntax-objectattributes.html#defining-property-attributes">自定义属性</a>、<a href="qtqml-syntax-objectattributes.html#defining-method-attributes">方法</a> 和<a href="qtqml-syntax-objectattributes.html#defining-signal-attributes">信号</a>。例如，假设<code>SquareButton.qml</code>中的<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>被定义为:</p>
+<pre class="qml">
+
+  <span class="comment">// SquareButton.qml</span>
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">root</span>
+
+      property <span class="type"><a href="qml-bool.html">bool</a></span> <span class="name">pressed</span>: <span class="name">mouseArea</span>.<span class="name">pressed</span>
+
+      signal <span class="type">buttonClicked</span>(real xPos, real yPos)
+
+      <span class="keyword">function</span> <span class="name">randomizeColor</span>() {
+          <span class="name">root</span>.<span class="name">color</span> <span class="operator">=</span> <span class="name">Qt</span>.<span class="name">rgba</span>(<span class="name">Math</span>.<span class="name">random</span>(), <span class="name">Math</span>.<span class="name">random</span>(), <span class="name">Math</span>.<span class="name">random</span>(), <span class="number">1</span>)
+      }
+
+      property <span class="type"><a href="qml-int.html">int</a></span> <span class="name">side</span>: <span class="number">100</span>
+      <span class="name">width</span>: <span class="name">side</span>; <span class="name">height</span>: <span class="name">side</span>
+      <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">id</span>: <span class="name">mouseArea</span>
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: <span class="name">root</span>.<span class="name">buttonClicked</span>(<span class="name">mouse</span>.<span class="name">x</span>, <span class="name">mouse</span>.<span class="name">y</span>)
+      }
+  }
+
+</pre>
+<p>任何<code>SquareButton</code>对象都可以使用添加到根<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>中的<code>pressed</code>属性、<code>buttonClicked</code>信号和<code>randomizeColor()</code>方法: </p>
+<pre class="qml">
+
+  <span class="comment">// application.qml</span>
+  import QtQuick 2.0
+
+  <span class="type">SquareButton</span> {
+      <span class="name">id</span>: <span class="name">squareButton</span>
+
+      <span class="name">onButtonClicked</span>: {
+          <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Clicked&quot;</span>, <span class="name">xPos</span>, <span class="name">yPos</span>)
+          <span class="name">randomizeColor</span>()
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">squareButton</span>.<span class="name">pressed</span> ? <span class="string">&quot;Down&quot;</span> : <span class="string">&quot;Up&quot;</span> }
+  }
+
+</pre>
+<p>注意，<code>SquareButton</code>对象不能访问在<code>SquareButton.qml</code>中定义的任何<code>id</code> 值，因为id值只能在声明组件的组件范围内访问。上述<code>SquareButton</code>对象定义不能为了引用<code>mouseArea</code>子对象而引用<a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a>。如果它的<code>id</code>是<code>root</code>而不是<code>squareButton</code>，这将不会与在<code>SquareButton.qml</code>中定义的根对象的<code>id</code> 冲突，因为这两个对象将在不同的范围内声明。</p>
+</div>
+<!-- @@@qtqml-documents-definetypes.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

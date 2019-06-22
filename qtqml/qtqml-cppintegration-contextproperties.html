@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- contextproperties.qdoc -->
+  <title>Embedding C++ Objects into QML with Context Properties | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Embedding C++ Objects into QML with Context Properties</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#setting-a-simple-context-property">设置一个简单的上下文属性</a></li>
+<li class="level1"><a href="#setting-an-object-as-a-context-property">将对象设置为上下文属性</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">使用上下文属性将C++对象嵌入QML</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-cppintegration-contextproperties.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>当将QML对象加载到C++应用程序中时，可以直接嵌入一些可以从QML代码中使用的C++数据。例如，这使得在嵌入式对象上调用C++方法，或者使用C++对象实例作为QML视图的数据模型成为可能。</p>
+<p>向QML对象注入C++数据的能力是由<a href="qqmlcontext.html">QQmlContext</a> 类实现的。该类将数据公开给QML对象的上下文，以便可以在QML代码的范围内直接引用数据。</p>
+<a name="setting-a-simple-context-property"></a>
+<h2 id="setting-a-simple-context-property">设置一个简单的上下文属性</h2>
+<p>例如，这里有一个QML项，它引用当前范围中不存在的<code>currentDateTime</code> 值:</p>
+<pre class="qml">
+
+  <span class="comment">// MyItem.qml</span>
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">currentDateTime</span> }
+
+</pre>
+<p>使用<a href="qqmlcontext.html#setContextProperty">QQmlContext::setContextProperty</a>()，加载QML组件的C++应用程序可以直接设置这个<code>currentDateTime</code>值: </p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span> view;
+  view<span class="operator">.</span>rootContext()<span class="operator">-</span><span class="operator">&gt;</span>setContextProperty(<span class="string">&quot;currentDateTime&quot;</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qdatetime.html">QDateTime</a></span><span class="operator">::</span>currentDateTime());
+  view<span class="operator">.</span>setSource(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span><span class="operator">::</span>fromLocalFile(<span class="string">&quot;MyItem.qml&quot;</span>));
+  view<span class="operator">.</span>show();
+
+</pre>
+<p><b>注意:</b>由于QML中计算的所有表达式都是在特定上下文中计算的，因此如果修改了上下文，则将重新计算该上下文中的所有绑定。因此，应该在应用程序初始化之外谨慎使用上下文属性，因为这可能导致应用程序性能下降。</p><a name="setting-an-object-as-a-context-property"></a>
+<h2 id="setting-an-object-as-a-context-property">将对象设置为上下文属性</h2>
+<p>上下文属性可以包含<a href="../qtcore/qvariant.html">QVariant</a> 或 <a href="../qtcore/qobject.html">QObject</a>* 值。这意味着还可以使用这种方法注入自定义C++对象，并且可以在QML中直接修改和读取这些对象。在这里，我们修改上面的例子，嵌入一个<a href="../qtcore/qobject.html">QObject</a>实例而不是<a href="../qtcore/qdatetime.html">QDateTime</a> 值，QML代码调用对象实例上的一个方法:</p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td >C++</td><td ><pre class="cpp">
+
+  <span class="keyword">class</span> ApplicationData : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
+  {
+      Q_OBJECT
+  <span class="keyword">public</span>:
+      Q_INVOKABLE <span class="type"><a href="../qtcore/qdatetime.html">QDateTime</a></span> getCurrentDateTime() <span class="keyword">const</span> {
+          <span class="keyword">return</span> <span class="type"><a href="../qtcore/qdatetime.html">QDateTime</a></span><span class="operator">::</span>currentDateTime();
+      }
+  };
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span>argv<span class="operator">[</span><span class="operator">]</span>) {
+      <span class="type"><a href="../qtgui/qguiapplication.html">QGuiApplication</a></span> app(argc<span class="operator">,</span> argv);
+
+      <span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span> view;
+
+      ApplicationData data;
+      view<span class="operator">.</span>rootContext()<span class="operator">-</span><span class="operator">&gt;</span>setContextProperty(<span class="string">&quot;applicationData&quot;</span><span class="operator">,</span> <span class="operator">&amp;</span>data);
+
+      view<span class="operator">.</span>setSource(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span><span class="operator">::</span>fromLocalFile(<span class="string">&quot;MyItem.qml&quot;</span>));
+      view<span class="operator">.</span>show();
+
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+</pre>
+</td></tr>
+<tr valign="top" class="even"><td >QML</td><td ><pre class="qml">
+
+  <span class="comment">// MyItem.qml</span>
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">applicationData</span>.<span class="name">getCurrentDateTime</span>() }
+
+</pre>
+</td></tr>
+</table></div>
+<p>(注意，可以通过<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime()</a>和相关函数格式化从C++返回给QML的日期/时间值。)</p>
+<p>如果QML项需要接收来自上下文属性的信号，它可以使用<a href="qml-qtqml-connections.html">Connection</a> 类型连接到它们。例如，如果<code>ApplicationData</code>有一个名为 <code>dataChanged()</code>的信号，则可以在<a href="qml-qtqml-connections.html">Connection</a>对象中使用  <code>onDataChanged</code> 处理程序连接该信号:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+      <span class="name">text</span>: <span class="name">applicationData</span>.<span class="name">getCurrentDateTime</span>()
+
+      <span class="type"><a href="qml-qtqml-connections.html">Connections</a></span> {
+          <span class="name">target</span>: <span class="name">applicationData</span>
+          <span class="name">onDataChanged</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;The application data changed!&quot;</span>)
+      }
+  }
+
+</pre>
+<p>上下文属性对于在QML视图中使用基于C++的数据模型非常有用。请看以下例子:</p>
+<ul>
+<li><a href="../qtquick/qtquick-models-stringlistmodel-example.html">String ListModel</a></li>
+<li><a href="../qtquick/qtquick-models-objectlistmodel-example.html">Object ListModel</a></li>
+<li><a href="../qtquick/qtquick-models-abstractitemmodel-example.html">AbstractItemModel</a></li>
+</ul>
+<p>演示在QML视图中使用 <a href="../qtcore/qstringlist.html">QStringList</a>、 基于<a href="../qtcore/qlist.html">QList</a>&lt;<a href="../qtcore/qobject.html">QObject</a>*&gt;的模型和<a href="../qtcore/qabstractitemmodel.html">QAbstractItemModel</a>。</p>
+<p>更多信息请参见<a href="qqmlcontext.html">QQmlContext</a>文档。</p>
+</div>
+<!-- @@@qtqml-cppintegration-contextproperties.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
