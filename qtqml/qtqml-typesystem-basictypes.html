@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- basictypes.qdoc -->
+  <title>QML Basic Types | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >QML Basic Types</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#supported-basic-types">支持的基本类型</a></li>
+<li class="level2"><a href="#basic-types-provided-by-the-qml-language">QML语言提供的基本类型</a></li>
+<li class="level2"><a href="#basic-types-provided-by-qml-modules">QML模块提供的基本类型</a></li>
+<li class="level1"><a href="#property-change-behavior-for-basic-types">属性更改基本类型的行为</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML基本类型</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-typesystem-basictypes.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML支持许多基本类型。</p>
+<p><i>基本类型</i> 是指引用简单值的类型，例如<code>int</code> 或 <code>string</code>。这与<a href="qtqml-typesystem-topic.html#qml-object-types">QML对象类型</a>形成了对比，QML对象类型引用具有属性、信号、方法等的对象。与对象类型不同，基本类型不能用于声明QML对象:例如，不能声明<code>int{}</code> 对象或 <code>size{}</code> 对象。</p>
+<p>基本类型可参考:</p>
+<ul>
+<li>单个值(例如<a href="qml-int.html">int</a>指一个数字， <a href="qml-var.html">var</a> 指一个项目列表)</li>
+<li>包含一组简单属性值对的值(例如，<a href="qml-size.html">size</a> 指具有宽度和高度<code>width</code> 和 <code>height</code> 属性的值)</li>
+</ul>
+<a name="supported-basic-types"></a>
+<h2 id="supported-basic-types">支持的基本类型</h2>
+<p>引擎默认支持一些基本类型，并且不需要使用<a href="qtqml-syntax-imports.html">import语句</a>，而其他类型则需要客户机导入提供它们的模块。下列所有基本类型均可在QML文件中用作<code>property</code>类型，但下列情况除外: </p>
+<ul>
+<li><code>list</code> 必须与QML对象类型一起使用</li>
+<li><code>enumeration</code>不能直接使用，因为枚举必须由已注册的QML对象类型定义</li>
+</ul>
+<a name="basic-types-provided-by-the-qml-language"></a>
+<h3 >QML语言提供的基本类型</h3>
+<p>QML语言本身支持的基本类型如下:<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-bool.html">bool</a></p></td><td class="tblDescr"><p>二进制true / false值</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-double.html">double</a></p></td><td class="tblDescr"><p>带小数点的数字，以双精度存储</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-enumeration.html">enumeration</a></p></td><td class="tblDescr"><p命名的枚举值</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-int.html">int</a></p></td><td class="tblDescr"><p>整数，如0、10或-20</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-list.html">list</a></p></td><td class="tblDescr"><p>QML对象的列表</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-real.html">real</a></p></td><td class="tblDescr"><p>小数点后的数</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-string.html">string</a></p></td><td class="tblDescr"><p>自由格式文本字符串</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-url.html">url</a></p></td><td class="tblDescr"><p>资源定位符</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-var.html">var</a></p></td><td class="tblDescr"><p>通用的属性类型</p></td></tr>
+</table></div>
+</p>
+<a name="basic-types-provided-by-qml-modules"></a>
+<h3 >QML模块提供的基本类型</h3>
+<p>QML模块可以用更基本的类型扩展QML语言。例如，<code>QtQuick</code>模块提供的基本类型如下:   <div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-date.html">date</a></p></td><td class="tblDescr"><p>日期值</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-point.html">point</a></p></td><td class="tblDescr"><p>具有x和y属性的值</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-rect.html">rect</a></p></td><td class="tblDescr"><p>值，该值具有x、y、width和height属性</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-size.html">size</a></p></td><td class="tblDescr"><p>具有weight和height属性的值</p></td></tr>
+</table></div>
+</p>
+<p><a href="qml-qtqml-qt.html">Qt</a>全局对象为操作基本类型的值提供了有用的函数。</p>
+<p>目前只有Qt提供的QML模块可以提供它们自己的基本类型，但是这在Qt QML的未来版本中可能会发生变化。为了使用特定QML模块提供的类型，客户端必须在其QML文档中导入该模块。</p>
+<a name="property-change-behavior-for-basic-types"></a>
+<h2 id="property-change-behavior-for-basic-types">属性更改基本类型的行为</h2>
+<p>一些基本类型具有属性:例如，<a href="../qtquick/qml-font.html">font</a> 类型具有 <code>pixelSize</code>、 <code>family</code> 和 <code>bold</code> 属性。与 <a href="qtqml-typesystem-topic.html#qml-object-types">对象类型</a>的属性不同，基本类型的属性不提供自己的属性更改信号。只能为基本类型属性本身创建属性更改信号处理程序:</p>
+<pre class="cpp">
+
+  Text {
+      <span class="comment">// invalid!</span>
+      onFont<span class="operator">.</span>pixelSizeChanged: doSomething()
+
+      <span class="comment">// also invalid!</span>
+      font {
+          onPixelSizeChanged: doSomething()
+      }
+
+      <span class="comment">// but this is ok</span>
+      onFontChanged: doSomething()
+  }
+
+</pre>
+<p>但是，请注意，当基本类型的任何属性发生更改时，以及属性本身发生更改时，都会发出基本类型的属性更改信号。以下面的代码为例:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+      <span class="name">onFontChanged</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;font changed&quot;</span>)
+
+      <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">id</span>: <span class="name">otherText</span> }
+
+      <span class="name">focus</span>: <span class="number">true</span>
+
+      <span class="comment">// changing any of the font attributes, or reassigning the property</span>
+      <span class="comment">// to a different font value, will invoke the onFontChanged handler</span>
+      <span class="name">Keys</span>.onDigit1Pressed: <span class="name">font</span>.<span class="name">pixelSize</span> <span class="operator">+=</span> <span class="number">1</span>
+      <span class="name">Keys</span>.onDigit2Pressed: <span class="name">font</span>.<span class="name">b</span> <span class="operator">=</span> !<span class="name">font</span>.<span class="name">b</span>
+      <span class="name">Keys</span>.onDigit3Pressed: <span class="name">font</span> <span class="operator">=</span> <span class="name">otherText</span>.<span class="name">font</span>
+  }
+
+</pre>
+<p>相反，<a href="qtqml-typesystem-topic.html#qml-object-types">对象类型</a>的属性会发出它们自己的属性更改信号，而对象类型属性的属性更改信号处理程序仅在将属性重新分配到不同的对象值时调用。</p>
+</div>
+<p><b>参见 </b><a href="qtqml-typesystem-topic.html">QML类型系统</a>。</p>
+<!-- @@@qtqml-typesystem-basictypes.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

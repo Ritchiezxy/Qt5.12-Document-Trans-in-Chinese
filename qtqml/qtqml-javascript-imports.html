@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- imports.qdoc -->
+  <title>Importing JavaScript Resources in QML | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Importing JavaScript Resources in QML</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#importing-a-javascript-resource-from-a-qml-document">从QML文档导入JavaScript资源</a></li>
+<li class="level1"><a href="#imports-within-javascript-resources">在JavaScript资源中导入</a></li>
+<li class="level2"><a href="#importing-a-javascript-resource-from-another-javascript-resource">从另一个JavaScript资源导入一个JavaScript资源</a></li>
+<li class="level2"><a href="#importing-a-qml-module-from-a-javascript-resource">从JavaScript资源导入QML模块</a></li>
+<li class="level1"><a href="#including-a-javascript-resource-from-another-javascript-resource">包含来自另一个JavaScript资源的JavaScript资源</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">导入QML中的JavaScript资源</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-javascript-imports.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><a href="qtqml-javascript-resources.html">JavaScript资源</a>可以由<a href="qtqml-documents-topic.html">QML文档</a> 和其他JavaScript资源导入。JavaScript资源可以通过相对url或绝对url导入。在相对URL的情况下，相对于包含导入的QML文档或<a href="qtqml-javascript-resources.html">JavaScript资源</a>的位置解析位置。如果脚本文件不可访问，则会发生错误。如果需要从网络资源获取JavaScript，则将组件的<a href="qqmlcomponent.html#status-prop">statu</a>（状态）设置为“Loading”，直到脚本下载完毕。</p>
+<p>JavaScript资源还可以导入QML模块和其他JavaScript资源。JavaScript资源中的import语句的语法与QML文档中的import语句略有不同，QML文档的详细说明如下。</p>
+<a name="importing-a-javascript-resource-from-a-qml-document"></a>
+<h2 id="importing-a-javascript-resource-from-a-qml-document">从QML文档导入JavaScript资源</h2>
+<p>QML文档可以使用以下语法导入JavaScript资源:</p>
+<pre class="cpp">
+
+  import <span class="string">&quot;ResourceURL&quot;</span> as Qualifier
+
+</pre>
+<p>例如：</p>
+<pre class="cpp">
+
+  import <span class="string">&quot;jsfile.js&quot;</span> as Logic
+
+</pre>
+<p>导入的JavaScript资源总是使用&quot;as&quot;关键字进行限定。JavaScript资源的限定符必须以大写字母开头，并且必须是惟一的，因此在限定符和JavaScript文件之间总是存在一对一的映射。(这也意味着限定符不能与内置JavaScript对象(如<code>Date</code> 和 <code>Math</code>)命名相同)。</p>
+<p>通过<code>&quot;Qualifier.functionName(params)&quot;</code>语法，导入的JavaScript文件中定义的函数可用于导入QML文档中定义的对象。JavaScript资源中的函数可以接受参数，这些参数的类型可以是任何受支持的QML基本类型或对象类型，也可以是普通的JavaScript类型。当从QML调用这些函数时，通常的<a href="qtqml-cppintegration-data.html">数据类型转换规则</a>将应用于参数和返回值。</p>
+<a name="imports-within-javascript-resources"></a>
+<h2 id="imports-within-javascript-resources">在JavaScript资源中导入</h2>
+<p>在<code>QtQuick 2.0</code>中，添加了支持，允许JavaScript资源使用标准QML导入语法的变体来导入其他JavaScript资源和QML类型名称空间(其中应用了前面描述的所有规则和资格)。</p>
+<p>由于JavaScript资源能够在<code>QtQuick 2.0</code>中以这种方式导入另一个脚本或QML模块，因此定义了一些额外的语义:</p>
+<ul>
+<li>带有导入的脚本不会从导入它的QML文档继承导入(例如，访问Component.errorString将失败)</li>
+<li>没有导入的脚本将继承导入它的QML文档的导入(例如，访问Component.errorString将成功)</li>
+<li>共享脚本(即，定义为.pragma库)不从任何QML文档继承导入，即使它不导入任何其他脚本或模块</li>
+</ul>
+<p>第一种语义在概念上是正确的，因为特定的脚本可以由任意数量的QML文件导入。为了向后兼容，保留了第二种语义。第三种语义与共享脚本的当前语义保持不变，但是这里针对新的可能情况(脚本导入其他脚本或模块)进行了澄清。</p>
+<a name="importing-a-javascript-resource-from-another-javascript-resource"></a>
+<h3 >从另一个JavaScript资源导入一个JavaScript资源</h3>
+<p>JavaScript资源可以通过以下方式导入另一个资源:</p>
+<pre class="cpp">
+
+  <span class="operator">.</span>import <span class="string">&quot;filename.js&quot;</span> as Qualifier
+
+</pre>
+<p>例如：</p>
+<pre class="cpp">
+
+  <span class="operator">.</span>import <span class="string">&quot;factorial.js&quot;</span> as MathFunctions
+
+</pre>
+<a name="importing-a-qml-module-from-a-javascript-resource"></a>
+<h3 >从JavaScript资源导入QML模块</h3>
+<p>JavaScript资源可以通过以下方式导入QML模块:</p>
+<pre class="cpp">
+
+  <span class="operator">.</span>import TypeNamespace MajorVersion<span class="operator">.</span>MinorVersion as Qualifier
+
+</pre>
+<p>例如：</p>
+<pre class="cpp">
+
+  <span class="operator">.</span>import <span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>test <span class="number">1.0</span> as JsQtTest
+
+</pre>
+<p>特别是，这对于访问通过单例类型提供的功能可能很有用;有关更多信息，请参见<a href="qqmlengine.html#qmlRegisterSingletonType">qmlRegisterSingletonType</a>()。</p>
+<p><b>注意:</b>.import语法不适用于<a href="qml-workerscript.html">WorkerScript</a>中使用的脚本。</p><a name="including-a-javascript-resource-from-another-javascript-resource"></a>
+<h2 id="including-a-javascript-resource-from-another-javascript-resource">包含来自另一个JavaScript资源的JavaScript资源</h2>
+<p>当导入JavaScript文件时，必须使用限定符导入它。然后，可以通过导入脚本中的限定符(即<code>Qualifier.functionName(params)</code>)访问该文件中的函数。有时候，我们希望在导入上下文中提供这些函数，而不需要对它们进行限定，在这种情况下，可以使用<a href="qml-qtqml-qt.html#include-method">Qt.include()</a>函数从另一个JavaScript文件中包含一个JavaScript文件。这将把其他文件中的所有函数复制到当前文件的名称空间中，但忽略该文件中定义的所有pragma和import。 </p>
+<p>例如，下面左边的QML代码在脚本中调用<code>showCalculations()</code>。它可以在<code>factorial.js</code>中调用<code>factorial()</code>，因为它使用<a href="qml-qtqml-qt.html#include-method">Qt.include()</a>包含了<code>factorial.js</code>。</p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td  rowspan="2"><pre class="qml">
+
+  import QtQuick 2.0
+  import &quot;script.js&quot; as MyScript
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: {
+              <span class="name">MyScript</span>.<span class="name">showCalculations</span>(<span class="number">10</span>)
+              <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Call factorial() from QML:&quot;</span>,
+                  <span class="name">MyScript</span>.<span class="name">factorial</span>(<span class="number">10</span>))
+          }
+      }
+  }
+
+</pre>
+</td><td ><pre class="js">
+
+  <span class="comment">// script.js</span>
+  <span class="name">Qt</span>.<span class="name">include</span>(<span class="string">&quot;factorial.js&quot;</span>)
+
+  <span class="keyword">function</span> <span class="name">showCalculations</span>(value) {
+      <span class="name">console</span>.<span class="name">log</span>(
+          <span class="string">&quot;Call factorial() from script.js:&quot;</span>,
+          <span class="name">factorial</span>(<span class="name">value</span>));
+  }
+
+</pre>
+</td></tr>
+<tr valign="top" class="even"><td ><pre class="js">
+
+  <span class="comment">// factorial.js</span>
+  <span class="keyword">function</span> <span class="name">factorial</span>(a) {
+      <span class="name">a</span> <span class="operator">=</span> <span class="name">parseInt</span>(<span class="name">a</span>);
+      <span class="keyword">if</span> (<span class="name">a</span> <span class="operator">&lt;=</span> <span class="number">0</span>)
+          <span class="keyword">return</span> <span class="number">1</span>;
+      <span class="keyword">else</span>
+          <span class="keyword">return</span> <span class="name">a</span> <span class="operator">*</span> <span class="name">factorial</span>(<span class="name">a</span> <span class="operator">-</span> <span class="number">1</span>);
+  }
+
+</pre>
+</td></tr>
+</table></div>
+<p>注意，调用<a href="qml-qtqml-qt.html#include-method">Qt.include()</a>将<code>factorial.js</code>中的所有函数复制到<code>MyScript</code>名称空间中，这意味着QML组件也可以直接以<code>MyScript.factorial()</code>的形式访问<code>factorial()</code>。p>
+</div>
+<!-- @@@qtqml-javascript-imports.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

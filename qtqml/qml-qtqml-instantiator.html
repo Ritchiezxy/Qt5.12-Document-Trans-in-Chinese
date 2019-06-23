@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlinstantiator.cpp -->
+  <title>Instantiator QML Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >Instantiator QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#signals">信号</a></li>
+<li class="level1"><a href="#methods">方法</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的Instantiator（实例化器）类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Instantiator-brief -->
+<p>动态创建对象。<a href="#details">更多…</a></p>
+<!-- @@@Instantiator -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr></table></div><ul>
+<li><a href="qml-qtqml-instantiator-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-instantiator.html#active-prop">active</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtqml-instantiator.html#asynchronous-prop">asynchronous</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtqml-instantiator.html#count-prop">count</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtqml-instantiator.html#delegate-prop">delegate</a></b></b> : QtQml::Component</li>
+<li class="fn"><b><b><a href="qml-qtqml-instantiator.html#model-prop">model</a></b></b> : variant</li>
+<li class="fn"><b><b><a href="qml-qtqml-instantiator.html#object-prop">object</a></b></b> : QtObject</li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">信号</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-instantiator.html#objectAdded-signal">objectAdded</a></b></b>(int <i>index</i>,  QtObject <i>object</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-instantiator.html#objectRemoved-signal">objectRemoved</a></b></b>(int <i>index</i>,  QtObject <i>object</i>)</li>
+</ul>
+<a name="methods"></a>
+<h2 id="methods">方法</h2>
+<ul>
+<li class="fn">QtObject <b><b><a href="qml-qtqml-instantiator.html#objectAt-method">objectAt</a></b></b>(int <i>index</i>)</li>
+</ul>
+<!-- $$$Instantiator-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p>Instantiator可用于控制对象的动态创建，或从模板动态创建多个对象。</p>
+<p>实例化元素将管理它创建的对象。这些对象是实例化器的父对象，如果实例化器的属性发生更改，实例化器也可以删除这些对象。对象也可以通过其他方法动态销毁，实例化器不会重新创建它们，除非实例化器的属性发生更改。</p>
+<!-- @@@Instantiator -->
+<h2>属性文档</h2>
+<!-- $$$active -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="active-prop">
+<td class="tblQmlPropNode"><p>
+<a name="active-prop"></a><span class="name">active</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>当active为真，且委托组件就绪时，实例化器将根据模型创建对象。当active为false时，将不创建任何对象，并且之前创建的任何对象都将被销毁。</p>
+<p>默认是正确的。</p>
+</div></div><!-- @@@active -->
+<br/>
+<!-- $$$asynchronous -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="asynchronous-prop">
+<td class="tblQmlPropNode"><p>
+<a name="asynchronous-prop"></a><span class="name">asynchronous</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>当异步为真时，实例化器将尝试异步创建对象。这意味着对象可能不会立即可用，即使active被设置为true。</p>
+<p>您可以使用<a href="qml-qtqml-instantiator.html#objectAdded-signal">objectAdded</a> 信号来响应正在创建的项。</p>
+<p>默认是假的false。</p>
+</div></div><!-- @@@asynchronous -->
+<br/>
+<!-- $$$count -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="count-prop">
+<td class="tblQmlPropNode"><p>
+<a name="count-prop"></a><span class="name">count</span> : <span class="type"><a href="qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>实例化程序当前管理的对象数量。</p>
+</div></div><!-- @@@count -->
+<br/>
+<!-- $$$delegate -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="delegate-prop">
+<td class="tblQmlPropNode"><p>
+<a name="delegate-prop"></a><span class="qmldefault">[default] </span><span class="name">delegate</span> : <span class="type"><a href="qml-qtqml-component.html">QtQml::Component</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>用于创建所有对象的组件。</p>
+<p>请注意，委托的实例中将提供一个额外的变量index。这个变量引用实例化器内部实例的索引，并可用于通过实例化器的<a href="qml-qtqml-instantiator.html#objectAt-method">objectAt</a>方法获取对象。</p>
+<p>如果更改此属性，将销毁所有使用旧委托的实例，并使用新委托创建新实例。</p>
+</div></div><!-- @@@delegate -->
+<br/>
+<!-- $$$model -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="model-prop">
+<td class="tblQmlPropNode"><p>
+<a name="model-prop"></a><span class="name">model</span> : <span class="type"><a href="qml-variant.html">variant</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性可设置为任何受支持的<a href="../qtquick/qtquick-modelviewsdata-modelview.html#qml-data-models">数据模型</a>:</p>
+<ul>
+<li>一个数字，表示中继器要创建的委托的数量</li>
+<li>模型(例如<a href="qml-qtqml-models-listmodel.html">ListModel</a>项，或<a href="../qtcore/qabstractitemmodel.html">QAbstractItemModel</a>子类)</li>
+<li>一个字符串列表</li>
+<li>一个对象列表</li>
+</ul>
+<p>模型的类型影响公开给<a href="qml-qtqml-instantiator.html#delegate-prop">delegate</a>的属性。</p>
+<p>默认值为1，它创建一个委托实例。</p>
+<p><b>参见</b><a href="../qtquick/qtquick-modelviewsdata-modelview.html#qml-data-models">数据模型</a>。</p>
+</div></div><!-- @@@model -->
+<br/>
+<!-- $$$object -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="object-prop">
+<td class="tblQmlPropNode"><p>
+<a name="object-prop"></a><span class="name">object</span> : <span class="type"><a href="qml-qtqml-qtobject.html">QtObject</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这是对第一个创建对象的引用，用于方便只创建了一个对象的情况。</p>
+</div></div><!-- @@@object -->
+<br/>
+<h2>信号文档</h2>
+<!-- $$$objectAdded -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="objectAdded-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="objectAdded-signal"></a><span class="name">objectAdded</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>,  <span class="type"><a href="qml-qtqml-qtobject.html">QtObject</a></span> <i>object</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>当将对象添加到实例化器时，将发出此信号。<i>index</i>参数保存对象已给定的索引，<i>object</i>参数保存已添加的<a href="qml-qtqml-qtobject.html">QtObject</a>。</p>
+<p>对应的处理程序是<code>onObjectAdded</code>。</p>
+</div></div><!-- @@@objectAdded -->
+<br/>
+<!-- $$$objectRemoved -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="objectRemoved-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="objectRemoved-signal"></a><span class="name">objectRemoved</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>,  <span class="type"><a href="qml-qtqml-qtobject.html">QtObject</a></span> <i>object</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>当从实例化器中删除对象时，将发出此信号。<i>index</i>参数保存对象已被给定的索引， <i>object</i>参数保存已被删除的<a href="qml-qtqml-qtobject.html">QtObject</a>。</p>
+<p>如果<i>object</i>是由这个实例化器创建的，则不要保留对该对象的引用，因为在这些情况下，在处理信号后不久就会删除该对象。</p>
+<p>对应的处理程序是<code>onObjectRemoved</code>。</p>
+</div></div><!-- @@@objectRemoved -->
+<br/>
+<h2>方法文档</h2>
+<!-- $$$objectAt -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="objectAt-method">
+<td class="tblQmlFuncNode"><p>
+<a name="objectAt-method"></a><span class="type"><a href="qml-qtqml-qtobject.html">QtObject</a></span> <span class="name">objectAt</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>返回对具有给定<i>index</i>的对象的引用。</p>
+</div></div><!-- @@@objectAt -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

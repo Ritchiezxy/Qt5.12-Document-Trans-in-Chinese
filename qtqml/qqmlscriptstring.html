@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlscriptstring.cpp -->
+  <title>QQmlScriptString Class | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-module.html">C++ Classes</a></td><td >QQmlScriptString</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QQmlScriptString类</h1>
+<!-- $$$QQmlScriptString-brief -->
+<p><a href="qqmlscriptstring.html">QQmlScriptString</a> 类封装了一个脚本及其上下文。<a href="#details">更多…</a></p>
+<!-- @@@QQmlScriptString -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlScriptString&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr></table></div><ul>
+<li><a href="qqmlscriptstring-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlscriptstring.html#QQmlScriptString">QQmlScriptString</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlscriptstring.html#QQmlScriptString-1">QQmlScriptString</a></b>(const QQmlScriptString &amp;<i>other</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlscriptstring.html#booleanLiteral">booleanLiteral</a></b>(bool *<i>ok</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlscriptstring.html#isEmpty">isEmpty</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlscriptstring.html#isNullLiteral">isNullLiteral</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlscriptstring.html#isUndefinedLiteral">isUndefinedLiteral</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> qreal </td><td class="memItemRight bottomAlign"><b><a href="qqmlscriptstring.html#numberLiteral">numberLiteral</a></b>(bool *<i>ok</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qqmlscriptstring.html#stringLiteral">stringLiteral</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlscriptstring.html#operator-not-eq">operator!=</a></b>(const QQmlScriptString &amp;<i>other</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QQmlScriptString &amp;</td><td class="memItemRight bottomAlign"><b><a href="qqmlscriptstring.html#operator-eq">operator=</a></b>(const QQmlScriptString &amp;<i>other</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlscriptstring.html#operator-eq-eq">operator==</a></b>(const QQmlScriptString &amp;<i>other</i>) const</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$QQmlScriptString-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><a href="qqmlscriptstring.html">QQmlScriptString</a>类封装了一个脚本及其上下文。</p>
+<p><a href="qqmlscriptstring.html">QQmlScriptString</a> 用于创建接受来自QML的脚本&quot;assignment（赋值）&quot;的<a href="../qtcore/qobject.html">QObject</a> QObject属性。</p>
+<p>通常，下列QML将导致为<code>script</code>属性建立绑定;也就是说，<code>script</code>将被分配从运行<code>myObj.value = Math.max(myValue, 100)</code>中获得的值 。 </p>
+<pre class="qml">
+
+  <span class="type">MyType</span> {
+      <span class="name">script</span>: <span class="name">myObj</span>.<span class="name">value</span> <span class="operator">=</span> <span class="name">Math</span>.<span class="name">max</span>(<span class="name">myValue</span>, <span class="number">100</span>)
+  }
+
+</pre>
+<p>如果该属性具有 <a href="qqmlscriptstring.html">QQmlScriptString</a>类型，则脚本本身——<i>myObj.value = Math.max(myValue, 100)</i> ——将传递给<code>script</code> 属性，类可以选择如何处理它。通常，类将在稍后的某个时候使用 <a href="qqmlexpression.html">QQmlExpression</a>计算脚本。</p>
+<pre class="cpp">
+
+  <span class="type"><a href="qqmlexpression.html">QQmlExpression</a></span> expr(scriptString);
+  expr<span class="operator">.</span>evaluate();
+
+</pre>
+</div>
+<p><b>参见</b><a href="qqmlexpression.html">QQmlExpression</a>。</p>
+<!-- @@@QQmlScriptString -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QQmlScriptString[overload1]$$$QQmlScriptString -->
+<h3 class="fn" id="QQmlScriptString"><a name="QQmlScriptString"></a>QQmlScriptString::<span class="name">QQmlScriptString</span>()</h3>
+<p>构造一个空实例。</p>
+<!-- @@@QQmlScriptString -->
+<!-- $$$QQmlScriptString$$$QQmlScriptStringconstQQmlScriptString& -->
+<h3 class="fn" id="QQmlScriptString-1"><a name="QQmlScriptString-1"></a>QQmlScriptString::<span class="name">QQmlScriptString</span>(const <span class="type"><a href="qqmlscriptstring.html#QQmlScriptString">QQmlScriptString</a></span> &amp;<i>other</i>)</h3>
+<p><i>other</i>副本。</p>
+<!-- @@@QQmlScriptString -->
+<!-- $$$booleanLiteral[overload1]$$$booleanLiteralbool* -->
+<h3 class="fn" id="booleanLiteral"><a name="booleanLiteral"></a><span class="type">bool</span> QQmlScriptString::<span class="name">booleanLiteral</span>(<span class="type">bool</span> *<i>ok</i>) const</h3>
+<p>如果<a href="qqmlscriptstring.html">QQmlScriptString</a>的内容是布尔字面值，则返回布尔值并将<i>ok</i>设置为true。否则返回false并将<i>ok</i>设置为false。</p>
+<!-- @@@booleanLiteral -->
+<!-- $$$isEmpty[overload1]$$$isEmpty -->
+<h3 class="fn" id="isEmpty"><a name="isEmpty"></a><span class="type">bool</span> QQmlScriptString::<span class="name">isEmpty</span>() const</h3>
+<p>返回<a href="qqmlscriptstring.html">QQmlScriptString</a>是否为空。</p>
+<!-- @@@isEmpty -->
+<!-- $$$isNullLiteral[overload1]$$$isNullLiteral -->
+<h3 class="fn" id="isNullLiteral"><a name="isNullLiteral"></a><span class="type">bool</span> QQmlScriptString::<span class="name">isNullLiteral</span>() const</h3>
+<p>返回 <a href="qqmlscriptstring.html">QQmlScriptString</a> 的内容是否为 <code>null</code> 文本。</p>
+<!-- @@@isNullLiteral -->
+<!-- $$$isUndefinedLiteral[overload1]$$$isUndefinedLiteral -->
+<h3 class="fn" id="isUndefinedLiteral"><a name="isUndefinedLiteral"></a><span class="type">bool</span> QQmlScriptString::<span class="name">isUndefinedLiteral</span>() const</h3>
+<p>返回 <a href="qqmlscriptstring.html">QQmlScriptString</a> 的内容是否为 <code>undefined</code> 文本。</p>
+<!-- @@@isUndefinedLiteral -->
+<!-- $$$numberLiteral[overload1]$$$numberLiteralbool* -->
+<h3 class="fn" id="numberLiteral"><a name="numberLiteral"></a><span class="type"><a href="../qtcore/qtglobal.html#qreal-typedef">qreal</a></span> QQmlScriptString::<span class="name">numberLiteral</span>(<span class="type">bool</span> *<i>ok</i>) const</h3>
+<p>如果<a href="qqmlscriptstring.html">QQmlScriptString</a> 的内容是一个数字文字，则返回该数字并将<i>ok</i>设置为true。否则返回0.0并将<i>ok</i>设置为false。</p>
+<!-- @@@numberLiteral -->
+<!-- $$$stringLiteral[overload1]$$$stringLiteral -->
+<h3 class="fn" id="stringLiteral"><a name="stringLiteral"></a><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QQmlScriptString::<span class="name">stringLiteral</span>() const</h3>
+<p>如果<a href="qqmlscriptstring.html">QQmlScriptString</a> 的内容是字符串文本，则返回该字符串。否则返回空<a href="../qtcore/qstring.html">QString</a>。</p>
+<!-- @@@stringLiteral -->
+<!-- $$$operator!=[overload1]$$$operator!=constQQmlScriptString& -->
+<h3 class="fn" id="operator-not-eq"><a name="operator-not-eq"></a><span class="type">bool</span> QQmlScriptString::<span class="name">operator!=</span>(const <span class="type"><a href="qqmlscriptstring.html#QQmlScriptString">QQmlScriptString</a></span> &amp;<i>other</i>) const</h3>
+<p>如果此对象与<a href="qqmlscriptstring.html">QQmlScriptString</a>类型的<i>other</i>对象不同，则返回<code>true</code>。</p>
+<p><b>参见</b><a href="qqmlscriptstring.html#operator-eq-eq">operator==</a>()。</p>
+<!-- @@@operator!= -->
+<!-- $$$operator=[overload1]$$$operator=constQQmlScriptString& -->
+<h3 class="fn" id="operator-eq"><a name="operator-eq"></a><span class="type"><a href="qqmlscriptstring.html#QQmlScriptString">QQmlScriptString</a></span> &amp;QQmlScriptString::<span class="name">operator=</span>(const <span class="type"><a href="qqmlscriptstring.html#QQmlScriptString">QQmlScriptString</a></span> &amp;<i>other</i>)</h3>
+<p>将<i>other</i> 赋给这个对象。</p>
+<!-- @@@operator= -->
+<!-- $$$operator==[overload1]$$$operator==constQQmlScriptString& -->
+<h3 class="fn" id="operator-eq-eq"><a name="operator-eq-eq"></a><span class="type">bool</span> QQmlScriptString::<span class="name">operator==</span>(const <span class="type"><a href="qqmlscriptstring.html#QQmlScriptString">QQmlScriptString</a></span> &amp;<i>other</i>) const</h3>
+<p>如果这个对象和<a href="qqmlscriptstring.html">QQmlScriptString</a>类型的<i>other</i>对象相等，则返回<code>true</code>。</p>
+<p><b>参见</b><a href="qqmlscriptstring.html#operator-not-eq">operator!=</a>()。</p>
+<!-- @@@operator== -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

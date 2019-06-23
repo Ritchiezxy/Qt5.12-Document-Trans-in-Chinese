@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- cppplugins.qdoc -->
+  <title>Creating C++ Plugins for QML | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Creating C++ Plugins for QML</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 引用 Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#creating-a-plugin">创建一个插件</a></li>
+<li class="level1"><a href="#timeexample-qml-extension-plugin">TimeExample QML扩展插件</a></li>
+<li class="level1"><a href="#project-settings-for-the-plugin">插件的项目设置</a></li>
+<li class="level1"><a href="#plugin-definition-in-the-qmldir">qmldir中的插件定义</a></li>
+<li class="level1"><a href="#reference">引用</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">为QML创建C++插件</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-modules-cppplugins.html-description -->
+<div class="descr"> <a name="details"></a>
+<a name="creating-a-plugin"></a>
+<h2 id="creating-a-plugin">创建一个插件</h2>
+<p><a href="qqmlengine.html"> QML引擎</a>为QML加载C++插件。此类插件通常在QML扩展模块中提供，并且可以为导入模块的QML文档中的客户端提供使用类型。模块至少需要注册一种类型才能被认为是有效的。</p>
+<p><a href="qqmlextensionplugin.html">QQmlExtensionPlugin</a>是一个插件接口，它可以创建可以动态加载到QML应用程序中的QML扩展。这些扩展允许自定义QML类型对QML引擎可用。</p>
+<p>编写QML扩展插件:</p>
+<ol class="1" type="1"><li>子类化<a href="qqmlextensionplugin.html">QQmlExtensionPlugin</a><ul>
+<li>使用<a href="../qtcore/qtplugin.html#Q_PLUGIN_METADATA">Q_PLUGIN_METADATA</a>()宏将插件注册到Qt元对象系统中</li>
+<li>覆盖<a href="qqmlextensionplugin.html#registerTypes">registerTypes()</a> 方法并调用<a href="qqmlengine.html#qmlRegisterType">qmlRegisterType</a>() 来注册插件要导出的类型</li>
+</ul>
+</li>
+<li>为插件编写一个项目文件</li>
+<li>创建一个 <a href="qtqml-modules-qmldir.html">qmldir文件</a>来描述插件</li>
+</ol>
+<p>QML扩展插件适用于特定于应用程序的插件或类库插件。库插件应该限制自己注册类型，因为对引擎根上下文的任何操作都可能导致库用户代码中的冲突或其他问题。</p>
+<a name="timeexample-qml-extension-plugin"></a>
+<h2 id="timeexample-qml-extension-plugin">TimeExample QML扩展插件</h2>
+<p>假设有一个新的<code>TimeModel</code>  C++类，它应该作为一个新的QML类型提供。它通过<code>hour</code> 和 <code>minute</code>属性提供当前时间。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> TimeModel : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
+  {
+      Q_OBJECT
+      Q_PROPERTY(<span class="type">int</span> hour READ hour NOTIFY timeChanged)
+      Q_PROPERTY(<span class="type">int</span> minute READ minute NOTIFY timeChanged)
+      ...
+
+</pre>
+<p>为了使这种类型可用，我们创建了一个名为<code>QExampleQmlPlugin</code>的插件类，它是<a href="qqmlextensionplugin.html">QQmlExtensionPlugin</a>的子类。它覆盖<a href="qqmlextensionplugin.html#registerTypes">registerTypes()</a>方法，以便使用<a href="qqmlengine.html#qmlRegisterType">qmlRegisterType</a>()注册<code>TimeModel</code>类型。它还使用类定义中的<a href="../qtcore/qtplugin.html#Q_PLUGIN_METADATA">Q_PLUGIN_METADATA</a>()宏，使用插件的唯一标识符向Qt元对象系统注册插件。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> <span class="type">QExampleQmlPlugin</span> : <span class="keyword">public</span> <span class="type"><a href="qqmlextensionplugin.html">QQmlExtensionPlugin</a></span>
+  {
+      Q_OBJECT
+      Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
+
+  <span class="keyword">public</span>:
+      <span class="type">void</span> registerTypes(<span class="keyword">const</span> <span class="type">char</span> <span class="operator">*</span>uri) override
+      {
+          Q_ASSERT(uri <span class="operator">=</span><span class="operator">=</span> QLatin1String(<span class="string">&quot;TimeExample&quot;</span>));
+          qmlRegisterType<span class="operator">&lt;</span>TimeModel<span class="operator">&gt;</span>(uri<span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="string">&quot;Time&quot;</span>);
+      }
+  };
+
+</pre>
+<p>这将在这个插件库的<code>1.0</code>版本中注册 <code>TimeModel</code>类，作为一个名为<code>Time</code>的QML类型。宏<a href="../qtcore/qtglobal.html#Q_ASSERT">Q_ASSERT</a>() 可以确保使用此插件的任何QML组件正确导入类型名称空间。文章<a href="qtqml-cppintegration-definetypes.html">在C++中定义QML类型</a>有更多关于在运行时中注册C++类型的信息。</p>
+<a name="project-settings-for-the-plugin"></a>
+<h2 id="project-settings-for-the-plugin">插件的项目设置</h2>
+<p>此外，项目文件（<code>.pro</code>）将项目定义为插件库，指定它应该构建到<code>imports/TimeExample</code>目录中，并注册插件目标名和其他各种细节:</p>
+<pre class="cpp">
+
+  TEMPLATE <span class="operator">=</span> lib
+  CONFIG <span class="operator">+</span><span class="operator">=</span> qt plugin
+  QT <span class="operator">+</span><span class="operator">=</span> qml
+
+  DESTDIR <span class="operator">=</span> imports<span class="operator">/</span>TimeExample
+  TARGET <span class="operator">=</span> qmlqtimeexampleplugin
+  SOURCES <span class="operator">+</span><span class="operator">=</span> qexampleqmlplugin<span class="operator">.</span>cpp
+
+</pre>
+<a name="plugin-definition-in-the-qmldir"></a>
+<h2 id="plugin-definition-in-the-qmldir">qmldir中的插件定义</h2>
+<p>最后，在<code>imports/TimeExample</code>目录中需要一个<a href="qtqml-modules-qmldir.html">qmldir文件</a>来描述插件及其导出的类型。该插件包括一个<code>Clock.qml</code>文件和由项目构建的<code>qmlqtimeexampleplugin</code>(如<code>.pro</code>文件中所示)，所以这两个都需要在<code>qmldir</code>文件中指定:</p>
+<pre class="cpp">
+
+  module TimeExample
+  Clock <span class="number">1.0</span> Clock<span class="operator">.</span>qml
+  plugin qmlqtimeexampleplugin
+
+</pre>
+<p>为了使本例更简单，TimeExample源目录位于<code>imports/TimeExample</code>中，我们构建了<a href="../qtdoc/configure-options.html#source-build-and-install-directories">in-source</a>。但是，源目录的结构并不那么重要，因为<code>qmldir</code>文件可以指定安装QML文件的路径。</p>
+<p>重要的是安装qmldir的目录的名称。当用户导入我们的模块时，QML引擎使用<a href="qtqml-modules-qmldir.html#contents-of-a-module-definition-qmldir-file">模块标识符</a>(<code>TimeExample</code>)来查找插件，因此安装它的目录必须与模块标识符匹配。</p>
+<p>项目构建并安装之后，导入<code>TimeExample</code>模块的任何QML组件都可以访问新的<code>Time</code>组件。</p>
+<pre class="qml">
+
+  import TimeExample 1.0 <span class="comment">// import types from the plugin</span>
+
+  <span class="type">Clock</span> { <span class="comment">// this class is defined in QML (imports/TimeExample/Clock.qml)</span>
+
+      <span class="type">Time</span> { <span class="comment">// this class is defined in C++ (plugin.cpp)</span>
+          <span class="name">id</span>: <span class="name">time</span>
+      }
+
+      <span class="name">hours</span>: <span class="name">time</span>.<span class="name">hour</span>
+      <span class="name">minutes</span>: <span class="name">time</span>.<span class="name">minute</span>
+
+  }
+
+</pre>
+<p><a href="qtqml-qmlextensionplugins-example.html">插件示例</a>中提供了完整的源代码。</p>
+<a name="reference"></a>
+<h2 id="reference">引用</h2>
+<ul>
+<li><a href="qtqml-tutorials-extending-qml-example.html">用C++编写QML扩展</a> ——包含关于创建QML插件的章节。</li>
+<li><a href="qtqml-cppintegration-definetypes.html">从C++定义QML类型</a> —— 关于将C++类型注册到运行时的信息。</li>
+<li><a href="../qtdoc/plugins-howto.html">如何创建Qt插件</a> —— 关于Qt插件的信息</li>
+</ul>
+</div>
+<!-- @@@qtqml-modules-cppplugins.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

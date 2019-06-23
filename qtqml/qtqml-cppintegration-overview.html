@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- topic.qdoc -->
+  <title>Overview - QML and C++ Integration | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Overview - QML and C++ Integration</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#choosing-the-correct-integration-method-between-c-and-qml">在C++和QML之间选择正确的集成方法</a></li>
+<li class="level1"><a href="#exposing-attributes-of-c-classes-to-qml">将C++类的属性公开给QML</a></li>
+<li class="level1"><a href="#defining-qml-types-from-c">从C++定义QML类型</a></li>
+<li class="level1"><a href="#embedding-c-objects-into-qml-with-context-properties">使用上下文属性将C++对象嵌入QML</a></li>
+<li class="level1"><a href="#interacting-with-qml-objects-from-c">与来自C++的QML对象交互</a></li>
+<li class="level1"><a href="#data-type-conversion-between-qml-and-c">QML和C++之间的数据类型转换</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">概述- QML与C++的集成</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-cppintegration-overview.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML被设计成易于通过C++代码扩展。<a href="qtqml-index.html">Qt QML</a> 模块中的类使QML对象能够从C++中加载和操作，QML引擎与<a href="../qtcore/metaobjects.html">Qt元对象系统</a> 集成的本质使C++功能能够直接从QML中调用。这允许开发使用QML、JavaScript和C++代码混合实现的混合应用程序。</p>
+<p>集成QML和C++提供了多种机会，包括:</p>
+<ul>
+<li>通过在<a href="qtqml-documents-topic.html">QML文档</a>中使用QML和JavaScript实现用户界面代码和应用程序逻辑代码，并使用C++实现后者，从而将用户界面代码与应用程序逻辑代码分离开来</li>
+<li>从QML中使用和调用一些C++功能(例如，要调用应用程序逻辑，可以使用C++实现的数据模型，或者调用第三方C++库中的一些函数)</li>
+<li>访问 <a href="qtqml-index.html">Qt QML</a> 或<a href="../qtquick/qtquick-index.html">Qt Quick</a>C++ API中的功能(例如，使用<a href="../qtquick/qquickimageprovider.html">QQuickImageProvider</a>动态生成图像)</li>
+<li>从C++实现您自己的<a href="qtqml-typesystem-objecttypes.html">QML对象类型</a>——无论是在您自己的特定应用程序中使用，还是分发给其他人</li>
+</ul>
+<p>要向QML提供一些C++数据或功能，必须从<a href="../qtcore/qobject.html">QObject</a>派生的类中提供这些数据或功能。由于QML引擎与元对象系统集成，因此可以从QML访问任何<a href="../qtcore/qobject.html">QObject</a>派生类的属性、方法和信号，如<a href="qtqml-cppintegration-exposecppattributes.html">将C++类型的属性公开给QML</a>所述。一旦该类提供了所需的功能，它就可以通过多种方式暴露给QML:</p>
+<ul>
+<li>这个类可以<a href="qtqml-cppintegration-definetypes.html#registering-an-instantiable-object-type">注册为一个可实例化的QML类型</a>，这样就可以像QML代码中的任何普通<a href="qtqml-typesystem-objecttypes.html">QML对象类型</a> 一样实例化和使用它。</li>
+<li>类可以注册为 <a href="qtqml-cppintegration-definetypes.html#registering-singleton-objects-with-a-singleton-type">单例类型</a> ，这样就可以从QML代码导入类的单个实例，从而允许从QML访问实例的属性、方法和信号</li>
+<li>类的实例可以作为<i>context（上下文）属性</i>或<i>context（上下文）对象</i><a href="qtqml-cppintegration-contextproperties.html">嵌入到QML代码</a> 中，从而允许从QML访问实例的属性、方法和信号</li>
+</ul>
+<p>这些是从QML代码访问C++功能的最常见方法;有关更多选项和详细信息，请参阅下面小节中描述的主要文档页面。此外，除了能够从QML访问C++功能外，<a href="qtqml-index.html">Qt QML</a>模块还提供了从C++代码反向操作QML对象的方法。参见<a href="qtqml-cppintegration-interactqmlfromcpp.html">与来自C++的QML对象交互</a>以获取更多信息。</p>
+<p>最后，C++代码可以集成到C++应用程序或C++插件中，这取决于它是作为独立的应用程序发布还是作为库发布。插件可以与QML模块集成，然后可以导入QML代码并在其他应用程序中使用QML模块;有关更多信息，请参见<a href="qtqml-modules-cppplugins.html">在C++插件中提供类型和功能</a> 。</p>
+<a name="choosing-the-correct-integration-method-between-c-and-qml"></a>
+<h2 id="choosing-the-correct-integration-method-between-c-and-qml">在C++和QML之间选择正确的集成方法</h2>
+<p>为了快速确定哪种集成方法适合您的情况，可以使用以下流程图:</p>
+<p class="centerAlign"><img src="images/cpp-qml-integration-flowchart.png" alt="" /></p><a name="exposing-attributes-of-c-classes-to-qml"></a>
+<h2 id="exposing-attributes-of-c-classes-to-qml">将C++类的属性公开给QML</h2>
+<p>由于QML引擎与Qt元对象系统的集成，QML可以很容易地从C++扩展。这种集成允许从QML访问任何<a href="../qtcore/qobject.html">QObject</a>派生类的属性、方法和信号:可以读取和修改属性，可以从JavaScript表达式调用方法，并根据需要自动为信号创建信号处理程序。此外，可以从QML访问<a href="../qtcore/qobject.html">QObject</a>派生类的枚举值。</p>
+<p>有关更多信息，请参见 <a href="qtqml-cppintegration-exposecppattributes.html">将C++类型的属性公开给QML</a> 。</p>
+<a name="defining-qml-types-from-c"></a>
+<h2 id="defining-qml-types-from-c">从C++定义QML类型</h2>
+<p>QML类型可以在C++中定义，然后在<a href="qtqml-typesystem-topic.html">QML类型系统</a>中注册。这允许将C++类实例化为<a href="qtqml-typesystem-objecttypes.html">QML对象类型</a>，从而使自定义对象类型能够在C++中实现并集成到现有的QML代码中。C++类也可以注册其他用途:例如,它可以注册为一个单例类型，使一个类实例可以由QML代码导入，或者可以注册它，使非实例化类的枚举值可以从QML访问。</p>
+<p>此外，<a href="qtqml-index.html">Qt QML</a> 模块提供了定义QML类型的机制，这些QML类型与附加属性和默认属性等QML概念集成。</p>
+<p>有关从C++注册和创建自定义QML类型的更多信息，请参阅<a href="qtqml-cppintegration-definetypes.html">从C++定义QML类型</a> 文档。</p>
+<a name="embedding-c-objects-into-qml-with-context-properties"></a>
+<h2 id="embedding-c-objects-into-qml-with-context-properties">使用上下文属性将C++对象嵌入QML</h2>
+<p>C++对象和值可以使用<i>context属性</i> 和<i>context对象</i>直接嵌入到加载的QML对象的上下文(或<i>scope</i>)中。这是通过<a href="qtqml-index.html">Qt QML</a>模块提供的<a href="qqmlcontext.html">QQmlContext</a>类实现的，它将数据公开给QML组件的上下文，允许将数据从C++注入QML。).</p>
+<p>参见<a href="qtqml-cppintegration-contextproperties.html">使用上下文属性将C++对象嵌入QML</a>以获取更多信息。</p>
+<a name="interacting-with-qml-objects-from-c"></a>
+<h2 id="interacting-with-qml-objects-from-c">与来自C++的QML对象交互</h2>
+<p>QML对象类型可以从C++实例化并检查，以便访问它们的属性、调用它们的方法并接收它们的信号通知。这是可能的，因为所有QML对象类型都是使用<a href="../qtcore/qobject.html">QObject</a>派生类实现的，从而使QML引擎能够通过Qt元对象系统动态加载和内省对象。</p>
+<p><b>警告:</b> 尽管可以从C++访问QML对象并操纵它们，但不推荐使用这种方法，除非用于测试和原型设计。QML和C++集成的优点之一是能够在QML中实现与C++逻辑和dataset后端分离的ui，如果C++端开始直接操作QML，则会失败。这种方法还使更改QML UI变得很困难，而不会影响其C++版本。</p>
+<p>有关从C++访问QML对象的更多信息，请参阅<a href="qtqml-cppintegration-interactqmlfromcpp.html">有关与C++中的QML对象交互的文档</a>。</p>
+<a name="data-type-conversion-between-qml-and-c"></a>
+<h2 id="data-type-conversion-between-qml-and-c">QML和C++之间的数据类型转换</h2>
+<p>当QML和C++之间交换数据值时，QML引擎将其转换为适合QML或C++使用的正确数据类型，前提是所涉及的数据类型为引擎所知。</p>
+<p>有关引擎支持的内置类型的信息，以及在QML和C+之间交换时如何转换这些类型以供使用，请参阅 <a href="qtqml-cppintegration-data.html">QML和C++之间的数据类型转换</a>。</p>
+</div>
+<!-- @@@qtqml-cppintegration-overview.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

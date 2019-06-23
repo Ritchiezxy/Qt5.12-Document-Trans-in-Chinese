@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- hostenvironment.qdoc -->
+  <title>JavaScript Host Environment | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >JavaScript Host Environment</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#common-base">公共基础</a></li>
+<li class="level1"><a href="#qml-global-object">QML全局对象</a></li>
+<li class="level1"><a href="#javascript-objects-and-functions">JavaScript对象和函数</a></li>
+<li class="level1"><a href="#javascript-environment-restrictions">JavaScript环境限制</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">JavaScript主机环境</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-javascript-hostenvironment.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML为编写QML应用程序提供了一个JavaScript主机环境。此环境与浏览器或服务器端JavaScript环境(如Node.js)提供的主机环境不同。例如，QML不像浏览器环境中常见的那样提供<code>window</code>对象或<code>DOM API</code>。</p>
+<a name="common-base"></a>
+<h2 id="common-base">公共基础</h2>
+<p>与浏览器或服务器端JavaScript环境一样，QML运行时实现<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMAScript语言规范</a>标准。这提供了对标准定义的所有内置类型和函数的访问，比如Object、 Array、 和 Math。QML运行时实现了标准的第7版。 </p>
+<p>QML文档中没有明确地记录标准ECMAScript内置程序。有关其使用的更多信息，请参考ECMA-262第七版标准或许多在线JavaScript参考和教程站点之一，如<a href="http://www.w3schools.com/jsref/default.asp">W3Schools JavaScript参考</a> (JavaScript对象参考部分)。许多站点关注浏览器中的JavaScript，因此在某些情况下，您可能需要再次检查规范，以确定给定的函数或对象是标准ECMAScript的一部分，还是特定于浏览器环境。在上面的W3Schools链接中，<code>JavaScript对象引用</code> 部分通常涵盖标准，而<code>浏览器对象引用</code>和<code>HTML DOM对象引用</code>部分是特定于浏览器的(因此不适用于QML)。</p>
+<a name="qml-global-object"></a>
+<h2 id="qml-global-object">QML全局对象</h2>
+<p>QML JavaScript宿主环境实现了许多宿主对象和函数，如<a href="qtqml-javascript-qmlglobalobject.html">QML全局对象</a>文档中详细描述的那样。</p>
+<p>无论是否导入了任何模块，这些主机对象和函数总是可用的。</p>
+<a name="javascript-objects-and-functions"></a>
+<h2 id="javascript-objects-and-functions">JavaScript对象和函数</h2>
+<p>在<a href="qtqml-javascript-functionlist.html">JavaScript对象和函数列表</a>中可以找到QML引擎支持的JavaScript对象、函数和属性列表。</p>
+<p>注意，QML对原生对象做了以下修改:</p>
+<ul>
+<li>一个<a href="qml-qtqml-string.html#arg-method">arg()</a> 函数被添加到<a href="qml-qtqml-string.html">String</a>原型中。</li>
+<li><a href="qml-qtqml-date.html">Date</a> 和 <a href="qml-qtqml-number.html">Number</a>原型中添加了支持本地语言环境的转换函数。</li>
+</ul>
+<p>此外，QML还扩展了instanceof函数的行为，允许对QML类型进行类型检查。这意味着您可以使用它来验证变量确实是您期望的类型，例如:</p>
+<pre class="qml">
+
+  var v = something();
+  if (!v instanceof Item) {
+      throw new TypeError(&quot;I need an Item type!&quot;);
+  }
+
+  ...
+
+</pre>
+<a name="javascript-environment-restrictions"></a>
+<h2 id="javascript-environment-restrictions">JavaScript环境限制</h2>
+<p>QML对JavaScript代码实现以下限制:</p>
+<ul>
+<li>在<code>.qml</code>文件中编写的JavaScript代码不能修改全局对象。.js文件中的JavaScript代码可以修改全局对象，这些修改在<a href="qtqml-javascript-imports.html#importing-a-javascript-resource-from-a-qml-document">导入</a>时对.qml文件是可见的。<p>在QML中，全局对象是常量——不能修改或删除现有属性，也不能创建新属性。</p>
+<p>大多数JavaScript程序不会故意修改全局对象。然而，JavaScript自动创建未声明的变量是对全局对象的隐式修改，在QML中是禁止的。</p>
+<p>假设<code>a</code> 变量在作用域链中不存在，那么下面的代码在QML中是非法的:</p>
+<pre class="cpp">
+
+  <span class="comment">// Illegal modification of undeclared variable</span>
+  a <span class="operator">=</span> <span class="number">1</span>;
+  <span class="keyword">for</span> (var ii <span class="operator">=</span> <span class="number">1</span>; ii <span class="operator">&lt;</span> <span class="number">10</span>; <span class="operator">+</span><span class="operator">+</span>ii)
+      a <span class="operator">=</span> a <span class="operator">*</span> ii;
+  console<span class="operator">.</span>log(<span class="string">&quot;Result: &quot;</span> <span class="operator">+</span> a);
+
+</pre>
+<p>它可以简单地修改为这个合法的代码。</p>
+<pre class="cpp">
+
+  var a <span class="operator">=</span> <span class="number">1</span>;
+  <span class="keyword">for</span> (var ii <span class="operator">=</span> <span class="number">1</span>; ii <span class="operator">&lt;</span> <span class="number">10</span>; <span class="operator">+</span><span class="operator">+</span>ii)
+      a <span class="operator">=</span> a <span class="operator">*</span> ii;
+  console<span class="operator">.</span>log(<span class="string">&quot;Result: &quot;</span> <span class="operator">+</span> a);
+
+</pre>
+<p>任何修改全局对象的尝试(隐式或显式)都会导致异常。如果未捕获，这将导致打印警告，其中包括违规代码的文件和行号。</p>
+</li>
+<li>全局代码在缩小的范围内运行。<p>在启动期间，如果QML文件包含一个带有&quot;global&quot;（全局）代码的外部JavaScript文件，那么它将在只包含外部文件本身和全局对象的范围内执行。也就是说，它将不能访问它<a href="qtqml-documents-scope.html">通常访问</a>的QML对象和属性。</p>
+<p>只允许访问脚本局部变量的全局代码，这是一个有效的全局代码示例。</p>
+<pre class="cpp">
+
+  var colors <span class="operator">=</span> <span class="operator">[</span> <span class="string">&quot;red&quot;</span><span class="operator">,</span> <span class="string">&quot;blue&quot;</span><span class="operator">,</span> <span class="string">&quot;green&quot;</span><span class="operator">,</span> <span class="string">&quot;orange&quot;</span><span class="operator">,</span> <span class="string">&quot;purple&quot;</span> <span class="operator">]</span>;
+
+</pre>
+<p>访问QML对象的全局代码将无法正确运行。</p>
+<pre class="cpp">
+
+  <span class="comment">// Invalid global code - the &quot;rootObject&quot; variable is undefined</span>
+  var initialPosition <span class="operator">=</span> { rootObject<span class="operator">.</span>x<span class="operator">,</span> rootObject<span class="operator">.</span>y }
+
+</pre>
+<p>由于QML环境尚未完全建立，所以存在此限制。要在环境设置完成后运行代码，请参阅<a href="qtqml-javascript-expressions.html#javascript-in-application-startup-code">应用程序启动代码中的JavaScript</a>。</p>
+</li>
+<li>在大多数上下文中，<code>this</code> 的值在QML中没有定义。<p>从JavaScript绑定属性时支持<code>this</code>关键字。在QML绑定表达式、QML信号处理程序和QML声明函数中，<code>this</code>指的是scope对象。在所有其他情况下，<code>this</code>的值在QML中没有定义。</p>
+<p>要引用特定对象，请提供一个<code>id</code>。例如：</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">100</span>
+      <span class="keyword">function</span> <span class="name">mouseAreaClicked</span>(area) {
+          <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Clicked in area at: &quot;</span> <span class="operator">+</span> <span class="name">area</span>.<span class="name">x</span> <span class="operator">+</span> <span class="string">&quot;, &quot;</span> <span class="operator">+</span> <span class="name">area</span>.<span class="name">y</span>);
+      }
+      <span class="comment">// This will pass area to the function</span>
+      <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">id</span>: <span class="name">area</span>
+          <span class="name">y</span>: <span class="number">50</span>; <span class="name">height</span>: <span class="number">50</span>; <span class="name">width</span>: <span class="number">200</span>
+          <span class="name">onClicked</span>: <span class="name">mouseAreaClicked</span>(<span class="name">area</span>)
+      }
+  }
+
+</pre>
+</li>
+</ul>
+</div>
+<p><b>参见</b><a href="qtqml-documents-scope.html">范围和命名解析</a>。</p>
+<!-- @@@qtqml-javascript-hostenvironment.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

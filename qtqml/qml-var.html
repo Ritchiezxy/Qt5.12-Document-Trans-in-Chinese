@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- basictypes.qdoc -->
+  <title>var QML Basic Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >var QML Basic Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#change-notification-semantics">更改通知语义</a></li>
+<li class="level1"><a href="#property-value-initialization-semantics">属性值初始化语义</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的var基本类型</h1>
+<span class="subtitle"></span>
+<!-- $$$var-description -->
+<div class="descr"> <a name="details"></a>
+<p>泛型属性类型。</p>
+<p><code>var</code> 类型是一个泛型属性类型，可以引用任何数据类型。</p>
+<p>它相当于一个普通的JavaScript变量。例如，var属性可以存储数字、字符串、对象、数组和函数:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">aNumber</span>: <span class="number">100</span>
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">aBool</span>: <span class="number">false</span>
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">aString</span>: <span class="string">&quot;Hello world!&quot;</span>
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">anotherString</span>: <span class="name">String</span>(<span class="string">&quot;#FF008800&quot;</span>)
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">aColor</span>: <span class="name">Qt</span>.<span class="name">rgba</span>(<span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.4</span>, <span class="number">0.5</span>)
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">aRect</span>: <span class="name">Qt</span>.<span class="name">rect</span>(<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>)
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">aPoint</span>: <span class="name">Qt</span>.<span class="name">point</span>(<span class="number">10</span>, <span class="number">10</span>)
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">aSize</span>: <span class="name">Qt</span>.<span class="name">size</span>(<span class="number">10</span>, <span class="number">10</span>)
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">aVector3d</span>: <span class="name">Qt</span>.<span class="name">vector3d</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>)
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">anArray</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">&quot;four&quot;</span>, <span class="string">&quot;five&quot;</span>, (<span class="keyword">function</span>() { <span class="keyword">return</span> <span class="string">&quot;six&quot;</span>; })]
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">anObject</span>: { &quot;foo&quot;: <span class="number">10</span>, &quot;bar&quot;: <span class="number">20</span> }
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">aFunction</span>: (<span class="keyword">function</span>() { <span class="keyword">return</span> <span class="string">&quot;one&quot;</span>; })
+  }
+
+</pre>
+<a name="change-notification-semantics"></a>
+<h2 id="change-notification-semantics">更改通知语义</h2>
+<p>需要注意的是，分配给var属性的JavaScript对象的常规属性的更改<b>不会</b>触发访问它们的绑定的更新。下面的例子将显示&quot;The car has 4 wheels&quot; ，因为对wheels属性的更改不会导致重新评估分配给“text”属性的绑定:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">car</span>: new <span class="name">Object</span>({wheels: <span class="number">4</span>})
+
+      <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+          <span class="name">text</span>: <span class="string">&quot;The car has &quot;</span> <span class="operator">+</span> <span class="name">car</span>.<span class="name">wheels</span> <span class="operator">+</span> <span class="string">&quot; wheels&quot;</span>;
+      }
+
+      <span class="name">Component</span>.onCompleted: {
+          <span class="name">car</span>.<span class="name">wheels</span> <span class="operator">=</span> <span class="number">6</span>;
+      }
+  }
+
+</pre>
+<p>如果onCompleted处理程序有<code>&quot;car = new Object({wheels: 6})&quot;</code> ，那么文本将被更新为&quot;The car has 6 wheels&quot;，因为car属性本身将被更改，这将导致发出更改通知。</p>
+<a name="property-value-initialization-semantics"></a>
+<h2 id="property-value-initialization-semantics">属性值初始化语义</h2>
+<p>QML语法定义属性值初始化赋值右侧的大括号表示绑定赋值。在初始化<code>var</code> 属性时，这可能会令人困惑，因为JavaScript中的空花括号可以表示表达式块或空对象声明。如果希望将<code>var</code> 属性初始化为空对象值，应该将大括号括起来。</p>
+<p>例如：</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">first</span>:  {}   <span class="comment">// nothing = undefined</span>
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">second</span>: {{}} <span class="comment">// empty expression block = undefined</span>
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">third</span>:  ({}) <span class="comment">// empty object</span>
+  }
+
+</pre>
+<p>在前面的示例中，<code>first</code>属性绑定到一个空表达式，其结果是未定义的。<code>second</code> 属性绑定到一个表达式，该表达式包含一个空的表达式块(&quot;{}&quot;)，该表达式同样具有一个未定义的结果。<code>third</code> 属性绑定到一个表达式，该表达式被计算为空对象声明，因此属性将使用空对象值初始化。</p>
+<p>类似地，JavaScript中的冒号可以是对象属性值赋值，也可以是代码标签。因此，用对象声明初始化var属性也需要括号:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">first</span>: { <span class="name">example</span>: <span class="string">'true'</span> }    <span class="comment">// example is interpreted as a label</span>
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">second</span>: ({ example: <span class="string">'true'</span> }) <span class="comment">// example is interpreted as a property</span>
+      property <span class="type"><a href="qml-var.html">var</a></span> <span class="name">third</span>: { 'example': <span class="string">'true'</span> }  <span class="comment">// example is interpreted as a property</span>
+      <span class="name">Component</span>.onCompleted: {
+          <span class="name">console</span>.<span class="name">log</span>(<span class="name">first</span>.<span class="name">example</span>) <span class="comment">// prints 'undefined', as &quot;first&quot; was assigned a string</span>
+          <span class="name">console</span>.<span class="name">log</span>(<span class="name">second</span>.<span class="name">example</span>) <span class="comment">// prints 'true'</span>
+          <span class="name">console</span>.<span class="name">log</span>(<span class="name">third</span>.<span class="name">example</span>) <span class="comment">// prints 'true'</span>
+      }
+  }
+
+</pre>
+</div>
+<p><b>参见 </b><a href="qtqml-typesystem-basictypes.html">QML基本类型</a>。</p>
+<!-- @@@var -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

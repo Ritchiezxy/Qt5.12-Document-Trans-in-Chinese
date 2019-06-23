@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- directoryimports.qdoc -->
+  <title>Importing QML Document Directories | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Importing QML Document Directories</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#local-directory-imports">本地目录导入</a></li>
+<li class="level2"><a href="#an-example">一个例子</a></li>
+<li class="level1"><a href="#remotely-located-directories">远程目录</a></li>
+<li class="level1"><a href="#directory-listing-qmldir-files">目录清单qmldir文件</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">导入QML文档目录</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-syntax-directoryimports.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>可以导入QML文件的本地目录，而不需要任何额外的设置或配置。还可以导入QML文件的远程目录，但是需要一个列出<code>qmldir</code>文件的目录。本地目录可以选择性地包含一个目录清单<code>qmldir</code>文件，以便定义应该提供给导入目录的客户机的类型名称，并指定应该提供给导入程序的JavaScript资源。</p>
+<a name="local-directory-imports"></a>
+<h2 id="local-directory-imports">本地目录导入</h2>
+<p>本地文件系统上的任何QML文件都可以使用import语句导入本地目录，该语句引用目录的绝对或相对文件系统路径，从而使文件能够使用该目录中定义的<a href="qtqml-typesystem-objecttypes.html">对象类型</a> 。</p>
+<p>
+如果本地目录包含一个列出<code>qmldir</code>文件的目录，则类型将可用<code>qmldir</code>文件中指定的类型名称;否则，它们将与来自QML文档文件名的类型名称一起提供。如果目录中没有指定qmldir文件，则只有以大写字母开头和以“.qml”结尾的文件名将作为类型公开。</p>
+<a name="an-example"></a>
+<h3 >一个例子</h3>
+<p>考虑以下QML项目目录结构。在顶层目录<code>myapp</code>下，在名为<code>mycomponent</code>的子目录中有一组通用UI组件，在名为<code>main</code>的子目录中有主应用程序代码，如下:</p>
+<pre class="cpp">
+
+  myapp
+      <span class="operator">|</span><span class="operator">-</span> mycomponents
+          <span class="operator">|</span><span class="operator">-</span> CheckBox<span class="operator">.</span>qml
+          <span class="operator">|</span><span class="operator">-</span> DialogBox<span class="operator">.</span>qml
+          <span class="operator">|</span><span class="operator">-</span> Slider<span class="operator">.</span>qml
+      <span class="operator">|</span><span class="operator">-</span> main
+          <span class="operator">|</span><span class="operator">-</span> application<span class="operator">.</span>qml
+
+</pre>
+<p><code>main/application.qml</code>文件可以使用该目录的相对路径导入<code>mycomponents</code>目录，允许它使用该目录中定义的QML对象类型:</p>
+<pre class="qml">
+
+  import &quot;../mycomponents&quot;
+
+  <span class="type">DialogBox</span> {
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-checkbox.html">CheckBox</a></span> {
+          <span class="comment">// ...</span>
+      }
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-slider.html">Slider</a></span> {
+          <span class="comment">// ...</span>
+      }
+  }
+
+</pre>
+<p>目录可以导入一个限定的本地命名空间，在这种情况下，目录中提供的任何类型的使用都必须被限定:</p>
+<pre class="qml">
+
+  import &quot;../mycomponents&quot; as MyComponents
+
+  <span class="type">MyComponents</span>.DialogBox {
+      <span class="comment">// ...</span>
+  }
+
+</pre>
+<p>对于应用程序内组件集和应用程序原型等情况，导入本地目录的功能非常方便，但是如果模块目录移动到另一个位置，导入这些模块的任何代码都必须更新它们的相关<code>import</code>语句。如果使用<a href="qtqml-modules-identifiedmodules.html">QML 模块</a> ，则可以避免这种情况，因为已安装的模块是用惟一的标识符字符串导入的，而不是文件系统路径。</p>
+<a name="remotely-located-directories"></a>
+<h2 id="remotely-located-directories">远程目录</h2>
+<p>如果目录包含一个列出<code>qmldir</code>文件的目录，则还可以从远程位置导入一个QML文件目录。</p>
+<p>例如，如果前一个示例中的<code>myapp</code>目录托管在 &quot;http://www.my-example-server.com&quot;，并且<code>mycomponents</code>目录包含一个<code>qmldir</code>文件，该文件定义如下:</p>
+<pre class="cpp">
+
+  CheckBox CheckBox<span class="operator">.</span>qml
+  DialogBox DialogBox<span class="operator">.</span>qml
+  Slider Slider<span class="operator">.</span>qml
+
+</pre>
+<p>然后，可以使用到远程<code>mycomponents</code>目录的URL导入该目录:</p>
+<pre class="qml">
+
+  import &quot;http://www.my-example-server.com/myapp/mycomponents&quot;
+
+  <span class="type">DialogBox</span> {
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-checkbox.html">CheckBox</a></span> {
+          <span class="comment">// ...</span>
+      }
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-slider.html">Slider</a></span> {
+          <span class="comment">// ...</span>
+      }
+  }
+
+</pre>
+<p>注意，当一个文件通过网络导入一个目录时，它只能访问位于该目录中的<code>qmldir</code>文件中指定的QML和JavaScript文件。</p>
+<p><b>警告:</b> 当从远程服务器导入目录时，开发人员应该始终注意只加载来自可信源的目录，以避免加载恶意代码。</p>
+<a name="directory-listing-qmldir-files"></a>
+<h2 id="directory-listing-qmldir-files">目录清单qmldir文件</h2>
+<p>列出<code>qmldir</code>文件的目录与<a href="qtqml-modules-qmldir.html">模块定义qmldir文件</a>明显不同。列出<code>qmldir</code>文件的目录允许快速轻松地共享一组QML文档，但它不定义一个类型名称空间，将文档定义的QML对象类型注册到其中，也不支持对这些QML对象类型进行版本控制。</p>
+<p>目录列出qmldir文件语法如下:</p>
+<div class="table"><table class="generic">
+  <thead><tr class="qt-style"><th >命令</th><th >语法</th><th >描述</th></tr></thead>
+<tr valign="top" class="odd"><td >对象类型声明</td><td >&lt;TypeName&gt; &lt;FileName&gt;</td><td >对象类型声明允许使用给定的<code>&lt;TypeName&gt;</code>公开QML文档。<p>例子:</p>
+<pre class="cpp">
+
+  RoundedButton RoundedBtn<span class="operator">.</span>qml
+
+</pre>
+</td></tr>
+<tr valign="top" class="even"><td >内部对象类型声明</td><td >internal &lt;TypeName&gt; &lt;FileName&gt;</td><td >内部对象类型声明允许将QML文档注册为仅对目录导入中包含的其他QML文档可用的类型。导入目录的客户机将无法使用内部类型。<p>例如：</p>
+<pre class="cpp">
+
+  internal HighlightedButton HighlightedBtn<span class="operator">.</span>qml
+
+</pre>
+</td></tr>
+<tr valign="top" class="odd"><td >JavaScript资源声明</td><td >&lt;Identifier&gt; &lt;FileName&gt;</td><td >资源声明允许通过给定的标识符公开JavaScript文件。<p>例子:</p>
+<pre class="cpp">
+
+  MathFunctions mathfuncs<span class="operator">.</span>js
+
+</pre>
+</td></tr>
+</table></div>
+<p>一个本地文件系统目录可以选择性地包含一个<code>qmldir</code> 文件。这允许引擎只向导入目录的客户端公开特定的QML类型。此外，除非在<code>qmldir</code>文件中声明JavaScript资源，否则不会将目录中的JavaScript资源公开给客户机。</p>
+</div>
+<!-- @@@qtqml-syntax-directoryimports.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

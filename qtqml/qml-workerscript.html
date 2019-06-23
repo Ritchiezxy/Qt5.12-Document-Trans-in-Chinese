@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qquickworkerscript.cpp -->
+  <title>WorkerScript QML Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >WorkerScript QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#signals">信号</a></li>
+<li class="level1"><a href="#methods">方法</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的WorkerScript类型</h1>
+<span class="subtitle"></span>
+<!-- $$$WorkerScript-brief -->
+<p>支持在Qt Quick应用程序中使用线程。<a href="#details">更多…</a></p>
+<!-- @@@WorkerScript -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import  .</td></tr></table></div><ul>
+<li><a href="qml-workerscript-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-workerscript.html#source-prop">source</a></b></b> : url</li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">信号</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-workerscript.html#message-signal">message</a></b></b>(jsobject <i>msg</i>)</li>
+</ul>
+<a name="methods"></a>
+<h2 id="methods">方法</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-workerscript.html#sendMessage-method">sendMessage</a></b></b>(jsobject <i>message</i>)</li>
+</ul>
+<!-- $$$WorkerScript-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p>使用<a href="qml-workerscript.html">WorkerScript</a>在新线程中运行操作。这对于在后台运行操作非常有用，这样主GUI线程就不会被阻塞。</p>
+<p>可以使用<a href="qml-workerscript.html#sendMessage-method">sendMessage()</a> 和 <code>onMessage()</code> 处理程序在新线程和父线程之间传递消息。</p>
+<p>一个例子:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">300</span>; <span class="name">height</span>: <span class="number">300</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+          <span class="name">id</span>: <span class="name">myText</span>
+          <span class="name">text</span>: <span class="string">'Click anywhere'</span>
+      }
+
+      <span class="type"><a href="qml-workerscript.html">WorkerScript</a></span> {
+          <span class="name">id</span>: <span class="name">myWorker</span>
+          <span class="name">source</span>: <span class="string">&quot;script.mjs&quot;</span>
+
+          <span class="name">onMessage</span>: <span class="name">myText</span>.<span class="name">text</span> <span class="operator">=</span> <span class="name">messageObject</span>.<span class="name">reply</span>
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: <span class="name">myWorker</span>.<span class="name">sendMessage</span>({ 'x': <span class="name">mouse</span>.<span class="name">x</span>, 'y': <span class="name">mouse</span>.<span class="name">y</span> })
+      }
+  }
+
+</pre>
+<p>上面的工作脚本指定了一个JavaScript文件&quot;script.mjs&quot;。处理要在新线程中执行的操作。这是<code>script.mjs</code>:</p>
+<pre class="cpp">
+
+  WorkerScript.onMessage = function(message) {
+      // ... long-running operations and calculations are done here
+      WorkerScript.sendMessage({ 'reply': 'Mouse is at ' + message.x + ',' + message.y })
+  }
+
+</pre>
+<p>当用户单击矩形内的任何位置时，将调用<code>sendMessage()</code> ，触发<code>script.mjs</code>中的<code>WorkerScript.onMessage()</code> 处理程序。这进而发送一个回复消息，然后由<code>myWorker</code>的<code>onMessage()</code>处理程序接收该消息。</p>
+<p>该示例使用的脚本是ECMAScript模块，因为它具有“.mjs”扩展名。它可以使用import语句访问来自其他模块的功能，并在JavaScript严格模式下运行。</p>
+<p>如果工作脚本的扩展名为&quot;.js&quot;，则认为它包含普通JavaScript语句，并在非严格模式下运行。</p>
+<p><b>注意:</b>每个<a href="qml-workerscript.html">WorkerScript</a>元素将实例化一个单独的JavaScript引擎，以确保完美的隔离和线程安全。如果这种影响导致内存消耗对于您的环境来说太高，那么可以考虑共享<a href="qml-workerscript.html">WorkerScript</a> 元素。</p><a name="restrictions"></a>
+<h4 >限制</h4>
+<p>因为<code>WorkerScript.onMessage()</code>函数是在一个单独的线程中运行的，所以JavaScript文件是在一个独立于主QML引擎的上下文中计算的。这意味着，与导入QML的普通JavaScript文件不同，上面示例中的scriptABC不能访问QML项的属性、方法或其他属性，也不能通过<a href="qqmlcontext.html">QQmlContext</a>访问QML对象上设置的任何上下文属性。</p>
+<p>此外，还对可以传递到工作脚本和从工作脚本传递的值的类型进行了限制。有关详细信息，请参阅<a href="qml-workerscript.html#sendMessage-method">sendMessage()</a>文档。</p>
+<p>普通JavaScript源的工作脚本不能使用<a href="qtqml-javascript-imports.html">.import</a>语法。ECMAScript模块脚本可以自由使用导入和导出语句。</p>
+<p><b>参见</b><a href="../qtquick/qtquick-threading-example.html">Qt Quick示例 - 线程。</a> 和 <a href="../qtquick/qtquick-threading-threadedlistmodel-example.html">线程列表模型</a>示例。</p>
+<!-- @@@WorkerScript -->
+<h2>属性文档</h2>
+<!-- $$$source -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="source-prop">
+<td class="tblQmlPropNode"><p>
+<a name="source-prop"></a><span class="name">source</span> : <span class="type"><a href="qml-url.html">url</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>它包含实现用于线程操作的<code>WorkerScript.onMessage()</code>处理程序的JavaScript文件的url。</p>
+<p>如果url的文件名组件以&quot;.mjs&quot;结尾，那么脚本将被解析为ECMAScript模块并在严格模式下运行。否则，它被认为是普通的脚本。</p>
+</div></div><!-- @@@source -->
+<br/>
+<h2>信号文档</h2>
+<!-- $$$message -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="message-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="message-signal"></a><span class="name">message</span>(<span class="type">jsobject</span> <i>msg</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>当通过调用 <a href="qml-workerscript.html#sendMessage-method">sendMessage()</a>从另一个线程中的工作脚本接收到消息<i>msg</i>时，将发出此信号。</p>
+<p>对应的处理程序是<code>onMessage</code>。</p>
+</div></div><!-- @@@message -->
+<br/>
+<h2>方法文档</h2>
+<!-- $$$sendMessage -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="sendMessage-method">
+<td class="tblQmlFuncNode"><p>
+<a name="sendMessage-method"></a><span class="name">sendMessage</span>(<span class="type">jsobject</span> <i>message</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>将给定的<i>message</i>发送给另一个线程中的工作脚本处理程序。另一个工作脚本处理程序可以通过onMessage()处理程序接收此消息。</p>
+<p><code>message</code>对象可能只包含以下类型的值:</p>
+<ul>
+<li>boolean, number, string</li>
+<li>JavaScript objects and arrays</li>
+<li><a href="qml-qtqml-models-listmodel.html">ListModel</a> objects (any other type of <a href="../qtcore/qobject.html">QObject</a>* is not allowed)</li>
+</ul>
+<p>所有对象和数组都复制到<code>message</code>中。除了<a href="qml-qtqml-models-listmodel.html">ListModel</a>对象之外，其他线程对<code>message</code> 中传递的对象的任何修改都不会反映在原始对象中。</p>
+</div></div><!-- @@@sendMessage -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

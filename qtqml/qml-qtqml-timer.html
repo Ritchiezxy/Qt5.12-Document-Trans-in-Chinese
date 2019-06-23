@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmltimer.cpp -->
+  <title>Timer QML Type | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >Timer QML Type</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#signals">信号</a></li>
+<li class="level1"><a href="#methods">方法</a></li>
+<li class="level1"><a href="#details">详细描述</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML的Timer类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Timer-brief -->
+<p>以指定的间隔触发处理程序。<a href="#details">更多…</a></p>
+<!-- @@@Timer -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr></table></div><ul>
+<li><a href="qml-qtqml-timer-members.html">所有成员的列表，包括继承的成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-timer.html#interval-prop">interval</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtqml-timer.html#repeat-prop">repeat</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtqml-timer.html#running-prop">running</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtqml-timer.html#triggeredOnStart-prop">triggeredOnStart</a></b></b> : bool</li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">信号</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-timer.html#triggered-signal">triggered</a></b></b>()</li>
+</ul>
+<a name="methods"></a>
+<h2 id="methods">方法</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-timer.html#restart-method">restart</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtqml-timer.html#start-method">start</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtqml-timer.html#stop-method">stop</a></b></b>()</li>
+</ul>
+<!-- $$$Timer-description -->
+<a name="details"></a>
+<h2 id="details">详细描述</h2>
+<p>定时器可以用来触发一个动作，一次，或重复在一个给定的间隔。</p>
+<p>这里有一个计时器，它显示当前日期和时间，并每500毫秒更新一次文本。它使用JavaScript <code>Date</code> 对象来访问当前时间。</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="type"><a href="qml-qtqml-timer.html">Timer</a></span> {
+          <span class="name">interval</span>: <span class="number">500</span>; <span class="name">running</span>: <span class="number">true</span>; <span class="name">repeat</span>: <span class="number">true</span>
+          <span class="name">onTriggered</span>: <span class="name">time</span>.<span class="name">text</span> <span class="operator">=</span> <span class="name">Date</span>().<span class="name">toString</span>()
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">id</span>: <span class="name">time</span> }
+  }
+
+</pre>
+<p>定时器类型与动画定时器同步。由于动画定时器通常设置为60fps，所以定时器的分辨率最多为16ms。</p>
+<p>如果计时器正在运行，并且其中一个属性被更改，则运行时间将重置。例如，如果间隔为1000ms的计时器在启动后将其<i>repeat</i>属性更改为500ms，则运行时间将重置为0，并在1000ms之后触发计时器。</p>
+<p><b>参见 </b><a href="../qtdoc/qtdoc-demos-clocks-example.html">Qt Quick演示-时钟</a>。</p>
+<!-- @@@Timer -->
+<h2>属性文档</h2>
+<!-- $$$interval -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="interval-prop">
+<td class="tblQmlPropNode"><p>
+<a name="interval-prop"></a><span class="name">interval</span> : <span class="type"><a href="qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>设置触发器之间的<i>interval</i>（间隔），以毫秒为单位。</p>
+<p>默认间隔是1000毫秒。</p>
+</div></div><!-- @@@interval -->
+<br/>
+<!-- $$$repeat -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="repeat-prop">
+<td class="tblQmlPropNode"><p>
+<a name="repeat-prop"></a><span class="name">repeat</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>如果<i>repeat</i> 为真，则在指定的时间间隔内重复触发计时器;否则，定时器将在指定的时间间隔触发一次，然后停止(即运行将设置为false)。</p>
+<p><i>repeat</i> 默认值为false。</p>
+<p><b>参见 </b><a href="qml-qtqml-timer.html#running-prop">running</a>。</p>
+</div></div><!-- @@@repeat -->
+<br/>
+<!-- $$$running -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="running-prop">
+<td class="tblQmlPropNode"><p>
+<a name="running-prop"></a><span class="name">running</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>如果设置为true，则启动计时器;否则将停止计时器。对于非重复计时器，在触发计时器后将<i>running</i>设置为false。</p>
+<p><i>running</i> 默认值为false。</p>
+<p><b>参见</b><a href="qml-qtqml-timer.html#repeat-prop">repeat</a>。</p>
+</div></div><!-- @@@running -->
+<br/>
+<!-- $$$triggeredOnStart -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="triggeredOnStart-prop">
+<td class="tblQmlPropNode"><p>
+<a name="triggeredOnStart-prop"></a><span class="name">triggeredOnStart</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>当计时器启动时，第一个触发器通常在指定的间隔之后。有时需要在计时器启动时立即触发;例如，建立初始状态。</p>
+<p>如果<i>triggeredOnStart</i>为真，则在启动时立即触发计时器，然后在指定的时间间隔触发计时器。注意，如果<i>repeat</i>设置为false，则触发计时器两次;一次开始，一次间隔。</p>
+<p><i>triggeredOnStart</i> 默认为false。</p>
+<p><b>参见</b><a href="qml-qtqml-timer.html#running-prop">running</a>。</p>
+</div></div><!-- @@@triggeredOnStart -->
+<br/>
+<h2>信号文档</h2>
+<!-- $$$triggered -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="triggered-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="triggered-signal"></a><span class="name">triggered</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此信号在计时器超时时发出。</p>
+<p>对应的处理程序是<code>onTriggered</code>。</p>
+</div></div><!-- @@@triggered -->
+<br/>
+<h2>方法文档</h2>
+<!-- $$$restart -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="restart-method">
+<td class="tblQmlFuncNode"><p>
+<a name="restart-method"></a><span class="name">restart</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>重新启动定时器</p>
+<p>如果计时器没有运行，它将被启动，否则将被停止，重置为初始状态并启动。在调用<code>restart()</code>之后，<code>running</code> 属性将为true。</p>
+</div></div><!-- @@@restart -->
+<br/>
+<!-- $$$start -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="start-method">
+<td class="tblQmlFuncNode"><p>
+<a name="start-method"></a><span class="name">start</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>启动定时器</p>
+<p>如果计时器已经在运行，则调用此方法没有效果。调用<code>start()</code>后，<code>running</code>属性将为true。</p>
+</div></div><!-- @@@start -->
+<br/>
+<!-- $$$stop -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="stop-method">
+<td class="tblQmlFuncNode"><p>
+<a name="stop-method"></a><span class="name">stop</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>停止计时器</p>
+<p>如果计时器不运行，则调用此方法无效。调用<code>stop()</code>后，<code>running</code>的属性将为false。</p>
+</div></div><!-- @@@stop -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

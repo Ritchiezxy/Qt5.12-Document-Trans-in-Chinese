@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- resources.qdoc -->
+  <title>Defining JavaScript Resources in QML | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Defining JavaScript Resources in QML</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#code-behind-implementation-resource">后台代码实现资源</a></li>
+<li class="level1"><a href="#shared-javascript-resources-libraries">共享JavaScript资源(库)</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">在QML中定义JavaScript资源</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-javascript-resources.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML应用程序的程序逻辑可以用JavaScript定义。JavaScript代码可以在QML文档中内联定义，也可以分隔成JavaScript文件(在QML中称为<code>JavaScript资源</code>)。</p>
+<p>QML支持两种不同类型的JavaScript资源:代码隐藏实现文件和共享(库)文件。这两种JavaScript资源都可以由其他JavaScript资源<a href="qtqml-javascript-imports.html">导入</a>，或者包含在 <a href="qtqml-modules-topic.html">QML模块</a>中。</p>
+<a name="code-behind-implementation-resource"></a>
+<h2 id="code-behind-implementation-resource">后台代码实现资源</h2>
+<p>导入QML文档的大多数JavaScript文件都是用于导入它们的QML文档的有状态实现。在这些情况下，文档中定义的QML对象类型的每个实例都需要JavaScript对象和状态的单独副本，以便正确地运行。</p>
+<p>导入JavaScript文件时的默认行为是为每个QML组件实例提供一个惟一的、独立的副本。如果该JavaScript文件不使用.import语句导入任何资源或模块，则其代码将运行在与QML组件实例相同的范围内，因此可以访问和操作在该QML组件中声明的对象和属性。否则，它将有自己独特的作用域，如果需要，应该将QML组件的对象和属性作为参数传递给JavaScript文件的函数。</p>
+<p>一个代码隐藏实现资源的例子如下:</p>
+<pre class="cpp">
+
+  <span class="comment">// MyButton.qml</span>
+  import <span class="type">QtQuick</span> <span class="number">2.0</span>
+  import <span class="string">&quot;my_button_impl.js&quot;</span> as Logic <span class="comment">// A new instance of this JavaScript resource</span>
+                                      <span class="comment">// is loaded for each instance of Button.qml.</span>
+
+  Rectangle {
+      id: rect
+      width: <span class="number">200</span>
+      height: <span class="number">100</span>
+      color: <span class="string">&quot;red&quot;</span>
+
+      MouseArea {
+          id: mousearea
+          anchors<span class="operator">.</span>fill: parent
+          onClicked: Logic<span class="operator">.</span>onClicked(rect)
+      }
+  }
+
+</pre>
+<pre class="cpp">
+
+  <span class="comment">// my_button_impl.js</span>
+  var clickCount <span class="operator">=</span> <span class="number">0</span>;   <span class="comment">// this state is separate for each instance of MyButton</span>
+  function onClicked(button) {
+      clickCount <span class="operator">+</span><span class="operator">=</span> <span class="number">1</span>;
+      <span class="keyword">if</span> ((clickCount <span class="operator">%</span> <span class="number">5</span>) <span class="operator">=</span><span class="operator">=</span> <span class="number">0</span>) {
+          button<span class="operator">.</span>color <span class="operator">=</span> <span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>rgba(<span class="number">1</span><span class="operator">,</span><span class="number">0</span><span class="operator">,</span><span class="number">0</span><span class="operator">,</span><span class="number">1</span>);
+      } <span class="keyword">else</span> {
+          button<span class="operator">.</span>color <span class="operator">=</span> <span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>rgba(<span class="number">0</span><span class="operator">,</span><span class="number">1</span><span class="operator">,</span><span class="number">0</span><span class="operator">,</span><span class="number">1</span>);
+      }
+  }
+
+</pre>
+<p>一般来说，简单的逻辑应该在QML文件中内联定义，但是为了可维护性和可读性，更复杂的逻辑应该被分离到代码实现资源中。</p>
+<a name="shared-javascript-resources-libraries"></a>
+<h2 id="shared-javascript-resources-libraries">共享JavaScript资源(库)</h2>
+<p>默认情况下，从QML导入的JavaScript文件与QML组件共享它们的上下文。这意味着JavaScript文件可以访问相同的QML对象，并可以修改它们。因此，每个导入必须具有这些文件的唯一副本。</p>
+<p><a href="qtqml-javascript-resources.html#code-behind-implementation-resource">上一节</a>讨论JavaScript文件的有状态导入。然而，一些JavaScript文件是无状态的，更像是可重用的库，因为它们提供了一组帮助函数，不需要从它们的导入地获得任何东西。如果使用特殊的pragma标记这些库，可以节省大量内存并加快QML组件的实例化，如下面的示例所示。</p>
+<pre class="cpp">
+
+  <span class="comment">// factorial.js</span>
+  <span class="operator">.</span>pragma library
+
+  var factorialCount <span class="operator">=</span> <span class="number">0</span>;
+
+  function factorial(a) {
+      a <span class="operator">=</span> parseInt(a);
+
+      <span class="comment">// factorial recursion</span>
+      <span class="keyword">if</span> (a <span class="operator">&gt;</span> <span class="number">0</span>)
+          <span class="keyword">return</span> a <span class="operator">*</span> factorial(a <span class="operator">-</span> <span class="number">1</span>);
+
+      <span class="comment">// shared state</span>
+      factorialCount <span class="operator">+</span><span class="operator">=</span> <span class="number">1</span>;
+
+      <span class="comment">// recursion base-case.</span>
+      <span class="keyword">return</span> <span class="number">1</span>;
+  }
+
+  function factorialCallCount() {
+      <span class="keyword">return</span> factorialCount;
+  }
+
+</pre>
+<p>pragma声明必须出现在除注释之外的任何JavaScript代码之前。</p>
+<p>注意，多个QML文档可以导入<code>&quot;factorial.js&quot;</code> 并调用它提供的factorial和factorialCallCount函数。JavaScript导入的状态在导入它的QML文档之间共享，因此，当在从不调用factorial函数的QML文档中调用factorialCallCount函数时，它的返回值可能是非零的。</p>
+<p>例如:</p>
+<pre class="cpp">
+
+  <span class="comment">// Calculator.qml</span>
+  import <span class="type">QtQuick</span> <span class="number">2.0</span>
+  import <span class="string">&quot;factorial.js&quot;</span> as FactorialCalculator <span class="comment">// This JavaScript resource is only</span>
+                                               <span class="comment">// ever loaded once by the engine,</span>
+                                               <span class="comment">// even if multiple instances of</span>
+                                               <span class="comment">// Calculator.qml are created.</span>
+
+  Text {
+      width: <span class="number">500</span>
+      height: <span class="number">100</span>
+      property <span class="type">int</span> input: <span class="number">17</span>
+      text: <span class="string">&quot;The factorial of &quot;</span> <span class="operator">+</span> input <span class="operator">+</span> <span class="string">&quot; is: &quot;</span> <span class="operator">+</span> FactorialCalculator<span class="operator">.</span>factorial(input)
+  }
+
+</pre>
+<p>由于它们是共享的，.pragma库文件不能直接访问QML组件实例对象或属性，尽管QML值可以作为函数参数传递。</p>
+</div>
+<!-- @@@qtqml-javascript-resources.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

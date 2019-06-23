@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- identifiedmodules.qdoc -->
+  <title>Identified Modules | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >Identified Modules</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#locally-installed-identified-modules">本地安装的已标识的模块</a></li>
+<li class="level2"><a href="#an-example">一个例子</a></li>
+<li class="level1"><a href="#remotely-installed-identified-modules">远程安装的已标识的模块</a></li>
+<li class="level1"><a href="#semantics-of-identified-modules">标识的模块的语义</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">标识的模块</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-modules-identifiedmodules.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>已标识的模块是通过一个URI(以点标识符字符串的形式)安装并对QML引擎进行标识的模块，该URI应该由模块在其<code>qmldir</code>文件中指定。这允许使用惟一标识符导入这些模块，无论模块位于本地文件系统的哪个位置，该标识符都是相同的。</p>
+<p>当导入标识的模块时，使用未引用的标识符，并使用强制版本号:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+  import com.nokia.qml.mymodule 1.0
+
+</pre>
+<p>必须将已标识的模块安装到<a href="qtqml-syntax-imports.html#qml-import-path">导入路径</a>中，以便QML引擎能够找到这些模块。</p>
+<a name="locally-installed-identified-modules"></a>
+<h2 id="locally-installed-identified-modules">本地安装的标识的模块</h2>
+<p>如果QML和/或C++文件目录包含一个带有模块元数据的<a href="qtqml-modules-qmldir.html">qmldir文件</a>，并且安装在QML导入路径中，则可以将该目录作为标识模块共享。本地文件系统上的任何QML文件都可以使用引用模块URI的<a href="qtqml-syntax-imports.html">import</a> 语句将此目录作为模块导入，从而使该文件能够使用模块定义的<a href="qtqml-typesystem-objecttypes.html">QML对象类型 </a> 和<a href="qtqml-javascript-resources.html">JavaScript资源</a>。 </p>
+<p>模块的<code>qmldir</code>文件必须驻留在反映URI点标识符字符串的 <a href="qtqml-syntax-imports.html#qml-import-path">导入路径</a> 中的目录结构中，其中标识符中的每个点(".")反映目录树中的一个子级别。例如，模块<code>com.mycompany.mymodule</code> 的<code>qmldir</code> 文件必须位于 <a href="qtqml-syntax-imports.html#qml-import-path">导入路径</a>中的子路径<code>com/mycompany/mymodule/qmldir</code>中。</p>
+<p>可以将模块的不同版本存储在它自己的子目录中。例如，模块的2.1版本可以位于<code>com/mycompany/mymodule.2/qmldir</code>或<code>com/mycompany/mymodule.2&#x2e;1/qmldir</code>之下。引擎将自动加载最匹配的模块。</p>
+<p>另外，可以在<code>qmldir</code>文件本身中定义不同类型的版本控制，但是这会使更新这样一个模块变得更加困难(因为必须将qmldir文件合并作为更新过程的一部分)。</p>
+<a name="an-example"></a>
+<h3 >一个例子</h3>
+<p>考虑以下QML项目目录结构。在顶层目录<code>myapp</code>下，在名为<code>mycomponents</code>的子目录中有一组通用UI组件，在名为<code>main</code>的子目录中有主应用程序代码，如下:</p>
+<pre class="cpp">
+
+  myapp
+      <span class="operator">|</span><span class="operator">-</span> mycomponents
+          <span class="operator">|</span><span class="operator">-</span> CheckBox<span class="operator">.</span>qml
+          <span class="operator">|</span><span class="operator">-</span> DialogBox<span class="operator">.</span>qml
+          <span class="operator">|</span><span class="operator">-</span> Slider<span class="operator">.</span>qml
+      <span class="operator">|</span><span class="operator">-</span> main
+          <span class="operator">|</span><span class="operator">-</span> application<span class="operator">.</span>qml
+
+</pre>
+<p>要使<code>mycomponents</code> 目录作为标识模块可用，该目录必须包含一个<a href="qtqml-modules-qmldir.html">qmldir文件</a>，该文件定义了模块标识符，并描述了模块可用的对象类型。例如，要使模块1.0版本的<code>CheckBox</code>、 <code>DialogBox</code> 和 <code>Slider</code>类型可用，<code>qmldir</code>文件将包含以下内容:</p>
+<pre class="cpp">
+
+  module myapp<span class="operator">.</span>mycomponents
+  CheckBox <span class="number">1.0</span> CheckBox<span class="operator">.</span>qml
+  DialogBox <span class="number">1.0</span> DialogBox<span class="operator">.</span>qml
+  Slider <span class="number">1.0</span> Slider<span class="operator">.</span>qml
+
+</pre>
+<p>此外，<a href="qtqml-syntax-imports.html#qml-import-path">导入路径</a>中<code>qmldir</code>文件的位置必须匹配模块的点标识符字符串。因此，假设顶层的<code>myapp</code>目录位于<code>C:\qml\projects</code>中，并且该模块应该被标识为“myapp.mycomponents”。在这种情况下:</p>
+<ul>
+<li>路径<code>C:\qml\projects</code>应该添加到<a href="qtqml-syntax-imports.html#qml-import-path">导入路径</a>中</li>
+<li>qmldir文件应该位于<code>C:\qml\projects\myapp\mycomponents\qmldir</code>下</li>
+</ul>
+<p>一旦完成此操作，位于本地文件系统上任何位置的QML文件都可以通过引用其URI和适当的版本导入模块:</p>
+<pre class="qml">
+
+  import myapp.mycomponents 1.0
+
+  <span class="type">DialogBox</span> {
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-checkbox.html">CheckBox</a></span> {
+          <span class="comment">// ...</span>
+      }
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-slider.html">Slider</a></span> {
+          <span class="comment">// ...</span>
+      }
+  }
+
+</pre>
+<a name="remotely-installed-identified-modules"></a>
+<h2 id="remotely-installed-identified-modules">远程安装的已标识的模块</h2>
+<p>标识的模块也可以作为网络资源访问。在前面的示例中，如果<code>C:\qml\projects</code>目录托管为<code>http://www.some-server.com/qml/projects</code>，并且将此URL添加到qml导入路径中，则可以以完全相同的方式导入模块。</p>
+<p>注意，当文件通过网络导入模块时，只能访问模块提供的QML和JavaScript资源;它不能访问模块中C++插件定义的任何类型。</p>
+<a name="semantics-of-identified-modules"></a>
+<h2 id="semantics-of-identified-modules">标识的模块的语义</h2>
+<p>QML引擎为标识的模块提供以下保证:</p>
+<ul>
+<li>其他模块无法修改或覆盖模块名称空间中的类型</li>
+<li>其他模块无法将新类型注册到模块的名称空间中</li>
+<li>客户端对类型名称的使用将根据指定的版本控制和导入顺序确定性地解析为给定的类型定义</li>
+</ul>
+<p>这可以确保使用该模块的客户端能够确保模块中定义的对象类型的行为与模块作者所记录的一样。</p>
+<p>一个确定的模块有几个限制:</p>
+<ul>
+<li>必须将标识的模块安装到<a href="qtqml-syntax-imports.html#qml-import-path">QML导入路径中</a></li>
+<li><a href="qtqml-modules-qmldir.html">模块标识符指令</a>中指定的模块标识符必须匹配模块的安装路径(相对于QML导入路径，其中目录分隔符被句点字符替换)</li>
+<li>模块必须将其类型注册到模块标识符类型命名空间中</li>
+<li>模块不能将类型注册到任何其他模块的名称空间中</li>
+<li>客户端在导入模块时必须指定一个版本</li>
+</ul>
+<p>例如，如果已标识的模块安装到<code>$QML2_IMPORT_PATH/ExampleModule</code>中，模块标识符指令必须是:</p>
+<pre class="cpp">
+
+  module ExampleModule
+
+</pre>
+<p>如果将严格的模块安装到<code>$QML2_IMPORT_PATH/com/example/CustomUi</code>，标识符指令必须是:</p>
+<pre class="cpp">
+
+  module com<span class="operator">.</span>example<span class="operator">.</span>CustomUi
+
+</pre>
+<p>然后，客户端将能够使用以下import语句导入上述模块(假设模块将类型注册到其名称空间的1.0版本中):</p>
+<pre class="qml">
+
+  import com.example.CustomUi 1.0
+
+</pre>
+</div>
+<!-- @@@qtqml-modules-identifiedmodules.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

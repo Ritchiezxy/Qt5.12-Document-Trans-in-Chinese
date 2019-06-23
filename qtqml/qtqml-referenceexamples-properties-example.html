@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qml-extending.qdoc -->
+  <title>Extending QML - Object and List Property Types Example | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qmlextendingexamples.html">Qt QML Examples</a></td><td >Extending QML - Object and List Property Types Example</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#declare-the-birthdayparty">声明BirthdayParty</a></li>
+<li class="level2"><a href="#define-the-birthdayparty">定义BirthdayParty</a></li>
+<li class="level1"><a href="#running-the-example">运行这个示例</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">扩展QML -对象和列表属性类型的例子</h1>
+<span class="subtitle"></span>
+<!-- $$$referenceexamples/properties-brief -->
+<p>导出C++的属性。</p>
+<!-- @@@referenceexamples/properties -->
+<!-- $$$referenceexamples/properties-description -->
+<div class="descr"> <a name="details"></a>
+<p>这个例子的基础是:</p>
+<ul>
+<li><a href="qtqml-referenceexamples-adding-example.html">扩展QML -添加类型的例子</a></li>
+</ul>
+<p>对象和列表属性类型示例显示了如何在QML中添加对象和列表属性。本例添加一个BirthdayParty类型，该类型指定一个BirthdayParty，由一个celebrant（庆祝者）和一组guest（宾客）组成。People是使用前面示例中构建的People QML类型指定的。</p>
+<pre class="qml">
+
+  <span class="type">BirthdayParty</span> {
+      <span class="name">host</span>: <span class="name">Person</span> {
+          <span class="name">name</span>: <span class="string">&quot;Bob Jones&quot;</span>
+          <span class="name">shoeSize</span>: <span class="number">12</span>
+      }
+      <span class="name">guests</span>: [
+          <span class="type">Person</span> { <span class="name">name</span>: <span class="string">&quot;Leo Hodges&quot;</span> },
+          <span class="type">Person</span> { <span class="name">name</span>: <span class="string">&quot;Jack Smith&quot;</span> },
+          <span class="type">Person</span> { <span class="name">name</span>: <span class="string">&quot;Anne Brown&quot;</span> }
+      ]
+  }
+
+</pre>
+<a name="declare-the-birthdayparty"></a>
+<h2 id="declare-the-birthdayparty">声明BirthdayParty</h2>
+<p>BirthdayParty类声明如下:</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> BirthdayParty : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
+  {
+      Q_OBJECT
+      Q_PROPERTY(Person <span class="operator">*</span>host READ host WRITE setHost)
+      Q_PROPERTY(<span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>Person<span class="operator">&gt;</span> guests READ guests)
+  <span class="keyword">public</span>:
+      BirthdayParty(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent <span class="operator">=</span> <span class="number">0</span>);
+
+      Person <span class="operator">*</span>host() <span class="keyword">const</span>;
+      <span class="type">void</span> setHost(Person <span class="operator">*</span>);
+
+      <span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>Person<span class="operator">&gt;</span> guests();
+      <span class="type">void</span> appendGuest(Person<span class="operator">*</span>);
+      <span class="type">int</span> guestCount() <span class="keyword">const</span>;
+      Person <span class="operator">*</span>guest(<span class="type">int</span>) <span class="keyword">const</span>;
+      <span class="type">void</span> clearGuests();
+
+  <span class="keyword">private</span>:
+      <span class="keyword">static</span> <span class="type">void</span> appendGuest(<span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>Person<span class="operator">&gt;</span><span class="operator">*</span><span class="operator">,</span> Person<span class="operator">*</span>);
+      <span class="keyword">static</span> <span class="type">int</span> guestCount(<span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>Person<span class="operator">&gt;</span><span class="operator">*</span>);
+      <span class="keyword">static</span> Person<span class="operator">*</span> guest(<span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>Person<span class="operator">&gt;</span><span class="operator">*</span><span class="operator">,</span> <span class="type">int</span>);
+      <span class="keyword">static</span> <span class="type">void</span> clearGuests(<span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>Person<span class="operator">&gt;</span><span class="operator">*</span>);
+
+      Person <span class="operator">*</span>m_host;
+      <span class="type"><a href="../qtcore/qvector.html">QVector</a></span><span class="operator">&lt;</span>Person <span class="operator">*</span><span class="operator">&gt;</span> m_guests;
+  };
+
+</pre>
+<p>该类包含一个成员来存储庆祝对象，以及一个<a href="../qtcore/qlist.html">QList</a>&lt;Person *&gt; 成员。</p>
+<p>在QML中，列表属性的类型(guest属性是人员列表)都是<a href="qqmllistproperty.html">QQmlListProperty</a>&lt;T&gt;类型。 <a href="qqmllistproperty.html">QQmlListProperty</a> 是一个简单的值类型，包含一组函数指针。QML在需要读取、写入或与列表交互时调用这些函数指针。除了本例中使用的人员列表之类的具体列表外，使用<a href="qqmllistproperty.html">QQmlListProperty</a>还允许&quot;虚拟列表&quot;和其他高级场景。</p>
+<a name="define-the-birthdayparty"></a>
+<h3 >定义BirthdayParty</h3>
+<p>BirthdayParty属性访问器的实现非常简单。</p>
+<pre class="cpp">
+
+  Person <span class="operator">*</span>BirthdayParty<span class="operator">::</span>host() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> m_host;
+  }
+
+  <span class="type">void</span> BirthdayParty<span class="operator">::</span>setHost(Person <span class="operator">*</span>c)
+  {
+      m_host <span class="operator">=</span> c;
+  }
+
+  <span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>Person<span class="operator">&gt;</span> BirthdayParty<span class="operator">::</span>guests()
+  {
+      <span class="keyword">return</span> <span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>Person<span class="operator">&gt;</span>(<span class="keyword">this</span><span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span>
+               <span class="operator">&amp;</span>BirthdayParty<span class="operator">::</span>appendGuest<span class="operator">,</span>
+               <span class="operator">&amp;</span>BirthdayParty<span class="operator">::</span>guestCount<span class="operator">,</span>
+               <span class="operator">&amp;</span>BirthdayParty<span class="operator">::</span>guest<span class="operator">,</span>
+               <span class="operator">&amp;</span>BirthdayParty<span class="operator">::</span>clearGuests);
+  }
+
+  <span class="type">void</span> BirthdayParty<span class="operator">::</span>appendGuest(Person<span class="operator">*</span> p) {
+      m_guests<span class="operator">.</span>append(p);
+  }
+
+  <span class="type">int</span> BirthdayParty<span class="operator">::</span>guestCount() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> m_guests<span class="operator">.</span>count();
+  }
+
+  Person <span class="operator">*</span>BirthdayParty<span class="operator">::</span>guest(<span class="type">int</span> index) <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> m_guests<span class="operator">.</span>at(index);
+  }
+
+  <span class="type">void</span> BirthdayParty<span class="operator">::</span>clearGuests() {
+      m_guests<span class="operator">.</span>clear();
+  }
+
+</pre>
+<a name="running-the-example"></a>
+<h2 id="running-the-example">运行这个示例</h2>
+<p>示例中的main.cpp文件包含一个简单的shell应用程序，它加载并运行本页开头所示的QML片段。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtqml-referenceexamples-properties-birthdayparty-cpp.html">referenceexamples/properties/birthdayparty.cpp</a></li>
+<li><a href="qtqml-referenceexamples-properties-birthdayparty-h.html">referenceexamples/properties/birthdayparty.h</a></li>
+<li><a href="qtqml-referenceexamples-properties-example-qml.html">referenceexamples/properties/example.qml</a></li>
+<li><a href="qtqml-referenceexamples-properties-main-cpp.html">referenceexamples/properties/main.cpp</a></li>
+<li><a href="qtqml-referenceexamples-properties-person-cpp.html">referenceexamples/properties/person.cpp</a></li>
+<li><a href="qtqml-referenceexamples-properties-person-h.html">referenceexamples/properties/person.h</a></li>
+<li><a href="qtqml-referenceexamples-properties-properties-pro.html">referenceexamples/properties/properties.pro</a></li>
+<li><a href="qtqml-referenceexamples-properties-properties-qrc.html">referenceexamples/properties/properties.qrc</a></li>
+</ul>
+</div>
+<!-- @@@referenceexamples/properties -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
