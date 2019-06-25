@@ -253,14 +253,14 @@
   }
 
 </pre>
-<p>Here, the <a href="../qtquick/qml-qtquick-item.html">Item</a> object is able to access and set the values of <code>Keys.enabled</code> and <code>Keys.onReturnPressed</code>. This allows the <a href="../qtquick/qml-qtquick-item.html">Item</a> object to access these extra attributes as an extension to its own existing attributes.</p>
+<p>在这里，<a href="../qtquick/qml-qtquick-item.html">Item</a>对象能够访问和设置<code>Keys.enabled</code> 和 <code>Keys.onReturnPressed</code>的值。这允许<a href="../qtquick/qml-qtquick-item.html">Item</a> 对象访问这些额外的属性，作为对其现有属性的扩展。</p>
 <a name="steps-for-implementing-attached-objects"></a>
-<h4 >Steps for Implementing Attached Objects</h4>
-<p>When considering the above example, there are several parties involved:</p>
+<h4 >实现附加对象的步骤</h4>
+<p>在考虑上述例子时，涉及到几个方面:</p>
 <ul>
-<li>There is an instance of an anonymous <i>attached object type</i>, with an <code>enabled</code> and a <code>returnPressed</code> signal, that has been attached to the <a href="../qtquick/qml-qtquick-item.html">Item</a> object to enable it to access and set these attributes.</li>
-<li>The <a href="../qtquick/qml-qtquick-item.html">Item</a> object is the <i>attachee</i>, to which the instance of the <i>attached object type</i> has been attached.</li>
-<li><a href="../qtquick/qml-qtquick-keys.html">Keys</a> is the <i>attaching type</i>, which provides the <i>attachee</i> with a named qualifier, &quot;Keys&quot;, through which it may access the attributes of the <i>attached object type</i>.</li>
+<li>有一个匿名<i>附加对象类型</i>的实例，带有一个<code>enabled</code> 和一个 <code>returnPressed</code>信号，该实例已附加到<a href="../qtquick/qml-qtquick-item.html">Item</a> 对象，以使其能够访问和设置这些属性。</li>
+<li><a href="../qtquick/qml-qtquick-item.html">Item</a> 对象是 <i>attachee</i>，已将<i>附加对象类型</i>的实例附加到其上。</li>
+<li><a href="../qtquick/qml-qtquick-keys.html">Keys</a> 是<i>附加类型</i>，它为<i>attachee</i> 提供一个命名限定符“键”，通过它可以访问<i>附加对象类型</i>的属性。</li>
 </ul>
 <p>When the QML engine processes this code, it creates a single instance of the <i>attached object type</i> and attaches this instance to the <a href="../qtquick/qml-qtquick-item.html">Item</a> object, thereby providing it with access to the <code>enabled</code> and <code>returnPressed</code> attributes of the instance.</p>
 <p>The mechanisms for providing attached objects can be implemented from C++ by providing classes for the <i>attached object type</i> and <i>attaching type</i>. For the <i>attached object type</i>, provide a <a href="../qtcore/qobject.html">QObject</a>-derived class that defines the attributes to be made accessible to <i>attachee</i> objects. For the <i>attaching type</i>, provide a <a href="../qtcore/qobject.html">QObject</a>-derived class that:</p>
