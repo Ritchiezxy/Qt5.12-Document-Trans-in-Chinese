@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- topic.qdoc -->
+  <title>QML Documents | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >QML Documents</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#structure-of-a-qml-document">QML文档的结构</a></li>
+<li class="level2"><a href="#syntax-of-the-qml-language">QML语言的语法</a></li>
+<li class="level1"><a href="#defining-object-types-through-qml-documents">通过QML文档定义对象类型</a></li>
+<li class="level1"><a href="#resource-loading-and-network-transparency">资源加载和网络透明性</a></li>
+<li class="level1"><a href="#scope-and-naming-resolution">范围和命名解析</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML文档</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-documents-topic.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML文档是符合QML文档语法的字符串。文档定义了QML对象类型。文档通常从本地或远程存储的<code>&quot;.qml&quot;</code>文件加载，但是可以用代码手工构造。文档定义的对象类型的实例可以使用QML代码中的<a href="qml-qtqml-component.html">Component</a>创建，也可以使用C++中的<a href="qqmlcomponent.html">QQmlComponent</a>创建。或者，如果对象类型显式地公开给具有特定类型名称的QML类型系统，则可以在其他文档的对象声明中直接使用该类型。 </p>
+<p>在文档中定义可重用QML对象类型的能力是允许客户端编写模块化、高可读性和可维护性代码的重要支持因素。</p>
+<p>自Qt 5.4以来，文档还可以具有文件扩展名<code>&quot;.ui.qml&quot;</code>QML引擎像处理标准.qml 文件一样处理这些文件，并忽略扩展名的<code>.ui</code> 部分。Qt Creator将这些文件处理为Qt Quick Designer的 <a href="http://doc.qt.io/qtcreator/creator-quick-ui-forms.html">UI表单</a>。这些文件只能包含Qt Creator定义的QML语言的一个子集。</p>
+<a name="structure-of-a-qml-document"></a>
+<h2 id="structure-of-a-qml-document">QML文档的结构</h2>
+<p>QML文档由两个部分组成:导入部分和对象声明部分。文档中的导入部分包含导入语句，定义文档能够使用哪些QML对象类型和JavaScript资源。对象声明部分定义了在实例化文档定义的对象类型时要创建的对象树。</p>
+<p>下面是一个简单文档的例子:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">300</span>
+      <span class="name">height</span>: <span class="number">200</span>
+      <span class="name">color</span>: <span class="string">&quot;blue&quot;</span>
+  }
+
+</pre>
+<p>有关此主题的更多信息，请参见<a href="qtqml-documents-structure.html">QML文档的结构</a> 。</p>
+<a name="syntax-of-the-qml-language"></a>
+<h3 >QML语言的语法</h3>
+<p>文档的对象声明部分必须使用适当的<a href="qtqml-syntax-basics.html">QML语法</a>指定有效的对象层次结构。对象声明可以包含自定义<a href="qtqml-syntax-objectattributes.html">对象属性（attribute）</a>的规范。对象方法属性（attibute)可以指定为JavaScript函数，对象属性属性（attibute)可以指定 <a href="qtqml-syntax-propertybinding.html">属性（property）绑定表达式</a>。</p>
+<p>有关有效语法的更多信息，请参阅有关<a href="qtqml-syntax-basics.html">QML语法</a>的文档，也可以参阅有关<a href="qtqml-javascript-topic.html">集成QML和JavaScript</a> 的文档，以获得关于该主题的深入信息。</p>
+<a name="defining-object-types-through-qml-documents"></a>
+<h2 id="defining-object-types-through-qml-documents">通过QML文档定义对象类型</h2>
+<p>正如上一节简要描述的，文档隐式地定义了QML对象类型。QML的核心原则之一是能够定义并重用对象类型。这提高了QML代码的可维护性，增加了对象层次声明的可读性，并促进UI定义和逻辑实现之间的分离。</p>
+<p>在下面的例子中，客户端开发人员定义了一个<code>Button</code>，其中包含一个文件中的文档:</p>
+<pre class="qml">
+
+  <span class="comment">// Button.qml</span>
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+      <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Button clicked!&quot;</span>)
+      }
+  }
+
+</pre>
+<p><code>Button</code>类型可以在应用程序中使用:</p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><pre class="qml">
+
+  <span class="comment">// application.qml</span>
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-column.html">Column</a></span> {
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-button.html">Button</a></span> { <span class="name">width</span>: <span class="number">50</span>; <span class="name">height</span>: <span class="number">50</span> }
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-button.html">Button</a></span> { <span class="name">x</span>: <span class="number">50</span>; <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">50</span>; <span class="name">color</span>: <span class="string">&quot;blue&quot;</span> }
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-button.html">Button</a></span> { <span class="name">width</span>: <span class="number">50</span>; <span class="name">height</span>: <span class="number">50</span>; <span class="name">radius</span>: <span class="number">8</span> }
+  }
+
+</pre>
+</td><td ><p class="centerAlign"><img src="images/button-types.png" alt="" /></p></td></tr>
+</table></div>
+<p>有关此主题的详细信息，请参阅有关 <a href="qtqml-documents-definetypes.html">在文档中定义对象类型</a> 的文档。</p>
+<a name="resource-loading-and-network-transparency"></a>
+<h2 id="resource-loading-and-network-transparency">资源加载和网络透明性</h2>
+<p>需要注意的是，QML是网络透明的。应用程序可以从远程路径导入文档，就像从本地路径导入文档一样简单。事实上，任何<code>url</code>属性都可以分配一个远程或本地URL, QML引擎将处理任何涉及的网络通信。</p>
+<p>有关导入中的网络透明度的更多信息，请参阅<a href="qtqml-documents-networktransparency.html">网络透明度</a>文档。</p>
+<a name="scope-and-naming-resolution"></a>
+<h2 id="scope-and-naming-resolution">范围和命名解析</h2>
+<p>文档中的表达式通常涉及对象或对象的属性，由于可以定义多个对象，而且不同的对象可能具有相同名称的属性，因此必须使用QML定义一些预定义的符号解析语义。有关主题的详细信息，请 <a href="qtqml-documents-scope.html">参阅范围和符号分辨率</a>页面。 </p>
+</div>
+<!-- @@@qtqml-documents-topic.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
