@@ -262,23 +262,23 @@
 <li><a href="../qtquick/qml-qtquick-item.html">Item</a> 对象是 <i>attachee</i>，已将<i>附加对象类型</i>的实例附加到其上。</li>
 <li><a href="../qtquick/qml-qtquick-keys.html">Keys</a> 是<i>附加类型</i>，它为<i>attachee</i> 提供一个命名限定符“键”，通过它可以访问<i>附加对象类型</i>的属性。</li>
 </ul>
-<p>When the QML engine processes this code, it creates a single instance of the <i>attached object type</i> and attaches this instance to the <a href="../qtquick/qml-qtquick-item.html">Item</a> object, thereby providing it with access to the <code>enabled</code> and <code>returnPressed</code> attributes of the instance.</p>
-<p>The mechanisms for providing attached objects can be implemented from C++ by providing classes for the <i>attached object type</i> and <i>attaching type</i>. For the <i>attached object type</i>, provide a <a href="../qtcore/qobject.html">QObject</a>-derived class that defines the attributes to be made accessible to <i>attachee</i> objects. For the <i>attaching type</i>, provide a <a href="../qtcore/qobject.html">QObject</a>-derived class that:</p>
+<p>当QML引擎处理此代码时，它创建附加对象类型的单个实例，并将此实例附加到<a href="../qtquick/qml-qtquick-item.html">Item</a>对象，从而为其提供对实例的<code>enabled</code> 和 <code>returnPressed</code> 属性的访问。</p>
+<p>通过为<i>附加对象类型</i> 和 <i>附加类型</i>提供类，可以从C++实现提供附加对象的机制。对于 <i>附加对象类型</i>，提供一个<a href="../qtcore/qobject.html">QObject</a>t派生类，该类定义要使<i>attachee</i>对象可访问的属性。 对于<i>附加类型</i>，提供一个<a href="../qtcore/qobject.html">QObject</a>派生类:</p>
 <ul>
-<li>implements a static qmlAttachedProperties() with the following signature:<pre class="cpp">
+<li>使用以下签名实现静态qmlAttachedProperties():<pre class="cpp">
 
   <span class="keyword">static</span> <span class="operator">&lt;</span>AttachedPropertiesType<span class="operator">&gt;</span> <span class="operator">*</span>qmlAttachedProperties(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object);
 
 </pre>
-<p>This method should return an instance of the <i>attached object type</i>.</p>
-<p>The QML engine invokes this method in order to attach an instance of the attached object type to the <i>attachee</i> specified by the <code>object</code> parameter. It is customary, though not strictly required, for this method implementation to parent the returned instance to <code>object</code> in order to prevent memory leaks.</p>
-<p>This method is called at most once by the engine for each attachee object instance, as the engine caches the returned instance pointer for subsequent attached property accesses. Consequently the attachment object may not be deleted until the attachee <code>object</code> is destroyed.</p>
+<p>方法应返回附加对象类型的实例</i>。</p>
+<p>QML引擎调用此方法，以便将附加对象类型的实例附加到<code>object</code>参数指定的<i>attachee</i> 。虽然不是严格要求，但通常这种方法实现将返回的实例父类化为<code>object</code>，以防止内存泄漏。</p>
+<p>对于每个attachee对象实例，引擎最多只调用此方法一次，因为引擎缓存返回的实例指针，以便后续的附加属性访问。因此，在销毁attachee <code>object</code> 之前，不能删除附加对象。</p>
 </li>
-<li>is declared as an attaching type, by calling the <a href="qqmlengine.html#QML_DECLARE_TYPEINFO">QML_DECLARE_TYPEINFO</a>() macro with the QML_HAS_ATTACHED_PROPERTIES flag</li>
+<li>通过使用QML_HAS_ATTACHED_PROPERTIES标志调用<a href="qqmlengine.html#QML_DECLARE_TYPEINFO">QML_DECLARE_TYPEINFO</a>() 宏，将其声明为附加类型</li>
 </ul>
 <a name="implementing-attached-objects-an-example"></a>
-<h4 >Implementing Attached Objects: An Example</h4>
-<p>For example, take the <code>Message</code> type described in an <a href="qtqml-cppintegration-definetypes.html#registering-an-instantiable-object-type">earlier example</a>:</p>
+<h4 >实现附加对象:一个例子</h4>
+<p>例如，以<a href="qtqml-cppintegration-definetypes.html#registering-an-instantiable-object-type">前面示例</a>中描述的<code>Message</code> 类型为例:</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> Message : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
@@ -291,13 +291,13 @@
   };
 
 </pre>
-<p>Suppose it is necessary to trigger a signal on a <code>Message</code> when it is published to a message board, and also track when the message has expired on the message board. Since it doesn't make sense to add these attributes directly to a <code>Message</code>, as the attributes are more relevant to the message board context, they could be implemented as <i>attached</i> attributes on a <code>Message</code> object that are provided through a &quot;MessageBoard&quot; qualifier. In terms of the concepts described earlier, the parties involved here are:</p>
+<p>假设有必要在<code>Message</code>上将信号发布到消息板时触发该信号，并跟踪消息板上的消息何时过期。由于将这些属性直接添加到<code>Message</code>没有任何意义，因为这些属性与消息板上下文更相关，所以可以将它们实现为<code>Message</code>对象上的<i>attached</i>属性，这些属性是通过 object that are provided through a &quot;MessageBoard&quot; 限定符提供的。根据上文所述的概念，这里涉及的各方是:</p>
 <ul>
-<li>An instance of an anonymous <i>attached object type</i>, which provides a <code>published</code> signal and an expired property. This type is implemented by <code>MessageBoardAttachedType</code> below</li>
-<li>A <code>Message</code> object, which will be the <i>attachee</i></li>
-<li>The <code>MessageBoard</code> type, which will be the <i>attaching type</i> that is used by <code>Message</code> objects to access the attached attributes</li>
+<li>匿名 <i>附加对象类型</i>的实例，它提供<code>published</code> 的信号和已过期的属性。此类型由下面的<code>MessageBoardAttachedType</code>实现/li>
+<li>一个<code>Message</code> 对象，它将是<i>attachee</i></li>
+<li><code>MessageBoard</code> 类型，它是<code>Message</code> 对象用来访问附加属性的<i>附加类型</i> </li>
 </ul>
-<p>Following is an example implementation. First, there needs to be an <i>attached object type</i> with the necessary properties and signals that will be accessible to the <i>attachee</i>:</p>
+<p>下面是一个示例实现。首先，需要有一个<i>附加的对象类型</i> 与必要的属性和信号，将访问<i>attachee</i>:</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> MessageBoardAttachedType : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
@@ -314,7 +314,7 @@
   };
 
 </pre>
-<p>Then the <i>attaching type</i>, <code>MessageBoard</code>, must declare a <code>qmlAttachedProperties()</code> method that returns an instance of the <i>attached object type</i> as implemented by MessageBoardAttachedType. Additionally, <code>Message</code> board must be declared as an attached type through the <a href="qqmlengine.html#QML_DECLARE_TYPEINFO">QML_DECLARE_TYPEINFO</a>() macro:</p>
+<p>然后，<i>附加类型</i>, <code>MessageBoard</code>必须声明一个<code>qmlAttachedProperties()</code> 方法，该方法返回由MessageBoardAttachedType 实现的<i>附加对象类型</i>实例。另外，<code>Message</code>板必须通过<a href="qqmlengine.html#QML_DECLARE_TYPEINFO">QML_DECLARE_TYPEINFO</a>()宏声明为附加类型:</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> MessageBoard : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
@@ -329,7 +329,7 @@
   QML_DECLARE_TYPEINFO(MessageBoard<span class="operator">,</span> QML_HAS_ATTACHED_PROPERTIES)
 
 </pre>
-<p>Now, a <code>Message</code> type can access the properties and signals of the attached object type:</p>
+<p>现在，<code>Message</code> 类型可以访问附加对象类型的属性和信号:</p>
 <pre class="qml">
 
   <span class="type">Message</span> {
@@ -342,8 +342,8 @@
   }
 
 </pre>
-<p>Additionally, the C++ implementation may access the attached object instance that has been attached to any object by calling the <a href="qqmlengine.html#qmlAttachedPropertiesObject">qmlAttachedPropertiesObject</a>() function.</p>
-<p>For example:</p>
+<p>此外，C++实现可以通过调用<a href="qqmlengine.html#qmlAttachedPropertiesObject">qmlAttachedPropertiesObject</a>() 函数访问附加到任何对象的附加对象实例。</p>
+<p>例如:</p>
 <pre class="cpp">
 
   Message <span class="operator">*</span>msg <span class="operator">=</span> someMessageInstance();
@@ -355,14 +355,14 @@
 </pre>
 <a name="property-modifier-types"></a>
 <h3 >属性修改器类型</h3>
-<p>A property modifier type is a special kind of QML object type. A property modifier type instance affects a property (of a QML object instance) which it is applied to. There are two different kinds of 属性修改器类型:</p>
+<p>属性修改器类型是一种特殊的QML对象类型。属性修改器类型实例影响其应用于的属性(QML对象实例的属性)。有两种不同的属性修改器类型:</p>
 <ul>
-<li>property value write interceptors</li>
-<li>property value sources</li>
+<li>属性值写入拦截器</li>
+<li>属性值源</li>
 </ul>
-<p>A property value write interceptor can be used to filter or modify values as they are written to properties. Currently, the only supported property value write interceptor is the <a href="../qtquick/qml-qtquick-behavior.html">Behavior</a> type provided by the <code>QtQuick</code> import.</p>
-<p>A property value source can be used to automatically update the value of a property over time. Clients can define their own property value source types. The various <a href="../qtquick/qtquick-statesanimations-animations.html">property animation</a> types provided by the <code>QtQuick</code> import are examples of property value sources.</p>
-<p>Property modifier type instances can be created and applied to a property of a QML object through the &quot;&lt;ModifierType&gt; on &lt;propertyName&gt;&quot; syntax, as the following example shows:</p>
+<p>属性值写入拦截器可用于筛选或修改写入属性的值。目前，惟一受支持的属性值写拦截器是<code>QtQuick</code>导入提供的<a href="../qtquick/qml-qtquick-behavior.html">Behavior</a>类型。</p>
+<p>属性值源可用于随时间自动更新属性值。客户端可以定义自己的属性值源类型。<code>QtQuick</code>导入提供的各种<a href="../qtquick/qtquick-statesanimations-animations.html">属性动画</a>类型都是属性值源的示例。</p>
+<p>属性修改器类型实例可以通过“<propertyName>上的<ModifierType>”语法创建并应用于QML对象的属性，如下例所示:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -386,12 +386,12 @@
   }
 
 </pre>
-<p>Clients can register their own property value source types, but currently not property value write interceptors.</p>
+<p>客户端可以注册自己的属性值源类型，但目前还不能编写属性值拦截器。</p>
 <a name="property-value-sources"></a>
-<h4 >Property Value Sources</h4>
-<p><i>Property value sources</i> are QML types that can automatically update the value of a property over time, using the <code>&lt;PropertyValueSource&gt; on &lt;property&gt;</code> syntax. For example, the various <a href="../qtquick/qtquick-statesanimations-animations.html">property animation</a> types provided by the <code>QtQuick</code> module are examples of property value sources.</p>
-<p>A property value source can be implemented in C++ by subclassing <a href="qqmlpropertyvaluesource.html">QQmlPropertyValueSource</a> and providing an implementation that writes different values to a property over time. When the property value source is applied to a property using the <code>&lt;PropertyValueSource&gt; on &lt;property&gt;</code> syntax in QML, it is given a reference to this property by the engine so that the property value can be updated.</p>
-<p>For example, suppose there is a <code>RandomNumberGenerator</code> class to be made available as a property value source, so that when applied to a QML property, it will update the property value to a different random number every 500 milliseconds. Additionally, a maxValue can be provided to this random number generator. This class can be implemented as follows:</p>
+<h4 >属性值源</h4>
+<p><i>属性值源</i> 是QML类型，可以使用<code>&lt;property&gt;语法上的&lt;PropertyValueSource&gt;</code> 随时间自动更新属性值。例如，<code>QtQuick</code>模块提供的各种<a href="../qtquick/qtquick-statesanimations-animations.html">属性动画</a>类型都是属性值源的示例。</p>
+<p>属性值源可以用C++实现，方法是子类化<a href="qqmlpropertyvaluesource.html">QQmlPropertyValueSource</a>并提供一个实现，该实现可以随着时间的推移向属性写入不同的值。当使用QML中的 <code>&lt;property&gt;语法上的&lt;PropertyValueSource&gt; </code>将属性值源应用于属性时，引擎将提供对该属性的引用，以便可以更新属性值。</p>
+<p>例如，假设有一个<code>RandomNumberGenerator</code>类可用作属性值源，以便在应用于QML属性时，它将每500毫秒将属性值更新为一个不同的随机数。此外，可以为这个随机数生成器提供一个maxValue。这个类可以实现如下:</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> RandomNumberGenerator : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span> <span class="keyword">public</span> <span class="type"><a href="qqmlpropertyvaluesource.html">QQmlPropertyValueSource</a></span>
@@ -427,8 +427,8 @@
   };
 
 </pre>
-<p>When the QML engine encounters a use of <code>RandomNumberGenerator</code> as a property value source, it invokes <code>RandomNumberGenerator::setTarget()</code> to provide the type with the property to which the value source has been applied. When the internal timer in <code>RandomNumberGenerator</code> triggers every 500 milliseconds, it will write a new number value to that specified property.</p>
-<p>Once the <code>RandomNumberGenerator</code> class has been registered with the QML type system, it can be used from QML as a property value source. Below, it is used to change the width of a <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> every 500 milliseconds:</p>
+<p>当QML引擎遇到使用<code>RandomNumberGenerator</code> 作为属性值源时，它调用<code>RandomNumberGenerator::setTarget()</code> 来为类型提供应用了值源的属性。当<code>RandomNumberGenerator</code> 中的内部计时器每500毫秒触发一次时，它将向指定的属性写入一个新的数值。</p>
+<p>一旦<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>类注册到QML类型系统，就可以从QML将其用作属性值源。下面，它用于每500毫秒改变一个矩形的宽度:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -445,12 +445,12 @@
   }
 
 </pre>
-<p>In all other respects, property value sources are regular QML types that can have properties, signals methods and so on, but with the added capability that they can be used to change property values using the <code>&lt;PropertyValueSource&gt; on &lt;property&gt;</code> syntax.</p>
-<p>When a property value source object is assigned to a property, QML first tries to assign it normally, as though it were a regular QML type. Only if this assignment fails does the engine call the <a href="qqmlpropertyvaluesource.html#setTarget">setTarget()</a> method. This allows the type to also be used in contexts other than just as a value source.</p>
+<p>在所有其他方面，属性值源都是常规的QML类型，可以有属性、信号方法等等，但是添加了使用<code>&lt;property&gt;语法上的&lt;PropertyValueSource&gt; </code>更改属性值的功能。</p>
+<p>当一个属性值源对象被分配给一个属性时，QML首先尝试正常分配它，就像它是一个常规的QML类型一样。只有当分配失败时，引擎才调用<a href="qqmlpropertyvaluesource.html#setTarget">setTarget()</a>方法。这允许该类型还可以在上下文中使用，而不仅仅用作值源。</p>
 <a name="specifying-default-properties-for-qml-object-types"></a>
 <h3 >为QML对象类型指定默认属性</h3>
-<p>Any <a href="../qtcore/qobject.html">QObject</a>-derived type that is registered as an instantiable QML object type can optionally specify a <i>default property</i> for the type. A default property is the property to which an object's children are automatically assigned if they are not assigned to any specific property.</p>
-<p>The default property can be set by calling the <a href="../qtcore/qobject.html#Q_CLASSINFO">Q_CLASSINFO</a>() macro for a class with a specific &quot;DefaultProperty&quot; value. For example, the <code>MessageBoard</code> class below specifies its <code>messages</code> property as the default property for the class:</p>
+<p>注册为可实例化QML对象类型的任何<a href="../qtcore/qobject.html">QObject</a>派生类型都可以为该类型指定<i>默认属性</i> 。默认属性是如果对象的子对象没有被分配到任何特定的属性，则自动分配给它们的属性。</p>
+<p>可以通过调用具有特定“DefaultProperty”值的类的<a href="../qtcore/qobject.html#Q_CLASSINFO">Q_CLASSINFO</a>() 宏来设置默认属性。例如，下面的<code>MessageBoard</code> 类将其 <code>messages</code> 属性指定为该类的默认属性:</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> MessageBoard : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
@@ -466,7 +466,7 @@
   };
 
 </pre>
-<p>This enables children of a <code>MessageBoard</code> object to be automatically assigned to its <code>messages</code> property if they are not assigned to a specific property. For example:</p>
+<p>这使<code>MessageBoard</code>对象的子对象可以自动分配到其<code>messages</code>属性(如果没有分配到特定属性)。例如:</p>
 <pre class="qml">
 
   <span class="type">MessageBoard</span> {
@@ -475,7 +475,7 @@
   }
 
 </pre>
-<p>If <code>messages</code> was not set as the default property, then any <code>Message</code> objects would have to be explicitly assigned to the <code>messages</code> property instead, as follows:</p>
+<p>如果<code>messages</code> 未设置为默认属性，则必须显式地将任何<code>Message</code>对象分配给<code>messages</code>属性，如下所示:</p>
 <pre class="qml">
 
   <span class="type">MessageBoard</span> {
@@ -486,16 +486,16 @@
   }
 
 </pre>
-<p>(Incidentally, the <a href="../qtquick/qml-qtquick-item.html#data-prop">Item::data</a> property is its default property. Any <a href="../qtquick/qml-qtquick-item.html">Item</a> objects added to this <code>data</code> property are also added to the list of <a href="../qtquick/qml-qtquick-item.html#children-prop">Item::children</a>, so the use of the default property enables visual children to be declared for an item without explicitly assigning them to the <a href="../qtquick/qml-qtquick-item.html#children-prop">children</a> property.)</p>
+<p>(顺便提一下，<a href="../qtquick/qml-qtquick-item.html#data-prop">Item::data</a> 属性是它的默认属性。添加到此<code>data</code>属性的任何<a href="../qtquick/qml-qtquick-item.html">Item</a> 对象也会添加到<a href="../qtquick/qml-qtquick-item.html#children-prop">Item::children</a>列表中，因此使用默认属性可以声明项的可视子对象，而无需显式地将它们分配给<a href="../qtquick/qml-qtquick-item.html#children-prop">children</a>属性。) </p>
 <a name="defining-visual-items-with-the-qt-quick-module"></a>
 <h3 >使用Qt Quick模块定义可视化项</h3>
-<p>When building user interfaces with the <a href="../qtquick/qtquick-index.html">Qt Quick</a> module, all QML objects that are to be visually rendered must derive from the <a href="../qtquick/qml-qtquick-item.html">Item</a> type, as it is the base type for all visual objects in <a href="../qtquick/qtquick-index.html">Qt Quick</a>. This <a href="../qtquick/qml-qtquick-item.html">Item</a> type is implemented by the <a href="../qtquick/qquickitem.html">QQuickItem</a> C++ class, which is provided by the <a href="../qtquick/qtquick-index.html">Qt Quick</a> module. Therefore, this class should be subclassed when it is necessary to implement a visual type in C++ that can be integrated into a QML-based user interface.</p>
-<p>See the <a href="../qtquick/qquickitem.html">QQuickItem</a> documentation for more information. Additionally, the <a href="qtqml-tutorials-extending-qml-example.html">Writing QML Extensions with C++</a> tutorial demonstrates how a <a href="../qtquick/qquickitem.html">QQuickItem</a>-based visual item can be implemented in C++ and integrated into a Qt Quick-based user interface.</p>
+<p>当使用<a href="../qtquick/qtquick-index.html">Qt Quick</a>模块构建用户界面时，所有要可视化呈现的QML对象都必须派生自<a href="../qtquick/qml-qtquick-item.html">Item</a> 类型，因为它是<a href="../qtquick/qtquick-index.html">Qt Quick</a>中所有可视化对象的基类型。此<a href="../qtquick/qml-qtquick-item.html">Item</a>类型由Qt Quick模块提供的<a href="../qtquick/qquickitem.html">QQuickItem</a> C++类实现。因此，当需要用C++实现可以集成到基于QML的用户界面中的可视类型时，应该子类化该类。</p>
+<p>有关更多信息，请参阅<a href="../qtquick/qquickitem.html">QQuickItem</a> 文档。此外，<a href="qtqml-tutorials-extending-qml-example.html">用C++编写QML扩展</a> 教程演示了如何在C++中实现基于<a href="../qtquick/qquickitem.html">QQuickItem</a>的可视化项目，并将其集成到基于Qt Quick-based的用户界面中。</p>
 <a name="receiving-notifications-for-object-initialization"></a>
 <h2 id="receiving-notifications-for-object-initialization">接收对象初始化通知</h2>
-<p>For some custom QML object types, it may be beneficial to delay the initialization of particular data until the object has been created and all of its properties have been set. For example, this may be the case if the initialization is costly, or if the initialization should not be performed until all property values have been initialized.</p>
-<p>The <a href="qtqml-index.html">Qt QML</a> module provides the <a href="qqmlparserstatus.html">QQmlParserStatus</a> to be subclassed for these purposes. It defines a number of virtual methods that are invoked at various stages during component instantiation. To receive these notifications, a C++ class should inherit <a href="qqmlparserstatus.html">QQmlParserStatus</a> and also notify the Qt meta system using the <a href="../qtcore/qobject.html#Q_INTERFACES">Q_INTERFACES</a>() macro.</p>
-<p>For example:</p>
+<p>对于一些自定义QML对象类型,它可能是有益的特定数据的初始化推迟到已创建的对象和它的所有属性集。例如,可能这种情况如果初始化是昂贵的,或者在初始化所有属性值之前不应该执行初始化。</p>
+<p><a href="qtqml-index.html">Qt QML</a> 模块为这些目的提供了要子类化的<a href="qqmlparserstatus.html">QQmlParserStatus</a>。它定义了许多虚拟方法，这些方法在组件实例化的不同阶段被调用。要接收这些通知，C++类应该继承<a href="qqmlparserstatus.html">QQmlParserStatus</a> ，并使用<a href="../qtcore/qobject.html#Q_INTERFACES">Q_INTERFACES</a>()宏通知Qt元系统。</p>
+<p>例如:</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> MyQmlType : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span> <span class="keyword">public</span> <span class="type"><a href="qqmlparserstatus.html">QQmlParserStatus</a></span>
