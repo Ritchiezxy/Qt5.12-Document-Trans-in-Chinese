@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- internationalization.qdoc -->
+  <title>Internationalization and Localization with Qt Quick | Qt 5.12 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="index.html">Qt 5.12</a></td><td >使用Qt Quick实现国际化和本地化</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.12.3 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">内容</a></h3>
+<ul>
+<li class="level1"><a href="#internationalizing-your-application">国际化应用程序</a></li>
+<li class="level2"><a href="#1-use-qstr-for-all-literal-user-interface-strings">1. 对所有文字用户界面字符串使用qsTr()</a></li>
+<li class="level2"><a href="#2-add-context-for-the-translator">2. 为翻译程序添加上下文</a></li>
+<li class="level2"><a href="#3-disambiguate-identical-texts">3. 消除歧义的文字</a></li>
+<li class="level2"><a href="#4-use-op-op-x-to-insert-parameters-into-a-string">4. 使用<code>%x</code> 将参数插入字符串</a></li>
+<li class="level2"><a href="#5-use-lx-so-numbers-are-localized">5. 使用%Lx使数字本地化</a></li>
+<li class="level2"><a href="#6-internationalize-dates-times-and-currencies">6.
+<span lang="zh-cn">国际化日期、时间和货币。</span></a></li>
+<li class="level2"><a href="#7-use-qt-tr-noop-for-translatable-data-text-strings">7. 
+对可翻译的数据文本字符串使用QT_TR_NOOP() </a></li>
+<li class="level2"><a href="#8-use-locale-to-extend-localization-features">8. 
+使用Locale扩展本地化特性</a></li>
+<li class="level2"><a href="#9-prepare-for-dynamic-language-changes">9. 准备动态语言更改</a></li>
+<li class="level1"><a href="#localizing-your-application"><span lang="zh-cn">
+本地化应用程序</span></a></li>
+<li class="level2">
+<a href="#use-a-conditional-to-hide-qml-source-from-the-compiler">
+使用条件语句向编译器隐藏QML源代码</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">使用Qt Quick实现国际化和本地化</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-internationalization.html-description -->
+<div class="descr"> <a name="details"></a>
+<a name="internationalizing-your-application"></a>
+<h2 id="internationalizing-your-application">国际化应用程序</h2>
+<p>
+下面几节描述了QML源代码国际化的各个方面。如果您遵循应用程序中所有用户界面组件的这些指南，就有可能针对不同的语言和当地文化习俗(如日期和数字的格式)本地化应用程序的各个方面。</p>
+<a name="1-use-qstr-for-all-literal-user-interface-strings"></a>
+<h3 >1. 对所有文字用户界面字符串使用qsTr()</h3>
+<p>可以使用qsTr()<span lang="zh-cn">、</span>qsTranslate()<span lang="zh-cn">、</span> 
+qsTrId()<span lang="zh-cn">、</span> <a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a>()<span lang="zh-cn">、</span> <a href="../qtcore/qtglobal.html#QT_TRANSLATE_NOOP">QT_TRANSLATE_NOOP</a>()<span lang="zh-cn">和</span><a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP</a>() 
+函数标记QML中的字符串以便进行转换。标记字符串最常用的方法是使用qsTr()函数。例如:</p>
+<pre class="cpp">
+
+  Text {
+      id: txt1;
+      text: qsTr(<span class="string">&quot;Back&quot;</span>);
+  }
+
+</pre>
+<p>这段代码使“Back”成为翻译文件中的一个关键条目。在运行时，翻译系统查找关键字“Back”，然后获取当前系统语言环境的相应翻译值。结果返回给<code>text</code>属性，用户界面将显示当前语言环境的“Back”的适当转换。</p>
+<a name="2-add-context-for-the-translator"></a>
+<h3 >2. 为翻译程序添加上下文</h3>
+<p>
+用户界面字符串通常很短，因此需要帮助翻译文本的人理解文本的上下文。您可以在要翻译的字符串之前将上下文信息作为额外的描述性文本添加到源代码中。这些额外的描述包含在交付给翻译人员的.ts翻译文件中。</p>
+<p>注意:.ts文件是包含源文本和翻译文本的XML文件。更新后的.ts文件被转换成二进制翻译文件，并包含在最终应用程序中。</p><p>
+	在下面的代码片段中，//:行的文本是翻译人员的主要注释。</p>
+<p>//~行上的文本是可选的额外信息。文本的第一个单词用作.ts文件中的XML元素的附加标识符，因此请确保第一个单词不是句子的一部分。例如，在.ts文件中， &quot;Context Not related to that&quot; 
+被转换为"&lt;extra-Context&gt;Not related to that"<span lang="zh-cn">。</span></p>
+<pre class="cpp">
+
+  Text {
+      id: txt1;
+      <span class="comment">// 此用户界面字符串仅在这里使用</span>
+      <span class="comment">//:Context Not related to back-stepping</span>
+      <span class="comment">//~ 上下文与后退无关</span>
+      text: qsTr(<span class="string">&quot;Back&quot;</span>);
+  }
+
+</pre>
+<a name="3-disambiguate-identical-texts"></a>
+<h3 >3. 消除歧义的文字</h3>
+<p>
+翻译系统将用户界面文本字符串合并为唯一的项。这种合并使从事翻译工作的人员不必多次翻译相同的文本。然而，在某些情况下，文本是相同的，但有不同的含义。例如，在英语中，“back”的意思是后退一步，也指一个物体相对于前面的部分。你需要告诉翻译系统这两个不同的意思，这样翻译人员可以创建两个不同的翻译。</p>
+<p>通过添加一些id文本作为qsTr()函数的第二个参数来区分相同的文本。</p>
+<p>在下面的代码片段中， <code>not front</code> 文本是一个id，用于区分“Back”文本和“Back”文本:</p>
+<pre class="cpp">
+
+  Text {
+      id: txt1;
+      <span class="comment">// 此用户界面字符串仅在这里使用</span>
+      <span class="comment">//: The back of the object, not the front</span>
+      <span class="comment">//~ Context Not related to back-stepping</span>
+      text: qsTr(<span class="string">&quot;Back&quot;</span><span class="operator">,</span> <span class="string">&quot;not front&quot;</span>);
+  }
+
+</pre>
+<a name="4-use-op-op-x-to-insert-parameters-into-a-string"></a>
+<h3 >4. 使用 <code>%x<span lang="zh-cn"> </span></code>将参数插入字符串</h3>
+<p>不同的语言以不同的顺序将单词组合在一起，因此通过连接单词和数据来创建句子不是一个好主意。<br>相反，使用 <code>%</code> 
+将参数插入字符串。<br>例如，下面的代码段有一个字符串，其中有两个数字参数 <code>%1</code> 和 <code>%2<span lang="zh-cn">。</span></code><br>
+这些参数是用 <code>.arg()</code> 函数插入的。</p>
+<pre class="cpp">
+
+  Text {
+      text: qsTr(<span class="string">&quot;File %1 of %2&quot;</span>)<span class="operator">.</span>arg(counter)<span class="operator">.</span>arg(total)
+  }
+
+</pre>
+<p><code>%<span lang="zh-cn">1</span></code> 指的是第一个参数， <code>%2</code> 
+指的是第二个参数，因此这段代码产生的输出类似于 "File 2 of 3"<span lang="zh-cn">。</span></p>
+<a name="5-use-lx-so-numbers-are-localized"></a>
+<h3 >5. 使用 %Lx 使数字本地化</h3>
+<p>如果在指定参数时包含 <code>%L</code> 修饰符，则该数字将根据当前区域设置进行本地化。例如，在下面的代码片段中， <code>%L1</code> 
+表示根据当前选择的地区(地理区域)的数字格式约定来格式化第一个参数:</p>
+<pre class="cpp">
+
+  Text {
+      text: qsTr(<span class="string">&quot;%L1&quot;</span>)<span class="operator">.</span>arg(total)
+  }
+
+</pre>
+<p>然后，<span lang="zh-cn">对于</span>上面的代码，如果 <code>total</code> 是数字 &quot;4321.56&quot; 
+(四千三百二十一点五十六);使用英文区域设置，输出为&quot;4,321.56&quot;; 使用德国地区设置，输出为"4.321,56"<span lang="zh-cn">。</span></p>
+<a name="6-internationalize-dates-times-and-currencies"></a>
+<h3 >6. 国际化日期、时间和货币</h3>
+<p>这里不需要用于格式化日期和时间的特殊字符串内修饰符。相反，您需要查询当前地区(地理区域)并使用 <a href="../qtqml/qml-qtqml-date.html">Date</a> 
+方法格式化字符串。</p>
+<p><code>Qt.locale()</code> 返回一个 <a href="../qtqml/qml-qtqml-locale.html">Locale</a> 
+对象，该对象包含有关<span lang="zh-cn">本地化</span>的所有信息。特别是， <a href="../qtqml/qml-qtqml-locale.html#name-prop">Locale.name</a> 
+属性包含当前地区的语言和国家信息。您可以按原样使用该值，也可以解析它以确定当前地区的适当内容。</p>
+<p>下面的代码片段使用Date()获取当前日期和时间，然后将其转换为当前地区的字符串。然后，它将日期字符串插入%1参数以进行适当的转换。</p>
+<pre class="cpp">
+
+  Text {
+      text: qsTr(<span class="string">&quot;Date %1&quot;</span>)<span class="operator">.</span>arg(Date()<span class="operator">.</span>toLocaleString(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">.</span>locale()))
+  }
+
+</pre>
+<p>要确保货币数字本地化，请使用 <a href="../qtqml/qml-qtqml-number.html">Number</a> 
+类型。此类型具有类似于将数字转换为本地化的货币字符串的日期类型的功能<span lang="zh-cn">。</span></p>
+<a name="7-use-qt-tr-noop-for-translatable-data-text-strings"></a>
+<h3 >7. 对可翻译的数据文本字符串使用QT_TR_NOOP()</h3>
+<p>
+如果用户在不重新启动的情况下更改系统语言，根据系统的不同，数组和列表模型以及其他数据结构中的字符串可能不会自动刷新。为了在文本显示在用户界面时强制刷新文本，需要使用 <a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a>() 
+宏声明字符串。然后，在填充用于显示的对象时，需要显式检索每个文本的翻译。例如:</p>
+<pre class="cpp">
+
+  ListModel {
+      id: myListModel;
+      ListElement {
+          <span class="comment">//: 芬兰首都</span>
+          name: QT_TR_NOOP(<span class="string">&quot;Helsinki&quot;</span>);
+          }
+      }
+
+  <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+
+  Text {
+      text: qsTr(myListModel<span class="operator">.</span>get(<span class="number">0</span>)<span class="operator">.</span>name); <span class="comment">// 获取元素0中name属性的转换</span>
+      }
+
+</pre>
+<a name="8-use-locale-to-extend-localization-features"></a>
+<h3 >8. 使用Locale扩展本地化特性</h3>
+<p>如果您希望为不同的地理区域提供不同的图形或音频，您可以使用Qt.<a href="../qtvirtualkeyboard/technical-guide.html#locale">locale</a>() 
+来获得当前的语言环境。然后为该地区选择适当的图形或音频。 </p>
+<p>下面的代码片段展示了如何选择适当的图标来表示当前语言环境的语言。</p>
+<pre class="cpp">
+
+  Component<span class="operator">.</span>onCompleted: {
+      <span class="keyword">switch</span> (<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">.</span>locale()<span class="operator">.</span>name<span class="operator">.</span>substring(<span class="number">0</span><span class="operator">,</span><span class="number">2</span>)) {
+          <span class="keyword">case</span> <span class="string">&quot;en&quot;</span>:   <span class="comment">// 展示英语图标</span>
+              languageIcon <span class="operator">=</span> <span class="string">&quot;../images/language-icon_en.png&quot;</span>;
+              <span class="keyword">break</span>;
+          <span class="keyword">case</span> <span class="string">&quot;fi&quot;</span>:   <span class="comment">// 显示芬兰语图标</span>
+              languageIcon <span class="operator">=</span> <span class="string">&quot;../images/language-icon_fi.png&quot;</span>;
+              <span class="keyword">break</span>;
+          <span class="keyword">default</span>:     <span class="comment">// 显示默认的语言图标</span>
+              languageIcon <span class="operator">=</span> <span class="string">&quot;../images/language-icon_default.png&quot;</span>;
+      }
+  }
+
+</pre>
+<a name="9-prepare-for-dynamic-language-changes"></a>
+<h3 >9. 准备动态语言更改</h3>
+<p>通过使用 <a href="../qtcore/qcoreapplication.html#installTranslator">QCoreApplication::installTranslator</a>() 
+和 <a href="../qtcore/qcoreapplication.html#removeTranslator">QCoreApplication::removeTranslator</a>()<span lang="zh-cn">。</span> 
+添加和删除翻译程序，您可以更改Qt翻译函数使用的语言。然后可以调用 <a href="../qtqml/qqmlengine.html#retranslate">QQmlEngine::retranslate</a>() 
+来刷新所有使用翻译的绑定。因此，您的用户界面将动态切换到新选择的语言。</p>
+<p>或者，也可以将 <a href="../qtcore/qevent.html#Type-enum">QEvent::LanguageChange</a> 
+事件转发给应用程序的 <a href="../qtqml/qqmlengine.html">QQmlEngine</a> 实例，或者将自己的信号连接到 <a href="../qtqml/qqmlengine.html#retranslate">QQmlEngine::retranslate</a>()<span lang="zh-cn">。</span></p>
+<a name="localizing-your-application"></a>
+<h2 id="localizing-your-application">本地化应用程序</h2>
+<p>Qt Quick 应用程序使用与 Qt C++ 应用程序相同的底层本地化系统(lupdate、lrelease和.ts文件)。使用与 <a href="../qtlinguist/linguist-manager.html">
+Qt Linguist手册</a>中描述的相同的工具。您甚至可以在同一个应用程序中使用C++中的用户界面字符串和QML源代码。系统将创建一个单独的组合翻译文件，字符串可以从QML和C++访问。</p>
+<a name="use-a-conditional-to-hide-qml-source-from-the-compiler"></a>
+<h3 >使用条件语句向编译器隐藏QML源代码</h3>
+<p><code>lupdate</code> 
+工具从应用程序中提取用户界面字符串。lupdate读取应用程序的.pro文件，以确定哪些源文件包含要翻译的文本。这意味着您的源文件必须在.pro文件的 <code>SOURCES</code> 
+<span lang="zh-cn">或</span> <code>HEADERS</code> 条目中列出。如果你的文件没有列出，将无法找到其中的文本。</p>
+<p>但是， SOURCES 
+变量适用于C++源文件。如果您在那里列出QML或JavaScript源文件，编译器就会试图像编译C++文件一样编译它们。作为一种变通方法，您可以使用 <code>lupdate_only{..&#x2e;}</code> 
+条件语句，这样 <code>lupdate</code> 工具可以看到.qml文件，但是C++编译器会忽略它们。</p>
+<p>例如，下面的.pro文件片段在应用程序中指定了两个.qml文件。</p>
+<pre class="cpp">
+
+  lupdate_only{
+  SOURCES <span class="operator">=</span> main<span class="operator">.</span>qml \
+            MainPage<span class="operator">.</span>qml
+  }
+
+</pre>
+<p>您还可以使用通配符匹配来指定.qml源文件。搜索不是递归的，所以你需要指定每个目录，其中有用户界面字符串的源代码:</p>
+<pre class="cpp">
+
+  lupdate_only{
+  SOURCES <span class="operator">=</span> <span class="operator">*</span><span class="operator">.</span>qml \
+            <span class="operator">*</span><span class="operator">.</span>js \
+            content<span class="comment">/*.qml \
+            content/*.js
+  }
+  </span>
+
+</pre>
+<p>有关Qt本地化的更多细节，请参阅 <a href="../qtlinguist/qtlinguist-index.html">Qt Linguist手册</a><span lang="zh-cn">。</span></p>
+</div>
+<!-- @@@qtquick-internationalization.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
