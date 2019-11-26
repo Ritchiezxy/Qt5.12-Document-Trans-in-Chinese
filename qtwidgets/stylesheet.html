@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- stylesheet.qdoc -->
+  <title>Qt Style Sheets | Qt Widgets 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtwidgets-index.html">Qt Widgets</a></td><td >Qt Style Sheets</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtwidgets-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="style-reference.html" />
+  <link rel="next" href="stylesheet-syntax.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="style-reference.html">Styles</a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="stylesheet-syntax.html">The Style Sheet Syntax</a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc"><span lang="zh-cn">目录</span></a></h3>
+<ul>
+<li class="level1"><span lang="zh-cn">概览</span></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt <span lang="zh-cn">样式表</span></h1>
+<span class="subtitle"></span>
+<!-- $$$stylesheet.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>Qt样式表是一种功能强大的机制，它允许您自定义组件的外观，除此之外，还可以继承 <a href="qstyle.html">QStyle</a>的子类。Qt样式表的概念、术语和语法深受HTML级联样式表 
+<span lang="zh-cn">（</span><a href="http://www.w3.org/Style/CSS/">Cascading Style Sheets</a><span lang="zh-cn">）</span>的启发，但更适应于组件的世界。</p>
+<ul>
+<li><a href="stylesheet.html#overview"><span lang="zh-cn">概览</span></a></li>
+<li><a href="stylesheet-syntax.html">样式表语法</a></li>
+<li><a href="stylesheet-designer.html">Qt Designer集成</a></li>
+<li><a href="stylesheet-customizing.html">使用样式表定制Qt组件</a></li>
+<li><a href="stylesheet-reference.html">Qt样式表参考</a></li>
+<li><a href="stylesheet-examples.html">Qt样式表示例</a></li>
+</ul>
+<a name="overview"></a><a name="overview"></a>
+<h2 id="overview"><span lang="zh-cn">概览</span></h2>
+<p>样式表是文本规范，可以使用<a href="qapplication.html#styleSheet-prop">QApplication::setStyleSheet</a>()在整个应用程序上设置，也可以使用<a href="qwidget.html#styleSheet-prop">QWidget::setStyleSheet</a>()在特定组件(及其子组件)上设置。如果在不同的级别设置了多个样式表，Qt从所有设置的样式表中派生出有效的样式表，这称为级联。</p>
+<p>例如，下面的样式表指定所有 <a href="qlineedit.html">QLineEdit</a>都可能使用黄色作为背景色，所有<a href="qcheckbox.html">QCheckBox</a>都可能使用红色作为文本颜色: </p>
+<pre class="cpp">
+
+  <span class="type"><a href="qlineedit.html">QLineEdit</a></span> { background: yellow }
+  <span class="type"><a href="qcheckbox.html">QCheckBox</a></span> { color: red }
+
+</pre>
+<p>对于这种定制，样式表比<a href="../qtgui/qpalette.html">QPalette</a>更强大。例如，可能很容易将<a href="../qtgui/qpalette.html#ColorRole-enum">QPalette::Button</a> 
+角色设置为红色，以便&nbsp; <a href="qpushbutton.html">QPushButton</a> 
+获得红色按钮。但是，这并不能保证适用于所有的样式，因为样式的作者受到不同平台的指导方针的限制，并且(在Windows和 <a href="../qtdoc/internationalization.html#macos">macOS</a>上)受到本地主题引擎的限制。</p>
+<p>样式表允许您执行各种自定义，这些自定义很难或不可能单独使用<a href="../qtgui/qpalette.html">QPalette</a> 
+执行。如果您想要黄色背景作为必需字段，红色文本作为潜在的破坏性按钮，或是花哨的复选框，样式表<span lang="zh-cn">是很好的选择</span>。</p>
+<p>样式表应用于当前 <a href="qstyle.html">组件样式</a>的顶部，这意味着您的应用程序将尽可能看起来是原生的，但样式表会约束您的程序。与调色板调整不同，样式表提供了保证:如果您将 <a href="qpushbutton.html">QPushButton</a> 
+的背景颜色设置为红色，则可以确保该按钮在所有样式、所有平台上都有红色背景。此外，Qt Designer提供了样式表集成，使查看不同 
+<a href="qstyle.html">组件样式</a>的样式表效果变得很容易。</p>
+<p>此外，可以使用样式表为应用程序提供独特的外观，而不必子类化<a href="qstyle.html">QStyle</a>例如，可以为单选按钮和复选框指定任意图片，以使它们突出显示。使用此技术，您还可以实现通常需要子类化几个样式类的自定义样式，例如指定<a href="qstyle.html#styleHint">样式提示</a>。下面描述的样式表示例定义了两个独特的<a href="qtwidgets-widgets-stylesheet-example.html">样式表</a> 
+，您可以随意尝试和修改它们。 </p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/stylesheet-pagefold.png" alt="" /></td></tr>
+<tr valign="top" class="even"><td >Pagefold theme running on Windows</td></tr>
+</table></div>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/stylesheet-coffee-cleanlooks.png" alt="" /></td><td ><img src="images/stylesheet-pagefold-mac.png" alt="" /></td></tr>
+<tr valign="top" class="even"><td >运行在Ubuntu Linux上的咖啡主题</td><td >
+	<span lang="zh-cn">运行在<a href="../qtdoc/internationalization.html#macos">macOS</a>上的Pagefold主题</span></td></tr>
+</table></div>
+<p>当一个样式表处于活动状态时，<a href="qwidget.html#style">QWidget::style</a>() 返回的 <a href="qstyle.html">QStyle</a> 
+是一个包装器“样式表”样式，而不是特定于平台的样式。包装器样式确保任何活动的样式表都得到尊重，否则就会将绘图操作转发给底层的特定于平台的样式(例如，Windows上的QWindowsVistaStyle)。</p>
+<p>自从Qt 4.5, Qt样式表可以完全支持 <a href="../qtdoc/internationalization.html#macos">macOS</a><span lang="zh-cn"> 
+。</span></p>
+</div>
+<!-- @@@stylesheet.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="style-reference.html">Styles</a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="stylesheet-syntax.html">The Style Sheet Syntax</a>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
