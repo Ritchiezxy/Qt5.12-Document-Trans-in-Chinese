@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- paintsystem.qdoc -->
+  <title>Drawing and Filling | Qt GUI 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtgui-index.html">Qt GUI</a></td><td >
+			<span lang="zh-cn">绘制与填充</span></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtgui-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="paintsystem-devices.html" />
+  <link rel="next" href="coordsys.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="paintsystem-devices.html"><span lang="zh-cn">绘图设备和后端</span></a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="coordsys.html"><span lang="zh-cn">坐标系统</span></a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc"><span lang="zh-cn">目录</span></a></h3>
+<ul>
+<li class="level1"><a href="#drawing"><span lang="zh-cn">绘制</span></a></li>
+<li class="level1"><a href="#filling"><span lang="zh-cn">填充</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><span lang="zh-cn">绘制和填充</span></h1>
+<span class="subtitle"></span>
+<!-- $$$paintsystem-drawing.html-description -->
+<div class="descr"> <a name="details"></a>
+<a name="drawing"></a>
+<h2 id="drawing"><span lang="zh-cn">绘制</span></h2>
+<p><a href="qpainter.html">QPainter</a> 
+提供了高度优化的功能来完成大多数图形用户界面程序所需的工作。它可以绘制从简单图形基元（由 <a href="../qtcore/qpoint.html">QPoint</a><span lang="zh-cn">、</span> <a href="../qtcore/qline.html">QLine</a><span lang="zh-cn">、</span> <a href="../qtcore/qrect.html">QRect</a><span lang="zh-cn">、</span> <a href="qregion.html">QRegion</a> 
+<span lang="zh-cn">以及</span> <a href="qpolygon.html">QPolygon</a> 
+类表示）到复杂形状（如矢量路径）的所有内容。在Qt中，向量路径由 <a href="qpainterpath.html">QPainterPath</a> 
+类表示。 <a href="qpainterpath.html">QPainterPath</a> 提供了一个用于绘制操作的容器，允许构建和重用图形形状。 </p>
+<div class="table"><table class="generic" width="100%">
+ <tr valign="top" class="odd"><td ><p class="centerAlign"><img src="images/paintsystem-painterpath.png" alt="" /></p></td><td ><b>QPainterPath</b><p>
+	 绘制路径是由直线和曲线组成的对象。例如，矩形由直线组成，椭圆由曲线组成。 </p>
+<p>与常规绘图操作相比，绘制路径的主要优点是只需创建一次复杂的形状；然后只需调用 <a href="qpainter.html#drawPath">QPainter::drawPath</a>() 
+函数就可以多次绘制它们。</p>
+<p><a href="qpainterpath.html">QPainterPath</a> 对象可用于填充、<span lang="zh-cn">轮廓</span>显示和剪裁。要为给定的绘制路径生成可填充轮廓，请使用 <a href="qpainterpathstroker.html">QPainterPathStroker</a><span lang="zh-cn"> 
+类。</span></p>
+</td></tr>
+</table></div>
+<p>使用 <a href="qpen.html">QPen</a> 
+类绘制线和轮廓。笔由其样式（即线型）、宽度、画笔、端点的绘制方式（cap-style）和两条连接线之间的连接方式（连接样式）定义。画笔的画刷是一个 <a href="qbrush.html">QBrush</a> 
+对象，用于填充使用画笔生成的笔划，即 <a href="qbrush.html">QBrush</a> 类定义填充图案。</p>
+<p><a href="qpainter.html">QPainter</a> 还可以绘制对齐的文本和像素图。</p>
+<p>绘制文本时，使用 <a href="qfont.html">QFont</a> 
+类指定字体。Qt将使用具有指定属性的字体，或者如果不存在匹配的字体，Qt将使用最匹配的已安装字体。可以使用 <a href="qfontinfo.html">QFontInfo</a> 
+类检索实际使用的字体属性。此外， <a href="qfontmetrics.html">QFontMetrics</a> 类提供字体度量， <a href="qfontdatabase.html">QFontDatabase</a> 
+类提供底层窗口系统中可用字体的信息。</p>
+<p>通常， <a href="qpainter.html">QPainter</a> 在“自然”坐标系中绘制，但它能够使用 <a href="qtransform.html">QTransform</a> 
+执行视图和世界转换。有关详细信息，请参见 <a href="coordsys.html"><span lang="zh-cn">坐标系统</span></a>, 
+该坐标系统还描述了渲染过程，即逻辑表示与渲染像素之间的关系，以及抗锯齿绘制的好处。</p>
+<div class="table"><table class="generic" width="100%">
+ <tr valign="top" class="odd"><td ><b><span lang="zh-cn">抗锯齿绘制</span></b><p>
+	 绘制时，像素渲染由 <a href="qpainter.html#RenderHint-enum">QPainter::Antialiasing</a> 
+	 渲染提示控制。 <a href="qpainter.html#RenderHint-enum">QPainter::RenderHint</a> 
+	 宏用于指定 <a href="qpainter.html">QPainter</a> 
+	 的标志，这些标志可能受任何给定引擎的尊重，也可能不受任何给定引擎的尊重。</p>
+<p><a href="qpainter.html#RenderHint-enum">QPainter::Antialiasing</a> 
+值表示引擎应尽可能平滑图元的边，即使用不同的颜色强度平滑图元的边缘部分。</p>
+</td><td ><p class="centerAlign"><img src="images/paintsystem-antialiasing.png" alt="" /></p></td></tr>
+</table></div>
+<a name="filling"></a>
+<h2 id="filling"><span lang="zh-cn">填充</span></h2>
+<p>使用 <a href="qbrush.html">QBrush</a> 类填充形状。画刷由其颜色和样式（即填充图案）定义。</p>
+<p>中的任何颜色都由 <a href="qcolor.html">QColor</a> 类表示，QColor类支持RGB、HSV和CMYK颜色模型。 <a href="qcolor.html">QColor</a> 
+还支持alpha混合的轮廓和填充（指定透明度效果），并且该类独立于平台和设备（使用 <a href="../qtwidgets/qcolormap.html">QColormap</a> 
+类将颜色映射到硬件）。有关更多信息，请参阅 <a href="qcolor.html">QColor</a> 类文档。</p>
+<p>可用的填充模式由 <a href="../qtcore/qt.html#BrushStyle-enum">Qt::BrushStyle</a> 
+枚举描述。这些包括基本图案从统一颜色到非常稀疏的图案，各种线条组合，渐变填充和纹理。Qt提供 <a href="qgradient.html">QGradient</a> 
+类来定义自定义渐变填充，而使用 <a href="qpixmap.html">QPixmap</a> 类指定纹理图案。</p>
+<div class="table"><table class="generic" width="100%">
+ <tr valign="top" class="odd"><td ><p class="centerAlign"><img src="images/paintsystem-fancygradient.png" alt="" /></p></td><td ><b>QGradient</b><p>
+	 <a href="qgradient.html">QGradient</a> 类与 <a href="qbrush.html">QBrush</a> 
+	 结合使用来指定渐变填充。</p>
+<p class="centerAlign"><img src="images/paintsystem-gradients.png" alt="" /></p><p>
+	 Qt当前支持三种类型的渐变填充：线性渐变在起点和终点之间插值颜色，径向渐变在围绕它的圆上的焦点和终点之间插值颜色，圆锥渐变在围绕中心点插值颜色。</p>
+</td></tr>
+</table></div>
+</div>
+<!-- @@@paintsystem-drawing.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="paintsystem-devices.html">Paint Devices and Backends</a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="coordsys.html">Coordinate System</a>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
