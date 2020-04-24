@@ -38,62 +38,62 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#importing-qtqml">导入QtQml</a></li>
-<li class="level1"><a href="#basic-types">基本类型</a></li>
-<li class="level1"><a href="#object-types">Object类型</a></li>
+<li class="level1"><a href="#importing-qtqml">Importing QtQml</a></li>
+<li class="level1"><a href="#basic-types">Basic Types</a></li>
+<li class="level1"><a href="#object-types">Object Types</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML中的Qt QML类型</h1>
+<h1 class="title">Qt QML QML Types</h1>
 <span class="subtitle"></span>
 <!-- $$$QtQml-description -->
 <div class="descr"> <a name="details"></a>
-<p><a href="qtqml-index.html">Qt QML</a>模块提供了可以与QML语言一起使用的各种便利类型的定义和实现，包括一些基本的QML类型，它们可以为QML语言的进一步扩展提供基础。<a href="qml-qtqml-qtobject.html">QtObject</a> 和 <a href="qml-qtqml-component.html">Component</a>t对象类型是非可视的，并且为QML扩展提供了构建块。</p>
+<p>The <a href="qtqml-index.html">Qt QML</a> module provides the definition and implementation of various convenience types which can be used with the QML language, including some elementary QML types which can provide the basis for further extensions to the QML language. The <a href="qml-qtqml-qtobject.html">QtObject</a> and <a href="qml-qtqml-component.html">Component</a> object types are non-visual and provide building-blocks for extensions to QML.</p>
 <a name="importing-qtqml"></a>
-<h2 id="importing-qtqml">导入QtQml</h2>
-<p><code>QtQml</code>模块提供的类型仅在QML文档中可用，如果该文档导入<code>QtQml</code> 名称空间(或者如果该文档导入<code>QtQuick</code>名称空间，如下所述)。</p>
-<p><code>QtQml</code>模块的当前版本为2.12版本，可以通过以下语句导入:</p>
+<h2 id="importing-qtqml">Importing QtQml</h2>
+<p>The types provided by the <code>QtQml</code> module are only available in a QML document if that document imports the <code>QtQml</code> namespace (or if the document imports the <code>QtQuick</code> namespace, as noted below).</p>
+<p>The current version of the <code>QtQml</code> module is version 2.12, and thus it may be imported via the following statement:</p>
 <pre class="qml">
 
   import QtQml 2.12
 
 </pre>
-<p>大多数客户端永远不需要使用<code>QtQml</code>导入，因为所有类型都由<code>QtQuick</code>命名空间提供，可以导入如下:</p>
+<p>Most clients will never need to use the <code>QtQml</code> import, as all of the types are also provided by the <code>QtQuick</code> namespace which may be imported as follows:</p>
 <pre class="qml">
 
   import QtQuick 2.12
 
 </pre>
-<p>有关<code>QtQuick</code>名称空间及其提供给QML应用程序开发人员的内容的更多信息，请参阅<a href="../qtquick/qtquick-index.html">Qt Quick</a>。</p>
-<p>用于创建列表和模型的QML类型(如<a href="qml-qtqml-models-listmodel.html">ListModel</a> 和 <a href="qml-qtqml-models-listelement.html">ListElement</a>)被移动到子模块<code>QtQml.Models</code>上。有关更多信息，请参阅<a href="qtqml-models-qmlmodule.html">Qt QML模块</a>。</p>
-<p>下面的类型文档同样适用于由<a href="../qtquick/qtquick-index.html">Qt Quick</a>模块提供的同名类型，因为它们实际上是相同的。</p>
+<p>See the <a href="../qtquick/qtquick-index.html">Qt Quick</a> module documentation for more information about the <code>QtQuick</code> namespace and what it provides to QML application developers.</p>
+<p>The QML types for creating lists and models, such as <a href="qml-qtqml-models-listmodel.html">ListModel</a> and <a href="qml-qtqml-models-listelement.html">ListElement</a>, are moved to a submodule, <code>QtQml.Models</code>. The <a href="qtqml-models-qmlmodule.html">Qt QML Models</a> page has more information.</p>
+<p>The documentation for the types below applies equally to the types of the same name provided by the <a href="../qtquick/qtquick-index.html">Qt Quick</a> module, as they are in fact identical.</p>
 <a name="basic-types"></a>
-<h2 id="basic-types">基本类型</h2>
-<p>提供了以下<a href="qtqml-typesystem-basictypes.html">QML基本类型</a>:</p>
+<h2 id="basic-types">Basic Types</h2>
+<p>The following <a href="qtqml-typesystem-basictypes.html">QML basic types</a> are provided:</p>
 <div class="table"><table class="annotated">
-<tr class="odd topAlign"><td class="tblName"><p><a href="qml-date.html">date</a></p></td><td class="tblDescr"><p>日期值</p></td></tr>
-<tr class="even topAlign"><td class="tblName"><p><a href="qml-point.html">point</a></p></td><td class="tblDescr"><p>具有x和y属性的值</p></td></tr>
-<tr class="odd topAlign"><td class="tblName"><p><a href="qml-rect.html">rect</a></p></td><td class="tblDescr"><p>具有x、y、width和height属性的值</p></td></tr>
-<tr class="even topAlign"><td class="tblName"><p><a href="qml-size.html">size</a></p></td><td class="tblDescr"><p>具有width和height属性的值</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-date.html">date</a></p></td><td class="tblDescr"><p>Date value</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-point.html">point</a></p></td><td class="tblDescr"><p>Value with x and y attributes</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-rect.html">rect</a></p></td><td class="tblDescr"><p>Value with x, y, width and height attributes</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-size.html">size</a></p></td><td class="tblDescr"><p>Value with width and height attributes</p></td></tr>
 </table></div>
 <a name="object-types"></a>
-<h2 id="object-types">Object类型</h2>
-<p>提供了以下<a href="qtqml-typesystem-objecttypes.html">QML object</a>类型：</p>
+<h2 id="object-types">Object Types</h2>
+<p>The following <a href="qtqml-typesystem-objecttypes.html">QML object types</a> are provided:</p>
 </div>
 <!-- @@@QtQml -->
 <div class="table"><table class="annotated">
-<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-binding.html">Binding</a></p></td><td class="tblDescr"><p>支持任意属性绑定的创建</p></td></tr>
-<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-component.html">Component</a></p></td><td class="tblDescr"><p>封装QML组件定义</p></td></tr>
-<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-connections.html">Connections</a></p></td><td class="tblDescr"><p>描述到信号的广义连接</p></td></tr>
-<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-date.html">Date</a></p></td><td class="tblDescr"><p>提供日期功能</p></td></tr>
-<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-instantiator.html">Instantiator</a></p></td><td class="tblDescr"><p>动态创建对象</p></td></tr>
-<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-locale.html">Locale</a></p></td><td class="tblDescr"><p>提供特定于区域设置的属性和格式化数据</p></td></tr>
-<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-loggingcategory.html">LoggingCategory</a></p></td><td class="tblDescr"><p>在QML中定义日志记录类别</p></td></tr>
-<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-number.html">Number</a></p></td><td class="tblDescr"><p>该对象表示一个数值</p></td></tr>
-<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-qt.html">Qt</a></p></td><td class="tblDescr"><p>提供一个全局对象，其中包含有用的枚举和Qt中的函数</p></td></tr>
-<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-qtobject.html">QtObject</a></p></td><td class="tblDescr"><p>一个基本的QML类型</p></td></tr>
-<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-string.html">String</a></p></td><td class="tblDescr"><p>对象表示字符串值</p></td></tr>
-<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-timer.html">Timer</a></p></td><td class="tblDescr"><p>以指定的间隔触发处理程序</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-binding.html">Binding</a></p></td><td class="tblDescr"><p>Enables the arbitrary creation of property bindings</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-component.html">Component</a></p></td><td class="tblDescr"><p>Encapsulates a QML component definition</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-connections.html">Connections</a></p></td><td class="tblDescr"><p>Describes generalized connections to signals</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-date.html">Date</a></p></td><td class="tblDescr"><p>Provides date functions</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-instantiator.html">Instantiator</a></p></td><td class="tblDescr"><p>Dynamically creates objects</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-locale.html">Locale</a></p></td><td class="tblDescr"><p>Provides locale specific properties and formatted data</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-loggingcategory.html">LoggingCategory</a></p></td><td class="tblDescr"><p>Defines a logging category in QML</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-number.html">Number</a></p></td><td class="tblDescr"><p>Object provides represents a number value</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-qt.html">Qt</a></p></td><td class="tblDescr"><p>Provides a global object with useful enums and functions from Qt</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-qtobject.html">QtObject</a></p></td><td class="tblDescr"><p>A basic QML type</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-string.html">String</a></p></td><td class="tblDescr"><p>Object represents a string value</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-timer.html">Timer</a></p></td><td class="tblDescr"><p>Triggers a handler at a specified interval</p></td></tr>
 </table></div>
         </div>
        </div>

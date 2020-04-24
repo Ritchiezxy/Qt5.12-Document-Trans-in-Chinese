@@ -38,22 +38,22 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#properties">属性</a></li>
-<li class="level1"><a href="#details">详细描述</a></li>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML的Connections类型</h1>
+<h1 class="title">Connections QML Type</h1>
 <span class="subtitle"></span>
 <!-- $$$Connections-brief -->
-<p>描述到信号的广义连接。<a href="#details">更多…</a></p>
+<p>Describes generalized connections to signals. <a href="#details">More...</a></p>
 <!-- @@@Connections -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr></table></div><ul>
-<li><a href="qml-qtqml-connections-members.html">所有成员的列表，包括继承的成员</a></li>
+<li><a href="qml-qtqml-connections-members.html">List of all members, including inherited members</a></li>
 </ul>
 <a name="properties"></a>
-<h2 id="properties">属性</h2>
+<h2 id="properties">Properties</h2>
 <ul>
 <li class="fn"><b><b><a href="qml-qtqml-connections.html#enabled-prop">enabled</a></b></b> : bool</li>
 <li class="fn"><b><b><a href="qml-qtqml-connections.html#ignoreUnknownSignals-prop">ignoreUnknownSignals</a></b></b> : bool</li>
@@ -61,9 +61,9 @@
 </ul>
 <!-- $$$Connections-description -->
 <a name="details"></a>
-<h2 id="details">详细描述</h2>
-<p>Connections对象用于创建到QML信号的连接。</p>
-<p>当连接到QML中的信号时，通常的方法是创建一个&quot;on&lt;Signal&gt;&quot; 处理程序，当接收到信号时该处理程序会做出反应，如下所示:</p>
+<h2 id="details">Detailed Description</h2>
+<p>A Connections object creates a connection to a QML signal.</p>
+<p>When connecting to signals in QML, the usual way is to create an &quot;on&lt;Signal&gt;&quot; handler that reacts when a signal is received, like this:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
@@ -71,14 +71,14 @@
   }
 
 </pre>
-<p>然而，在某些情况下，例如:</p>
+<p>However, it is not possible to connect to a signal in this way in some cases, such as when:</p>
 <ul>
-<li>同一信号需要多个连接 </li>
-<li>在信号发送器范围之外创建连接</li>
-<li>连接到QML中没有定义的目标</li>
+<li>Multiple connections to the same signal are required</li>
+<li>Creating connections outside the scope of the signal sender</li>
+<li>Connecting to targets not defined in QML</li>
 </ul>
-<p>当需要使用这些类型时，可以使用Connections类型。</p>
-<p>例如，可以将上面的代码更改为使用Connections对象，如下所示:</p>
+<p>When any of these are needed, the Connections type can be used instead.</p>
+<p>For example, the above code can be changed to use a Connections object, like this:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
@@ -88,7 +88,7 @@
   }
 
 </pre>
-<p>一般来说，连接对象可以是信号发送者以外的其他对象的子对象:</p>
+<p>More generally, the Connections object can be a child of some object other than the sender of the signal:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
@@ -105,9 +105,9 @@
   }
 
 </pre>
-<p><b>参见</b><a href="qtqml-index.html">Qt QML</a>。</p>
+<p><b>See also </b><a href="qtqml-index.html">Qt QML</a>.</p>
 <!-- @@@Connections -->
-<h2>属性文档</h2>
+<h2>Property Documentation</h2>
 <!-- $$$enabled -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
@@ -115,9 +115,9 @@
 <td class="tblQmlPropNode"><p>
 <a name="enabled-prop"></a><span class="name">enabled</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>此属性保存item（项）是否接受更改事件。</p>
-<p>默认情况下，此属性为<code>true</code>。</p>
-<p>这个属性是在Qt 5.7中引入的。</p>
+</div><div class="qmldoc"><p>This property holds whether the item accepts change events.</p>
+<p>By default, this property is <code>true</code>.</p>
+<p>This property was introduced in  Qt 5.7.</p>
 </div></div><!-- @@@enabled -->
 <br/>
 <!-- $$$ignoreUnknownSignals -->
@@ -127,8 +127,8 @@
 <td class="tblQmlPropNode"><p>
 <a name="ignoreUnknownSignals-prop"></a><span class="name">ignoreUnknownSignals</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>通常，连接到不存在的信号会产生运行时错误。</p>
-<p>如果将此属性设置为<code>true</code>，则忽略此类错误。如果您打算连接到不同类型的对象，为每个对象处理一组不同的信号，这将非常有用。</p>
+</div><div class="qmldoc"><p>Normally, a connection to a non-existent signal produces runtime errors.</p>
+<p>If this property is set to <code>true</code>, such errors are ignored. This is useful if you intend to connect to different types of objects, handling a different set of signals for each object.</p>
 </div></div><!-- @@@ignoreUnknownSignals -->
 <br/>
 <!-- $$$target -->
@@ -138,9 +138,9 @@
 <td class="tblQmlPropNode"><p>
 <a name="target-prop"></a><span class="name">target</span> : <span class="type">Object</span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>此属性保存发送信号的对象。</p>
-<p>如果未设置此属性，则<code>target(目标)</code> 默认为连接的父节点。</p>
-<p>如果设置为null，则不建立连接，并且忽略任何信号处理程序，直到目标不为空为止。</p>
+</div><div class="qmldoc"><p>This property holds the object that sends the signal.</p>
+<p>If this property is not set, the <code>target</code> defaults to the parent of the Connection.</p>
+<p>If set to null, no connection is made and any signal handlers are ignored until the target is not null.</p>
 </div></div><!-- @@@target -->
 <br/>
         </div>

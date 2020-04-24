@@ -38,28 +38,28 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#details">详细描述</a></li>
-<li class="level2"><a href="#example-usage">范例用法</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+<li class="level2"><a href="#example-usage">Example Usage</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML的FinalState类型</h1>
+<h1 class="title">FinalState QML Type</h1>
 <span class="subtitle"></span>
 <!-- $$$FinalState-brief -->
-<p>提供最终状态。<a href="#details">更多…</a></p>
+<p>Provides a final state. <a href="#details">More...</a></p>
 <!-- @@@FinalState -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml.StateMachine 1.12</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.4</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtqml-statemachine-qabstractstate.html">QAbstractState</a></p>
 </td></tr></table></div><ul>
-<li><a href="qml-qtqml-statemachine-finalstate-members.html">所有成员的列表，包括继承的成员</a></li>
+<li><a href="qml-qtqml-statemachine-finalstate-members.html">List of all members, including inherited members</a></li>
 </ul>
 <!-- $$$FinalState-description -->
 <a name="details"></a>
-<h2 id="details">详细描述</h2>
-<p>最终状态用于表示<a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a> 的(部分)工作已经完成。当输入最后一个顶级状态时，将发出状态机的<a href="qml-qtqml-statemachine-state.html#finished-signal">finished</a>()信号。通常，当输入最后一个子状态(状态的子状态)时，将发出父状态的<a href="qml-qtqml-statemachine-state.html#finished-signal">finished</a>() 信号。 <a href="qml-qtqml-statemachine-finalstate.html">FinalState</a>是<a href="qmlstatemachine.html">声明性状态机框架</a>的一部分。</p>
-<p>要使用最终状态，您需要创建一个<a href="qml-qtqml-statemachine-finalstate.html">FinalState</a> 对象，并从另一个状态向其添加一个转换。</p>
+<h2 id="details">Detailed Description</h2>
+<p>A final state is used to communicate that (part of) a <a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a> has finished its work. When a final top-level state is entered, the state machine's <a href="qml-qtqml-statemachine-state.html#finished-signal">finished</a>() signal is emitted. In general, when a final substate (a child of a State) is entered, the parent state's <a href="qml-qtqml-statemachine-state.html#finished-signal">finished</a>() signal is emitted. <a href="qml-qtqml-statemachine-finalstate.html">FinalState</a> is part of <a href="qmlstatemachine.html">The Declarative State Machine Framework</a>.</p>
+<p>To use a final state, you create a <a href="qml-qtqml-statemachine-finalstate.html">FinalState</a> object and add a transition to it from another state.</p>
 <a name="example-usage"></a>
-<h2 id="example-usage">范例用法</h2>
+<h2 id="example-usage">Example Usage</h2>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -85,7 +85,7 @@
   }
 
 </pre>
-<br style="clear: both" /><p><b>参见</b><a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a> and <a href="qml-qtqml-statemachine-state.html">State</a>.</p>
+<br style="clear: both" /><p><b>See also </b><a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a> and <a href="qml-qtqml-statemachine-state.html">State</a>.</p>
 <!-- @@@FinalState -->
         </div>
        </div>

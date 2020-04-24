@@ -38,33 +38,33 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#properties">属性</a></li>
-<li class="level1"><a href="#details">详细信息</a></li>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML的DelegateChooser 类型</h1>
+<h1 class="title">DelegateChooser QML Type</h1>
 <span class="subtitle"></span>
 <!-- $$$DelegateChooser-brief -->
-<p>允许视图对模型中不同类型的项使用不同的委托。<a href="#details">更多… </a></p>
+<p>Allows a view to use different delegates for different types of items in the model. <a href="#details">More...</a></p>
 <!-- @@@DelegateChooser -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import Qt.labs.qmlmodels 1.0</td></tr></table></div><ul>
-<li><a href="qml-qt-labs-qmlmodels-delegatechooser-members.html">所有成员的列表，包括继承的成员</a></li>
+<li><a href="qml-qt-labs-qmlmodels-delegatechooser-members.html">List of all members, including inherited members</a></li>
 </ul>
 <a name="properties"></a>
-<h2 id="properties">属性</h2>
+<h2 id="properties">Properties</h2>
 <ul>
 <li class="fn"><b><b><a href="qml-qt-labs-qmlmodels-delegatechooser.html#choices-prop">choices</a></b></b> : list&lt;DelegateChoice&gt;</li>
 <li class="fn"><b><b><a href="qml-qt-labs-qmlmodels-delegatechooser.html#role-prop">role</a></b></b> : string</li>
 </ul>
 <!-- $$$DelegateChooser-description -->
 <a name="details"></a>
-<h2 id="details">详细信息</h2>
-<p><a href="qml-qt-labs-qmlmodels-delegatechooser.html">DelegateChooser</a> 是一种特殊的<a href="qml-qtqml-component.html">Component（组件）</a> 类型，适用于视图需要组件并将其用作委托的场景。 <a href="qml-qt-labs-qmlmodels-delegatechooser.html">DelegateChooser</a> 装了一组<a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a>。 这些选项用于确定将为模型中的每个项实例化的委托。选项的选择是基于模型项对<a href="qml-qt-labs-qmlmodels-delegatechooser.html#role-prop">role（角色）</a>的值，也基于索引执行的。</p>
-<p><b>注意:</b>这种类型只适用于<a href="../qtquick/qml-qtquick-tableview.html">TableView</a> 和任何基于。<a href="qml-qtqml-models-delegatemodel.html">DelegateModel</a>的视图。内部不基于<a href="qml-qtqml-models-delegatemodel.html">DelegateModel</a> 的视图(包括用户定义的视图)需要显式地支持这种类型的组件，以使其像描述的那样工作。</p><p><b>请参见</b><a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a>。</p>
+<h2 id="details">Detailed Description</h2>
+<p>The <a href="qml-qt-labs-qmlmodels-delegatechooser.html">DelegateChooser</a> is a special <a href="qml-qtqml-component.html">Component</a> type intended for those scenarios where a Component is required by a view and used as a delegate. <a href="qml-qt-labs-qmlmodels-delegatechooser.html">DelegateChooser</a> encapsulates a set of <a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a>s. These choices are used determine the delegate that will be instantiated for each item in the model. The selection of the choice is performed based on the value that a model item has for <a href="qml-qt-labs-qmlmodels-delegatechooser.html#role-prop">role</a>, and also based on index.</p>
+<p><b>Note: </b>This type is intended to transparently work only with <a href="../qtquick/qml-qtquick-tableview.html">TableView</a> and any <a href="qml-qtqml-models-delegatemodel.html">DelegateModel</a>-based view. Views (including user-defined views) that aren't internally based on a <a href="qml-qtqml-models-delegatemodel.html">DelegateModel</a> need to explicitly support this type of component to make it function as described.</p><p><b>See also </b><a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a>.</p>
 <!-- @@@DelegateChooser -->
-<h2>属性文档</h2>
+<h2>Property Documentation</h2>
 <!-- $$$choices -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
@@ -72,9 +72,9 @@
 <td class="tblQmlPropNode"><p>
 <a name="choices-prop"></a><span class="qmldefault">[default] </span><span class="name">choices</span> : <span class="type"><a href="qml-list.html">list</a></span>&lt;<span class="type"><a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a></span>&gt;</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>选择器的DelegateChoices列表。</p>
-<p>该列表被视为有序列表，其中将使用第一个要匹配的<a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a>作为视图。</p>
-<p>通常不需要引用<code>choices</code>e属性，因为它是<a href="qml-qt-labs-qmlmodels-delegatechooser.html">DelegateChooser</a> 默认属性，因此所有子项目都会被自动分配这个属性。</p>
+</div><div class="qmldoc"><p>The list of DelegateChoices for the chooser.</p>
+<p>The list is treated as an ordered list, where the first <a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a> to match will be used be a view.</p>
+<p>It should not generally be necessary to refer to the <code>choices</code> property, as it is the default property for <a href="qml-qt-labs-qmlmodels-delegatechooser.html">DelegateChooser</a> and thus all child items are automatically assigned to this property.</p>
 </div></div><!-- @@@choices -->
 <br/>
 <!-- $$$role -->
@@ -84,8 +84,8 @@
 <td class="tblQmlPropNode"><p>
 <a name="role-prop"></a><span class="name">role</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>此属性包含用于确定给定模型项的委托的角色。</p>
-<p><b>请参见</b><a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a>。</p>
+</div><div class="qmldoc"><p>This property holds the role used to determine the delegate for a given model item.</p>
+<p><b>See also </b><a href="qml-qt-labs-qmlmodels-delegatechoice.html">DelegateChoice</a>.</p>
 </div></div><!-- @@@role -->
 <br/>
         </div>

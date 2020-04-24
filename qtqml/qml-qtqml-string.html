@@ -38,32 +38,32 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#methods">方法</a></li>
-<li class="level1"><a href="#details">详细描述</a></li>
+<li class="level1"><a href="#methods">Methods</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML中的String类型</h1>
+<h1 class="title">String QML Type</h1>
 <span class="subtitle"></span>
 <!-- $$$String-brief -->
-<p>String对象表示一个字符串值。 <a href="#details">更多...</a></p>
+<p>The String object represents a string value. <a href="#details">More...</a></p>
 <!-- @@@String -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr></table></div><ul>
-<li><a href="qml-qtqml-string-members.html">所有成员的列表，包括继承的成员</a></li>
+<li><a href="qml-qtqml-string-members.html">List of all members, including inherited members</a></li>
 </ul>
 <a name="methods"></a>
-<h2 id="methods">方法</h2>
+<h2 id="methods">Methods</h2>
 <ul>
 <li class="fn">string <b><b><a href="qml-qtqml-string.html#arg-method">arg</a></b></b>(<i>value</i>)</li>
 </ul>
 <!-- $$$String-description -->
 <a name="details"></a>
-<h2 id="details">详细描述</h2>
-<p>QML字符串对象使用<a href="qml-qtqml-string.html#arg-method">arg()</a> 函数扩展JS字符串对象。</p>
-<p><b>请参见</b><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMAScript语言规范</a>。</p>
+<h2 id="details">Detailed Description</h2>
+<p>The QML String object extends the JS String object with the <a href="qml-qtqml-string.html#arg-method">arg()</a> function.</p>
+<p><b>See also </b><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMAScript Language Specification</a>.</p>
 <!-- @@@String -->
-<h2>方法文档</h2>
+<h2>Method Documentation</h2>
 <!-- $$$arg -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
@@ -71,7 +71,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="arg-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">arg</span>(<i>value</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>R返回该字符串的副本，用值替换编号最低的位置标记，即，&#x2e;, %1, %2, ..&#x2e;, %99。下面的示例打印&quot;There are 20 items&quot;</p>
+</div><div class="qmldoc"><p>Returns a copy of this string with the lowest numbered place marker replaced by value, i.e&#x2e;, %1, %2, ..&#x2e;, %99. The following example prints &quot;There are 20 items&quot;</p>
 <pre class="cpp">
 
   var message <span class="operator">=</span> <span class="string">&quot;There are %1 items&quot;</span>

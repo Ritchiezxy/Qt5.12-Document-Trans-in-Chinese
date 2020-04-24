@@ -38,22 +38,22 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#public-functions">公用函数</a></li>
-<li class="level1"><a href="#details">详细描述</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QQmlParserStatus类</h1>
+<h1 class="title">QQmlParserStatus Class</h1>
 <!-- $$$QQmlParserStatus-brief -->
-<p><a href="qqmlparserstatus.html">QQmlParserStatus</a>类提供QML解析器状态的更新。<a href="#details">更多…</a></p>
+<p>The <a href="qqmlparserstatus.html">QQmlParserStatus</a> class provides updates on the QML parser state. <a href="#details">More...</a></p>
 <!-- @@@QQmlParserStatus -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlParserStatus&gt;</span>
 </td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.0</td></tr></table></div><ul>
-<li><a href="qqmlparserstatus-members.html">所有成员的列表，包括继承的成员</a></li>
+<li><a href="qqmlparserstatus-members.html">List of all members, including inherited members</a></li>
 </ul>
 <a name="public-functions"></a>
-<h2 id="public-functions">公用函数</h2>
+<h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qqmlparserstatus.html#classBegin">classBegin</a></b>() = 0</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qqmlparserstatus.html#componentComplete">componentComplete</a></b>() = 0</td></tr>
@@ -61,12 +61,12 @@
 <a name="details"></a>
 <!-- $$$QQmlParserStatus-description -->
 <div class="descr">
-<h2 id="details">详细描述</h2>
-<p><a href="qqmlparserstatus.html">QQmlParserStatus</a>类提供QML解析器状态的更新。</p>
-<p><a href="qqmlparserstatus.html">QQmlParserStatus</a>为<a href="qqmlengine.html">QQmlEngine</a>实例化的类提供了一种机制，用于在类创建的关键点接收通知。</p>
-<p>该类通常用于优化目的，因为它允许您推迟一些开销较大的操，直到对象上的所有属性都设置好之后。例如，QML的<a href="../qtquick/qml-qtquick-text.html">Text</a>元素使用解析器状态来延迟文本布局，直到设置了它的所有属性(我们不希望在分配<code>text（文本）</code>时进行布局，然后在分配<code>font（字体）</code> 时再布局，在分配<code>width（宽度）</code>时也布局，以此类推)。</p>
-<p>注意，<a href="qqmlparserstatus.html">QQmlParserStatus</a>方法只在<a href="qqmlengine.html">QQmlEngine</a>实例化类时调用。如果直接从C++创建相同的类，则不会自动调用这些方法。为了避免这个问题，建议您从<a href="qqmlparserstatus.html#classBegin">classBegin</a>开始延迟操作，而不是从类的初始创建开始。这仍然可以防止在QML中初始绑定分配期间进行多次重估值，但不会延迟从C++调用的操作。</p>
-<p>要使用<a href="qqmlparserstatus.html">QQmlParserStatus</a>,，必须同时继承<a href="../qtcore/qobject.html">QObject</a>派生的类和<a href="qqmlparserstatus.html">QQmlParserStatus</a>，并使用<a href="../qtcore/qobject.html#Q_INTERFACES">Q_INTERFACES</a>()宏。</p>
+<h2 id="details">Detailed Description</h2>
+<p>The <a href="qqmlparserstatus.html">QQmlParserStatus</a> class provides updates on the QML parser state.</p>
+<p><a href="qqmlparserstatus.html">QQmlParserStatus</a> provides a mechanism for classes instantiated by a <a href="qqmlengine.html">QQmlEngine</a> to receive notification at key points in their creation.</p>
+<p>This class is often used for optimization purposes, as it allows you to defer an expensive operation until after all the properties have been set on an object. For example, QML's <a href="../qtquick/qml-qtquick-text.html">Text</a> element uses the parser status to defer text layout until all of its properties have been set (we don't want to layout when the <code>text</code> is assigned, and then relayout when the <code>font</code> is assigned, and relayout again when the <code>width</code> is assigned, and so on).</p>
+<p>Be aware that <a href="qqmlparserstatus.html">QQmlParserStatus</a> methods are only called when a class is instantiated by a <a href="qqmlengine.html">QQmlEngine</a>. If you create the same class directly from C++, these methods will not be called automatically. To avoid this problem, it is recommended that you start deferring operations from <a href="qqmlparserstatus.html#classBegin">classBegin</a> instead of from the initial creation of your class. This will still prevent multiple revaluations during initial binding assignment in QML, but will not defer operations invoked from C++.</p>
+<p>To use <a href="qqmlparserstatus.html">QQmlParserStatus</a>, you must inherit both a <a href="../qtcore/qobject.html">QObject</a>-derived class and <a href="qqmlparserstatus.html">QQmlParserStatus</a>, and use the <a href="../qtcore/qobject.html#Q_INTERFACES">Q_INTERFACES</a>() macro.</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> MyObject : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span> <span class="keyword">public</span> <span class="type">QQmlParserStatus</span>
@@ -85,14 +85,14 @@
 </div>
 <!-- @@@QQmlParserStatus -->
 <div class="func">
-<h2>成员函数文档</h2>
+<h2>Member Function Documentation</h2>
 <!-- $$$classBegin[overload1]$$$classBegin -->
 <h3 class="fn" id="classBegin"><a name="classBegin"></a><code>[pure virtual] </code><span class="type">void</span> QQmlParserStatus::<span class="name">classBegin</span>()</h3>
-<p>类创建后调用，但在设置任何属性之前调用。</p>
+<p>Invoked after class creation, but before any properties have been set.</p>
 <!-- @@@classBegin -->
 <!-- $$$componentComplete[overload1]$$$componentComplete -->
 <h3 class="fn" id="componentComplete"><a name="componentComplete"></a><code>[pure virtual] </code><span class="type">void</span> QQmlParserStatus::<span class="name">componentComplete</span>()</h3>
-<p>在导致此实例化的根组件完成构造之后调用。此时，所有静态值和绑定值都已分配给该类。</p>
+<p>Invoked after the root component that caused this instantiation has completed construction. At this point all static values and binding values have been assigned to the class.</p>
 <!-- @@@componentComplete -->
 </div>
         </div>

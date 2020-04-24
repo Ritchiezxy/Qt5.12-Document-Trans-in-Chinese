@@ -35,26 +35,26 @@
 <div class="line">
 <div class="content mainContent">
 <div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">扩展QML -方法示例</h1>
+<h1 class="title">Extending QML - Methods Example</h1>
 <span class="subtitle"></span>
 <!-- $$$referenceexamples/methods-brief -->
-<p>方法的支持。</p>
+<p>Methods Support.</p>
 <!-- @@@referenceexamples/methods -->
 <!-- $$$referenceexamples/methods-description -->
 <div class="descr"> <a name="details"></a>
-<p>这个例子的基础是:</p>
+<p>This example builds on:</p>
 <ul>
-<li><a href="qtqml-referenceexamples-coercion-example.html">扩展QML -继承和强制的例子</a></li>
-<li><a href="qtqml-referenceexamples-properties-example.html">扩展QML -对象和列表属性类型的例子</a></li>
-<li><a href="qtqml-referenceexamples-adding-example.html">扩展QML -添加类型的例子</a></li>
+<li><a href="qtqml-referenceexamples-coercion-example.html">Extending QML - Inheritance and Coercion Example</a></li>
+<li><a href="qtqml-referenceexamples-properties-example.html">Extending QML - Object and List Property Types Example</a></li>
+<li><a href="qtqml-referenceexamples-adding-example.html">Extending QML - Adding Types Example</a></li>
 </ul>
-<p>方法示例在<code>BirthdayParty</code>类中有一个额外的方法:<code>invite()</code>。<code>invite()</code>使用<a href="../qtcore/qobject.html#Q_INVOKABLE">Q_INVOKABLE</a>声明，以便可以从QML调用它。</p>
+<p>The Methods Example has an additional method in the <code>BirthdayParty</code> class: <code>invite()</code>. <code>invite()</code> is declared with <a href="../qtcore/qobject.html#Q_INVOKABLE">Q_INVOKABLE</a> so that it can be called from QML.</p>
 <pre class="cpp">
 
       Q_INVOKABLE <span class="type">void</span> invite(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>name);
 
 </pre>
-<p>在<code>example.qml</code>文件中，<code>invite()</code>方法被<a href="qml-qtqml-component.html#completed-signal">Component.onCompleted</a> 信号处理程序调用：</p>
+<p>In <code>example.qml</code>, the <code>invite()</code> method is called in the <a href="qml-qtqml-component.html#completed-signal">Component.onCompleted</a> signal handler:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -75,7 +75,7 @@
   }
 
 </pre>
-<p>文件：</p>
+<p>Files:</p>
 <ul>
 <li><a href="qtqml-referenceexamples-methods-birthdayparty-cpp.html">referenceexamples/methods/birthdayparty.cpp</a></li>
 <li><a href="qtqml-referenceexamples-methods-birthdayparty-h.html">referenceexamples/methods/birthdayparty.h</a></li>

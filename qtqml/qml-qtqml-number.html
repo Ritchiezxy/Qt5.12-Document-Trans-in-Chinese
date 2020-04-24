@@ -38,22 +38,22 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#methods">方法</a></li>
-<li class="level1"><a href="#details">详细描述</a></li>
+<li class="level1"><a href="#methods">Methods</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML的Number类型</h1>
+<h1 class="title">Number QML Type</h1>
 <span class="subtitle"></span>
 <!-- $$$Number-brief -->
-<p>对象提供的数字表示数字值。<a href="#details">更多…</a></p>
+<p>The Number object provides represents a number value. <a href="#details">More...</a></p>
 <!-- @@@Number -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr></table></div><ul>
-<li><a href="qml-qtqml-number-members.html">所有成员的列表，包括继承的成员</a></li>
+<li><a href="qml-qtqml-number-members.html">List of all members, including inherited members</a></li>
 </ul>
 <a name="methods"></a>
-<h2 id="methods">方法</h2>
+<h2 id="methods">Methods</h2>
 <ul>
 <li class="fn">string <b><b><a href="qml-qtqml-number.html#fromLocaleString-method">fromLocaleString</a></b></b>(<i>locale</i>, <i>number</i>)</li>
 <li class="fn">string <b><b><a href="qml-qtqml-number.html#toLocaleCurrencyString-method">toLocaleCurrencyString</a></b></b>(<i>locale</i>, <i>symbol</i>)</li>
@@ -61,11 +61,11 @@
 </ul>
 <!-- $$$Number-description -->
 <a name="details"></a>
-<h2 id="details">详细描述</h2>
-<p>QML Number对象使用区域设置感知函数扩展了JS Number对象。</p>
-<p><b>参见</b><a href="qml-qtqml-locale.html">Locale（本地化）</a>。</p>
+<h2 id="details">Detailed Description</h2>
+<p>The QML Number object extends the JS Number object with locale aware functions.</p>
+<p><b>See also </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
 <!-- @@@Number -->
-<h2>方法文档</h2>
+<h2>Method Documentation</h2>
 <!-- $$$fromLocaleString -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
@@ -73,9 +73,9 @@
 <td class="tblQmlFuncNode"><p>
 <a name="fromLocaleString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">fromLocaleString</span>(<i>locale</i>, <i>number</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>通过使用提供的<i>本地化</i>设置的约定解析数字，返回一个<i>数字</i>。</p>
-<p>如果没有提供<i>区域</i>，则使用默认区域。</p>
-<p>例如，使用德语语言环境:</p>
+</div><div class="qmldoc"><p>Returns a Number by parsing <i>number</i> using the conventions of the supplied <i>locale</i>.</p>
+<p>If <i>locale</i> is not supplied the default locale will be used.</p>
+<p>For example, using the German locale:</p>
 <pre class="cpp">
 
   var german <span class="operator">=</span> <span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale(<span class="string">&quot;de_DE&quot;</span>);
@@ -95,8 +95,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="toLocaleCurrencyString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">toLocaleCurrencyString</span>(<i>locale</i>, <i>symbol</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>使用指定<i>区域</i>设置的货币和约定将数字转换为货币。如果指定了符号，它将用作货币符号。</p>
-<p><b>参见</b><a href="qml-qtqml-locale.html#currencySymbol-method">Locale::currencySymbol()</a>。</p>
+</div><div class="qmldoc"><p>Converts the Number to a currency using the currency and conventions of the specified <i>locale</i>. If <i>symbol</i> is specified it will be used as the currency symbol.</p>
+<p><b>See also </b><a href="qml-qtqml-locale.html#currencySymbol-method">Locale::currencySymbol()</a>.</p>
 </div></div><!-- @@@toLocaleCurrencyString -->
 <br/>
 <!-- $$$toLocaleString -->
@@ -106,19 +106,19 @@
 <td class="tblQmlFuncNode"><p>
 <a name="toLocaleString-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">toLocaleString</span>(<i>locale</i>, <i>format</i>, <i>precision</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>以指定格式将数字转换为适合指定<i>本地化</i>设置的字符串，并具有指定的精度。</p>
-<p>有效的格式是:</p>
+</div><div class="qmldoc"><p>Converts the Number to a string suitable for the specified <i>locale</i> in the specified <i>format</i>, with the specified <i>precision</i>.</p>
+<p>Valid formats are:</p>
 <ul>
-<li>'f' 十进制浮点数，例如&#x2e; 248.65</li>
-<li>'e' 使用e字符的科学符号，例如&#x2e; 2.4865e+2</li>
-<li>'E' 使用E字符的科学符号，例如&#x2e; 2.4865E+2</li>
-<li>'g' 用e或f中较短的那个</li>
-<li>'G' 用E或f中较短的那个</li>
+<li>'f' Decimal floating point, e.g&#x2e; 248.65</li>
+<li>'e' Scientific notation using e character, e.g&#x2e; 2.4865e+2</li>
+<li>'E' Scientific notation using E character, e.g&#x2e; 2.4865E+2</li>
+<li>'g' Use the shorter of e or f</li>
+<li>'G' Use the shorter of E or f</li>
 </ul>
-<p>如果没有指定精度，则精度为2。</p>
-<p>如果格式没有指定，将使用“f”。</p>
-<p>如果没有指定区域设置，则使用默认区域设置。</p>
-<p>下面的示例显示了一个针对德语地区格式化的数字:</p>
+<p>If precision is not specified, the precision will be 2.</p>
+<p>If the format is not specified 'f' will be used.</p>
+<p>If <i>locale</i> is not specified, the default locale will be used.</p>
+<p>The following example shows a number formatted for the German locale:</p>
 <pre class="cpp">
 
   import <span class="type">QtQuick</span> <span class="number">2.0</span>
@@ -128,7 +128,7 @@
   }
 
 </pre>
-<p>您可以直接将toLocaleString() 应用于常量，前提是十进制包含在常量中，例如&#x2e;</p>
+<p>You can apply toLocaleString() directly to constants, provided the decimal is included in the constant, e.g&#x2e;</p>
 <pre class="cpp">
 
   <span class="number">123.0.toLocaleString</span>(<span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale(<span class="string">&quot;de_DE&quot;</span>)) <span class="comment">// OK</span>

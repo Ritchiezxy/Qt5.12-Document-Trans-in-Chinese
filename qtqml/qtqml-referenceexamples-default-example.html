@@ -38,25 +38,25 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#declaring-the-birthdayparty-class">声明 BirthdayParty类</a></li>
-<li class="level1"><a href="#running-the-example">运行这个例子</a></li>
+<li class="level1"><a href="#declaring-the-birthdayparty-class">Declaring the BirthdayParty Class</a></li>
+<li class="level1"><a href="#running-the-example">Running the Example</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">扩展QML -默认属性示例</h1>
+<h1 class="title">Extending QML - Default Property Example</h1>
 <span class="subtitle"></span>
 <!-- $$$referenceexamples/default-brief -->
-<p>默认属性。</p>
+<p>Default Property.</p>
 <!-- @@@referenceexamples/default -->
 <!-- $$$referenceexamples/default-description -->
 <div class="descr"> <a name="details"></a>
-<p>这个例子基于:</p>
+<p>This example builds on:</p>
 <ul>
-<li><a href="qtqml-referenceexamples-coercion-example.html">扩展QML -继承和强制的例子</a></li>
-<li><a href="qtqml-referenceexamples-properties-example.html">扩展QML -对象和列表属性类型的例子</a></li>
-<li><a href="qtqml-referenceexamples-adding-example.html">扩展QML -添加类型的例子</a></li>
+<li><a href="qtqml-referenceexamples-coercion-example.html">Extending QML - Inheritance and Coercion Example</a></li>
+<li><a href="qtqml-referenceexamples-properties-example.html">Extending QML - Object and List Property Types Example</a></li>
+<li><a href="qtqml-referenceexamples-adding-example.html">Extending QML - Adding Types Example</a></li>
 </ul>
-<p>缺省属性示例是对<a href="qtqml-referenceexamples-coercion-example.html">扩展QML -继承和强制的例子</a>的一个小修改，该示例通过使用缺省属性简化了BirthdayParty的规范。</p>
+<p>The Default Property Example is a minor modification of the <a href="qtqml-referenceexamples-coercion-example.html">Extending QML - Inheritance and Coercion Example</a> that simplifies the specification of a BirthdayParty through the use of a default property.</p>
 <pre class="qml">
 
   <span class="type">BirthdayParty</span> {
@@ -72,8 +72,8 @@
 
 </pre>
 <a name="declaring-the-birthdayparty-class"></a>
-<h2 id="declaring-the-birthdayparty-class">声明 BirthdayParty类</h2>
-<p>这个示例与上一个示例的唯一区别是添加了<code>DefaultProperty</code>类的信息注释。</p>
+<h2 id="declaring-the-birthdayparty-class">Declaring the BirthdayParty Class</h2>
+<p>The only difference between this example and the last, is the addition of the <code>DefaultProperty</code> class info annotation.</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> BirthdayParty : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
@@ -98,11 +98,11 @@
   };
 
 </pre>
-<p>默认属性指定当未指定显式属性时要分配的属性，在BirthdayParty类型中为guest属性。这纯粹是一种语法简化，行为与通过名称指定属性相同，但在许多情况下，它可以添加更自然的感觉。默认属性必须是对象或列表属性。</p>
+<p>The default property specifies the property to assign to whenever an explicit property is not specified, in the case of the BirthdayParty type the guest property. It is purely a syntactic simplification, the behavior is identical to specifying the property by name, but it can add a more natural feel in many situations. The default property must be either an object or list property.</p>
 <a name="running-the-example"></a>
-<h2 id="running-the-example">运行这个例子</h2>
-<p>示例中的main.cpp文件包含一个简单的shell应用程序，它加载并运行本页开头所示的QML片段。</p>
-<p>文件：</p>
+<h2 id="running-the-example">Running the Example</h2>
+<p>The main.cpp file in the example includes a simple shell application that loads and runs the QML snippet shown at the beginning of this page.</p>
+<p>Files:</p>
 <ul>
 <li><a href="qtqml-referenceexamples-default-birthdayparty-cpp.html">referenceexamples/default/birthdayparty.cpp</a></li>
 <li><a href="qtqml-referenceexamples-default-birthdayparty-h.html">referenceexamples/default/birthdayparty.h</a></li>

@@ -38,40 +38,40 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#properties">属性</a></li>
-<li class="level1"><a href="#signals">信号</a></li>
-<li class="level1"><a href="#details">详细描述</a></li>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML的QAbstractState类型</h1>
+<h1 class="title">QAbstractState QML Type</h1>
 <span class="subtitle"></span>
 <!-- $$$QAbstractState-brief -->
-<p><a href="qml-qtqml-statemachine-qabstractstate.html">QAbstractState</a>类型是<a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a>的State的基类。<a href="#details">更多…</a></p>
+<p>The <a href="qml-qtqml-statemachine-qabstractstate.html">QAbstractState</a> type is the base type of States of a <a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a>. <a href="#details">More...</a></p>
 <!-- @@@QAbstractState -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml.StateMachine 1.12</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.4</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtqml-statemachine-finalstate.html">FinalState</a>, <a href="qml-qtqml-statemachine-historystate.html">HistoryState</a>, and <a href="qml-qtqml-statemachine-state.html">State</a></p>
 </td></tr></table></div><ul>
-<li><a href="qml-qtqml-statemachine-qabstractstate-members.html">所有成员的列表，包括继承的成员</a></li>
+<li><a href="qml-qtqml-statemachine-qabstractstate-members.html">List of all members, including inherited members</a></li>
 </ul>
 <a name="properties"></a>
-<h2 id="properties">属性</h2>
+<h2 id="properties">Properties</h2>
 <ul>
 <li class="fn"><b><b><a href="qml-qtqml-statemachine-qabstractstate.html#active-prop">active</a></b></b> : bool</li>
 </ul>
 <a name="signals"></a>
-<h2 id="signals">信号</h2>
+<h2 id="signals">Signals</h2>
 <ul>
 <li class="fn"><b><b><a href="qml-qtqml-statemachine-qabstractstate.html#entered-signal">entered</a></b></b>()</li>
 <li class="fn"><b><b><a href="qml-qtqml-statemachine-qabstractstate.html#exited-signal">exited</a></b></b>()</li>
 </ul>
 <!-- $$$QAbstractState-description -->
 <a name="details"></a>
-<h2 id="details">详细描述</h2>
-<p>不要直接使用<a href="qml-qtqml-statemachine-qabstractstate.html">QAbstractState</a>而是使用State, <a href="qml-qtqml-statemachine-finalstate.html">FinalState</a> 或 <a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a> 。</p>
-<p><b>参见 </b><a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a> 和 <a href="qml-qtqml-statemachine-state.html">State</a>.</p>
+<h2 id="details">Detailed Description</h2>
+<p>Do not use <a href="qml-qtqml-statemachine-qabstractstate.html">QAbstractState</a> directly; use State, <a href="qml-qtqml-statemachine-finalstate.html">FinalState</a> or <a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a> instead.</p>
+<p><b>See also </b><a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a> and <a href="qml-qtqml-statemachine-state.html">State</a>.</p>
 <!-- @@@QAbstractState -->
-<h2>属性文档</h2>
+<h2>Property Documentation</h2>
 <!-- $$$active -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
@@ -79,11 +79,11 @@
 <td class="tblQmlPropNode"><p>
 <a name="active-prop"></a><span class="qmlreadonly">[read-only] </span><span class="name">active</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>该状态的活动属性。<a href="qml-qtqml-statemachine-qabstractstate.html#entered-signal">entered()</a> 和 <a href="qml-qtqml-statemachine-qabstractstate.html#exited-signal">exited()</a> 信号之间的状态为活动状态。此属性是只读的。</p>
-<p><b>参见 </b><a href="qml-qtqml-statemachine-qabstractstate.html#entered-signal">entered</a> and <a href="qml-qtqml-statemachine-qabstractstate.html#exited-signal">exited</a>.</p>
+</div><div class="qmldoc"><p>The active property of this state. A state is active between <a href="qml-qtqml-statemachine-qabstractstate.html#entered-signal">entered()</a> and <a href="qml-qtqml-statemachine-qabstractstate.html#exited-signal">exited()</a> signals. This property is readonly.</p>
+<p><b>See also </b><a href="qml-qtqml-statemachine-qabstractstate.html#entered-signal">entered</a> and <a href="qml-qtqml-statemachine-qabstractstate.html#exited-signal">exited</a>.</p>
 </div></div><!-- @@@active -->
 <br/>
-<h2>信号文档</h2>
+<h2>Signal Documentation</h2>
 <!-- $$$entered -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
@@ -91,9 +91,9 @@
 <td class="tblQmlFuncNode"><p>
 <a name="entered-signal"></a><span class="name">entered</span>()</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>当状态激活时发出此信号。</p>
-<p>相应的处理程序<code>onEntered</code>。</p>
-<p><b>参见</b><a href="qml-qtqml-statemachine-qabstractstate.html#active-prop">active（激活）</a> 和 <a href="qml-qtqml-statemachine-qabstractstate.html#exited-signal">exited（退出）</a>。</p>
+</div><div class="qmldoc"><p>This signal is emitted when the State becomes active.</p>
+<p>The corresponding handler is <code>onEntered</code>.</p>
+<p><b>See also </b><a href="qml-qtqml-statemachine-qabstractstate.html#active-prop">active</a> and <a href="qml-qtqml-statemachine-qabstractstate.html#exited-signal">exited</a>.</p>
 </div></div><!-- @@@entered -->
 <br/>
 <!-- $$$exited -->
@@ -103,9 +103,9 @@
 <td class="tblQmlFuncNode"><p>
 <a name="exited-signal"></a><span class="name">exited</span>()</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>当状态变为非活动状态时发出此信号。</p>
-<p>对应的处理程序是<code>onExited</code>.</p>
-<p><b>参见 </b><a href="qml-qtqml-statemachine-qabstractstate.html#active-prop">active</a> 和 <a href="qml-qtqml-statemachine-qabstractstate.html#entered-signal">entered</a>.</p>
+</div><div class="qmldoc"><p>This signal is emitted when the State becomes inactive.</p>
+<p>The corresponding handler is <code>onExited</code>.</p>
+<p><b>See also </b><a href="qml-qtqml-statemachine-qabstractstate.html#active-prop">active</a> and <a href="qml-qtqml-statemachine-qabstractstate.html#entered-signal">entered</a>.</p>
 </div></div><!-- @@@exited -->
 <br/>
         </div>

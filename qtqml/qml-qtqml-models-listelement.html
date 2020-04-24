@@ -38,34 +38,34 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#details">详细描述</a></li>
-<li class="level2"><a href="#referencing-roles">引用的角色</a></li>
-<li class="level2"><a href="#example-usage">示例使用</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+<li class="level2"><a href="#referencing-roles">Referencing Roles</a></li>
+<li class="level2"><a href="#example-usage">Example Usage</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML的ListElement类型</h1>
+<h1 class="title">ListElement QML Type</h1>
 <span class="subtitle"></span>
 <!-- $$$ListElement-brief -->
-<p>定义<a href="qml-qtqml-models-listmodel.html">ListModel</a>中的数据项。<a href="#details">更多…</a></p>
+<p>Defines a data item in a <a href="qml-qtqml-models-listmodel.html">ListModel</a>. <a href="#details">More...</a></p>
 <!-- @@@ListElement -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml.Models 2.12</td></tr></table></div><ul>
-<li><a href="qml-qtqml-models-listelement-members.html">所有成员的列表，包括继承的成员</a></li>
+<li><a href="qml-qtqml-models-listelement-members.html">List of all members, including inherited members</a></li>
 </ul>
 <!-- $$$ListElement-description -->
 <a name="details"></a>
-<h2 id="details">详细描述</h2>
-<p>列表元素在<a href="qml-qtqml-models-listmodel.html">ListModel</a>的定义中定义，并表示列表中的项，列表将使用 <a href="../qtquick/qml-qtquick-listview.html">ListView</a> 或 <a href="../qtquick/qml-qtquick-repeater.html">Repeater</a>项显示。</p>
-<p>List元素的定义与其他QML元素类似，只是它们包含一组<i>role(角色)</i>定义，而不是属性。使用与属性定义相同的语法，角色既定义了如何访问数据，也包括数据本身。</p>
-<p>用于角色的名称必须以小写字母开头，并且对于给定模型中的所有元素都应该是通用的。值必须是简单的常量;可以是字符串(在对<a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a>的调用中引用和可选地引用), 布尔值(true、false)、数字或枚举值(如AlignText.AlignHCenter)。</p>
-<p>从Qt 5.11的<a href="qml-qtqml-models-listelement.html">ListElement</a>开始，还允许为角色分配函数声明。这允许使用可调用的操作定义ListElement。</p>
+<h2 id="details">Detailed Description</h2>
+<p>List elements are defined inside <a href="qml-qtqml-models-listmodel.html">ListModel</a> definitions, and represent items in a list that will be displayed using <a href="../qtquick/qml-qtquick-listview.html">ListView</a> or <a href="../qtquick/qml-qtquick-repeater.html">Repeater</a> items.</p>
+<p>List elements are defined like other QML elements except that they contain a collection of <i>role</i> definitions instead of properties. Using the same syntax as property definitions, roles both define how the data is accessed and include the data itself.</p>
+<p>The names used for roles must begin with a lower-case letter and should be common to all elements in a given model. Values must be simple constants; either strings (quoted and optionally within a call to <a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a>), boolean values (true, false), numbers, or enumeration values (such as AlignText.AlignHCenter).</p>
+<p>Beginning with Qt 5.11 <a href="qml-qtqml-models-listelement.html">ListElement</a> also allows assigning a function declaration to a role. This allows the definition of ListElements with callable actions.</p>
 <a name="referencing-roles"></a>
-<h2 id="referencing-roles">引用的角色</h2>
-<p>委托使用角色名称从列表元素获取数据。每个角色名都可以在委托的范围内访问，并引用当前元素中相应的角色。当角色名称使用起来很模糊时，可以通过<a href="../qtquick/qml-qtquick-listview.html#model-prop">model</a> 属性 (例如：&#x2e;, <code>model.cost</code>而不是 <code>cost</code>）。</p>
+<h2 id="referencing-roles">Referencing Roles</h2>
+<p>The role names are used by delegates to obtain data from list elements. Each role name is accessible in the delegate's scope, and refers to the corresponding role in the current element. Where a role name would be ambiguous to use, it can be accessed via the <a href="../qtquick/qml-qtquick-listview.html#model-prop">model</a> property (e.g&#x2e;, <code>model.cost</code> instead of <code>cost</code>).</p>
 <a name="example-usage"></a>
-<h2 id="example-usage">示例使用</h2>
-<p>下面的模型定义了一系列列表元素，其中每个元素都包含&quot;name&quot; 和&quot;cost&quot; 角色及其相关值。</p>
+<h2 id="example-usage">Example Usage</h2>
+<p>The following model defines a series of list elements, each of which contain &quot;name&quot; and &quot;cost&quot; roles and their associated values.</p>
 <pre class="qml">
 
   <span class="type"><a href="qml-qtqml-models-listmodel.html">ListModel</a></span> {
@@ -86,7 +86,7 @@
   }
 
 </pre>
-<p>委托通过简单地引用name和cost来获得每个元素的<code>name</code> 和 <code>cost</code>:</p>
+<p>The delegate obtains the name and cost for each element by simply referring to <code>name</code> and <code>cost</code>:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-listview.html">ListView</a></span> {
@@ -99,7 +99,7 @@
   }
 
 </pre>
-<p><b>请参见</b><a href="qml-qtqml-models-listmodel.html">ListModel</a>。</p>
+<p><b>See also </b><a href="qml-qtqml-models-listmodel.html">ListModel</a>.</p>
 <!-- @@@ListElement -->
         </div>
        </div>

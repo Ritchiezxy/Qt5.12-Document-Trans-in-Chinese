@@ -41,13 +41,13 @@
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML的基本类型size </h1>
+<h1 class="title">size QML Basic Type</h1>
 <span class="subtitle"></span>
 <!-- $$$size-description -->
 <div class="descr"> <a name="details"></a>
-<p>具有宽度和高度属性的值</p>
-<p><code>size</code> 引用具有<code>width</code> 和 <code>height</code>属性的值。</p>
-<p>例如，要读取<a href="../qtquick/qml-qtquick-image.html#sourceSize-prop">Image::sourceSize</a>的size-type属性的<code>width</code> 和 <code>height</code> 值：</p>
+<p>a value with width and height attributes</p>
+<p>The <code>size</code> type refers to a value with has <code>width</code> and <code>height</code> attributes.</p>
+<p>For example, to read the <code>width</code> and <code>height</code> values of the <a href="../qtquick/qml-qtquick-image.html#sourceSize-prop">Image::sourceSize</a> size-type property:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-column.html">Column</a></span> {
@@ -56,21 +56,21 @@
   }
 
 </pre>
-<p>要创建<code>size</code> value, 值，请将其指定为&quot;width x height&quot; 的字符串:</p>
+<p>To create a <code>size</code> value, specify it as a &quot;width x height&quot; string:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> { <span class="name">sourceSize</span>: <span class="string">&quot;150x50&quot;</span> }
 
 </pre>
-<p>或者使用<a href="qml-qtqml-qt.html#size-method">Qt.size()</a>函数：</p>
+<p>Or use the <a href="qml-qtqml-qt.html#size-method">Qt.size()</a> function:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> { <span class="name">sourceSize</span>: <span class="name">Qt</span>.<span class="name">size</span>(<span class="number">150</span>, <span class="number">50</span>) }
 
 </pre>
-<p>当与C++集成时，请注意，<a href="qtqml-cppintegration-data.html">从C++传递到QML</a>的任何<a href="../qtcore/qsize.html">QSize</a> 或 <a href="../qtcore/qsizef.html">QSizeF</a>值都会自动转换为<code>size</code>值，反之亦然。 当<code>size</code>值传递给C++时，它会自动转换为<a href="../qtcore/qsizef.html">QSizeF</a>值。</p>
+<p>When integrating with C++, note that any <a href="../qtcore/qsize.html">QSize</a> or <a href="../qtcore/qsizef.html">QSizeF</a> value <a href="qtqml-cppintegration-data.html">passed into QML from C++</a> is automatically converted into a <code>size</code> value, and vice-versa. When a <code>size</code> value is passed to C++, it is automatically converted into a <a href="../qtcore/qsizef.html">QSizeF</a> value.</p>
 </div>
-<p><b>请参见</b><a href="qtqml-typesystem-basictypes.html">QML 基本类型</a>。</p>
+<p><b>See also </b><a href="qtqml-typesystem-basictypes.html">QML Basic Types</a>.</p>
 <!-- @@@size -->
         </div>
        </div>

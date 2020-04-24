@@ -41,27 +41,27 @@
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">point QML基本类型</h1>
+<h1 class="title">point QML Basic Type</h1>
 <span class="subtitle"></span>
 <!-- $$$point-description -->
 <div class="descr"> <a name="details"></a>
-<p>具有x和y属性的值。</p>
-<p><code>point</code>t类型引用具有<code>x</code> 和 <code>y</code> 属性的值。</p>
-<p>要创建一个<code>point</code>值，请将其指定为&quot;x,y&quot;字符串:</p>
+<p>a value with x and y attributes.</p>
+<p>The <code>point</code> type refers to a value with <code>x</code> and <code>y</code> attributes.</p>
+<p>To create a <code>point</code> value, specify it as a &quot;x,y&quot; string:</p>
 <pre class="qml">
 
   <span class="type">CustomObject</span> { <span class="name">myPointProperty</span>: <span class="string">&quot;0,20&quot;</span> }
 
 </pre>
-<p>或使用<a href="qml-qtqml-qt.html#point-method">Qt.point()</a>函数:</p>
+<p>Or use the <a href="qml-qtqml-qt.html#point-method">Qt.point()</a> function:</p>
 <pre class="qml">
 
   <span class="type">CustomObject</span> { <span class="name">myPointProperty</span>: <span class="name">Qt</span>.<span class="name">point</span>(<span class="number">0</span>, <span class="number">20</span>) }
 
 </pre>
-<p>当与C++集成时，请注意，<a href="qtqml-cppintegration-data.html">从C++传递到QML</a>的任何<a href="../qtcore/qpoint.html">QPoint</a> 或 <a href="../qtcore/qpointf.html">QPointF</a>都会自动转换为一个<code>point</code>值。当一个 <code>point</code>值传递给C++时，它会自动转换成一个 <a href="../qtcore/qpointf.html">QPointF</a>值。</p>
+<p>When integrating with C++, note that any <a href="../qtcore/qpoint.html">QPoint</a> or <a href="../qtcore/qpointf.html">QPointF</a> value <a href="qtqml-cppintegration-data.html">passed into QML from C++</a> is automatically converted into a <code>point</code> value. When a <code>point</code> value is passed to C++, it is automatically converted into a <a href="../qtcore/qpointf.html">QPointF</a> value.</p>
 </div>
-<p><b>请参见</b><a href="qtqml-typesystem-basictypes.html">QML基本类型</a>。</p>
+<p><b>See also </b><a href="qtqml-typesystem-basictypes.html">QML Basic Types</a>.</p>
 <!-- @@@point -->
         </div>
        </div>

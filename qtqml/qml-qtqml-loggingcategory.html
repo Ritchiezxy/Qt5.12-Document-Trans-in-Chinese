@@ -38,30 +38,30 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#properties">属性</a></li>
-<li class="level1"><a href="#details">详细描述</a></li>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML的LoggingCategory类型</h1>
+<h1 class="title">LoggingCategory QML Type</h1>
 <span class="subtitle"></span>
 <!-- $$$LoggingCategory-brief -->
-<p>在QML中定义日志记录类别。<a href="#details">更多… </a></p>
+<p>Defines a logging category in QML. <a href="#details">More...</a></p>
 <!-- @@@LoggingCategory -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.8</td></tr></table></div><ul>
-<li><a href="qml-qtqml-loggingcategory-members.html">所有成员的列表，包括继承的成员</a></li>
+<li><a href="qml-qtqml-loggingcategory-members.html">List of all members, including inherited members</a></li>
 </ul>
 <a name="properties"></a>
-<h2 id="properties">属性</h2>
+<h2 id="properties">Properties</h2>
 <ul>
 <li class="fn"><b><b><a href="qml-qtqml-loggingcategory.html#defaultLogLevel-prop">defaultLogLevel</a></b></b> : enumeration</li>
 <li class="fn"><b><b><a href="qml-qtqml-loggingcategory.html#name-prop">name</a></b></b> : string</li>
 </ul>
 <!-- $$$LoggingCategory-description -->
 <a name="details"></a>
-<h2 id="details">详细描述</h2>
-<p>日志类别可以作为第一个参数传递给console.<a href="../qtdoc/qtquick-debugging.html#log">log()</a> 和 friends。 如果提供了日志名称级别，提供给日志程序<a href="qml-qtqml-loggingcategory.html">LoggingCategory</a>的名称将用作日志类别，否则将使用默认日志类别。</p>
+<h2 id="details">Detailed Description</h2>
+<p>A logging category can be passed to console.<a href="../qtdoc/qtquick-debugging.html#log">log()</a> and friends as the first argument. If supplied to to the logger the <a href="qml-qtqml-loggingcategory.html">LoggingCategory</a>'s name will be used as Logging Category otherwise the default logging category will be used.</p>
 <pre class="qml">
 
   import QtQuick 2.8
@@ -79,9 +79,9 @@
   }
 
 </pre>
-<p><b>注意:</b>由于创建对象的开销很大，因此建议将所需的<a href="qml-qtqml-loggingcategory.html">LoggingCategory</a> 义放到一个单例中，并在需要的地方导入它。</p><p><b>请参见</b><a href="../qtcore/qloggingcategory.html">QLoggingCategory</a>。</p>
+<p><b>Note: </b>As the creation of objects is expensive, it is encouraged to put the needed <a href="qml-qtqml-loggingcategory.html">LoggingCategory</a> definitions into a singleton and import this where needed.</p><p><b>See also </b><a href="../qtcore/qloggingcategory.html">QLoggingCategory</a>.</p>
 <!-- @@@LoggingCategory -->
-<h2>属性文档</h2>
+<h2>Property Documentation</h2>
 <!-- $$$defaultLogLevel -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
@@ -89,8 +89,8 @@
 <td class="tblQmlPropNode"><p>
 <a name="defaultLogLevel-prop"></a><span class="name">defaultLogLevel</span> : <span class="type"><a href="qml-enumeration.html">enumeration</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>保存日志类别的默认日志级别。默认情况下，它是用<a href="qml-qtqml-loggingcategory.html">LoggingCategory</a>创建的。调试日志级别。</p>
-<p><b>注意: </b>在声明<a href="qml-qtqml-loggingcategory.html">LoggingCategory</a>时需要设置此属性，以后不能更改。</p><p>这个属性是在Qt 5.12中引入的。</p>
+</div><div class="qmldoc"><p>Holds the default log level of the logging category. By default it is created with the <a href="qml-qtqml-loggingcategory.html">LoggingCategory</a>.Debug log level.</p>
+<p><b>Note: </b>This property needs to be set when declaring the <a href="qml-qtqml-loggingcategory.html">LoggingCategory</a> and cannot be changed later.</p><p>This property was introduced in  Qt 5.12.</p>
 </div></div><!-- @@@defaultLogLevel -->
 <br/>
 <!-- $$$name -->
@@ -100,8 +100,8 @@
 <td class="tblQmlPropNode"><p>
 <a name="name-prop"></a><span class="name">name</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>保存日志类别的名称。</p>
-<p><b>注意：</b>在声明<a href="qml-qtqml-loggingcategory.html">LoggingCategory</a>时需要设置此属性，以后不能更改。</p><p><b>请参见 </b><a href="../qtcore/qloggingcategory.html#categoryName">QLoggingCategory::categoryName()</a>。</p>
+</div><div class="qmldoc"><p>Holds the name of the logging category.</p>
+<p><b>Note: </b>This property needs to be set when declaring the <a href="qml-qtqml-loggingcategory.html">LoggingCategory</a> and cannot be changed later.</p><p><b>See also </b><a href="../qtcore/qloggingcategory.html#categoryName">QLoggingCategory::categoryName()</a>.</p>
 </div></div><!-- @@@name -->
 <br/>
         </div>

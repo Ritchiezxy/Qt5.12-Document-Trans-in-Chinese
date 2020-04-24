@@ -38,20 +38,20 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#declare-the-person-class">声明Person类</a></li>
-<li class="level1"><a href="#define-the-person-class">定义Person类</a></li>
-<li class="level1"><a href="#running-the-example">运行这个例子</a></li>
+<li class="level1"><a href="#declare-the-person-class">Declare the Person Class</a></li>
+<li class="level1"><a href="#define-the-person-class">Define the Person Class</a></li>
+<li class="level1"><a href="#running-the-example">Running the Example</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">扩展QML -添加类型的例子</h1>
+<h1 class="title">Extending QML - Adding Types Example</h1>
 <span class="subtitle"></span>
 <!-- $$$referenceexamples/adding-brief -->
-<p>导出C++类。</p>
+<p>Exporting C++ Classes.</p>
 <!-- @@@referenceexamples/adding -->
 <!-- $$$referenceexamples/adding-description -->
 <div class="descr"> <a name="details"></a>
-<p>添加类型示例显示了如何向QML添加新的对象类型<code>Person</code>， <code>Person</code>类型可以在QML中这样使用:</p>
+<p>The Adding Types Example shows how to add a new object type, <code>Person</code>, to QML. The <code>Person</code> type can be used from QML like this:</p>
 <pre class="qml">
 
   import People 1.0
@@ -63,8 +63,8 @@
 
 </pre>
 <a name="declare-the-person-class"></a>
-<h2 id="declare-the-person-class">声明Person类</h2>
-<p>所有QML类型都映射到C++类型。在这里，我们声明一个基本的C++ Person类，它具有我们希望在QML类型- name和shoeSize上访问的两个属性。虽然在本例中，我们对C++类使用了与QML类型相同的名称，但是C++类的名称可以不同，或者出现在名称空间中。</p>
+<h2 id="declare-the-person-class">Declare the Person Class</h2>
+<p>All QML types map to C++ types. Here we declare a basic C++ Person class with the two properties we want accessible on the QML type - name and shoeSize. Although in this example we use the same name for the C++ class as the QML type, the C++ class can be named differently, or appear in a namespace.</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> Person : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
@@ -88,7 +88,7 @@
 
 </pre>
 <a name="define-the-person-class"></a>
-<h2 id="define-the-person-class">定义Person类</h2>
+<h2 id="define-the-person-class">Define the Person Class</h2>
 <pre class="cpp">
 
   Person<span class="operator">::</span>Person(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent)
@@ -117,13 +117,12 @@
   }
 
 </pre>
-<p>Person类实现非常基本。属性访问器只返回对象实例的成员。</p>
-<p><code>main.cpp</code>文件还调用<code>qmlRegisterType()</code>函数，将<code>Person</code>类型注册为People库的1.0版本，并定义C++和QML类名之间的映射。</p>
+<p>The Person class implementation is quite basic. The property accessors simply return members of the object instance.</p>
+<p>The <code>main.cpp</code> file also calls the <code>qmlRegisterType()</code> function to register the <code>Person</code> type with QML as a type in the People library version 1.0, and defines the mapping between the C++ and QML class names.</p>
 <a name="running-the-example"></a>
-<h2 id="running-the-example">运行这个例子</h2>
-<p>示例中的main.cpp文件包含一个简单的shell应用程序，它加载并运行本页开头所示的QML片段。
-</p>
-<p>文件：</p>
+<h2 id="running-the-example">Running the Example</h2>
+<p>The main.cpp file in the example includes a simple shell application that loads and runs the QML snippet shown at the beginning of this page.</p>
+<p>Files:</p>
 <ul>
 <li><a href="qtqml-referenceexamples-adding-adding-pro.html">referenceexamples/adding/adding.pro</a></li>
 <li><a href="qtqml-referenceexamples-adding-adding-qrc.html">referenceexamples/adding/adding.qrc</a></li>

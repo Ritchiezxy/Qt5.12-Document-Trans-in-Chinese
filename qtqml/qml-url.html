@@ -38,26 +38,26 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#using-the-url-type">使用url类型</a></li>
+<li class="level1"><a href="#using-the-url-type">Using the url Type</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML的url类型</h1>
+<h1 class="title">url QML Basic Type</h1>
 <span class="subtitle"></span>
 <!-- $$$url-description -->
 <div class="descr"> <a name="details"></a>
-<p>资源定位器。</p>
-<p><code>url</code>类型引用资源定位器（例如，文件名）。它可以是绝对的，例如：&#x2e; &quot;http://qt-project.org&quot;，也可以是相对的，例如：&#x2e; &quot;pics/logo.png&quot;.相对URL相对于包含组件的URL进行解析。</p>
-<p>例如，下面的代码为<a href="../qtquick/qml-qtquick-image.html#source-prop">Image::source</a>属性分配了一个有效的URL，它的类型<code>url</code>:</p>
+<p>a resource locator.</p>
+<p>The <code>url</code> type refers to a resource locator (like a file name, for example). It can be either absolute, e.g&#x2e; &quot;http://qt-project.org&quot;, or relative, e.g&#x2e; &quot;pics/logo.png&quot;. A relative URL is resolved relative to the URL of the containing component.</p>
+<p>For example, the following assigns a valid URL to the <a href="../qtquick/qml-qtquick-image.html#source-prop">Image::source</a> property, which is of type <code>url</code>:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> { <span class="name">source</span>: <span class="string">&quot;pics/logo.png&quot;</span> }
 
 </pre>
-<p>当与C++集成时，请注意，<a href="qtqml-cppintegration-data.html">从C++传递到QML</a>的任何。<a href="../qtcore/qurl.html">QUrl</a>值都会自动转换为<code>url</code>值，反之亦然</p>
+<p>When integrating with C++, note that any <a href="../qtcore/qurl.html">QUrl</a> value <a href="qtqml-cppintegration-data.html">passed into QML from C++</a> is automatically converted into a <code>url</code> value, and vice-versa.</p>
 <a name="using-the-url-type"></a>
-<h2 id="using-the-url-type">使用url类型</h2>
-<p>当将相对URL写入<code>url</code> 类型属性时，其将被转换为URL对象，所以<b>将URL值与输入字符串值匹配将失败</b>相反，使用Qt.resolvedUrl()将字符串转换为URL，以便进行比较，并使用<code>toString()</code>获取URL的内容:</p>
+<h2 id="using-the-url-type">Using the url Type</h2>
+<p>When a relative URL is written to a <code>url</code> type property, it is converted into a URL object, so <b>matching the URL value against the input string value will fail</b>. Instead, convert the string to a URL using Qt.resolvedUrl() for means of comparison, and use <code>toString()</code> to get the contents of the URL:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> {
@@ -78,17 +78,16 @@
   }
 
 </pre>
-<p><b>注意:</b>当从QML中引用<a href="../qtcore/resources.html">Qt资源系统</a>存储的文件时，应该使用 &quot;qrc:///&quot;而不是&quot;:/&quot; ，因为QML需要URL路径。从该文件中解析的相对url将使用相同的协议。</p><p>此外，URL可能包含使用<a href="http://tools.ietf.org/html/rfc3986">RFC 3986</a>指定的“百分比编码”方案编码的字符。这些字符将保存在<code>url</code>类型的属性中，以允许QML代码构造精确的url值。 这个规则的一个例外是优先解码目录分隔符 (<code>'/'</code>) ——这些字符被解码以允许URL被正确分类。</p>
-<p>
-例如，一个包含“#”字符的本地文件，通常被解释为URL“fragment”元素的开头，可以通过编码文件名的字符来访问:</p>
+<p><b>Note: </b>When referring to files stored with the <a href="../qtcore/resources.html">Qt Resource System</a> from within QML, you should use &quot;qrc:///&quot; instead of &quot;:/&quot; as QML requires URL paths. Relative URLs resolved from within that file will use the same protocol.</p><p>Additionally, URLs may contain encoded characters using the 'percent-encoding' scheme specified by <a href="http://tools.ietf.org/html/rfc3986">RFC 3986</a>. These characters will be preserved within properties of type <code>url</code>, to allow QML code to construct precise URL values. An exception to this rule is the preemptive decoding of directory-separator characters (<code>'/'</code>) - these characters are decoded to allow the URL to be correctly classified.</p>
+<p>For example, a local file containing a '#' character, which would normally be interpreted as the beginning of the URL 'fragment' element, can be accessed by encoding the characters of the file name:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> { <span class="name">source</span>: <span class="name">encodeURIComponent</span>(<span class="string">&quot;/tmp/test#1.png&quot;</span>) }
 
 </pre>
-<p>这种基本类型由QML语言提供。</p>
+<p>This basic type is provided by the QML language.</p>
 </div>
-<p><b>参见 </b><a href="qtqml-typesystem-basictypes.html">QML基本类型</a>。</p>
+<p><b>See also </b><a href="qtqml-typesystem-basictypes.html">QML Basic Types</a>.</p>
 <!-- @@@url -->
         </div>
        </div>

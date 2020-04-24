@@ -38,26 +38,26 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#declare-boy-and-girl">声明 Boy 和 Girl</a></li>
-<li class="level2"><a href="#define-people-as-a-base-class">将People定义为基类</a></li>
+<li class="level1"><a href="#declare-boy-and-girl">Declare Boy and Girl</a></li>
+<li class="level2"><a href="#define-people-as-a-base-class">Define People as a Base Class</a></li>
 <li class="level2"><a href="#define-boy-and-girl">Define Boy and Girl</a></li>
 <li class="level1"><a href="#running-the-example">Running the Example</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">扩展QML -继承和强制的例子</h1>
+<h1 class="title">Extending QML - Inheritance and Coercion Example</h1>
 <span class="subtitle"></span>
 <!-- $$$referenceexamples/coercion-brief -->
-<p>C++继承和强制。</p>
+<p>C++ Inheritance and Coercion.</p>
 <!-- @@@referenceexamples/coercion -->
 <!-- $$$referenceexamples/coercion-description -->
 <div class="descr"> <a name="details"></a>
-<p>这个例子的基础是:</p>
+<p>This example builds on:</p>
 <ul>
-<li><a href="qtqml-referenceexamples-properties-example.html">扩展QML -对象和列表属性类型的例子</a></li>
-<li><a href="qtqml-referenceexamples-adding-example.html">扩展QML -添加类型的例子</a></li>
+<li><a href="qtqml-referenceexamples-properties-example.html">Extending QML - Object and List Property Types Example</a></li>
+<li><a href="qtqml-referenceexamples-adding-example.html">Extending QML - Adding Types Example</a></li>
 </ul>
-<p>继承和强制示例展示了如何使用基类将多个类型的类型分配给属性。它将前面示例中开发的Person类型专门分为两种类型—<code>Boy</code> 和 <code>Girl</code>。</p>
+<p>The Inheritance and Coercion Example shows how to use base classes to assign types of more than one type to a property. It specializes the Person type developed in the previous examples into two types - a <code>Boy</code> and a <code>Girl</code>.</p>
 <pre class="qml">
 
   <span class="type">BirthdayParty</span> {
@@ -74,7 +74,7 @@
 
 </pre>
 <a name="declare-boy-and-girl"></a>
-<h2 id="declare-boy-and-girl">声明 Boy 和 Girl</h2>
+<h2 id="declare-boy-and-girl">Declare Boy and Girl</h2>
 <pre class="cpp">
 
   <span class="keyword">class</span> Boy : <span class="keyword">public</span> Person
@@ -92,19 +92,19 @@
   };
 
 </pre>
-<p>在这个例子中Person类保持不变，而Boy和Girl C++类是它的简单扩展。例如，这里使用的继承有点做作，但在实际应用程序中，这两个扩展可能会添加额外的属性或修改Person类行为。</p>
+<p>The Person class remains unaltered in this example and the Boy and Girl C++ classes are trivial extensions of it. As an example, the inheritance used here is a little contrived, but in real applications it is likely that the two extensions would add additional properties or modify the Person classes behavior.</p>
 <a name="define-people-as-a-base-class"></a>
-<h3 >将People定义为基类</h3>
-<p>自前面的示例以来，People类本身的实现没有发生变化。然而，由于我们将People类重新用作Boy和Girl的公共基类，所以我们想要阻止它直接从QML实例化——应该实例化显式的Boy或Girl。</p>
+<h3 >Define People as a Base Class</h3>
+<p>The implementation of the People class itself has not changed since the previous example. However, as we have repurposed the People class as a common base for Boy and Girl, we want to prevent it from being instantiated from QML directly - an explicit Boy or Girl should be instantiated instead.</p>
 <pre class="cpp">
 
   qmlRegisterType<span class="operator">&lt;</span>Person<span class="operator">&gt;</span>();
 
 </pre>
-<p>虽然我们希望不允许在QML中实例化Person，但它仍然需要在QML引擎中注册，这样它就可以用作属性类型，其他类型也可以强制使用它。</p>
+<p>While we want to disallow instantiating Person from within QML, it still needs to be registered with the QML engine, so that it can be used as a property type and other types can be coerced to it.</p>
 <a name="define-boy-and-girl"></a>
-<h3 >定义Boy 和 Girl</h3>
-<p>Boy和Girl的实现是很简单的。</p>
+<h3 >Define Boy and Girl</h3>
+<p>The implementation of Boy and Girl is trivial.</p>
 <pre class="cpp">
 
   Boy<span class="operator">::</span>Boy(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span> parent)
@@ -118,19 +118,19 @@
   }
 
 </pre>
-<p>所需要做的就是实现构造函数，并向QML引擎注册类型及其QML名称。</p>
+<p>All that is necessary is to implement the constructor, and to register the types and their QML name with the QML engine.</p>
 <a name="running-the-example"></a>
-<h2 id="running-the-example">运行这个例子</h2>
-<p>与前面的示例相比，BirthdayParty类型没有改变。celebrant 和 guests 属性仍然使用People类型。</p>
+<h2 id="running-the-example">Running the Example</h2>
+<p>The BirthdayParty type has not changed since the previous example. The celebrant and guests property still use the People type.</p>
 <pre class="cpp">
 
       Q_PROPERTY(Person <span class="operator">*</span>host READ host WRITE setHost)
       Q_PROPERTY(<span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>Person<span class="operator">&gt;</span> guests READ guests)
 
 </pre>
-<p>然而，由于Person、Boy和Girl这三种类型都已在QML系统中注册，因此在分配QML时，QML会自动(且类型安全)将Boy和Girl对象转换为Person。</p>
-<p>示例中的main.cpp文件包含一个简单的shell应用程序，它加载并运行本页开头所示的QML片段。</p>
-<p>文件：</p>
+<p>However, as all three types, Person, Boy and Girl, have been registered with the QML system, on assignment QML automatically (and type-safely) converts the Boy and Girl objects into a Person.</p>
+<p>The main.cpp file in the example includes a simple shell application that loads and runs the QML snippet shown at the beginning of this page.</p>
+<p>Files:</p>
 <ul>
 <li><a href="qtqml-referenceexamples-coercion-birthdayparty-cpp.html">referenceexamples/coercion/birthdayparty.cpp</a></li>
 <li><a href="qtqml-referenceexamples-coercion-birthdayparty-h.html">referenceexamples/coercion/birthdayparty.h</a></li>

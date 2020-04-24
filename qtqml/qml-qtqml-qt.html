@@ -38,28 +38,28 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#properties">属性</a></li>
-<li class="level1"><a href="#methods">方法</a></li>
-<li class="level1"><a href="#details">详细描述</a></li>
-<li class="level2"><a href="#enums">枚举</a></li>
-<li class="level2"><a href="#types">类型</a></li>
-<li class="level2"><a href="#date-time-formatters">日期/时间格式器</a></li>
-<li class="level2"><a href="#dynamic-object-creation">动态对象创建</a></li>
-<li class="level2"><a href="#other-functions">其他函数</a></li>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#methods">Methods</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+<li class="level2"><a href="#enums">Enums</a></li>
+<li class="level2"><a href="#types">Types</a></li>
+<li class="level2"><a href="#date-time-formatters">Date/Time Formatters</a></li>
+<li class="level2"><a href="#dynamic-object-creation">Dynamic Object Creation</a></li>
+<li class="level2"><a href="#other-functions">Other Functions</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">Qt QML类型</h1>
+<h1 class="title">Qt QML Type</h1>
 <span class="subtitle"></span>
 <!-- $$$Qt-brief -->
-<p>提供一个全局对象，其中包含有用的枚举和Qt中的函数。 <a href="#details">更多…</a></p>
+<p>Provides a global object with useful enums and functions from Qt. <a href="#details">More...</a></p>
 <!-- @@@Qt -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr></table></div><ul>
-<li><a href="qml-qtqml-qt-members.html">所有成员的列表，包括继承的成员</a></li>
+<li><a href="qml-qtqml-qt-members.html">List of all members, including inherited members</a></li>
 </ul>
 <a name="properties"></a>
-<h2 id="properties">属性</h2>
+<h2 id="properties">Properties</h2>
 <ul>
 <li class="fn"><b><b><a href="qml-qtqml-qt.html#application-prop">application</a></b></b> : object</li>
 <li class="fn"><b><b><a href="qml-qtqml-qt.html#inputMethod-prop">inputMethod</a></b></b> : object</li>
@@ -67,7 +67,7 @@
 <li class="fn"><b><b><a href="qml-qtqml-qt.html#styleHints-prop">styleHints</a></b></b> : object</li>
 </ul>
 <a name="methods"></a>
-<h2 id="methods">方法</h2>
+<h2 id="methods">Methods</h2>
 <ul>
 <li class="fn">string <b><b><a href="qml-qtqml-qt.html#atob-method">atob</a></b></b>(<i>data</i>)</li>
 <li class="fn"><b><b><a href="qml-qtqml-qt.html#binding-method">binding</a></b></b>(<i>function</i>)</li>
@@ -113,9 +113,9 @@
 </ul>
 <!-- $$$Qt-description -->
 <a name="details"></a>
-<h2 id="details">详细描述</h2>
-<p><code>Qt</code>对象是一个全局对象，具有实用的函数、属性和枚举。</p>
-<p>它不能实例化;要使用它，直接调用全局<code>Qt</code>对象的成员。例如:</p>
+<h2 id="details">Detailed Description</h2>
+<p>The <code>Qt</code> object is a global object with utility functions, properties and enums.</p>
+<p>It is not instantiable; to use it, call the members of the global <code>Qt</code> object directly. For example:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -127,17 +127,17 @@
 
 </pre>
 <a name="enums"></a>
-<h2 id="enums">枚举</h2>
-<p>Qt对象包含<a href="../qtcore/qt.html">Qt名称空间</a>中可用的枚举。例如，您可以访问<a href="../qtcore/qt.html#MouseButton-enum">Qt::LeftButton</a> 以 <a href="../qtcore/qt.html#MouseButton-enum">Qt::RightButton</a> 的形式访问枚举值 <code>Qt.LeftButton</code> 和 <code>Qt.RightButton</code>。</p>
+<h2 id="enums">Enums</h2>
+<p>The Qt object contains the enums available in the <a href="../qtcore/qt.html">Qt Namespace</a>. For example, you can access the <a href="../qtcore/qt.html#MouseButton-enum">Qt::LeftButton</a> and <a href="../qtcore/qt.html#MouseButton-enum">Qt::RightButton</a> enumeration values as <code>Qt.LeftButton</code> and <code>Qt.RightButton</code>.</p>
 <a name="types"></a>
-<h2 id="types">类型</h2>
-<p>Qt对象还包含用于创建特定数据类型对象的帮助函数。当某项的属性具有下列类型之一时，设置该属性时非常有用:</p>
+<h2 id="types">Types</h2>
+<p>The Qt object also contains helper functions for creating objects of specific data types. This is primarily useful when setting the properties of an item when the property has one of the following types:</p>
 <ul>
 <li><code>rect</code> - use <a href="qml-qtqml-qt.html#rect-method">Qt.rect()</a></li>
 <li><code>point</code> - use <a href="qml-qtqml-qt.html#point-method">Qt.point()</a></li>
 <li><code>size</code> - use <a href="qml-qtqml-qt.html#size-method">Qt.size()</a></li>
 </ul>
-<p>如果已导入<code>QtQuick</code>模块，客户端还可以使用以下帮助函数创建特定数据类型的对象:</p>
+<p>If the <code>QtQuick</code> module has been imported, the following helper functions for creating objects of specific data types are also available for clients to use:</p>
 <ul>
 <li><code>color</code> - use <a href="qml-qtqml-qt.html#rgba-method">Qt.rgba()</a>, <a href="qml-qtqml-qt.html#hsla-method">Qt.hsla()</a>, <a href="qml-qtqml-qt.html#darker-method">Qt.darker()</a>, <a href="qml-qtqml-qt.html#lighter-method">Qt.lighter()</a> or <a href="qml-qtqml-qt.html#tint-method">Qt.tint()</a></li>
 <li><code>font</code> - use <a href="qml-qtqml-qt.html#font-method">Qt.font()</a></li>
@@ -147,26 +147,26 @@
 <li><code>quaternion</code> - use <a href="qml-qtqml-qt.html#quaternion-method">Qt.quaternion()</a></li>
 <li><code>matrix4x4</code> - use <a href="qml-qtqml-qt.html#matrix4x4-method">Qt.matrix4x4()</a></li>
 </ul>
-<p>这些类型也有基于字符串的构造函数。有关更多信息，请参见<a href="qtqml-typesystem-basictypes.html">QML基本类型</a>。</p>
+<p>There are also string based constructors for these types. See <a href="qtqml-typesystem-basictypes.html">QML Basic Types</a> for more information.</p>
 <a name="date-time-formatters"></a>
-<h2 id="date-time-formatters">日期/时间格式器</h2>
-<p>Qt对象包含几个用于格式化<a href="../qtcore/qdatetime.html">QDateTime</a>, <a href="../qtcore/qdate.html">QDate</a> 和 <a href="../qtcore/qtime.html">QTime</a>值的函数。</p>
+<h2 id="date-time-formatters">Date/Time Formatters</h2>
+<p>The Qt object contains several functions for formatting <a href="../qtcore/qdatetime.html">QDateTime</a>, <a href="../qtcore/qdate.html">QDate</a> and <a href="../qtcore/qtime.html">QTime</a> values.</p>
 <ul>
 <li><a href="qml-qtqml-qt.html#formatDateTime-method">string Qt.formatDateTime(datetime date, variant format)</a></li>
 <li><a href="qml-qtqml-qt.html#formatDate-method">string Qt.formatDate(datetime date, variant format)</a></li>
 <li><a href="qml-qtqml-qt.html#formatTime-method">string Qt.formatTime(datetime date, variant format)</a></li>
 </ul>
-<p>格式规范在<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime</a>中描述。</p>
+<p>The format specification is described at <a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime</a>.</p>
 <a name="dynamic-object-creation"></a>
-<h2 id="dynamic-object-creation">动态对象创建</h2>
-<p>全局对象上的以下函数允许您从文件或字符串动态创建QML项。有关动态QML对象的使用，请参。<a href="qtqml-javascript-dynamicobjectcreation.html">从JavaScript创建的动态QML对象</a> 。</p>
+<h2 id="dynamic-object-creation">Dynamic Object Creation</h2>
+<p>The following functions on the global object allow you to dynamically create QML items from files or strings. See <a href="qtqml-javascript-dynamicobjectcreation.html">Dynamic QML Object Creation from JavaScript</a> for an overview of their use.</p>
 <ul>
 <li><a href="qml-qtqml-qt.html#createComponent-method">object Qt.createComponent(url)</a></li>
 <li><a href="qml-qtqml-qt.html#createQmlObject-method">object Qt.createQmlObject(string qml, object parent, string filepath)</a></li>
 </ul>
 <a name="other-functions"></a>
-<h2 id="other-functions">其他函数</h2>
-<p>下面的函数也是Qt对象的。</p>
+<h2 id="other-functions">Other Functions</h2>
+<p>The following functions are also on the Qt object.</p>
 <ul>
 <li><a href="qml-qtqml-qt.html#quit-method">Qt.quit()</a></li>
 <li><a href="qml-qtqml-qt.html#md5-method">Qt.md5(string)</a></li>
@@ -179,7 +179,7 @@
 <li><a href="qml-qtqml-qt.html#fontFamilies-method">list&lt;string&gt; Qt.fontFamilies()</a></li>
 </ul>
 <!-- @@@Qt -->
-<h2>属性文档</h2>
+<h2>Property Documentation</h2>
 <!-- $$$application -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
@@ -187,36 +187,36 @@
 <td class="tblQmlPropNode"><p>
 <a name="application-prop"></a><span class="name">application</span> : <span class="type">object</span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p><code>application（应用程序）</code>对象提供对许多QML组件共享的全局应用程序状态属性的访问。</p>
-<p>它的属性有:</p>
+</div><div class="qmldoc"><p>The <code>application</code> object provides access to global application state properties shared by many QML components.</p>
+<p>Its properties are:</p>
 <div class="table"><table class="generic">
- <tr valign="top" class="odd"><td ><code>application.active</code></td><td >弃用,使用Qt.application.state == Qt.ApplicationActive替换</td></tr>
-<tr valign="top" class="even"><td ><code>application.state</code></td><td >此只读属性指示应用程序的当前状态。<p>可能的值是:</p>
+ <tr valign="top" class="odd"><td ><code>application.active</code></td><td >Deprecated, use Qt.application.state == Qt.ApplicationActive instead.</td></tr>
+<tr valign="top" class="even"><td ><code>application.state</code></td><td >This read-only property indicates the current state of the application.<p>Possible values are:</p>
 <ul>
-<li>Qt.ApplicationActive - 应用程序是最顶级、最集中的应用程序，用户可以与应用程序进行交互。</li>
-<li>Qt.ApplicationInactive - 应用程序是可见的或部分可见的，但没有选择放在前面，用户不能与应用程序交互。在桌面平台上，这通常意味着用户激活了另一个应用程序。在移动平台上，当操作系统用来电、短信或对话框等中断用户时，更常见的情况是进入这种状态。这通常是应用程序暂停的暂时状态。用户可能会将焦点返回到应用程序，但大多数情况下，这将是应用程序将要挂起的第一个指示。在此状态下，请考虑暂停或停止用户无法与应用程序交互时不应该继续的任何活动，例如视频、游戏、动画或传感器。您还应该避免执行CPU密集型任务，这些任务可能会降低前面应用程序的速度。</li>
-<li>Qt.ApplicationSuspended - 应用程序挂起，用户不可见。在移动平台上，当用户返回主屏幕或切换到另一个应用程序时，应用程序通常会进入这种状态。在这种状态下，应用程序应该确保用户认为它始终是活动的，不会丢失进度，从而保存任何持久性数据。应用程序应该停止所有活动，并准备停止代码执行。当挂起时，应用程序可以在任何时候被终止，而不需要进一步的警告(例如，当低内存迫使OS清除挂起的应用程序时)。</li>
-<li>Qt.ApplicationHidden - 应用程序隐藏在后台运行。当用户与其他应用程序交互时，这是需要进行后台处理(如播放音乐)的应用程序的正常状态。当进入此状态时，应用程序应该释放所有图形资源。Qt Quick应用程序通常不应该在QML级别处理这种状态。相反，您应该卸载整个UI，并在应用程序再次激活时重新加载QML文件。</li>
+<li>Qt.ApplicationActive - The application is the top-most and focused application, and the user is able to interact with the application.</li>
+<li>Qt.ApplicationInactive - The application is visible or partially visible, but not selected to be in front, the user cannot interact with the application. On desktop platforms, this typically means that the user activated another application. On mobile platforms, it is more common to enter this state when the OS is interrupting the user with for example incoming calls, SMS-messages or dialogs. This is usually a transient state during which the application is paused. The user may return focus to your application, but most of the time it will be the first indication that the application is going to be suspended. While in this state, consider pausing or stopping any activity that should not continue when the user cannot interact with your application, such as a video, a game, animations, or sensors. You should also avoid performing CPU-intensive tasks which might slow down the application in front.</li>
+<li>Qt.ApplicationSuspended - The application is suspended and not visible to the user. On mobile platforms, the application typically enters this state when the user returns to the home screen or switches to another application. While in this state, the application should ensure that the user perceives it as always alive and does not lose his progress, saving any persistent data. The application should cease all activities and be prepared for code execution to stop. While suspended, the application can be killed at any time without further warnings (for example when low memory forces the OS to purge suspended applications).</li>
+<li>Qt.ApplicationHidden - The application is hidden and runs in the background. This is the normal state for applications that need to do background processing, like playing music, while the user interacts with other applications. The application should free up all graphical resources when entering this state. A Qt Quick application should not usually handle this state at the QML level. Instead, you should unload the entire UI and reload the QML files whenever the application becomes active again.</li>
 </ul>
 </td></tr>
-<tr valign="top" class="odd"><td ><code>application.layoutDirection</code></td><td >此只读属性可用于查询应用程序的默认布局方向。在系统启动时，默认布局方向取决于应用程序的语言。在文本和图形元素从右向左读取的区域中，该属性的值为<code>Qt.RightToLeft</code> ，而在读取方向从左向右流动的区域中，该属性的值为<code>Qt.LeftToRight</code> 您可以绑定到此属性来自定义应用程序布局，以支持两个布局方向。<p>可能的值是:</p>
+<tr valign="top" class="odd"><td ><code>application.layoutDirection</code></td><td >This read-only property can be used to query the default layout direction of the application. On system start-up, the default layout direction depends on the application's language. The property has a value of <code>Qt.RightToLeft</code> in locales where text and graphic elements are read from right to left, and <code>Qt.LeftToRight</code> where the reading direction flows from left to right. You can bind to this property to customize your application layouts to support both layout directions.<p>Possible values are:</p>
 <ul>
-<li>Qt.LeftToRight - 文本和图形元素应该从左到右放置。</li>
-<li>Qt.RightToLeft - 文本和图形元素应该从右向左放置。</li>
+<li>Qt.LeftToRight - Text and graphics elements should be positioned from left to right.</li>
+<li>Qt.RightToLeft - Text and graphics elements should be positioned from right to left.</li>
 </ul>
 </td></tr>
-<tr valign="top" class="even"><td ><code>application.font</code></td><td >这个只读属性保存<a href="../qtgui/qguiapplication.html#font">QGuiApplication::font()</a>返回的默认应用程序字体。</td></tr>
-<tr valign="top" class="odd"><td ><code>application.arguments</code></td><td >这是使用可执行文件调用的参数的字符串列表。</td></tr>
-<tr valign="top" class="even"><td ><code>application.name</code></td><td >这是在<a href="../qtcore/qcoreapplication.html">QCoreApplication</a>实例上设置的应用程序名称。可以将此属性写入，以便设置应用程序名称。</td></tr>
-<tr valign="top" class="odd"><td ><code>application.displayName</code> (since Qt 5.9)</td><td >这是在<a href="../qtgui/qguiapplication.html">QGuiApplication</a>实例上设置的应用程序显示名称。可以将此属性写入，以便设置应用程序显示名称。</td></tr>
-<tr valign="top" class="even"><td ><code>application.version</code></td><td >这是在<a href="../qtcore/qcoreapplication.html">QCoreApplication</a>实例上设置的应用程序版本。可以将此属性写入，以便设置应用程序版本。</td></tr>
-<tr valign="top" class="odd"><td ><code>application.organization</code></td><td >这是在<a href="../qtcore/qcoreapplication.html">QCoreApplication</a>实例上设置的组织名称。可以将此属性写入，以便设置组织名称。</td></tr>
-<tr valign="top" class="even"><td ><code>application.domain</code></td><td >这是在<a href="../qtcore/qcoreapplication.html">QCoreApplication</a>实例上设置的组织域。可以将此属性写入，以便设置组织域。</td></tr>
-<tr valign="top" class="odd"><td ><code>application.supportsMultipleWindows</code></td><td >此只读属性可用于确定平台是否支持多个窗口。例如，一些嵌入式平台不支持多个窗口。</td></tr>
-<tr valign="top" class="even"><td ><code>application.screens</code></td><td >包含所有连接屏幕的描述的数组。数组的元素是具有与<a href="../qtquick/qml-qtquick-window-screen.html">Screen（屏幕）</a>加对象相同属性的对象。实际上，这个数组对应于<a href="../qtgui/qguiapplication.html#screens">QGuiApplication::screens()</a>返回的屏幕列表。除了检查name、width、height等属性外，还可以将数组元素分配给窗口项的screen属性，从而替代C++端上的<a href="../qtgui/qwindow.html#setScreen">QWindow::setScreen()</a>。Qt 5.9中添加了该属性。&#x2e;</td></tr>
+<tr valign="top" class="even"><td ><code>application.font</code></td><td >This read-only property holds the default application font as returned by <a href="../qtgui/qguiapplication.html#font">QGuiApplication::font()</a>.</td></tr>
+<tr valign="top" class="odd"><td ><code>application.arguments</code></td><td >This is a string list of the arguments the executable was invoked with.</td></tr>
+<tr valign="top" class="even"><td ><code>application.name</code></td><td >This is the application name set on the <a href="../qtcore/qcoreapplication.html">QCoreApplication</a> instance. This property can be written to in order to set the application name.</td></tr>
+<tr valign="top" class="odd"><td ><code>application.displayName</code> (since Qt 5.9)</td><td >This is the application display name set on the <a href="../qtgui/qguiapplication.html">QGuiApplication</a> instance. This property can be written to in order to set the application display name.</td></tr>
+<tr valign="top" class="even"><td ><code>application.version</code></td><td >This is the application version set on the <a href="../qtcore/qcoreapplication.html">QCoreApplication</a> instance. This property can be written to in order to set the application version.</td></tr>
+<tr valign="top" class="odd"><td ><code>application.organization</code></td><td >This is the organization name set on the <a href="../qtcore/qcoreapplication.html">QCoreApplication</a> instance. This property can be written to in order to set the organization name.</td></tr>
+<tr valign="top" class="even"><td ><code>application.domain</code></td><td >This is the organization domain set on the <a href="../qtcore/qcoreapplication.html">QCoreApplication</a> instance. This property can be written to in order to set the organization domain.</td></tr>
+<tr valign="top" class="odd"><td ><code>application.supportsMultipleWindows</code></td><td >This read-only property can be used to determine whether or not the platform supports multiple windows. Some embedded platforms do not support multiple windows, for example.</td></tr>
+<tr valign="top" class="even"><td ><code>application.screens</code></td><td >An array containing the descriptions of all connected screens. The elements of the array are objects with the same properties as the <a href="../qtquick/qml-qtquick-window-screen.html">Screen</a> attached object. In practice the array corresponds to the screen list returned by <a href="../qtgui/qguiapplication.html#screens">QGuiApplication::screens()</a>. In addition to examining properties like name, width, height, etc., the array elements can also be assigned to the screen property of Window items, thus serving as an alternative to the C++ side's <a href="../qtgui/qwindow.html#setScreen">QWindow::setScreen()</a>. This property has been added in Qt 5.9&#x2e;</td></tr>
 </table></div>
-<p>该对象还有一个信号aboutToQuit()，它与<a href="../qtcore/qcoreapplication.html#aboutToQuit">QCoreApplication::aboutToQuit()</a>相同。</p>
-<p>下面的示例使用<code>application（应用程序）</code>对象来指示应用程序当前是否处于活动状态:</p>
+<p>The object also has one signal, aboutToQuit(), which is the same as <a href="../qtcore/qcoreapplication.html#aboutToQuit">QCoreApplication::aboutToQuit()</a>.</p>
+<p>The following example uses the <code>application</code> object to indicate whether the application is currently active:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -232,15 +232,15 @@
   }
 
 </pre>
-<p>注意，在没有<a href="../qtgui/qguiapplication.html">QGuiApplication</a>的情况下使用QML时，以下属性将是未定义的:</p>
+<p>Note that when using QML without a <a href="../qtgui/qguiapplication.html">QGuiApplication</a>, the following properties will be undefined:</p>
 <ul>
 <li>application.active</li>
 <li>application.state</li>
 <li>application.layoutDirection</li>
 <li>application.font</li>
 </ul>
-<p>这个属性是在Qt 5.1中引入的。</p>
-<p><b>参见</b><a href="../qtquick/qml-qtquick-window-screen.html">Screen</a>, <a href="../qtquick/qml-qtquick-window-window.html">Window</a>, 和 <a href="../qtquick/qml-qtquick-window-window.html#screen-prop">Window.screen</a>.</p>
+<p>This property was introduced in  Qt 5.1.</p>
+<p><b>See also </b><a href="../qtquick/qml-qtquick-window-screen.html">Screen</a>, <a href="../qtquick/qml-qtquick-window-window.html">Window</a>, and <a href="../qtquick/qml-qtquick-window-window.html#screen-prop">Window.screen</a>.</p>
 </div></div><!-- @@@application -->
 <br/>
 <!-- $$$inputMethod -->
@@ -250,8 +250,8 @@
 <td class="tblQmlPropNode"><p>
 <a name="inputMethod-prop"></a><span class="name">inputMethod</span> : <span class="type">object</span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p><code>inputMethod</code>对象允许访问应用程序的<a href="../qtgui/qinputmethod.html">QInputMethod</a>对象及其所有属性和槽。有关详细信息，请参阅<a href="../qtgui/qinputmethod.html">QInputMethod</a>文档。</p>
-<p>这个属性是在Qt 5.0中引入的。</p>
+</div><div class="qmldoc"><p>The <code>inputMethod</code> object allows access to application's <a href="../qtgui/qinputmethod.html">QInputMethod</a> object and all its properties and slots. See the <a href="../qtgui/qinputmethod.html">QInputMethod</a> documentation for further details.</p>
+<p>This property was introduced in  Qt 5.0.</p>
 </div></div><!-- @@@inputMethod -->
 <br/>
 <!-- $$$platform -->
@@ -261,10 +261,10 @@
 <td class="tblQmlPropNode"><p>
 <a name="platform-prop"></a><span class="name">platform</span> : <span class="type">object</span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>该<code>platform（平台）</code>对象提供有关底层平台的信息。</p>
-<p>它的属性有:</p>
+</div><div class="qmldoc"><p>The <code>platform</code> object provides info about the underlying platform.</p>
+<p>Its properties are:</p>
 <div class="table"><table class="generic">
- <tr valign="top" class="odd"><td ><code>platform.os</code></td><td >此只读属性包含操作系统的名称。<p>可能的值是:</p>
+ <tr valign="top" class="odd"><td ><code>platform.os</code></td><td >This read-only property contains the name of the operating system.<p>Possible values are:</p>
 <ul>
 <li><code>&quot;android&quot;</code> - Android</li>
 <li><code>&quot;ios&quot;</code> - iOS</li>
@@ -279,7 +279,7 @@
 </td></tr>
 <tr valign="top" class="even"><td ><code>platform.pluginName</code></td><td >This is the name of the platform set on the <a href="../qtgui/qguiapplication.html">QGuiApplication</a> instance as returned by <a href="../qtgui/qguiapplication.html#platformName-prop">QGuiApplication::platformName()</a></td></tr>
 </table></div>
-<p>这个属性是在Qt 5.1中引入的。</p>
+<p>This property was introduced in  Qt 5.1.</p>
 </div></div><!-- @@@platform -->
 <br/>
 <!-- $$$styleHints -->
@@ -289,8 +289,8 @@
 <td class="tblQmlPropNode"><p>
 <a name="styleHints-prop"></a><span class="name">styleHints</span> : <span class="type">object</span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p><code>styleHints</code> 对象提供特定于平台的样式提示和设置。有关详细信息，请参阅<a href="../qtgui/qstylehints.html">QStyleHints</a>文档。</p>
-<p><b>注意：</b><code>styleHints</code>对象只在使用Qt Quick模块时可用。</p><p>下面的例子使用<code>styleHints</code> 对象来确定一个项目应该在鼠标按下或触摸释放时获得焦点:</p>
+</div><div class="qmldoc"><p>The <code>styleHints</code> object provides platform-specific style hints and settings. See the <a href="../qtgui/qstylehints.html">QStyleHints</a> documentation for further details.</p>
+<p><b>Note: </b>The <code>styleHints</code> object is only available when using the Qt Quick module.</p><p>The following example uses the <code>styleHints</code> object to determine whether an item should gain focus on mouse press or touch release:</p>
 <pre class="cpp">
 
   import <span class="type">QtQuick</span> <span class="number">2.4</span>
@@ -309,10 +309,10 @@
   }
 
 </pre>
-<p>这个属性是在Qt 5.5中引入的。</p>
+<p>This property was introduced in  Qt 5.5.</p>
 </div></div><!-- @@@styleHints -->
 <br/>
-<h2>方法文档</h2>
+<h2>Method Documentation</h2>
 <!-- $$$ -->
 <div class="qmlitem"><div class="fngroup">
 <div class="qmlproto">
@@ -324,10 +324,10 @@
 <td class="tblQmlFuncNode"><p>
 <a name="callLater-method-1"></a><span class="name">callLater</span>(<i>function</i>, <i>argument1</i>, <i>argument2</i>, <i> ...</i>)</p></td></tr>
 </table></div>
-</div></div><div class="qmldoc"><p>使用此函数可消除对函数或信号的冗余调用。</p>
-<p>一旦QML引擎返回到事件循环，将稍后调用作为传递给Qt.<a href="qml-qtqml-qt.html#callLater-method">callLater()</a>的第一个参数的函数。</p>
-<p>W当这个函数被连续调用多次，且函数与它的第一个参数相同时，该函数将只被调用一次。</p>
-<p>例如：</p>
+</div></div><div class="qmldoc"><p>Use this function to eliminate redundant calls to a function or signal.</p>
+<p>The function passed as the first argument to Qt.<a href="qml-qtqml-qt.html#callLater-method">callLater()</a> will be called later, once the QML engine returns to the event loop.</p>
+<p>When this function is called multiple times in quick succession with the same function as its first argument, that function will be called only once.</p>
+<p>For example:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -400,8 +400,8 @@
   }
 
 </pre>
-<p>传递给Qt.<a href="qml-qtqml-qt.html#callLater-method">callLater()</a> 的任何附加参数都将传递给调用的函数。注意，如果消除了冗余调用，那么只会将最后一组参数传递给函数。</p>
-<p>该文档是在Qt 5.8中引入的。</p>
+<p>Any additional arguments passed to Qt.<a href="qml-qtqml-qt.html#callLater-method">callLater()</a> will be passed on to the function invoked. Note that if redundant calls are eliminated, then only the last set of arguments will be passed to the function.</p>
+<p>This documentation was introduced in  Qt 5.8.</p>
 </div></div><!-- @@@ -->
 <br/>
 <!-- $$$atob -->
@@ -411,7 +411,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="atob-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">atob</span>(<i>data</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>ASCII到二进制-这个函数解码base64编码的<i>data（数据）</i>字符串并返回它。</p>
+</div><div class="qmldoc"><p>ASCII to binary - this function decodes the base64 encoded <i>data</i> string and returns it.</p>
 </div></div><!-- @@@atob -->
 <br/>
 <!-- $$$binding -->
@@ -421,8 +421,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="binding-method"></a><span class="name">binding</span>(<i>function</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回表示<a href="qtqml-syntax-propertybinding.html">属性绑定</a>的JavaScript对象。</p>
-<p>该函数有两个主要用例:首先，从JavaScript代码强制应用属性绑定:</p>
+</div><div class="qmldoc"><p>Returns a JavaScript object representing a <a href="qtqml-syntax-propertybinding.html">property binding</a>.</p>
+<p>There are two main use-cases for the function: firstly, to apply a property binding imperatively from JavaScript code:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
@@ -438,8 +438,8 @@
   }
 
 </pre>
-<p>其次，在初始化动态构造对象的属性值时应用属性绑定(通过<a href="qml-qtqml-component.html#createObject-method">Component.createObject()</a> 或 <a href="../qtquick/qml-qtquick-loader.html#setSource-method">Loader.setSource()</a>）。</p>
-<p>例如，假设存在一个DynamicText组件:</p>
+<p>and secondly, to apply a property binding when initializing property values of dynamically constructed objects (via <a href="qml-qtqml-component.html#createObject-method">Component.createObject()</a> or <a href="../qtquick/qml-qtquick-loader.html#setSource-method">Loader.setSource()</a>).</p>
+<p>For example, assuming the existence of a DynamicText component:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -454,7 +454,7 @@
   }
 
 </pre>
-<p>的输出:</p>
+<p>the output from:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
@@ -473,7 +473,7 @@
   }
 
 </pre>
-<p>从:</p>
+<p>and from:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
@@ -497,7 +497,7 @@
   }
 
 </pre>
-<p>应该都是:</p>
+<p>should both be:</p>
 <pre class="cpp">
 
   Root text extra text
@@ -506,7 +506,7 @@
   Modified dynamic text extra text
 
 </pre>
-<p>此函数不能用于属性绑定声明(请参阅有关<a href="qtqml-syntax-propertybinding.html#qml-javascript-assignment">绑定声明和绑定赋值的文档</a>)，除非结果存储在绑定到var属性的数组中。</p>
+<p>This function cannot be used in property binding declarations (see the documentation on <a href="qtqml-syntax-propertybinding.html#qml-javascript-assignment">binding declarations and binding assignments</a>) except when the result is stored in an array bound to a var property.</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
@@ -521,7 +521,7 @@
   }
 
 </pre>
-<p>该方法是在Qt 5.0中引入的。</p>
+<p>This method was introduced in  Qt 5.0.</p>
 </div></div><!-- @@@binding -->
 <br/>
 <!-- $$$btoa -->
@@ -531,7 +531,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="btoa-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">btoa</span>(<i>data</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>二进制到ASCII -这个函数返回一个base64编码的<code>数据</code>。</p>
+</div><div class="qmldoc"><p>Binary to ASCII - this function returns a base64 encoding of <code>data</code>.</p>
 </div></div><!-- @@@btoa -->
 <br/>
 <!-- $$$colorEqual -->
@@ -541,7 +541,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="colorEqual-method"></a><span class="type"><a href="../qtquick/qml-color.html">color</a></span> <span class="name">colorEqual</span>(<span class="type"><a href="../qtquick/qml-color.html">color</a></span> <i>lhs</i>,  <span class="type"><a href="qml-string.html">string</a></span> <i>rhs</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>如果<code>lhs</code> 和 <code>rhs</code>生成相同的颜色值，则返回true。两个参数都可以是颜色值或字符串值。如果提供了字符串值，则必须将其转换为颜色，如<a href="../qtquick/qml-color.html#colorbasictypedocs">color</a>基本类型所述。</p>
+</div><div class="qmldoc"><p>Returns true if both <code>lhs</code> and <code>rhs</code> yield equal color values. Both arguments may be either color values or string values. If a string value is supplied it must be convertible to a color, as described for the <a href="../qtquick/qml-color.html#colorbasictypedocs">color</a> basic type.</p>
 </div></div><!-- @@@colorEqual -->
 <br/>
 <!-- $$$createComponent -->
@@ -551,17 +551,17 @@
 <td class="tblQmlFuncNode"><p>
 <a name="createComponent-method"></a><span class="type">object</span> <span class="name">createComponent</span>(<i>url</i>, <i>mode</i>, <i>parent</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回使用指定<i>url</i>上的QML文件创建的<a href="qml-qtqml-component.html">Component（组件）</a>对象，如果给定空字符串，则返回<code>null</code>。</p>
-<p>返回的组件的<a href="qml-qtqml-component.html#status-prop">Component::status</a>属性指示组件是否已成功创建。如果状态是<code>Component.Error</code>, 请参见<a href="qml-qtqml-component.html#errorString-method">Component::errorString()</a>获取错误描述。</p>
-<p>如果可选<i>mode（模式）</i> 参数设置为<code>Component.Asynchronous</code>，则组件将在后台线程中加载。 <a href="qml-qtqml-component.html#status-prop">Component::status</a>属性在加载时为<code>Component.Loading</code> 如果组件成功加载，则状态将更改为<code>Component.Ready</code>。如果加载失败，状态将更改为<code>Component.Error</code>如果省略此参数，则默认为<code>Component.PreferSynchronous</code>。</p>
-<p>如果<i>mode（模式）</i> 被设置为如果模式被设置为<code>Component.PreferSynchronous</code>Qt将尝试同步加载组件，但如果需要，可能最终异步加载组件。可能导致异步加载的场景包括但不限于以下情况:</p>
+</div><div class="qmldoc"><p>Returns a <a href="qml-qtqml-component.html">Component</a> object created using the QML file at the specified <i>url</i>, or <code>null</code> if an empty string was given.</p>
+<p>The returned component's <a href="qml-qtqml-component.html#status-prop">Component::status</a> property indicates whether the component was successfully created. If the status is <code>Component.Error</code>, see <a href="qml-qtqml-component.html#errorString-method">Component::errorString()</a> for an error description.</p>
+<p>If the optional <i>mode</i> parameter is set to <code>Component.Asynchronous</code>, the component will be loaded in a background thread. The <a href="qml-qtqml-component.html#status-prop">Component::status</a> property will be <code>Component.Loading</code> while it is loading. The status will change to <code>Component.Ready</code> if the component loads successfully, or <code>Component.Error</code> if loading fails. This parameter defaults to <code>Component.PreferSynchronous</code> if omitted.</p>
+<p>If <i>mode</i> is set to <code>Component.PreferSynchronous</code>, Qt will attempt to load the component synchronously, but may end up loading it asynchronously if necessary. Scenarios that may cause asynchronous loading include, but are not limited to, the following:</p>
 <ul>
-<li>URL引用网络资源</li>
-<li>组件是作为异步加载的另一个组件的结果创建的</li>
+<li>The URL refers to a network resource</li>
+<li>The component is being created as a result of another component that is being loaded asynchronously</li>
 </ul>
-<p>如果给定了可选 <i>parent（父）</i>参数，则它应该引用将成为所创建<a href="qml-qtqml-component.html">Component（组件）</a>对象的父对象的对象。如果没有传递模式，这可以是第二个参数。</p>
-<p>在返回的组件上调用<a href="qml-qtqml-component.html#createObject-method">Component.createObject()</a>来创建组件的对象实例。</p>
-<p>例如：</p>
+<p>If the optional <i>parent</i> parameter is given, it should refer to the object that will become the parent for the created <a href="qml-qtqml-component.html">Component</a> object. If no mode was passed, this can be the second argument.</p>
+<p>Call <a href="qml-qtqml-component.html#createObject-method">Component.createObject()</a> on the returned component to create an object instance of the component.</p>
+<p>For example:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -582,8 +582,8 @@
   }
 
 </pre>
-<p>有关使用此函数的更多信息，请参见<a href="qtqml-javascript-dynamicobjectcreation.html">从JavaScript创建动态QML对象</a>。</p>
-<p>要从任意QML字符串(而不是文件)创建QML对象，请使用<a href="qml-qtqml-qt.html#createQmlObject-method">Qt.createQmlObject()</a>。</p>
+<p>See <a href="qtqml-javascript-dynamicobjectcreation.html">Dynamic QML Object Creation from JavaScript</a> for more information on using this function.</p>
+<p>To create a QML object from an arbitrary string of QML (instead of a file), use <a href="qml-qtqml-qt.html#createQmlObject-method">Qt.createQmlObject()</a>.</p>
 </div></div><!-- @@@createComponent -->
 <br/>
 <!-- $$$createQmlObject -->
@@ -593,9 +593,9 @@
 <td class="tblQmlFuncNode"><p>
 <a name="createQmlObject-method"></a><span class="type">object</span> <span class="name">createQmlObject</span>(<span class="type"><a href="qml-string.html">string</a></span> <i>qml</i>,  <span class="type">object</span> <i>parent</i>,  <span class="type"><a href="qml-string.html">string</a></span> <i>filepath</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回从给定<i>qml</i>字符串创建的新对象，该对象将具有指定的<i>parent(父)</i>对象;如果在创建对象时出现错误，则返回 <code>null</code>。</p>
-<p>如果指定了<i>filepath</i>，它将用于为创建的对象报告错误。</p>
-<p>示例(<code>parentItem</code>是现有QML项的id)：</p>
+</div><div class="qmldoc"><p>Returns a new object created from the given <i>qml</i> string which will have the specified <i>parent</i>, or <code>null</code> if there was an error in creating the object.</p>
+<p>If <i>filepath</i> is specified, it will be used for error reporting for the created object.</p>
+<p>Example (where <code>parentItem</code> is the id of an existing QML item):</p>
 <pre class="qml">
 
   var newObject = <span class="name">Qt</span>.<span class="name">createQmlObject</span>(<span class="string">'import QtQuick 2.0; Rectangle {color: &quot;red&quot;; width: 20; height: 20}'</span>,
@@ -603,9 +603,9 @@
                                      <span class="string">&quot;dynamicSnippet1&quot;</span>);
 
 </pre>
-<p>在出现错误的情况下，将抛出<a href="../qtscript/qtscript-index.html">Qt Script</a> Error对象。这个对象有一个附加属性<code>qmlErrors</code>，它是遇到的错误的数组。这个数组中的每个对象都有成员<code>lineNumber</code>, <code>columnNumber</code>, <code>fileName</code> 和 <code>message</code>。例如，如果上面的代码段将color拼错为'colro' ，那么数组将包含如下对象:{ &quot;lineNumber&quot; : 1, &quot;columnNumber&quot; : 32, &quot;fileName&quot; : &quot;dynamicSnippet1&quot;, &quot;message&quot; : &quot;Cannot assign to non-existent property &quot;colro&quot;&quot;}.</p>
-<p>注意，这个函数立即返回，因此，如果<i>qml</i>字符串加载了新组件(即尚未加载的外部QML文件)，则可能无法工作。如果是这种情况，请考虑使用<a href="qml-qtqml-qt.html#createComponent-method">Qt.createComponent()</a>。</p>
-<p>有关使用此函数的更多信息，请参见<a href="qtqml-javascript-dynamicobjectcreation.html">从JavaScript创建动态QML对象</a>。</p>
+<p>In the case of an error, a <a href="../qtscript/qtscript-index.html">Qt Script</a> Error object is thrown. This object has an additional property, <code>qmlErrors</code>, which is an array of the errors encountered. Each object in this array has the members <code>lineNumber</code>, <code>columnNumber</code>, <code>fileName</code> and <code>message</code>. For example, if the above snippet had misspelled color as 'colro' then the array would contain an object like the following: { &quot;lineNumber&quot; : 1, &quot;columnNumber&quot; : 32, &quot;fileName&quot; : &quot;dynamicSnippet1&quot;, &quot;message&quot; : &quot;Cannot assign to non-existent property &quot;colro&quot;&quot;}.</p>
+<p>Note that this function returns immediately, and therefore may not work if the <i>qml</i> string loads new components (that is, external QML files that have not yet been loaded). If this is the case, consider using <a href="qml-qtqml-qt.html#createComponent-method">Qt.createComponent()</a> instead.</p>
+<p>See <a href="qtqml-javascript-dynamicobjectcreation.html">Dynamic QML Object Creation from JavaScript</a> for more information on using this function.</p>
 </div></div><!-- @@@createQmlObject -->
 <br/>
 <!-- $$$darker -->
@@ -615,10 +615,10 @@
 <td class="tblQmlFuncNode"><p>
 <a name="darker-method"></a><span class="type"><a href="../qtquick/qml-color.html">color</a></span> <span class="name">darker</span>(<span class="type"><a href="../qtquick/qml-color.html">color</a></span> <i>baseColor</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>factor</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>根据提供的<code>factor(因子)</code>返回比<code>baseColor(基色)</code>更深的颜色。</p>
-<p>如果因子大于1.0，则此函数返回较深的颜色。设置因子为3.0将返回亮度为三分之一的颜色。如果因子小于1.0，则返回的颜色较浅，但我们建议为此使用<a href="qml-qtqml-qt.html#lighter-method">lighter()</a> 函数。如果因子为0或负数，则返回值未指定。</p>
-<p>该函数将当前RGB颜色转换为HSV，将值(V)组件除以因子并将颜色转换回RGB</p>
-<p>如果没有提供<code>factor（因子）</code>则返回比<code>baseColor</code>(factor 2.0)暗50%的颜色。</p>
+</div><div class="qmldoc"><p>Returns a color darker than <code>baseColor</code> by the <code>factor</code> provided.</p>
+<p>If the factor is greater than 1.0, this function returns a darker color. Setting factor to 3.0 returns a color that has one-third the brightness. If the factor is less than 1.0, the return color is lighter, but we recommend using the Qt.<a href="qml-qtqml-qt.html#lighter-method">lighter()</a> function for this purpose. If the factor is 0 or negative, the return value is unspecified.</p>
+<p>The function converts the current RGB color to HSV, divides the value (V) component by factor and converts the color back to RGB.</p>
+<p>If <code>factor</code> is not supplied, returns a color 50% darker than <code>baseColor</code> (factor 2.0).</p>
 </div></div><!-- @@@darker -->
 <br/>
 <!-- $$$exit -->
@@ -628,8 +628,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="exit-method"></a><span class="name">exit</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>retCode</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>这个函数发出<a href="qqmlengine.html#exit">QQmlEngine::exit</a>(int), 在<a href="../qtdoc/qtquick-qmlscene.html">qmlscene的原型中</a>，这将导致启动程序退出指定的返回代码。要在调用此方法时使用指定的返回代码退出事件循环，C++应用程序可以将<a href="qqmlengine.html#exit">QQmlEngine::exit</a>(int)信号连接到<a href="../qtcore/qcoreapplication.html#exit">QCoreApplication::exit</a>(int)槽。</p>
-<p><b>参见</b><a href="qml-qtqml-qt.html#quit-method">quit()</a>.</p>
+</div><div class="qmldoc"><p>This function causes the <a href="qqmlengine.html#exit">QQmlEngine::exit</a>(int) signal to be emitted. Within the <a href="../qtdoc/qtquick-qmlscene.html">Prototyping with qmlscene</a>, this causes the launcher application to exit the specified return code. To exit from the event loop with a specified return code when this method is called, a C++ application can connect the <a href="qqmlengine.html#exit">QQmlEngine::exit</a>(int) signal to the <a href="../qtcore/qcoreapplication.html#exit">QCoreApplication::exit</a>(int) slot.</p>
+<p><b>See also </b><a href="qml-qtqml-qt.html#quit-method">quit()</a>.</p>
 </div></div><!-- @@@exit -->
 <br/>
 <!-- $$$font -->
@@ -639,7 +639,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="font-method"></a><span class="name">font</span>(<span class="type">object</span> <i>fontSpecifier</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回具有<code>fontSpecifier</code>象中指定的属性或最近匹配的字体的字体。<code>fontSpecifier</code>象应该包含键-值对，其中有效键是字体类型的子属性名，值是每个子属性的有效值。无效的密钥将被忽略。</p>
+</div><div class="qmldoc"><p>Returns a Font with the properties specified in the <code>fontSpecifier</code> object or the nearest matching font. The <code>fontSpecifier</code> object should contain key-value pairs where valid keys are the <a href="../qtquick/qml-font.html#fontbasictypedocs">font</a> type's subproperty names, and the values are valid values for each subproperty. Invalid keys will be ignored.</p>
 </div></div><!-- @@@font -->
 <br/>
 <!-- $$$fontFamilies -->
@@ -649,7 +649,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="fontFamilies-method"></a><span class="type"><a href="qml-list.html">list</a></span>&lt;<span class="type"><a href="qml-string.html">string</a></span>&gt; <span class="name">fontFamilies</span>()</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回应用程序可用的字体族列表。</p>
+</div><div class="qmldoc"><p>Returns a list of the font families available to the application.</p>
 </div></div><!-- @@@fontFamilies -->
 <br/>
 <!-- $$$formatDate -->
@@ -659,10 +659,10 @@
 <td class="tblQmlFuncNode"><p>
 <a name="formatDate-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">formatDate</span>(<span class="type">datetime</span> <i>date</i>,  <span class="type"><a href="qml-variant.html">variant</a></span> <i>format</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回<code>date（日期）</code>的字符串表示形式，可选按<code>format(格式)</code>格式化。</p>
-<p><i>date</i>参数可以是JavaScript<code>Date</code>对象、 <a href="qml-date.html">date</a> 属性、<a href="../qtcore/qdate.html">QDate</a>或 <a href="../qtcore/qdatetime.html">QDateTime</a> 值。<i>format</i>参数可以是<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime()</a>中描述的任何可能的格式值。</p>
-<p>如果没有指定<i>format(格式)</i>则使用<a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>对<i>date</i>进行格式化。</p>
-<p><b>参见</b><a href="qml-qtqml-locale.html">Locale（本地化）</a>。</p>
+</div><div class="qmldoc"><p>Returns a string representation of <code>date</code>, optionally formatted according to <code>format</code>.</p>
+<p>The <i>date</i> parameter may be a JavaScript <code>Date</code> object, a <a href="qml-date.html">date</a> property, a <a href="../qtcore/qdate.html">QDate</a>, or <a href="../qtcore/qdatetime.html">QDateTime</a> value. The <i>format</i> parameter may be any of the possible format values as described for <a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime()</a>.</p>
+<p>If <i>format</i> is not specified, <i>date</i> is formatted using <a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>.</p>
+<p><b>See also </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
 </div></div><!-- @@@formatDate -->
 <br/>
 <!-- $$$formatDateTime -->
@@ -672,59 +672,59 @@
 <td class="tblQmlFuncNode"><p>
 <a name="formatDateTime-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">formatDateTime</span>(<span class="type">datetime</span> <i>dateTime</i>,  <span class="type"><a href="qml-variant.html">variant</a></span> <i>format</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回<code>datetime</code>的字符串表示形式，可根据格式选择<code>format(格式化)</code>。</p>
-<p><i>date</i>参数可以是JavaScript<code>Date</code>对象、<a href="qml-date.html">date</a> 属性、<a href="../qtcore/qdate.html">QDate</a>、 <a href="../qtcore/qtime.html">QTime</a>、或 <a href="../qtcore/qdatetime.html">QDateTime</a>值。</p>
-<p>如果没有提供<i>format（格式）</i> ，则使用<a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>对<i>dateTime</i>进行格式化。否则，<i>format（格式）</i> 应为:</p>
+</div><div class="qmldoc"><p>Returns a string representation of <code>datetime</code>, optionally formatted according to <code>format</code>.</p>
+<p>The <i>date</i> parameter may be a JavaScript <code>Date</code> object, a <a href="qml-date.html">date</a> property, a <a href="../qtcore/qdate.html">QDate</a>, <a href="../qtcore/qtime.html">QTime</a>, or <a href="../qtcore/qdatetime.html">QDateTime</a> value.</p>
+<p>If <i>format</i> is not provided, <i>dateTime</i> is formatted using <a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>. Otherwise, <i>format</i> should be either:</p>
 <ul>
-<li><a href="../qtcore/qt.html#DateFormat-enum">Qt::DateFormat</a>的枚举值之一，如<code>Qt.DefaultLocaleShortDate</code>或 <code>Qt.ISODate</code>。</li>
-<li>指定返回字符串格式的字符串，如下所示。</li>
+<li>One of the <a href="../qtcore/qt.html#DateFormat-enum">Qt::DateFormat</a> enumeration values, such as <code>Qt.DefaultLocaleShortDate</code> or <code>Qt.ISODate</code></li>
+<li>A string that specifies the format of the returned string, as detailed below.</li>
 </ul>
-<p>如果<i>format</i>指定格式字符串，则应使用以下表达式指定日期:</p>
+<p>If <i>format</i> specifies a format string, it should use the following expressions to specify the date:</p>
 <div class="table"><table class="generic">
  <thead><tr class="qt-style"><th >Expression</th><th >Output</th></tr></thead>
-<tr valign="top" class="odd"><td >d</td><td >没有前导0的日(1到31)</td></tr>
-<tr valign="top" class="even"><td >dd</td><td >以0开头的日(01至31)</td></tr>
-<tr valign="top" class="odd"><td >ddd</td><td >缩写的本地化日名(例如&#x2e; 'Mon' 对应于 'Sun')。使用QDate: shortDayName ()。</td></tr>
-<tr valign="top" class="even"><td >dddd</td><td >长时间的本地化日名(例如&#x2e; 'Monday' 对应于 '<a href="../qtcore/qt.html#DayOfWeek-enum">Qt::Sunday</a>'). 使用QDate: longDayName ()。</td></tr>
-<tr valign="top" class="odd"><td >M</td><td >没有前导零的月份(1-12)</td></tr>
-<tr valign="top" class="even"><td >MM</td><td >以0开头的月份(01-12)</td></tr>
-<tr valign="top" class="odd"><td >MMM</td><td >缩写的本地化月份名(例如&#x2e; 'Jan' 对应于 'Dec')。使用QDate: shortMonthName ()。</td></tr>
-<tr valign="top" class="even"><td >MMMM</td><td >长本地化月份名(例如&#x2e; 'January' 对应于 'December')。使用QDate: longMonthName ()。</td></tr>
-<tr valign="top" class="odd"><td >yy</td><td >两位数年份(00-99)</td></tr>
-<tr valign="top" class="even"><td >yyyy</td><td >年作为四位数</td></tr>
+<tr valign="top" class="odd"><td >d</td><td >the day as number without a leading zero (1 to 31)</td></tr>
+<tr valign="top" class="even"><td >dd</td><td >the day as number with a leading zero (01 to 31)</td></tr>
+<tr valign="top" class="odd"><td >ddd</td><td >the abbreviated localized day name (e.g&#x2e; 'Mon' to 'Sun'). Uses QDate::shortDayName().</td></tr>
+<tr valign="top" class="even"><td >dddd</td><td >the long localized day name (e.g&#x2e; 'Monday' to '<a href="../qtcore/qt.html#DayOfWeek-enum">Qt::Sunday</a>'). Uses QDate::longDayName().</td></tr>
+<tr valign="top" class="odd"><td >M</td><td >the month as number without a leading zero (1-12)</td></tr>
+<tr valign="top" class="even"><td >MM</td><td >the month as number with a leading zero (01-12)</td></tr>
+<tr valign="top" class="odd"><td >MMM</td><td >the abbreviated localized month name (e.g&#x2e; 'Jan' to 'Dec'). Uses QDate::shortMonthName().</td></tr>
+<tr valign="top" class="even"><td >MMMM</td><td >the long localized month name (e.g&#x2e; 'January' to 'December'). Uses QDate::longMonthName().</td></tr>
+<tr valign="top" class="odd"><td >yy</td><td >the year as two digit number (00-99)</td></tr>
+<tr valign="top" class="even"><td >yyyy</td><td >the year as four digit number</td></tr>
 </table></div>
-<p>此外，可以用下面的表达式来指定时间:</p>
+<p>In addition the following expressions can be used to specify the time:</p>
 <div class="table"><table class="generic">
  <thead><tr class="qt-style"><th >Expression</th><th >Output</th></tr></thead>
-<tr valign="top" class="odd"><td >h</td><td >没有前导零的小时(如果AM/PM显示，则为0到23或1到12)</td></tr>
-<tr valign="top" class="even"><td >hh</td><td >以0开头的时间(00至23或01至12，如果是AM/PM显示)</td></tr>
-<tr valign="top" class="odd"><td >m</td><td >没有前导0的分钟(0到59)</td></tr>
-<tr valign="top" class="even"><td >mm</td><td >以0开头的分钟(00到59)</td></tr>
-<tr valign="top" class="odd"><td >s</td><td >没有前导0的秒(0到59)</td></tr>
-<tr valign="top" class="even"><td >ss</td><td >由前导0(00 to 59)</td></tr>
-<tr valign="top" class="odd"><td >z</td><td >不带前导0的毫秒数(0到999)</td></tr>
-<tr valign="top" class="even"><td >zzz</td><td >以0开头的毫秒数(000到999)</td></tr>
-<tr valign="top" class="odd"><td >AP</td><td >使用AM / PM显示。<i>AP</i> 将被 &quot;AM&quot; 或 &quot;PM&quot;替换。</td></tr>
-<tr valign="top" class="even"><td >ap</td><td >使用am / pm显示。 <i>ap</i> 将被&quot;am&quot; 或 &quot;pm&quot;替换。</td></tr>
-<tr valign="top" class="odd"><td >t</td><td >包括一个时区指示器。</td></tr>
+<tr valign="top" class="odd"><td >h</td><td >the hour without a leading zero (0 to 23 or 1 to 12 if AM/PM display)</td></tr>
+<tr valign="top" class="even"><td >hh</td><td >the hour with a leading zero (00 to 23 or 01 to 12 if AM/PM display)</td></tr>
+<tr valign="top" class="odd"><td >m</td><td >the minute without a leading zero (0 to 59)</td></tr>
+<tr valign="top" class="even"><td >mm</td><td >the minute with a leading zero (00 to 59)</td></tr>
+<tr valign="top" class="odd"><td >s</td><td >the second without a leading zero (0 to 59)</td></tr>
+<tr valign="top" class="even"><td >ss</td><td >the second with a leading zero (00 to 59)</td></tr>
+<tr valign="top" class="odd"><td >z</td><td >the milliseconds without leading zeroes (0 to 999)</td></tr>
+<tr valign="top" class="even"><td >zzz</td><td >the milliseconds with leading zeroes (000 to 999)</td></tr>
+<tr valign="top" class="odd"><td >AP</td><td >use AM/PM display. <i>AP</i> will be replaced by either &quot;AM&quot; or &quot;PM&quot;.</td></tr>
+<tr valign="top" class="even"><td >ap</td><td >use am/pm display. <i>ap</i> will be replaced by either &quot;am&quot; or &quot;pm&quot;.</td></tr>
+<tr valign="top" class="odd"><td >t</td><td >include a time-zone indicator.</td></tr>
 </table></div>
-<p>所有其他输入字符将被忽略。任何用单引号括起来的字符序列都将被视为文本，而不是用作表达式。两个连续的单引号(&quot;''&quot;)被输出中的单引号替换。</p>
-<p>例如，如果指定了以下日期/时间值:</p>
+<p>All other input characters will be ignored. Any sequence of characters that are enclosed in single quotes will be treated as text and not be used as an expression. Two consecutive single quotes (&quot;''&quot;) are replaced by a single quote in the output.</p>
+<p>For example, if the following date/time value was specified:</p>
 <pre class="cpp">
 
   <span class="comment">// 21 May 2001 14:13:09</span>
   var dateTime <span class="operator">=</span> <span class="keyword">new</span> Date(<span class="number">2001</span><span class="operator">,</span> <span class="number">5</span><span class="operator">,</span> <span class="number">21</span><span class="operator">,</span> <span class="number">14</span><span class="operator">,</span> <span class="number">13</span><span class="operator">,</span> <span class="number">09</span>)
 
 </pre>
-<p>这个<i>dateTime</i>值可以传递给<code>Qt.formatDateTime()</code>, <a href="qml-qtqml-qt.html#formatDate-method">Qt.formatDate()</a> 或 <a href="qml-qtqml-qt.html#formatTime-method">Qt.formatTime()</a> ，其 <i>format(格式)</i> 值如下:</p>
+<p>This <i>dateTime</i> value could be passed to <code>Qt.formatDateTime()</code>, <a href="qml-qtqml-qt.html#formatDate-method">Qt.formatDate()</a> or <a href="qml-qtqml-qt.html#formatTime-method">Qt.formatTime()</a> with the <i>format</i> values below to produce the following results:</p>
 <div class="table"><table class="generic">
- <thead><tr class="qt-style"><th >格式</th><th >结果</th></tr></thead>
+ <thead><tr class="qt-style"><th >Format</th><th >Result</th></tr></thead>
 <tr valign="top" class="odd"><td >&quot;dd.MM.yyyy&quot;</td><td >21.05.2001</td></tr>
 <tr valign="top" class="even"><td >&quot;ddd MMMM d yy&quot;</td><td >Tue May 21 01</td></tr>
 <tr valign="top" class="odd"><td >&quot;hh:mm:ss.zzz&quot;</td><td >14:13:09.042</td></tr>
 <tr valign="top" class="even"><td >&quot;h:m:s ap&quot;</td><td >2:13:9 pm</td></tr>
 </table></div>
-<p><b>参见</b><a href="qml-qtqml-locale.html">Locale（本地化）</a>.</p>
+<p><b>See also </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
 </div></div><!-- @@@formatDateTime -->
 <br/>
 <!-- $$$formatTime -->
@@ -734,10 +734,10 @@
 <td class="tblQmlFuncNode"><p>
 <a name="formatTime-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">formatTime</span>(<span class="type">datetime</span> <i>time</i>,  <span class="type"><a href="qml-variant.html">variant</a></span> <i>format</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回<code>time（时间）</code>的字符串表示形式，可选按<code>format（格式）</code>格式化。</p>
-<p><i>time</i>参数可以是JavaScript<code>Date</code>象、<a href="../qtcore/qtime.html">QTime</a>、或<a href="../qtcore/qdatetime.html">QDateTime</a> 值。 <i>format</i>参数可以是<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime()</a>中描述的任何可能的格式值。</p>
-<p>如果没有指定<i>format(格式)</i>，则使用<a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>对<i>time（时间）</i> 进行格式化。</p>
-<p><b>参见 </b><a href="qml-qtqml-locale.html">Locale（本地化）</a>。</p>
+</div><div class="qmldoc"><p>Returns a string representation of <code>time</code>, optionally formatted according to <code>format</code>.</p>
+<p>The <i>time</i> parameter may be a JavaScript <code>Date</code> object, a <a href="../qtcore/qtime.html">QTime</a>, or <a href="../qtcore/qdatetime.html">QDateTime</a> value. The <i>format</i> parameter may be any of the possible format values as described for <a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime()</a>.</p>
+<p>If <i>format</i> is not specified, <i>time</i> is formatted using <a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>.</p>
+<p><b>See also </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
 </div></div><!-- @@@formatTime -->
 <br/>
 <!-- $$$hsla -->
@@ -747,7 +747,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="hsla-method"></a><span class="type"><a href="../qtquick/qml-color.html">color</a></span> <span class="name">hsla</span>(<span class="type"><a href="qml-real.html">real</a></span> <i>hue</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>saturation</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>lightness</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>alpha</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回具有指定<code>hue（色调）</code>, <code>saturation（饱和度）</code>, <code>lightness（亮度）</code> 值以及 <code>alpha</code> 组件的颜色。所有组件应在0-1(包括0-1)范围内。</p>
+</div><div class="qmldoc"><p>Returns a color with the specified <code>hue</code>, <code>saturation</code>, <code>lightness</code> and <code>alpha</code> components. All components should be in the range 0-1 inclusive.</p>
 </div></div><!-- @@@hsla -->
 <br/>
 <!-- $$$hsva -->
@@ -757,8 +757,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="hsva-method"></a><span class="type"><a href="../qtquick/qml-color.html">color</a></span> <span class="name">hsva</span>(<span class="type"><a href="qml-real.html">real</a></span> <i>hue</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>saturation</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>value</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>alpha</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回具有指定<code>hue（色调）</code>, <code>saturation（饱和度）</code>, <code>lightness（亮度）</code> 值以及 <code>alpha</code> 组件的颜色。 所有组件应在0-1(包括0-1)范围内。</p>
-<p>该方法在Qt 5.5中引入。</p>
+</div><div class="qmldoc"><p>Returns a color with the specified <code>hue</code>, <code>saturation</code>, <code>value</code> and <code>alpha</code> components. All components should be in the range 0-1 inclusive.</p>
+<p>This method was introduced in  Qt 5.5.</p>
 </div></div><!-- @@@hsva -->
 <br/>
 <!-- $$$include -->
@@ -768,18 +768,18 @@
 <td class="tblQmlFuncNode"><p>
 <a name="include-method"></a><span class="type">object</span> <span class="name">include</span>(<span class="type"><a href="qml-string.html">string</a></span> <i>url</i>,  <span class="type">jsobject</span> <i>callback</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>用于包含另一个JavaScript文件。此方法只能在JavaScript文件中使用，而不能在常规QML文件中使用。</p>
-<p>这将所有函数从<i>url</i> 导入到当前脚本的名称空间。</p>
-<p>Qt.include()返回描述操作状态的对象。对象只有一个属性<code>status</code>，它被设置为以下值之一:</p>
+</div><div class="qmldoc"><p>Includes another JavaScript file. This method can only be used from within JavaScript files, and not regular QML files.</p>
+<p>This imports all functions from <i>url</i> into the current script's namespace.</p>
+<p>Qt.include() returns an object that describes the status of the operation. The object has a single property, <code>status</code>, that is set to one of the following values:</p>
 <div class="table"><table class="generic">
  <thead><tr class="qt-style"><th >Symbol</th><th >Value</th><th >Description</th></tr></thead>
-<tr valign="top" class="odd"><td >result.OK</td><td >0</td><td >包含成功完成。</td></tr>
-<tr valign="top" class="even"><td >result.LOADING</td><td >1</td><td >正在从网络加载数据。</td></tr>
-<tr valign="top" class="odd"><td >result.NETWORK_ERROR</td><td >2</td><td >获取url时发生网络错误</td></tr>
-<tr valign="top" class="even"><td >result.EXCEPTION</td><td >3</td><td >执行包含的代码时发生JavaScript异常。在本例中，将设置一个附加的<code>exception(异常)</code>属性。</td></tr>
+<tr valign="top" class="odd"><td >result.OK</td><td >0</td><td >The include completed successfully.</td></tr>
+<tr valign="top" class="even"><td >result.LOADING</td><td >1</td><td >Data is being loaded from the network.</td></tr>
+<tr valign="top" class="odd"><td >result.NETWORK_ERROR</td><td >2</td><td >A network error occurred while fetching the url.</td></tr>
+<tr valign="top" class="even"><td >result.EXCEPTION</td><td >3</td><td >A JavaScript exception occurred while executing the included code. An additional <code>exception</code> property will be set in this case.</td></tr>
 </table></div>
-<p><code>status</code>属性将随着操作的进展而更新。</p>
-<p>如果被提供，，则在操作完成时调用<i>callback（回调）</i>传递回调函数的对象与从Qt.include()调用返回的对象相同。</p>
+<p>The <code>status</code> property will be updated as the operation progresses.</p>
+<p>If provided, <i>callback</i> is invoked when the operation completes. The callback is passed the same object as is returned from the Qt.include() call.</p>
 </div></div><!-- @@@include -->
 <br/>
 <!-- $$$isQtObject -->
@@ -789,7 +789,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="isQtObject-method"></a><span class="type"><a href="qml-bool.html">bool</a></span> <span class="name">isQtObject</span>(<i>object</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>如果<code>object(对象)</code>是对Qt或QML对象的有效引用，则返回true，否则返回false。</p>
+</div><div class="qmldoc"><p>Returns true if <code>object</code> is a valid reference to a Qt or QML object, otherwise false.</p>
 </div></div><!-- @@@isQtObject -->
 <br/>
 <!-- $$$lighter -->
@@ -799,11 +799,10 @@
 <td class="tblQmlFuncNode"><p>
 <a name="lighter-method"></a><span class="type"><a href="../qtquick/qml-color.html">color</a></span> <span class="name">lighter</span>(<span class="type"><a href="../qtquick/qml-color.html">color</a></span> <i>baseColor</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>factor</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p><code>factor(因子)</code>返回比<code>baseColor（ 基色）</code>浅的颜色。</p>
-<p>
-如果因子大于1.0，则该函数返回较浅的颜色。将因子设置为1.5将返回一个亮度为50%的颜色。如果因子小于1.0，则返回的颜色较深，但我们建议为此使用Qt.<a href="qml-qtqml-qt.html#darker-method">darker()</a>()函数。如果因子为0或负数，则返回值未指定。</p>
-<p>该函数将当前RGB颜色转换为HSV，将值(V)组件按因子相乘，并将颜色转换回RGB。</p>
-<p>如果没有提供<code>factor（因子）</code>，则返回比<code>baseColor（基色）</code>(因子1.5)轻50%的颜色。</p>
+</div><div class="qmldoc"><p>Returns a color lighter than <code>baseColor</code> by the <code>factor</code> provided.</p>
+<p>If the factor is greater than 1.0, this functions returns a lighter color. Setting factor to 1.5 returns a color that is 50% brighter. If the factor is less than 1.0, the return color is darker, but we recommend using the Qt.<a href="qml-qtqml-qt.html#darker-method">darker()</a> function for this purpose. If the factor is 0 or negative, the return value is unspecified.</p>
+<p>The function converts the current RGB color to HSV, multiplies the value (V) component by factor and converts the color back to RGB.</p>
+<p>If <code>factor</code> is not supplied, returns a color 50% lighter than <code>baseColor</code> (factor 1.5).</p>
 </div></div><!-- @@@lighter -->
 <br/>
 <!-- $$$locale -->
@@ -813,14 +812,14 @@
 <td class="tblQmlFuncNode"><p>
 <a name="locale-method"></a><span class="name">locale</span>(<i>name</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回一个JS对象，该对象表示具有指定名称的地区，其格式为&quot;language[_territory][.codeset][@modifier]&quot; or &quot;C&quot;, 其中：</p>
+</div><div class="qmldoc"><p>Returns a JS object representing the locale with the specified name, which has the format &quot;language[_territory][.codeset][@modifier]&quot; or &quot;C&quot;, where:</p>
 <ul>
-<li>语言是一个小写，双字母，ISO 639语言代码，</li>
-<li>是大写，双字母，ISO 3166国家代码，</li>
-<li>代码集和修饰符被忽略。</li>
+<li>language is a lowercase, two-letter, ISO 639 language code,</li>
+<li>territory is an uppercase, two-letter, ISO 3166 country code,</li>
+<li>and codeset and modifier are ignored.</li>
 </ul>
-<p>如果字符串违反了语言环境格式，或者语言不是有效的ISO 369代码，则使用&quot;C&quot; 语言环境。如果国家不存在，或者没有有效的ISO 3166代码，则为指定的语言选择最合适的国家。</p>
-<p><b>参见</b><a href="qml-qtqml-locale.html">Locale（本地化）</a>.</p>
+<p>If the string violates the locale format, or language is not a valid ISO 369 code, the &quot;C&quot; locale is used instead. If country is not present, or is not a valid ISO 3166 code, the most appropriate country is chosen for the specified language.</p>
+<p><b>See also </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
 </div></div><!-- @@@locale -->
 <br/>
 <!-- $$$md5 -->
@@ -830,7 +829,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="md5-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">md5</span>(<i>data</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回<code>数据</code>的md5散列的十六进制字符串。</p>
+</div><div class="qmldoc"><p>Returns a hex string of the md5 hash of <code>data</code>.</p>
 </div></div><!-- @@@md5 -->
 <br/>
 <!-- $$$matrix4x4 -->
@@ -840,7 +839,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="matrix4x4-method"></a><span class="name">matrix4x4</span>(<span class="type"><a href="qml-real.html">real</a></span> <i>m11</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m12</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m13</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m14</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m21</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m22</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m23</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m24</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m31</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m32</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m33</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m34</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m41</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m42</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m43</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>m44</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回具有指定值的4x4矩阵。或者，可以用一个参数调用函数，该参数是一个包含16个矩阵值的JavaScript数组。最后，函数可以在没有参数的情况下调用，得到的矩阵将是单位矩阵。</p>
+</div><div class="qmldoc"><p>Returns a Matrix4x4 with the specified values. Alternatively, the function may be called with a single argument where that argument is a JavaScript array which contains the sixteen matrix values. Finally, the function may be called with no arguments and the resulting matrix will be the identity matrix.</p>
 </div></div><!-- @@@matrix4x4 -->
 <br/>
 <!-- $$$openUrlExternally -->
@@ -850,8 +849,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="openUrlExternally-method"></a><span class="type"><a href="qml-bool.html">bool</a></span> <span class="name">openUrlExternally</span>(<span class="type"><a href="qml-url.html">url</a></span> <i>target</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>根据用户的桌面首选项，尝试在外部应用程序中打开指定的目标<code>目标</code> url， 如果成功则返回true，否则返回false。</p>
-<p><b>警告:</b>返回值<code>true</code>表示应用程序已成功请求操作系统打开外部应用程序中的URL。外部应用程序可能仍然无法启动或无法打开请求的URL。此结果将不会报告给应用程序。 </p>
+</div><div class="qmldoc"><p>Attempts to open the specified <code>target</code> url in an external application, based on the user's desktop preferences. Returns true if it succeeds, and false otherwise.</p>
+<p><b>Warning:</b> A return value of <code>true</code> indicates that the application has successfully requested the operating system to open the URL in an external application. The external application may still fail to launch or fail to open the requested URL. This result will not be reported back to the application.</p>
 </div></div><!-- @@@openUrlExternally -->
 <br/>
 <!-- $$$point -->
@@ -861,7 +860,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="point-method"></a><span class="type"><a href="qml-qtqml-qt.html#point-method">point</a></span> <span class="name">point</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>x</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>y</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回具有指定的<code>x</code> 和 <code>y</code>坐标的点。</p>
+</div><div class="qmldoc"><p>Returns a Point with the specified <code>x</code> and <code>y</code> coordinates.</p>
 </div></div><!-- @@@point -->
 <br/>
 <!-- $$$qsTr -->
@@ -871,15 +870,15 @@
 <td class="tblQmlFuncNode"><p>
 <a name="qsTr-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">qsTr</span>(<span class="type"><a href="qml-string.html">string</a></span> <i>sourceText</i>,  <span class="type"><a href="qml-string.html">string</a></span> <i>disambiguation</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>n</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回<i>sourceText</i>，可选基于包含复数的字符串的<i>disambiguation（消除歧义）</i>字符串和<i>n</i>值;否则，如果没有合适的翻译字符串可用，则返回<i>sourceText</i>本身。</p>
-<p>如果同一<i>sourceText（源文本）</i>在同一翻译上下文中用于不同的角色，则可以传递一个附加的标识字符串来消除歧义。</i>.</p>
-<p>例如：</p>
+</div><div class="qmldoc"><p>Returns a translated version of <i>sourceText</i>, optionally based on a <i>disambiguation</i> string and value of <i>n</i> for strings containing plurals; otherwise returns <i>sourceText</i> itself if no appropriate translated string is available.</p>
+<p>If the same <i>sourceText</i> is used in different roles within the same translation context, an additional identifying string may be passed in for <i>disambiguation</i>.</p>
+<p>Example:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">qsTr</span>(<span class="string">&quot;hello&quot;</span>) }
 
 </pre>
-<p><b>参见</b><a href="../qtdoc/qtquick-internationalization.html">Qt Quick的国际化和本地化</a>。</p>
+<p><b>See also </b><a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
 </div></div><!-- @@@qsTr -->
 <br/>
 <!-- $$$qsTrId -->
@@ -889,19 +888,19 @@
 <td class="tblQmlFuncNode"><p>
 <a name="qsTrId-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">qsTrId</span>(<span class="type"><a href="qml-string.html">string</a></span> <i>id</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>n</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回由<i>id</i>标识的已翻译字符串。如果没有找到匹配的字符串，则返回id本身。这在正常情况下不应该发生。</p>
-<p>如果<i>n</i> &gt;= 0，则结果字符串中出现的所有<code>%n</code>都将替换为<i>n</i>的十进制表示形式。此外，根据<i>n</i>的值，翻译文本可能会有所不同。</p>
-<p>例如：</p>
+</div><div class="qmldoc"><p>Returns a translated string identified by <i>id</i>. If no matching string is found, the id itself is returned. This should not happen under normal conditions.</p>
+<p>If <i>n</i> &gt;= 0, all occurrences of <code>%n</code> in the resulting string are replaced with a decimal representation of <i>n</i>. In addition, depending on <i>n</i>'s value, the translation text may vary.</p>
+<p>Example:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">qsTrId</span>(<span class="string">&quot;hello_id&quot;</span>) }
 
 </pre>
-<p>可以提供源字符串模板，如:</p>
+<p>It is possible to supply a source string template like:</p>
 <p><code>//% &lt;string&gt;</code></p>
-<p>或</p>
+<p>or</p>
 <p><code>\begincomment% &lt;string&gt; \endcomment</code></p>
-<p>例如：</p>
+<p>Example:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
@@ -910,8 +909,8 @@
   }
 
 </pre>
-<p>创建适合与此函数一起使用的二进制翻译(QM)文件需要将<code>-idbased</code>选项传递给<code>lrelease</code>工具。</p>
-<p><b>参见</b><a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP()</a> 和 <a href="../qtdoc/qtquick-internationalization.html">Qt Quick的国际化和本地化</a>。</p>
+<p>Creating binary translation (QM) files suitable for use with this function requires passing the <code>-idbased</code> option to the <code>lrelease</code> tool.</p>
+<p><b>See also </b><a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP()</a> and <a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
 </div></div><!-- @@@qsTrId -->
 <br/>
 <!-- $$$qsTrIdNoOp -->
@@ -921,10 +920,10 @@
 <td class="tblQmlFuncNode"><p>
 <a name="qsTrIdNoOp-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">qsTrIdNoOp</span>(<span class="type"><a href="qml-string.html">string</a></span> <i>id</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>标记用于动态翻译的<i>id</i>。</p>
-<p>返回i<i>id</i>。</p>
-<p><a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP</a>与动态翻译函数<a href="qml-qtqml-qt.html#qsTrId-method">qsTrId()</a>一起使用。它将字符串标识为需要翻译的字符串(因此可以由<code>lupdate</code>标识)，但将实际的翻译留给<a href="qml-qtqml-qt.html#qsTrId-method">qsTrId()</a>。</p>
-<p>例如：</p>
+</div><div class="qmldoc"><p>Marks <i>id</i> for dynamic translation.</p>
+<p>Returns the <i>id</i>.</p>
+<p><a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP</a> is used in conjunction with the dynamic translation function <a href="qml-qtqml-qt.html#qsTrId-method">qsTrId()</a>. It identifies a string as requiring translation (so it can be identified by <code>lupdate</code>), but leaves the actual translation to <a href="qml-qtqml-qt.html#qsTrId-method">qsTrId()</a>.</p>
+<p>Example:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
@@ -934,7 +933,7 @@
   }
 
 </pre>
-<p><b>参见</b><a href="qml-qtqml-qt.html#qsTrId-method">qsTrId()</a> 和 <a href="../qtdoc/qtquick-internationalization.html">Qt Quick的国际化和本地化</a>。</p>
+<p><b>See also </b><a href="qml-qtqml-qt.html#qsTrId-method">qsTrId()</a> and <a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
 </div></div><!-- @@@qsTrIdNoOp -->
 <br/>
 <!-- $$$qsTrNoOp -->
@@ -944,11 +943,11 @@
 <td class="tblQmlFuncNode"><p>
 <a name="qsTrNoOp-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">qsTrNoOp</span>(<span class="type"><a href="qml-string.html">string</a></span> <i>sourceText</i>,  <span class="type"><a href="qml-string.html">string</a></span> <i>disambiguation</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>标记<i>sourceText</i>用于动态翻译; 也就是说，存储的 <i>sourceText</i>不会被更改。</p>
-<p>如果同一 <i>sourceText</i>在同一翻译上下文中用于不同的角色，则可以传递一个附加的标识字符串来<i>消除歧义</i>。</p>
-<p>返回<i>sourceText</i>。</p>
-<p><a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a>与动态翻译函数<a href="qml-qtqml-qt.html#qsTr-method">qsTr()</a> 和 <a href="qml-qtqml-qt.html#qsTranslate-method">qsTranslate()</a>一起使用。它将字符串标识为需要翻译的字符串(因此可以由<code>lupdate</code>标识)，但将实际翻译留给动态函数。</p>
-<p>例如：</p>
+</div><div class="qmldoc"><p>Marks <i>sourceText</i> for dynamic translation; i.e, the stored <i>sourceText</i> will not be altered.</p>
+<p>If the same <i>sourceText</i> is used in different roles within the same translation context, an additional identifying string may be passed in for <i>disambiguation</i>.</p>
+<p>Returns the <i>sourceText</i>.</p>
+<p><a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a> is used in conjunction with the dynamic translation functions <a href="qml-qtqml-qt.html#qsTr-method">qsTr()</a> and <a href="qml-qtqml-qt.html#qsTranslate-method">qsTranslate()</a>. It identifies a string as requiring translation (so it can be identified by <code>lupdate</code>), but leaves the actual translation to the dynamic functions.</p>
+<p>Example:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
@@ -958,7 +957,7 @@
   }
 
 </pre>
-<p><b>参见</b><a href="../qtdoc/qtquick-internationalization.html">Qt Quick的国际化和本地化</a>。</p>
+<p><b>See also </b><a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
 </div></div><!-- @@@qsTrNoOp -->
 <br/>
 <!-- $$$qsTranslate -->
@@ -968,15 +967,15 @@
 <td class="tblQmlFuncNode"><p>
 <a name="qsTranslate-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">qsTranslate</span>(<span class="type"><a href="qml-string.html">string</a></span> <i>context</i>,  <span class="type"><a href="qml-string.html">string</a></span> <i>sourceText</i>,  <span class="type"><a href="qml-string.html">string</a></span> <i>disambiguation</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>n</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回给定<i>context（上下文）</i>中<i>sourceText</i>的翻译版本，可选基于包含复数的字符串的<i>消歧</i>字符串和<i>n</i>值;否则，如果没有合适的翻译字符串可用，则返回<i>sourceText</i>本身。</p>
-<p>如果同一<i>sourceText</i> 在同一翻译<i>上下文</i>中用于不同的角色，则可以传递一个附加的标识字符串来<i>消除歧义</i>。</p>
-<p>例如：</p>
+</div><div class="qmldoc"><p>Returns a translated version of <i>sourceText</i> within the given <i>context</i>, optionally based on a <i>disambiguation</i> string and value of <i>n</i> for strings containing plurals; otherwise returns <i>sourceText</i> itself if no appropriate translated string is available.</p>
+<p>If the same <i>sourceText</i> is used in different roles within the same translation <i>context</i>, an additional identifying string may be passed in for <i>disambiguation</i>.</p>
+<p>Example:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">qsTranslate</span>(<span class="string">&quot;CustomContext&quot;</span>, <span class="string">&quot;hello&quot;</span>) }
 
 </pre>
-<p><b>参见 </b><a href="../qtdoc/qtquick-internationalization.html">Qt Quick的国际化和本地化</a>.</p>
+<p><b>See also </b><a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
 </div></div><!-- @@@qsTranslate -->
 <br/>
 <!-- $$$qsTranslateNoOp -->
@@ -986,11 +985,11 @@
 <td class="tblQmlFuncNode"><p>
 <a name="qsTranslateNoOp-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">qsTranslateNoOp</span>(<span class="type"><a href="qml-string.html">string</a></span> <i>context</i>,  <span class="type"><a href="qml-string.html">string</a></span> <i>sourceText</i>,  <span class="type"><a href="qml-string.html">string</a></span> <i>disambiguation</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>将<i>sourceText</i>标记为给定<i>上下文</i>中的动态翻译; 也就是说， 存储的<i>sourceText</i>不会被更改。</p>
-<p>如果同一<i>sourceText</i> 在同一翻译<i>上下文</i>中用于不同的角色，则可以传递一个附加的标识字符串来<i>消除歧义</i>。</p>
-<p>返回<i>sourceText</i>。</p>
-<p><a href="../qtcore/qtglobal.html#QT_TRANSLATE_NOOP">QT_TRANSLATE_NOOP</a>与动态翻译函数<a href="qml-qtqml-qt.html#qsTr-method">qsTr()</a> 和 <a href="qml-qtqml-qt.html#qsTranslate-method">qsTranslate()</a>一起使用。它将字符串标识为需要翻译的字符串(因此可以由<code>lupdate</code>标识)，但将实际翻译留给动态函数。</p>
-<p>例如：</p>
+</div><div class="qmldoc"><p>Marks <i>sourceText</i> for dynamic translation in the given <i>context</i>; i.e, the stored <i>sourceText</i> will not be altered.</p>
+<p>If the same <i>sourceText</i> is used in different roles within the same translation context, an additional identifying string may be passed in for <i>disambiguation</i>.</p>
+<p>Returns the <i>sourceText</i>.</p>
+<p><a href="../qtcore/qtglobal.html#QT_TRANSLATE_NOOP">QT_TRANSLATE_NOOP</a> is used in conjunction with the dynamic translation functions <a href="qml-qtqml-qt.html#qsTr-method">qsTr()</a> and <a href="qml-qtqml-qt.html#qsTranslate-method">qsTranslate()</a>. It identifies a string as requiring translation (so it can be identified by <code>lupdate</code>), but leaves the actual translation to the dynamic functions.</p>
+<p>Example:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
@@ -1000,7 +999,7 @@
   }
 
 </pre>
-<p><b>参见 </b><a href="../qtdoc/qtquick-internationalization.html">Qt Quick的国际化和本地化</a>.</p>
+<p><b>See also </b><a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
 </div></div><!-- @@@qsTranslateNoOp -->
 <br/>
 <!-- $$$quaternion -->
@@ -1010,7 +1009,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="quaternion-method"></a><span class="name">quaternion</span>(<span class="type"><a href="qml-real.html">real</a></span> <i>scalar</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>x</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>y</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>z</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回一个具有指定<code>标量</code>, <code>x</code>, <code>y</code>,和 <code>z</code>的四元数。</p>
+</div><div class="qmldoc"><p>Returns a Quaternion with the specified <code>scalar</code>, <code>x</code>, <code>y</code>, and <code>z</code>.</p>
 </div></div><!-- @@@quaternion -->
 <br/>
 <!-- $$$quit -->
@@ -1020,8 +1019,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="quit-method"></a><span class="name">quit</span>()</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>这个函数发出<a href="qqmlengine.html#quit">QQmlEngine::quit()</a>信号。在<a href="../qtdoc/qtquick-qmlscene.html">使用qmlscene的原型</a>中，这会导致启动程序退出;要在调用此方法时退出C++应用程序，请将<a href="qqmlengine.html#quit">QQmlEngine::quit()</a> 信号连接到 <a href="../qtcore/qcoreapplication.html#quit">QCoreApplication::quit()</a>槽。</p>
-<p><b>参见 </b><a href="qml-qtqml-qt.html#exit-method">exit()</a>.</p>
+</div><div class="qmldoc"><p>This function causes the <a href="qqmlengine.html#quit">QQmlEngine::quit()</a> signal to be emitted. Within the <a href="../qtdoc/qtquick-qmlscene.html">Prototyping with qmlscene</a>, this causes the launcher application to exit; to quit a C++ application when this method is called, connect the <a href="qqmlengine.html#quit">QQmlEngine::quit()</a> signal to the <a href="../qtcore/qcoreapplication.html#quit">QCoreApplication::quit()</a> slot.</p>
+<p><b>See also </b><a href="qml-qtqml-qt.html#exit-method">exit()</a>.</p>
 </div></div><!-- @@@quit -->
 <br/>
 <!-- $$$rect -->
@@ -1031,8 +1030,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="rect-method"></a><span class="type"><a href="qml-qtqml-qt.html#rect-method">rect</a></span> <span class="name">rect</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>x</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>y</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>width</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>height</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回一个左上角由<code>x</code>, <code>y</code> 指定的<code>矩形</code>， 其宽高为 <code>width</code> and <code>height</code>。</p>
-<p>返回的对象具有具有给定值的<code>x</code>, <code>y</code>, <code>width</code> 和 <code>height</code>属性。</p>
+</div><div class="qmldoc"><p>Returns a <code>rect</code> with the top-left corner at <code>x</code>, <code>y</code> and the specified <code>width</code> and <code>height</code>.</p>
+<p>The returned object has <code>x</code>, <code>y</code>, <code>width</code> and <code>height</code> attributes with the given values.</p>
 </div></div><!-- @@@rect -->
 <br/>
 <!-- $$$resolvedUrl -->
@@ -1042,7 +1041,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="resolvedUrl-method"></a><span class="type"><a href="qml-url.html">url</a></span> <span class="name">resolvedUrl</span>(<span class="type"><a href="qml-url.html">url</a></span> <i>url</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回相对于调用方的URL解析的<i>url</i>。</p>
+</div><div class="qmldoc"><p>Returns <i>url</i> resolved relative to the URL of the caller.</p>
 </div></div><!-- @@@resolvedUrl -->
 <br/>
 <!-- $$$rgba -->
@@ -1052,7 +1051,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="rgba-method"></a><span class="type"><a href="../qtquick/qml-color.html">color</a></span> <span class="name">rgba</span>(<span class="type"><a href="qml-real.html">real</a></span> <i>red</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>green</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>blue</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>alpha</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回具有指定的<code>red</code>, <code>green</code>, <code>blue</code> 和 <code>alpha</code>件的颜色。所有组件应在0-1(包括0-1)范围内。</p>
+</div><div class="qmldoc"><p>Returns a color with the specified <code>red</code>, <code>green</code>, <code>blue</code> and <code>alpha</code> components. All components should be in the range 0-1 inclusive.</p>
 </div></div><!-- @@@rgba -->
 <br/>
 <!-- $$$size -->
@@ -1062,7 +1061,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="size-method"></a><span class="name">size</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>width</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>height</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回具有指定<code>width</code> 和 <code>height</code>的Size。</p>
+</div><div class="qmldoc"><p>Returns a Size with the specified <code>width</code> and <code>height</code>.</p>
 </div></div><!-- @@@size -->
 <br/>
 <!-- $$$tint -->
@@ -1072,8 +1071,8 @@
 <td class="tblQmlFuncNode"><p>
 <a name="tint-method"></a><span class="type"><a href="../qtquick/qml-color.html">color</a></span> <span class="name">tint</span>(<span class="type"><a href="../qtquick/qml-color.html">color</a></span> <i>baseColor</i>,  <span class="type"><a href="../qtquick/qml-color.html">color</a></span> <i>tintColor</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>这个函数允许用一种颜色给另一种颜色着色。</p>
-<p>色调颜色通常应该是透明的，否则你将无法看到基本的颜色。下面的示例通过使着色颜色为纯红色(仅为1/16不透明)，提供了一种轻微的红色。</p>
+</div><div class="qmldoc"><p>This function allows tinting one color with another.</p>
+<p>The tint color should usually be mostly transparent, or you will not be able to see the underlying color. The below example provides a slight red tint by having the tint color be pure red which is only 1/16th opaque.</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
@@ -1088,7 +1087,7 @@
   }
 
 </pre>
-<p class="centerAlign"><img src="images/declarative-rect_tint.png" alt="" /></p><p>由于某些事件而要传递细微的更改时，色调最有用；然后可以使用着色来更有效地调整可见颜色。</p>
+<p class="centerAlign"><img src="images/declarative-rect_tint.png" alt="" /></p><p>Tint is most useful when a subtle change is intended to be conveyed due to some event; you can then use tinting to more effectively tune the visible color.</p>
 </div></div><!-- @@@tint -->
 <br/>
 <!-- $$$vector2d -->
@@ -1098,7 +1097,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="vector2d-method"></a><span class="name">vector2d</span>(<span class="type"><a href="qml-real.html">real</a></span> <i>x</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>y</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回带有指定<code>x</code> 和 <code>y</code>的Vector2D。</p>
+</div><div class="qmldoc"><p>Returns a Vector2D with the specified <code>x</code> and <code>y</code>.</p>
 </div></div><!-- @@@vector2d -->
 <br/>
 <!-- $$$vector3d -->
@@ -1108,7 +1107,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="vector3d-method"></a><span class="name">vector3d</span>(<span class="type"><a href="qml-real.html">real</a></span> <i>x</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>y</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>z</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回指定的 <code>x</code>, <code>y</code> 和 <code>z</code>的Vector3D。</p>
+</div><div class="qmldoc"><p>Returns a Vector3D with the specified <code>x</code>, <code>y</code> and <code>z</code>.</p>
 </div></div><!-- @@@vector3d -->
 <br/>
 <!-- $$$vector4d -->
@@ -1118,7 +1117,7 @@
 <td class="tblQmlFuncNode"><p>
 <a name="vector4d-method"></a><span class="name">vector4d</span>(<span class="type"><a href="qml-real.html">real</a></span> <i>x</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>y</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>z</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>w</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>返回指定的 <code>x</code>, <code>y</code>, <code>z</code> 和 <code>w</code>的Vector4D。</p>
+</div><div class="qmldoc"><p>Returns a Vector4D with the specified <code>x</code>, <code>y</code>, <code>z</code> and <code>w</code>.</p>
 </div></div><!-- @@@vector4d -->
 <br/>
         </div>

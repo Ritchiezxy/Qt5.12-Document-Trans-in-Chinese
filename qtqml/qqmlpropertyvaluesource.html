@@ -38,22 +38,22 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#public-functions">公用函数</a></li>
-<li class="level1"><a href="#details">详细描述</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QQmlPropertyValueSource 类</h1>
+<h1 class="title">QQmlPropertyValueSource Class</h1>
 <!-- $$$QQmlPropertyValueSource-brief -->
-<p><a href="qqmlpropertyvaluesource.html">QQmlPropertyValueSource</a>类是一个用于属性值源(如动画和绑定)的接口。<a href="#details">更多… </a></p>
+<p>The <a href="qqmlpropertyvaluesource.html">QQmlPropertyValueSource</a> class is an interface for property value sources such as animations and bindings. <a href="#details">More...</a></p>
 <!-- @@@QQmlPropertyValueSource -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlPropertyValueSource&gt;</span>
 </td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr></table></div><ul>
-<li><a href="qqmlpropertyvaluesource-members.html">所有成员的列表，包括继承的成员</a></li>
+<li><a href="qqmlpropertyvaluesource-members.html">List of all members, including inherited members</a></li>
 </ul>
 <a name="public-functions"></a>
-<h2 id="public-functions">公用函数</h2>
+<h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlpropertyvaluesource.html#QQmlPropertyValueSource">QQmlPropertyValueSource</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qqmlpropertyvaluesource.html#dtor.QQmlPropertyValueSource">~QQmlPropertyValueSource</a></b>()</td></tr>
@@ -62,24 +62,24 @@
 <a name="details"></a>
 <!-- $$$QQmlPropertyValueSource-description -->
 <div class="descr">
-<h2 id="details">详细描述</h2>
-<p><a href="qqmlpropertyvaluesource.html">QQmlPropertyValueSource</a>类是一个用于属性值源(如动画和绑定)的接口。</p>
-<p>有关编写自定义属性值源的信息，请参阅<a href="qtqml-cppintegration-definetypes.html#property-value-sources">属性值源</a>。</p>
+<h2 id="details">Detailed Description</h2>
+<p>The <a href="qqmlpropertyvaluesource.html">QQmlPropertyValueSource</a> class is an interface for property value sources such as animations and bindings.</p>
+<p>See <a href="qtqml-cppintegration-definetypes.html#property-value-sources">Property Value Sources</a> for information on writing custom property value sources.</p>
 </div>
 <!-- @@@QQmlPropertyValueSource -->
 <div class="func">
-<h2>成员函数信息</h2>
+<h2>Member Function Documentation</h2>
 <!-- $$$QQmlPropertyValueSource[overload1]$$$QQmlPropertyValueSource -->
 <h3 class="fn" id="QQmlPropertyValueSource"><a name="QQmlPropertyValueSource"></a>QQmlPropertyValueSource::<span class="name">QQmlPropertyValueSource</span>()</h3>
-<p>构造一个<a href="qqmlpropertyvaluesource.html">QQmlPropertyValueSource</a>.</p>
+<p>Constructs a <a href="qqmlpropertyvaluesource.html">QQmlPropertyValueSource</a>.</p>
 <!-- @@@QQmlPropertyValueSource -->
 <!-- $$$~QQmlPropertyValueSource[overload1]$$$~QQmlPropertyValueSource -->
 <h3 class="fn" id="dtor.QQmlPropertyValueSource"><a name="dtor.QQmlPropertyValueSource"></a><code>[virtual] </code>QQmlPropertyValueSource::<span class="name">~QQmlPropertyValueSource</span>()</h3>
-<p>销毁值源。</p>
+<p>Destroys the value source.</p>
 <!-- @@@~QQmlPropertyValueSource -->
 <!-- $$$setTarget[overload1]$$$setTargetconstQQmlProperty& -->
 <h3 class="fn" id="setTarget"><a name="setTarget"></a><code>[pure virtual] </code><span class="type">void</span> QQmlPropertyValueSource::<span class="name">setTarget</span>(const <span class="type"><a href="qqmlproperty.html">QQmlProperty</a></span> &amp;<i>property</i>)</h3>
-<p>为值源设置目标<i>属性</i>。当分配值源时，QML引擎将调用此方法。</p>
+<p>Set the target <i>property</i> for the value source. This method will be called by the QML engine when assigning a value source.</p>
 <!-- @@@setTarget -->
 </div>
         </div>

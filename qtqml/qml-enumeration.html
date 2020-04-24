@@ -38,29 +38,29 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#using-the-enumeration-type-in-qml">使用QML中的enumeration类型</a></li>
+<li class="level1"><a href="#using-the-enumeration-type-in-qml">Using the enumeration Type in QML</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML的基本数据类型enumeration</h1>
+<h1 class="title">enumeration QML Basic Type</h1>
 <span class="subtitle"></span>
 <!-- $$$enumeration-description -->
 <div class="descr"> <a name="details"></a>
-<p>命名枚举值。</p>
-<p><code>enumeration</code>类型引用命名的枚举值。</p>
-<p>每个命名值都可以称为<code>&lt;Type&gt;.&lt;value&gt;</code>.例如，<a href="../qtquick/qml-qtquick-text.html">Text</a>类型有一个 <code>AlignRight</code>枚举值:</p>
+<p>a named enumeration value.</p>
+<p>The <code>enumeration</code> type refers to a named enumeration value.</p>
+<p>Each named value can be referred to as <code>&lt;Type&gt;.&lt;value&gt;</code>. For example, the <a href="../qtquick/qml-qtquick-text.html">Text</a> type has an <code>AlignRight</code> enumeration value:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">horizontalAlignment</span>: <span class="name">Text</span>.<span class="name">AlignRight</span> }
 
 </pre>
-<p>(为了向后兼容，枚举值也可以指定为字符串，例如&#x2e; &quot;AlignRight&quot;. 对于新代码，不推荐使用此形式。)</p>
-<p>当与C++集成时，请注意，<a href="qtqml-cppintegration-data.html">从C++传递到QML</a>的任何<code>enum</code> 值都会自动转换为<code>enumeration</code>值，反之亦然。</p>
-<p>这种基本类型由QML语言提供。<a href="../qtquick/qtquick-module.html">QtQuick</a>导入提供了一些枚举值。</p>
+<p>(For backwards compatibility, the enumeration value may also be specified as a string, e.g&#x2e; &quot;AlignRight&quot;. This form is not recommended for new code.)</p>
+<p>When integrating with C++, note that any <code>enum</code> value <a href="qtqml-cppintegration-data.html">passed into QML from C++</a> is automatically converted into an <code>enumeration</code> value, and vice-versa.</p>
+<p>This basic type is provided by the QML language. Some enumeration values are provided by the <a href="../qtquick/qtquick-module.html">QtQuick</a> import.</p>
 <a name="using-the-enumeration-type-in-qml"></a>
-<h2 id="using-the-enumeration-type-in-qml">使用QML中的enumeration类型</h2>
-<p><code>enumeration</code>类型C++<code>enum</code>类型的表示形式。 无法引用QML本身中的<code>enumeration</code>类型;相反，当引用QML代码中的<code>enumeration</code>值时，可以使用<a href="qml-int.html">int</a> 或 <a href="qml-var.html">var</a>类型。</p>
-<p>例如：</p>
+<h2 id="using-the-enumeration-type-in-qml">Using the enumeration Type in QML</h2>
+<p>The <code>enumeration</code> type is a representation of a C++ <code>enum</code> type. It is not possible to refer to the <code>enumeration</code> type in QML itself; instead, the <a href="qml-int.html">int</a> or <a href="qml-var.html">var</a> types can be used when referring to <code>enumeration</code> values from QML code.</p>
+<p>For example:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -82,7 +82,7 @@
 
 </pre>
 </div>
-<p><b>请参见</b><a href="qtqml-typesystem-basictypes.html">QML基本类型</a> 和 <a href="qtqml-syntax-objectattributes.html#enumeration-attributes">枚举属性</a>。</p>
+<p><b>See also </b><a href="qtqml-typesystem-basictypes.html">QML Basic Types</a> and <a href="qtqml-syntax-objectattributes.html#enumeration-attributes">Enumeration Attributes</a>.</p>
 <!-- @@@enumeration -->
         </div>
        </div>

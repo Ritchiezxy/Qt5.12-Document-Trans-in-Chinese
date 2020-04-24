@@ -38,22 +38,22 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#public-functions">公用函数</a></li>
-<li class="level1"><a href="#details">详细描述</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QQmlNetworkAccessManagerFactory类</h1>
+<h1 class="title">QQmlNetworkAccessManagerFactory Class</h1>
 <!-- $$$QQmlNetworkAccessManagerFactory-brief -->
-<p><a href="qqmlnetworkaccessmanagerfactory.html">QQmlNetworkAccessManagerFactory</a>类为QML引擎创建QNetworkAccessManager实例。<a href="#details">更多…</a></p>
+<p>The <a href="qqmlnetworkaccessmanagerfactory.html">QQmlNetworkAccessManagerFactory</a> class creates QNetworkAccessManager instances for a QML engine. <a href="#details">More...</a></p>
 <!-- @@@QQmlNetworkAccessManagerFactory -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlNetworkAccessManagerFactory&gt;</span>
 </td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.0</td></tr></table></div><ul>
-<li><a href="qqmlnetworkaccessmanagerfactory-members.html">所有成员的列表，包括继承的成员</a></li>
+<li><a href="qqmlnetworkaccessmanagerfactory-members.html">List of all members, including inherited members</a></li>
 </ul>
 <a name="public-functions"></a>
-<h2 id="public-functions">公用函数</h2>
+<h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qqmlnetworkaccessmanagerfactory.html#dtor.QQmlNetworkAccessManagerFactory">~QQmlNetworkAccessManagerFactory</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual QNetworkAccessManager *</td><td class="memItemRight bottomAlign"><b><a href="qqmlnetworkaccessmanagerfactory.html#create">create</a></b>(QObject *<i>parent</i>) = 0</td></tr>
@@ -61,29 +61,29 @@
 <a name="details"></a>
 <!-- $$$QQmlNetworkAccessManagerFactory-description -->
 <div class="descr">
-<h2 id="details">详细描述</h2>
-<p><a href="qqmlnetworkaccessmanagerfactory.html">QQmlNetworkAccessManagerFactory</a>类为QML引擎创建QNetworkAccessManager实例。</p>
-<p>QML引擎使用QNetworkAccessManager进行所有网络访问。通过实现工厂，可以为QML引擎提供定制的QNetworkAccessManager实例，并提供专门的缓存、代理和cookie支持。</p>
-<p>要实现工厂，子类化<a href="qqmlnetworkaccessmanagerfactory.html">QQmlNetworkAccessManagerFactory</a>并实现 virtual<a href="qqmlnetworkaccessmanagerfactory.html#create">create</a>() 方法，然后使用<a href="qqmlengine.html#setNetworkAccessManagerFactory">QQmlEngine::setNetworkAccessManagerFactory</a>()将其分配给相关的QML引擎。</p>
-<p>注意，QML引擎可以从多个线程创建QNetworkAccessManager实例。因此，<a href="qqmlnetworkaccessmanagerfactory.html#create">create</a>()方法的实现必须是<a href="../qtcore/qrandomgenerator.html#reentrancy-and-thread-safety">可重入</a>的。此外，如果要从<a href="qqmlnetworkaccessmanagerfactory.html#create">create</a>()返回的对象的信号连接到可能在另一个线程中创建的对象的槽，开发人员应该小心:</p>
+<h2 id="details">Detailed Description</h2>
+<p>The <a href="qqmlnetworkaccessmanagerfactory.html">QQmlNetworkAccessManagerFactory</a> class creates QNetworkAccessManager instances for a QML engine.</p>
+<p>A QML engine uses QNetworkAccessManager for all network access. By implementing a factory, it is possible to provide the QML engine with custom QNetworkAccessManager instances with specialized caching, proxy and cookies support.</p>
+<p>To implement a factory, subclass <a href="qqmlnetworkaccessmanagerfactory.html">QQmlNetworkAccessManagerFactory</a> and implement the virtual <a href="qqmlnetworkaccessmanagerfactory.html#create">create</a>() method, then assign it to the relevant QML engine using <a href="qqmlengine.html#setNetworkAccessManagerFactory">QQmlEngine::setNetworkAccessManagerFactory</a>().</p>
+<p>Note the QML engine may create QNetworkAccessManager instances from multiple threads. Because of this, the implementation of the <a href="qqmlnetworkaccessmanagerfactory.html#create">create</a>() method must be <a href="../qtcore/qrandomgenerator.html#reentrancy-and-thread-safety">reentrant</a>. In addition, the developer should be careful if the signals of the object to be returned from <a href="qqmlnetworkaccessmanagerfactory.html#create">create</a>() are connected to the slots of an object that may be created in a different thread:</p>
 <ul>
-<li>QML引擎在内部处理所有请求，并清理它创建的任何QNetworkReply对象。在另一个线程中接收QNetworkAccessManager::finished()信号，如果该信号已经被删除，则可能不会为接收方提供有效的应答对象。</li>
-<li>必须立即提供提供给QNetworkAccessManager::authenticationRequired()的身份验证细节，因此不能将此信号连接为<a href="../qtcore/qt.html#ConnectionType-enum">Qt::QueuedConnection</a>(或作为另一个线程的默认<a href="../qtcore/qt.html#ConnectionType-enum">Qt::AutoConnection</a>Qt::AutoConnection)。</li>
+<li>The QML engine internally handles all requests, and cleans up any QNetworkReply objects it creates. Receiving the QNetworkAccessManager::finished() signal in another thread may not provide the receiver with a valid reply object if it has already been deleted.</li>
+<li>Authentication details provided to QNetworkAccessManager::authenticationRequired() must be provided immediately, so this signal cannot be connected as a <a href="../qtcore/qt.html#ConnectionType-enum">Qt::QueuedConnection</a> (or as the default <a href="../qtcore/qt.html#ConnectionType-enum">Qt::AutoConnection</a> from another thread).</li>
 </ul>
-<p>有关信号和线程的更多信息，请参见<a href="../qtdoc/threads-qobject.html">线程与QObject</a> 和 <a href="../qtdoc/threads-qobject.html#signals-and-slots-across-threads">跨线程的信号和槽</a>。</p>
+<p>For more information about signals and threads, see <a href="../qtdoc/threads-qobject.html">Threads and QObjects</a> and <a href="../qtdoc/threads-qobject.html#signals-and-slots-across-threads">Signals and Slots Across Threads</a>.</p>
 </div>
-<p><b>还请参阅</b><a href="qtqml-networkaccessmanagerfactory-example.html">网络访问管理器工厂示例网络访问管理器工厂示例</a>。</p>
+<p><b>See also </b><a href="qtqml-networkaccessmanagerfactory-example.html">Network Access Manager Factory Example</a>.</p>
 <!-- @@@QQmlNetworkAccessManagerFactory -->
 <div class="func">
-<h2>成员函数文档</h2>
+<h2>Member Function Documentation</h2>
 <!-- $$$~QQmlNetworkAccessManagerFactory[overload1]$$$~QQmlNetworkAccessManagerFactory -->
 <h3 class="fn" id="dtor.QQmlNetworkAccessManagerFactory"><a name="dtor.QQmlNetworkAccessManagerFactory"></a><code>[virtual] </code>QQmlNetworkAccessManagerFactory::<span class="name">~QQmlNetworkAccessManagerFactory</span>()</h3>
-<p>销毁工厂。默认实现什么也不做。</p>
+<p>Destroys the factory. The default implementation does nothing.</p>
 <!-- @@@~QQmlNetworkAccessManagerFactory -->
 <!-- $$$create[overload1]$$$createQObject* -->
 <h3 class="fn" id="create"><a name="create"></a><code>[pure virtual] </code><span class="type">QNetworkAccessManager</span> *QQmlNetworkAccessManagerFactory::<span class="name">create</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>parent</i>)</h3>
-<p>创建并返回具有指定<i>parent（父）</i>节点的网络访问管理器。此方法每次调用时必须返回一个新的QNetworkAccessManager实例。</p>
-<p>注意:此方法可能由多个线程调用，因此请确保此方法的实现是可重入的。</p>
+<p>Creates and returns a network access manager with the specified <i>parent</i>. This method must return a new QNetworkAccessManager instance each time it is called.</p>
+<p>Note: this method may be called by multiple threads, so ensure the implementation of this method is reentrant.</p>
 <!-- @@@create -->
 </div>
         </div>

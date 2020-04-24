@@ -38,33 +38,32 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#basic-types">基本类型</a></li>
-<li class="level1"><a href="#javascript-types">JavaScript类型</a></li>
-<li class="level1"><a href="#qml-object-types">QML对象类型</a></li>
+<li class="level1"><a href="#basic-types">Basic Types</a></li>
+<li class="level1"><a href="#javascript-types">JavaScript Types</a></li>
+<li class="level1"><a href="#qml-object-types">QML Object Types</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML类型系统</h1>
+<h1 class="title">The QML Type System</h1>
 <span class="subtitle"></span>
 <!-- $$$qtqml-typesystem-topic.html-description -->
 <div class="descr"> <a name="details"></a>
-<p>QML文档中对象层次结构定义中可能使用的类型可以来自不同的源。他们可能是:</p>
+<p>The types which may be used in the definition of an object hierarchy in a QML document can come from various sources. They may be:</p>
 <ul>
-<li>由QML语言本身提供的</li>
-<li>以QML模块，通过C++注册的</li>
-<li>以QML模块出现，以文档形式提供的</li>
+<li>provided natively by the QML language</li>
+<li>registered via C++ by QML modules</li>
+<li>provided as QML documents by QML modules</li>
 </ul>
-<p>此外，应用程序开发人员可以通过直接注册c++类型或在QML文档中定义可重用组件来提供自己的类型，然后导入这些组件。</p>
-<p>W论类型定义来自何处，引擎都将为这些类型的属性和实例强制执行类型安全性。</p>
+<p>Furthermore, application developers can provide their own types, either by registering C++ types directly, or by defining reusable components in QML documents which can then be imported.</p>
+<p>Wherever the type definitions come from, the engine will enforce type-safety for properties and instances of those types.</p>
 <a name="basic-types"></a>
-<h2 id="basic-types">基本类型</h2>
-<p>
-QML语言内置了对各种基本类型的支持，包括整数、双精度浮点数、字符串和布尔值。对象可以具有这些类型的属性，并且可以将这些类型的值作为参数传递给对象的方法。</p>
-<p>参见<a href="qtqml-typesystem-basictypes.html">QM基本类型</a>以获取基本类型的更多信息</p>
+<h2 id="basic-types">Basic Types</h2>
+<p>The QML language has built-in support for various primitive types including integers, double-precision floating point numbers, strings, and boolean values. Objects may have properties of these types, and values of these types may be passed as arguments to methods of objects.</p>
+<p>See the <a href="qtqml-typesystem-basictypes.html">QML Basic Types</a> documentation for more information about basic types.</p>
 <a name="javascript-types"></a>
-<h2 id="javascript-types">JavaScript类型</h2>
-<p>QML引擎支持JavaScript对象和数组。任何标准JavaScript类型都可以使用泛型<a href="qml-var.html">var</a>类型创建和存储。</p>
-<p>例如，标准的<code>Date</code>和<code>Array</code> 类型如下:</p>
+<h2 id="javascript-types">JavaScript Types</h2>
+<p>JavaScript objects and arrays are supported by the QML engine. Any standard JavaScript type can be created and stored using the generic <a href="qml-var.html">var</a> type.</p>
+<p>For example, the standard <code>Date</code> and <code>Array</code> types are available, as below:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -82,11 +81,11 @@ QML语言内置了对各种基本类型的支持，包括整数、双精度浮�
   }
 
 </pre>
-<p>有关详细信息，请参阅<a href="qtqml-javascript-expressions.html">QML文档中的JavaScript表达式</a>。</p>
+<p>See <a href="qtqml-javascript-expressions.html">JavaScript Expressions in QML Documents</a> for more details.</p>
 <a name="qml-object-types"></a>
-<h2 id="qml-object-types">QML对象类型</h2>
-<p>QML对象类型是可以实例化QML对象的类型。QML对象类型派生自<a href="qml-qtqml-qtobject.html">QtObject</a>QtObject，由QML模块提供。应用程序可以导入这些模块来使用它们提供的对象类型。 <code>QtQuick</code>模块提供了在QML中创建用户界面所需的最常见的对象类型。 </p>
-<p>最后，每个QML文档都隐式地定义了一个QML对象类型，该类型可以在其他QML文档中重用。有关对象类型的详细信息，请参阅。<a href="qtqml-typesystem-objecttypes.html">QML类型系统中有关对象类型</a>的文档。</p>
+<h2 id="qml-object-types">QML Object Types</h2>
+<p>A QML object type is a type from which a QML object can be instantiated. QML object types are derived from <a href="qml-qtqml-qtobject.html">QtObject</a>, and are provided by QML modules. Applications can import these modules to use the object types they provide. The <code>QtQuick</code> module provides the most common object types needed to create user interfaces in QML.</p>
+<p>Finally, every QML document implicitly defines a QML object type, which can be re-used in other QML documents. See the documentation about <a href="qtqml-typesystem-objecttypes.html">object types in the QML type system</a> for in-depth information about object types.</p>
 </div>
 <!-- @@@qtqml-typesystem-topic.html -->
         </div>

@@ -38,28 +38,28 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#using-the-list-type">使用list类型</a></li>
+<li class="level1"><a href="#using-the-list-type">Using the list Type</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML中的基本类型list</h1>
+<h1 class="title">list QML Basic Type</h1>
 <span class="subtitle"></span>
 <!-- $$$list-description -->
 <div class="descr"> <a name="details"></a>
-<p>QML对象的列表。</p>
-<p><code>list</code>类型引用QML对象的列表。</p>
-<p>list值可以通过类似于JavaScript数组的方式访问:</p>
+<p>a list of QML objects.</p>
+<p>The <code>list</code> type refers to a list of QML objects.</p>
+<p>A list value can be accessed in a similar way to a JavaScript array:</p>
 <ul>
-<li>值是使用带逗号分隔值的<code>[]</code> 方括号语法分配的</li>
-<li><code>length</code> 属性提供列表中的项数</li>
-<li>使用<code>[index]</code>语法访问列表中的值</li>
+<li>Values are assigned using the <code>[]</code> square bracket syntax with comma-separated values</li>
+<li>The <code>length</code> property provides the number of items in the list</li>
+<li>Values in the list are accessed using the <code>[index]</code> syntax</li>
 </ul>
-<p>值可以通过使用<code>push</code> 方法动态地添加到列表中，就像它是一个JavaScript数组一样</p>
-<p><code>list</code>只能存储QML对象，不能包含任何<a href="qtqml-typesystem-basictypes.html">基本类型</a>值。(要在列表中存储基本类型，请使用<a href="qml-var.html">var</a>类型。)</p>
-<p>与C++集成时，请注意，<a href="qtqml-cppintegration-data.html">从C++传递到QML</a>的任何<a href="qqmllistproperty.html">QQmlListProperty</a> 值都会自动转换为<code>list</code> 值，反之亦然。</p>
+<p>Values can be dynamically added to the list by using the <code>push</code> method, as if it were a JavaScript Array</p>
+<p>A <code>list</code> can only store QML objects, and cannot contain any <a href="qtqml-typesystem-basictypes.html">basic type</a> values. (To store basic types within a list, use the <a href="qml-var.html">var</a> type instead.)</p>
+<p>When integrating with C++, note that any <a href="qqmllistproperty.html">QQmlListProperty</a> value <a href="qtqml-cppintegration-data.html">passed into QML from C++</a> is automatically converted into a <code>list</code> value, and vice-versa.</p>
 <a name="using-the-list-type"></a>
-<h2 id="using-the-list-type">使用list类型</h2>
-<p>例如，<a href="../qtquick/qml-qtquick-item.html">Item</a> 类型有一个<a href="../qtquick/qml-qtquick-item.html#states-prop">states</a> 列表类型的属性，可以分配给并使用如下:</p>
+<h2 id="using-the-list-type">Using the list Type</h2>
+<p>For example, the <a href="../qtquick/qml-qtquick-item.html">Item</a> type has a <a href="../qtquick/qml-qtquick-item.html#states-prop">states</a> list-type property that can be assigned to and used as follows:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -80,8 +80,8 @@
   }
 
 </pre>
-<p>已定义的<a href="qml-qtqml-statemachine-state.html">State</a>对象将按照定义它们的顺序添加到<code>states</code>列表中。</p>
-<p>如果列表只包含一个对象，可以省略方括号:</p>
+<p>The defined <a href="qml-qtqml-statemachine-state.html">State</a> objects will be added to the <code>states</code> list in the order in which they are defined.</p>
+<p>If the list only contains one object, the square brackets may be omitted:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -92,10 +92,10 @@
   }
 
 </pre>
-<p>注意，对象一旦创建，就不能单独添加或从list中删除;要修改列表的内容，必须将其重新分配到一个新list中。</p>
-<p><b>注意:</b><code>list</code> 类型不建议作为自定义属性的类型。相反，应该使用<code>var</code> 类型，因为可以在QML中更灵活地操作<code>var</code> 类型存储的列表。</p><p>This basic type is provided by the QML language.</p>
+<p>Note that objects cannot be individually added to or removed from the list once created; to modify the contents of a list, it must be reassigned to a new list.</p>
+<p><b>Note: </b>The <code>list</code> type is not recommended as a type for custom properties. The <code>var</code> type should be used instead for this purpose as lists stored by the <code>var</code> type can be manipulated with greater flexibility from within QML.</p><p>This basic type is provided by the QML language.</p>
 </div>
-<p><b>请参见</b><a href="qtqml-typesystem-basictypes.html">QML基本类型</a>。</p>
+<p><b>See also </b><a href="qtqml-typesystem-basictypes.html">QML Basic Types</a>.</p>
 <!-- @@@list -->
         </div>
        </div>

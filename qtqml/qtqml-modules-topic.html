@@ -38,9 +38,9 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#defining-a-qml-module">定义QML模块</a></li>
-<li class="level1"><a href="#supported-qml-module-types">支持的QML模块类型</a></li>
-<li class="level1"><a href="#providing-types-and-functionality-in-a-c-plugin">在C++插件中提供类型和功能</a></li>
+<li class="level1"><a href="#defining-a-qml-module">Defining a QML Module</a></li>
+<li class="level1"><a href="#supported-qml-module-types">Supported QML Module Types</a></li>
+<li class="level1"><a href="#providing-types-and-functionality-in-a-c-plugin">Providing Types and Functionality in a C++ Plugin</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
@@ -48,33 +48,33 @@
 <span class="subtitle"></span>
 <!-- $$$qtqml-modules-topic.html-description -->
 <div class="descr"> <a name="details"></a>
-<p>QML模块在类型名称空间中提供版本化的类型和JavaScript资源，导入模块的客户端可以使用这些资源。模块提供的类型可以作为插件在C++中定义也可以在QML文档中定义。模块使用QML版本控制系统，该系统允许模块独立更新。</p>
-<p>QML模块的定义允许:</p>
+<p>A QML module provides versioned types and JavaScript resources in a type namespace which may be used by clients who import the module. The types which a module provides may be defined in C++ within a plugin, or in QML documents. Modules make use of the QML versioning system which allows modules to be independently updated.</p>
+<p>Defining of a QML module allows:</p>
 <ul>
-<li>在项目中共享公共QML类型——例如，由不同窗口使用的一组UI组件</li>
-<li>基于QML的库的分发</li>
-<li>不同特性的模块化，使应用程序只加载满足其个人需要的库</li>
-<li>对类型和资源进行版本控制，以便在不破坏客户端代码的情况下安全地更新模块</li>
+<li>The sharing of common QML types within a project - for example, a group of UI components that are used by different windows</li>
+<li>The distribution of QML-based libraries</li>
+<li>The modularization of distinct features, so that applications only load the libraries necessary for their individual needs</li>
+<li>Versioning of types and resources so that the module can be updated safely without breaking client code</li>
 </ul>
 <a name="defining-a-qml-module"></a>
-<h2 id="defining-a-qml-module">定义QML模块</h2>
-<p>模块由<a href="qtqml-modules-qmldir.html">模块定义qmldir文件</a>定义。 每个模块都有一个关联的类型名称空间，这是模块的标识符。模块可以提供QML对象类型(由QML文档定义，也可以通过C++插件定义)和JavaScript资源，并且可以由客户端导入。</p>
-<p>要定义一个模块，开发人员应该将属于该模块的各种QML文档、JavaScript资源和C++插件集合到一个目录中，并编写一个适当的 <a href="qtqml-modules-qmldir.html">模块定义qmldir文件</a>该文件也应该放在该目录中。然后可以将该目录作为模块安装到<a href="qtqml-syntax-imports.html#qml-import-path">QML导入路径</a>中。</p>
-<p>注意，定义一个模块并不是在项目中共享公共QML类型的唯一方法 - 一个简单的<a href="qtqml-syntax-directoryimports.html">QML文档目录导入</a>也可以用于此目的。</p>
+<h2 id="defining-a-qml-module">Defining a QML Module</h2>
+<p>A module is defined by a <a href="qtqml-modules-qmldir.html">module definition qmldir file</a>. Each module has an associated type namespace, which is the module's identifier. A module can provide QML object types (defined either by QML documents or via a C++ plugin) and JavaScript resources, and may be imported by clients.</p>
+<p>To define a module, a developer should gather together the various QML documents, JavaScript resources and C++ plugins which belong in the module into a single directory, and write an appropriate <a href="qtqml-modules-qmldir.html">module definition qmldir file</a> which should also be placed into the directory. The directory can then be installed into the <a href="qtqml-syntax-imports.html#qml-import-path">QML import path</a> as a module.</p>
+<p>Note that defining a module is not the only way to share common QML types within a project - a simple <a href="qtqml-syntax-directoryimports.html">QML document directory import</a> may also be used for this purpose.</p>
 <a name="supported-qml-module-types"></a>
-<h2 id="supported-qml-module-types">支持的QML模块类型</h2>
-<p>QML支持两种不同类型的模块:</p>
+<h2 id="supported-qml-module-types">Supported QML Module Types</h2>
+<p>There are two different types of modules supported by QML:</p>
 <ul>
-<li><a href="qtqml-modules-identifiedmodules.html">识别模块</a></li>
-<li><a href="qtqml-modules-legacymodules.html">遗留模块</a>(弃用)</li>
+<li><a href="qtqml-modules-identifiedmodules.html">Identified Modules</a></li>
+<li><a href="qtqml-modules-legacymodules.html">Legacy Modules</a> (deprecated)</li>
 </ul>
-<p>已标识的模块显式定义它们的标识符，并安装到QML导入路径中。标识的模块更具可维护性(由于类型版本控制)，QML引擎提供了类型注册保证，这是遗留模块所没有的。仅支持遗留模块以允许遗留代码继续与最新版本的QML一起工作，如果可能，客户端应该避免使用遗留模块。</p>
-<p>客户端可以从QML文档或JavaScript文件中导入QML模块。有关此主题的更多信息，请参阅有关<a href="qtqml-syntax-imports.html#module-namespace-imports">导入一个QML模块</a>文档。</p>
+<p>Identified modules explicitly define their identifier and are installed into QML import path. Identified modules are more maintainable (due to type versioning) and are provided with type registration guarantees by the QML engine which are not provided to legacy modules. Legacy modules are only supported to allow legacy code to continue to work with the latest version of QML, and should be avoided by clients if possible.</p>
+<p>Clients may import a QML module from within QML documents or JavaScript files. Please see the documentation about <a href="qtqml-syntax-imports.html#module-namespace-imports">importing a QML module</a> for more information on the topic.</p>
 <a name="providing-types-and-functionality-in-a-c-plugin"></a>
-<h2 id="providing-types-and-functionality-in-a-c-plugin">在C++插件中提供类型和功能</h2>
-<p>如果一个应用程序有很多用C++实现的逻辑，或者用C++定义类型并将它们公开给QML，那么可能需要实现一个QML插件。QML扩展模块开发者可能希望在C++插件中实现某些类型(而不是通过QML文档定义它们)，以获得更好的性能或更大的灵活性。</p>
-<p>每个用于QML的C++插件都有一个初始化函数，QML引擎在加载插件时调用该函数。这个初始化函数必须注册插件提供的任何类型，但不能做任何其他事情(例如，不允许实例化QObject)。</p>
-<p>参见<a href="qtqml-modules-cppplugins.html">为QML创建C++插件</a>获取更多信息。</p>
+<h2 id="providing-types-and-functionality-in-a-c-plugin">Providing Types and Functionality in a C++ Plugin</h2>
+<p>An application which has a lot of logic implemented in C++, or which defines types in C++ and exposes them to QML, may wish to implement a QML plugin. A QML extension module developer may wish to implement some types in a C++ plugin (as opposed to defining them via QML documents) to achieve better performance or for greater flexibility.</p>
+<p>Every C++ plugin for QML has an initialiatization function which is called by the QML engine when it loads the plugin. This initialization function must register any types that the plugin provides, but must not do anything else (for example, instantiating QObjects is not allowed).</p>
+<p>See <a href="qtqml-modules-cppplugins.html">Creating C++ Plugins For QML</a> for more information.</p>
 </div>
 <!-- @@@qtqml-modules-topic.html -->
         </div>

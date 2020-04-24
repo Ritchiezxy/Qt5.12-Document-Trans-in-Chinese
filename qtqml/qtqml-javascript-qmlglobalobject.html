@@ -42,27 +42,27 @@
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML Global Object（QML全局对象）</h1>
+<h1 class="title">QML Global Object</h1>
 <span class="subtitle"></span>
 <!-- $$$qtqml-javascript-qmlglobalobject.html-description -->
 <div class="descr"> <a name="details"></a>
-<p>QML JavaScript主机环境实现以下主机对象和函数。这些是内置的，可以被任何加载在QMLJavaScript代码使用，没有额外的导入:</p>
+<p>The QML JavaScript host environment implements the following host objects and functions. These are built in and can be used from any JavaScript code loaded in QML, without additional imports:</p>
 <ul>
-<li><a href="qml-qtqml-qt.html">Qt对象</a>: 此对象是特定于QML的，并提供特定于QML环境的帮助器方法和属性。</li>
-<li>qsTr(), qsTranslate(), qsTrId(), <a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a>(), <a href="../qtcore/qtglobal.html#QT_TRANSLATE_NOOP">QT_TRANSLATE_NOOP</a>(), 和<a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP</a>() 函数:这些函数是特定于QML的，并为QML环境提供<a href="../qtlinguist/linguist-overview.html">翻译功能</a> 。</li>
-<li>gc() 函数:此函数是特定于QML的，它提供了一种手动触发垃圾收集的方法。</li>
-<li>print() print()函数:这个函数是特定于QML的，它提供了一种向控制台输出信息的简单方法。</li>
-<li><a href="../qtdoc/qtquick-debugging.html#console-api">console对象</a>: 该对象实现<a href="http://getfirebug.com/wiki/index.php/Console_API">FireBug控制台API</a>的一个子集。</li>
-<li><a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a>, DOMException: :这些对象实现了<a href="http://www.w3.org/TR/XMLHttpRequest/">W3C XMLHttpRequest规范</a>的子集。</li>
+<li>The <a href="qml-qtqml-qt.html">Qt object</a>: This object is specific to QML, and provides helper methods and properties specific to the QML environment.</li>
+<li>qsTr(), qsTranslate(), qsTrId(), <a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a>(), <a href="../qtcore/qtglobal.html#QT_TRANSLATE_NOOP">QT_TRANSLATE_NOOP</a>(), and <a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP</a>() functions: These functions are specific to QML, and provide <a href="../qtlinguist/linguist-overview.html">translation capabilities</a> to the QML environment.</li>
+<li>gc() function: This function is specific to QML, and provides a way to manually trigger garbage collection.</li>
+<li>print() function: This function is specific to QML, and provides a simple way to output information to the console.</li>
+<li>The <a href="../qtdoc/qtquick-debugging.html#console-api">console object</a>: This object implements a subset of the <a href="http://getfirebug.com/wiki/index.php/Console_API">FireBug Console API</a>.</li>
+<li><a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a>, DOMException: These objects implement a subset of the <a href="http://www.w3.org/TR/XMLHttpRequest/">W3C XMLHttpRequest specification</a>.</li>
 </ul>
-<p><b>注意: </b><a href="qjsengine.html#globalObject">globalObject()</a>函数不能用于修改<a href="qqmlengine.html">QQmlEngine</a>的全局对象。有关这方面的更多信息，请参见<a href="qtqml-javascript-hostenvironment.html#javascript-environment-restrictions">JavaScript环境限制</a>。</p><a name="xmlhttprequest"></a><a name="xmlhttprequest"></a>
+<p><b>Note: </b>The <a href="qjsengine.html#globalObject">globalObject()</a> function cannot be used to modify the global object of a <a href="qqmlengine.html">QQmlEngine</a>. For more information about this, see <a href="qtqml-javascript-hostenvironment.html#javascript-environment-restrictions">JavaScript Environment Restrictions</a>.</p><a name="xmlhttprequest"></a><a name="xmlhttprequest"></a>
 <h2 id="xmlhttprequest">XMLHttpRequest</h2>
-<p><a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a>对象，可用于异步地从网络上获取数据。</p>
-<p><a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a>API实现了与许多流行web浏览器相同的<a href="http://www.w3.org/TR/XMLHttpRequest/">W3C标准</a> ，但有以下几个例外:</p>
+<p>The <a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a> object, which can be used to asynchronously obtain data from over a network.</p>
+<p>The <a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a> API implements the same <a href="http://www.w3.org/TR/XMLHttpRequest/">W3C standard</a> as many popular web browsers with following exceptions:</p>
 <ul>
-<li>QML的 <a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a>不强制执行同源策略。</li>
+<li>QML's <a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a> does not enforce the same origin policy.</li>
 </ul>
-<p>此外，QML当前支持的<code>responseXML</code> XML DOM 树是web浏览器中支持的<a href="http://www.w3.org/TR/DOM-Level-3-Core/">DOM Level 3 Core</a>API的一个缩减子集。QML实现支持以下对象和属性: </p>
+<p>Additionally, the <code>responseXML</code> XML DOM tree currently supported by QML is a reduced subset of the <a href="http://www.w3.org/TR/DOM-Level-3-Core/">DOM Level 3 Core</a> API supported in a web browser. The following objects and properties are supported by the QML implementation:</p>
 <div class="table"><table class="generic">
  <thead><tr class="qt-style"><th ><b>Node</b></th><th ><b>Document</b></th><th ><b>Element</b></th><th ><b>Attr</b></th><th ><b>CharacterData</b></th><th ><b>Text</b></th></tr></thead>
 <tr valign="top" class="odd"><td ><ul>
@@ -101,7 +101,7 @@
 </ul>
 </td></tr>
 </table></div>
-<p><a href="qtqml-xmlhttprequest-example.html">XMLHttpRequest示例</a>演示了如何使用<a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a> 对象发出请求并读取响应头。</p>
+<p>The <a href="qtqml-xmlhttprequest-example.html">XMLHttpRequest example</a> demonstrates how to use the <a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a> object to make a request and read the response headers.</p>
 </div>
 <!-- @@@qtqml-javascript-qmlglobalobject.html -->
         </div>

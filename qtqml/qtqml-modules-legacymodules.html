@@ -38,8 +38,8 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#installed-legacy-modules">安装的遗留模块</a></li>
-<li class="level1"><a href="#located-legacy-modules">定位的遗留模块</a></li>
+<li class="level1"><a href="#installed-legacy-modules">Installed Legacy Modules</a></li>
+<li class="level1"><a href="#located-legacy-modules">Located Legacy Modules</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
@@ -47,28 +47,28 @@
 <span class="subtitle"></span>
 <!-- $$$qtqml-modules-legacymodules.html-description -->
 <div class="descr"> <a name="details"></a>
-<p>遗留模块是那种<code>qmldir</code>文件不包含模块标识符指令的模块。遗留模块可以安装在QML导入路径中(作为已安装的遗留模块)，也可以由客户端使用相对导入导入(作为定位的遗留模块)。建议客户尽可能避免使用遗留模块。模块开发人员应该确保创建已标识的模块，而不是遗留模块。</p>
+<p>Legacy modules are modules whose specification <code>qmldir</code> file does not contain a module identifier directive. A legacy module may be either installed into the QML import path (as an installed legacy module) or imported by clients with a relative import (as a located legacy module). Clients are advised to avoid using legacy modules if possible. Module developers should ensure they create identified modules and not legacy modules.</p>
 <a name="installed-legacy-modules"></a>
-<h2 id="installed-legacy-modules">安装的遗留模块</h2>
-<p>已安装的非标识模块由QML引擎自动给出标识符。这个隐式定义的标识符等于模块的安装路径(相对于QML导入路径)，其中目录分隔符替换为句点字符。</p>
-<p>安装在QML导入路径中的非标识模块具有如下语义:</p>
+<h2 id="installed-legacy-modules">Installed Legacy Modules</h2>
+<p>An installed, non-identified module is automatically given an identifier by the QML engine. This implicitly defined identifier is equal to the install path of the module (relative to the QML import path) where directory-separator characters are replaced with period characters.</p>
+<p>A non-identified module which is installed into the QML import path has the following semantics:</p>
 <ul>
-<li>它可以由客户机通过隐式模块标识符导入</li>
-<li>客户端在导入模块时必须指定一个版本</li>
-<li>冲突类型名称由QML引擎任意解析，并且不能保证在不同版本的QML之间以相同的方式解析冲突</li>
-<li>其他遗留模块可以修改或覆盖已安装的遗留模块提供的类型定义</li>
+<li>it may be imported by clients via the implicit module identifier</li>
+<li>clients must specify a version when importing the module</li>
+<li>conflicting type names are resolved arbitrarily by the QML engine, and the way in which conflicts are resolved is not guaranteed to stay the same between different versions of QML</li>
+<li>other legacy modules may modify or override type definitions provided by the installed legacy module</li>
 </ul>
 <a name="located-legacy-modules"></a>
-<h2 id="located-legacy-modules">定位的遗留模块</h2>
-<p>引擎将通过相对目录路径导入语句导入的非标识模块作为定位的遗留模块加载。以下语义适用于定位的遗留模块:</p>
+<h2 id="located-legacy-modules">Located Legacy Modules</h2>
+<p>A non-identified module which is imported via a relative directory path import statement is loaded by the engine as a located legacy module. The following semantics apply to located legacy modules:</p>
 <ul>
-<li>客户端可以通过相对导入路径导入它</li>
-<li>客户端在导入模块时不必指定版本</li>
-<li>如果客户端没有在import语句中提供导入版本，QML引擎就不能保证导入给定类型名称定义的哪个版本</li>
-<li>冲突的类型名称由QML引擎任意解析，并且不能保证在不同版本的QML之间以相同的方式解析冲突</li>
-<li>其他遗留模块可以修改或覆盖定位的遗留模块提供的类型定义</li>
+<li>it may be imported by clients via a relative import path</li>
+<li>it is not mandatory for clients to specify a version when importing the module</li>
+<li>if no import version is supplied by the client in the import statement, no guarantees are given by the QML engine about which version of the definition of a given type name will be imported</li>
+<li>conflicting type names are resolved arbitrarily by the QML engine, and the way in which conflicts are resolved is not guaranteed to stay the same between different versions of QML</li>
+<li>other legacy modules may modify or override type definitions provided by the located legacy module</li>
 </ul>
-<p>定位的遗留模块可以驻留在本地文件系统或网络上，可以通过指定文件系统路径或网络URL的URL引用。</p>
+<p>A located legacy module may reside on the local file system or on the network and can be referred to by a URL that specifies the file system path or network URL.</p>
 </div>
 <!-- @@@qtqml-modules-legacymodules.html -->
         </div>

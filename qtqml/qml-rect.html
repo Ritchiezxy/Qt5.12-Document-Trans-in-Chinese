@@ -41,13 +41,13 @@
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML基本类型rect </h1>
+<h1 class="title">rect QML Basic Type</h1>
 <span class="subtitle"></span>
 <!-- $$$rect-description -->
 <div class="descr"> <a name="details"></a>
-<p>具有x、y、宽度和高度属性的值。</p>
-<p><code>rect</code> 类型引用具有<code>x</code>, <code>y</code>, <code>width</code> 和 <code>height</code>属性的值。</p>
-<p>例如，读取<a href="../qtquick/qml-qtquick-item.html">Item</a>的<a href="../qtquick/qml-qtquick-item.html#childrenRect.x-prop">childrenRect</a>的rect类型的 <code>width</code> 和 <code>height</code> 的属性:</p>
+<p>a value with x, y, width and height attributes.</p>
+<p>The <code>rect</code> type refers to a value with <code>x</code>, <code>y</code>, <code>width</code> and <code>height</code> attributes.</p>
+<p>For example, to read the <code>width</code> and <code>height</code> values of the <a href="../qtquick/qml-qtquick-item.html">Item</a> <a href="../qtquick/qml-qtquick-item.html#childrenRect.x-prop">childrenRect</a> rect-type property:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
@@ -58,22 +58,22 @@
   }
 
 </pre>
-<p>要创建<code>rect</code>值，请使用&quot;x, y, width x height&quot;形式的字符串代码：</p>
+<p>To create a <code>rect</code> value, specify it as a &quot;x, y, width x height&quot; string:</p>
 <pre class="qml">
 
   <span class="type">CustomObject</span> { <span class="name">myRectProperty</span>: <span class="string">&quot;50,50,100x100&quot;</span> }
 
 </pre>
-<p>或者使用<a href="qml-qtqml-qt.html#rect-method">Qt.rect()</a>函数：</p>
+<p>Or use the <a href="qml-qtqml-qt.html#rect-method">Qt.rect()</a> function:</p>
 <pre class="qml">
 
   <span class="type">CustomObject</span> { <span class="name">myRectProperty</span>: <span class="name">Qt</span>.<span class="name">rect</span>(<span class="number">50</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">100</span>) }
 
 </pre>
-<p><code>rect</code>类型还公开只读的<code>left</code>, <code>right</code>, <code>top</code> 和 <code>bottom</code>属性。它们与<a href="../qtcore/qrectf.html">C++中的对应项</a>相同。</p>
-<p>当与C++集成时，请注意，<a href="qtqml-cppintegration-data.html">从C++传递到QML</a>的任何<a href="../qtcore/qrect.html">QRect</a> 或 <a href="../qtcore/qrectf.html">QRectF</a>值都会自动转换为<code>rect</code>值，反之亦然。当一个<code>rect</code> 值传递给C++时，它会自动转换成一个<a href="../qtcore/qrectf.html">QRectF</a>值。</p>
+<p>The <code>rect</code> type also exposes read-only <code>left</code>, <code>right</code>, <code>top</code> and <code>bottom</code> attributes. These are the same as their <a href="../qtcore/qrectf.html">C++ counterparts</a>.</p>
+<p>When integrating with C++, note that any <a href="../qtcore/qrect.html">QRect</a> or <a href="../qtcore/qrectf.html">QRectF</a> value <a href="qtqml-cppintegration-data.html">passed into QML from C++</a> is automatically converted into a <code>rect</code> value, and vice-versa. When a <code>rect</code> value is passed to C++, it is automatically converted into a <a href="../qtcore/qrectf.html">QRectF</a> value.</p>
 </div>
-<p><b>请参见</b><a href="qtqml-typesystem-basictypes.html">QML基本类型</a>。</p>
+<p><b>See also </b><a href="qtqml-typesystem-basictypes.html">QML Basic Types</a>.</p>
 <!-- @@@rect -->
         </div>
        </div>
