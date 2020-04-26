@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- basicdrawing.qdoc -->
+  <title>Basic Drawing Example | Qt Widgets 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtwidgets-index.html">Qt Widgets</a></td><td ><a href="examples-painting.html">Painting Examples</a></td>
+			<td style="width: 218px" ><span lang="zh-cn">基本绘制实例</span></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtwidgets-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#window-class-definition">Window<span lang="zh-cn"> 
+类定义</span></a></li>
+<li class="level1"><a href="#window-class-implementation">Window
+<span lang="zh-cn">类实现</span></a></li>
+<li class="level1"><a href="#renderarea-class-definition">RenderArea
+<span lang="zh-cn">类定义</span></a></li>
+<li class="level1"><a href="#renderarea-class-implementation">RenderArea
+<span lang="zh-cn">类实现</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><span lang="zh-cn">基本绘制实例</span></h1>
+<span class="subtitle"></span>
+<!-- $$$painting/basicdrawing-brief -->
+<p>基本绘图示例演示如何使用 <a href="../qtgui/qpainter.html">QPainter</a> 类以各种样式显示基本图形基元。</p>
+<!-- @@@painting/basicdrawing -->
+<!-- $$$painting/basicdrawing-description -->
+<div class="descr"> <a name="details"></a>
+<p><a href="../qtgui/qpainter.html">QPainter</a> 
+在组件和其他绘制设备上执行低级绘制。该类可以绘制从简单线条到复杂形状（如<span lang="zh-cn">饼状图</span>和和弦）的所有内容。它还可以绘制对齐的文本和像素。通常，它在“自然”坐标系中绘制，但它还可以进行视图和世界变换。</p>
+<p class="centerAlign"><img src="images/basicdrawing-example.png" alt="" /></p><p>
+	该<span lang="zh-cn">实例</span>提供了一个渲染区域，显示当前活动的形状，并允许用户使用 <a href="../qtgui/qpainter.html">QPainter</a> 
+	参数操纵渲染形状及其外观：用户可以更改活动形状 (<b>Shape</b>)，并修改 <a href="../qtgui/qpainter.html">QPainter</a>'的笔<span lang="zh-cn">(</span><b>笔宽、笔样式、笔帽、笔连接</b>),
+	<span lang="zh-cn">画刷</span> (<b><span lang="zh-cn">画刷样式</span></b>) 和渲染提示 (<b>抗锯齿 </b>)。此外，用户可以旋转一个形状(<b>变换</b>); 
+	在幕后，我们使用 <a href="../qtgui/qpainter.html">QPainter</a>来操纵坐标系来执行旋转。</p>
+<p><span lang="zh-cn">该实例由以下两个类组成：</span></p>
+<ul>
+<li><code>RenderArea</code> 是一个自定义组件，用于渲染当前活动形状的多个副本。</li>
+<li><code>Window</code> 是应用程序的主窗口，除了几个参数窗口组件外，还显示RenderArea窗口组件。</li>
+</ul>
+<p>首先我们先了解一下 <code>Window</code> 类，然后我们再了解 <code>RenderArea</code> class<span lang="zh-cn">类。</span></p>
+<a name="window-class-definition"></a>
+<h2 id="window-class-definition">Window <span lang="zh-cn">类定义</span></h2>
+<p><span lang="zh-cn">该</span>类继承自 <a href="qwidget.html">QWidget</a><span lang="zh-cn">，</span>是应用程序的主窗口，除了几个参数组件之外，它还显示 <code>RenderArea</code> 
+<span lang="zh-cn">组件。</span></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> Window : <span class="keyword">public</span> <span class="type"><a href="qwidget.html">QWidget</a></span>
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      Window();
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> shapeChanged();
+      <span class="type">void</span> penChanged();
+      <span class="type">void</span> brushChanged();
+
+  <span class="keyword">private</span>:
+      RenderArea <span class="operator">*</span>renderArea;
+      <span class="type"><a href="qlabel.html">QLabel</a></span> <span class="operator">*</span>shapeLabel;
+      <span class="type"><a href="qlabel.html">QLabel</a></span> <span class="operator">*</span>penWidthLabel;
+      <span class="type"><a href="qlabel.html">QLabel</a></span> <span class="operator">*</span>penStyleLabel;
+      <span class="type"><a href="qlabel.html">QLabel</a></span> <span class="operator">*</span>penCapLabel;
+      <span class="type"><a href="qlabel.html">QLabel</a></span> <span class="operator">*</span>penJoinLabel;
+      <span class="type"><a href="qlabel.html">QLabel</a></span> <span class="operator">*</span>brushStyleLabel;
+      <span class="type"><a href="qlabel.html">QLabel</a></span> <span class="operator">*</span>otherOptionsLabel;
+      <span class="type"><a href="qcombobox.html">QComboBox</a></span> <span class="operator">*</span>shapeComboBox;
+      <span class="type"><a href="qspinbox.html">QSpinBox</a></span> <span class="operator">*</span>penWidthSpinBox;
+      <span class="type"><a href="qcombobox.html">QComboBox</a></span> <span class="operator">*</span>penStyleComboBox;
+      <span class="type"><a href="qcombobox.html">QComboBox</a></span> <span class="operator">*</span>penCapComboBox;
+      <span class="type"><a href="qcombobox.html">QComboBox</a></span> <span class="operator">*</span>penJoinComboBox;
+      <span class="type"><a href="qcombobox.html">QComboBox</a></span> <span class="operator">*</span>brushStyleComboBox;
+      <span class="type"><a href="qcheckbox.html">QCheckBox</a></span> <span class="operator">*</span>antialiasingCheckBox;
+      <span class="type"><a href="qcheckbox.html">QCheckBox</a></span> <span class="operator">*</span>transformationsCheckBox;
+  };
+
+</pre>
+<p>我们声明了各种组件，并且有三个私有槽更新 <code>RenderArea</code> 组件： <code>shapeChanged()</code> 
+槽在用户更改当前活动形状时更新 <code>RenderArea</code> 组件。当<span lang="zh-cn"> <a href="../qtgui/qpainter.html">QPainter</a> 
+的笔参数发生变化时，将会调用</span> <code>penChanged()</code> 槽。当用户更改<span lang="zh-cn">画刷</span>样式时，将会调用 <code>brushChanged()</code> 
+<span lang="zh-cn">槽</span>更新<code>RenderArea</code>组件。</p>
+<a name="window-class-implementation"></a>
+<h2 id="window-class-implementation">Window <span lang="zh-cn">类实现</span></h2>
+<p>在构造函数中，我们创建并初始化出现在主应用程序窗口中的各种<span lang="zh-cn">组件</span>。</p>
+<pre class="cpp">
+
+  Window<span class="operator">::</span>Window()
+  {
+      renderArea <span class="operator">=</span> <span class="keyword">new</span> RenderArea;
+
+      shapeComboBox <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qcombobox.html">QComboBox</a></span>;
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Polygon&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>Polygon);
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Rectangle&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>Rect);
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Rounded Rectangle&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>RoundedRect);
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Ellipse&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>Ellipse);
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Pie&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>Pie);
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Chord&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>Chord);
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Path&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>Path);
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Line&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>Line);
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Polyline&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>Polyline);
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Arc&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>Arc);
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Points&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>Points);
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Text&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>Text);
+      shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Pixmap&quot;</span>)<span class="operator">,</span> RenderArea<span class="operator">::</span>Pixmap);
+
+      shapeLabel <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qlabel.html">QLabel</a></span>(tr(<span class="string">&quot;&amp;Shape:&quot;</span>));
+      shapeLabel<span class="operator">-</span><span class="operator">&gt;</span>setBuddy(shapeComboBox);
+
+</pre>
+<p>首先，我们创建 <code>RenderArea</code> 组件，它将<span lang="zh-cn">渲染</span>当前活动的形状。然后我们创建 
+<b>形状<span lang="zh-cn">（shape）</span></b> 组合框，并添加相关项（<span lang="zh-cn">即提供让</span> <a href="../qtgui/qpainter.html">QPainter</a> 
+绘制<span lang="zh-cn">各种</span>形状）。</p>
+<pre class="cpp">
+
+      penWidthSpinBox <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qspinbox.html">QSpinBox</a></span>;
+      penWidthSpinBox<span class="operator">-</span><span class="operator">&gt;</span>setRange(<span class="number">0</span><span class="operator">,</span> <span class="number">20</span>);
+      penWidthSpinBox<span class="operator">-</span><span class="operator">&gt;</span>setSpecialValueText(tr(<span class="string">&quot;0 (cosmetic pen)&quot;</span>));
+
+      penWidthLabel <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qlabel.html">QLabel</a></span>(tr(<span class="string">&quot;Pen &amp;Width:&quot;</span>));
+      penWidthLabel<span class="operator">-</span><span class="operator">&gt;</span>setBuddy(penWidthSpinBox);
+
+</pre>
+<p><a href="../qtgui/qpainter.html">QPainter</a>的笔是一个 <a href="../qtgui/qpen.html">QPen</a> 
+对象； 类定义了画家<span lang="zh-cn">（painter）</span>应该如何绘制线条和形状轮廓。笔有几个属性：宽度、样式、笔帽和连接。</p>
+<p>钢笔的宽度可以是 <i><span lang="zh-cn">0</span></i> 
+或更大，但最常见的宽度是零。请注意，0宽度不意味着笔的宽度0像素，而是意味着该形状绘制得尽可能平滑，尽管这从数学上来说可能不正确。</p>
+<p><span lang="zh-cn">我们为笔的宽度创建了一个</span> <a href="qspinbox.html">QSpinBox</a> 
+<span lang="zh-cn">以提供参数。</span></p>
+<pre class="cpp">
+
+      penStyleComboBox <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qcombobox.html">QComboBox</a></span>;
+      penStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Solid&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>SolidLine));
+      penStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Dash&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>DashLine));
+      penStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Dot&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>DotLine));
+      penStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Dash Dot&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>DashDotLine));
+      penStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Dash Dot Dot&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>DashDotDotLine));
+      penStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;None&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>NoPen));
+
+      penStyleLabel <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qlabel.html">QLabel</a></span>(tr(<span class="string">&quot;&amp;Pen Style:&quot;</span>));
+      penStyleLabel<span class="operator">-</span><span class="operator">&gt;</span>setBuddy(penStyleComboBox);
+
+      penCapComboBox <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qcombobox.html">QComboBox</a></span>;
+      penCapComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Flat&quot;</span>)<span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>FlatCap);
+      penCapComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Square&quot;</span>)<span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>SquareCap);
+      penCapComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Round&quot;</span>)<span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>RoundCap);
+
+      penCapLabel <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qlabel.html">QLabel</a></span>(tr(<span class="string">&quot;Pen &amp;Cap:&quot;</span>));
+      penCapLabel<span class="operator">-</span><span class="operator">&gt;</span>setBuddy(penCapComboBox);
+
+      penJoinComboBox <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qcombobox.html">QComboBox</a></span>;
+      penJoinComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Miter&quot;</span>)<span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>MiterJoin);
+      penJoinComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Bevel&quot;</span>)<span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>BevelJoin);
+      penJoinComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Round&quot;</span>)<span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>RoundJoin);
+
+      penJoinLabel <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qlabel.html">QLabel</a></span>(tr(<span class="string">&quot;Pen &amp;Join:&quot;</span>));
+      penJoinLabel<span class="operator">-</span><span class="operator">&gt;</span>setBuddy(penJoinComboBox);
+
+</pre>
+<p>笔样式定义线条类型。默认样式是<span lang="zh-cn">实线</span> (<a href="../qtcore/qt.html#PenStyle-enum">Qt::SolidLine</a>)。将样式设置为<span lang="zh-cn">无线条</span> (<a href="../qtcore/qt.html#PenStyle-enum">Qt::NoPen</a>) 
+会告诉画家不要绘制线或轮廓。笔帽定义如何绘制线的端点。笔连接定义了绘制多条连接线时两条线的连接方式。 <span lang="zh-cn">笔帽</span>和<span lang="zh-cn">连接</span>只适用于<span lang="zh-cn">大于等于1宽度的线条</span>。</p>
+<p>我们为每个笔样式、笔帽和笔连接参数创建 <a href="qcombobox.html">QComboBox</a>es ，并添加相关项（即分别为 <a href="../qtcore/qt.html#PenStyle-enum">Qt::PenStyle</a><span lang="zh-cn">、</span> <a href="../qtcore/qt.html#PenCapStyle-enum">Qt::PenCapStyle</a> 
+<span lang="zh-cn">和</span> <a href="../qtcore/qt.html#PenJoinStyle-enum">Qt::PenJoinStyle</a> 
+枚举的值）。</p>
+<pre class="cpp">
+
+      brushStyleComboBox <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qcombobox.html">QComboBox</a></span>;
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Linear Gradient&quot;</span>)<span class="operator">,</span>
+              <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>LinearGradientPattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Radial Gradient&quot;</span>)<span class="operator">,</span>
+              <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>RadialGradientPattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Conical Gradient&quot;</span>)<span class="operator">,</span>
+              <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>ConicalGradientPattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Texture&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>TexturePattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Solid&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>SolidPattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Horizontal&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>HorPattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Vertical&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>VerPattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Cross&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>CrossPattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Backward Diagonal&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>BDiagPattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Forward Diagonal&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>FDiagPattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Diagonal Cross&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>DiagCrossPattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Dense 1&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>Dense1Pattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Dense 2&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>Dense2Pattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Dense 3&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>Dense3Pattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Dense 4&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>Dense4Pattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Dense 5&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>Dense5Pattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Dense 6&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>Dense6Pattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;Dense 7&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>Dense7Pattern));
+      brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>addItem(tr(<span class="string">&quot;None&quot;</span>)<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>NoBrush));
+
+      brushStyleLabel <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qlabel.html">QLabel</a></span>(tr(<span class="string">&quot;&amp;Brush:&quot;</span>));
+      brushStyleLabel<span class="operator">-</span><span class="operator">&gt;</span>setBuddy(brushStyleComboBox);
+
+</pre>
+<p><a href="../qtgui/qbrush.html">QBrush</a> 类定义了由 <a href="../qtgui/qpainter.html">QPainter</a><span lang="zh-cn">。</span>绘制的形状的填充图案。默认<span lang="zh-cn">画刷</span>样式是 <a href="../qtcore/qt.html#BrushStyle-enum">Qt::NoBrush</a>。这种风格告诉画家不要填充形状。填充的标准样式是 <a href="../qtcore/qt.html#BrushStyle-enum">Qt::SolidPattern</a><span lang="zh-cn">。</span></p>
+<p>我们为画刷样式参数创建一个 <a href="qcombobox.html">QComboBox</a> ，并添加相关项（即 <a href="../qtcore/qt.html#BrushStyle-enum">Qt::BrushStyle</a> 
+枚举的值）。</p>
+<pre class="cpp">
+
+      otherOptionsLabel <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qlabel.html">QLabel</a></span>(tr(<span class="string">&quot;Options:&quot;</span>));
+      antialiasingCheckBox <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qcheckbox.html">QCheckBox</a></span>(tr(<span class="string">&quot;&amp;Antialiasing&quot;</span>));
+
+</pre>
+<p>抗锯齿是一种“平滑”像素以创建更均匀和更少锯齿线的功能，可以使用 <a href="../qtgui/qpainter.html">QPainter</a> 
+的渲染提示应用。<a href="../qtgui/qpainter.html#RenderHint-enum">QPainter::RenderHints</a><span lang="zh-cn"> 
+用于指定任何给定引擎可能遵守或不遵守的</span> <a href="../qtgui/qpainter.html">QPainter</a> 标志。</p>
+<p>我们只需为抗锯齿选项创建一个 <a href="qcheckbox.html">QCheckBox</a> <span lang="zh-cn">即可。</span></p>
+<pre class="cpp">
+
+      transformationsCheckBox <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qcheckbox.html">QCheckBox</a></span>(tr(<span class="string">&quot;&amp;Transformations&quot;</span>));
+
+</pre>
+<p>变换<span lang="zh-cn">（transformation）</span>选项意味着对坐标系的操作，该操作的显示结果为被渲染形状在三维中旋转。</p>
+<p>我们使用 <a href="../qtgui/qpainter.html#translate-1">QPainter::translate</a>()<span lang="zh-cn">、</span> <a href="../qtgui/qpainter.html#rotate">QPainter::rotate</a>()
+<span lang="zh-cn">以及</span> <a href="../qtgui/qpainter.html#scale">QPainter::scale</a>() 
+函数来实现该功能，并在主应用程序窗口中使用一个 <a href="qcheckbox.html">QCheckBox</a>表示的此功能。</p>
+<pre class="cpp">
+
+      connect(shapeComboBox<span class="operator">,</span> SIGNAL(activated(<span class="type">int</span>))<span class="operator">,</span>
+              <span class="keyword">this</span><span class="operator">,</span> SLOT(shapeChanged()));
+      connect(penWidthSpinBox<span class="operator">,</span> SIGNAL(valueChanged(<span class="type">int</span>))<span class="operator">,</span>
+              <span class="keyword">this</span><span class="operator">,</span> SLOT(penChanged()));
+      connect(penStyleComboBox<span class="operator">,</span> SIGNAL(activated(<span class="type">int</span>))<span class="operator">,</span>
+              <span class="keyword">this</span><span class="operator">,</span> SLOT(penChanged()));
+      connect(penCapComboBox<span class="operator">,</span> SIGNAL(activated(<span class="type">int</span>))<span class="operator">,</span>
+              <span class="keyword">this</span><span class="operator">,</span> SLOT(penChanged()));
+      connect(penJoinComboBox<span class="operator">,</span> SIGNAL(activated(<span class="type">int</span>))<span class="operator">,</span>
+              <span class="keyword">this</span><span class="operator">,</span> SLOT(penChanged()));
+      connect(brushStyleComboBox<span class="operator">,</span> SIGNAL(activated(<span class="type">int</span>))<span class="operator">,</span>
+              <span class="keyword">this</span><span class="operator">,</span> SLOT(brushChanged()));
+      connect(antialiasingCheckBox<span class="operator">,</span> SIGNAL(toggled(bool))<span class="operator">,</span>
+              renderArea<span class="operator">,</span> SLOT(setAntialiased(bool)));
+      connect(transformationsCheckBox<span class="operator">,</span> SIGNAL(toggled(bool))<span class="operator">,</span>
+              renderArea<span class="operator">,</span> SLOT(setTransformed(bool)));
+
+</pre>
+<p>然后，我们使用静态 <a href="../qtcore/qobject.html#connect-4">QObject::connect</a>() 
+函数将参数组件与其关联的槽连接起来，确保每当用户更改形状或任何其他参数时， <code>RenderArea</code> 组件都会更新。</p>
+<pre class="cpp">
+
+      <span class="type"><a href="qgridlayout.html">QGridLayout</a></span> <span class="operator">*</span>mainLayout <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qgridlayout.html">QGridLayout</a></span>;
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>setColumnStretch(<span class="number">0</span><span class="operator">,</span> <span class="number">1</span>);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>setColumnStretch(<span class="number">3</span><span class="operator">,</span> <span class="number">1</span>);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(renderArea<span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">4</span>);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(shapeLabel<span class="operator">,</span> <span class="number">2</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>AlignRight);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(shapeComboBox<span class="operator">,</span> <span class="number">2</span><span class="operator">,</span> <span class="number">1</span>);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(penWidthLabel<span class="operator">,</span> <span class="number">3</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>AlignRight);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(penWidthSpinBox<span class="operator">,</span> <span class="number">3</span><span class="operator">,</span> <span class="number">1</span>);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(penStyleLabel<span class="operator">,</span> <span class="number">4</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>AlignRight);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(penStyleComboBox<span class="operator">,</span> <span class="number">4</span><span class="operator">,</span> <span class="number">1</span>);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(penCapLabel<span class="operator">,</span> <span class="number">3</span><span class="operator">,</span> <span class="number">2</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>AlignRight);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(penCapComboBox<span class="operator">,</span> <span class="number">3</span><span class="operator">,</span> <span class="number">3</span>);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(penJoinLabel<span class="operator">,</span> <span class="number">2</span><span class="operator">,</span> <span class="number">2</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>AlignRight);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(penJoinComboBox<span class="operator">,</span> <span class="number">2</span><span class="operator">,</span> <span class="number">3</span>);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(brushStyleLabel<span class="operator">,</span> <span class="number">4</span><span class="operator">,</span> <span class="number">2</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>AlignRight);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(brushStyleComboBox<span class="operator">,</span> <span class="number">4</span><span class="operator">,</span> <span class="number">3</span>);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(otherOptionsLabel<span class="operator">,</span> <span class="number">5</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>AlignRight);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(antialiasingCheckBox<span class="operator">,</span> <span class="number">5</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>AlignRight);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(transformationsCheckBox<span class="operator">,</span> <span class="number">5</span><span class="operator">,</span> <span class="number">2</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">2</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>AlignRight);
+      setLayout(mainLayout);
+
+      shapeChanged();
+      penChanged();
+      brushChanged();
+      antialiasingCheckBox<span class="operator">-</span><span class="operator">&gt;</span>setChecked(<span class="keyword">true</span>);
+
+      setWindowTitle(tr(<span class="string">&quot;Basic Drawing&quot;</span>));
+  }
+
+</pre>
+<p>最后，我们将各种组件添加到布局中，并调用 <code>shapeChanged()<span lang="zh-cn">、</span></code> <code>penChanged()<span lang="zh-cn"> 
+和 </span>brushChanged()</code> 槽来初始化应用程序。我们还启用抗锯齿。</p>
+<pre class="cpp">
+
+  <span class="type">void</span> Window<span class="operator">::</span>shapeChanged()
+  {
+      RenderArea<span class="operator">::</span>Shape shape <span class="operator">=</span> RenderArea<span class="operator">::</span>Shape(shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>itemData(
+              shapeComboBox<span class="operator">-</span><span class="operator">&gt;</span>currentIndex()<span class="operator">,</span> IdRole)<span class="operator">.</span>toInt());
+      renderArea<span class="operator">-</span><span class="operator">&gt;</span>setShape(shape);
+  }
+
+</pre>
+<p>每当用户更改当前活动形状时，都会调用 <code>shapeChanged()</code> 槽。</p>
+<p>首先，我们使用 <a href="qcombobox.html#itemData">QComboBox::itemData</a>() 
+函数检索用户选择的形状。此函数返回组合框中给定索引中给定角色的数据。我们使用 <a href="qcombobox.html#currentIndex-prop">QComboBox::currentIndex</a>() 
+检索形状的索引，角色由 <a href="../qtcore/qt.html#ItemDataRole-enum">Qt::ItemDataRole</a> 
+枚举定义； <code>IdRole</code> 是 <a href="../qtcore/qt.html#ItemDataRole-enum">Qt::UserRole</a>的别名。</p>
+<p>注意， <a href="../qtcore/qt.html#ItemDataRole-enum">Qt::UserRole</a> 
+只是第一个可以用于特定应用程序目的的角色。如果需要在同一索引中存储不同的数据，只需递增 <a href="../qtcore/qt.html#ItemDataRole-enum">Qt::UserRole</a>的值，就可以使用不同的角色，例如： 
+<span lang="zh-cn">“</span><a href="../qtcore/qt.html#ItemDataRole-enum">Qt::UserRole</a> + 1<span lang="zh-cn">”</span>
+<span lang="zh-cn">、</span> <span lang="zh-cn">“</span><a href="../qtcore/qt.html#ItemDataRole-enum">Qt::UserRole</a> + 2<span lang="zh-cn">”等。</span> 
+但是，最好的编程实践是为每个角色命名<span lang="zh-cn">，例如：</span> <span lang="zh-cn">“</span>myFirstRole = <a href="../qtcore/qt.html#ItemDataRole-enum">Qt::UserRole</a> + 1<span lang="zh-cn">”</span>
+<span lang="zh-cn">以及</span> <span lang="zh-cn">“</span>mySecondRole = <a href="../qtcore/qt.html#ItemDataRole-enum">Qt::UserRole</a> + 2<span lang="zh-cn">”。</span> 
+。尽管在这个特定的示例中我们只需要一个角色，但是我们将以下代码行添加到 <code>window.cpp</code> 文件的开头。</p>
+<pre class="cpp">
+
+  <span class="keyword">const</span> <span class="type">int</span> IdRole <span class="operator">=</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>UserRole;
+
+</pre>
+<p><a href="qcombobox.html#itemData">QComboBox::itemData</a>() 函数将数据作为 <a href="../qtcore/qvariant.html">QVariant</a>, 
+返回，因此我们需要将数据转换为 <code>RenderArea::Shape</code> 。如果给定角色没有数据，则函数返回 
+QVariant::Invalid<span lang="zh-cn">。</span></p>
+<p>&nbsp;</p>
+	<p>最后，我们调用 <code>RenderArea::setShape()</code> 槽来更新 <code>RenderArea</code> 
+	组件。</p>
+<pre class="cpp">
+
+  <span class="type">void</span> Window<span class="operator">::</span>penChanged()
+  {
+      <span class="type">int</span> width <span class="operator">=</span> penWidthSpinBox<span class="operator">-</span><span class="operator">&gt;</span>value();
+      <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>PenStyle style <span class="operator">=</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>PenStyle(penStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>itemData(
+              penStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>currentIndex()<span class="operator">,</span> IdRole)<span class="operator">.</span>toInt());
+      <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>PenCapStyle cap <span class="operator">=</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>PenCapStyle(penCapComboBox<span class="operator">-</span><span class="operator">&gt;</span>itemData(
+              penCapComboBox<span class="operator">-</span><span class="operator">&gt;</span>currentIndex()<span class="operator">,</span> IdRole)<span class="operator">.</span>toInt());
+      <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>PenJoinStyle join <span class="operator">=</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>PenJoinStyle(penJoinComboBox<span class="operator">-</span><span class="operator">&gt;</span>itemData(
+              penJoinComboBox<span class="operator">-</span><span class="operator">&gt;</span>currentIndex()<span class="operator">,</span> IdRole)<span class="operator">.</span>toInt());
+
+      renderArea<span class="operator">-</span><span class="operator">&gt;</span>setPen(<span class="type"><a href="../qtgui/qpen.html">QPen</a></span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>blue<span class="operator">,</span> width<span class="operator">,</span> style<span class="operator">,</span> cap<span class="operator">,</span> join));
+  }
+
+</pre>
+<p>每当用户更改任何笔参数时，我们都会调用 <code>penChanged()</code> 槽。我们再次使用 <a href="qcombobox.html#itemData">QComboBox::itemData</a>() 
+函数来检索参数，然后调用 <code>RenderArea::setPen()</code> 槽来更新 <code>RenderArea</code> 组件。</p>
+<pre class="cpp">
+
+  <span class="type">void</span> Window<span class="operator">::</span>brushChanged()
+  {
+      <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>BrushStyle style <span class="operator">=</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>BrushStyle(brushStyleComboBox<span class="operator">-</span><span class="operator">&gt;</span>itemData(
+
+</pre>
+<p>每当用户像以前一样更改我们使用 <a href="qcombobox.html#itemData">QComboBox::itemData</a>() 
+函数检索的画刷参数时，就会调用brushChanged（）槽。</p>
+<pre class="cpp">
+
+      <span class="keyword">if</span> (style <span class="operator">=</span><span class="operator">=</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>LinearGradientPattern) {
+          <span class="type"><a href="../qtgui/qlineargradient.html">QLinearGradient</a></span> linearGradient(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="number">100</span><span class="operator">,</span> <span class="number">100</span>);
+          linearGradient<span class="operator">.</span>setColorAt(<span class="number">0.0</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>white);
+          linearGradient<span class="operator">.</span>setColorAt(<span class="number">0.2</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>green);
+          linearGradient<span class="operator">.</span>setColorAt(<span class="number">1.0</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>black);
+          renderArea<span class="operator">-</span><span class="operator">&gt;</span>setBrush(linearGradient);
+
+</pre>
+<p>如果画刷参数是渐变填充，则需要特殊操作。</p>
+<p><a href="../qtgui/qgradient.html">QGradient</a> 类与 <a href="../qtgui/qbrush.html">QBrush</a> 
+结合使用来指定渐变填充。Qt目前支持三种渐变填充：线性、径向和锥形。每一个都由 <a href="../qtgui/qgradient.html">QGradient</a>的一个子类<span lang="zh-cn">:</span> <a href="../qtgui/qlineargradient.html">QLinearGradient</a><span lang="zh-cn">、</span><a href="../qtgui/qradialgradient.html">QRadialGradient</a> 
+<span lang="zh-cn">以及</span> <a href="../qtgui/qconicalgradient.html">QConicalGradient</a><span lang="zh-cn">表示。 
+</span></p>
+<p>因此，如果画刷样式是 <a href="../qtcore/qt.html#BrushStyle-enum">Qt::LinearGradientPattern</a> 
+，我们首先创建一个在坐标之间具有插值区域的 <a href="../qtgui/qlineargradient.html">QLinearGradient</a> 
+对象，该对象在作为参数传递给构造函数。使用逻辑坐标指定位置。然后我们使用 <a href="../qtgui/qgradient.html#setColorAt">QGradient::setColorAt</a>() 
+函数设置渐变的颜色。使用由位置（介于0和1之间）和 <a href="../qtgui/qcolor.html">QColor</a><span lang="zh-cn">。 
+</span>组成的停止点定义颜色。停止点集描述了应如何填充渐变区域。渐变可以有任意数量的停止点。</p>
+<p>最后，我们调用 <code>RenderArea::setBrush()</code> 槽用<span lang="zh-cn"> <a href="../qtgui/qlineargradient.html">QLinearGradient</a></span> <code>
+对象更新<span lang="zh-cn"> </span>RenderArea</code> <span lang="zh-cn">组件的画刷。</span></p>
+<pre class="cpp">
+
+      } <span class="keyword">else</span> <span class="keyword">if</span> (style <span class="operator">=</span><span class="operator">=</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>RadialGradientPattern) {
+          <span class="type"><a href="../qtgui/qradialgradient.html">QRadialGradient</a></span> radialGradient(<span class="number">50</span><span class="operator">,</span> <span class="number">50</span><span class="operator">,</span> <span class="number">50</span><span class="operator">,</span> <span class="number">70</span><span class="operator">,</span> <span class="number">70</span>);
+          radialGradient<span class="operator">.</span>setColorAt(<span class="number">0.0</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>white);
+          radialGradient<span class="operator">.</span>setColorAt(<span class="number">0.2</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>green);
+          radialGradient<span class="operator">.</span>setColorAt(<span class="number">1.0</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>black);
+          renderArea<span class="operator">-</span><span class="operator">&gt;</span>setBrush(radialGradient);
+      } <span class="keyword">else</span> <span class="keyword">if</span> (style <span class="operator">=</span><span class="operator">=</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>ConicalGradientPattern) {
+          <span class="type"><a href="../qtgui/qconicalgradient.html">QConicalGradient</a></span> conicalGradient(<span class="number">50</span><span class="operator">,</span> <span class="number">50</span><span class="operator">,</span> <span class="number">150</span>);
+          conicalGradient<span class="operator">.</span>setColorAt(<span class="number">0.0</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>white);
+          conicalGradient<span class="operator">.</span>setColorAt(<span class="number">0.2</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>green);
+          conicalGradient<span class="operator">.</span>setColorAt(<span class="number">1.0</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>black);
+          renderArea<span class="operator">-</span><span class="operator">&gt;</span>setBrush(conicalGradient);
+
+</pre>
+<p><span lang="zh-cn">在</span> <span lang="zh-cn"> <a href="../qtcore/qt.html#BrushStyle-enum">Qt::RadialGradientPattern</a> 
+和 <a href="../qtcore/qt.html#BrushStyle-enum">Qt::ConicalGradientPattern</a> 
+的情况下，使用与 </span> <a href="../qtgui/qlineargradient.html">QLinearGradient</a><span lang="zh-cn">，</span>相似的操作模式。</p>
+<p>唯一的区别是传递给构造函数的参数：对于 <a href="../qtgui/qradialgradient.html">QRadialGradient</a> 
+构造函数，第一个参数是中心，第二个参数是径向渐变的半径。第三个参数是可选的，但可以用于定义圆内渐变的焦点（默认焦点是圆中心）。关于 <a href="../qtgui/qconicalgradient.html">QConicalGradient</a> 
+构造函数，第一个参数指定圆锥体的中心，第二个参数指定插值的开始角度。</p>
+<pre class="cpp">
+
+      } <span class="keyword">else</span> <span class="keyword">if</span> (style <span class="operator">=</span><span class="operator">=</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>TexturePattern) {
+          renderArea<span class="operator">-</span><span class="operator">&gt;</span>setBrush(<span class="type"><a href="../qtgui/qbrush.html">QBrush</a></span>(<span class="type"><a href="../qtgui/qpixmap.html">QPixmap</a></span>(<span class="string">&quot;:/images/brick.png&quot;</span>)));
+
+</pre>
+<p>如果画刷样式是 <a href="../qtcore/qt.html#BrushStyle-enum">Qt::TexturePattern</a> 
+，我们将从<a href="../qtgui/qpixmap.html">QPixmap</a> 创建一个<span lang="zh-cn"> </span> <a href="../qtgui/qbrush.html">QBrush</a> 
+。然后我们调用 <code>RenderArea::setBrush()</code> 槽用新创建的画刷更新 <code>RenderArea</code> 
+<span lang="zh-cn">组件。</span></p>
+<pre class="cpp">
+
+      } <span class="keyword">else</span> {
+          renderArea<span class="operator">-</span><span class="operator">&gt;</span>setBrush(<span class="type"><a href="../qtgui/qbrush.html">QBrush</a></span>(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>green<span class="operator">,</span> style));
+      }
+  }
+
+</pre>
+<p>否则，我们只需创建一个具有给定样式和绿色的画刷，然后调用 <code>RenderArea::setBrush()</code> 槽以使用新创建的画刷更新 <code>RenderArea</code> 
+组件。</p>
+<a name="renderarea-class-definition"></a>
+<h2 id="renderarea-class-definition">RenderArea <span lang="zh-cn">类定义</span></h2>
+<p><code>RenderArea</code> 类继承自 <a href="qwidget.html">QWidget</a> ，并使用 <a href="../qtgui/qpainter.html">QPainter</a>渲染当前活动形状的多个副本。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> RenderArea : <span class="keyword">public</span> <span class="type"><a href="qwidget.html">QWidget</a></span>
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      <span class="keyword">enum</span> Shape { Line<span class="operator">,</span> Points<span class="operator">,</span> Polyline<span class="operator">,</span> Polygon<span class="operator">,</span> Rect<span class="operator">,</span> RoundedRect<span class="operator">,</span> Ellipse<span class="operator">,</span> Arc<span class="operator">,</span>
+                   Chord<span class="operator">,</span> Pie<span class="operator">,</span> Path<span class="operator">,</span> Text<span class="operator">,</span> Pixmap };
+
+      RenderArea(<span class="type"><a href="qwidget.html">QWidget</a></span> <span class="operator">*</span>parent <span class="operator">=</span> <span class="number">0</span>);
+
+      <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> minimumSizeHint() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> sizeHint() <span class="keyword">const</span> override;
+
+  <span class="keyword">public</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> setShape(Shape shape);
+      <span class="type">void</span> setPen(<span class="keyword">const</span> <span class="type"><a href="../qtgui/qpen.html">QPen</a></span> <span class="operator">&amp;</span>pen);
+      <span class="type">void</span> setBrush(<span class="keyword">const</span> <span class="type"><a href="../qtgui/qbrush.html">QBrush</a></span> <span class="operator">&amp;</span>brush);
+      <span class="type">void</span> setAntialiased(bool antialiased);
+      <span class="type">void</span> setTransformed(bool transformed);
+
+  <span class="keyword">protected</span>:
+      <span class="type">void</span> paintEvent(<span class="type"><a href="../qtgui/qpaintevent.html">QPaintEvent</a></span> <span class="operator">*</span>event) override;
+
+  <span class="keyword">private</span>:
+      Shape shape;
+      <span class="type"><a href="../qtgui/qpen.html">QPen</a></span> pen;
+      <span class="type"><a href="../qtgui/qbrush.html">QBrush</a></span> brush;
+      bool antialiased;
+      bool transformed;
+      <span class="type"><a href="../qtgui/qpixmap.html">QPixmap</a></span> pixmap;
+  };
+
+</pre>
+<p>首先，我们定义一个公有的形状枚举来保存可由组件渲染的不同形状（即可由 <a href="../qtgui/qpainter.html">QPainter</a><span lang="zh-cn">）</span>渲染的形状）。然后我们重新实现构造函数以及 <a href="qwidget.html">QWidget</a>的两个公<span lang="zh-cn">有</span>函数： <a href="qwidget.html#minimumSizeHint-prop">minimumSizeHint()</a> 
+<span lang="zh-cn">和</span> <a href="qwidget.html#sizeHint-prop">sizeHint()</a><span lang="zh-cn">。</span></p>
+<p>我们还重新实现了 <a href="qwidget.html#paintEvent">QWidget::paintEvent</a>() 
+函数，以便能够根据指定的参数绘制当前活动的形状。</p>
+<p>我们声明几个私有槽<span lang="zh-cn">：</span> <code>setShape()</code> 槽更改 <code>RenderArea</code>的形状， <code>setPen()</code> 
+<span lang="zh-cn">和</span> <code>setBrush()</code> 槽修改组件的笔和画刷， <code>setAntialiased()</code> 
+<span lang="zh-cn">和</span> <code>setTransformed()</code> 槽修改组件的各自属性。</p>
+<a name="renderarea-class-implementation"></a>
+<h2 id="renderarea-class-implementation">RenderArea <span lang="zh-cn">类实现</span></h2>
+<p>在构造函数中，我们初始化组件的一些变量。</p>
+<pre class="cpp">
+
+  RenderArea<span class="operator">::</span>RenderArea(<span class="type"><a href="qwidget.html">QWidget</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="qwidget.html">QWidget</a></span>(parent)
+  {
+      shape <span class="operator">=</span> Polygon;
+      antialiased <span class="operator">=</span> <span class="keyword">false</span>;
+      transformed <span class="operator">=</span> <span class="keyword">false</span>;
+      pixmap<span class="operator">.</span>load(<span class="string">&quot;:/images/qt-logo.png&quot;</span>);
+
+      setBackgroundRole(<span class="type"><a href="../qtgui/qpalette.html">QPalette</a></span><span class="operator">::</span>Base);
+      setAutoFillBackground(<span class="keyword">true</span>);
+  }
+
+</pre>
+<p>我们将其形状设置为<b>多边形</b>，将其抗锯齿属性设置为<span lang="zh-cn">false</span>,，并将图像加载到组件的pixmap变量中。最后，我们设置组件的背景角色，从组件的<a href="qwidget.html#palette-prop">调色板</a>中定义用于渲染背景的画刷。&nbsp;&nbsp; <a href="../qtgui/qpalette.html#ColorRole-enum">QPalette::Base</a> 
+通常是白色的。</p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> RenderArea<span class="operator">::</span>sizeHint() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qsize.html">QSize</a></span>(<span class="number">400</span><span class="operator">,</span> <span class="number">200</span>);
+  }
+
+</pre>
+<p><code>RenderArea</code> 继承了 <a href="qwidget.html">QWidget</a><span lang="zh-cn"> 
+的</span> <a href="qwidget.html#sizeHint-prop">sizeHint</a> 
+属性，该属性保留组件的建议大小。如果此属性的值是无效大小，则建议不要使用大小。</p>
+<p>如果组件没有布局， <a href="qwidget.html#sizeHint-prop">QWidget::sizeHint</a>() 
+函数的默认实现将返回无效的大小，否则将返回布局的首选大小。</p>
+<p>我们对函数的重新实现返回宽度为400像素、高度为200像素的 <a href="../qtcore/qsize.html">QSize</a> 
+<span lang="zh-cn">。</span></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> RenderArea<span class="operator">::</span>minimumSizeHint() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qsize.html">QSize</a></span>(<span class="number">100</span><span class="operator">,</span> <span class="number">100</span>);
+  }
+
+</pre>
+<p><code>RenderArea</code> 还继承了 <a href="qwidget.html">QWidget</a><span lang="zh-cn">的</span> <a href="qwidget.html#minimumSizeHint-prop">minimumSizeHint</a> 
+属性，该属性为组件保留了建议的最小大小。同样，如果此属性的值是无效大小，则不建议使用任何大小。</p>
+<p>如果组件没有布局， <a href="qwidget.html#minimumSizeHint-prop">QWidget::minimumSizeHint</a>() 
+的默认实现将返回无效的大小，否则将返回布局的最小大小。</p>
+<p>函数的重新实现返回一个宽度为100像素、高度为100像素的 <a href="../qtcore/qsize.html">QSize</a> 
+<span lang="zh-cn">。</span></p>
+<pre class="cpp">
+
+  <span class="type">void</span> RenderArea<span class="operator">::</span>setShape(Shape shape)
+  {
+      <span class="keyword">this</span><span class="operator">-</span><span class="operator">&gt;</span>shape <span class="operator">=</span> shape;
+      update();
+  }
+
+  <span class="type">void</span> RenderArea<span class="operator">::</span>setPen(<span class="keyword">const</span> <span class="type"><a href="../qtgui/qpen.html">QPen</a></span> <span class="operator">&amp;</span>pen)
+  {
+      <span class="keyword">this</span><span class="operator">-</span><span class="operator">&gt;</span>pen <span class="operator">=</span> pen;
+      update();
+  }
+
+  <span class="type">void</span> RenderArea<span class="operator">::</span>setBrush(<span class="keyword">const</span> <span class="type"><a href="../qtgui/qbrush.html">QBrush</a></span> <span class="operator">&amp;</span>brush)
+  {
+      <span class="keyword">this</span><span class="operator">-</span><span class="operator">&gt;</span>brush <span class="operator">=</span> brush;
+      update();
+  }
+
+</pre>
+<p>每当我们想要修改<code>RenderArea</code> <code>组件的形状、笔或画刷时，都会调用公有<span lang="zh-cn">
+</span>setShape()<span lang="zh-cn">、</span></code> <code>setPen()</code> 
+<span lang="zh-cn">和</span> <code>setBrush()</code> 槽。我们根据槽参数设置形状、笔或画刷，并调用 <a href="qwidget.html#update">QWidget::update</a>() 
+使更改在 <code>RenderArea</code> 组件中可见。</p>
+<p>&nbsp;<a href="qwidget.html#update">QWidget::update</a>() 
+槽不会立即重新绘制；而是在Qt返回主事件循环时安排绘制事件进行处理。</p>
+<pre class="cpp">
+
+  <span class="type">void</span> RenderArea<span class="operator">::</span>setAntialiased(bool antialiased)
+  {
+      <span class="keyword">this</span><span class="operator">-</span><span class="operator">&gt;</span>antialiased <span class="operator">=</span> antialiased;
+      update();
+  }
+
+  <span class="type">void</span> RenderArea<span class="operator">::</span>setTransformed(bool transformed)
+  {
+      <span class="keyword">this</span><span class="operator">-</span><span class="operator">&gt;</span>transformed <span class="operator">=</span> transformed;
+      update();
+  }
+
+</pre>
+<p>使用 <code>setAntialiased()</code> <span lang="zh-cn">和</span> <code>setTransformed()</code> 
+槽，我们根据插槽参数更改属性的状态，并调用 <a href="qwidget.html#update">QWidget::update</a>() 槽以使更改在 <code>RenderArea</code> 
+组件中可见。</p>
+<pre class="cpp">
+
+  <span class="type">void</span> RenderArea<span class="operator">::</span>paintEvent(<span class="type"><a href="../qtgui/qpaintevent.html">QPaintEvent</a></span> <span class="operator">*</span> <span class="comment">/* event */</span>)
+  {
+      <span class="keyword">static</span> <span class="keyword">const</span> <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> points<span class="operator">[</span><span class="number">4</span><span class="operator">]</span> <span class="operator">=</span> {
+          <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span>(<span class="number">10</span><span class="operator">,</span> <span class="number">80</span>)<span class="operator">,</span>
+          <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span>(<span class="number">20</span><span class="operator">,</span> <span class="number">10</span>)<span class="operator">,</span>
+          <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span>(<span class="number">80</span><span class="operator">,</span> <span class="number">30</span>)<span class="operator">,</span>
+          <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span>(<span class="number">90</span><span class="operator">,</span> <span class="number">70</span>)
+      };
+
+      <span class="type"><a href="../qtcore/qrect.html">QRect</a></span> rect(<span class="number">10</span><span class="operator">,</span> <span class="number">20</span><span class="operator">,</span> <span class="number">80</span><span class="operator">,</span> <span class="number">60</span>);
+
+      <span class="type"><a href="../qtgui/qpainterpath.html">QPainterPath</a></span> path;
+      path<span class="operator">.</span>moveTo(<span class="number">20</span><span class="operator">,</span> <span class="number">80</span>);
+      path<span class="operator">.</span>lineTo(<span class="number">20</span><span class="operator">,</span> <span class="number">30</span>);
+      path<span class="operator">.</span>cubicTo(<span class="number">80</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="number">50</span><span class="operator">,</span> <span class="number">50</span><span class="operator">,</span> <span class="number">80</span><span class="operator">,</span> <span class="number">80</span>);
+
+      <span class="type">int</span> startAngle <span class="operator">=</span> <span class="number">20</span> <span class="operator">*</span> <span class="number">16</span>;
+      <span class="type">int</span> arcLength <span class="operator">=</span> <span class="number">120</span> <span class="operator">*</span> <span class="number">16</span>;
+
+</pre>
+<p>然后我们重新实现 <a href="qwidget.html#paintEvent">QWidget::paintEvent</a>() 
+函数。我们做的第一件事是创建图形对象，我们将需要绘制各种形状。</p>
+<p>我们创建一个四个 <a href="../qtcore/qpoint.html">QPoint</a>s. 的向量。我们使用这个向量来<b>渲染点</b>、<b>多段线</b>和<b>多边形</b>。然后我们创建一个 <a href="../qtcore/qrect.html">QRect</a>, 
+在平面中定义一个矩形，用作除<b><span lang="zh-cn">路径</span></b>和<b><span lang="zh-cn">像素图</span></b>之外的所有形状的边界矩形。</p>
+<p>我们还创建了一个 <a href="../qtgui/qpainterpath.html">QPainterPath</a><span lang="zh-cn">。</span> <a href="../qtgui/qpainterpath.html">QPainterPath</a> 
+类提供了一个用于绘制操作的容器，允许构造和重用图形形状。绘制路径是由许多图形构建块（如矩形、椭圆、直线和曲线）组成的对象。有关 <a href="../qtgui/qpainterpath.html">QPainterPath</a> 
+类的更多信息，请参见 <a href="qtwidgets-painting-painterpaths-example.html">Painter Paths</a> 
+路径示例。在本例中，我们创建了一条由一条直线和一条贝塞尔曲线组成的绘制路径。</p>
+<p>此外，我们定义了一个开始角度和一个弧长，当我们要绘制弧，弦和<span lang="zh-cn">饼状图</span>时将使用我们定义的角度和弧长。</p>
+<pre class="cpp">
+
+      <span class="type"><a href="../qtgui/qpainter.html">QPainter</a></span> painter(<span class="keyword">this</span>);
+      painter<span class="operator">.</span>setPen(pen);
+      painter<span class="operator">.</span>setBrush(brush);
+      <span class="keyword">if</span> (antialiased)
+          painter<span class="operator">.</span>setRenderHint(<span class="type"><a href="../qtgui/qpainter.html">QPainter</a></span><span class="operator">::</span>Antialiasing<span class="operator">,</span> <span class="keyword">true</span>);
+
+</pre>
+<p>我们为<code>RenderArea</code> 组件创建一个<span lang="zh-cn"> </span> <a href="../qtgui/qpainter.html">QPainter</a> 
+并根据 <code>RenderArea</code>的笔和画刷设置<span lang="zh-cn">画家的笔和画刷。如果选中了</span> <b>
+<span lang="zh-cn">抗锯齿</span></b> 参数选项，我们还设置了画家的渲染提示。 <a href="../qtgui/qpainter.html#RenderHint-enum">QPainter::Antialiasing</a> 
+表示，如果可能，引擎应该对图元的边进行抗锯齿处理。</p>
+<pre class="cpp">
+
+      <span class="keyword">for</span> (<span class="type">int</span> x <span class="operator">=</span> <span class="number">0</span>; x <span class="operator">&lt;</span> width(); x <span class="operator">+</span><span class="operator">=</span> <span class="number">100</span>) {
+          <span class="keyword">for</span> (<span class="type">int</span> y <span class="operator">=</span> <span class="number">0</span>; y <span class="operator">&lt;</span> height(); y <span class="operator">+</span><span class="operator">=</span> <span class="number">100</span>) {
+              painter<span class="operator">.</span>save();
+              painter<span class="operator">.</span>translate(x<span class="operator">,</span> y);
+
+</pre>
+<p>最后，我们渲染 <code>RenderArea</code>形状的多个副本。副本的数量取决于 <code>RenderArea</code> 
+组件的大小，我们使用两个 <code>for</code> 循环和组件的高度和宽度计算它们的位置。</p>
+<p>对于每个副本，我们首先保存当前的画家状态（将状态推送到堆栈上）。然后，我们使用 <a href="../qtgui/qpainter.html#translate-1">QPainter::translate</a>() 
+函数将坐标系转换到由for循环的变量确定的位置。如果我们忽略坐标系的这种转换，<span lang="zh-cn">则在</span> <code>RenderArea</code> 
+组件的左上角，形状的所有副本都将<span lang="zh-cn">重叠的</span>渲染在彼此之上。</p>
+<pre class="cpp">
+
+              <span class="keyword">if</span> (transformed) {
+                  painter<span class="operator">.</span>translate(<span class="number">50</span><span class="operator">,</span> <span class="number">50</span>);
+                  painter<span class="operator">.</span>rotate(<span class="number">60.0</span>);
+                  painter<span class="operator">.</span>scale(<span class="number">0.6</span><span class="operator">,</span> <span class="number">0.9</span>);
+                  painter<span class="operator">.</span>translate(<span class="operator">-</span><span class="number">50</span><span class="operator">,</span> <span class="operator">-</span><span class="number">50</span>);
+              }
+
+</pre>
+<p>如果选择了 <b>Transformations</b> 参数选项，则在使用 <a href="../qtgui/qpainter.html#rotate">QPainter::rotate</a>() 
+函数将坐标系顺时针旋转60度并使用 <a href="../qtgui/qpainter.html#scale">QPainter::scale</a>() 
+函数缩小其大小之前，我们会对坐标系进行额外的平移。最后，我们将坐标系转换回旋转和缩放之前的位置。</p>
+<p>现在，当渲染形状时，它将显示为在三维中旋转。</p>
+<pre class="cpp">
+
+              <span class="keyword">switch</span> (shape) {
+              <span class="keyword">case</span> Line:
+                  painter<span class="operator">.</span>drawLine(rect<span class="operator">.</span>bottomLeft()<span class="operator">,</span> rect<span class="operator">.</span>topRight());
+                  <span class="keyword">break</span>;
+              <span class="keyword">case</span> Points:
+                  painter<span class="operator">.</span>drawPoints(points<span class="operator">,</span> <span class="number">4</span>);
+                  <span class="keyword">break</span>;
+              <span class="keyword">case</span> Polyline:
+                  painter<span class="operator">.</span>drawPolyline(points<span class="operator">,</span> <span class="number">4</span>);
+                  <span class="keyword">break</span>;
+              <span class="keyword">case</span> Polygon:
+                  painter<span class="operator">.</span>drawPolygon(points<span class="operator">,</span> <span class="number">4</span>);
+                  <span class="keyword">break</span>;
+              <span class="keyword">case</span> Rect:
+                  painter<span class="operator">.</span>drawRect(rect);
+                  <span class="keyword">break</span>;
+              <span class="keyword">case</span> RoundedRect:
+                  painter<span class="operator">.</span>drawRoundedRect(rect<span class="operator">,</span> <span class="number">25</span><span class="operator">,</span> <span class="number">25</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>RelativeSize);
+                  <span class="keyword">break</span>;
+              <span class="keyword">case</span> Ellipse:
+                  painter<span class="operator">.</span>drawEllipse(rect);
+                  <span class="keyword">break</span>;
+              <span class="keyword">case</span> Arc:
+                  painter<span class="operator">.</span>drawArc(rect<span class="operator">,</span> startAngle<span class="operator">,</span> arcLength);
+                  <span class="keyword">break</span>;
+              <span class="keyword">case</span> Chord:
+                  painter<span class="operator">.</span>drawChord(rect<span class="operator">,</span> startAngle<span class="operator">,</span> arcLength);
+                  <span class="keyword">break</span>;
+              <span class="keyword">case</span> Pie:
+                  painter<span class="operator">.</span>drawPie(rect<span class="operator">,</span> startAngle<span class="operator">,</span> arcLength);
+                  <span class="keyword">break</span>;
+              <span class="keyword">case</span> Path:
+                  painter<span class="operator">.</span>drawPath(path);
+                  <span class="keyword">break</span>;
+              <span class="keyword">case</span> Text:
+                  painter<span class="operator">.</span>drawText(rect<span class="operator">,</span>
+                                   <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>AlignCenter<span class="operator">,</span>
+                                   tr(<span class="string">&quot;Qt by\nThe Qt Company&quot;</span>));
+                  <span class="keyword">break</span>;
+              <span class="keyword">case</span> Pixmap:
+                  painter<span class="operator">.</span>drawPixmap(<span class="number">10</span><span class="operator">,</span> <span class="number">10</span><span class="operator">,</span> pixmap);
+              }
+
+</pre>
+<p>接下来，我们显示 <code>RenderArea</code>的形状，并使用相关的 <a href="../qtgui/qpainter.html">QPainter</a> 
+绘图功能进行渲染：</p>
+<ul>
+<li><a href="../qtgui/qpainter.html#drawLine-1">QPainter::drawLine</a>(),</li>
+<li><a href="../qtgui/qpainter.html#drawPoints-2">QPainter::drawPoints</a>(),</li>
+<li><a href="../qtgui/qpainter.html#drawPolyline-2">QPainter::drawPolyline</a>(),</li>
+<li><a href="../qtgui/qpainter.html#drawPolygon-2">QPainter::drawPolygon</a>(),</li>
+<li><a href="../qtgui/qpainter.html#drawRect-2">QPainter::drawRect</a>(),</li>
+<li><a href="../qtgui/qpainter.html#drawRoundedRect-2">QPainter::drawRoundedRect</a>(),</li>
+<li><a href="../qtgui/qpainter.html#drawEllipse-4">QPainter::drawEllipse</a>(),</li>
+<li><a href="../qtgui/qpainter.html#drawArc-1">QPainter::drawArc</a>(),</li>
+<li><a href="../qtgui/qpainter.html#drawChord-2">QPainter::drawChord</a>(),</li>
+<li><a href="../qtgui/qpainter.html#drawPie-2">QPainter::drawPie</a>(),</li>
+<li><a href="../qtgui/qpainter.html#drawPath">QPainter::drawPath</a>(),</li>
+<li><a href="../qtgui/qpainter.html#drawText-1">QPainter::drawText</a>() or</li>
+<li><a href="../qtgui/qpainter.html#drawPixmap-7">QPainter::drawPixmap</a>()</li>
+</ul>
+<p>
+在开始渲染之前，我们保存了当前的painter状态（将状态推送到堆栈上）。其原理是我们计算每个形状副本相对于坐标系中同一点的位置。在转换坐标系时，除非在开始转换过程之前保存当前的绘制状态，否则我们将丢失这一点的位置。</p>
+<pre class="cpp">
+
+              painter<span class="operator">.</span>restore();
+          }
+      }
+
+      painter<span class="operator">.</span>setRenderHint(<span class="type"><a href="../qtgui/qpainter.html">QPainter</a></span><span class="operator">::</span>Antialiasing<span class="operator">,</span> <span class="keyword">false</span>);
+      painter<span class="operator">.</span>setPen(palette()<span class="operator">.</span>dark()<span class="operator">.</span>color());
+      painter<span class="operator">.</span>setBrush(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>NoBrush);
+      painter<span class="operator">.</span>drawRect(<span class="type"><a href="../qtcore/qrect.html">QRect</a></span>(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> width() <span class="operator">-</span> <span class="number">1</span><span class="operator">,</span> height() <span class="operator">-</span> <span class="number">1</span>));
+  }
+
+</pre>
+<p>然后，当我们完成对形状副本的渲染时，我们可以使用 <a href="../qtgui/qpainter.html#restore">QPainter::restore</a>() 
+函数恢复原始绘制状态及其关联的坐标系。通过这种方式，我们可以确保下一个形状副本将渲染在正确的位置。</p>
+<p>我们可以使用 <a href="../qtgui/qpainter.html#translate-1">QPainter::translate</a>() 
+将坐标系转换回原来的位置，而不是保存绘制状态。但是，由于我们除了转换坐标系（当选中“转换参数”选项时）同时旋转和缩放坐标系之外，最简单的解决方案是保存当前的绘制状态。 </p>
+<p><span lang="zh-cn">文件：</span></p>
+<ul>
+<li><a href="qtwidgets-painting-basicdrawing-basicdrawing-pro.html">painting/basicdrawing/basicdrawing.pro</a></li>
+<li><a href="qtwidgets-painting-basicdrawing-basicdrawing-qrc.html">painting/basicdrawing/basicdrawing.qrc</a></li>
+<li><a href="qtwidgets-painting-basicdrawing-main-cpp.html">painting/basicdrawing/main.cpp</a></li>
+<li><a href="qtwidgets-painting-basicdrawing-renderarea-cpp.html">painting/basicdrawing/renderarea.cpp</a></li>
+<li><a href="qtwidgets-painting-basicdrawing-renderarea-h.html">painting/basicdrawing/renderarea.h</a></li>
+<li><a href="qtwidgets-painting-basicdrawing-window-cpp.html">painting/basicdrawing/window.cpp</a></li>
+<li><a href="qtwidgets-painting-basicdrawing-window-h.html">painting/basicdrawing/window.h</a></li>
+</ul>
+<p><span lang="zh-cn">图片：</span></p>
+<ul>
+<li><a href="images/used-in-examples/painting/basicdrawing/images/brick.png">painting/basicdrawing/images/brick.png</a></li>
+<li><a href="images/used-in-examples/painting/basicdrawing/images/qt-logo.png">painting/basicdrawing/images/qt-logo.png</a></li>
+</ul>
+</div>
+<!-- @@@painting/basicdrawing -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
