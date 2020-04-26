@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>encodingdialog.cpp Example File | Qt Widgets 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtwidgets-index.html">Qt Widgets</a></td><td ><a href="qtwidgets-tools-codecs-example.html">Text Codecs Example</a></td><td >encodingdialog.cpp Example File</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtwidgets-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">encodingdialog.cpp Example File</h1>
+<span class="subtitle">tools/codecs/encodingdialog.cpp</span>
+<!-- $$$tools/codecs/encodingdialog.cpp-description -->
+<div class="descr"> <a name="details"></a>
+<pre class="cpp">
+
+  <span class="comment">/****************************************************************************
+  **
+  ** Copyright (C) 2018 The Qt Company Ltd.
+  ** Contact: https://www.qt.io/licensing/
+  **
+  ** This file is part of the examples of the Qt Toolkit.
+  **
+  ** $QT_BEGIN_LICENSE:BSD$
+  ** Commercial License Usage
+  ** Licensees holding valid commercial Qt licenses may use this file in
+  ** accordance with the commercial license agreement provided with the
+  ** Software or, alternatively, in accordance with the terms contained in
+  ** a written agreement between you and The Qt Company. For licensing terms
+  ** and conditions see https://www.qt.io/terms-conditions. For further
+  ** information use the contact form at https://www.qt.io/contact-us.
+  **
+  ** BSD License Usage
+  ** Alternatively, you may use this file under the terms of the BSD license
+  ** as follows:
+  **
+  ** &quot;Redistribution and use in source and binary forms, with or without
+  ** modification, are permitted provided that the following conditions are
+  ** met:
+  **   * Redistributions of source code must retain the above copyright
+  **     notice, this list of conditions and the following disclaimer.
+  **   * Redistributions in binary form must reproduce the above copyright
+  **     notice, this list of conditions and the following disclaimer in
+  **     the documentation and/or other materials provided with the
+  **     distribution.
+  **   * Neither the name of The Qt Company Ltd nor the names of its
+  **     contributors may be used to endorse or promote products derived
+  **     from this software without specific prior written permission.
+  **
+  **
+  ** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  ** &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  ** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  ** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  ** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  ** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  ** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  ** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  ** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  ** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&quot;
+  **
+  ** $QT_END_LICENSE$
+  **
+  ****************************************************************************/</span>
+
+  <span class="preprocessor">#include &quot;encodingdialog.h&quot;</span>
+
+  <span class="preprocessor">#if QT_CONFIG(action)</span>
+  <span class="preprocessor">#  include &lt;QAction&gt;</span>
+  <span class="preprocessor">#endif</span>
+  <span class="preprocessor">#include &lt;QDialogButtonBox&gt;</span>
+  <span class="preprocessor">#include &lt;QFormLayout&gt;</span>
+  <span class="preprocessor">#include &lt;QLabel&gt;</span>
+  <span class="preprocessor">#include &lt;QLineEdit&gt;</span>
+  <span class="preprocessor">#include &lt;QVBoxLayout&gt;</span>
+
+  <span class="preprocessor">#if QT_CONFIG(clipboard)</span>
+  <span class="preprocessor">#  include &lt;QGuiApplication&gt;</span>
+  <span class="preprocessor">#  include &lt;QClipboard&gt;</span>
+  <span class="preprocessor">#endif</span>
+
+  <span class="preprocessor">#include &lt;QTextStream&gt;</span>
+
+  <span class="comment">// Helpers for formatting character sequences</span>
+
+  <span class="comment">// Format a special character like '\x0a'</span>
+  <span class="keyword">template</span> <span class="operator">&lt;</span><span class="keyword">class</span> Int<span class="operator">&gt;</span>
+  <span class="keyword">static</span> <span class="type">void</span> formatEscapedNumber(<span class="type"><a href="../qtcore/qtextstream.html">QTextStream</a></span> <span class="operator">&amp;</span>str<span class="operator">,</span> Int value<span class="operator">,</span> <span class="type">int</span> base<span class="operator">,</span>
+                                  <span class="type">int</span> width <span class="operator">=</span> <span class="number">0</span><span class="operator">,</span><span class="type">char</span> prefix <span class="operator">=</span> <span class="number">0</span>)
+  {
+      str <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="char">'\\'</span>;
+      <span class="keyword">if</span> (prefix)
+          str <span class="operator">&lt;</span><span class="operator">&lt;</span> prefix;
+      <span class="keyword">const</span> <span class="keyword">auto</span> oldPadChar <span class="operator">=</span> str<span class="operator">.</span>padChar();
+      <span class="keyword">const</span> <span class="keyword">auto</span> oldFieldWidth <span class="operator">=</span> str<span class="operator">.</span>fieldWidth();
+      <span class="keyword">const</span> <span class="keyword">auto</span> oldFieldAlignment <span class="operator">=</span> str<span class="operator">.</span>fieldAlignment();
+      <span class="keyword">const</span> <span class="keyword">auto</span> oldIntegerBase <span class="operator">=</span> str<span class="operator">.</span>integerBase();
+      str<span class="operator">.</span>setPadChar(QLatin1Char(<span class="char">'0'</span>));
+      str<span class="operator">.</span>setFieldWidth(width);
+      str<span class="operator">.</span>setFieldAlignment(<span class="type"><a href="../qtcore/qtextstream.html">QTextStream</a></span><span class="operator">::</span>AlignRight);
+      str<span class="operator">.</span>setIntegerBase(base);
+      str <span class="operator">&lt;</span><span class="operator">&lt;</span> value;
+      str<span class="operator">.</span>setIntegerBase(oldIntegerBase);
+      str<span class="operator">.</span>setFieldAlignment(oldFieldAlignment);
+      str<span class="operator">.</span>setFieldWidth(oldFieldWidth);
+      str<span class="operator">.</span>setPadChar(oldPadChar);
+  }
+
+  <span class="keyword">template</span> <span class="operator">&lt;</span><span class="keyword">class</span> Int<span class="operator">&gt;</span>
+  <span class="keyword">static</span> bool formatSpecialCharacter(<span class="type"><a href="../qtcore/qtextstream.html">QTextStream</a></span> <span class="operator">&amp;</span>str<span class="operator">,</span> Int value)
+  {
+      bool result <span class="operator">=</span> <span class="keyword">true</span>;
+      <span class="keyword">switch</span> (value) {
+      <span class="keyword">case</span> <span class="char">'\\'</span>:
+          str <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;\\\\&quot;</span>;
+          <span class="keyword">break</span>;
+      <span class="keyword">case</span> <span class="char">'\&quot;'</span>:
+          str <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;\\\&quot;&quot;</span>;
+          <span class="keyword">break</span>;
+      <span class="keyword">case</span> <span class="char">'\n'</span>:
+          str <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;\\n&quot;</span>;
+          <span class="keyword">break</span>;
+      <span class="keyword">default</span>:
+          result <span class="operator">=</span> <span class="keyword">false</span>;
+          <span class="keyword">break</span>;
+      }
+      <span class="keyword">return</span> result;
+  }
+
+  <span class="comment">// Format a sequence of characters (QChar, ushort (UTF-16), uint (UTF-32)</span>
+  <span class="comment">// or just char (Latin1, Utf-8)) with the help of traits specifying</span>
+  <span class="comment">// how to obtain the code for checking the printable-ness and how to</span>
+  <span class="comment">// stream out the plain ASCII values.</span>
+
+  <span class="keyword">template</span> <span class="operator">&lt;</span>EncodingDialog<span class="operator">::</span>Encoding<span class="operator">&gt;</span>
+  <span class="keyword">struct</span> FormattingTraits
+  {
+  };
+
+  <span class="keyword">template</span> <span class="operator">&lt;</span><span class="operator">&gt;</span>
+  <span class="keyword">struct</span> FormattingTraits<span class="operator">&lt;</span>EncodingDialog<span class="operator">::</span>Unicode<span class="operator">&gt;</span>
+  {
+      <span class="keyword">static</span> <span class="type"><a href="../qtcore/qtglobal.html#ushort-typedef">ushort</a></span> code(<span class="type"><a href="../qtcore/qchar.html">QChar</a></span> c) { <span class="keyword">return</span> c<span class="operator">.</span>unicode(); }
+      <span class="keyword">static</span> <span class="type">char</span> toAscii(<span class="type"><a href="../qtcore/qchar.html">QChar</a></span> c) { <span class="keyword">return</span> c<span class="operator">.</span>toLatin1(); }
+  };
+
+  <span class="keyword">template</span> <span class="operator">&lt;</span><span class="operator">&gt;</span>
+  <span class="keyword">struct</span> FormattingTraits<span class="operator">&lt;</span>EncodingDialog<span class="operator">::</span>Utf8<span class="operator">&gt;</span>
+  {
+      <span class="keyword">static</span> <span class="type"><a href="../qtcore/qtglobal.html#ushort-typedef">ushort</a></span> code(<span class="type">char</span> c) { <span class="keyword">return</span> <span class="type"><a href="../qtcore/qtglobal.html#uchar-typedef">uchar</a></span>(c); }
+      <span class="keyword">static</span> <span class="type">char</span> toAscii(<span class="type">char</span> c) { <span class="keyword">return</span> c; }
+  };
+
+  <span class="keyword">template</span> <span class="operator">&lt;</span><span class="operator">&gt;</span>
+  <span class="keyword">struct</span> FormattingTraits<span class="operator">&lt;</span>EncodingDialog<span class="operator">::</span>Utf16<span class="operator">&gt;</span>
+  {
+      <span class="keyword">static</span> <span class="type"><a href="../qtcore/qtglobal.html#ushort-typedef">ushort</a></span> code(<span class="type"><a href="../qtcore/qtglobal.html#ushort-typedef">ushort</a></span> c) { <span class="keyword">return</span> c; }
+      <span class="keyword">static</span> <span class="type">char</span> toAscii(<span class="type"><a href="../qtcore/qtglobal.html#ushort-typedef">ushort</a></span> c) { <span class="keyword">return</span> <span class="type">char</span>(c); }
+  };
+
+  <span class="keyword">template</span> <span class="operator">&lt;</span><span class="operator">&gt;</span>
+  <span class="keyword">struct</span> FormattingTraits<span class="operator">&lt;</span>EncodingDialog<span class="operator">::</span>Utf32<span class="operator">&gt;</span>
+  {
+      <span class="keyword">static</span> <span class="type"><a href="../qtcore/qtglobal.html#uint-typedef">uint</a></span> code(<span class="type"><a href="../qtcore/qtglobal.html#uint-typedef">uint</a></span> c) { <span class="keyword">return</span> c; }
+      <span class="keyword">static</span> <span class="type">char</span> toAscii(<span class="type"><a href="../qtcore/qtglobal.html#uint-typedef">uint</a></span> c) { <span class="keyword">return</span> <span class="type">char</span>(c); }
+  };
+
+  <span class="keyword">template</span> <span class="operator">&lt;</span><span class="operator">&gt;</span>
+  <span class="keyword">struct</span> FormattingTraits<span class="operator">&lt;</span>EncodingDialog<span class="operator">::</span>Latin1<span class="operator">&gt;</span>
+  {
+      <span class="keyword">static</span> <span class="type"><a href="../qtcore/qtglobal.html#uchar-typedef">uchar</a></span> code(<span class="type">char</span> c) { <span class="keyword">return</span> <span class="type"><a href="../qtcore/qtglobal.html#uchar-typedef">uchar</a></span>(c); }
+      <span class="keyword">static</span> <span class="type">char</span> toAscii(<span class="type">char</span>  c) { <span class="keyword">return</span> c; }
+  };
+
+  <span class="keyword">static</span> bool isHexDigit(<span class="type">char</span> c)
+  {
+      <span class="keyword">return</span> (c <span class="operator">&gt;</span><span class="operator">=</span> <span class="char">'0'</span> <span class="operator">&amp;</span><span class="operator">&amp;</span> c <span class="operator">&lt;</span><span class="operator">=</span> <span class="char">'9'</span>) <span class="operator">|</span><span class="operator">|</span> (c <span class="operator">&gt;</span><span class="operator">=</span> <span class="char">'a'</span> <span class="operator">&amp;</span><span class="operator">&amp;</span> c <span class="operator">&lt;</span><span class="operator">=</span> <span class="char">'f'</span>)
+          <span class="operator">|</span><span class="operator">|</span> (c <span class="operator">&gt;</span><span class="operator">=</span> <span class="char">'A'</span> <span class="operator">&amp;</span><span class="operator">&amp;</span> c <span class="operator">&lt;</span><span class="operator">=</span> <span class="char">'F'</span>);
+  }
+
+  <span class="keyword">template</span> <span class="operator">&lt;</span>EncodingDialog<span class="operator">::</span>Encoding encoding<span class="operator">,</span> <span class="keyword">class</span> Iterator<span class="operator">&gt;</span>
+  <span class="keyword">static</span> <span class="type">void</span> formatStringSequence(<span class="type"><a href="../qtcore/qtextstream.html">QTextStream</a></span> <span class="operator">&amp;</span>str<span class="operator">,</span> Iterator i1<span class="operator">,</span> Iterator i2<span class="operator">,</span>
+                                   <span class="type">int</span> escapeIntegerBase<span class="operator">,</span> <span class="type">int</span> escapeWidth<span class="operator">,</span>
+                                   <span class="type">char</span> escapePrefix <span class="operator">=</span> <span class="number">0</span>)
+  {
+      str <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="char">'&quot;'</span>;
+      bool separateHexEscape <span class="operator">=</span> <span class="keyword">false</span>;
+      <span class="keyword">for</span> (; i1 <span class="operator">!</span><span class="operator">=</span> i2; <span class="operator">+</span><span class="operator">+</span>i1) {
+          <span class="keyword">const</span> <span class="keyword">auto</span> code <span class="operator">=</span> FormattingTraits<span class="operator">&lt;</span>encoding<span class="operator">&gt;</span><span class="operator">::</span>code(<span class="operator">*</span>i1);
+          <span class="keyword">if</span> (code <span class="operator">&gt;</span><span class="operator">=</span> <span class="number">0x80</span>) {
+              formatEscapedNumber(str<span class="operator">,</span> code<span class="operator">,</span> escapeIntegerBase<span class="operator">,</span> escapeWidth<span class="operator">,</span> escapePrefix);
+              separateHexEscape <span class="operator">=</span> escapeIntegerBase <span class="operator">=</span><span class="operator">=</span> <span class="number">16</span> <span class="operator">&amp;</span><span class="operator">&amp;</span> escapeWidth <span class="operator">=</span><span class="operator">=</span> <span class="number">0</span>;
+          } <span class="keyword">else</span> {
+              <span class="keyword">if</span> (<span class="operator">!</span>formatSpecialCharacter(str<span class="operator">,</span> code)) {
+                  <span class="keyword">const</span> <span class="type">char</span> c <span class="operator">=</span> FormattingTraits<span class="operator">&lt;</span>encoding<span class="operator">&gt;</span><span class="operator">::</span>toAscii(<span class="operator">*</span>i1);
+                  <span class="comment">// For variable width/hex: Terminate the literal to stop digit parsing</span>
+                  <span class="comment">// (&quot;\x12&quot; &quot;34...&quot;).</span>
+                  <span class="keyword">if</span> (separateHexEscape <span class="operator">&amp;</span><span class="operator">&amp;</span> isHexDigit(c))
+                      str <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;\&quot; \&quot;&quot;</span>;
+                  str <span class="operator">&lt;</span><span class="operator">&lt;</span> c;
+              }
+              separateHexEscape <span class="operator">=</span> <span class="keyword">false</span>;
+          }
+      }
+      str <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="char">'&quot;'</span>;
+  }
+
+  <span class="keyword">static</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> encodedString(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>value<span class="operator">,</span> EncodingDialog<span class="operator">::</span>Encoding e)
+  {
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> result;
+      <span class="type"><a href="../qtcore/qtextstream.html">QTextStream</a></span> str(<span class="operator">&amp;</span>result);
+      <span class="keyword">switch</span> (e) {
+      <span class="keyword">case</span> EncodingDialog<span class="operator">::</span>Unicode:
+          formatStringSequence<span class="operator">&lt;</span>EncodingDialog<span class="operator">::</span>Unicode<span class="operator">&gt;</span>(str<span class="operator">,</span> value<span class="operator">.</span>cbegin()<span class="operator">,</span> value<span class="operator">.</span>cend()<span class="operator">,</span>
+                                                        <span class="number">16</span><span class="operator">,</span> <span class="number">4</span><span class="operator">,</span> <span class="char">'u'</span>);
+          <span class="keyword">break</span>;
+      <span class="keyword">case</span> EncodingDialog<span class="operator">::</span>Utf8: {
+          <span class="keyword">const</span> <span class="type"><a href="../qtcore/qbytearray.html">QByteArray</a></span> utf8 <span class="operator">=</span> value<span class="operator">.</span>toUtf8();
+          str <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;u8&quot;</span>;
+          formatStringSequence<span class="operator">&lt;</span>EncodingDialog<span class="operator">::</span>Utf8<span class="operator">&gt;</span>(str<span class="operator">,</span> utf8<span class="operator">.</span>cbegin()<span class="operator">,</span> utf8<span class="operator">.</span>cend()<span class="operator">,</span>
+                                                     <span class="number">8</span><span class="operator">,</span> <span class="number">3</span>);
+      }
+          <span class="keyword">break</span>;
+      <span class="keyword">case</span> EncodingDialog<span class="operator">::</span>Utf16: {
+          <span class="keyword">auto</span> utf16 <span class="operator">=</span> value<span class="operator">.</span>utf16();
+          <span class="keyword">auto</span> utf16End <span class="operator">=</span> utf16 <span class="operator">+</span> value<span class="operator">.</span>size();
+          str <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="char">'u'</span>;
+          formatStringSequence<span class="operator">&lt;</span>EncodingDialog<span class="operator">::</span>Utf16<span class="operator">&gt;</span>(str<span class="operator">,</span> utf16<span class="operator">,</span> utf16End<span class="operator">,</span>
+                                                      <span class="number">16</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="char">'x'</span>);
+      }
+          <span class="keyword">break</span>;
+      <span class="keyword">case</span> EncodingDialog<span class="operator">::</span>Utf32: {
+          <span class="keyword">auto</span> utf32 <span class="operator">=</span> value<span class="operator">.</span>toUcs4();
+          str <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="char">'U'</span>;
+          formatStringSequence<span class="operator">&lt;</span>EncodingDialog<span class="operator">::</span>Utf32<span class="operator">&gt;</span>(str<span class="operator">,</span> utf32<span class="operator">.</span>cbegin()<span class="operator">,</span> utf32<span class="operator">.</span>cend()<span class="operator">,</span>
+                                                      <span class="number">16</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="char">'x'</span>);
+      }
+          <span class="keyword">break</span>;
+      <span class="keyword">case</span> EncodingDialog<span class="operator">::</span>Latin1: {
+          <span class="keyword">const</span> <span class="type"><a href="../qtcore/qbytearray.html">QByteArray</a></span> latin1 <span class="operator">=</span> value<span class="operator">.</span>toLatin1();
+          formatStringSequence<span class="operator">&lt;</span>EncodingDialog<span class="operator">::</span>Latin1<span class="operator">&gt;</span>(str<span class="operator">,</span> latin1<span class="operator">.</span>cbegin()<span class="operator">,</span> latin1<span class="operator">.</span>cend()<span class="operator">,</span>
+                                                       <span class="number">16</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="char">'x'</span>);
+      }
+          <span class="keyword">break</span>;
+      <span class="keyword">case</span> EncodingDialog<span class="operator">::</span>EncodingCount:
+          <span class="keyword">break</span>;
+      }
+      <span class="keyword">return</span> result;
+  }
+
+  <span class="comment">// Dialog helpers</span>
+
+  <span class="keyword">static</span> <span class="keyword">const</span> <span class="type">char</span> <span class="operator">*</span>encodingLabels<span class="operator">[</span><span class="operator">]</span>
+  {
+      QT_TRANSLATE_NOOP(<span class="string">&quot;EncodingDialog&quot;</span><span class="operator">,</span> <span class="string">&quot;Unicode:&quot;</span>)<span class="operator">,</span>
+      QT_TRANSLATE_NOOP(<span class="string">&quot;EncodingDialog&quot;</span><span class="operator">,</span> <span class="string">&quot;UTF-8:&quot;</span>)<span class="operator">,</span>
+      QT_TRANSLATE_NOOP(<span class="string">&quot;EncodingDialog&quot;</span><span class="operator">,</span> <span class="string">&quot;UTF-16:&quot;</span>)<span class="operator">,</span>
+      QT_TRANSLATE_NOOP(<span class="string">&quot;EncodingDialog&quot;</span><span class="operator">,</span> <span class="string">&quot;UTF-32:&quot;</span>)<span class="operator">,</span>
+      QT_TRANSLATE_NOOP(<span class="string">&quot;EncodingDialog&quot;</span><span class="operator">,</span> <span class="string">&quot;Latin1:&quot;</span>)
+  };
+
+  <span class="keyword">static</span> <span class="keyword">const</span> <span class="type">char</span> <span class="operator">*</span>encodingToolTips<span class="operator">[</span><span class="operator">]</span>
+  {
+      QT_TRANSLATE_NOOP(<span class="string">&quot;EncodingDialog&quot;</span><span class="operator">,</span> <span class="string">&quot;Unicode points for use with any encoding (C++, Python)&quot;</span>)<span class="operator">,</span>
+      QT_TRANSLATE_NOOP(<span class="string">&quot;EncodingDialog&quot;</span><span class="operator">,</span> <span class="string">&quot;QString::fromUtf8()&quot;</span>)<span class="operator">,</span>
+      QT_TRANSLATE_NOOP(<span class="string">&quot;EncodingDialog&quot;</span><span class="operator">,</span> <span class="string">&quot;QStringViewLiteral(), wchar_t on Windows&quot;</span>)<span class="operator">,</span>
+      QT_TRANSLATE_NOOP(<span class="string">&quot;EncodingDialog&quot;</span><span class="operator">,</span> <span class="string">&quot;wchar_t on Unix (Ucs4)&quot;</span>)<span class="operator">,</span>
+      QT_TRANSLATE_NOOP(<span class="string">&quot;EncodingDialog&quot;</span><span class="operator">,</span> <span class="string">&quot;QLatin1String&quot;</span>)
+  };
+
+  <span class="comment">// A read-only line edit with a tool button to copy the contents</span>
+  <span class="keyword">class</span> DisplayLineEdit : <span class="keyword">public</span> <span class="type"><a href="qlineedit.html">QLineEdit</a></span>
+  {
+      Q_OBJECT
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> DisplayLineEdit(<span class="keyword">const</span> <span class="type"><a href="../qtgui/qicon.html">QIcon</a></span> <span class="operator">&amp;</span>icon<span class="operator">,</span> <span class="type"><a href="qwidget.html">QWidget</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+  <span class="keyword">public</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> copyAll();
+  };
+
+  DisplayLineEdit<span class="operator">::</span>DisplayLineEdit(<span class="keyword">const</span> <span class="type"><a href="../qtgui/qicon.html">QIcon</a></span> <span class="operator">&amp;</span>icon<span class="operator">,</span> <span class="type"><a href="qwidget.html">QWidget</a></span> <span class="operator">*</span>parent) :
+      <span class="type"><a href="qlineedit.html">QLineEdit</a></span>(parent)
+  {
+      setReadOnly(<span class="keyword">true</span>);
+  <span class="preprocessor">#if QT_CONFIG(clipboard) &amp;&amp; QT_CONFIG(action)</span>
+      <span class="keyword">auto</span> copyAction <span class="operator">=</span> addAction(icon<span class="operator">,</span> <span class="type"><a href="qlineedit.html">QLineEdit</a></span><span class="operator">::</span>TrailingPosition);
+      connect(copyAction<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>DisplayLineEdit<span class="operator">::</span>copyAll);
+  <span class="preprocessor">#endif</span>
+  }
+
+  <span class="type">void</span> DisplayLineEdit<span class="operator">::</span>copyAll()
+  {
+  <span class="preprocessor">#if QT_CONFIG(clipboard)</span>
+      <span class="type"><a href="../qtgui/qguiapplication.html">QGuiApplication</a></span><span class="operator">::</span>clipboard()<span class="operator">-</span><span class="operator">&gt;</span>setText(text());
+  <span class="preprocessor">#endif</span>
+  }
+
+  <span class="keyword">static</span> <span class="type">void</span> addFormLayoutRow(<span class="type"><a href="qformlayout.html">QFormLayout</a></span> <span class="operator">*</span>formLayout<span class="operator">,</span> <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>text<span class="operator">,</span>
+                               <span class="type"><a href="qwidget.html">QWidget</a></span> <span class="operator">*</span>w<span class="operator">,</span> <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>toolTip)
+  {
+      <span class="keyword">auto</span> label <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qlabel.html">QLabel</a></span>(text);
+      label<span class="operator">-</span><span class="operator">&gt;</span>setToolTip(toolTip);
+      w<span class="operator">-</span><span class="operator">&gt;</span>setToolTip(toolTip);
+      label<span class="operator">-</span><span class="operator">&gt;</span>setBuddy(w);
+      formLayout<span class="operator">-</span><span class="operator">&gt;</span>addRow(label<span class="operator">,</span> w);
+  }
+
+  EncodingDialog<span class="operator">::</span>EncodingDialog(<span class="type"><a href="qwidget.html">QWidget</a></span> <span class="operator">*</span>parent) :
+      <span class="type"><a href="qdialog.html">QDialog</a></span>(parent)
+  {
+      setWindowFlags(windowFlags() <span class="operator">&amp;</span> <span class="operator">~</span><span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>WindowContextHelpButtonHint);
+      setWindowTitle(tr(<span class="string">&quot;Encodings&quot;</span>));
+
+      <span class="keyword">auto</span> formLayout <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qformlayout.html">QFormLayout</a></span>;
+      <span class="keyword">auto</span> sourceLineEdit <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qlineedit.html">QLineEdit</a></span>(<span class="keyword">this</span>);
+      sourceLineEdit<span class="operator">-</span><span class="operator">&gt;</span>setClearButtonEnabled(<span class="keyword">true</span>);
+      connect(sourceLineEdit<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qlineedit.html">QLineEdit</a></span><span class="operator">::</span>textChanged<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>EncodingDialog<span class="operator">::</span>textChanged);
+
+      addFormLayoutRow(formLayout<span class="operator">,</span> tr(<span class="string">&quot;&amp;Source:&quot;</span>)<span class="operator">,</span> sourceLineEdit<span class="operator">,</span> tr(<span class="string">&quot;Enter text&quot;</span>));
+
+      <span class="keyword">const</span> <span class="keyword">auto</span> copyIcon <span class="operator">=</span> <span class="type"><a href="../qtgui/qicon.html">QIcon</a></span><span class="operator">::</span>fromTheme(QLatin1String(<span class="string">&quot;edit-copy&quot;</span>)<span class="operator">,</span>
+                                             <span class="type"><a href="../qtgui/qicon.html">QIcon</a></span>(QLatin1String(<span class="string">&quot;:/images/editcopy&quot;</span>)));
+      <span class="keyword">for</span> (<span class="type">int</span> i <span class="operator">=</span> <span class="number">0</span>; i <span class="operator">&lt;</span> EncodingCount; <span class="operator">+</span><span class="operator">+</span>i) {
+          m_lineEdits<span class="operator">[</span>i<span class="operator">]</span> <span class="operator">=</span> <span class="keyword">new</span> DisplayLineEdit(copyIcon<span class="operator">,</span> <span class="keyword">this</span>);
+          addFormLayoutRow(formLayout<span class="operator">,</span> tr(encodingLabels<span class="operator">[</span>i<span class="operator">]</span>)<span class="operator">,</span>
+                           m_lineEdits<span class="operator">[</span>i<span class="operator">]</span><span class="operator">,</span> tr(encodingToolTips<span class="operator">[</span>i<span class="operator">]</span>));
+      }
+
+      <span class="keyword">auto</span> mainLayout <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qvboxlayout.html">QVBoxLayout</a></span>(<span class="keyword">this</span>);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addLayout(formLayout);
+      <span class="keyword">auto</span> buttonBox <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qdialogbuttonbox.html">QDialogButtonBox</a></span>(<span class="type"><a href="qdialogbuttonbox.html">QDialogButtonBox</a></span><span class="operator">::</span>Close);
+      connect(buttonBox<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qdialogbuttonbox.html">QDialogButtonBox</a></span><span class="operator">::</span>rejected<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qdialog.html">QDialog</a></span><span class="operator">::</span>reject);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(buttonBox);
+  }
+
+  <span class="type">void</span> EncodingDialog<span class="operator">::</span>textChanged(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>t)
+  {
+      <span class="keyword">if</span> (t<span class="operator">.</span>isEmpty()) {
+          <span class="keyword">for</span> (<span class="keyword">auto</span> lineEdit : m_lineEdits)
+              lineEdit<span class="operator">-</span><span class="operator">&gt;</span>clear();
+      } <span class="keyword">else</span> {
+           <span class="keyword">for</span> (<span class="type">int</span> i <span class="operator">=</span> <span class="number">0</span>; i <span class="operator">&lt;</span> EncodingCount; <span class="operator">+</span><span class="operator">+</span>i)
+               m_lineEdits<span class="operator">[</span>i<span class="operator">]</span><span class="operator">-</span><span class="operator">&gt;</span>setText(encodedString(t<span class="operator">,</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span>Encoding<span class="operator">&gt;</span>(i)));
+      }
+  }
+
+  <span class="preprocessor">#include &quot;encodingdialog.moc&quot;</span>
+
+</pre>
+</div>
+<!-- @@@tools/codecs/encodingdialog.cpp -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

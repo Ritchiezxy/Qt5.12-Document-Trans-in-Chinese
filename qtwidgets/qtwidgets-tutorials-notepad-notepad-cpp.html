@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>notepad.cpp Example File | Qt Widgets 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtwidgets-index.html">Qt Widgets</a></td><td ><a href="qtwidgets-tutorials-notepad-example.html">Getting Started Programming with Qt Widgets</a></td><td >notepad.cpp Example File</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtwidgets-index.html">Qt 5.12.3 Reference Documentation</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">notepad.cpp Example File</h1>
+<span class="subtitle">tutorials/notepad/notepad.cpp</span>
+<!-- $$$tutorials/notepad/notepad.cpp-description -->
+<div class="descr"> <a name="details"></a>
+<pre class="cpp">
+
+  <span class="comment">/****************************************************************************
+  **
+  ** Copyright (C) 2017 The Qt Company Ltd.
+  ** Contact: https://www.qt.io/licensing/
+  **
+  ** This file is part of the documentation of the Qt Toolkit.
+  **
+  ** $QT_BEGIN_LICENSE:BSD$
+  ** Commercial License Usage
+  ** Licensees holding valid commercial Qt licenses may use this file in
+  ** accordance with the commercial license agreement provided with the
+  ** Software or, alternatively, in accordance with the terms contained in
+  ** a written agreement between you and The Qt Company. For licensing terms
+  ** and conditions see https://www.qt.io/terms-conditions. For further
+  ** information use the contact form at https://www.qt.io/contact-us.
+  **
+  ** BSD License Usage
+  ** Alternatively, you may use this file under the terms of the BSD license
+  ** as follows:
+  **
+  ** &quot;Redistribution and use in source and binary forms, with or without
+  ** modification, are permitted provided that the following conditions are
+  ** met:
+  **   * Redistributions of source code must retain the above copyright
+  **     notice, this list of conditions and the following disclaimer.
+  **   * Redistributions in binary form must reproduce the above copyright
+  **     notice, this list of conditions and the following disclaimer in
+  **     the documentation and/or other materials provided with the
+  **     distribution.
+  **   * Neither the name of The Qt Company Ltd nor the names of its
+  **     contributors may be used to endorse or promote products derived
+  **     from this software without specific prior written permission.
+  **
+  **
+  ** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  ** &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  ** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  ** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  ** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  ** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  ** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  ** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  ** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  ** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&quot;
+  **
+  ** $QT_END_LICENSE$
+  **
+  ****************************************************************************/</span>
+
+  <span class="preprocessor">#include &lt;QFile&gt;</span>
+  <span class="preprocessor">#include &lt;QFileDialog&gt;</span>
+  <span class="preprocessor">#include &lt;QTextStream&gt;</span>
+  <span class="preprocessor">#include &lt;QMessageBox&gt;</span>
+  <span class="preprocessor">#if defined(QT_PRINTSUPPORT_LIB)</span>
+  <span class="preprocessor">#include &lt;QtPrintSupport/qtprintsupportglobal.h&gt;</span>
+  <span class="preprocessor">#if QT_CONFIG(printer)</span>
+  <span class="preprocessor">#if QT_CONFIG(printdialog)</span>
+  <span class="preprocessor">#include &lt;QPrintDialog&gt;</span>
+  <span class="preprocessor">#endif // QT_CONFIG(printdialog)</span>
+  <span class="preprocessor">#include &lt;QPrinter&gt;</span>
+  <span class="preprocessor">#endif // QT_CONFIG(printer)</span>
+  <span class="preprocessor">#endif // QT_PRINTSUPPORT_LIB</span>
+  <span class="preprocessor">#include &lt;QFont&gt;</span>
+  <span class="preprocessor">#include &lt;QFontDialog&gt;</span>
+
+  <span class="preprocessor">#include &quot;notepad.h&quot;</span>
+  <span class="preprocessor">#include &quot;ui_notepad.h&quot;</span>
+
+  Notepad<span class="operator">::</span>Notepad(<span class="type"><a href="qwidget.html">QWidget</a></span> <span class="operator">*</span>parent) :
+      <span class="type"><a href="qmainwindow.html">QMainWindow</a></span>(parent)<span class="operator">,</span>
+      ui(<span class="keyword">new</span> Ui<span class="operator">::</span>Notepad)
+  {
+      ui<span class="operator">-</span><span class="operator">&gt;</span>setupUi(<span class="keyword">this</span>);
+      <span class="keyword">this</span><span class="operator">-</span><span class="operator">&gt;</span>setCentralWidget(ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit);
+
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionNew<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>newDocument);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionOpen<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>open);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionSave<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>save);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionSave_as<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>saveAs);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionPrint<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>print);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionExit<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>exit);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionCopy<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>copy);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionCut<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>cut);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionPaste<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>paste);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionUndo<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>undo);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionRedo<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>redo);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionFont<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>selectFont);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionBold<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>setFontBold);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionUnderline<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>setFontUnderline);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionItalic<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>setFontItalic);
+      connect(ui<span class="operator">-</span><span class="operator">&gt;</span>actionAbout<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Notepad<span class="operator">::</span>about);
+
+  <span class="comment">// Disable menu actions for unavailable features</span>
+  <span class="preprocessor">#if !QT_CONFIG(printer)</span>
+      ui<span class="operator">-</span><span class="operator">&gt;</span>actionPrint<span class="operator">-</span><span class="operator">&gt;</span>setEnabled(<span class="keyword">false</span>);
+  <span class="preprocessor">#endif</span>
+
+  <span class="preprocessor">#if !QT_CONFIG(clipboard)</span>
+      ui<span class="operator">-</span><span class="operator">&gt;</span>actionCut<span class="operator">-</span><span class="operator">&gt;</span>setEnabled(<span class="keyword">false</span>);
+      ui<span class="operator">-</span><span class="operator">&gt;</span>actionCopy<span class="operator">-</span><span class="operator">&gt;</span>setEnabled(<span class="keyword">false</span>);
+      ui<span class="operator">-</span><span class="operator">&gt;</span>actionPaste<span class="operator">-</span><span class="operator">&gt;</span>setEnabled(<span class="keyword">false</span>);
+  <span class="preprocessor">#endif</span>
+  }
+
+  Notepad<span class="operator">::</span><span class="operator">~</span>Notepad()
+  {
+      <span class="keyword">delete</span> ui;
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>newDocument()
+  {
+      currentFile<span class="operator">.</span>clear();
+      ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>setText(<span class="type"><a href="../qtcore/qstring.html">QString</a></span>());
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>open()
+  {
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> fileName <span class="operator">=</span> <span class="type"><a href="qfiledialog.html">QFileDialog</a></span><span class="operator">::</span>getOpenFileName(<span class="keyword">this</span><span class="operator">,</span> <span class="string">&quot;Open the file&quot;</span>);
+      <span class="type"><a href="../qtcore/qfile.html">QFile</a></span> file(fileName);
+      currentFile <span class="operator">=</span> fileName;
+      <span class="keyword">if</span> (<span class="operator">!</span>file<span class="operator">.</span>open(<span class="type"><a href="../qtcore/qiodevice.html">QIODevice</a></span><span class="operator">::</span>ReadOnly <span class="operator">|</span> <span class="type"><a href="../qtcore/qfile.html">QFile</a></span><span class="operator">::</span>Text)) {
+          <span class="type"><a href="qmessagebox.html">QMessageBox</a></span><span class="operator">::</span>warning(<span class="keyword">this</span><span class="operator">,</span> <span class="string">&quot;Warning&quot;</span><span class="operator">,</span> <span class="string">&quot;Cannot open file: &quot;</span> <span class="operator">+</span> file<span class="operator">.</span>errorString());
+          <span class="keyword">return</span>;
+      }
+      setWindowTitle(fileName);
+      <span class="type"><a href="../qtcore/qtextstream.html">QTextStream</a></span> in(<span class="operator">&amp;</span>file);
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> text <span class="operator">=</span> in<span class="operator">.</span>readAll();
+      ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>setText(text);
+      file<span class="operator">.</span>close();
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>save()
+  {
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> fileName;
+      <span class="comment">// If we don't have a filename from before, get one.</span>
+      <span class="keyword">if</span> (currentFile<span class="operator">.</span>isEmpty()) {
+          fileName <span class="operator">=</span> <span class="type"><a href="qfiledialog.html">QFileDialog</a></span><span class="operator">::</span>getSaveFileName(<span class="keyword">this</span><span class="operator">,</span> <span class="string">&quot;Save&quot;</span>);
+          currentFile <span class="operator">=</span> fileName;
+      } <span class="keyword">else</span> {
+          fileName <span class="operator">=</span> currentFile;
+      }
+      <span class="type"><a href="../qtcore/qfile.html">QFile</a></span> file(fileName);
+      <span class="keyword">if</span> (<span class="operator">!</span>file<span class="operator">.</span>open(<span class="type"><a href="../qtcore/qiodevice.html">QIODevice</a></span><span class="operator">::</span>WriteOnly <span class="operator">|</span> <span class="type"><a href="../qtcore/qfile.html">QFile</a></span><span class="operator">::</span>Text)) {
+          <span class="type"><a href="qmessagebox.html">QMessageBox</a></span><span class="operator">::</span>warning(<span class="keyword">this</span><span class="operator">,</span> <span class="string">&quot;Warning&quot;</span><span class="operator">,</span> <span class="string">&quot;Cannot save file: &quot;</span> <span class="operator">+</span> file<span class="operator">.</span>errorString());
+          <span class="keyword">return</span>;
+      }
+      setWindowTitle(fileName);
+      <span class="type"><a href="../qtcore/qtextstream.html">QTextStream</a></span> out(<span class="operator">&amp;</span>file);
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> text <span class="operator">=</span> ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>toPlainText();
+      out <span class="operator">&lt;</span><span class="operator">&lt;</span> text;
+      file<span class="operator">.</span>close();
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>saveAs()
+  {
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> fileName <span class="operator">=</span> <span class="type"><a href="qfiledialog.html">QFileDialog</a></span><span class="operator">::</span>getSaveFileName(<span class="keyword">this</span><span class="operator">,</span> <span class="string">&quot;Save as&quot;</span>);
+      <span class="type"><a href="../qtcore/qfile.html">QFile</a></span> file(fileName);
+
+      <span class="keyword">if</span> (<span class="operator">!</span>file<span class="operator">.</span>open(<span class="type"><a href="../qtcore/qfile.html">QFile</a></span><span class="operator">::</span>WriteOnly <span class="operator">|</span> <span class="type"><a href="../qtcore/qfile.html">QFile</a></span><span class="operator">::</span>Text)) {
+          <span class="type"><a href="qmessagebox.html">QMessageBox</a></span><span class="operator">::</span>warning(<span class="keyword">this</span><span class="operator">,</span> <span class="string">&quot;Warning&quot;</span><span class="operator">,</span> <span class="string">&quot;Cannot save file: &quot;</span> <span class="operator">+</span> file<span class="operator">.</span>errorString());
+          <span class="keyword">return</span>;
+      }
+      currentFile <span class="operator">=</span> fileName;
+      setWindowTitle(fileName);
+      <span class="type"><a href="../qtcore/qtextstream.html">QTextStream</a></span> out(<span class="operator">&amp;</span>file);
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> text <span class="operator">=</span> ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>toPlainText();
+      out <span class="operator">&lt;</span><span class="operator">&lt;</span> text;
+      file<span class="operator">.</span>close();
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>print()
+  {
+  <span class="preprocessor">#if QT_CONFIG(printer)</span>
+      <span class="type">QPrinter</span> printDev;
+  <span class="preprocessor">#if QT_CONFIG(printdialog)</span>
+      <span class="type">QPrintDialog</span> dialog(<span class="operator">&amp;</span>printDev<span class="operator">,</span> <span class="keyword">this</span>);
+      <span class="keyword">if</span> (dialog<span class="operator">.</span>exec() <span class="operator">=</span><span class="operator">=</span> <span class="type"><a href="qdialog.html">QDialog</a></span><span class="operator">::</span>Rejected)
+          <span class="keyword">return</span>;
+  <span class="preprocessor">#endif // QT_CONFIG(printdialog)</span>
+      ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>print(<span class="operator">&amp;</span>printDev);
+  <span class="preprocessor">#endif // QT_CONFIG(printer)</span>
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>exit()
+  {
+      <span class="type"><a href="../qtcore/qcoreapplication.html">QCoreApplication</a></span><span class="operator">::</span>quit();
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>copy()
+  {
+  <span class="preprocessor">#if QT_CONFIG(clipboard)</span>
+      ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>copy();
+  <span class="preprocessor">#endif</span>
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>cut()
+  {
+  <span class="preprocessor">#if QT_CONFIG(clipboard)</span>
+      ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>cut();
+  <span class="preprocessor">#endif</span>
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>paste()
+  {
+  <span class="preprocessor">#if QT_CONFIG(clipboard)</span>
+      ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>paste();
+  <span class="preprocessor">#endif</span>
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>undo()
+  {
+       ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>undo();
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>redo()
+  {
+      ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>redo();
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>selectFont()
+  {
+      bool fontSelected;
+      <span class="type"><a href="../qtgui/qfont.html">QFont</a></span> font <span class="operator">=</span> <span class="type"><a href="qfontdialog.html">QFontDialog</a></span><span class="operator">::</span>getFont(<span class="operator">&amp;</span>fontSelected<span class="operator">,</span> <span class="keyword">this</span>);
+      <span class="keyword">if</span> (fontSelected)
+          ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>setFont(font);
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>setFontUnderline(bool underline)
+  {
+      ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>setFontUnderline(underline);
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>setFontItalic(bool italic)
+  {
+      ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>setFontItalic(italic);
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>setFontBold(bool bold)
+  {
+      bold <span class="operator">?</span> ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>setFontWeight(<span class="type"><a href="../qtgui/qfont.html">QFont</a></span><span class="operator">::</span>Bold) :
+             ui<span class="operator">-</span><span class="operator">&gt;</span>textEdit<span class="operator">-</span><span class="operator">&gt;</span>setFontWeight(<span class="type"><a href="../qtgui/qfont.html">QFont</a></span><span class="operator">::</span>Normal);
+  }
+
+  <span class="type">void</span> Notepad<span class="operator">::</span>about()
+  {
+     <span class="type"><a href="qmessagebox.html">QMessageBox</a></span><span class="operator">::</span>about(<span class="keyword">this</span><span class="operator">,</span> tr(<span class="string">&quot;About MDI&quot;</span>)<span class="operator">,</span>
+                  tr(<span class="string">&quot;The &lt;b&gt;Notepad&lt;/b&gt; example demonstrates how to code a basic &quot;</span>
+                     <span class="string">&quot;text editor using QtWidgets&quot;</span>));
+
+  }
+
+</pre>
+</div>
+<!-- @@@tutorials/notepad/notepad.cpp -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
