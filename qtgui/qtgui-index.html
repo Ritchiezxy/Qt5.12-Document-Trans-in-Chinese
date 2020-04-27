@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qtgui.qdoc -->
+  <title>Qt GUI 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td >Qt GUI</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.12.3 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#getting-started"><span lang="zh-cn">开始</span></a></li>
+<li class="level1"><a href="#application-windows"><span lang="zh-cn">应用程序窗口</span></a></li>
+<li class="level1"><a href="#2d-graphics">2D <span lang="zh-cn">图形</span></a></li>
+<li class="level1"><a href="#opengl-and-opengl-es-integration">OpenGL<span lang="zh-cn"> 
+和</span> OpenGL ES <span lang="zh-cn">的集成</span></a></li>
+<li class="level1"><a href="#vulkan-integration">Vulkan <span lang="zh-cn">集成</span></a></li>
+<li class="level1"><a href="#drag-and-drop"><span lang="zh-cn">拖拽</span></a></li>
+<li class="level1"><a href="#licenses-and-attributions"><span lang="zh-cn">
+许可和归属权</span></a></li>
+<li class="level1"><a href="#reference"><span lang="zh-cn">引用</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt GUI</h1>
+<span class="subtitle"></span>
+<!-- $$$qtgui-index.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>Qt GUI模块提供了用于窗口系统集成、事件处理、OpenGL和OpenGL ES集成、2D图形、基本图像、字体和文本的类。<br>
+Qt的用户界面技术在内部使用这些类。我们也可以直接使用这些类来完成功能，例如使用低级的OpenGL ES图形api来编写应用程序。</p>
+<p>对于编写用户界面的应用程序开发人员，Qt提供了更高级的API，如Qt Quick，它比Qt GUI模块中的程序更适合<span lang="zh-cn">于界面开发</span>。</p>
+<a name="getting-started"></a>
+<h2 id="getting-started"><span lang="zh-cn">开始</span></h2>
+<p>要包含模块类的定义，请使用以下指令:</p>
+<pre class="cpp">
+
+  #include &lt;QtGui&gt;
+
+</pre>
+<p>如果您使用<a href="../qmake/qmake-manual.html">qmake</a>来构建您的项目，Qt GUI<span lang="zh-cn">模块会被</span>默认包含<span lang="zh-cn">进来</span>。<br>
+要禁用Qt GUI，请在.pro文件中添加以下代码:</p>
+<pre class="cpp">
+
+  QT -= gui
+
+</pre>
+<a name="application-windows"></a>
+<h2 id="application-windows"><span lang="zh-cn">应用程序窗口</span></h2>
+<p>&nbsp;Qt GUI模块中最重要的类是<a href="qguiapplication.html">QGuiApplication</a>和<a href="qwindow.html">QWindow</a>。想要在屏幕上显示内容的Qt应用程序需要<span lang="zh-cn">使用它们。</span><a href="qguiapplication.html">QGuiApplication</a>包含主事件循环，其中处理和调度来自窗口系统和其他源的所有事件。它还处理应用程序的初始化和终结。</p>
+<p><a href="qwindow.html">QWindow</a>类表示底层窗口系统中的一个窗口。它提供了许多处理窗口系统中事件 (<a href="../qtcore/qevent.html">QEvent</a>)的虚拟函数，如触摸输入、曝光、聚焦、按键和几何变化。</p>
+<a name="2d-graphics"></a>
+<h2 id="2d-graphics">2D <span lang="zh-cn">图形</span></h2>
+<p>Qt GUI模块包含用于2D图形、图像、字体和高级排版的类。</p>
+<p>使用表面类型<a href="qsurface.html#SurfaceType-enum">QSurface::RasterSurface</a> 
+创建的 <a href="qwindow.html">QWindow</a> 可以与 <a href="qbackingstore.html">QBackingStore</a> 
+<span lang="zh-cn">和</span> <a href="qpainter.html">QPainter</a>结合使用， <a href="qpainter.html">QPainter</a> 
+是Qt高度优化的2D矢量图形API<span lang="zh-cn">, </span>支持绘制线条<span lang="zh-cn">、</span>多边形<span lang="zh-cn">、</span>矢量路径<span lang="zh-cn">、</span>图像和文本。有关更多信息，请参见 
+<a href="paintsystem.html"><span lang="zh-cn">绘图系统</span></a> <span lang="zh-cn">
+和 </span><a href="qtgui-rasterwindow-example.html"><span lang="zh-cn">光栅窗口示例</span></a><span lang="zh-cn">。</span></p>
+<p>Qt可以使用 <a href="qimage.html">QImage</a> <span lang="zh-cn">和</span> <a href="qpixmap.html">QPixmap</a> 
+类加载和保存图像。默认情况下，Qt支持最常见的图像格式，包括JPEG和PNG等。用户可以通过 <a href="qimageioplugin.html">QImageIOPlugin</a> 
+类添加对其他格式的支持。<br>有关更多信息，请参见 <a href="paintsystem-images.html"><span lang="zh-cn">
+读取和写入图像文件</span></a><span lang="zh-cn">。</span></p>
+<p>Qt中的排版是通过 <a href="qtextdocument.html">QTextDocument</a> 完成的，<a href="qtextdocument.html">QTextDocument</a><span lang="zh-cn"> 
+将</span> <a href="qpainter.html">QPainter</a> 与Qt的字体类(主要是 <a href="qfont.html">QFont</a><span lang="zh-cn">）结合使用。<br>
+更低级的文本和字体处理可以使用</span> <a href="qrawfont.html">QRawFont</a> <span lang="zh-cn">和</span> <a href="qglyphrun.html">QGlyphRun</a> 
+等类。</p>
+<a name="opengl-and-opengl-es-integration"></a>
+<h2 id="opengl-and-opengl-es-integration">OpenGL 和 OpenGL ES 的集成</h2>
+<p><a href="qwindow.html">QWindow</a> 支持使用OpenGL和OpenGL ES渲染，这取决于平台<span lang="zh-cn">是否</span>支持。 
+通过将 <a href="qwindow.html">QWindow</a>的surface类型设置为 <a href="qsurface.html#SurfaceType-enum">QSurface::OpenGLSurface</a>, 
+使用OpenGL渲染，然后通过使用 <a href="qsurfaceformat.html">QSurfaceFormat</a>, 
+选择格式属性，然后创建一个 <a href="qopenglcontext.html">QOpenGLContext</a> 
+来管理本机OpenGL上下文来实现的。 此外，Qt还有 <a href="qopenglpaintdevice.html">QOpenGLPaintDevice</a>, 
+它支持使用OpenGL加速 <a href="qpainter.html">QPainter</a> 
+渲染，以及简化OpenGL代码编写的便利类，并隐藏扩展处理的复杂性和隐藏了OpenGL ES 2与桌面OpenGL之间的区别。 方便类包括 <a href="qopenglfunctions.html">QOpenGLFunctions</a> 
+和一些封装在一个更简单的Qt API中的原生OpenGL功能。<a href="qopenglfunctions.html">QOpenGLFunctions</a>让应用程序使用OpenGL 
+ES 2功能在桌面OpenGL方面而无需手动解决OpenGL函数指针,从而允许针对移动或嵌入式设备的跨平台的应用程序开发:</p>
+<ul>
+<li><a href="qopenglbuffer.html">QOpenGLBuffer</a></li>
+<li><a href="qopenglframebufferobject.html">QOpenGLFramebufferObject</a></li>
+<li><a href="qopenglshaderprogram.html">QOpenGLShaderProgram</a></li>
+<li><a href="qopengltexture.html">QOpenGLTexture</a></li>
+<li><a href="qopengldebuglogger.html">QOpenGLDebugLogger</a></li>
+<li><a href="qopengltimerquery.html">QOpenGLTimerQuery</a></li>
+<li><a href="qopenglvertexarrayobject.html">QOpenGLVertexArrayObject</a></li>
+</ul>
+<p>类家族公开了在给定的OpenGL版本和概述中的所有函数，允许轻松开发依赖于现代的、仅限桌面的OpenGL功能的桌面应用程序。 </p>
+<p>有关详细信息，请参见 <a href="qtgui-openglwindow-example.html">OpenGL<span lang="zh-cn">桌面示例</span> </a>
+<span lang="zh-cn">。</span></p>
+<p>Qt GUI模块还包含一些数学类，以帮助执行与3D图形相关的最常见的数学操作。这些类包括 <a href="qmatrix4x4.html">QMatrix4x4</a><span lang="zh-cn">、</span> <a href="qvector4d.html">QVector4D</a> 
+<span lang="zh-cn">和</span> <a href="qquaternion.html">QQuaternion</a><span lang="zh-cn"> 
+。</span></p>
+<p>使用 <a href="qwindow.html">QWindow</a> 创建的 <a href="qsurface.html#SurfaceType-enum">QSurface::OpenGLSurface</a> 
+可以与 <a href="qpainter.html">QPainter</a> <span lang="zh-cn">和</span> <a href="qopenglpaintdevice.html">QOpenGLPaintDevice</a> 
+结合使用，从而通过牺牲一些视觉质量来加速OpenGL硬件的2D图形。</p>
+<a name="vulkan-integration"></a>
+<h2 id="vulkan-integration">Vulkan <span lang="zh-cn">集成</span></h2>
+<p>Qt 5.10增加了对 <a href="https://www.khronos.org/vulkan/">Vulkan</a>的支持。这需要 <a href="https://www.lunarg.com/vulkan-sdk/">LunarG Vulkan SDK</a>的存在。</p>
+<p>在Windows上，SDK<span lang="zh-cn">会</span>设置环境变量 <code>VULKAN_SDK</code> 
+，配置脚本将检测该变量。</p>
+<p>在Android上，Vulkan头文件是在NDK的API级别24中添加的。</p>
+<p>相关类<span lang="zh-cn">：</span></p>
+<ul>
+<li>QVulkanDeviceFunctions</li>
+<li><a href="qvulkanextension.html">QVulkanExtension</a></li>
+<li>QVulkanFunctions</li>
+<li><a href="qvulkaninfovector.html">QVulkanInfoVector</a></li>
+<li><a href="qvulkaninstance.html">QVulkanInstance</a></li>
+<li><a href="qvulkanwindow.html">QVulkanWindow</a></li>
+<li><a href="qvulkanwindowrenderer.html">QVulkanWindowRenderer</a></li>
+</ul>
+<p>有关更多信息，请参见 <a href="qtgui-hellovulkanwidget-example.html">Hello Vulkan组件示例</a> 
+和 <a href="qtgui-hellovulkanwindow-example.html">Hello Vulkan 窗口示例</a><span lang="zh-cn"> 
+。</span></p>
+<a name="drag-and-drop"></a>
+<h2 id="drag-and-drop"><span lang="zh-cn">拖拽</span></h2>
+<p><span lang="zh-cn">更多的信息请参阅</span> <a href="dnd.html"><span lang="zh-cn">拖拽</span></a></p>
+<a name="licenses-and-attributions"></a>
+<h2 id="licenses-and-attributions">许可和归属权</h2>
+<p>Qt GUI在 <a href="http://www.qt.io/about-us/">Qt公司</a> 的商业许可下可用。<br>
+此外，它在自由软件许可下可用。<br>从Qt 5.4开始，这些自由软件许可证就是 <a href="http://www.gnu.org/licenses/lgpl-3.0.html">
+GNU Lesser General Public License, 版本3，</a> 或者 <a href="http://www.gnu.org/licenses/gpl-2.0.html">
+GNU General Public License, 版本2</a><span lang="zh-cn">。</span> 有关更多细节，请参见 
+<a href="../qtdoc/licensing.html"><span lang="zh-cn">授权。</span></a></p>
+<p>Furthermore, Qt GUI in Qt 5.12.3 may contain third-party modules under following permissive licenses:</p>
+<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-angle.html">ANGLE Library, version chromium/3280</a></p></td><td class="tblDescr"><p>BSD 3-clause &quot;New&quot; or &quot;Revised&quot; License</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-angle-arrayboundsclamper.html">ANGLE: Array Bounds Clamper for WebKit</a></p></td><td class="tblDescr"><p>BSD 2-clause &quot;Simplified&quot; License</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-angle-murmurhash.html">ANGLE: Murmurhash</a></p></td><td class="tblDescr"><p>Public Domain</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-angle-systeminfo.html">ANGLE: Systeminfo</a></p></td><td class="tblDescr"><p>BSD 2-clause &quot;Simplified&quot; License</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-angle-trace-event.html">ANGLE: trace_event</a></p></td><td class="tblDescr"><p>BSD 3-clause &quot;New&quot; or &quot;Revised&quot; License</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-grayraster.html">Anti-aliasing rasterizer from FreeType 2</a></p></td><td class="tblDescr"><p>Freetype Project License or GNU General Public License v2.0 only</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-vera-font.html">Bitstream Vera Font, version 1.10</a></p></td><td class="tblDescr"><p>Bitstream Vera Font License</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-cocoa-platform-plugin.html">Cocoa Platform Plugin</a></p></td><td class="tblDescr"><p>BSD 3-clause &quot;New&quot; or &quot;Revised&quot; License</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-dejayvu.html">DejaVu Fonts, version 2.37</a></p></td><td class="tblDescr"><p>Bitstream Vera Font License</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-freetype-bdf.html">Freetype 2 - Bitmap Distribution Format (BDF) support</a></p></td><td class="tblDescr"><p>MIT License</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-freetype-pcf.html">Freetype 2 - Portable Compiled Format (PCF) support</a></p></td><td class="tblDescr"><p>MIT License</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-freetype-zlib.html">Freetype 2 - zlib</a></p></td><td class="tblDescr"><p>zlib License</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-freetype.html">Freetype 2, version 2.9&#x2e;1</a></p></td><td class="tblDescr"><p>Freetype Project License or GNU General Public License v2.0 only</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-harfbuzz.html">HarfBuzz</a></p></td><td class="tblDescr"><p>MIT License</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-harfbuzz-ng.html">HarfBuzz-NG, version 1.7&#x2e;4</a></p></td><td class="tblDescr"><p>MIT License</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-iaccessible2.html">IAccessible2 IDL Specification, version 1.3&#x2e;0</a></p></td><td class="tblDescr"><p>BSD 3-clause &quot;New&quot; or &quot;Revised&quot; License</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-libjpeg.html">LibJPEG-turbo, version 2.0&#x2e;0</a></p></td><td class="tblDescr"><p>Independent JPEG Group License</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-libpng.html">LibPNG, version 1.6&#x2e;36</a></p></td><td class="tblDescr"><p>libpng License and libpng License 2</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-android-native-style.html">Native Style for Android</a></p></td><td class="tblDescr"><p>Apache License 2.0</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-opengl-es2-headers.html">OpenGL ES 2 Headers, version Revision 27673</a></p></td><td class="tblDescr"><p>MIT License</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-opengl-headers.html">OpenGL Headers, version Revision 27684</a></p></td><td class="tblDescr"><p>MIT License</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-pixman.html">Pixman, version 0.17.12</a></p></td><td class="tblDescr"><p>MIT License</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-smooth-scaling-algorithm.html">Smooth Scaling Algorithm</a></p></td><td class="tblDescr"><p>BSD 2-clause &quot;Simplified&quot; License and Imlib2 License</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-vulkan-xml-spec.html">Vulkan API Registry, version 1.0&#x2e;39</a></p></td><td class="tblDescr"><p>MIT License</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-webgradients.html">WebGradients</a></p></td><td class="tblDescr"><p>MIT License</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-wintab.html">Wintab API</a></p></td><td class="tblDescr"><p>Custom License</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qtgui-attribution-xcb.html">XCB</a></p></td><td class="tblDescr"><p>MIT License</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qtgui-attribution-icc-srgb-color-profile.html">sRGB color profile icc file</a></p></td><td class="tblDescr"><p>International Color Consortium License</p></td></tr>
+</table></div>
+<a name="reference"></a>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="qtgui-module.html">Qt GUI C++ Classes</a><ul>
+<li><a href="../qtcore/events.html">Event Classes</a></li>
+<li><a href="painting.html">Painting Classes</a></li>
+<li><a href="painting-3d.html">Rendering in 3D</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<!-- @@@qtgui-index.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
