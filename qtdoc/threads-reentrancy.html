@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- threads.qdoc -->
+  <title>Reentrancy and Thread-Safety | Qt 5.12 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="index.html">Qt 5.12</a></td><td >Reentrancy and Thread-Safety</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.12.3 Reference Documentation</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="threads-synchronizing.html" />
+  <link rel="next" href="threads-qobject.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="threads-synchronizing.html">Synchronizing Threads</a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="threads-qobject.html">Threads and QObjects</a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><span lang="zh-cn">目录</span></h3>
+<ul>
+<li class="level1"><a href="#reentrancy">可重入性</a></li>
+<li class="level1"><a href="#thread-safety"><span lang="zh-cn">线程安全</span></a></li>
+<li class="level1"><a href="#notes-on-qt-classes"><span lang="zh-cn">Qt类注意</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><span lang="zh-cn">可重入性和线程安全</span></h1>
+<span class="subtitle"></span>
+<!-- $$$threads-reentrancy.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>在整个文档中，术语可重入和线程安全用于标记类和函数，以指示它们如何在多线程应用程序中使用:</p>
+<ul>
+<li>即使在调用使用共享数据时，也可以从多个线程同时调用线程安全的函数，因为对共享数据的所有引用都是序列化的。</li>
+<li>也可以从多个线程同时调用可重入函数，但前提是每次调用都使用自己的数据。</li>
+</ul>
+<p>因此，线程安全的函数总是可重入的，但可重入的函数并不总是线程安全的。</p>
+<p>通过扩展，<span lang="zh-cn">只要多个线程使用一个类的不同实例调用该类的同一个成员函数并且是安全的,</span>那么这个类就是可重入的。<br>
+如果可以从多个线程安全地调用该类的成员函数，则该类是线程安全的，即使所有线程都使用该类的相同实例。</p>
+<p><b>注意<span lang="zh-cn">：</span></b>Qt类只有在被多个线程使用的情况下才被记录为线程安全的。<br>
+如果一个函数没有被标记为线程安全的或可重入的，就不应该在不同的线程中使用它。<br>
+如果一个类没有被标记为线程安全的或可重入的，那么不应该从不同的线程访问该类的特定<span lang="zh-cn">的同一</span>实例。</p><a name="reentrancy"></a>
+<h2 id="reentrancy"><span lang="zh-cn">可重入性</span></h2>
+<p><span lang="zh-cn">C</span>++类通常是可重入的，因为它们只访问自己的成员数据。<br>
+任何线程都可以在可重入类的实例上调用成员函数，只要没有其他线程同时在该类的同一实例上调用成员函数。<br>例如，下面的Counter类是可重入的:</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> Counter
+  {
+  <span class="keyword">public</span>:
+      Counter() { n <span class="operator">=</span> <span class="number">0</span>; }
+
+      <span class="type">void</span> increment() { <span class="operator">+</span><span class="operator">+</span>n; }
+      <span class="type">void</span> decrement() { <span class="operator">-</span><span class="operator">-</span>n; }
+      <span class="type">int</span> value() <span class="keyword">const</span> { <span class="keyword">return</span> n; }
+
+  <span class="keyword">private</span>:
+      <span class="type">int</span> n;
+  };
+
+</pre>
+<p>该类不是线程安全的，因为如果多个线程试图修改数据成员n，结果将是未定义的。<br>这是因为++和<span lang="zh-cn">--</span>运算符并不总是原子性的。<br>
+实际上，它们通常会<span lang="zh-cn">被</span>扩展<span lang="zh-cn">为</span>三个机器指令:</p>
+<ol class="1" type="1"><li>在寄存器中加载变量的值。</li>
+<li>寄存器值的递增或递减。</li>
+<li>将寄存器的值存储回主内存。</li>
+</ol>
+<p>如果线程A和线程B同时加载变量的旧值，增加它们的寄存器，并将其存储回去，它们最终会相互覆盖，<span lang="zh-cn">导致</span>变量只增加一次!</p>
+<a name="thread-safety"></a>
+<h2 id="thread-safety"><span lang="zh-cn">线程安全</span></h2>
+<p>
+显然，访问必须序列化:线程A必须执行步骤1、2、3(原子性地)不中断，然后线程B才能执行相同的步骤;反之亦然。一个使类线程安全的简单方法是用一个QMutex来保护所有对数据成员的访问:a <a href="../qtcore/qmutex.html">QMutex</a>:</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> Counter
+  {
+  <span class="keyword">public</span>:
+      Counter() { n <span class="operator">=</span> <span class="number">0</span>; }
+
+      <span class="type">void</span> increment() { <span class="type"><a href="../qtcore/qmutexlocker.html">QMutexLocker</a></span> locker(<span class="operator">&amp;</span>mutex); <span class="operator">+</span><span class="operator">+</span>n; }
+      <span class="type">void</span> decrement() { <span class="type"><a href="../qtcore/qmutexlocker.html">QMutexLocker</a></span> locker(<span class="operator">&amp;</span>mutex); <span class="operator">-</span><span class="operator">-</span>n; }
+      <span class="type">int</span> value() <span class="keyword">const</span> { <span class="type"><a href="../qtcore/qmutexlocker.html">QMutexLocker</a></span> locker(<span class="operator">&amp;</span>mutex); <span class="keyword">return</span> n; }
+
+  <span class="keyword">private</span>:
+      <span class="keyword">mutable</span> <span class="type"><a href="../qtcore/qmutex.html">QMutex</a></span> mutex;
+      <span class="type">int</span> n;
+  };
+
+</pre>
+<p><a href="../qtcore/qmutexlocker.html">QMutexLocker</a> 
+QMutexLocker类在其构造函数中自动锁定互斥锁，并在调用析构函数时在函数结束时解锁它。锁定互斥锁可以确保来自不同线程的访问将被序列化。互斥量数据成员是用 <code>mutable</code> 
+可变限定符声明的，因为我们需要在 <code>value()中锁定和解锁互斥量，它是一个const函数。</code></p>
+<a name="notes-on-qt-classes"></a>
+<h2 id="notes-on-qt-classes">Qt<span lang="zh-cn">类笔记</span></h2>
+<p>许多Qt类是可重入的，但它们不是线程安全的，因为使它们成为线程安全会导致重复锁定和解锁一个<a href="../qtcore/qmutex.html">QMutex</a>的额外开销。<br>
+例如，<a href="../qtcore/qstring.html">QString</a>是可重入的，但不是线程安全的。<br>
+您可以同时从多个线程安全地访问不同的<a href="../qtcore/qstring.html">QString</a>实例，但是不能同时从多个线程安全地访问相同的<a href="../qtcore/qstring.html">QString</a>实例(除非您使用<a href="../qtcore/qmutex.html">QMutex</a>保护自己的访问)。</p>
+<p>一些Qt类和函数是线程安全的。这些类主要是与线程相关的类(如<a href="../qtcore/qmutex.html">QMutex</a>)和基本函数(如<a href="../qtcore/qcoreapplication.html#postEvent">QCoreApplication::postEvent</a>())。</p>
+<p><b><span lang="zh-cn">注意：</span></b>多线程领域的术语并不是完全标准化的。POSIX使用可重入和线程安全的定义，这与它的C
+<span lang="zh-cn">API</span>有些不同。在Qt中使用其他面向对象的<span lang="zh-cn">C</span>++类库时，请确保理解这些定义。</p></div>
+<!-- @@@threads-reentrancy.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="threads-synchronizing.html">同步线程</a>
+<span class="naviSeparator">  &#9702;  
+<a class="prevPage" href="threads-synchronizing.html">线程和QObjects</a></span></p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
