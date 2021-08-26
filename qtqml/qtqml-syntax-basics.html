@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- basics.qdoc -->
+  <title>QML Syntax Basics | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >QML Syntax Basics</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 
+5.12.3 参考指南文档</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#import-statements">Import<span lang="zh-cn">（导入）语句</span> </a></li>
+<li class="level1"><a href="#object-declarations"><span lang="zh-cn">对象定义</span></a></li>
+<li class="level2"><a href="#child-objects"><span lang="zh-cn">子对象</span></a></li>
+<li class="level1"><a href="#comments"><span lang="zh-cn">注释</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><span lang="zh-cn">QML语法基础知识</span></h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-syntax-basics.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML是一种多范式语言，它允许根据对象的属性以及它们如何关联和响应其他对象的变化来定义对象。<br>
+与纯命令式代码(在命令式代码中，属性和行为的更改是通过一系列逐级处理的语句来表示的)相比，QML的声明性语法将属性和行为更改直接集成到单个对象的定义中。<br>
+在需要复杂的自定义应用程序行为的情况下，这些属性定义可以包括命令式代码。</p>
+<p>
+QML源代码通常由引擎通过QML文档加载，QML文档是QML代码的独立文档。QML文档可用于定义QML对象类型，然后可以在整个应用程序中重用这些对象类型。请注意，类型名称必须以大写字母开头，以便在QML文件中声明为<a href="qtqml-typesystem-objecttypes.html">QML对象类型</a><span lang="zh-cn">。</span></p>
+<a name="import-statements"></a>
+<h2 id="import-statements">Import<span lang="zh-cn">（导入）语句</span></h2>
+<p>&nbsp;QML文档可能在文件的顶部有一个或多个导入<span lang="zh-cn">语句</span>。<br>导入<span lang="zh-cn">语句</span>可以是以下<span lang="zh-cn">情况</span>:</p>
+<ul>
+<li>类型已注册到的版本化命名空间(例如，通过插件)</li>
+<li>一个相对目录，其中包含作为QML文档的类型定义</li>
+<li>一个JavaScript文件</li>
+</ul>
+<p>JavaScript文件导入<span lang="zh-cn">语句</span>必须在导入时进行限定，以便能够访问它们提供的属性和方法。</p>
+<p>各类导入语句的通用形式如下:</p>
+<ul>
+<li><code>import <span lang="zh-cn">命名空间</span> <span lang="zh-cn">主版本号</span>.<span lang="zh-cn">次版本号</span></code></li>
+<li><code>import <span lang="zh-cn">命名空间</span> <span lang="zh-cn">主版本号</span>.<span lang="zh-cn">次版本号</span> 
+as <span lang="zh-cn">单例类型标识符</span></code></li>
+<li><code>import &quot;<span lang="zh-cn">目录</span>"</code></li>
+<li><code>import &quot;<span lang="zh-cn">文件名</span>.js" as <span lang="zh-cn">
+脚本标识符</span></code></li>
+</ul>
+<p><span lang="zh-cn">例如</span>:</p>
+<ul>
+<li><code>import <a href="../qtquick/qtquick-module.html">QtQuick</a> 2.0</code></li>
+<li><code>import <a href="../qtquick/qtquick-module.html">QtQuick</a>.LocalStorage 2.0 as Database</code></li>
+<li><code>import &quot;../privateComponents&quot;</code></li>
+<li><code>import &quot;somefile.js&quot; as Script</code></li>
+</ul>
+<p><span lang="zh-cn">请参阅</span> <a href="qtqml-syntax-imports.html">QML 
+<span lang="zh-cn">语法</span> - Import <span lang="zh-cn">语句</span></a>
+<span lang="zh-cn">文档以更深入了解导入语句。</span></p>
+<a name="qml-object-declarations"></a><a name="object-declarations"></a>
+<h2 id="object-declarations"><span lang="zh-cn">对象声明</span></h2>
+<p>从语法上讲，QML代码块定义了要创建的QML对象树。对象是使用<i><span lang="zh-cn"> </span>对象声明<span lang="zh-cn">
+</span></i>定义的，这些声明描述了要创建的对象的类型以及要赋予对象的属性。每个对象也可以使用嵌套的对象声明来声明子对象。</p>
+<p>对象声明由其对象类型的名称和一组花括号组成。<br>然后在这些大括号中声明所有属性和子对象。</p>
+<p>下面是一个简单的对象声明:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">100</span>
+      <span class="name">height</span>: <span class="number">100</span>
+      <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+  }
+
+</pre>
+<p>它声明了一个 <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>, 
+类型的对象，后跟一组花括号，包含为该对象定义的属性。 <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 
+类型是 <code>QtQuick</code> 模块提供的一种类型，在本例中定义的属性是矩形的 <code>width<span lang="zh-cn">，</span></code> <code>height</code> 
+<span lang="zh-cn">以及</span> <code>color</code> properties属性的值。(如<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>文档中所述，这些都是由 <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 
+类型提供的属性。)</p>
+<p>如果上面的对象是 <a href="qtqml-documents-topic.html">QML <span lang="zh-cn">文档</span></a>的一部分，那么它可以由引擎加载。如果源代码使用 <i>import</i> 
+语句来<span lang="zh-cn">导入</span><code>QtQuick</code> 模块 (使 <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 
+类型可用)，如下所示:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">100</span>
+      <span class="name">height</span>: <span class="number">100</span>
+      <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+  }
+
+</pre>
+<p>当以上代码放在 <code>.qml</code> 文件中并由QML引擎加载时，可以使用<code>QtQuick</code>模块提供的 <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 
+类型创建一个 <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 对象:</p>
+<p class="centerAlign"><img src="images/qtqml-syntax-basics-object-declaration.png" alt="" /></p><p>
+	<b><span lang="zh-cn">注意</span>: </b>如果一个对象定义只有少量的属性，它可以像这样写在一行中，属性之间用分号分隔:</p><pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> { <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>; <span class="name">color</span>: <span class="string">&quot;red&quot;</span> }
+
+</pre>
+<p>显然，在这个例子中声明的 <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 
+对象实际上非常简单，因为它只定义了一些属性值。<br>为了创建更有用的对象，对象声明可以定义许多其他类型的属性:这些在 
+<a href="qtqml-syntax-objectattributes.html">QML对象属性文档</a>中进行了讨论。 
+此外，对象声明可以定义子对象，如下所述。</p>
+<a name="child-objects"></a>
+<h3 ><span lang="zh-cn">子对象</span></h3>
+<p>任何对象声明都可以通过嵌套的对象声明定义子对象。<br>这样， <b>任何对象声明都隐式地声明了一个对象树，该对象树可以包含任意数量的子对象。</b></p>
+<p>例如，下面的 <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 对象声明包含了 <a href="../qtquick/qml-qtquick-gradient.html">Gradient</a> 
+对象声明，而<span lang="zh-cn"> <a href="../qtquick/qml-qtquick-gradient.html">Gradient</a> 
+对象声明又包含了两个</span> <a href="../qtquick/qml-qtquick-gradientstop.html">GradientStop</a> 
+声明:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">100</span>
+      <span class="name">height</span>: <span class="number">100</span>
+
+      <span class="name">gradient</span>: <span class="name">Gradient</span> {
+          <span class="type"><a href="../qtquick/qml-qtquick-gradientstop.html">GradientStop</a></span> { <span class="name">position</span>: <span class="number">0.0</span>; <span class="name">color</span>: <span class="string">&quot;yellow&quot;</span> }
+          <span class="type"><a href="../qtquick/qml-qtquick-gradientstop.html">GradientStop</a></span> { <span class="name">position</span>: <span class="number">1.0</span>; <span class="name">color</span>: <span class="string">&quot;green&quot;</span> }
+      }
+  }
+
+</pre>
+<p>当这段代码被引擎加载时，它创建了一个对象树，树的根是一个 <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 
+对象;<br>这个对象有一个 <a href="../qtquick/qml-qtquick-gradient.html">Gradient</a> 
+子对象，这个子对象又有两个 <a href="../qtquick/qml-qtquick-gradientstop.html">GradientStop</a> 
+子对象。</p>
+<p>但是请注意，这是QML对象树上下文中的父子关系，而不是可视场景上下文中的父子关系。<br>可视场景中的父子关系的概念是由<code>QtQuick</code>模块中的 <a href="../qtquick/qml-qtquick-item.html">Item</a> 
+类型提供的，它是大多数QML类型的基本类型，因为大多数QML对象都是可视化呈现的。<br>例如， <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 
+<span lang="zh-cn">和</span> <a href="../qtquick/qml-qtquick-text.html">Text</a> 
+<span lang="zh-cn">都是基于</span> <a href="../qtquick/qml-qtquick-item.html">Item</a><span lang="zh-cn">的类型</span>,下面&nbsp; <a href="../qtquick/qml-qtquick-text.html">Text</a> 
+对象被声明为 <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 对象的可视子对象:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>
+      <span class="name">height</span>: <span class="number">200</span>
+      <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">text</span>: <span class="string">&quot;Hello, QML!&quot;</span>
+      }
+  }
+
+</pre>
+<p><span lang="zh-cn">当</span> <a href="../qtquick/qml-qtquick-text.html">Text</a> 
+对象在上面的代码中引用它的 <a href="../qtquick/qml-qtquick-item.html#parent-prop">parent</a> 
+值时，它引用的是它的 <i>可视父对象</i>, 而不是对象树中的父对象。在本例中，它们是一样的:在QML对象树的上下文中以及视觉场景的上下文中， <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 
+都是 <a href="../qtquick/qml-qtquick-text.html">Text</a> 对象的父对象。然而，虽然可以修改 
+<a href="../qtquick/qml-qtquick-item.html#parent-prop"><span lang="zh-cn">父</span></a> 
+属性以更改可视父属性，但不能从QML更改对象树上下文中对象的父属性。</p>
+<p>(另外，请注意， <a href="../qtquick/qml-qtquick-text.html">Text</a> 对象的声明没有将其赋值给 <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a><span lang="zh-cn">
+</span>的属性，不像前面的例子将 <a href="../qtquick/qml-qtquick-gradient.html">Gradient</a> 
+对象赋值给Rectangle的 <code>gradient<span lang="zh-cn">(渐变）</span></code> 属性。这是因为<a href="../qtquick/qml-qtquick-item.html">Item</a> 
+<span lang="zh-cn">的</span>
+<a href="../qtquick/qml-qtquick-item.html#children-prop"><span lang="zh-cn">子</span></a> 
+属性已被设置为类型的<a href="qtqml-syntax-objectattributes.html#default-properties">默认<span lang="zh-cn">属性</span></a>，以启用更方便的语法。)&nbsp; </p>
+<p>有关<a href="../qtquick/qml-qtquick-item.html">Item</a>类型的<a href="../qtquick/qtquick-visualcanvas-visualparent.html">可视父级 </a>
+概念的更多信息，请参阅<a href="../qtquick/qtquick-visualcanvas-visualparent.html">可视父级 </a>
+文档。</p>
+<a name="comments"></a>
+<h2 id="comments"><span lang="zh-cn">注释</span></h2>
+<p>QML中的注释语法与JavaScript类似:</p>
+<ul>
+<li>单行注释以//开头，在行尾结束。</li>
+<li>多行注释以/*开始，以*/结束 </li>
+</ul>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+      <span class="name">text</span>: <span class="string">&quot;Hello world!&quot;</span>    <span class="comment">//一个基本的问候</span>
+      <span class="comment">/*
+          我们希望这段问候文字能从其他课文中脱颖而出<span lang="zh-cn">。</span>因此给它一个大的尺寸和不同与其他部分的字体。
+       */</span>
+      <span class="name">font</span>.family: <span class="string">&quot;Helvetica&quot;</span>
+      <span class="name">font</span>.pointSize: <span class="number">24</span>
+  }
+
+</pre>
+<p>在处理QML代码时，注释会被引擎忽略。<br>它们对于解释一段代码正在做什么很有用，无论是用于以后的参考，还是用于向其他人解释实现。</p>
+<p>注释还可以用来防止代码的执行，这有时对跟踪问题很有用。</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+      <span class="name">text</span>: <span class="string">&quot;Hello world!&quot;</span>
+      <span class="comment">//opacity: 0.5</span>
+  }
+
+</pre>
+<p>在上面的例子中，<a href="../qtquick/qml-qtquick-text.html">Text</a>对象将具有正常的不透明度，因为行不透明度:0.5已经被转换为注释。</p>
+</div>
+<!-- @@@qtqml-syntax-basics.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
