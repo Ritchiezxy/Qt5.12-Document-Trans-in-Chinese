@@ -27,7 +27,8 @@
       <div class="navigationbar">
         <table><tr>
 <td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-module.html">C++ Classes</a></td><td >QQmlEngine</td></tr></table><table class="buildversion"><tr>
-<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 
+5.12.3 <span lang="zh-cn">参考指南</span></a></td>
         </tr></table>
       </div>
     </div>
@@ -38,29 +39,34 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#public-types">Public Types</a></li>
-<li class="level1"><a href="#properties">Properties</a></li>
-<li class="level1"><a href="#public-functions">Public Functions</a></li>
-<li class="level1"><a href="#public-slots">Public Slots</a></li>
-<li class="level1"><a href="#signals">Signals</a></li>
-<li class="level1"><a href="#static-public-members">Static Public Members</a></li>
-<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
-<li class="level1"><a href="#related-non-members">Related Non-Members</a></li>
-<li class="level1"><a href="#macros">Macros</a></li>
-<li class="level1"><a href="#details">Detailed Description</a></li>
+<li class="level1"><a href="#public-types"><span lang="zh-cn">公用类型</span></a></li>
+<li class="level1"><a href="#properties"><span lang="zh-cn">属性</span></a></li>
+<li class="level1"><a href="#public-functions"><span lang="zh-cn">公用函数</span></a></li>
+<li class="level1"><a href="#public-slots"><span lang="zh-cn">共用槽函数</span></a></li>
+<li class="level1"><a href="#signals"><span lang="zh-cn">信号</span></a></li>
+<li class="level1"><a href="#static-public-members"><span lang="zh-cn">静态公用成员</span></a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">
+<span lang="zh-cn">重新实现的保护函数</span></a></li>
+<li class="level1"><a href="#related-non-members"><span lang="zh-cn">相关的非成员</span></a></li>
+<li class="level1"><a href="#macros"><span lang="zh-cn">宏</span></a></li>
+<li class="level1"><a href="#details"><span lang="zh-cn">详细信息</span></a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QQmlEngine Class</h1>
+<h1 class="title">QQmlEngine <span lang="zh-cn">类</span></h1>
 <!-- $$$QQmlEngine-brief -->
-<p>The <a href="qqmlengine.html">QQmlEngine</a> class provides an environment for instantiating QML components. <a href="#details">More...</a></p>
+<p><a href="qqmlengine.html">QmlEngine</a>类提供了一个实例化QML组件的环境。 <a href="#details">
+<span lang="zh-cn">更多</span>...</a></p>
 <!-- @@@QQmlEngine -->
 <div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlEngine&gt;</span>
-</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.0</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="qjsengine.html">QJSEngine</a></td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="qqmlapplicationengine.html">QQmlApplicationEngine</a></p>
+<tr><td class="memItemLeft rightAlign topAlign"> <span lang="zh-cn">头文件：</span></td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlEngine&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr><tr><td class="memItemLeft rightAlign topAlign"> 
+	<span lang="zh-cn">何时引入</span>:</td><td class="memItemRight bottomAlign">  Qt 5.0</td></tr><tr><td class="memItemLeft rightAlign topAlign"> 
+		<span lang="zh-cn">继承自</span>:</td><td class="memItemRight bottomAlign"> <a href="qjsengine.html">QJSEngine</a></td></tr><tr><td class="memItemLeft rightAlign topAlign"> 
+		<span lang="zh-cn">被继承</span>:</td><td class="memItemRight bottomAlign"> <p><a href="qqmlapplicationengine.html">QQmlApplicationEngine</a></p>
 </td></tr></table></div><ul>
-<li><a href="qqmlengine-members.html">List of all members, including inherited members</a></li>
-<li><a href="qqmlengine-obsolete.html">Obsolete members</a></li>
+<li><a href="qqmlengine-members.html"><span lang="zh-cn">所有成员的列表，包括继承成员</span></a></li>
+<li><a href="qqmlengine-obsolete.html"><span lang="zh-cn">废弃的成员</span></a></li>
 </ul>
 <a name="public-types"></a>
 <h2 id="public-types">Public Types</h2>
@@ -68,15 +74,16 @@
 <tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#ObjectOwnership-enum">ObjectOwnership</a></b> { CppOwnership, JavaScriptOwnership }</td></tr>
 </table></div>
 <a name="properties"></a>
-<h2 id="properties">Properties</h2>
+<h2 id="properties"><span lang="zh-cn">属性</span></h2>
 <ul>
 <li class="fn"><b><a href="qqmlengine.html#offlineStoragePath-prop">offlineStoragePath</a></b> : QString</li>
 </ul>
 <ul>
-<li class="fn">1 property inherited from <a href="../qtcore/qobject.html#properties">QObject</a></li>
+<li class="fn"><span lang="zh-cn">从</span><a href="../qtcore/qobject.html#properties">QObject</a><span lang="zh-cn"> 
+继承了一个属性</span></li>
 </ul>
 <a name="public-functions"></a>
-<h2 id="public-functions">Public Functions</h2>
+<h2 id="public-functions"><span lang="zh-cn">公用函数</span></h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#QQmlEngine">QQmlEngine</a></b>(QObject *<i>parent</i> = nullptr)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#dtor.QQmlEngine">~QQmlEngine</a></b>() override</td></tr>
@@ -108,29 +115,29 @@
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#trimComponentCache">trimComponentCache</a></b>()</td></tr>
 </table></div>
 <ul>
-<li class="fn">15 public functions inherited from <a href="qjsengine.html#public-functions">QJSEngine</a></li>
-<li class="fn">31 public functions inherited from <a href="../qtcore/qobject.html#public-functions">QObject</a></li>
+<li class="fn"><span lang="zh-cn">&nbsp;从<a href="qjsengine.html#public-functions">QJSEngine</a>继承了15个公共函数</span></li>
+<li class="fn"><span lang="zh-cn">从<a href="../qtcore/qobject.html#public-functions">QObject</a>继承了31个公共函数</span></li>
 </ul>
 <a name="public-slots"></a>
-<h2 id="public-slots">Public Slots</h2>
+<h2 id="public-slots"><span lang="zh-cn">公用槽函数</span></h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#retranslate">retranslate</a></b>()</td></tr>
 </table></div>
 <ul>
-<li class="fn">1 public slot inherited from <a href="../qtcore/qobject.html#public-slots">QObject</a></li>
+<li class="fn"><span lang="zh-cn">从<a href="../qtcore/qobject.html#public-slots">QObject</a>继承1个公用槽函数</span></li>
 </ul>
 <a name="signals"></a>
-<h2 id="signals">Signals</h2>
+<h2 id="signals"><span lang="zh-cn">信号</span></h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#exit">exit</a></b>(int <i>retCode</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#quit">quit</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#warnings">warnings</a></b>(const QList&lt;QQmlError&gt; &amp;<i>warnings</i>)</td></tr>
 </table></div>
 <ul>
-<li class="fn">2 signals inherited from <a href="../qtcore/qobject.html#signals">QObject</a></li>
+<li class="fn"><span lang="zh-cn">从<a href="../qtcore/qobject.html#signals">QObject</a>继承2个信号</span></li>
 </ul>
 <a name="static-public-members"></a>
-<h2 id="static-public-members">Static Public Members</h2>
+	<h2 id="static-public-members">静态公<span lang="zh-cn">用</span>成员</h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> QQmlContext *</td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#contextForObject">contextForObject</a></b>(const QObject *<i>object</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> QQmlEngine::ObjectOwnership </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#objectOwnership">objectOwnership</a></b>(QObject *<i>object</i>)</td></tr>
@@ -139,15 +146,15 @@
 <tr><td class="memItemLeft rightAlign topAlign"> const QMetaObject </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#staticMetaObject-var">staticMetaObject</a></b></td></tr>
 </table></div>
 <ul>
-<li class="fn">9 static public members inherited from <a href="../qtcore/qobject.html#static-public-members">QObject</a></li>
+<li class="fn"><span lang="zh-cn">从<a href="../qtcore/qobject.html#static-public-members">QObject</a>继承的9个静态公用成员</span></li>
 </ul>
 <a name="reimplemented-protected-functions"></a>
-<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<h2 id="reimplemented-protected-functions">重新实现<span lang="zh-cn">的</span>保护<span lang="zh-cn">函数</span></h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#event">event</a></b>(QEvent *<i>e</i>) override</td></tr>
 </table></div>
 <ul>
-<li class="fn">9 protected functions inherited from <a href="../qtcore/qobject.html#protected-functions">QObject</a></li>
+<li class="fn"><span lang="zh-cn">&nbsp;9个受保护的函数继承自<a href="../qtcore/qobject.html#protected-functions">QObject</a></span></li>
 </ul>
 <a name="related-non-members"></a>
 <h2 id="related-non-members">Related Non-Members</h2>
@@ -177,7 +184,7 @@
 <tr><td class="memItemLeft rightAlign topAlign"> QQmlInfo </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#qmlWarning">qmlWarning</a></b>(const QObject *<i>object</i>)</td></tr>
 </table></div>
 <a name="macros"></a>
-<h2 id="macros">Macros</h2>
+<h2 id="macros"><span lang="zh-cn">宏</span></h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#QML_DECLARE_TYPE">QML_DECLARE_TYPE</a></b></td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlengine.html#QML_DECLARE_TYPEINFO">QML_DECLARE_TYPEINFO</a></b>(<i>Type</i>, <i>Flags</i>)</td></tr>
@@ -185,10 +192,11 @@
 <a name="details"></a>
 <!-- $$$QQmlEngine-description -->
 <div class="descr">
-<h2 id="details">Detailed Description</h2>
-<p>The <a href="qqmlengine.html">QQmlEngine</a> class provides an environment for instantiating QML components.</p>
-<p>Each QML component is instantiated in a <a href="qqmlcontext.html">QQmlContext</a>. <a href="qqmlcontext.html">QQmlContext</a>'s are essential for passing data to QML components. In QML, contexts are arranged hierarchically and this hierarchy is managed by the <a href="qqmlengine.html">QQmlEngine</a>.</p>
-<p>Prior to creating any QML components, an application must have created a <a href="qqmlengine.html">QQmlEngine</a> to gain access to a QML context. The following example shows how to create a simple Text item.</p>
+<h2 id="details"><span lang="zh-cn">详细信息</span></h2>
+<p>&nbsp;<a href="qqmlengine.html">QQmlEngine</a>类提供了一个实例化QML组件的环境。</p>
+<p><span lang="zh-cn">每个QML组件都在<a href="qqmlcontext.html">QQmlContext</a>中实例化。<a href="qqmlcontext.html">QQmlContext</a>对于将数据传递给QML组件非常重要。在QML中，上下文是分层排列的，这个层次由<a href="qqmlengine.html">QQmlEngine</a>管理。</span></p>
+<p>在创建任何QML组件之前，应用程序必须创建一个<a href="qqmlengine.html">QQmlEngine</a>以获得对QML上下文的访问权。<br>
+下面的示例演示如何创建一个简单的Text项。</p>
 <pre class="cpp">
 
   <span class="type"><a href="qqmlengine.html#QQmlEngine">QQmlEngine</a></span> engine;
@@ -196,20 +204,23 @@
   component<span class="operator">.</span>setData(<span class="string">&quot;import QtQuick 2.0\nText { text: \&quot;Hello world!\&quot; }&quot;</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qurl.html">QUrl</a></span>());
   <span class="type"><a href="../qtquick/qquickitem.html">QQuickItem</a></span> <span class="operator">*</span>item <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span><span class="type"><a href="../qtquick/qquickitem.html">QQuickItem</a></span> <span class="operator">*</span><span class="operator">&gt;</span>(component<span class="operator">.</span>create());
 
-  <span class="comment">//add item to view, etc</span>
+  <span class="comment">//添加项目到视图等</span>
   <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
 
 </pre>
-<p>In this case, the Text item will be created in the engine's <a href="qqmlengine.html#rootContext">root context</a>.</p>
+<p>In this case, the Text item will be created in the engine's .在本例中，Text项将在引擎的<a href="qqmlengine.html#rootContext">根上下文</a>中创建。</p>
 </div>
-<p><b>See also </b><a href="qqmlcomponent.html">QQmlComponent</a>, <a href="qqmlcontext.html">QQmlContext</a>, and <a href="qtqml-javascript-qmlglobalobject.html">QML Global Object</a>.</p>
+<p><b><span lang="zh-cn">参考</span> </b><a href="qqmlcomponent.html">QQmlComponent</a>, <a href="qqmlcontext.html">QQmlContext</a>,
+<span lang="zh-cn">以及</span> <a href="qtqml-javascript-qmlglobalobject.html">QML Global Object</a><span lang="zh-cn">。</span></p>
 <!-- @@@QQmlEngine -->
 <div class="types">
-<h2>Member Type Documentation</h2>
+<h2><span lang="zh-cn">成员类型文档</span></h2>
 <!-- $$$ObjectOwnership$$$CppOwnership$$$JavaScriptOwnership -->
 <h3 class="fn" id="ObjectOwnership-enum"><a name="ObjectOwnership-enum"></a>enum QQmlEngine::<span class="name">ObjectOwnership</span></h3>
-<p>ObjectOwnership controls whether or not QML automatically destroys the <a href="../qtcore/qobject.html">QObject</a> when the corresponding JavaScript object is garbage collected by the engine. The two ownership options are:</p>
-<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<p>objectowownership控制当相应的JavaScript对象被引擎垃圾回收时QML是否自动销毁QObject。<br>两种所有权选择是:</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">
+	常数</th><th class="tblval"><span lang="zh-cn">值</span></th><th class="tbldscr">
+	<span lang="zh-cn">描述</span></th></tr>
 <tr><td class="topAlign"><code>QQmlEngine::CppOwnership</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">The object is owned by C++ code and QML will never delete it. The JavaScript destroy() method cannot be used on these objects. This option is similar to <a href="../qtscript/qscriptengine.html#ValueOwnership-enum">QScriptEngine::QtOwnership</a>.</td></tr>
 <tr><td class="topAlign"><code>QQmlEngine::JavaScriptOwnership</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">The object is owned by JavaScript. When the object is returned to QML as the return value of a method call, QML will track it and delete it if there are no remaining JavaScript references to it and it has no <a href="../qtcore/qobject.html#parent">QObject::parent</a>(). An object tracked by one <a href="qqmlengine.html">QQmlEngine</a> will be deleted during that <a href="qqmlengine.html">QQmlEngine</a>'s destructor. Thus, JavaScript references between objects with JavaScriptOwnership from two different engines will not be valid if one of these engines is deleted. This option is similar to <a href="../qtscript/qscriptengine.html#ValueOwnership-enum">QScriptEngine::ScriptOwnership</a>.</td></tr>
 </table></div>
