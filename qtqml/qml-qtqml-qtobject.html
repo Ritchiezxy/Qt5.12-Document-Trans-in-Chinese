@@ -27,7 +27,8 @@
       <div class="navigationbar">
         <table><tr>
 <td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >QtObject QML Type</td></tr></table><table class="buildversion"><tr>
-<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 
+5.12.3 <span lang="zh-cn">参考指南</span></a></td>
         </tr></table>
       </div>
     </div>
@@ -38,30 +39,31 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
-<li class="level1"><a href="#properties">Properties</a></li>
-<li class="level1"><a href="#details">Detailed Description</a></li>
+<li class="level1"><a href="#properties"><span lang="zh-cn">属性</span></a></li>
+<li class="level1"><a href="#details"><span lang="zh-cn">详细信息</span></a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QtObject QML Type</h1>
+<h1 class="title">QtObject QML <span lang="zh-cn">类型</span></h1>
 <span class="subtitle"></span>
 <!-- $$$QtObject-brief -->
-<p>A basic QML type. <a href="#details">More...</a></p>
+<p>QML type<span lang="zh-cn">关于基本类型，</span><a href="#details"><span lang="zh-cn">更多...</span></a></p>
 <!-- @@@QtObject -->
 <div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Instantiates:</td><td class="memItemRight bottomAlign"> <a href="qml-qtqml-qtobject.html"><a href="../qtcore/qobject.html">QObject</a></td></tr></table></div><ul>
-<li><a href="qml-qtqml-qtobject-members.html">List of all members, including inherited members</a></li>
+<tr><td class="memItemLeft rightAlign topAlign"> <span lang="zh-cn">导入语句：</span></td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign"> 
+	<span lang="zh-cn">实例化于：</span></td><td class="memItemRight bottomAlign"> <a href="qml-qtqml-qtobject.html"><a href="../qtcore/qobject.html">QObject</a></td></tr></table></div><ul>
+<li><a href="qml-qtqml-qtobject-members.html"><span lang="zh-cn">所有成员列表，包括继承成员。</span></a></li>
 </ul>
 <a name="properties"></a>
-<h2 id="properties">Properties</h2>
+<h2 id="properties"><span lang="zh-cn">属性</span></h2>
 <ul>
 <li class="fn"><b><b><a href="qml-qtqml-qtobject.html#objectName-prop">objectName</a></b></b> : string</li>
 </ul>
 <!-- $$$QtObject-description -->
 <a name="details"></a>
-<h2 id="details">Detailed Description</h2>
-<p>The <a href="qml-qtqml-qtobject.html">QtObject</a> type is a non-visual element which contains only the <a href="qml-qtqml-qtobject.html#objectName-prop">objectName</a> property.</p>
-<p>It can be useful to create a <a href="qml-qtqml-qtobject.html">QtObject</a> if you need an extremely lightweight type to enclose a set of custom properties:</p>
+<h2 id="details"><span lang="zh-cn">详细信息</span></h2>
+<p><a href="qml-qtqml-qtobject.html">QtObject</a>类型是一个非可视元素，它只包含<a href="qml-qtqml-qtobject.html#objectName-prop">objectName</a>属性。</p>
+<p>如果你需要一个非常轻量级的类型来包含一组自定义属性，那么创建一个<a href="qml-qtqml-qtobject.html">QtObject</a>会很有用:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -78,9 +80,9 @@
   }
 
 </pre>
-<p>It can also be useful for C++ integration, as it is just a plain <a href="../qtcore/qobject.html">QObject</a>. See the <a href="../qtcore/qobject.html">QObject</a> documentation for further details.</p>
+<p>它对于<span lang="zh-cn">C</span>++集成也很有用，因为它只是一个普通的QObject。更多细节请参阅<a href="../qtcore/qobject.html">QObject</a>文档。</p>
 <!-- @@@QtObject -->
-<h2>Property Documentation</h2>
+<h2><span lang="zh-cn">属性文档</span></h2>
 <!-- $$$objectName -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
@@ -88,8 +90,9 @@
 <td class="tblQmlPropNode"><p>
 <a name="objectName-prop"></a><span class="name">objectName</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This property holds the <a href="../qtcore/qobject.html#objectName-prop">QObject::objectName</a> for this specific object instance.</p>
-<p>This allows a C++ application to locate an item within a QML component using the <a href="../qtcore/qobject.html#findChild">QObject::findChild()</a> method. For example, the following C++ application locates the child <a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> item and dynamically changes its <code>color</code> value:</p>
+</div><div class="qmldoc"><p>此属性<span lang="zh-cn">保存特定object</span>实例的<a href="../qtcore/qobject.html#objectName-prop">QObject::objectName</a><span lang="zh-cn">属性</span>。</p>
+<p>这允许<span lang="zh-cn">C</span>++应用程序使用<a href="../qtcore/qobject.html#findChild">QObject::findChild()</a>方法定位QML组件中的项。例如，下面的<span lang="zh-cn">C</span>++应用程序定位子<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>项并动态更改其<code>color</code> 
+<span lang="zh-cn">（颜色）</span>值:</p>
 <pre class="qml">
 
   <span class="comment">// MyRect.qml</span>

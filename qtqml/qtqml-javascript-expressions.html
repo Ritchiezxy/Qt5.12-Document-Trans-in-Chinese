@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- expressions.qdoc -->
+  <title>JavaScript Expressions in QML Documents | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+          QML文档中的JavaScript表达式<table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >JavaScript Expressions in QML Documents</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 
+5.12.3 <span lang="zh-cn">参考指南</span></a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc"><span lang="zh-cn">目录</span></a></h3>
+<ul>
+<li class="level1"><a href="#javascript-in-property-bindings">属性绑定中的JavaScript</a></li>
+<li class="level1"><a href="#javascript-in-signal-handlers">信号处理程序中的JavaScript</a></li>
+<li class="level1"><a href="#javascript-in-standalone-functions">
+独立函数中的JavaScript</a></li>
+<li class="level2"><a href="#javascript-in-custom-methods">自定义方法中的JavaScript</a></li>
+<li class="level2"><a href="#functions-defined-in-a-javascript-file">
+JavaScript文件中定义的函数</a></li>
+<li class="level2"><a href="#connecting-signals-to-javascript-functions">
+将信号连接到JavaScript函数</a></li>
+<li class="level1"><a href="#javascript-in-application-startup-code">
+应用程序启动代码中的JavaScript</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML文档中的JavaScript表达式</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-javascript-expressions.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><span lang="zh-cn">&nbsp;</span>QML提供的<a href="qtqml-javascript-hostenvironment.html">JavaScript主机环境</a>可以运行有效的标准JavaScript结构，如条件操作符、数组、变量设置和循环。除了标准的JavaScript属性外，<a href="qtqml-javascript-qmlglobalobject.html">QML全局对象</a>还包括许多帮助器方法，这些方法可以简化ui的构建和与QML环境的交互。</p>
+<p>
+QML提供的JavaScript环境比web浏览器提供的更严格。例如，在QML中，您不能添加或修改JavaScript全局对象的成员。在常规的JavaScript中，使用变量而不声明它，可能会意外地造成这种情况。在QML中，这将引发异常，因此必须显式声明所有局部变量。有关从QML执行的JavaScript代码的限制的完整描述，请参阅 
+<a href="qtqml-javascript-hostenvironment.html#javascript-environment-restrictions">
+JavaScript环境限制</a>。</p>
+<p><a href="qtqml-documents-topic.html">QML文档</a>的各个部分都可以包含JavaScript代码:</p>
+<ol class="1" type="1"><li><a href="qtqml-syntax-propertybinding.html">属性绑定</a>的主体。这些JavaScript表达式描述了QML对象<a href="qtqml-syntax-objectattributes.html#property-attributes">属性</a>之间的关系。当属性的<i>依赖</i>关系改变时，属性也会根据指定的关系自动更新。</li>
+<li><a href="qtqml-syntax-objectattributes.html#signal-attributes">信号处理</a>程序的主体。只要QML对象发出相关信号，这些JavaScript语句就会自动计算。</li>
+<li><a href="qtqml-syntax-objectattributes.html#method-attributes">自定义方法tom methods</a>的定义。在QML对象体中定义的JavaScript函数成为该对象的方法。</li>
+<li><a href="qtqml-javascript-imports.html">独立JavaScript资源(.js)文件</a>。这些文件实际上是与QML文档分离的，但是它们可以被导入到QML文档中。在导入文件中定义的函数和变量可以在属性绑定、信号处理程序和自定义方法中使用。</li>
+</ol>
+<a name="javascript-in-property-bindings"></a>
+<h2 id="javascript-in-property-bindings"><span lang="zh-cn">属性绑定中的</span>JavaScript</h2>
+<p>在下面的例子中，Rectangle的<code>color</code> <span lang="zh-cn">（</span>颜色<span lang="zh-cn">）</span>属性依赖于<a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a>的按下属性。<br>
+这种关系可以用条件表达式来描述:</p>
+<pre class="qml">
+
+  import QtQuick 2.12
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">colorbutton</span>
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">80</span>;
+
+      <span class="name">color</span>: <span class="name">inputHandler</span>.<span class="name">pressed</span> ? <span class="string">&quot;steelblue&quot;</span> : <span class="string">&quot;lightsteelblue&quot;</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+          <span class="name">id</span>: <span class="name">inputHandler</span>
+      }
+  }
+
+</pre>
+<p>事实上，任何JavaScript表达式(无论多么复杂)都可以在属性绑定定义中使用，只要表达式的结果是一个可以将其类型赋给属性的值。<br>这包括副作用。<br>
+但是，不鼓励使用复杂的绑定和副作用，因为它们会降低代码的性能、可读性和可维护性。</p>
+<p>有两种方法可以定义属性绑定:最常见的一种方法在前面的示例中显示，在<a href="qtqml-syntax-objectattributes.html#value-assignment-on-initialization">属性初始化</a>中。第二种(也是更少见的)方法是将属性赋值为<a href="qml-qtqml-qt.html#binding-method">Qt.binding()</a>函数返回的函数，在JavaScript命令式代码中，如下所示:</p>
+<pre class="qml">
+
+  import QtQuick 2.12
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">colorbutton</span>
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">80</span>;
+
+      <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+          <span class="name">id</span>: <span class="name">inputHandler</span>
+      }
+
+      <span class="name">Component</span>.onCompleted: {
+          <span class="name">color</span> <span class="operator">=</span> <span class="name">Qt</span>.<span class="name">binding</span>(<span class="keyword">function</span>() { <span class="keyword">return</span> <span class="name">inputHandler</span>.<span class="name">pressed</span> ? <span class="string">&quot;steelblue&quot;</span> : <span class="string">&quot;lightsteelblue&quot;</span> });
+      }
+  }
+
+</pre>
+<p>See the&nbsp; documentation for more information about how to define property bindings, and see the documentation about&nbsp;
+<span lang="zh-cn">有关如何定义<a href="qtqml-syntax-propertybinding.html">属性绑定</a>的更多信息，请参阅属性绑定文档，并参阅<a href="qtqml-syntax-propertybinding.html#qml-javascript-assignment">属性赋值与属性绑定</a>文档，了解绑定与值赋值的区别。</span></p>
+<a name="javascript-in-signal-handlers"></a>
+<h2 id="javascript-in-signal-handlers"><span lang="zh-cn">信号处理程序中的JavaScript</span></h2>
+<p>QML对象类型可以对发生的特定事件发出信号。<br>这些信号可以通过信号处理函数来处理，这些函数可以由客户定义，以实现自定义的程序逻辑。</p>
+<p>假设一个由Rectangle类型表示的按钮有一个<a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a>和一个Text标签。当用户按下按钮时，TapHandler<a href="../qtquick/qml-qtquick-taphandler.html#tapped-signal">发出</a>它的点击信号。客户端可以使用JavaScript表达式对<code>onTapped</code> 
+处理程序中的信号作出反应。QML引擎根据需要执行处理程序中定义的这些JavaScript表达式。通常，信号处理程序被绑定到JavaScript表达式以发起其他事件或分配属性值。</p>
+<pre class="qml">
+
+  import QtQuick 2.12
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">button</span>
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">80</span>; <span class="name">color</span>: <span class="string">&quot;lightsteelblue&quot;</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+          <span class="name">id</span>: <span class="name">inputHandler</span>
+          <span class="name">onTapped</span>: {
+              <span class="comment">// arbitrary JavaScript expression</span>
+              <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Tapped!&quot;</span>)
+          }
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+          <span class="name">id</span>: <span class="name">label</span>
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">text</span>: <span class="name">inputHandler</span>.<span class="name">pressed</span> ? <span class="string">&quot;Pressed!&quot;</span> : <span class="string">&quot;Press here!&quot;</span>
+      }
+  }
+
+</pre>
+<p>有关信号和信号处理程序的更多细节，请参阅以下主题:</p>
+<ul>
+<li><a href="qtqml-syntax-signals.html">信号和处理程序事件系统</a></li>
+<li><a href="qtqml-syntax-objectattributes.html">QML对象属性</a></li>
+</ul>
+<a name="javascript-in-standalone-functions"></a>
+<h2 id="javascript-in-standalone-functions">独立函数中的JavaScript</h2>
+<p>程序逻辑也可以在JavaScript函数中定义。<br>
+这些函数可以在QML文档中内联定义(作为自定义方法)，也可以在外部导入的JavaScript文件中定义。</p>
+<a name="javascript-in-custom-methods"></a>
+<h3 >自定义方法中的JavaScript</h3>
+<p>自定义方法可以在QML文档中定义，也可以从信号处理程序、属性绑定或其他QML对象中的函数中调用。<br>
+此类方法通常被称为内联JavaScript函数，因为它们的实现包含在QML对象类型定义(QML文档)中，而不是包含在外部JavaScript文件中。</p>
+<p>下面是一个内联自定义方法的例子:</p>
+<pre class="qml">
+
+  import QtQuick 2.12
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="keyword">function</span> <span class="name">fibonacci</span>(n){
+          var arr = [<span class="number">0</span>, <span class="number">1</span>];
+          <span class="keyword">for</span> (var i = 2; <span class="name">i</span> <span class="operator">&lt;</span> <span class="name">n</span> <span class="operator">+</span> <span class="number">1</span>; i++)
+              <span class="name">arr</span>.<span class="name">push</span>(<span class="name">arr</span>[<span class="name">i</span> <span class="operator">-</span> <span class="number">2</span>] <span class="operator">+</span> <span class="name">arr</span>[<span class="name">i</span> <span class="operator">-</span><span class="number">1</span>]);
+
+          <span class="keyword">return</span> <span class="name">arr</span>;
+      }
+      <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+          <span class="name">onTapped</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="name">fibonacci</span>(<span class="number">10</span>))
+      }
+  }
+
+</pre>
+<p>每当<a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a>发出抽头信号时，fibonacci函数都会运行。</p>
+<p><b>注意:</b>在QML文档中内联定义的自定义方法公开给其他对象，因此QML组件中根对象上的内联函数可以由组件外部的调用者调用。如果不希望这样做，可以将方法添加到非根对象中，或者最好在外部JavaScript文件中编写。</p><p>
+	有关使用JavaScript在QML中定义自定义方法的更多信息，请参阅<a href="qtqml-syntax-objectattributes.html">QML对象属性</a>文档。</p>
+<a name="functions-defined-in-a-javascript-file"></a>
+<h3 >JavaScript文件中定义的函数</h3>
+<p>非平凡的程序逻辑最好被分离到一个单独的JavaScript文件中。这个文件可以使用导入语句导入到QML中，就像QML<a href="qtqml-modules-topic.html">模块</a>一样。</p>
+<p>例如，前面例子中的<code>fibonacci()</code>方法可以移动到一个名为<code>fib.js</code>的外部文件中，并像这样访问:</p>
+<pre class="qml">
+
+  import QtQuick 2.12
+  import &quot;fib.js&quot; as MathFunctions
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+          <span class="name">onTapped</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="name">MathFunctions</span>.<span class="name">fibonacci</span>(<span class="number">10</span>))
+      }
+  }
+
+</pre>
+<p>有关将外部JavaScript文件加载到QML中的更多信息，请阅读“<a href="qtqml-javascript-imports.html">在QML中导入JavaScript资源</a>”一节。</p>
+<a name="connecting-signals-to-javascript-functions"></a>
+<h3 >将信号连接到JavaScript函数</h3>
+<p>发出信号的QML对象类型还为其信号提供默认信号处理程序，如前<a href="qtqml-javascript-expressions.html#javascript-in-signal-handlers"><span lang="zh-cn">前</span>一节</a>所述。然而，有时客户端希望在另一个QML对象发出信号时触发QML对象中定义的函数。这样的场景可以通过信号连接来处理。</p>
+<p>通过调用信号的<code>connect()</code>方法并将JavaScript函数作为参数传递，QML对象发出的信号可以连接到JavaScript函数。例如，下面的代码将<a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a>的点击信号连接到<code>script.js</code>中的<code>jsFunction()<span lang="zh-cn">：</span></code></p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><pre class="qml">
+
+  import QtQuick 2.12
+  import &quot;script.js&quot; as MyScript
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">item</span>
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+          <span class="name">id</span>: <span class="name">inputHandler</span>
+      }
+
+      <span class="name">Component</span>.onCompleted: {
+          <span class="name">inputHandler</span>.<span class="name">tapped</span>.<span class="name">connect</span>(<span class="name">MyScript</span>.<span class="name">jsFunction</span>)
+      }
+  }
+
+</pre>
+</td><td ><pre class="js">
+
+  <span class="comment">// script.js</span>
+
+  <span class="keyword">function</span> <span class="name">jsFunction</span>() {
+      <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Called JavaScript function!&quot;</span>)
+  }
+
+</pre>
+</td></tr>
+</table></div>
+<p>只要触发<code><span lang="zh-cn">触发</span></code> 了<a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a>的点击信号，就会调用<code>jsFunction()</code> 
+<span lang="zh-cn">。</span></p>
+<p>有关更多信息，请参阅<a href="qtqml-syntax-signals.html">将信号连接到方法和信号</a>。</p>
+<a name="javascript-in-application-startup-code"></a>
+<h2 id="javascript-in-application-startup-code">应用程序启动代码中的JavaScript</h2>
+<p>有时需要在应用程序(或组件实例)启动时运行一些命令式代码。虽然很容易将启动脚本作为<i>全局代码</i>包含在外部脚本文件中，但这可能会有严重的限制，因为QML环境可能还没有完全建立起来。例如，有些对象可能还没有创建，有些属<a href="qtqml-syntax-propertybinding.html">性绑定</a>可能还没有建立。有关全局脚本代码的确切限制，请参阅<a href="qtqml-javascript-hostenvironment.html#javascript-environment-restrictions">环境限制</a>。</p>
+<p>当实例化完成时，QML对象会发出Componentcompleted<a href="qtqml-syntax-signals.html#attached-signal-handlers">附加信号</a>。对应<code>Component.onCompleted</code>处理程序中的JavaScript代码在对象实例化后运行。因此，编写应用程序启动代码的最佳位置是顶级对象的<code>Component.onCompleted</code>处理程序，因为当QML环境完全建立时，该对象会发出<code>Component.onCompleted</code>。</p>
+<p><span lang="zh-cn">例如：</span></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="keyword">function</span> <span class="name">startupFunction</span>() {
+          <span class="comment">// ... startup code</span>
+      }
+
+      <span class="name">Component</span>.onCompleted: <span class="name">startupFunction</span>();
+  }
+
+</pre>
+<p>QML文件中的任何对象——包括嵌套的对象和嵌套的QML组件实例——都可以使用这个附加属性。<br>如果在启动时有多个<code>onCompleted()</code> 
+处理程序要执行，它们将以未定义的顺序依次运行。</p>
+<p>同样，每个组件在被销毁之前都会发出一个<a href="qml-qtqml-component.html#destruction-signal">destruction()</a>信号。</p>
+</div>
+<!-- @@@qtqml-javascript-expressions.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
