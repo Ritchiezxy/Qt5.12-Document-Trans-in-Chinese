@@ -751,25 +751,25 @@ format参数可以是<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.format
 	 <span lang="zh-cn">输出</span></th></tr></thead>
 <tr valign="top" class="odd"><td >h</td><td >没有前导零的小时数(如果显示AM/PM，则为0到23或1到12)</td></tr>
 <tr valign="top" class="even"><td >hh</td><td >前导零的小时(00至23或01至12(如果显示AM/PM))</td></tr>
-<tr valign="top" class="odd"><td >m</td><td >the minute without a leading zero (0 to 59)</td></tr>
-<tr valign="top" class="even"><td >mm</td><td >the minute with a leading zero (00 to 59)</td></tr>
-<tr valign="top" class="odd"><td >s</td><td >the second without a leading zero (0 to 59)</td></tr>
-<tr valign="top" class="even"><td >ss</td><td >the second with a leading zero (00 to 59)</td></tr>
-<tr valign="top" class="odd"><td >z</td><td >the milliseconds without leading zeroes (0 to 999)</td></tr>
-<tr valign="top" class="even"><td >zzz</td><td >the milliseconds with leading zeroes (000 to 999)</td></tr>
-<tr valign="top" class="odd"><td >AP</td><td >use AM/PM display. <i>AP</i> will be replaced by either &quot;AM&quot; or &quot;PM&quot;.</td></tr>
-<tr valign="top" class="even"><td >ap</td><td >use am/pm display. <i>ap</i> will be replaced by either &quot;am&quot; or &quot;pm&quot;.</td></tr>
-<tr valign="top" class="odd"><td >t</td><td >include a time-zone indicator.</td></tr>
+<tr valign="top" class="odd"><td >m</td><td >没有前导零的分钟（0到59）</td></tr>
+<tr valign="top" class="even"><td >mm</td><td >有前导零的分钟（0<span lang="zh-cn">0</span>到59）</td></tr>
+<tr valign="top" class="odd"><td >s</td><td >没有前导零的<span lang="zh-cn">秒</span>（0到59）</td></tr>
+<tr valign="top" class="even"><td >ss</td><td >有前导零的<span lang="zh-cn">秒</span>（<span lang="zh-cn">0</span>0到59）</td></tr>
+<tr valign="top" class="odd"><td >z</td><td >没有前导零的毫秒数(0到999)</td></tr>
+<tr valign="top" class="even"><td >zzz</td><td >有前导零的毫秒数(0<span lang="zh-cn">00</span>到999)</td></tr>
+<tr valign="top" class="odd"><td >AP</td><td >使用AM / PM显示。AP将被AM或PM取代。</td></tr>
+<tr valign="top" class="even"><td >ap</td><td >使用am/pm显示。<span lang="zh-cn">a</span>p将被am或pm取代。</td></tr>
+<tr valign="top" class="odd"><td >t</td><td >包括一个时区指示器。</td></tr>
 </table></div>
-<p>All other input characters will be ignored. Any sequence of characters that are enclosed in single quotes will be treated as text and not be used as an expression. Two consecutive single quotes (&quot;''&quot;) are replaced by a single quote in the output.</p>
-<p>For example, if the following date/time value was specified:</p>
+<p>所有其他输入字符将被忽略。任何用单引号括起来的字符序列都将被视为文本，而不是用作表达式。<br>在输出中，两个连续的单引号(" " ")被一个单引号替换。</p>
+<p>例如，如果指定了以下日期/时间值:</p>
 <pre class="cpp">
 
   <span class="comment">// 21 May 2001 14:13:09</span>
   var dateTime <span class="operator">=</span> <span class="keyword">new</span> Date(<span class="number">2001</span><span class="operator">,</span> <span class="number">5</span><span class="operator">,</span> <span class="number">21</span><span class="operator">,</span> <span class="number">14</span><span class="operator">,</span> <span class="number">13</span><span class="operator">,</span> <span class="number">09</span>)
 
 </pre>
-<p>This <i>dateTime</i> value could be passed to <code>Qt.formatDateTime()</code>, <a href="qml-qtqml-qt.html#formatDate-method">Qt.formatDate()</a> or <a href="qml-qtqml-qt.html#formatTime-method">Qt.formatTime()</a> with the <i>format</i> values below to produce the following results:</p>
+<p>这个<i>dateTime</i> 值可以传递给<code>Qt.formatDateTime()</code>、<a href="qml-qtqml-qt.html#formatDate-method">Qt.formatDate()</a>或 <a href="qml-qtqml-qt.html#formatTime-method">Qt.formatTime()</a>，格式值如下:</p>
 <div class="table"><table class="generic">
  <thead><tr class="qt-style"><th >Format</th><th >Result</th></tr></thead>
 <tr valign="top" class="odd"><td >&quot;dd.MM.yyyy&quot;</td><td >21.05.2001</td></tr>
@@ -777,7 +777,7 @@ format参数可以是<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.format
 <tr valign="top" class="odd"><td >&quot;hh:mm:ss.zzz&quot;</td><td >14:13:09.042</td></tr>
 <tr valign="top" class="even"><td >&quot;h:m:s ap&quot;</td><td >2:13:9 pm</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
+<p><b>请参考 </b><a href="qml-qtqml-locale.html">Locale</a><span lang="zh-cn">。</span></p>
 </div></div><!-- @@@formatDateTime -->
 <br/>
 <!-- $$$formatTime -->
@@ -787,10 +787,12 @@ format参数可以是<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.format
 <td class="tblQmlFuncNode"><p>
 <a name="formatTime-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">formatTime</span>(<span class="type">datetime</span> <i>time</i>,  <span class="type"><a href="qml-variant.html">variant</a></span> <i>format</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Returns a string representation of <code>time</code>, optionally formatted according to <code>format</code>.</p>
-<p>The <i>time</i> parameter may be a JavaScript <code>Date</code> object, a <a href="../qtcore/qtime.html">QTime</a>, or <a href="../qtcore/qdatetime.html">QDateTime</a> value. The <i>format</i> parameter may be any of the possible format values as described for <a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime()</a>.</p>
-<p>If <i>format</i> is not specified, <i>time</i> is formatted using <a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>.</p>
-<p><b>请参考 </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
+</div><div class="qmldoc"><p>返回<code>time<span lang="zh-cn">（时间）</span></code>的字符串表示形式，可根据格式进行可选<code>format</code>。</p>
+<p>time参数可以是JavaScript <code>Date</code> 对象、<a href="../qtcore/qtime.html">QTime</a>或<a href="../qtcore/qdatetime.html">QDateTime</a>值。<br> <i>format</i> 
+参数可以是<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime()</a>中描述的任何可能的格式值。</p>
+<p>如果未指定<i>format</i> ，则使用<a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>格式化<i>time</i> 
+<span lang="zh-cn">（</span>时间<span lang="zh-cn">）</span>。</p>
+<p><b>请参考 </b><a href="qml-qtqml-locale.html">Locale</a><span lang="zh-cn">。</span></p>
 </div></div><!-- @@@formatTime -->
 <br/>
 <!-- $$$hsla -->
@@ -800,7 +802,8 @@ format参数可以是<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.format
 <td class="tblQmlFuncNode"><p>
 <a name="hsla-method"></a><span class="type"><a href="../qtquick/qml-color.html">color</a></span> <span class="name">hsla</span>(<span class="type"><a href="qml-real.html">real</a></span> <i>hue</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>saturation</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>lightness</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>alpha</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Returns a color with the specified <code>hue</code>, <code>saturation</code>, <code>lightness</code> and <code>alpha</code> components. All components should be in the range 0-1 inclusive.</p>
+</div><div class="qmldoc"><p>返回带有指定<code>hue<span lang="zh-cn">（色相）</span></code>、<code>saturation<span lang="zh-cn">（饱和度）</span></code>、<code>lightness<span lang="zh-cn">（亮度）</span></code> 
+		和<code>alpha</code> 组件的颜色。所有的分量都应该在0-1范围内。</p>
 </div></div><!-- @@@hsla -->
 <br/>
 <!-- $$$hsva -->
@@ -810,8 +813,8 @@ format参数可以是<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.format
 <td class="tblQmlFuncNode"><p>
 <a name="hsva-method"></a><span class="type"><a href="../qtquick/qml-color.html">color</a></span> <span class="name">hsva</span>(<span class="type"><a href="qml-real.html">real</a></span> <i>hue</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>saturation</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>value</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>alpha</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Returns a color with the specified <code>hue</code>, <code>saturation</code>, <code>value</code> and <code>alpha</code> components. All components should be in the range 0-1 inclusive.</p>
-<p>This method was introduced in  Qt 5.5.</p>
+</div><div class="qmldoc"><p>Returns a color with the specified , <code>saturation</code>, <code>value</code> and <code>alpha</code> components. All components should be in the range 0-1 inclusive.返回带有指定<code>hue<span lang="zh-cn">（色相）</span></code>、<code>saturatio<span lang="zh-cn">n（饱和度）</span></code>、<code>valu<span lang="zh-cn">e（值）</span></code>和alpha组件的颜色。所有的分量都应该在0-1范围内。</p>
+<p>在Qt 5.5中介绍了这种方法。</p>
 </div></div><!-- @@@hsva -->
 <br/>
 <!-- $$$include -->
@@ -821,18 +824,22 @@ format参数可以是<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.format
 <td class="tblQmlFuncNode"><p>
 <a name="include-method"></a><span class="type">object</span> <span class="name">include</span>(<span class="type"><a href="qml-string.html">string</a></span> <i>url</i>,  <span class="type">jsobject</span> <i>callback</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Includes another JavaScript file. This method can only be used from within JavaScript files, and not regular QML files.</p>
-<p>This imports all functions from <i>url</i> into the current script's namespace.</p>
-<p>Qt.include() returns an object that describes the status of the operation. The object has a single property, <code>status</code>, that is set to one of the following values:</p>
+</div><div class="qmldoc"><p>
+		包含另一个JavaScript文件。此方法只能在JavaScript文件中使用，而不是常规的QML文件。</p>
+<p>这将从<i>url</i> 导入所有函数到当前脚本的名称空间。</p>
+<p>Qt.include()返回一个描述操作状态的对象。该对象有一个属性status，它被设置为以下值之一:</p>
 <div class="table"><table class="generic">
- <thead><tr class="qt-style"><th >Symbol</th><th >Value</th><th >Description</th></tr></thead>
-<tr valign="top" class="odd"><td >result.OK</td><td >0</td><td >The include completed successfully.</td></tr>
-<tr valign="top" class="even"><td >result.LOADING</td><td >1</td><td >Data is being loaded from the network.</td></tr>
-<tr valign="top" class="odd"><td >result.NETWORK_ERROR</td><td >2</td><td >A network error occurred while fetching the url.</td></tr>
-<tr valign="top" class="even"><td >result.EXCEPTION</td><td >3</td><td >A JavaScript exception occurred while executing the included code. An additional <code>exception</code> property will be set in this case.</td></tr>
+ <thead><tr class="qt-style"><th ><span lang="zh-cn">符号</span></th><th >
+	 <span lang="zh-cn">值</span></th><th >描述</th></tr></thead>
+<tr valign="top" class="odd"><td >result.OK</td><td >0</td><td >包含成功完成。</td></tr>
+<tr valign="top" class="even"><td >result.LOADING</td><td >1</td><td >正在从网络加载数据。</td></tr>
+<tr valign="top" class="odd"><td >result.NETWORK_ERROR</td><td >2</td><td >
+	在获取url时发生了网络错误。</td></tr>
+<tr valign="top" class="even"><td >result.EXCEPTION</td><td >3</td><td >
+	在执行包含的代码时发生了一个JavaScript异常。在这种情况下，将设置一个额外的<code>exception</code> 属性。</td></tr>
 </table></div>
-<p>The <code>status</code> property will be updated as the operation progresses.</p>
-<p>If provided, <i>callback</i> is invoked when the operation completes. The callback is passed the same object as is returned from the Qt.include() call.</p>
+<p><code>status</code> 属性将随着操作的进行而更新。</p>
+<p>如果提供，则在操作完成时调用<i>callback</i> <span lang="zh-cn">(</span>回调<span lang="zh-cn">)</span>。回调函数传递的对象与从Qt.include()调用返回的对象相同。</p>
 </div></div><!-- @@@include -->
 <br/>
 <!-- $$$isQtObject -->
@@ -842,7 +849,8 @@ format参数可以是<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.format
 <td class="tblQmlFuncNode"><p>
 <a name="isQtObject-method"></a><span class="type"><a href="qml-bool.html">bool</a></span> <span class="name">isQtObject</span>(<i>object</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Returns true if <code>object</code> is a valid reference to a Qt or QML object, otherwise false.</p>
+</div><div class="qmldoc"><p>如果<code>object</code> 
+		是对Qt或QML对象的有效引用，则返回true，否则返回false。</p>
 </div></div><!-- @@@isQtObject -->
 <br/>
 <!-- $$$lighter -->
@@ -852,7 +860,8 @@ format参数可以是<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.format
 <td class="tblQmlFuncNode"><p>
 <a name="lighter-method"></a><span class="type"><a href="../qtquick/qml-color.html">color</a></span> <span class="name">lighter</span>(<span class="type"><a href="../qtquick/qml-color.html">color</a></span> <i>baseColor</i>,  <span class="type"><a href="qml-real.html">real</a></span> <i>factor</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Returns a color lighter than <code>baseColor</code> by the <code>factor</code> provided.</p>
+</div><div class="qmldoc"><p>根据提供的<code>factor</code> <span lang="zh-cn">(</span>因子<span lang="zh-cn">)</span>返回比<code>baseColor</code> 
+		浅的颜色。</p>
 <p>If the factor is greater than 1.0, this functions returns a lighter color. Setting factor to 1.5 returns a color that is 50% brighter. If the factor is less than 1.0, the return color is darker, but we recommend using the Qt.<a href="qml-qtqml-qt.html#darker-method">darker()</a> function for this purpose. If the factor is 0 or negative, the return value is unspecified.</p>
 <p>The function converts the current RGB color to HSV, multiplies the value (V) component by factor and converts the color back to RGB.</p>
 <p>If <code>factor</code> is not supplied, returns a color 50% lighter than <code>baseColor</code> (factor 1.5).</p>
