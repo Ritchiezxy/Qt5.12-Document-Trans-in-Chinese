@@ -671,8 +671,8 @@ to none property "colro""}。</p>
 <td class="tblQmlFuncNode"><p>
 <a name="exit-method"></a><span class="name">exit</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>retCode</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>This function causes the <a href="qqmlengine.html#exit">QQmlEngine::exit</a>(int) signal to be emitted. Within the <a href="../qtdoc/qtquick-qmlscene.html">Prototyping with qmlscene</a>, this causes the launcher application to exit the specified return code. To exit from the event loop with a specified return code when this method is called, a C++ application can connect the <a href="qqmlengine.html#exit">QQmlEngine::exit</a>(int) signal to the <a href="../qtcore/qcoreapplication.html#exit">QCoreApplication::exit</a>(int) slot.</p>
-<p><b>See also </b><a href="qml-qtqml-qt.html#quit-method">quit()</a>.</p>
+</div><div class="qmldoc"><p>这个函数会触发<a href="qqmlengine.html#exit">QQmlEngine::exit</a>(int)信号。在<a href="../qtdoc/qtquick-qmlscene.html">使用qmlscene的Prototypinge</a>中，这会导致启动程序应用程序退出指定的返回代码。要在调用此方法时使用指定的返回代码退出事件循环，C++应用程序可以将<a href="../qtcore/qcoreapplication.html#exit">QCoreApplication::exit</a>(int)信号连接到<a href="qqmlengine.html#exit">QQmlEngine::exit</a>(int)槽。</p>
+<p><b>请参考 </b><a href="qml-qtqml-qt.html#quit-method">quit()</a>.</p>
 </div></div><!-- @@@exit -->
 <br/>
 <!-- $$$font -->
@@ -682,7 +682,9 @@ to none property "colro""}。</p>
 <td class="tblQmlFuncNode"><p>
 <a name="font-method"></a><span class="name">font</span>(<span class="type">object</span> <i>fontSpecifier</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Returns a Font with the properties specified in the <code>fontSpecifier</code> object or the nearest matching font. The <code>fontSpecifier</code> object should contain key-value pairs where valid keys are the <a href="../qtquick/qml-font.html#fontbasictypedocs">font</a> type's subproperty names, and the values are valid values for each subproperty. Invalid keys will be ignored.</p>
+</div><div class="qmldoc"><p>&nbsp;返回一个带有在<code>fontSpecifier</code> 
+		对象中指定的属性或最近匹配的字体的字体。<br> <code>fontSpecifier</code> 
+		对象应该包含键值对，其中有效键是字体类型的子属性名，值是每个子属性的有效值。<br>无效的键将被忽略。</p>
 </div></div><!-- @@@font -->
 <br/>
 <!-- $$$fontFamilies -->
@@ -692,7 +694,7 @@ to none property "colro""}。</p>
 <td class="tblQmlFuncNode"><p>
 <a name="fontFamilies-method"></a><span class="type"><a href="qml-list.html">list</a></span>&lt;<span class="type"><a href="qml-string.html">string</a></span>&gt; <span class="name">fontFamilies</span>()</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Returns a list of the font families available to the application.</p>
+</div><div class="qmldoc"><p>返回应用程序可用的字体系列的列表。</p>
 </div></div><!-- @@@fontFamilies -->
 <br/>
 <!-- $$$formatDate -->
@@ -702,10 +704,11 @@ to none property "colro""}。</p>
 <td class="tblQmlFuncNode"><p>
 <a name="formatDate-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">formatDate</span>(<span class="type">datetime</span> <i>date</i>,  <span class="type"><a href="qml-variant.html">variant</a></span> <i>format</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Returns a string representation of <code>date</code>, optionally formatted according to <code>format</code>.</p>
-<p>The <i>date</i> parameter may be a JavaScript <code>Date</code> object, a <a href="qml-date.html">date</a> property, a <a href="../qtcore/qdate.html">QDate</a>, or <a href="../qtcore/qdatetime.html">QDateTime</a> value. The <i>format</i> parameter may be any of the possible format values as described for <a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime()</a>.</p>
-<p>If <i>format</i> is not specified, <i>date</i> is formatted using <a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>.</p>
-<p><b>See also </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
+</div><div class="qmldoc"><p>返回<code>date<span lang="zh-cn">（</span></code>日期<span lang="zh-cn">）</span>的字符串表示形式，可根据格式进行可选的<code>format<span lang="zh-cn">（格式）</span></code>。</p>
+<p><i>date</i> 参数可以是JavaScript <code><span lang="zh-cn">d</span>ate</code> 对象、<a href="qml-date.html">date</a>属性、<a href="../qtcore/qdate.html">QDate</a>或<a href="../qtcore/qdatetime.html">QDateTime</a>值。<br>
+format参数可以是<a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime</a>()中描述的任何可能的格式值。</p>
+<p>如果未指定<i>format</i> ，则使用<a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>格式化日期。</p>
+<p><b>请参考 </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
 </div></div><!-- @@@formatDate -->
 <br/>
 <!-- $$$formatDateTime -->
@@ -715,32 +718,39 @@ to none property "colro""}。</p>
 <td class="tblQmlFuncNode"><p>
 <a name="formatDateTime-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">formatDateTime</span>(<span class="type">datetime</span> <i>dateTime</i>,  <span class="type"><a href="qml-variant.html">variant</a></span> <i>format</i>)</p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p>Returns a string representation of <code>datetime</code>, optionally formatted according to <code>format</code>.</p>
-<p>The <i>date</i> parameter may be a JavaScript <code>Date</code> object, a <a href="qml-date.html">date</a> property, a <a href="../qtcore/qdate.html">QDate</a>, <a href="../qtcore/qtime.html">QTime</a>, or <a href="../qtcore/qdatetime.html">QDateTime</a> value.</p>
-<p>If <i>format</i> is not provided, <i>dateTime</i> is formatted using <a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>. Otherwise, <i>format</i> should be either:</p>
+</div><div class="qmldoc"><p>返回<code>datetime</code>的字符串表示形式，可根据<code>format</code>可选地格式化。</p>
+<p><i>date</i> 参数可以是JavaScript <code>Date</code> 对象、<a href="qml-date.html">date</a>属性、<a href="../qtcore/qdate.html">QDate</a>、<a href="../qtcore/qtime.html">QTime</a>或<a href="../qtcore/qdatetime.html">QDateTime</a>值。</p>
+<p>如果没有提供<i>format</i> , <i>dateTime</i> 将使用<a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>格式化。否则，格式应为:</p>
 <ul>
-<li>One of the <a href="../qtcore/qt.html#DateFormat-enum">Qt::DateFormat</a> enumeration values, such as <code>Qt.DefaultLocaleShortDate</code> or <code>Qt.ISODate</code></li>
-<li>A string that specifies the format of the returned string, as detailed below.</li>
+<li><span lang="zh-cn"><a href="../qtcore/qt.html#DateFormat-enum">Qt::DateFormat</a>枚举值之一，如<code>Qt.DefaultLocaleShortDate</code>或<code>Qt.ISODate </code>
+</span></li>
+<li>一个指定返回字符串格式的字符串，详细内容如下。</li>
 </ul>
-<p>If <i>format</i> specifies a format string, it should use the following expressions to specify the date:</p>
+<p>如果<i>format</i> 指定了一个格式字符串，它应该使用以下表达式来指定日期:</p>
 <div class="table"><table class="generic">
- <thead><tr class="qt-style"><th >Expression</th><th >Output</th></tr></thead>
-<tr valign="top" class="odd"><td >d</td><td >the day as number without a leading zero (1 to 31)</td></tr>
-<tr valign="top" class="even"><td >dd</td><td >the day as number with a leading zero (01 to 31)</td></tr>
-<tr valign="top" class="odd"><td >ddd</td><td >the abbreviated localized day name (e.g&#x2e; 'Mon' to 'Sun'). Uses QDate::shortDayName().</td></tr>
-<tr valign="top" class="even"><td >dddd</td><td >the long localized day name (e.g&#x2e; 'Monday' to '<a href="../qtcore/qt.html#DayOfWeek-enum">Qt::Sunday</a>'). Uses QDate::longDayName().</td></tr>
-<tr valign="top" class="odd"><td >M</td><td >the month as number without a leading zero (1-12)</td></tr>
-<tr valign="top" class="even"><td >MM</td><td >the month as number with a leading zero (01-12)</td></tr>
-<tr valign="top" class="odd"><td >MMM</td><td >the abbreviated localized month name (e.g&#x2e; 'Jan' to 'Dec'). Uses QDate::shortMonthName().</td></tr>
-<tr valign="top" class="even"><td >MMMM</td><td >the long localized month name (e.g&#x2e; 'January' to 'December'). Uses QDate::longMonthName().</td></tr>
-<tr valign="top" class="odd"><td >yy</td><td >the year as two digit number (00-99)</td></tr>
-<tr valign="top" class="even"><td >yyyy</td><td >the year as four digit number</td></tr>
+ <thead><tr class="qt-style"><th ><span lang="zh-cn">表达式</span></th><th >
+	 <span lang="zh-cn">输出</span></th></tr></thead>
+<tr valign="top" class="odd"><td >d</td><td >没有前导零的日子(1到31)</td></tr>
+<tr valign="top" class="even"><td >dd</td><td >前导为0的日子(01到31)</td></tr>
+<tr valign="top" class="odd"><td >ddd</td><td >他简化了本地化日的名称(例如:“<span lang="zh-cn">Mon</span>”“<span lang="zh-cn">Sun</span>”)。使用QDate: 
+	shortDayName()。</td></tr>
+<tr valign="top" class="even"><td >dddd</td><td >较长的本地化日名(例如。“周一”“<a href="../qtcore/qt.html#DayOfWeek-enum">Qt::Sunday</a>”)。使用QDate: 
+	longDayName()。</td></tr>
+<tr valign="top" class="odd"><td >M</td><td >这个月的数字没有领先的0(1-12)</td></tr>
+<tr valign="top" class="even"><td >MM</td><td >前导零的月份(01-12)</td></tr>
+<tr valign="top" class="odd"><td >MMM</td><td >
+	缩写的本地化月份名(例如。“Jan”“Dec”)。使用QDate:: shortMonthName ()</td></tr>
+<tr valign="top" class="even"><td >MMMM</td><td >
+	较长的本地化月份名称(例如。“January”“December”)。使用QDate:: longMonthName ()</td></tr>
+<tr valign="top" class="odd"><td >yy</td><td >两位数年份(00-99)</td></tr>
+<tr valign="top" class="even"><td >yyyy</td><td >以四位数表示的年份</td></tr>
 </table></div>
-<p>In addition the following expressions can be used to specify the time:</p>
+<p>此外，以下表达式可以用来指定时间:</p>
 <div class="table"><table class="generic">
- <thead><tr class="qt-style"><th >Expression</th><th >Output</th></tr></thead>
-<tr valign="top" class="odd"><td >h</td><td >the hour without a leading zero (0 to 23 or 1 to 12 if AM/PM display)</td></tr>
-<tr valign="top" class="even"><td >hh</td><td >the hour with a leading zero (00 to 23 or 01 to 12 if AM/PM display)</td></tr>
+ <thead><tr class="qt-style"><th ><span lang="zh-cn">表达式</span></th><th >
+	 <span lang="zh-cn">输出</span></th></tr></thead>
+<tr valign="top" class="odd"><td >h</td><td >没有前导零的小时数(如果显示AM/PM，则为0到23或1到12)</td></tr>
+<tr valign="top" class="even"><td >hh</td><td >前导零的小时(00至23或01至12(如果显示AM/PM))</td></tr>
 <tr valign="top" class="odd"><td >m</td><td >the minute without a leading zero (0 to 59)</td></tr>
 <tr valign="top" class="even"><td >mm</td><td >the minute with a leading zero (00 to 59)</td></tr>
 <tr valign="top" class="odd"><td >s</td><td >the second without a leading zero (0 to 59)</td></tr>
@@ -767,7 +777,7 @@ to none property "colro""}。</p>
 <tr valign="top" class="odd"><td >&quot;hh:mm:ss.zzz&quot;</td><td >14:13:09.042</td></tr>
 <tr valign="top" class="even"><td >&quot;h:m:s ap&quot;</td><td >2:13:9 pm</td></tr>
 </table></div>
-<p><b>See also </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
+<p><b>请参考 </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
 </div></div><!-- @@@formatDateTime -->
 <br/>
 <!-- $$$formatTime -->
@@ -780,7 +790,7 @@ to none property "colro""}。</p>
 </div><div class="qmldoc"><p>Returns a string representation of <code>time</code>, optionally formatted according to <code>format</code>.</p>
 <p>The <i>time</i> parameter may be a JavaScript <code>Date</code> object, a <a href="../qtcore/qtime.html">QTime</a>, or <a href="../qtcore/qdatetime.html">QDateTime</a> value. The <i>format</i> parameter may be any of the possible format values as described for <a href="qml-qtqml-qt.html#formatDateTime-method">Qt.formatDateTime()</a>.</p>
 <p>If <i>format</i> is not specified, <i>time</i> is formatted using <a href="../qtcore/qt.html#DateFormat-enum">Qt.DefaultLocaleShortDate</a>.</p>
-<p><b>See also </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
+<p><b>请参考 </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
 </div></div><!-- @@@formatTime -->
 <br/>
 <!-- $$$hsla -->
@@ -862,7 +872,7 @@ to none property "colro""}。</p>
 <li>and codeset and modifier are ignored.</li>
 </ul>
 <p>If the string violates the locale format, or language is not a valid ISO 369 code, the &quot;C&quot; locale is used instead. If country is not present, or is not a valid ISO 3166 code, the most appropriate country is chosen for the specified language.</p>
-<p><b>See also </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
+<p><b>请参考 </b><a href="qml-qtqml-locale.html">Locale</a>.</p>
 </div></div><!-- @@@locale -->
 <br/>
 <!-- $$$md5 -->
@@ -921,7 +931,7 @@ to none property "colro""}。</p>
   <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">qsTr</span>(<span class="string">&quot;hello&quot;</span>) }
 
 </pre>
-<p><b>See also </b><a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
+<p><b>请参考 </b><a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
 </div></div><!-- @@@qsTr -->
 <br/>
 <!-- $$$qsTrId -->
@@ -953,7 +963,7 @@ to none property "colro""}。</p>
 
 </pre>
 <p>Creating binary translation (QM) files suitable for use with this function requires passing the <code>-idbased</code> option to the <code>lrelease</code> tool.</p>
-<p><b>See also </b><a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP()</a> and <a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
+<p><b>请参考 </b><a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP()</a> and <a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
 </div></div><!-- @@@qsTrId -->
 <br/>
 <!-- $$$qsTrIdNoOp -->
@@ -976,7 +986,7 @@ to none property "colro""}。</p>
   }
 
 </pre>
-<p><b>See also </b><a href="qml-qtqml-qt.html#qsTrId-method">qsTrId()</a> and <a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
+<p><b>请参考 </b><a href="qml-qtqml-qt.html#qsTrId-method">qsTrId()</a> and <a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
 </div></div><!-- @@@qsTrIdNoOp -->
 <br/>
 <!-- $$$qsTrNoOp -->
@@ -1000,7 +1010,7 @@ to none property "colro""}。</p>
   }
 
 </pre>
-<p><b>See also </b><a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
+<p><b>请参考 </b><a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
 </div></div><!-- @@@qsTrNoOp -->
 <br/>
 <!-- $$$qsTranslate -->
@@ -1018,7 +1028,7 @@ to none property "colro""}。</p>
   <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">qsTranslate</span>(<span class="string">&quot;CustomContext&quot;</span>, <span class="string">&quot;hello&quot;</span>) }
 
 </pre>
-<p><b>See also </b><a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
+<p><b>请参考 </b><a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
 </div></div><!-- @@@qsTranslate -->
 <br/>
 <!-- $$$qsTranslateNoOp -->
@@ -1042,7 +1052,7 @@ to none property "colro""}。</p>
   }
 
 </pre>
-<p><b>See also </b><a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
+<p><b>请参考 </b><a href="../qtdoc/qtquick-internationalization.html">Internationalization and Localization with Qt Quick</a>.</p>
 </div></div><!-- @@@qsTranslateNoOp -->
 <br/>
 <!-- $$$quaternion -->
@@ -1063,7 +1073,7 @@ to none property "colro""}。</p>
 <a name="quit-method"></a><span class="name">quit</span>()</p></td></tr>
 </table></div>
 </div><div class="qmldoc"><p>This function causes the <a href="qqmlengine.html#quit">QQmlEngine::quit()</a> signal to be emitted. Within the <a href="../qtdoc/qtquick-qmlscene.html">Prototyping with qmlscene</a>, this causes the launcher application to exit; to quit a C++ application when this method is called, connect the <a href="qqmlengine.html#quit">QQmlEngine::quit()</a> signal to the <a href="../qtcore/qcoreapplication.html#quit">QCoreApplication::quit()</a> slot.</p>
-<p><b>See also </b><a href="qml-qtqml-qt.html#exit-method">exit()</a>.</p>
+<p><b>请参考 </b><a href="qml-qtqml-qt.html#exit-method">exit()</a>.</p>
 </div></div><!-- @@@quit -->
 <br/>
 <!-- $$$rect -->
