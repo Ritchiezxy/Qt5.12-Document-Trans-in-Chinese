@@ -584,7 +584,7 @@ Designer创建的组合组件。</p>
 <p>组件样式表的使用在<a href="stylesheet.html">Qt样式表</a>文档中有更详细的描述。</p>
 <h3 >透明和双重缓冲</h3>
 <p>自Qt 4.0以来，<a href="qwidget.html">QWidget</a>自动双缓冲它的绘制，所以不需要在<a href="qwidget.html#paintEvent">paintEvent</a>()中编写双缓冲代码来避免闪烁。</p>
-<p>从Qt 4.1开始，<a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WA_ContentsPropagated</a>组件属性已弃用。相反，只要没有设置<a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WA_PaintOnScreen</a>，默认情况下父组件的内容就会传播给它们的每个子组件。自定义组件可以通过更新不规则区域(创建非矩形子组件)或使用alpha组件不完整的颜色绘制来利用这个特性。下图显示了如何对自定义组件的属性和属性进行微调以达到不同的效果。</p>
+<p>从Qt 4.1开始，<a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WA_ContentsPropagated</a>组件属性已弃用。相反，只要没有设置<a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WA_PaintOnScreen</a>，默认情况下父组件的内容就会传递给它们的每个子组件。自定义组件可以通过更新不规则区域(创建非矩形子组件)或使用alpha组件不完整的颜色绘制来利用这个特性。下图显示了如何对自定义组件的属性和属性进行微调以达到不同的效果。</p>
 <p class="centerAlign"><img src="images/propagation-custom.png" alt="" /></p>
 	<p>在上面的图中，构造了一个带有移除区域的半透明矩形子组件，并将其添加到父组件(显示像素地图的<a href="qlabel.html">QLabel</a>)。然后，设置不同的属性和组件属性来实现不同的效果:</p>
 <ul>
@@ -596,7 +596,7 @@ Designer创建的组合组件。</p>
 <span lang="zh-cn">函数并使用</span><a href="../qtgui/qpalette.html#ColorRole-enum">QPalette::Window</a><span lang="zh-cn">参数</span>),设置<a href="qwidget.html#autoFillBackground-prop">autoFillBackground</a>属性,只有实现必要的绘图功能组件的<a href="qwidget.html#paintEvent">paintEvent</a>()。</p>
 <p>为了快速更新自定义组件，这些组件经常用不透明的内容覆盖整个区域，例如视频流组件，最好设置组件的<a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WA_OpaquePaintEvent</a>，避免任何与重新绘制组件背景相关的不必要开销。</p>
 <p>如果一个组件同时具有<a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WA_OpaquePaintEvent</a>组件属性和设置的<a href="qwidget.html#autoFillBackground-prop">autoFillBackground</a>属性，则<a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WA_OpaquePaintEvent</a>属性优先。根据您的需求，您应该选择其中之一。</p>
-<p>从Qt 4.1开始，父组件的内容也传播到标准Qt组件。如果父组件以非标准的方式装饰，这可能会导致一些意想不到的结果，如下图所示。</p>
+<p>从Qt 4.1开始，父组件的内容也传递到标准Qt组件。如果父组件以非标准的方式装饰，这可能会导致一些意想不到的结果，如下图所示。</p>
 <p class="centerAlign"><img src="images/propagation-standard.png" alt="" /></p><p>
 	在不使用子类化的情况下，定制标准Qt组件的绘制行为的范围略小于定制组件的范围。通常，标准组件的理想外观可以通过设置其<a href="qwidget.html#autoFillBackground-prop">autoFillBackground</a>属性来实现。</p>
 <a name="creating-translucent-windows"></a>
@@ -724,324 +724,351 @@ Designer创建的组合组件。</p>
 <h3 class="fn" id="childrenRect-prop"><a name="childrenRect-prop"></a><span class="name">childrenRect</span> : const <span class="type"><a href="../qtcore/qrect.html">QRect</a></span></h3>
 <p>此属性保存组件的子组件的边界矩形</p>
 <p>隐藏的孩子被排除在外。</p>
-<p>By default, for a widget with no children, this property contains a rectangle with zero width and height located at the origin.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">况下，对于没有子项的组件，此属性包含位于原点的宽度和高度为零的矩形。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QRect </td><td class="memItemRight bottomAlign"><span class="name"><b>childrenRect</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#childrenRegion-prop">childrenRegion</a>() and <a href="qwidget.html#geometry-prop">geometry</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#childrenRegion-prop">childrenRegion</a>()
+<span lang="zh-cn">和</span><a href="qwidget.html#geometry-prop">geometry</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@childrenRect -->
 <!-- $$$childrenRegion-prop$$$childrenRegion -->
 <h3 class="fn" id="childrenRegion-prop"><a name="childrenRegion-prop"></a><span class="name">childrenRegion</span> : const <span class="type"><a href="../qtgui/qregion.html">QRegion</a></span></h3>
-<p>This property holds the combined region occupied by the widget's children</p>
-<p>Hidden children are excluded.</p>
-<p>By default, for a widget with no children, this property contains an empty region.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件的子组件占用的组合区域</font></p>
+<p><font style="vertical-align: inherit;">隐藏的孩子被排除在外。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，对于没有子级的组件，此属性包含一个空区域。</font></p>
+<p><b><font style="vertical-align: inherit;">访问<span lang="zh-cn">函数</span>：</font></b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QRegion </td><td class="memItemRight bottomAlign"><span class="name"><b>childrenRegion</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#childrenRect-prop">childrenRect</a>(), <a href="qwidget.html#geometry-prop">geometry</a>(), and <a href="qwidget.html#mask">mask</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#childrenRect-prop">childrenRect</a>(), <a href="qwidget.html#geometry-prop">geometry</a>(),
+<span lang="zh-cn">和</span> <a href="qwidget.html#mask">mask</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@childrenRegion -->
 <!-- $$$contextMenuPolicy-prop$$$contextMenuPolicy$$$setContextMenuPolicyQt::ContextMenuPolicy -->
 <h3 class="fn" id="contextMenuPolicy-prop"><a name="contextMenuPolicy-prop"></a><span class="name">contextMenuPolicy</span> : <span class="type"><a href="../qtcore/qt.html#ContextMenuPolicy-enum">Qt::ContextMenuPolicy</a></span></h3>
 <p>how the widget shows a context menu</p>
-<p>The default value of this property is <a href="../qtcore/qt.html#ContextMenuPolicy-enum">Qt::DefaultContextMenu</a>, which means the <a href="qwidget.html#contextMenuEvent">contextMenuEvent</a>() handler is called. Other values are <a href="../qtcore/qt.html#ContextMenuPolicy-enum">Qt::NoContextMenu</a>, <a href="../qtcore/qt.html#ContextMenuPolicy-enum">Qt::PreventContextMenu</a>, <a href="../qtcore/qt.html#ContextMenuPolicy-enum">Qt::ActionsContextMenu</a>, and <a href="../qtcore/qt.html#ContextMenuPolicy-enum">Qt::CustomContextMenu</a>. With <a href="../qtcore/qt.html#ContextMenuPolicy-enum">Qt::CustomContextMenu</a>, the signal <a href="qwidget.html#customContextMenuRequested">customContextMenuRequested</a>() is emitted.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">这个属性的默认值是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#ContextMenuPolicy-enum"><font style="vertical-align: inherit;">Qt::DefaultContextMenu</font></a><font style="vertical-align: inherit;">，这意味着</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#contextMenuEvent"><font style="vertical-align: inherit;">contextMenuEvent</font></a><font style="vertical-align: inherit;"> () 处理程序被调用。其他值<span lang="zh-cn">还有</span></font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#ContextMenuPolicy-enum"><font style="vertical-align: inherit;">Qt::NoContextMenu</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#ContextMenuPolicy-enum"><font style="vertical-align: inherit;">Qt::PreventContextMenu</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#ContextMenuPolicy-enum"><font style="vertical-align: inherit;">Qt::ActionsContextMenu</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#ContextMenuPolicy-enum"><font style="vertical-align: inherit;">Qt::CustomContextMenu</font></a><font style="vertical-align: inherit;">。使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#ContextMenuPolicy-enum"><font style="vertical-align: inherit;">Qt::CustomContextMenu</font></a><font style="vertical-align: inherit;">，<span lang="zh-cn">将</span>发出信号</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#customContextMenuRequested"><font style="vertical-align: inherit;">customContextMenuRequested</font></a><font style="vertical-align: inherit;"> () 。</font></p>
+<p><b><font style="vertical-align: inherit;">访问<span lang="zh-cn">函数</span>：</font></b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> Qt::ContextMenuPolicy </td><td class="memItemRight bottomAlign"><span class="name"><b>contextMenuPolicy</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setContextMenuPolicy</b></span>(Qt::ContextMenuPolicy <i>policy</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#contextMenuEvent">contextMenuEvent</a>(), <a href="qwidget.html#customContextMenuRequested">customContextMenuRequested</a>(), and <a href="qwidget.html#actions">actions</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#contextMenuEvent">contextMenuEvent</a>(), <a href="qwidget.html#customContextMenuRequested">customContextMenuRequested</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#actions">actions</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@contextMenuPolicy -->
 <!-- $$$cursor-prop$$$cursor$$$setCursorconstQCursor&$$$unsetCursor -->
 <h3 class="fn" id="cursor-prop"><a name="cursor-prop"></a><span class="name">cursor</span> : <span class="type"><a href="../qtgui/qcursor.html">QCursor</a></span></h3>
-<p>This property holds the cursor shape for this widget</p>
-<p>The mouse cursor will assume this shape when it's over this widget. See the <a href="../qtcore/qt.html#CursorShape-enum">list of predefined cursor objects</a> for a range of useful shapes.</p>
-<p>An editor widget might use an I-beam cursor:</p>
+<p><font style="vertical-align: inherit;">此属性保存此组件的光标形状</font></p>
+<p><font style="vertical-align: inherit;">当鼠标光标位于此组件上方时，它将呈现此形状。有关一系列有用的形状，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#CursorShape-enum"><font style="vertical-align: inherit;">预定义的光标对象列表</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">编辑器组件可能会使用 I 型光标：</font></p>
 <pre class="cpp">
 
   setCursor(<span class="type">Qt</span><span class="operator">::</span>IBeamCursor);
 
 </pre>
-<p>If no cursor has been set, or after a call to unsetCursor(), the parent's cursor is used.</p>
-<p>By default, this property contains a cursor with the <a href="../qtcore/qt.html#CursorShape-enum">Qt::ArrowCursor</a> shape.</p>
-<p>Some underlying window implementations will reset the cursor if it leaves a widget even if the mouse is grabbed. If you want to have a cursor set for all widgets, even when outside the window, consider <a href="../qtgui/qguiapplication.html#setOverrideCursor">QApplication::setOverrideCursor</a>().</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">如果没有设置<span lang="zh-cn">光标</span>，或者在调用 
+unsetCursor() 之后，则使用父<span lang="zh-cn">光标</span>。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，该属性包含一个具有</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#CursorShape-enum"><font style="vertical-align: inherit;">Qt::ArrowCursor</font></a><font style="vertical-align: inherit;">形状的光标。</font></p>
+<p>一些底层的窗口实现会在光标离开组件时重置光标，即使鼠标已经被捕获。如果您想为所有组件设置游标，即使是在窗口之外，请考虑<a href="../qtgui/qguiapplication.html#setOverrideCursor">QApplication::setOverrideCursor</a>()。</p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QCursor </td><td class="memItemRight bottomAlign"><span class="name"><b>cursor</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setCursor</b></span>(<i>const QCursor &amp;</i>)</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>unsetCursor</b></span>()</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="../qtgui/qguiapplication.html#setOverrideCursor">QApplication::setOverrideCursor</a>().</p>
+<p><b>请参考 </b><a href="../qtgui/qguiapplication.html#setOverrideCursor">QApplication::setOverrideCursor</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@cursor -->
 <!-- $$$enabled-prop$$$isEnabled$$$setEnabledbool -->
 <h3 class="fn" id="enabled-prop"><a name="enabled-prop"></a><span class="name">enabled</span> : <span class="type">bool</span></h3>
-<p>This property holds whether the widget is enabled</p>
-<p>In general an enabled widget handles keyboard and mouse events; a disabled widget does not. An exception is made with <a href="qabstractbutton.html">QAbstractButton</a>.</p>
-<p>Some widgets display themselves differently when they are disabled. For example a button might draw its label grayed out. If your widget needs to know when it becomes enabled or disabled, you can use the <a href="qwidget.html#changeEvent">changeEvent</a>() with type <a href="../qtcore/qevent.html#Type-enum">QEvent::EnabledChange</a>.</p>
-<p>Disabling a widget implicitly disables all its children. Enabling respectively enables all child widgets unless they have been explicitly disabled. It it not possible to explicitly enable a child widget which is not a window while its parent widget remains disabled.</p>
-<p>By default, this property is <code>true</code>.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存是否启用组件</font></p>
+<p><font style="vertical-align: inherit;">通常，启用的组件处理键盘和鼠标事件；禁用的组件不会。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qabstractbutton.html"><font style="vertical-align: inherit;">QAbstractButton</font></a><font style="vertical-align: inherit;">例外。</font></p>
+<p><font style="vertical-align: inherit;">某些组件在禁用时会以不同方式显示。例如，按钮可能会将其标签绘制为灰色。如果您的组件需要知道<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qevent.html#Type-enum">何时启</a>用或禁用，您可以使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qevent.html#Type-enum">QEvent::EnabledChange</a>类型的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#changeEvent"><font style="vertical-align: inherit;">changeEvent</font></a><font style="vertical-align: inherit;"> () 。</font></p>
+<p><font style="vertical-align: inherit;">禁用组件会隐式禁用其所有子组件。启用分别启用所有子组件，除非它们已被明确禁用。<span lang="zh-cn">当一个组件的</span>父组件仍处于禁用状态<span lang="zh-cn">时，</span>无法显式启用不是窗口的子组件。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性为</font><code>true</code><font style="vertical-align: inherit;">。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>isEnabled</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setEnabled</b></span>(<i>bool</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#isEnabledTo">isEnabledTo</a>(), <a href="../qtgui/qkeyevent.html">QKeyEvent</a>, <a href="../qtgui/qmouseevent.html">QMouseEvent</a>, and <a href="qwidget.html#changeEvent">changeEvent</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#isEnabledTo">isEnabledTo</a>(), <a href="../qtgui/qkeyevent.html">QKeyEvent</a>, <a href="../qtgui/qmouseevent.html">QMouseEvent</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#changeEvent">changeEvent</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@enabled -->
 <!-- $$$focus-prop$$$hasFocus -->
 <h3 class="fn" id="focus-prop"><a name="focus-prop"></a><span class="name">focus</span> : const <span class="type">bool</span></h3>
-<p>This property holds whether this widget (or its focus proxy) has the keyboard input focus</p>
-<p>By default, this property is <code>false</code>.</p>
-<p><b>Note: </b>Obtaining the value of this property for a widget is effectively equivalent to checking whether <a href="qapplication.html#focusWidget">QApplication::focusWidget</a>() refers to the widget.</p><p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存此组件（或其焦点代理）是否具有键盘输入焦点</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性为</font><code>false</code><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">获取一个<span lang="zh-cn">组件</span>的这个属性的值相当于检查</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qapplication.html#focusWidget"><font style="vertical-align: inherit;">QApplication::focusWidget</font></a><font style="vertical-align: inherit;"> ()是否引用了这个<span lang="zh-cn">组件</span>。</font></p><p><b><font style="vertical-align: inherit;">
+	访问<span lang="zh-cn">函数</span>：</font></b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>hasFocus</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#setFocus-1">setFocus</a>(), <a href="qwidget.html#clearFocus">clearFocus</a>(), <a href="qwidget.html#focusPolicy-prop">setFocusPolicy</a>(), and <a href="qapplication.html#focusWidget">QApplication::focusWidget</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#setFocus-1">setFocus</a>(), <a href="qwidget.html#clearFocus">clearFocus</a>(), <a href="qwidget.html#focusPolicy-prop">setFocusPolicy</a>(),
+<span lang="zh-cn">和 </span><a href="qapplication.html#focusWidget">QApplication::focusWidget</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@focus -->
 <!-- $$$focusPolicy-prop$$$focusPolicy$$$setFocusPolicyQt::FocusPolicy -->
 <h3 class="fn" id="focusPolicy-prop"><a name="focusPolicy-prop"></a><span class="name">focusPolicy</span> : <span class="type"><a href="../qtcore/qt.html#FocusPolicy-enum">Qt::FocusPolicy</a></span></h3>
-<p>This property holds the way the widget accepts keyboard focus</p>
-<p>The policy is <a href="../qtcore/qt.html#FocusPolicy-enum">Qt::TabFocus</a> if the widget accepts keyboard focus by tabbing, <a href="../qtcore/qt.html#FocusPolicy-enum">Qt::ClickFocus</a> if the widget accepts focus by clicking, <a href="../qtcore/qt.html#FocusPolicy-enum">Qt::StrongFocus</a> if it accepts both, and <a href="../qtcore/qt.html#FocusPolicy-enum">Qt::NoFocus</a> (the default) if it does not accept focus at all.</p>
-<p>You must enable keyboard focus for a widget if it processes keyboard events. This is normally done from the widget's constructor. For instance, the <a href="qlineedit.html">QLineEdit</a> constructor calls setFocusPolicy(<a href="../qtcore/qt.html#FocusPolicy-enum">Qt::StrongFocus</a>).</p>
-<p>If the widget has a focus proxy, then the focus policy will be propagated to it.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件接受键盘焦点的方式</font></p>
+<p><font style="vertical-align: inherit;"><span lang="zh-cn">如果</span>策略是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#FocusPolicy-enum"><font style="vertical-align: inherit;">Qt::TabFocus</font></a><span lang="zh-cn">，</span><font style="vertical-align: inherit;"><span lang="zh-cn">则</span>组件通过 Tab 键接受键盘焦点，</font><span lang="zh-cn">如果策略是</span><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#FocusPolicy-enum"><font style="vertical-align: inherit;">Qt::ClickFocus</font></a><span lang="zh-cn">，则</span><font style="vertical-align: inherit;">组件通过点击接受焦点，<span lang="zh-cn">如果策略是</span></font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#FocusPolicy-enum"><font style="vertical-align: inherit;">Qt::StrongFocus</font></a><span lang="zh-cn">，</span><font style="vertical-align: inherit;"><span lang="zh-cn">则</span>同时接受<span lang="zh-cn">点击和Tab</span>，<span lang="zh-cn">如果策略是</span></font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#FocusPolicy-enum"><font style="vertical-align: inherit;">Qt::NoFocus</font></a><font style="vertical-align: inherit;">（默认）<span lang="zh-cn">，则</span>它不接受<span lang="zh-cn">任何</span>焦点。</font></p>
+<p><font style="vertical-align: inherit;">如果组件处理键盘事件，则必须为组件启用键盘焦点。这通常是通过组件的构造函数完成的。例如，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qlineedit.html"><font style="vertical-align: inherit;">QLineEdit</font></a><font style="vertical-align: inherit;">构造函数调用 setFocusPolicy( </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#FocusPolicy-enum"><font style="vertical-align: inherit;">Qt::StrongFocus</font></a><font style="vertical-align: inherit;"> )。</font></p>
+<p><font style="vertical-align: inherit;">如果组件具有焦点代理，则焦点策略将传递到它。</font></p>
+<p><b><font style="vertical-align: inherit;">访问<span lang="zh-cn">函数</span>：</font></b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> Qt::FocusPolicy </td><td class="memItemRight bottomAlign"><span class="name"><b>focusPolicy</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setFocusPolicy</b></span>(Qt::FocusPolicy <i>policy</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#focusInEvent">focusInEvent</a>(), <a href="qwidget.html#focusOutEvent">focusOutEvent</a>(), <a href="qwidget.html#keyPressEvent">keyPressEvent</a>(), <a href="qwidget.html#keyReleaseEvent">keyReleaseEvent</a>(), and <a href="qwidget.html#enabled-prop">enabled</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#focusInEvent">focusInEvent</a>(), <a href="qwidget.html#focusOutEvent">focusOutEvent</a>(), <a href="qwidget.html#keyPressEvent">keyPressEvent</a>(), <a href="qwidget.html#keyReleaseEvent">keyReleaseEvent</a>(),
+<span lang="zh-cn">和</span><a href="qwidget.html#enabled-prop">enabled</a><span lang="zh-cn">。</span></p>
 <!-- @@@focusPolicy -->
 <!-- $$$font-prop$$$font$$$setFontconstQFont& -->
 <h3 class="fn" id="font-prop"><a name="font-prop"></a><span class="name">font</span> : <span class="type"><a href="../qtgui/qfont.html">QFont</a></span></h3>
-<p>This property holds the font currently set for the widget</p>
-<p>This property describes the widget's requested font. The font is used by the widget's style when rendering standard components, and is available as a means to ensure that custom widgets can maintain consistency with the native platform's look and feel. It's common that different platforms, or different styles, define different fonts for an application.</p>
-<p>When you assign a new font to a widget, the properties from this font are combined with the widget's default font to form the widget's final font. You can call <a href="qwidget.html#fontInfo">fontInfo</a>() to get a copy of the widget's final font. The final font is also used to initialize <a href="../qtgui/qpainter.html">QPainter</a>'s font.</p>
-<p>The default depends on the system environment. <a href="qapplication.html">QApplication</a> maintains a system/theme font which serves as a default for all widgets. There may also be special font defaults for certain types of widgets. You can also define default fonts for widgets yourself by passing a custom font and the name of a widget to <a href="qapplication.html#setFont">QApplication::setFont</a>(). Finally, the font is matched against Qt's font database to find the best match.</p>
-<p><a href="qwidget.html">QWidget</a> propagates explicit font properties from parent to child. If you change a specific property on a font and assign that font to a widget, that property will propagate to all the widget's children, overriding any system defaults for that property. Note that fonts by default don't propagate to windows (see <a href="qwidget.html#isWindow">isWindow</a>()) unless the <a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WA_WindowPropagation</a> attribute is enabled.</p>
-<p><a href="qwidget.html">QWidget</a>'s font propagation is similar to its palette propagation.</p>
-<p>The current style, which is used to render the content of all standard Qt widgets, is free to choose to use the widget font, or in some cases, to ignore it (partially, or completely). In particular, certain styles like GTK style, Mac style, and Windows Vista style, apply special modifications to the widget font to match the platform's native look and feel. Because of this, assigning properties to a widget's font is not guaranteed to change the appearance of the widget. Instead, you may choose to apply a <a href="stylesheet.html">styleSheet</a>.</p>
-<p><b>Note: </b>If <a href="stylesheet.html">Qt Style Sheets</a> are used on the same widget as setFont(), style sheets will take precedence if the settings conflict.</p><p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存当前为组件设置的字体</font></p>
+<p><font style="vertical-align: inherit;">描述组件请求的字体。该字体在呈现标准组件时由组件的样式使用，并且可用作确保自定义组件可以与本机平台的外观和感觉保持一致的一种方式。不同的平台或不同的样式为应用程序定义不同的字体是很常见的。</font></p>
+<p><font style="vertical-align: inherit;">当您为组件分配新字体时，该字体的属性将与组件的默认字体组合以形成组件的最终字体。您可以调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#fontInfo"><font style="vertical-align: inherit;">fontInfo</font></a><font style="vertical-align: inherit;"> () 来获取组件最终字体的副本。最后的字体也用于初始化</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qpainter.html"><font style="vertical-align: inherit;">QPainter</font></a><font style="vertical-align: inherit;">的字体。</font></p>
+<p>默认值取决于系统环境。<br>QApplication维护一个系统/主题字体，它作为所有组件的默认字体。<br>
+对于某些类型的组件，可能还有特殊的默认字体。<br>您还可以通过将自定义字体和组件名称传递给QApplication::setFont()来为组件定义默认字体。<br>
+最后，将字体与Qt的字体数据库进行匹配，以找到最佳匹配。</p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">将显式字体属性从父级传递到子级。如果您更改字体的特定属性并将该字体分配给组件，该属性将传递到组件的所有子项，覆盖该属性的任何系统默认值。请注意，除非启用了<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WidgetAttribute-enum">Qt::WA_WindowPropagation</a>属性，否则默认情况下字体不会传递到窗口（请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#isWindow"><font style="vertical-align: inherit;">isWindow</font></a><font style="vertical-align: inherit;"> ()）。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">的字体传递类似于它的调色板传递。</font></p>
+<p>
+当前样式用于呈现所有标准Qt组件的内容，可以自由选择使用组件字体，或者在某些情况下，忽略它(部分或全部)。特别是，某些样式(如GTK样式、Mac样式和Windows 
+Vista样式)会对组件字体进行特殊修改，以匹配平台的本机外观和感觉。因此，将属性赋给组件的字体并不一定会改变组件的外观。相反，您可以选择应用<a href="stylesheet.html">样式表</a>.</p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">如果<span lang="zh-cn">同时使用</span>setFont() 
+<span lang="zh-cn">和</span></font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet.html"><font style="vertical-align: inherit;">Qt 样式表，</font></a><font style="vertical-align: inherit;"><span lang="zh-cn">并且</span>设置冲突，<span lang="zh-cn">则有限使用</span>样式表。</font></p><p><b><font style="vertical-align: inherit;">
+	访问<span lang="zh-cn">函数</span>：</font></b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> const QFont &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b>font</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setFont</b></span>(<i>const QFont &amp;</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#fontInfo">fontInfo</a>() and <a href="qwidget.html#fontMetrics">fontMetrics</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#fontInfo">fontInfo</a>() <span lang="zh-cn">
+和</span> <a href="qwidget.html#fontMetrics">fontMetrics</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@font -->
 <!-- $$$frameGeometry-prop$$$frameGeometry -->
 <h3 class="fn" id="frameGeometry-prop"><a name="frameGeometry-prop"></a><span class="name">frameGeometry</span> : const <span class="type"><a href="../qtcore/qrect.html">QRect</a></span></h3>
-<p>geometry of the widget relative to its parent including any window frame</p>
-<p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
-<p>By default, this property contains a value that depends on the user's platform and screen geometry.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">组件相对于其父级的几何形状，包括任何窗口框架</font></p>
+<p><font style="vertical-align: inherit;">有关</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry"><font style="vertical-align: inherit;">窗口几何</font></a><font style="vertical-align: inherit;">问题的概述，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry">窗口几何</a>文档。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含一个取决于用户平台和屏幕几何形状的值。</font></p>
+<p><b><font style="vertical-align: inherit;">访问<span lang="zh-cn">函数</span>：</font></b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QRect </td><td class="memItemRight bottomAlign"><span class="name"><b>frameGeometry</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#geometry-prop">geometry</a>(), <a href="qwidget.html#x-prop">x</a>(), <a href="qwidget.html#y-prop">y</a>(), and <a href="qwidget.html#pos-prop">pos</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#geometry-prop">geometry</a>(), <a href="qwidget.html#x-prop">x</a>(), <a href="qwidget.html#y-prop">y</a>(),
+<span lang="zh-cn">和</span> <a href="qwidget.html#pos-prop">pos</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@frameGeometry -->
 <!-- $$$frameSize-prop$$$frameSize -->
 <h3 class="fn" id="frameSize-prop"><a name="frameSize-prop"></a><span class="name">frameSize</span> : const <span class="type"><a href="../qtcore/qsize.html">QSize</a></span></h3>
-<p>This property holds the size of the widget including any window frame</p>
-<p>By default, this property contains a value that depends on the user's platform and screen geometry.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件的大小，包括任何窗口框架</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含一个取决于用户平台和屏幕几何形状的值。</font></p>
+<p><b><font style="vertical-align: inherit;">访问<span lang="zh-cn">函数</span>：</font></b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QSize </td><td class="memItemRight bottomAlign"><span class="name"><b>frameSize</b></span>() const</td></tr>
 </table></div>
 <!-- @@@frameSize -->
 <!-- $$$fullScreen-prop$$$isFullScreen -->
 <h3 class="fn" id="fullScreen-prop"><a name="fullScreen-prop"></a><span class="name">fullScreen</span> : const <span class="type">bool</span></h3>
-<p>This property holds whether the widget is shown in full screen mode</p>
-<p>A widget in full screen mode occupies the whole screen area and does not display window decorations, such as a title bar.</p>
-<p>By default, this property is <code>false</code>.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件是否以全屏模式显示</font></p>
+<p><font style="vertical-align: inherit;">全屏模式下的组件占据整个屏幕区域，并且不显示窗口装饰，例如标题栏。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性为</font><code>false</code><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">访问<span lang="zh-cn">函数</span>：</font></b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>isFullScreen</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#windowState">windowState</a>(), <a href="qwidget.html#minimized-prop">minimized</a>, and <a href="qwidget.html#maximized-prop">maximized</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#windowState">windowState</a>(), <a href="qwidget.html#minimized-prop">minimized</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#maximized-prop">maximized</a><span lang="zh-cn">。</span></p>
 <!-- @@@fullScreen -->
 <!-- $$$geometry-prop$$$geometry$$$setGeometryintintintint$$$setGeometryconstQRect& -->
 <h3 class="fn" id="geometry-prop"><a name="geometry-prop"></a><span class="name">geometry</span> : <span class="type"><a href="../qtcore/qrect.html">QRect</a></span></h3>
-<p>This property holds the geometry of the widget relative to its parent and excluding the window frame</p>
-<p>When changing the geometry, the widget, if visible, receives a move event (<a href="qwidget.html#moveEvent">moveEvent</a>()) and/or a resize event (<a href="qwidget.html#resizeEvent">resizeEvent</a>()) immediately. If the widget is not currently visible, it is guaranteed to receive appropriate events before it is shown.</p>
-<p>The size component is adjusted if it lies outside the range defined by <a href="qwidget.html#minimumSize-prop">minimumSize</a>() and <a href="qwidget.html#maximumSize-prop">maximumSize</a>().</p>
-<p><b>Warning:</b> Calling setGeometry() inside <a href="qwidget.html#resizeEvent">resizeEvent</a>() or <a href="qwidget.html#moveEvent">moveEvent</a>() can lead to infinite recursion.</p>
-<p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
-<p>By default, this property contains a value that depends on the user's platform and screen geometry.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件相对于其父级的几何形状，不包括窗口框架</font></p>
+<p><font style="vertical-align: inherit;">更改几何图形时，组件（如果可见）会立即接收移动事件（</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#moveEvent"><font style="vertical-align: inherit;">moveEvent</font></a><font style="vertical-align: inherit;"> ()）和/或调整大小事件（</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#resizeEvent"><font style="vertical-align: inherit;">resizeEvent</font></a><font style="vertical-align: inherit;"> ()）。如果组件当前不可见，则保证在显示之前接收适当的事件。</font></p>
+<p><font style="vertical-align: inherit;">如果大小组件位于由</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#minimumSize-prop"><font style="vertical-align: inherit;">minimumSize</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#maximumSize-prop"><font style="vertical-align: inherit;">maximumSize</font></a><font style="vertical-align: inherit;"> ()定义的范围之外，则会对其进行调整。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#resizeEvent"><font style="vertical-align: inherit;">resizeEvent</font></a><font style="vertical-align: inherit;"> () 或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#moveEvent"><font style="vertical-align: inherit;">moveEvent</font></a><font style="vertical-align: inherit;"> () 中调用 setGeometry( ) 会导致无限递归。</font></p>
+<p><font style="vertical-align: inherit;">有关</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry"><font style="vertical-align: inherit;">窗口几何</font></a><font style="vertical-align: inherit;">问题的概述，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry">窗口几何</a>文档。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含一个取决于用户平台和屏幕几何形状的值。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> const QRect &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b>geometry</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qwidget.html#setGeometry-1">setGeometry</a></b></span>(int <i>x</i>, int <i>y</i>, int <i>w</i>, int <i>h</i>)</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setGeometry</b></span>(<i>const QRect &amp;</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#frameGeometry-prop">frameGeometry</a>(), <a href="qwidget.html#rect-prop">rect</a>(), <a href="qwidget.html#pos-prop">move</a>(), <a href="qwidget.html#size-prop">resize</a>(), <a href="qwidget.html#moveEvent">moveEvent</a>(), <a href="qwidget.html#resizeEvent">resizeEvent</a>(), <a href="qwidget.html#minimumSize-prop">minimumSize</a>(), and <a href="qwidget.html#maximumSize-prop">maximumSize</a>().</p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#frameGeometry-prop"><font style="vertical-align: inherit;">frameGeometry</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#rect-prop"><font style="vertical-align: inherit;">rect</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#pos-prop"><font style="vertical-align: inherit;">move</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#size-prop"><font style="vertical-align: inherit;">resize</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#moveEvent"><font style="vertical-align: inherit;">moveEvent</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#resizeEvent"><font style="vertical-align: inherit;">resizeEvent</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#minimumSize-prop"><font style="vertical-align: inherit;">minimumSize</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#maximumSize-prop"><font style="vertical-align: inherit;">maximumSize</font></a><font style="vertical-align: inherit;"> ()。</font></p>
 <!-- @@@geometry -->
 <!-- $$$height-prop$$$height -->
 <h3 class="fn" id="height-prop"><a name="height-prop"></a><span class="name">height</span> : const <span class="type">int</span></h3>
-<p>This property holds the height of the widget excluding any window frame</p>
-<p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
-<p><b>Note: </b>Do not use this function to find the height of a screen on a <a href="qdesktopwidget.html">multiple screen desktop</a>. Read <a href="qdesktopwidget.html#screen-geometry">this note</a> for details.</p><p>By default, this property contains a value that depends on the user's platform and screen geometry.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件的高度，不包括任何窗口框架</font></p>
+<p><font style="vertical-align: inherit;">有关</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry"><font style="vertical-align: inherit;">窗口几何</font></a><font style="vertical-align: inherit;">问题的概述，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry">窗口几何</a>文档。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">请勿使用此功能在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qdesktopwidget.html"><font style="vertical-align: inherit;">多屏桌面</font></a><font style="vertical-align: inherit;">上查找屏幕高度。有关详细信息，请阅读</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qdesktopwidget.html#screen-geometry"><font style="vertical-align: inherit;">此注<span lang="zh-cn">解</span>释</font></a><font style="vertical-align: inherit;">。</font></p><p><font style="vertical-align: inherit;">默认情况下，此属性包含一个取决于用户平台和屏幕几何形状的值。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>height</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#geometry-prop">geometry</a>, <a href="qwidget.html#width-prop">width</a>, and <a href="qwidget.html#size-prop">size</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#geometry-prop">geometry</a>, <a href="qwidget.html#width-prop">width</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#size-prop">size</a><span lang="zh-cn">。</span></p>
 <!-- @@@height -->
 <!-- $$$inputMethodHints-prop$$$inputMethodHints$$$setInputMethodHintsQt::InputMethodHints -->
 <h3 class="fn" id="inputMethodHints-prop"><a name="inputMethodHints-prop"></a><span class="name">inputMethodHints</span> : <span class="type"><a href="../qtcore/qt.html#InputMethodHint-enum">Qt::InputMethodHints</a></span></h3>
-<p>What input method specific hints the widget has.</p>
-<p>This is only relevant for input widgets. It is used by the input method to retrieve hints as to how the input method should operate. For example, if the <a href="../qtcore/qt.html#InputMethodHint-enum">Qt::ImhFormattedNumbersOnly</a> flag is set, the input method may change its visual components to reflect that only numbers can be entered.</p>
-<p><b>Warning:</b> Some widgets require certain flags in order to work as intended. To set a flag, do <code>w-&gt;setInputMethodHints(w-&gt;inputMethodHints()|f)</code> instead of <code>w-&gt;setInputMethodHints(f)</code>.</p>
-<p><b>Note: </b>The flags are only hints, so the particular input method implementation is free to ignore them. If you want to be sure that a certain type of characters are entered, you should also set a <a href="../qtgui/qvalidator.html">QValidator</a> on the widget.</p><p>The default value is <a href="../qtcore/qt.html#InputMethodHint-enum">Qt::ImhNone</a>.</p>
-<p>This property was introduced in  Qt 4.6.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">组件具有什么<span lang="zh-cn">特定1</span>输入法提示。</font></p>
+<p><font style="vertical-align: inherit;">这仅与输入组件相关。输入法使用它来检索有关输入法应如何操作的提示。例如，如果设置了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#InputMethodHint-enum"><font style="vertical-align: inherit;">Qt::ImhFormattedNumbersOnly</font></a><font style="vertical-align: inherit;">标志，则输入法可能会更改其视觉组件以反映只能输入数字。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">某些组件需要某些标志才能按预期工作。要设置标志，请执行</font><code>w-&gt;setInputMethodHints(w-&gt;inputMethodHints()|f)</code><font style="vertical-align: inherit;">而不是</font><code>w-&gt;setInputMethodHints(f)</code><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">标志只是提示，因此特定的输入法实现可以随意忽略它们。如果要确保输入某种<span lang="zh-cn">格式</span>的字符，还应该在组件上设置</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qvalidator.html"><font style="vertical-align: inherit;">QValidator</font></a><font style="vertical-align: inherit;">。</font></p><p><font style="vertical-align: inherit;">默认值为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#InputMethodHint-enum"><font style="vertical-align: inherit;">Qt::ImhNone</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">这个属性是在 Qt 4.6 中引入的。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> Qt::InputMethodHints </td><td class="memItemRight bottomAlign"><span class="name"><b>inputMethodHints</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setInputMethodHints</b></span>(Qt::InputMethodHints <i>hints</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#inputMethodQuery">inputMethodQuery</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#inputMethodQuery">inputMethodQuery</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@inputMethodHints -->
 <!-- $$$isActiveWindow-prop$$$isActiveWindow -->
 <h3 class="fn" id="isActiveWindow-prop"><a name="isActiveWindow-prop"></a><span class="name">isActiveWindow</span> : const <span class="type">bool</span></h3>
-<p>This property holds whether this widget's window is the active window</p>
-<p>The active window is the window that contains the widget that has keyboard focus (The window may still have focus if it has no widgets or none of its widgets accepts keyboard focus).</p>
-<p>When popup windows are visible, this property is <code>true</code> for both the active window <i>and</i> for the popup.</p>
-<p>By default, this property is <code>false</code>.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存此组件的窗口是否为活动窗口</font></p>
+<p><font style="vertical-align: inherit;">活动窗口是包含具有键盘焦点的组件的窗口（如果窗口没有组件或没有任何组件接受键盘焦点，则该窗口可能仍具有焦点）。</font></p>
+<p><font style="vertical-align: inherit;">当弹出窗口可见时，此属性</font><code>true</code><font style="vertical-align: inherit;">适用于活动窗口</font><i><font style="vertical-align: inherit;">和</font></i><font style="vertical-align: inherit;">弹出窗口。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性为</font><code>false</code><font style="vertical-align: inherit;">。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>isActiveWindow</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#activateWindow">activateWindow</a>() and <a href="qapplication.html#activeWindow">QApplication::activeWindow</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#activateWindow">activateWindow</a>()
+<span lang="zh-cn">和 </span><a href="qapplication.html#activeWindow">QApplication::activeWindow</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@isActiveWindow -->
 <!-- $$$layoutDirection-prop$$$layoutDirection$$$setLayoutDirectionQt::LayoutDirection$$$unsetLayoutDirection -->
 <h3 class="fn" id="layoutDirection-prop"><a name="layoutDirection-prop"></a><span class="name">layoutDirection</span> : <span class="type"><a href="../qtcore/qt.html#LayoutDirection-enum">Qt::LayoutDirection</a></span></h3>
-<p>This property holds the layout direction for this widget</p>
-<p>By default, this property is set to <a href="../qtcore/qt.html#LayoutDirection-enum">Qt::LeftToRight</a>.</p>
-<p>When the layout direction is set on a widget, it will propagate to the widget's children, but not to a child that is a window and not to a child for which setLayoutDirection() has been explicitly called. Also, child widgets added <i>after</i> setLayoutDirection() has been called for the parent do not inherit the parent's layout direction.</p>
-<p>This method no longer affects text layout direction since Qt 4.7&#x2e;</p>
-<p><b>Access functions:</b></p>
+<p>此属性保存此组件的布局方向</p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性<span lang="zh-cn">被</span>设置为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#LayoutDirection-enum"><font style="vertical-align: inherit;">Qt::LeftToRight</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">当在组件上设置布局方向时，它将传播到组件的子级，但不会传播到作为窗口的子级，也不会传播到已显式调用 setLayoutDirection() 的子级。此外，在为父级调用 setLayoutDirection()</font><i><font style="vertical-align: inherit;">之后</font></i><font style="vertical-align: inherit;">添加的子组件不会继承父级的布局方向。</font></p>
+<p><font style="vertical-align: inherit;">自 Qt 4.7 起，此方法不再影响文本布局方向。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> Qt::LayoutDirection </td><td class="memItemRight bottomAlign"><span class="name"><b>layoutDirection</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setLayoutDirection</b></span>(Qt::LayoutDirection <i>direction</i>)</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>unsetLayoutDirection</b></span>()</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="../qtgui/qguiapplication.html#layoutDirection-prop">QApplication::layoutDirection</a>.</p>
+<p><b>请参考 </b><a href="../qtgui/qguiapplication.html#layoutDirection-prop">QApplication::layoutDirection</a><span lang="zh-cn">。</span></p>
 <!-- @@@layoutDirection -->
 <!-- $$$locale-prop$$$locale$$$setLocaleconstQLocale&$$$unsetLocale -->
 <h3 class="fn" id="locale-prop"><a name="locale-prop"></a><span class="name">locale</span> : <span class="type"><a href="../qtcore/qlocale.html">QLocale</a></span></h3>
-<p>This property holds the widget's locale</p>
-<p>As long as no special locale has been set, this is either the parent's locale or (if this widget is a top level widget), the default locale.</p>
-<p>If the widget displays dates or numbers, these should be formatted using the widget's locale.</p>
-<p>This property was introduced in  Qt 4.3.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件的语言环境</font></p>
+<p><font style="vertical-align: inherit;">只要没有设置特殊语言环境，<span lang="zh-cn">可能继承</span>父语言环境或（如果此组件是顶级组件）<span lang="zh-cn">使用</span>默认语言环境。</font></p>
+<p><font style="vertical-align: inherit;">如果组件显示日期或数字，则应使用组件的区域设置对其进行格式化。</font></p>
+<p><font style="vertical-align: inherit;">这个属性是在 Qt 4.3 中引入的。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QLocale </td><td class="memItemRight bottomAlign"><span class="name"><b>locale</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setLocale</b></span>(const QLocale &amp;<i>locale</i>)</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>unsetLocale</b></span>()</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="../qtcore/qlocale.html">QLocale</a> and <a href="../qtcore/qlocale.html#setDefault">QLocale::setDefault</a>().</p>
+<p><b>请参考 </b><a href="../qtcore/qlocale.html">QLocale</a> and <a href="../qtcore/qlocale.html#setDefault">QLocale::setDefault</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@locale -->
 <!-- $$$maximized-prop$$$isMaximized -->
 <h3 class="fn" id="maximized-prop"><a name="maximized-prop"></a><span class="name">maximized</span> : const <span class="type">bool</span></h3>
-<p>This property holds whether this widget is maximized</p>
-<p>This property is only relevant for windows.</p>
-<p><b>Note: </b>Due to limitations on some window systems, this does not always report the expected results (e.g&#x2e;, if the user on X11 maximizes the window via the window manager, Qt has no way of distinguishing this from any other resize). This is expected to improve as window manager protocols evolve.</p><p>By default, this property is <code>false</code>.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">属性保存此组件是否最大化</font></p>
+<p><font style="vertical-align: inherit;">此属性仅与窗口相关。</font></p>
+<p><b><font style="vertical-align: inherit;">：</font></b><font style="vertical-align: inherit;">由于某些窗口系统的限制，这并不<span lang="zh-cn">会得到</span>预期的结果（例如，如果 X11 上的用户通过窗口管理器最大化窗口，Qt 无法将其与任何其他调整大小区分开来）。随着窗口管理器协议的发展，这有望得到改善。</font></p><p><font style="vertical-align: inherit;">默认情况下，此属性为</font><code>false</code><font style="vertical-align: inherit;">。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>isMaximized</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#windowState">windowState</a>(), <a href="qwidget.html#showMaximized">showMaximized</a>(), <a href="qwidget.html#visible-prop">visible</a>, <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), <a href="qwidget.html#showNormal">showNormal</a>(), and <a href="qwidget.html#minimized-prop">minimized</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#windowState">windowState</a>(), <a href="qwidget.html#showMaximized">showMaximized</a>(), <a href="qwidget.html#visible-prop">visible</a>, <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), <a href="qwidget.html#showNormal">showNormal</a>(),
+<span lang="zh-cn">和</span> <a href="qwidget.html#minimized-prop">minimized</a><span lang="zh-cn">。</span></p>
 <!-- @@@maximized -->
 <!-- $$$maximumHeight-prop$$$maximumHeight$$$setMaximumHeightint -->
 <h3 class="fn" id="maximumHeight-prop"><a name="maximumHeight-prop"></a><span class="name">maximumHeight</span> : <span class="type">int</span></h3>
-<p>This property holds the widget's maximum height in pixels</p>
-<p>This property corresponds to the height held by the <a href="qwidget.html#maximumSize-prop">maximumSize</a> property.</p>
-<p>By default, this property contains a value of 16777215.</p>
-<p><b>Note: </b>The definition of the <code>QWIDGETSIZE_MAX</code> macro limits the maximum size of widgets.</p><p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件的最大高度（以像素为单位）</font></p>
+<p><font style="vertical-align: inherit;">此属性对应于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#maximumSize-prop"><font style="vertical-align: inherit;">maximumSize</font></a><font style="vertical-align: inherit;">属性所保持的高度。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含值 16777215。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><code>QWIDGETSIZE_MAX</code><font style="vertical-align: inherit;">宏的定义限制了组件的最大尺寸。</font></p><p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>maximumHeight</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setMaximumHeight</b></span>(int <i>maxh</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#maximumSize-prop">maximumSize</a> and <a href="qwidget.html#maximumWidth-prop">maximumWidth</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#maximumSize-prop">maximumSize</a> 
+<span lang="zh-cn">和 </span><a href="qwidget.html#maximumWidth-prop">maximumWidth</a><span lang="zh-cn">。</span></p>
 <!-- @@@maximumHeight -->
 <!-- $$$maximumSize-prop$$$maximumSize$$$setMaximumSizeconstQSize&$$$setMaximumSizeintint -->
 <h3 class="fn" id="maximumSize-prop"><a name="maximumSize-prop"></a><span class="name">maximumSize</span> : <span class="type"><a href="../qtcore/qsize.html">QSize</a></span></h3>
-<p>This property holds the widget's maximum size in pixels</p>
-<p>The widget cannot be resized to a larger size than the maximum widget size.</p>
-<p>By default, this property contains a size in which both width and height have values of 16777215.</p>
-<p><b>Note: </b>The definition of the <code>QWIDGETSIZE_MAX</code> macro limits the maximum size of widgets.</p><p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件的最大尺寸（以像素为单位）</font></p>
+<p><font style="vertical-align: inherit;">组件的大小不能调整为比最大组件尺寸更大的尺寸。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含一个大小，其中宽度和高度的值为 16777215。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><code>QWIDGETSIZE_MAX</code><font style="vertical-align: inherit;">宏的定义限制了组件的最大尺寸。</font></p><p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QSize </td><td class="memItemRight bottomAlign"><span class="name"><b>maximumSize</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setMaximumSize</b></span>(<i>const QSize &amp;</i>)</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qwidget.html#setMaximumSize-1">setMaximumSize</a></b></span>(int <i>maxw</i>, int <i>maxh</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#maximumWidth-prop">maximumWidth</a>, <a href="qwidget.html#maximumHeight-prop">maximumHeight</a>, <a href="qwidget.html#minimumSize-prop">minimumSize</a>, and <a href="qwidget.html#sizeIncrement-prop">sizeIncrement</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#maximumWidth-prop">maximumWidth</a>, <a href="qwidget.html#maximumHeight-prop">maximumHeight</a>, <a href="qwidget.html#minimumSize-prop">minimumSize</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#sizeIncrement-prop">sizeIncrement</a><span lang="zh-cn">。</span></p>
 <!-- @@@maximumSize -->
 <!-- $$$maximumWidth-prop$$$maximumWidth$$$setMaximumWidthint -->
 <h3 class="fn" id="maximumWidth-prop"><a name="maximumWidth-prop"></a><span class="name">maximumWidth</span> : <span class="type">int</span></h3>
-<p>This property holds the widget's maximum width in pixels</p>
-<p>This property corresponds to the width held by the <a href="qwidget.html#maximumSize-prop">maximumSize</a> property.</p>
-<p>By default, this property contains a value of 16777215.</p>
-<p><b>Note: </b>The definition of the <code>QWIDGETSIZE_MAX</code> macro limits the maximum size of widgets.</p><p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件的最大宽度（以像素为单位）</font></p>
+<p><font style="vertical-align: inherit;">此属性对应于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#maximumSize-prop"><font style="vertical-align: inherit;">maximumSize</font></a><font style="vertical-align: inherit;">属性所保持的宽度。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含值 16777215。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><code>QWIDGETSIZE_MAX</code><font style="vertical-align: inherit;">宏的定义限制了组件的最大尺寸。</font></p><p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>maximumWidth</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setMaximumWidth</b></span>(int <i>maxw</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#maximumSize-prop">maximumSize</a> and <a href="qwidget.html#maximumHeight-prop">maximumHeight</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#maximumSize-prop">maximumSize</a> 
+<span lang="zh-cn">和 </span><a href="qwidget.html#maximumHeight-prop">maximumHeight</a><span lang="zh-cn">。</span></p>
 <!-- @@@maximumWidth -->
 <!-- $$$minimized-prop$$$isMinimized -->
 <h3 class="fn" id="minimized-prop"><a name="minimized-prop"></a><span class="name">minimized</span> : const <span class="type">bool</span></h3>
-<p>This property holds whether this widget is minimized (iconified)</p>
-<p>This property is only relevant for windows.</p>
-<p>By default, this property is <code>false</code>.</p>
-<p><b>Access functions:</b></p>
+<p>此属性表示该组件是否最小化(图标化)。</p>
+<p><font style="vertical-align: inherit;">此属性仅与窗口相关。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性为</font><code>false</code><font style="vertical-align: inherit;">。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>isMinimized</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#showMinimized">showMinimized</a>(), <a href="qwidget.html#visible-prop">visible</a>, <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), <a href="qwidget.html#showNormal">showNormal</a>(), and <a href="qwidget.html#maximized-prop">maximized</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#showMinimized">showMinimized</a>(), <a href="qwidget.html#visible-prop">visible</a>, <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), <a href="qwidget.html#showNormal">showNormal</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#maximized-prop">maximized</a><span lang="zh-cn">。</span></p>
 <!-- @@@minimized -->
 <!-- $$$minimumHeight-prop$$$minimumHeight$$$setMinimumHeightint -->
 <h3 class="fn" id="minimumHeight-prop"><a name="minimumHeight-prop"></a><span class="name">minimumHeight</span> : <span class="type">int</span></h3>
-<p>This property holds the widget's minimum height in pixels</p>
-<p>This property corresponds to the height held by the <a href="qwidget.html#minimumSize-prop">minimumSize</a> property.</p>
-<p>By default, this property has a value of 0.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件的最小高度（以像素为单位）</font></p>
+<p>T<font style="vertical-align: inherit;">此属性对应于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#minimumSize-prop"><font style="vertical-align: inherit;">minimumSize</font></a><font style="vertical-align: inherit;">属性所保持的高度。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性的值为 0。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>minimumHeight</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setMinimumHeight</b></span>(int <i>minh</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#minimumSize-prop">minimumSize</a> and <a href="qwidget.html#minimumWidth-prop">minimumWidth</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#minimumSize-prop">minimumSize</a> 
+<span lang="zh-cn">和 </span><a href="qwidget.html#minimumWidth-prop">minimumWidth</a><span lang="zh-cn">。</span></p>
 <!-- @@@minimumHeight -->
 <!-- $$$minimumSize-prop$$$minimumSize$$$setMinimumSizeconstQSize&$$$setMinimumSizeintint -->
 <h3 class="fn" id="minimumSize-prop"><a name="minimumSize-prop"></a><span class="name">minimumSize</span> : <span class="type"><a href="../qtcore/qsize.html">QSize</a></span></h3>
-<p>This property holds the widget's minimum size</p>
-<p>The widget cannot be resized to a smaller size than the minimum widget size. The widget's size is forced to the minimum size if the current size is smaller.</p>
-<p>The minimum size set by this function will override the minimum size defined by <a href="qlayout.html">QLayout</a>. In order to unset the minimum size, use a value of <code>QSize(0, 0)</code>.</p>
-<p>By default, this property contains a size with zero width and height.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件的最小尺寸</font></p>
+<p><font style="vertical-align: inherit;">组件的大小不能调整为比最小组件尺寸更小的尺寸。如果当前尺寸较小，则组件的尺寸将被强制为最小尺寸。</font></p>
+<p><font style="vertical-align: inherit;">此函数设置的最小尺寸将覆盖</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qlayout.html"><font style="vertical-align: inherit;">QLayout</font></a><font style="vertical-align: inherit;">定义的最小尺寸。要取消设置最小尺寸，请使用 值</font><code>QSize(0, 0)</code><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含宽度和高度为零的大小。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QSize </td><td class="memItemRight bottomAlign"><span class="name"><b>minimumSize</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setMinimumSize</b></span>(<i>const QSize &amp;</i>)</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qwidget.html#setMinimumSize-1">setMinimumSize</a></b></span>(int <i>minw</i>, int <i>minh</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#minimumWidth-prop">minimumWidth</a>, <a href="qwidget.html#minimumHeight-prop">minimumHeight</a>, <a href="qwidget.html#maximumSize-prop">maximumSize</a>, and <a href="qwidget.html#sizeIncrement-prop">sizeIncrement</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#minimumWidth-prop">minimumWidth</a>, <a href="qwidget.html#minimumHeight-prop">minimumHeight</a>, <a href="qwidget.html#maximumSize-prop">maximumSize</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#sizeIncrement-prop">sizeIncrement</a><span lang="zh-cn">。</span></p>
 <!-- @@@minimumSize -->
 <!-- $$$minimumSizeHint-prop$$$minimumSizeHint -->
 <h3 class="fn" id="minimumSizeHint-prop"><a name="minimumSizeHint-prop"></a><span class="name">minimumSizeHint</span> : const <span class="type"><a href="../qtcore/qsize.html">QSize</a></span></h3>
-<p>This property holds the recommended minimum size for the widget</p>
-<p>If the value of this property is an invalid size, no minimum size is recommended.</p>
-<p>The default implementation of minimumSizeHint() returns an invalid size if there is no layout for this widget, and returns the layout's minimum size otherwise. Most built-in widgets reimplement minimumSizeHint().</p>
-<p><a href="qlayout.html">QLayout</a> will never resize a widget to a size smaller than the minimum size hint unless <a href="qwidget.html#minimumSize-prop">minimumSize</a>() is set or the size policy is set to QSizePolicy::Ignore. If <a href="qwidget.html#minimumSize-prop">minimumSize</a>() is set, the minimum size hint will be ignored.</p>
-<p><b>Access functions:</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件的推荐最小尺寸</font></p>
+<p>I<font style="vertical-align: inherit;">如果此属性的值是无效大小，则<span lang="zh-cn">不包含推荐的</span>最小大小。</font></p>
+<p><font style="vertical-align: inherit;">如果此组件没有布局，则 minimumSizeHint() 的默认实现将返回无效大小，否则返回布局的最小大小。大多数内置组件重新实现了 minimumSizeHint()。</font></p>
+<p><font style="vertical-align: inherit;">除非设置了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#minimumSize-prop"><font style="vertical-align: inherit;">minimumSize</font></a><font style="vertical-align: inherit;"> () 或将大小策略设置为 QSizePolicy::Ignore，否则<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qlayout.html">QLayout</a>永远不会将组件的大小调整为小于最小大小提示的大小。如果设置了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#minimumSize-prop"><font style="vertical-align: inherit;">minimumSize</font></a><font style="vertical-align: inherit;"> ()，最小尺寸提示将被忽略。</font></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><span class="name"><b>minimumSizeHint</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="../qtcore/qsize.html#isValid">QSize::isValid</a>(), <a href="qwidget.html#size-prop">resize</a>(), <a href="qwidget.html#minimumSize-prop">setMinimumSize</a>(), and <a href="qwidget.html#sizePolicy-prop">sizePolicy</a>().</p>
+<p><b>请参考 </b><a href="../qtcore/qsize.html#isValid">QSize::isValid</a>(), <a href="qwidget.html#size-prop">resize</a>(), <a href="qwidget.html#minimumSize-prop">setMinimumSize</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#sizePolicy-prop">sizePolicy</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@minimumSizeHint -->
 <!-- $$$minimumWidth-prop$$$minimumWidth$$$setMinimumWidthint -->
 <h3 class="fn" id="minimumWidth-prop"><a name="minimumWidth-prop"></a><span class="name">minimumWidth</span> : <span class="type">int</span></h3>
 <p>This property holds the widget's minimum width in pixels</p>
 <p>This property corresponds to the width held by the <a href="qwidget.html#minimumSize-prop">minimumSize</a> property.</p>
 <p>By default, this property has a value of 0.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>minimumWidth</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setMinimumWidth</b></span>(int <i>minw</i>)</td></tr>
@@ -1053,7 +1080,7 @@ Designer创建的组合组件。</p>
 <p>This property holds whether the widget is a modal widget</p>
 <p>This property only makes sense for windows. A modal widget prevents widgets in all other windows from getting any input.</p>
 <p>By default, this property is <code>false</code>.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>isModal</b></span>() const</td></tr>
 </table></div>
@@ -1064,7 +1091,7 @@ Designer创建的组合组件。</p>
 <p>This property holds whether mouse tracking is enabled for the widget</p>
 <p>If mouse tracking is disabled (the default), the widget only receives mouse move events when at least one mouse button is pressed while the mouse is being moved.</p>
 <p>If mouse tracking is enabled, the widget receives mouse move events even if no buttons are pressed.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>hasMouseTracking</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setMouseTracking</b></span>(bool <i>enable</i>)</td></tr>
@@ -1076,7 +1103,7 @@ Designer创建的组合组件。</p>
 <p>This property holds the geometry of the widget as it will appear when shown as a normal (not maximized or full screen) top-level widget</p>
 <p>For child widgets this property always holds an empty rectangle.</p>
 <p>By default, this property contains an empty rectangle.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QRect </td><td class="memItemRight bottomAlign"><span class="name"><b>normalGeometry</b></span>() const</td></tr>
 </table></div>
@@ -1092,7 +1119,7 @@ Designer创建的组合组件。</p>
 <p><a href="qwidget.html">QWidget</a>'s palette propagation is similar to its font propagation.</p>
 <p>The current style, which is used to render the content of all standard Qt widgets, is free to choose colors and brushes from the widget palette, or in some cases, to ignore the palette (partially, or completely). In particular, certain styles like GTK style, Mac style, and Windows Vista style, depend on third party APIs to render the content of widgets, and these styles typically do not follow the palette. Because of this, assigning roles to a widget's palette is not guaranteed to change the appearance of the widget. Instead, you may choose to apply a <a href="stylesheet.html">styleSheet</a>.</p>
 <p><b>Warning:</b> Do not use this function in conjunction with <a href="stylesheet.html">Qt Style Sheets</a>. When using style sheets, the palette of a widget can be customized using the &quot;color&quot;, &quot;background-color&quot;, &quot;selection-color&quot;, &quot;selection-background-color&quot; and &quot;alternate-background-color&quot;.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> const QPalette &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b>palette</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setPalette</b></span>(<i>const QPalette &amp;</i>)</td></tr>
@@ -1107,7 +1134,7 @@ Designer创建的组合组件。</p>
 <p>By default, this property contains a position that refers to the origin.</p>
 <p><b>Warning:</b> Calling move() or <a href="qwidget.html#geometry-prop">setGeometry</a>() inside <a href="qwidget.html#moveEvent">moveEvent</a>() can lead to infinite recursion.</p>
 <p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QPoint </td><td class="memItemRight bottomAlign"><span class="name"><b>pos</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qwidget.html#move-1">move</a></b></span>(int <i>x</i>, int <i>y</i>)</td></tr>
@@ -1121,7 +1148,7 @@ Designer创建的组合组件。</p>
 <p>The rect property equals <a href="../qtcore/qrect.html">QRect</a>(0, 0, <a href="qwidget.html#width-prop">width</a>(), <a href="qwidget.html#height-prop">height</a>()).</p>
 <p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
 <p>By default, this property contains a value that depends on the user's platform and screen geometry.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QRect </td><td class="memItemRight bottomAlign"><span class="name"><b>rect</b></span>() const</td></tr>
 </table></div>
@@ -1134,7 +1161,7 @@ Designer创建的组合组件。</p>
 <p>The size is adjusted if it lies outside the range defined by <a href="qwidget.html#minimumSize-prop">minimumSize</a>() and <a href="qwidget.html#maximumSize-prop">maximumSize</a>().</p>
 <p>By default, this property contains a value that depends on the user's platform and screen geometry.</p>
 <p><b>Warning:</b> Calling resize() or <a href="qwidget.html#geometry-prop">setGeometry</a>() inside <a href="qwidget.html#resizeEvent">resizeEvent</a>() can lead to infinite recursion.</p>
-<p><b>Note: </b>Setting the size to <code>QSize(0, 0)</code> will cause the widget to not appear on screen. This also applies to windows.</p><p><b>Access functions:</b></p>
+<p><b>Note: </b>Setting the size to <code>QSize(0, 0)</code> will cause the widget to not appear on screen. This also applies to windows.</p><p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QSize </td><td class="memItemRight bottomAlign"><span class="name"><b>size</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qwidget.html#resize-1">resize</a></b></span>(int <i>w</i>, int <i>h</i>)</td></tr>
@@ -1147,7 +1174,7 @@ Designer创建的组合组件。</p>
 <p>This property holds the recommended size for the widget</p>
 <p>If the value of this property is an invalid size, no size is recommended.</p>
 <p>The default implementation of sizeHint() returns an invalid size if there is no layout for this widget, and returns the layout's preferred size otherwise.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><span class="name"><b>sizeHint</b></span>() const</td></tr>
 </table></div>
@@ -1166,7 +1193,7 @@ Designer创建的组合组件。</p>
 <p>Note that while you can set the size increment for all widgets, it only affects windows.</p>
 <p>By default, this property contains a size with zero width and height.</p>
 <p><b>Warning:</b> The size increment has no effect under Windows, and may be disregarded by the window manager on X11.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QSize </td><td class="memItemRight bottomAlign"><span class="name"><b>sizeIncrement</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setSizeIncrement</b></span>(<i>const QSize &amp;</i>)</td></tr>
@@ -1179,7 +1206,7 @@ Designer创建的组合组件。</p>
 <p>This property holds the default layout behavior of the widget</p>
 <p>If there is a <a href="qlayout.html">QLayout</a> that manages this widget's children, the size policy specified by that layout is used. If there is no such <a href="qlayout.html">QLayout</a>, the result of this function is used.</p>
 <p>The default policy is Preferred/Preferred, which means that the widget can be freely resized, but prefers to be the size <a href="qwidget.html#sizeHint-prop">sizeHint</a>() returns. Button-like widgets set the size policy to specify that they may stretch horizontally, but are fixed vertically. The same applies to lineedit controls (such as <a href="qlineedit.html">QLineEdit</a>, <a href="qspinbox.html">QSpinBox</a> or an editable <a href="qcombobox.html">QComboBox</a>) and other horizontally orientated widgets (such as <a href="qprogressbar.html">QProgressBar</a>). <a href="qtoolbutton.html">QToolButton</a>'s are normally square, so they allow growth in both directions. Widgets that support different directions (such as <a href="qslider.html">QSlider</a>, <a href="qscrollbar.html">QScrollBar</a> or QHeader) specify stretching in the respective direction only. Widgets that can provide scroll bars (usually subclasses of <a href="qscrollarea.html">QScrollArea</a>) tend to specify that they can use additional space, and that they can make do with less than <a href="qwidget.html#sizeHint-prop">sizeHint</a>().</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QSizePolicy </td><td class="memItemRight bottomAlign"><span class="name"><b>sizePolicy</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setSizePolicy</b></span>(<i>QSizePolicy</i>)</td></tr>
@@ -1191,7 +1218,7 @@ Designer创建的组合组件。</p>
 <h3 class="fn" id="statusTip-prop"><a name="statusTip-prop"></a><span class="name">statusTip</span> : <span class="type"><a href="../qtcore/qstring.html">QString</a></span></h3>
 <p>This property holds the widget's status tip</p>
 <p>By default, this property contains an empty string.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>statusTip</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setStatusTip</b></span>(<i>const QString &amp;</i>)</td></tr>
@@ -1205,7 +1232,7 @@ Designer创建的组合组件。</p>
 <p>Since Qt 4.5, Qt style sheets fully supports <a href="../qtdoc/internationalization.html#macos">macOS</a>.</p>
 <p><b>Warning:</b> Qt style sheets are currently not supported for custom <a href="qstyle.html">QStyle</a> subclasses. We plan to address this in some future release.</p>
 <p>This property was introduced in  Qt 4.2.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>styleSheet</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setStyleSheet</b></span>(const QString &amp;<i>styleSheet</i>)</td></tr>
@@ -1218,7 +1245,7 @@ Designer创建的组合组件。</p>
 <p>If tablet tracking is disabled (the default), the widget only receives tablet move events when the stylus is in contact with the tablet, or at least one stylus button is pressed, while the stylus is being moved.</p>
 <p>If tablet tracking is enabled, the widget receives tablet move events even while hovering in proximity. This is useful for monitoring position as well as the auxiliary properties such as rotation and tilt, and providing feedback in the UI.</p>
 <p>This property was introduced in  Qt 5.9.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>hasTabletTracking</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setTabletTracking</b></span>(bool <i>enable</i>)</td></tr>
@@ -1231,7 +1258,7 @@ Designer创建的组合组件。</p>
 <p>Note that by default tooltips are only shown for widgets that are children of the active window. You can change this behavior by setting the attribute <a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WA_AlwaysShowToolTips</a> on the <i>window</i>, not on the widget with the tooltip.</p>
 <p>If you want to control a tooltip's behavior, you can intercept the <a href="qwidget.html#event">event</a>() function and catch the <a href="../qtcore/qevent.html#Type-enum">QEvent::ToolTip</a> event (e.g&#x2e;, if you want to customize the area for which the tooltip should be shown).</p>
 <p>By default, this property contains an empty string.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>toolTip</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setToolTip</b></span>(<i>const QString &amp;</i>)</td></tr>
@@ -1243,7 +1270,7 @@ Designer创建的组合组件。</p>
 <p>This property holds the widget's tooltip duration</p>
 <p>Specifies how long time the tooltip will be displayed, in milliseconds. If the value is -1 (default) the duration is calculated depending on the length of the tooltip.</p>
 <p>This property was introduced in  Qt 5.2.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>toolTipDuration</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setToolTipDuration</b></span>(int <i>msec</i>)</td></tr>
@@ -1265,7 +1292,7 @@ Designer创建的组合组件。</p>
 
 </pre>
 <p>Disabling a widget implicitly disables all its children. Enabling a widget enables all child widgets <i>except</i> top-level widgets or those that have been explicitly disabled. Re-enabling updates implicitly calls <a href="qwidget.html#update">update</a>() on the widget.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>updatesEnabled</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setUpdatesEnabled</b></span>(bool <i>enable</i>)</td></tr>
@@ -1280,7 +1307,7 @@ Designer创建的组合组件。</p>
 <p>A widget receives show and hide events when its visibility status changes. Between a hide and a show event, there is no need to waste CPU cycles preparing or displaying information to the user. A video application, for example, might simply stop generating new frames.</p>
 <p>A widget that happens to be obscured by other windows on the screen is considered to be visible. The same applies to iconified windows and windows that exist on another virtual desktop (on platforms that support this concept). A widget receives spontaneous show and hide events when its mapping status is changed by the window system, e.g&#x2e; a spontaneous hide event when the user minimizes the window, and a spontaneous show event when the window is restored again.</p>
 <p>You almost never have to reimplement the setVisible() function. If you need to change some settings before a widget is shown, use <a href="qwidget.html#showEvent">showEvent</a>() instead. If you need to do some delayed initialization use the Polish event delivered to the <a href="qwidget.html#event">event</a>() function.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>isVisible</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> virtual void </td><td class="memItemRight bottomAlign"><span class="name"><b>setVisible</b></span>(bool <i>visible</i>)</td></tr>
@@ -1291,7 +1318,7 @@ Designer创建的组合组件。</p>
 <h3 class="fn" id="whatsThis-prop"><a name="whatsThis-prop"></a><span class="name">whatsThis</span> : <span class="type"><a href="../qtcore/qstring.html">QString</a></span></h3>
 <p>This property holds the widget's What's This help text.</p>
 <p>By default, this property contains an empty string.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>whatsThis</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWhatsThis</b></span>(<i>const QString &amp;</i>)</td></tr>
@@ -1303,7 +1330,7 @@ Designer创建的组合组件。</p>
 <p>This property holds the width of the widget excluding any window frame</p>
 <p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
 <p><b>Note: </b>Do not use this function to find the width of a screen on a <a href="qdesktopwidget.html">multiple screen desktop</a>. Read <a href="qdesktopwidget.html#screen-geometry">this note</a> for details.</p><p>By default, this property contains a value that depends on the user's platform and screen geometry.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>width</b></span>() const</td></tr>
 </table></div>
@@ -1318,7 +1345,7 @@ Designer创建的组合组件。</p>
 <p>If no file path is set, this property contains an empty string.</p>
 <p>By default, this property contains an empty string.</p>
 <p>This property was introduced in  Qt 4.4.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>windowFilePath</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWindowFilePath</b></span>(const QString &amp;<i>filePath</i>)</td></tr>
@@ -1329,7 +1356,7 @@ Designer创建的组合组件。</p>
 <h3 class="fn" id="windowFlags-prop"><a name="windowFlags-prop"></a><span class="name">windowFlags</span> : <span class="type"><a href="../qtcore/qt.html#WindowType-enum">Qt::WindowFlags</a></span></h3>
 <p>Window flags are a combination of a type (e.g&#x2e; <a href="../qtcore/qt.html#WindowType-enum">Qt::Dialog</a>) and zero or more hints to the window system (e.g&#x2e; <a href="../qtcore/qt.html#WindowType-enum">Qt::FramelessWindowHint</a>).</p>
 <p>If the widget had type <a href="../qtcore/qt.html#WindowType-enum">Qt::Widget</a> or <a href="../qtcore/qt.html#WindowType-enum">Qt::SubWindow</a> and becomes a window (<a href="../qtcore/qt.html#WindowType-enum">Qt::Window</a>, <a href="../qtcore/qt.html#WindowType-enum">Qt::Dialog</a>, etc.), it is put at position (0, 0) on the desktop. If the widget is a window and becomes a <a href="../qtcore/qt.html#WindowType-enum">Qt::Widget</a> or <a href="../qtcore/qt.html#WindowType-enum">Qt::SubWindow</a>, it is put at position (0, 0) relative to its parent widget.</p>
-<p><b>Note: </b>This function calls <a href="qwidget.html#setParent">setParent</a>() when changing the flags for a window, causing the widget to be hidden. You must call <a href="qwidget.html#show">show</a>() to make the widget visible again..</p><p><b>Access functions:</b></p>
+<p><b>Note: </b>This function calls <a href="qwidget.html#setParent">setParent</a>() when changing the flags for a window, causing the widget to be hidden. You must call <a href="qwidget.html#show">show</a>() to make the widget visible again..</p><p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> Qt::WindowFlags </td><td class="memItemRight bottomAlign"><span class="name"><b>windowFlags</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWindowFlags</b></span>(Qt::WindowFlags <i>type</i>)</td></tr>
@@ -1340,7 +1367,7 @@ Designer创建的组合组件。</p>
 <h3 class="fn" id="windowIcon-prop"><a name="windowIcon-prop"></a><span class="name">windowIcon</span> : <span class="type"><a href="../qtgui/qicon.html">QIcon</a></span></h3>
 <p>This property holds the widget's icon</p>
 <p>This property only makes sense for windows. If no icon has been set, windowIcon() returns the application icon (<a href="qapplication.html#windowIcon-prop">QApplication::windowIcon</a>()).</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QIcon </td><td class="memItemRight bottomAlign"><span class="name"><b>windowIcon</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWindowIcon</b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
@@ -1357,7 +1384,7 @@ Designer创建的组合组件。</p>
 <p>This property only makes sense for windows. A modal widget prevents widgets in other windows from getting input. The value of this property controls which windows are blocked when the widget is visible. Changing this property while the window is visible has no effect; you must <a href="qwidget.html#hide">hide</a>() the widget first, then <a href="qwidget.html#show">show</a>() it again.</p>
 <p>By default, this property is <a href="../qtcore/qt.html#WindowModality-enum">Qt::NonModal</a>.</p>
 <p>This property was introduced in  Qt 4.1.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> Qt::WindowModality </td><td class="memItemRight bottomAlign"><span class="name"><b>windowModality</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWindowModality</b></span>(Qt::WindowModality <i>windowModality</i>)</td></tr>
@@ -1370,7 +1397,7 @@ Designer创建的组合组件。</p>
 <p>A modified window is a window whose content has changed but has not been saved to disk. This flag will have different effects varied by the platform. On <a href="../qtdoc/internationalization.html#macos">macOS</a> the close button will have a modified look; on other platforms, the window title will have an '*' (asterisk).</p>
 <p>The window title must contain a &quot;[*]&quot; placeholder, which indicates where the '*' should appear. Normally, it should appear right after the file name (e.g&#x2e;, &quot;document1.txt[*] - Text Editor&quot;). If the window isn't modified, the placeholder is simply removed.</p>
 <p>Note that if a widget is set as modified, all its ancestors will also be set as modified. However, if you call <code>setWindowModified(false)</code> on a widget, this will not propagate to its parent because other children of the parent might have been modified.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>isWindowModified</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWindowModified</b></span>(<i>bool</i>)</td></tr>
@@ -1384,7 +1411,7 @@ Designer创建的组合组件。</p>
 <p>By default the value of this property is 1.0&#x2e;</p>
 <p>This feature is available on Embedded Linux, <a href="../qtdoc/internationalization.html#macos">macOS</a>, Windows, and X11 platforms that support the Composite extension.</p>
 <p><b>Note: </b>On X11 you need to have a composite manager running, and the X11 specific _NET_WM_WINDOW_OPACITY atom needs to be supported by the window manager you are using.</p><p><b>Warning:</b> Changing this property from opaque to transparent might issue a paint event that needs to be processed before the window is displayed correctly. This affects mainly the use of QPixmap::grabWindow(). Also note that semi-transparent windows update and resize significantly slower than opaque windows.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> qreal </td><td class="memItemRight bottomAlign"><span class="name"><b>windowOpacity</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWindowOpacity</b></span>(qreal <i>level</i>)</td></tr>
@@ -1397,7 +1424,7 @@ Designer创建的组合组件。</p>
 <p>This property only makes sense for top-level widgets, such as windows and dialogs. If no caption has been set, the title is based of the <a href="qwidget.html#windowFilePath-prop">windowFilePath</a>. If neither of these is set, then the title is an empty string.</p>
 <p>If you use the <a href="qwidget.html#windowModified-prop">windowModified</a> mechanism, the window title must contain a &quot;[*]&quot; placeholder, which indicates where the '*' should appear. Normally, it should appear right after the file name (e.g&#x2e;, &quot;document1.txt[*] - Text Editor&quot;). If the <a href="qwidget.html#windowModified-prop">windowModified</a> property is <code>false</code> (the default), the placeholder is simply removed.</p>
 <p>On some desktop platforms (including Windows and Unix), the application name (from <a href="../qtgui/qguiapplication.html#applicationDisplayName-prop">QGuiApplication::applicationDisplayName</a>) is added at the end of the window title, if set. This is done by the QPA plugin, so it is shown to the user, but isn't part of the windowTitle string.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>windowTitle</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWindowTitle</b></span>(<i>const QString &amp;</i>)</td></tr>
@@ -1413,7 +1440,7 @@ Designer创建的组合组件。</p>
 <p>This property holds the x coordinate of the widget relative to its parent including any window frame</p>
 <p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
 <p>By default, this property has a value of 0.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>x</b></span>() const</td></tr>
 </table></div>
@@ -1424,7 +1451,7 @@ Designer创建的组合组件。</p>
 <p>This property holds the y coordinate of the widget relative to its parent and including any window frame</p>
 <p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
 <p>By default, this property has a value of 0.</p>
-<p><b>Access functions:</b></p>
+<p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>y</b></span>() const</td></tr>
 </table></div>
