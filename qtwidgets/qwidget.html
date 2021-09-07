@@ -635,9 +635,9 @@ Designer创建的组合组件。</p>
 	如果启用这个选项，即使<a href="qwidget.html#autoFillBackground-prop">autoFillBackground</a>没有设置，组件的背景也会渲染到目标中。<br>
 	默认情况下，该选项是启用的。</td></tr>
 <tr><td class="topAlign"><code>QWidget::DrawChildren</code></td><td class="topAlign tblval"><code>0x2</code></td><td class="topAlign">
-	如果启用此选项，组件的子组件将递归呈现到目标中。<br>默认情况下，该选项是启用的。</td></tr>
+	如果启用此选项，组件的子组件将递归渲染到目标中。<br>默认情况下，该选项是启用的。</td></tr>
 <tr><td class="topAlign"><code>QWidget::IgnoreMask</code></td><td class="topAlign tblval"><code>0x4</code></td><td class="topAlign">
-	如果启用此选项，在呈现到目标时，组件的<a href="qwidget.html#mask">QWidget::mask</a>()将被忽略。默认情况下，该选项是禁用的。</td></tr>
+	如果启用此选项，在渲染到目标时，组件的<a href="qwidget.html#mask">QWidget::mask</a>()将被忽略。默认情况下，该选项是禁用的。</td></tr>
 </table></div>
 <p>这个<span lang="zh-cn">宏</span>在Qt 4.3中被引入或修改。</p>
 <p>RenderFlags类型是<a href="../qtcore/qflags.html">QFlags</a>&lt;RenderFlag&gt;的类型定义。它存储RenderFlag值的OR组合。</p>
@@ -759,7 +759,7 @@ Designer创建的组合组件。</p>
 <!-- $$$cursor-prop$$$cursor$$$setCursorconstQCursor&$$$unsetCursor -->
 <h3 class="fn" id="cursor-prop"><a name="cursor-prop"></a><span class="name">cursor</span> : <span class="type"><a href="../qtgui/qcursor.html">QCursor</a></span></h3>
 <p><font style="vertical-align: inherit;">此属性保存此组件的光标形状</font></p>
-<p><font style="vertical-align: inherit;">当鼠标光标位于此组件上方时，它将呈现此形状。有关一系列有用的形状，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#CursorShape-enum"><font style="vertical-align: inherit;">预定义的光标对象列表</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">当鼠标光标位于此组件上方时，它将渲染此形状。有关一系列有用的形状，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#CursorShape-enum"><font style="vertical-align: inherit;">预定义的光标对象列表</font></a><font style="vertical-align: inherit;">。</font></p>
 <p><font style="vertical-align: inherit;">编辑器组件可能会使用 I 型光标：</font></p>
 <pre class="cpp">
 
@@ -822,7 +822,7 @@ unsetCursor() 之后，则使用父<span lang="zh-cn">光标</span>。</font></p
 <!-- $$$font-prop$$$font$$$setFontconstQFont& -->
 <h3 class="fn" id="font-prop"><a name="font-prop"></a><span class="name">font</span> : <span class="type"><a href="../qtgui/qfont.html">QFont</a></span></h3>
 <p><font style="vertical-align: inherit;">此属性保存当前为组件设置的字体</font></p>
-<p><font style="vertical-align: inherit;">描述组件请求的字体。该字体在呈现标准组件时由组件的样式使用，并且可用作确保自定义组件可以与本机平台的外观和感觉保持一致的一种方式。不同的平台或不同的样式为应用程序定义不同的字体是很常见的。</font></p>
+<p><font style="vertical-align: inherit;">描述组件请求的字体。该字体在渲染标准组件时由组件的样式使用，并且可用作确保自定义组件可以与本机平台的外观和感觉保持一致的一种方式。不同的平台或不同的样式为应用程序定义不同的字体是很常见的。</font></p>
 <p><font style="vertical-align: inherit;">当您为组件分配新字体时，该字体的属性将与组件的默认字体组合以形成组件的最终字体。您可以调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#fontInfo"><font style="vertical-align: inherit;">fontInfo</font></a><font style="vertical-align: inherit;"> () 来获取组件最终字体的副本。最后的字体也用于初始化</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qpainter.html"><font style="vertical-align: inherit;">QPainter</font></a><font style="vertical-align: inherit;">的字体。</font></p>
 <p>默认值取决于系统环境。<br>QApplication维护一个系统/主题字体，它作为所有组件的默认字体。<br>
 对于某些类型的组件，可能还有特殊的默认字体。<br>您还可以通过将自定义字体和组件名称传递给QApplication::setFont()来为组件定义默认字体。<br>
@@ -830,7 +830,7 @@ unsetCursor() 之后，则使用父<span lang="zh-cn">光标</span>。</font></p
 <p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">将显式字体属性从父级传递到子级。如果您更改字体的特定属性并将该字体分配给组件，该属性将传递到组件的所有子项，覆盖该属性的任何系统默认值。请注意，除非启用了<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WidgetAttribute-enum">Qt::WA_WindowPropagation</a>属性，否则默认情况下字体不会传递到窗口（请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#isWindow"><font style="vertical-align: inherit;">isWindow</font></a><font style="vertical-align: inherit;"> ()）。</font></p>
 <p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">的字体传递类似于它的调色板传递。</font></p>
 <p>
-当前样式用于呈现所有标准Qt组件的内容，可以自由选择使用组件字体，或者在某些情况下，忽略它(部分或全部)。特别是，某些样式(如GTK样式、Mac样式和Windows 
+当前样式用于渲染所有标准Qt组件的内容，可以自由选择使用组件字体，或者在某些情况下，忽略它(部分或全部)。特别是，某些样式(如GTK样式、Mac样式和Windows 
 Vista样式)会对组件字体进行特殊修改，以匹配平台的本机外观和感觉。因此，将属性赋给组件的字体并不一定会改变组件的外观。相反，您可以选择应用<a href="stylesheet.html">样式表</a>.</p>
 <p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">如果<span lang="zh-cn">同时使用</span>setFont() 
 <span lang="zh-cn">和</span></font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet.html"><font style="vertical-align: inherit;">Qt 样式表，</font></a><font style="vertical-align: inherit;"><span lang="zh-cn">并且</span>设置冲突，<span lang="zh-cn">则有限使用</span>样式表。</font></p><p><b><font style="vertical-align: inherit;">
@@ -1065,225 +1065,241 @@ Vista样式)会对组件字体进行特殊修改，以匹配平台的本机外�
 <!-- @@@minimumSizeHint -->
 <!-- $$$minimumWidth-prop$$$minimumWidth$$$setMinimumWidthint -->
 <h3 class="fn" id="minimumWidth-prop"><a name="minimumWidth-prop"></a><span class="name">minimumWidth</span> : <span class="type">int</span></h3>
-<p>This property holds the widget's minimum width in pixels</p>
-<p>This property corresponds to the width held by the <a href="qwidget.html#minimumSize-prop">minimumSize</a> property.</p>
-<p>By default, this property has a value of 0.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件的最小宽度（以像素为单位）</font></p>
+<p><font style="vertical-align: inherit;">此属性对应于</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#minimumSize-prop"><font style="vertical-align: inherit;">minimumSize</font></a><font style="vertical-align: inherit;">属性所保持的宽度。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性的值为 0。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>minimumWidth</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setMinimumWidth</b></span>(int <i>minw</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#minimumSize-prop">minimumSize</a> and <a href="qwidget.html#minimumHeight-prop">minimumHeight</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#minimumSize-prop">minimumSize</a> 
+<span lang="zh-cn">和 </span><a href="qwidget.html#minimumHeight-prop">minimumHeight</a><span lang="zh-cn">。</span></p>
 <!-- @@@minimumWidth -->
 <!-- $$$modal-prop$$$isModal -->
 <h3 class="fn" id="modal-prop"><a name="modal-prop"></a><span class="name">modal</span> : const <span class="type">bool</span></h3>
-<p>This property holds whether the widget is a modal widget</p>
-<p>This property only makes sense for windows. A modal widget prevents widgets in all other windows from getting any input.</p>
-<p>By default, this property is <code>false</code>.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件是否为模态组件</font></p>
+<p><font style="vertical-align: inherit;">这个属性只对windows有意义。模态组件可防止所有其他窗口中的组件获得任何输入。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性为</font><code>false</code><font style="vertical-align: inherit;">。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>isModal</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#isWindow">isWindow</a>(), <a href="qwidget.html#windowModality-prop">windowModality</a>, and <a href="qdialog.html">QDialog</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#isWindow">isWindow</a>(), <a href="qwidget.html#windowModality-prop">windowModality</a>,
+<span lang="zh-cn">和 </span><a href="qdialog.html">QDialog</a><span lang="zh-cn">。</span></p>
 <!-- @@@modal -->
 <!-- $$$mouseTracking-prop$$$hasMouseTracking$$$setMouseTrackingbool -->
 <h3 class="fn" id="mouseTracking-prop"><a name="mouseTracking-prop"></a><span class="name">mouseTracking</span> : <span class="type">bool</span></h3>
-<p>This property holds whether mouse tracking is enabled for the widget</p>
-<p>If mouse tracking is disabled (the default), the widget only receives mouse move events when at least one mouse button is pressed while the mouse is being moved.</p>
-<p>If mouse tracking is enabled, the widget receives mouse move events even if no buttons are pressed.</p>
+<p><font style="vertical-align: inherit;">此属性保存是否为组件启用鼠标跟踪</font></p>
+<p><font style="vertical-align: inherit;">如果禁用鼠标跟踪（默认设置），则组件仅在移动鼠标时至少按下一个鼠标按钮时才会接收鼠标移动事件。</font></p>
+<p><font style="vertical-align: inherit;">如果启用鼠标跟踪，即使没有按下任何按钮，组件也会收到鼠标移动事件。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>hasMouseTracking</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setMouseTracking</b></span>(bool <i>enable</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#mouseMoveEvent">mouseMoveEvent</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#mouseMoveEvent">mouseMoveEvent</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@mouseTracking -->
 <!-- $$$normalGeometry-prop$$$normalGeometry -->
 <h3 class="fn" id="normalGeometry-prop"><a name="normalGeometry-prop"></a><span class="name">normalGeometry</span> : const <span class="type"><a href="../qtcore/qrect.html">QRect</a></span></h3>
-<p>This property holds the geometry of the widget as it will appear when shown as a normal (not maximized or full screen) top-level widget</p>
-<p>For child widgets this property always holds an empty rectangle.</p>
-<p>By default, this property contains an empty rectangle.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件的几何形状，<span lang="zh-cn">当</span>它在<span lang="zh-cn">作为顶级组件时显示正常大小时(</span>非最大化或全屏）<span lang="zh-cn">为该值。</span></font></p>
+<p><font style="vertical-align: inherit;">对于子组件，此属性始终包含一个空矩形。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含一个空矩形。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QRect </td><td class="memItemRight bottomAlign"><span class="name"><b>normalGeometry</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#windowState">QWidget::windowState</a>() and <a href="qwidget.html#geometry-prop">QWidget::geometry</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#windowState">QWidget::windowState</a>()
+<span lang="zh-cn">和 </span><a href="qwidget.html#geometry-prop">QWidget::geometry</a><span lang="zh-cn">。</span></p>
 <!-- @@@normalGeometry -->
 <!-- $$$palette-prop$$$palette$$$setPaletteconstQPalette& -->
 <h3 class="fn" id="palette-prop"><a name="palette-prop"></a><span class="name">palette</span> : <span class="type"><a href="../qtgui/qpalette.html">QPalette</a></span></h3>
-<p>This property holds the widget's palette</p>
-<p>This property describes the widget's palette. The palette is used by the widget's style when rendering standard components, and is available as a means to ensure that custom widgets can maintain consistency with the native platform's look and feel. It's common that different platforms, or different styles, have different palettes.</p>
-<p>When you assign a new palette to a widget, the color roles from this palette are combined with the widget's default palette to form the widget's final palette. The palette entry for the widget's background role is used to fill the widget's background (see <a href="qwidget.html#autoFillBackground-prop">QWidget::autoFillBackground</a>), and the foreground role initializes <a href="../qtgui/qpainter.html">QPainter</a>'s pen.</p>
-<p>The default depends on the system environment. <a href="qapplication.html">QApplication</a> maintains a system/theme palette which serves as a default for all widgets. There may also be special palette defaults for certain types of widgets (e.g&#x2e;, on Windows Vista, all classes that derive from <a href="qmenubar.html">QMenuBar</a> have a special default palette). You can also define default palettes for widgets yourself by passing a custom palette and the name of a widget to <a href="qapplication.html#setPalette">QApplication::setPalette</a>(). Finally, the style always has the option of polishing the palette as it's assigned (see <a href="qstyle.html#polish">QStyle::polish</a>()).</p>
-<p><a href="qwidget.html">QWidget</a> propagates explicit palette roles from parent to child. If you assign a brush or color to a specific role on a palette and assign that palette to a widget, that role will propagate to all the widget's children, overriding any system defaults for that role. Note that palettes by default don't propagate to windows (see <a href="qwidget.html#isWindow">isWindow</a>()) unless the <a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WA_WindowPropagation</a> attribute is enabled.</p>
-<p><a href="qwidget.html">QWidget</a>'s palette propagation is similar to its font propagation.</p>
-<p>The current style, which is used to render the content of all standard Qt widgets, is free to choose colors and brushes from the widget palette, or in some cases, to ignore the palette (partially, or completely). In particular, certain styles like GTK style, Mac style, and Windows Vista style, depend on third party APIs to render the content of widgets, and these styles typically do not follow the palette. Because of this, assigning roles to a widget's palette is not guaranteed to change the appearance of the widget. Instead, you may choose to apply a <a href="stylesheet.html">styleSheet</a>.</p>
-<p><b>Warning:</b> Do not use this function in conjunction with <a href="stylesheet.html">Qt Style Sheets</a>. When using style sheets, the palette of a widget can be customized using the &quot;color&quot;, &quot;background-color&quot;, &quot;selection-color&quot;, &quot;selection-background-color&quot; and &quot;alternate-background-color&quot;.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件的调色板</font></p>
+<p><font style="vertical-align: inherit;">此属性描述组件的调色板。调色板在渲染标准组件时由组件的样式使用，可用作确保自定义组件可以与本机平台的外观和感觉保持一致的一种方式。不同的平台或不同的风格有不同的调色板是很常见的。</font></p>
+<p><font style="vertical-align: inherit;">当您将新调色板分配给组件时，此调色板中的颜色角色将与组件的默认调色板组合以形成组件的最终调色板。组件背景角色的调色板条目用于填充组件的背景（参见</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#autoFillBackground-prop"><font style="vertical-align: inherit;">QWidget::autoFillBackground</font></a><font style="vertical-align: inherit;">），前景角色初始化</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtgui/qpainter.html"><font style="vertical-align: inherit;">QPainter</font></a><font style="vertical-align: inherit;">的画笔。</font></p>
+<p><font style="vertical-align: inherit;">默认值取决于系统环境。</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qapplication.html"><font style="vertical-align: inherit;">QApplication</font></a><font style="vertical-align: inherit;">维护一个系统/主题调色板，作为所有组件的默认设置。某些类型的组件也可能有特殊的调色板默认值（例如，在 Windows Vista 上，所有从</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qmenubar.html"><font style="vertical-align: inherit;">QMenuBar</font></a><font style="vertical-align: inherit;">派生的类都有一个特殊的默认调色板）。您还可以通过将自定义调色板和组件的名称传递给</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qapplication.html#setPalette"><font style="vertical-align: inherit;">QApplication::setPalette</font></a><font style="vertical-align: inherit;"> ()来自己定义组件的默认调色板。最后，样式始终可以选择在指定时抛光调色板（请参阅</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qstyle.html#polish"><font style="vertical-align: inherit;">QStyle::polish</font></a><font style="vertical-align: inherit;"> ()）。</font></p>
+<p><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">将显式调色板角色从父级传播到子级。如果您将画笔或颜色分配给调色板上的特定角色并将该调色板分配给组件，则该角色将传播到组件的所有子项，覆盖该角色的任何系统默认值。请注意，除非启用了<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WidgetAttribute-enum">Qt::WA_WindowPropagation</a>属性，否则默认情况下调色板不会传播到窗口（请参阅</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#isWindow"><font style="vertical-align: inherit;">isWindow</font></a><font style="vertical-align: inherit;"> ()）。</font></p>
+<p><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">的调色板传播类似于其字体传播。</font></p>
+<p><font style="vertical-align: inherit;">当前样式用于渲染所有标准 Qt 组件的内容，可以从组件调色板中自由选择颜色和画笔，或者在某些情况下，忽略调色板（部分或完全）。特别是某些样式，如 
+GTK 样式、Mac 样式和 Windows Vista 样式，依赖第三方 API 来渲染组件的内容，并且这些样式通常不遵循调色板。因此，不能保证为组件的调色板分配角色会改变组件的外观。相反，您可以选择应用</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet.html"><font style="vertical-align: inherit;">styleSheet</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>警告</b>不要将此函数与<a href="stylesheet.html">Qt样式表</a>一起使用。当使用样式表时，可以使用&quot;color&quot;， 
+&quot;background-color&quot;， &quot;selection-color&quot;， 
+&quot;selection-background-color&quot;和&quot;alternate-background-color&quot;来定制组件的调色板。</p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> const QPalette &amp;</td><td class="memItemRight bottomAlign"><span class="name"><b>palette</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setPalette</b></span>(<i>const QPalette &amp;</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qapplication.html#palette">QApplication::palette</a>(), <a href="qwidget.html#font-prop">QWidget::font</a>(), and <a href="stylesheet.html">Qt Style Sheets</a>.</p>
+<p><b>请参考 </b><a href="qapplication.html#palette">QApplication::palette</a>(), <a href="qwidget.html#font-prop">QWidget::font</a>(),
+<span lang="zh-cn">和 </span><a href="stylesheet.html">Qt Style Sheets</a><span lang="zh-cn">。</span></p>
 <!-- @@@palette -->
 <!-- $$$pos-prop$$$pos$$$moveintint$$$moveconstQPoint& -->
 <h3 class="fn" id="pos-prop"><a name="pos-prop"></a><span class="name">pos</span> : <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span></h3>
-<p>This property holds the position of the widget within its parent widget</p>
-<p>If the widget is a window, the position is that of the widget on the desktop, including its frame.</p>
-<p>When changing the position, the widget, if visible, receives a move event (<a href="qwidget.html#moveEvent">moveEvent</a>()) immediately. If the widget is not currently visible, it is guaranteed to receive an event before it is shown.</p>
-<p>By default, this property contains a position that refers to the origin.</p>
-<p><b>Warning:</b> Calling move() or <a href="qwidget.html#geometry-prop">setGeometry</a>() inside <a href="qwidget.html#moveEvent">moveEvent</a>() can lead to infinite recursion.</p>
-<p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件在其父组件中的位置</font></p>
+<p><font style="vertical-align: inherit;">如果组件是窗口，则位置是组件在桌面上的位置，包括其框架。</font></p>
+<p><font style="vertical-align: inherit;">更改位置时，组件（如果可见）会立即接收移动事件（</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#moveEvent"><font style="vertical-align: inherit;">moveEvent</font></a><font style="vertical-align: inherit;"> ()）。如果组件当前不可见，则保证在显示之前收到一个事件。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含引用原点的位置。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;"><span lang="zh-cn">在</span></font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#moveEvent"><font style="vertical-align: inherit;">moveEvent</font></a><font style="vertical-align: inherit;">（）<span lang="zh-cn">内调用move（）或<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#geometry-prop">setGeometry</a>（）</span>会导致无限递归。</font></p>
+<p><font style="vertical-align: inherit;">有关</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry"><font style="vertical-align: inherit;">窗口几何</font></a><font style="vertical-align: inherit;">问题的概述，请参阅<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry">窗口几何</a>文档。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QPoint </td><td class="memItemRight bottomAlign"><span class="name"><b>pos</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qwidget.html#move-1">move</a></b></span>(int <i>x</i>, int <i>y</i>)</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>move</b></span>(<i>const QPoint &amp;</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#frameGeometry-prop">frameGeometry</a>, <a href="qwidget.html#size-prop">size</a>, <a href="qwidget.html#x-prop">x</a>(), and <a href="qwidget.html#y-prop">y</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#frameGeometry-prop">frameGeometry</a>, <a href="qwidget.html#size-prop">size</a>, <a href="qwidget.html#x-prop">x</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#y-prop">y</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@pos -->
 <!-- $$$rect-prop$$$rect -->
 <h3 class="fn" id="rect-prop"><a name="rect-prop"></a><span class="name">rect</span> : const <span class="type"><a href="../qtcore/qrect.html">QRect</a></span></h3>
-<p>This property holds the internal geometry of the widget excluding any window frame</p>
-<p>The rect property equals <a href="../qtcore/qrect.html">QRect</a>(0, 0, <a href="qwidget.html#width-prop">width</a>(), <a href="qwidget.html#height-prop">height</a>()).</p>
-<p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
-<p>By default, this property contains a value that depends on the user's platform and screen geometry.</p>
+<p><font style="vertical-align: inherit;">属性包含组件的内部几何形状，不包括任何窗口框架</font></p>
+<p><font style="vertical-align: inherit;">rect 属性等于</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qrect.html"><font style="vertical-align: inherit;">QRect</font></a><font style="vertical-align: inherit;"> (0, 0, </font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#width-prop"><font style="vertical-align: inherit;">width</font></a><font style="vertical-align: inherit;"> (), </font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#height-prop"><font style="vertical-align: inherit;">height</font></a><font style="vertical-align: inherit;"> ())。</font></p>
+<p><font style="vertical-align: inherit;">有关</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry"><font style="vertical-align: inherit;">窗口几何</font></a><font style="vertical-align: inherit;">问题的概述，请参阅<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry">窗口几何</a>文档。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含一个取决于用户平台和屏幕几何形状的值。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QRect </td><td class="memItemRight bottomAlign"><span class="name"><b>rect</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#size-prop">size</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#size-prop">size</a><span lang="zh-cn">。</span></p>
 <!-- @@@rect -->
 <!-- $$$size-prop$$$size$$$resizeintint$$$resizeconstQSize& -->
 <h3 class="fn" id="size-prop"><a name="size-prop"></a><span class="name">size</span> : <span class="type"><a href="../qtcore/qsize.html">QSize</a></span></h3>
-<p>This property holds the size of the widget excluding any window frame</p>
-<p>If the widget is visible when it is being resized, it receives a resize event (<a href="qwidget.html#resizeEvent">resizeEvent</a>()) immediately. If the widget is not currently visible, it is guaranteed to receive an event before it is shown.</p>
-<p>The size is adjusted if it lies outside the range defined by <a href="qwidget.html#minimumSize-prop">minimumSize</a>() and <a href="qwidget.html#maximumSize-prop">maximumSize</a>().</p>
-<p>By default, this property contains a value that depends on the user's platform and screen geometry.</p>
-<p><b>Warning:</b> Calling resize() or <a href="qwidget.html#geometry-prop">setGeometry</a>() inside <a href="qwidget.html#resizeEvent">resizeEvent</a>() can lead to infinite recursion.</p>
-<p><b>Note: </b>Setting the size to <code>QSize(0, 0)</code> will cause the widget to not appear on screen. This also applies to windows.</p><p><b>访问函数：</b></p>
+<p><font style="vertical-align: inherit;">此属性保存组件的大小，不包括任何窗口框架</font></p>
+<p><font style="vertical-align: inherit;">如果组件在调整大小时可见，它会立即收到一个调整大小事件（</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#resizeEvent"><font style="vertical-align: inherit;">resizeEvent</font></a><font style="vertical-align: inherit;"> ()）。如果组件当前不可见，则保证在显示之前收到一个事件。</font></p>
+<p><font style="vertical-align: inherit;">如果大小超出由</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#minimumSize-prop"><font style="vertical-align: inherit;">minimumSize</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#maximumSize-prop"><font style="vertical-align: inherit;">maximumSize</font></a><font style="vertical-align: inherit;"> ()定义的范围，则调整大小。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含一个取决于用户平台和屏幕几何形状的值。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">在</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#geometry-prop"><font style="vertical-align: inherit;">resizeEvent</font></a><font style="vertical-align: inherit;"> () 内部调用 resize() 或</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#resizeEvent"><font style="vertical-align: inherit;">setGeometry</font></a><font style="vertical-align: inherit;"> () 会导致无限递归。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">将大小设置为</font><code>QSize(0, 0)</code><font style="vertical-align: inherit;">将导致组件不会出现在屏幕上。这也适用于窗户。</font></p><p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QSize </td><td class="memItemRight bottomAlign"><span class="name"><b>size</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qwidget.html#resize-1">resize</a></b></span>(int <i>w</i>, int <i>h</i>)</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>resize</b></span>(<i>const QSize &amp;</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#pos-prop">pos</a>, <a href="qwidget.html#geometry-prop">geometry</a>, <a href="qwidget.html#minimumSize-prop">minimumSize</a>, <a href="qwidget.html#maximumSize-prop">maximumSize</a>, <a href="qwidget.html#resizeEvent">resizeEvent</a>(), and <a href="qwidget.html#adjustSize">adjustSize</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#pos-prop">pos</a>, <a href="qwidget.html#geometry-prop">geometry</a>, <a href="qwidget.html#minimumSize-prop">minimumSize</a>, <a href="qwidget.html#maximumSize-prop">maximumSize</a>, <a href="qwidget.html#resizeEvent">resizeEvent</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#adjustSize">adjustSize</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@size -->
 <!-- $$$sizeHint-prop$$$sizeHint -->
 <h3 class="fn" id="sizeHint-prop"><a name="sizeHint-prop"></a><span class="name">sizeHint</span> : const <span class="type"><a href="../qtcore/qsize.html">QSize</a></span></h3>
-<p>This property holds the recommended size for the widget</p>
-<p>If the value of this property is an invalid size, no size is recommended.</p>
-<p>The default implementation of sizeHint() returns an invalid size if there is no layout for this widget, and returns the layout's preferred size otherwise.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件的推荐大小</font></p>
+<p><font style="vertical-align: inherit;">如果此属性的值是无效大小，则<span lang="zh-cn">没有推荐的</span>大小</font></p>
+<p><font style="vertical-align: inherit;">如果此组件没有布局，则 sizeHint() 的默认实现将返回无效大小，否则返回布局的首选大小。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><span class="name"><b>sizeHint</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="../qtcore/qsize.html#isValid">QSize::isValid</a>(), <a href="qwidget.html#minimumSizeHint-prop">minimumSizeHint</a>(), <a href="qwidget.html#sizePolicy-prop">sizePolicy</a>(), <a href="qwidget.html#minimumSize-prop">setMinimumSize</a>(), and <a href="qwidget.html#updateGeometry">updateGeometry</a>().</p>
+<p><b>请参考 </b><a href="../qtcore/qsize.html#isValid">QSize::isValid</a>(), <a href="qwidget.html#minimumSizeHint-prop">minimumSizeHint</a>(), <a href="qwidget.html#sizePolicy-prop">sizePolicy</a>(), <a href="qwidget.html#minimumSize-prop">setMinimumSize</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#updateGeometry">updateGeometry</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@sizeHint -->
 <!-- $$$sizeIncrement-prop$$$sizeIncrement$$$setSizeIncrementconstQSize&$$$setSizeIncrementintint -->
 <h3 class="fn" id="sizeIncrement-prop"><a name="sizeIncrement-prop"></a><span class="name">sizeIncrement</span> : <span class="type"><a href="../qtcore/qsize.html">QSize</a></span></h3>
-<p>This property holds the size increment of the widget</p>
-<p>When the user resizes the window, the size will move in steps of sizeIncrement().<a href="qwidget.html#width-prop">width</a>() pixels horizontally and sizeIncrement.<a href="qwidget.html#height-prop">height</a>() pixels vertically, with <a href="qwidget.html#baseSize-prop">baseSize</a>() as the basis. Preferred widget sizes are for non-negative integers <i>i</i> and <i>j</i>:</p>
+<p><font style="vertical-align: inherit;">此属性保存组件的大小增量</font></p>
+<p><font style="vertical-align: inherit;">用户调整窗口大小时，大小将按 sizeIncrement() 的步骤移动。</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#width-prop"><font style="vertical-align: inherit;">width</font></a><font style="vertical-align: inherit;"> () 像素水平和 sizeIncrement。</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#height-prop"><font style="vertical-align: inherit;">height</font></a><font style="vertical-align: inherit;"> () 垂直像素，以</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#baseSize-prop"><font style="vertical-align: inherit;">baseSize</font></a><font style="vertical-align: inherit;"> () 为基础。首选组件大小适用于非负整数</font><i><font style="vertical-align: inherit;">i</font></i><font style="vertical-align: inherit;">和</font><i><font style="vertical-align: inherit;">j</font></i><font style="vertical-align: inherit;">：</font></p>
 <pre class="cpp">
 
   width <span class="operator">=</span> baseSize()<span class="operator">.</span>width() <span class="operator">+</span> i <span class="operator">*</span> sizeIncrement()<span class="operator">.</span>width();
   height <span class="operator">=</span> baseSize()<span class="operator">.</span>height() <span class="operator">+</span> j <span class="operator">*</span> sizeIncrement()<span class="operator">.</span>height();
 
 </pre>
-<p>Note that while you can set the size increment for all widgets, it only affects windows.</p>
-<p>By default, this property contains a size with zero width and height.</p>
-<p><b>Warning:</b> The size increment has no effect under Windows, and may be disregarded by the window manager on X11.</p>
+<p>N<font style="vertical-align: inherit;">请注意，虽然您可以为所有组件设置大小增量，但它仅<span lang="zh-cn">对窗口有效</span>。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含宽度和高度为零的大小。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">大小增量在 Windows 下无效，在 X11 上可能会被窗口管理器忽略。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QSize </td><td class="memItemRight bottomAlign"><span class="name"><b>sizeIncrement</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setSizeIncrement</b></span>(<i>const QSize &amp;</i>)</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qwidget.html#setSizeIncrement-1">setSizeIncrement</a></b></span>(int <i>w</i>, int <i>h</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#size-prop">size</a>, <a href="qwidget.html#minimumSize-prop">minimumSize</a>, and <a href="qwidget.html#maximumSize-prop">maximumSize</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#size-prop">size</a>, <a href="qwidget.html#minimumSize-prop">minimumSize</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#maximumSize-prop">maximumSize</a><span lang="zh-cn">。</span></p>
 <!-- @@@sizeIncrement -->
 <!-- $$$sizePolicy-prop$$$sizePolicy$$$setSizePolicyQSizePolicy$$$setSizePolicyQSizePolicy::PolicyQSizePolicy::Policy -->
 <h3 class="fn" id="sizePolicy-prop"><a name="sizePolicy-prop"></a><span class="name">sizePolicy</span> : <span class="type"><a href="qsizepolicy.html">QSizePolicy</a></span></h3>
-<p>This property holds the default layout behavior of the widget</p>
-<p>If there is a <a href="qlayout.html">QLayout</a> that manages this widget's children, the size policy specified by that layout is used. If there is no such <a href="qlayout.html">QLayout</a>, the result of this function is used.</p>
-<p>The default policy is Preferred/Preferred, which means that the widget can be freely resized, but prefers to be the size <a href="qwidget.html#sizeHint-prop">sizeHint</a>() returns. Button-like widgets set the size policy to specify that they may stretch horizontally, but are fixed vertically. The same applies to lineedit controls (such as <a href="qlineedit.html">QLineEdit</a>, <a href="qspinbox.html">QSpinBox</a> or an editable <a href="qcombobox.html">QComboBox</a>) and other horizontally orientated widgets (such as <a href="qprogressbar.html">QProgressBar</a>). <a href="qtoolbutton.html">QToolButton</a>'s are normally square, so they allow growth in both directions. Widgets that support different directions (such as <a href="qslider.html">QSlider</a>, <a href="qscrollbar.html">QScrollBar</a> or QHeader) specify stretching in the respective direction only. Widgets that can provide scroll bars (usually subclasses of <a href="qscrollarea.html">QScrollArea</a>) tend to specify that they can use additional space, and that they can make do with less than <a href="qwidget.html#sizeHint-prop">sizeHint</a>().</p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含宽度和高度为零的大小。</font></p>
+<p><font style="vertical-align: inherit;">如果有一个</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qlayout.html"><font style="vertical-align: inherit;">QLayout</font></a><font style="vertical-align: inherit;">管理这个组件的子组件，则使用该布局指定的大小策略。如果没有这样的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qlayout.html"><font style="vertical-align: inherit;">QLayout</font></a><font style="vertical-align: inherit;">，则使用此函数的结果。</font></p>
+<p><font style="vertical-align: inherit;">默认策略是Preferred/Preferred，这意味着widget可以自由调整大小，但更倾向于</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#sizeHint-prop"><font style="vertical-align: inherit;">sizeHint</font></a><font style="vertical-align: inherit;"> ()返回的大小。类似按钮的组件设置大小策略以指定它们可以水平拉伸，但垂直固定。这同样适用于 lineedit 控件（例如</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qlineedit.html"><font style="vertical-align: inherit;">QLineEdit</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qspinbox.html"><font style="vertical-align: inherit;">QSpinBox</font></a><font style="vertical-align: inherit;">或可编辑的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qcombobox.html"><font style="vertical-align: inherit;">QComboBox</font></a><font style="vertical-align: inherit;">）和其他水平方向的组件（例如</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qprogressbar.html"><font style="vertical-align: inherit;">QProgressBar</font></a><font style="vertical-align: inherit;">）。</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qtoolbutton.html"><font style="vertical-align: inherit;">QToolButton</font></a><font style="vertical-align: inherit;">通常是方形的，因此它们允许在两个方向上增长。支持不同方向的组件（如</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qslider.html"><font style="vertical-align: inherit;">QSlider</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qscrollbar.html"><font style="vertical-align: inherit;">QScrollBar</font></a><font style="vertical-align: inherit;">或 QHeader) 仅指定在相应方向上的拉伸。可以提供滚动条的组件（通常是</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qscrollarea.html"><font style="vertical-align: inherit;">QScrollArea 的</font></a><font style="vertical-align: inherit;">子类）倾向于指定它们可以使用额外的空间，并且它们可以使用小于</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#sizeHint-prop"><font style="vertical-align: inherit;">sizeHint</font></a><font style="vertical-align: inherit;"> () 的空间来凑合。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QSizePolicy </td><td class="memItemRight bottomAlign"><span class="name"><b>sizePolicy</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setSizePolicy</b></span>(<i>QSizePolicy</i>)</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qwidget.html#setSizePolicy-1">setSizePolicy</a></b></span>(QSizePolicy::Policy <i>horizontal</i>, QSizePolicy::Policy <i>vertical</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#sizeHint-prop">sizeHint</a>(), <a href="qlayout.html">QLayout</a>, <a href="qsizepolicy.html">QSizePolicy</a>, and <a href="qwidget.html#updateGeometry">updateGeometry</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#sizeHint-prop">sizeHint</a>(), <a href="qlayout.html">QLayout</a>, <a href="qsizepolicy.html">QSizePolicy</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#updateGeometry">updateGeometry</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@sizePolicy -->
 <!-- $$$statusTip-prop$$$statusTip$$$setStatusTipconstQString& -->
 <h3 class="fn" id="statusTip-prop"><a name="statusTip-prop"></a><span class="name">statusTip</span> : <span class="type"><a href="../qtcore/qstring.html">QString</a></span></h3>
-<p>This property holds the widget's status tip</p>
-<p>By default, this property contains an empty string.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件的状态提示</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含一个空字符串。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>statusTip</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setStatusTip</b></span>(<i>const QString &amp;</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#toolTip-prop">toolTip</a> and <a href="qwidget.html#whatsThis-prop">whatsThis</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#toolTip-prop">toolTip</a> <span lang="zh-cn">
+和 </span><a href="qwidget.html#whatsThis-prop">whatsThis</a><span lang="zh-cn">。</span></p>
 <!-- @@@statusTip -->
 <!-- $$$styleSheet-prop$$$styleSheet$$$setStyleSheetconstQString& -->
 <h3 class="fn" id="styleSheet-prop"><a name="styleSheet-prop"></a><span class="name">styleSheet</span> : <span class="type"><a href="../qtcore/qstring.html">QString</a></span></h3>
-<p>This property holds the widget's style sheet</p>
-<p>The style sheet contains a textual description of customizations to the widget's style, as described in the <a href="stylesheet.html">Qt Style Sheets</a> document.</p>
-<p>Since Qt 4.5, Qt style sheets fully supports <a href="../qtdoc/internationalization.html#macos">macOS</a>.</p>
-<p><b>Warning:</b> Qt style sheets are currently not supported for custom <a href="qstyle.html">QStyle</a> subclasses. We plan to address this in some future release.</p>
-<p>This property was introduced in  Qt 4.2.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件的样式表</font></p>
+<p><font style="vertical-align: inherit;">样式表包含组件样式自定义的文本描述，如</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet.html"><font style="vertical-align: inherit;">Qt 样式表</font></a><font style="vertical-align: inherit;">文档中所述。</font></p>
+<p><font style="vertical-align: inherit;">从 Qt 4.5 开始，Qt 样式表完全支持</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtdoc/internationalization.html#macos"><font style="vertical-align: inherit;">macOS</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">自定义</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qstyle.html"><font style="vertical-align: inherit;">QStyle</font></a><font style="vertical-align: inherit;">子类当前不支持 Qt 样式表。我们计划在未来的某个版本中解决这个问题。</font></p>
+<p><font style="vertical-align: inherit;">这个属性是在 Qt 4.2 中引入的。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>styleSheet</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setStyleSheet</b></span>(const QString &amp;<i>styleSheet</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#setStyle">setStyle</a>(), <a href="qapplication.html#styleSheet-prop">QApplication::styleSheet</a>, and <a href="stylesheet.html">Qt Style Sheets</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#setStyle">setStyle</a>(), <a href="qapplication.html#styleSheet-prop">QApplication::styleSheet</a>,
+<span lang="zh-cn">和 </span><a href="stylesheet.html">Q<span lang="zh-cn">t样式表</span></a><span lang="zh-cn">。</span></p>
 <!-- @@@styleSheet -->
 <!-- $$$tabletTracking-prop$$$hasTabletTracking$$$setTabletTrackingbool -->
 <h3 class="fn" id="tabletTracking-prop"><a name="tabletTracking-prop"></a><span class="name">tabletTracking</span> : <span class="type">bool</span></h3>
-<p>This property holds whether tablet tracking is enabled for the widget</p>
-<p>If tablet tracking is disabled (the default), the widget only receives tablet move events when the stylus is in contact with the tablet, or at least one stylus button is pressed, while the stylus is being moved.</p>
-<p>If tablet tracking is enabled, the widget receives tablet move events even while hovering in proximity. This is useful for monitoring position as well as the auxiliary properties such as rotation and tilt, and providing feedback in the UI.</p>
-<p>This property was introduced in  Qt 5.9.</p>
+<p><font style="vertical-align: inherit;">此属性保存是否为组件启用平板电脑跟踪</font></p>
+<p><font style="vertical-align: inherit;">
+果平板电脑跟踪被禁用（默认），则组件仅在触控笔与平板电脑接触时或在移动触控笔时至少按下一个触控笔按钮时才会接收平板电脑移动事件。</font></p>
+<p><font style="vertical-align: inherit;">如果启用平板电脑跟踪，即使在附近悬停时，组件也会收到平板电脑移动事件。这对于监视位置以及辅助属性（例如旋转和倾斜）以及在 UI 中提供反馈很有用。</font></p>
+<p><font style="vertical-align: inherit;">这个属性是在 Qt 5.9 中引入的。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>hasTabletTracking</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setTabletTracking</b></span>(bool <i>enable</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#tabletEvent">tabletEvent</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#tabletEvent">tabletEvent</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@tabletTracking -->
 <!-- $$$toolTip-prop$$$toolTip$$$setToolTipconstQString& -->
 <h3 class="fn" id="toolTip-prop"><a name="toolTip-prop"></a><span class="name">toolTip</span> : <span class="type"><a href="../qtcore/qstring.html">QString</a></span></h3>
-<p>This property holds the widget's tooltip</p>
-<p>Note that by default tooltips are only shown for widgets that are children of the active window. You can change this behavior by setting the attribute <a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WA_AlwaysShowToolTips</a> on the <i>window</i>, not on the widget with the tooltip.</p>
-<p>If you want to control a tooltip's behavior, you can intercept the <a href="qwidget.html#event">event</a>() function and catch the <a href="../qtcore/qevent.html#Type-enum">QEvent::ToolTip</a> event (e.g&#x2e;, if you want to customize the area for which the tooltip should be shown).</p>
-<p>By default, this property contains an empty string.</p>
+<p><font style="vertical-align: inherit;">此属性包含组件的工具提示</font></p>
+<p><font style="vertical-align: inherit;">请注意，默认情况下，工具提示仅针对作为活动窗口子项的组件显示。您可以通过在<i>window</i>上设置属性</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WidgetAttribute-enum"><font style="vertical-align: inherit;">Qt::WA_AlwaysShowToolTips</font></a><font style="vertical-align: inherit;">来更改此行为，而不是在带有工具提示的组件上。</font></p>
+<p><font style="vertical-align: inherit;">如果你想控制工具提示的行为，你可以拦截</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#event"><font style="vertical-align: inherit;">event</font></a><font style="vertical-align: inherit;"> () 函数并捕获</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qevent.html#Type-enum"><font style="vertical-align: inherit;">QEvent::ToolTip</font></a><font style="vertical-align: inherit;">事件（例如，如果你想自定义应该显示工具提示的区域）。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含一个空字符串。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>toolTip</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setToolTip</b></span>(<i>const QString &amp;</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qtooltip.html">QToolTip</a>, <a href="qwidget.html#statusTip-prop">statusTip</a>, and <a href="qwidget.html#whatsThis-prop">whatsThis</a>.</p>
+<p><b>请参考 </b><a href="qtooltip.html">QToolTip</a>, <a href="qwidget.html#statusTip-prop">statusTip</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#whatsThis-prop">whatsThis</a><span lang="zh-cn">。</span></p>
 <!-- @@@toolTip -->
 <!-- $$$toolTipDuration-prop$$$toolTipDuration$$$setToolTipDurationint -->
 <h3 class="fn" id="toolTipDuration-prop"><a name="toolTipDuration-prop"></a><span class="name">toolTipDuration</span> : <span class="type">int</span></h3>
-<p>This property holds the widget's tooltip duration</p>
-<p>Specifies how long time the tooltip will be displayed, in milliseconds. If the value is -1 (default) the duration is calculated depending on the length of the tooltip.</p>
-<p>This property was introduced in  Qt 5.2.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件的工具提示持续时间</font></p>
+<p><font style="vertical-align: inherit;">指定工具提示将显示多长时间，以毫秒为单位。如果值为 -1（默认），则根据工具提示的长度计算持续时间。</font></p>
+<p><font style="vertical-align: inherit;">这个属性是在 Qt 5.2 中引入的。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>toolTipDuration</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setToolTipDuration</b></span>(int <i>msec</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#toolTip-prop">toolTip</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#toolTip-prop">toolTip</a><span lang="zh-cn">。</span></p>
 <!-- @@@toolTipDuration -->
 <!-- $$$updatesEnabled-prop$$$updatesEnabled$$$setUpdatesEnabledbool -->
 <h3 class="fn" id="updatesEnabled-prop"><a name="updatesEnabled-prop"></a><span class="name">updatesEnabled</span> : <span class="type">bool</span></h3>
-<p>This property holds whether updates are enabled</p>
-<p>An updates enabled widget receives paint events and has a system background; a disabled widget does not. This also implies that calling <a href="qwidget.html#update">update</a>() and <a href="qwidget.html#repaint">repaint</a>() has no effect if updates are disabled.</p>
-<p>By default, this property is <code>true</code>.</p>
-<p>setUpdatesEnabled() is normally used to disable updates for a short period of time, for instance to avoid screen flicker during large changes. In Qt, widgets normally do not generate screen flicker, but on X11 the server might erase regions on the screen when widgets get hidden before they can be replaced by other widgets. Disabling updates solves this.</p>
-<p>Example:</p>
+<p><font style="vertical-align: inherit;">此属性保存是否启用更新</font></p>
+<p><font style="vertical-align: inherit;">启用更新的组件接收绘制事件并具有系统背景；禁用的组件不会。这也意味着如果禁用</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#update"><font style="vertical-align: inherit;">更新</font></a><font style="vertical-align: inherit;">，则调用<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#update">update</a> () 和</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#repaint"><font style="vertical-align: inherit;">repaint</font></a><font style="vertical-align: inherit;"> () 无效。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性为</font><code>true</code><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">setUpdatesEnabled() 通常用于在短时间内禁用更新，例如避免在大更改期间屏幕闪烁。在 Qt 中，组件通常不会产生屏幕闪烁，但在 X11 上，当组件在被其他组件替换之前被隐藏时，服务器可能会擦除屏幕上的区域。禁用更新可以解决这个问题。</font></p>
+<p><font style="vertical-align: inherit;">例<span lang="zh-cn">如</span>：</font></p>
 <pre class="cpp">
 
   setUpdatesEnabled(<span class="keyword">false</span>);
@@ -1291,28 +1307,29 @@ Vista样式)会对组件字体进行特殊修改，以匹配平台的本机外�
   setUpdatesEnabled(<span class="keyword">true</span>);
 
 </pre>
-<p>Disabling a widget implicitly disables all its children. Enabling a widget enables all child widgets <i>except</i> top-level widgets or those that have been explicitly disabled. Re-enabling updates implicitly calls <a href="qwidget.html#update">update</a>() on the widget.</p>
+<p><font style="vertical-align: inherit;">禁用组件会隐式禁用其所有子组件。启用组件会启用</font><i><font style="vertical-align: inherit;">除</font></i><font style="vertical-align: inherit;">顶级组件或已明确禁用的组件<i>之外的</i>所有子组件。重新启用更新隐式调用组件上的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#update"><font style="vertical-align: inherit;">update</font></a><font style="vertical-align: inherit;"> ()。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>updatesEnabled</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setUpdatesEnabled</b></span>(bool <i>enable</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#paintEvent">paintEvent</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#paintEvent">paintEvent</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@updatesEnabled -->
 <!-- $$$visible-prop$$$isVisible$$$setVisiblebool -->
 <h3 class="fn" id="visible-prop"><a name="visible-prop"></a><span class="name">visible</span> : <span class="type">bool</span></h3>
-<p>This property holds whether the widget is visible</p>
-<p>Calling setVisible(true) or <a href="qwidget.html#show">show</a>() sets the widget to visible status if all its parent widgets up to the window are visible. If an ancestor is not visible, the widget won't become visible until all its ancestors are shown. If its size or position has changed, Qt guarantees that a widget gets move and resize events just before it is shown. If the widget has not been resized yet, Qt will adjust the widget's size to a useful default using <a href="qwidget.html#adjustSize">adjustSize</a>().</p>
-<p>Calling setVisible(false) or <a href="qwidget.html#hide">hide</a>() hides a widget explicitly. An explicitly hidden widget will never become visible, even if all its ancestors become visible, unless you show it.</p>
-<p>A widget receives show and hide events when its visibility status changes. Between a hide and a show event, there is no need to waste CPU cycles preparing or displaying information to the user. A video application, for example, might simply stop generating new frames.</p>
-<p>A widget that happens to be obscured by other windows on the screen is considered to be visible. The same applies to iconified windows and windows that exist on another virtual desktop (on platforms that support this concept). A widget receives spontaneous show and hide events when its mapping status is changed by the window system, e.g&#x2e; a spontaneous hide event when the user minimizes the window, and a spontaneous show event when the window is restored again.</p>
-<p>You almost never have to reimplement the setVisible() function. If you need to change some settings before a widget is shown, use <a href="qwidget.html#showEvent">showEvent</a>() instead. If you need to do some delayed initialization use the Polish event delivered to the <a href="qwidget.html#event">event</a>() function.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件是否可见</font></p>
+<p><font style="vertical-align: inherit;">如果窗口之前的所有父组件都可见，则调用 setVisible(true) 或</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#show"><font style="vertical-align: inherit;">show</font></a><font style="vertical-align: inherit;"> () 将组件设置为可见状态。如果祖先不可见，则在显示其所有祖先之前，组件不会变得可见。如果它的大小或位置发生了变化，Qt 保证一个组件在它显示之前获得移动和调整大小事件。如果组件尚未调整大小，Qt 将使用</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#adjustSize"><font style="vertical-align: inherit;">adjustSize</font></a><font style="vertical-align: inherit;"> ()将组件的大小调整为有用的默认值。</font></p>
+<p><font style="vertical-align: inherit;">调用 setVisible(false) 或</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#hide"><font style="vertical-align: inherit;">hide</font></a><font style="vertical-align: inherit;"> () 会显式隐藏组件。一个显式隐藏的组件永远不会变得可见，即使它的所有祖先都变得可见，除非你显示它。</font></p>
+<p><font style="vertical-align: inherit;">组件在其可见性状态更改时接收显示和隐藏事件。在隐藏和显示事件之间，无需浪费 CPU 周期来准备或向用户显示信息。例如，视频应用程序可能只是停止生成新帧。</font></p>
+<p><font style="vertical-align: inherit;"><span lang="zh-cn">当组件</span>碰巧被屏幕上的其他窗口遮挡<span lang="zh-cn">时，也是被认为</span>是可见的。这同样适用于图标化窗口和存在于另一个虚拟桌面上的窗口（在支持此概念的平台上）。当窗口系统改变其映射状态时，组件接收自发显示和隐藏事件，例如，当用户最小化窗口时自发隐藏事件，以及当窗口再次恢复时自发显示事件。</font></p>
+<p><font style="vertical-align: inherit;">您几乎不需要重新实现 setVisible() 函数。如果您需要在显示组件之前更改某些设置，请改用</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#showEvent"><font style="vertical-align: inherit;">showEvent</font></a><font style="vertical-align: inherit;"> ()。如果您需要进行一些延迟初始化，请使用传递给</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#event"><font style="vertical-align: inherit;">event</font></a><font style="vertical-align: inherit;"> () 函数的<span lang="zh-cn">Polish</span>事件。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>isVisible</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> virtual void </td><td class="memItemRight bottomAlign"><span class="name"><b>setVisible</b></span>(bool <i>visible</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), <a href="qwidget.html#isHidden">isHidden</a>(), <a href="qwidget.html#isVisibleTo">isVisibleTo</a>(), <a href="qwidget.html#minimized-prop">isMinimized</a>(), <a href="qwidget.html#showEvent">showEvent</a>(), and <a href="qwidget.html#hideEvent">hideEvent</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), <a href="qwidget.html#isHidden">isHidden</a>(), <a href="qwidget.html#isVisibleTo">isVisibleTo</a>(), <a href="qwidget.html#minimized-prop">isMinimized</a>(), <a href="qwidget.html#showEvent">showEvent</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#hideEvent">hideEvent</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@visible -->
 <!-- $$$whatsThis-prop$$$whatsThis$$$setWhatsThisconstQString& -->
 <h3 class="fn" id="whatsThis-prop"><a name="whatsThis-prop"></a><span class="name">whatsThis</span> : <span class="type"><a href="../qtcore/qstring.html">QString</a></span></h3>
