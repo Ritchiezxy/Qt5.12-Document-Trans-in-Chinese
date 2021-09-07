@@ -1333,57 +1333,62 @@ GTK 样式、Mac 样式和 Windows Vista 样式，依赖第三方 API 来渲染�
 <!-- @@@visible -->
 <!-- $$$whatsThis-prop$$$whatsThis$$$setWhatsThisconstQString& -->
 <h3 class="fn" id="whatsThis-prop"><a name="whatsThis-prop"></a><span class="name">whatsThis</span> : <span class="type"><a href="../qtcore/qstring.html">QString</a></span></h3>
-<p>This property holds the widget's What's This help text.</p>
-<p>By default, this property contains an empty string.</p>
+<p><font style="vertical-align: inherit;">此属性包含组件的“这是什么”帮助文本。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含一个空字符串。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>whatsThis</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWhatsThis</b></span>(<i>const QString &amp;</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwhatsthis.html">QWhatsThis</a>, <a href="qwidget.html#toolTip-prop">QWidget::toolTip</a>, and <a href="qwidget.html#statusTip-prop">QWidget::statusTip</a>.</p>
+<p><b>请参考 </b><a href="qwhatsthis.html">QWhatsThis</a>, <a href="qwidget.html#toolTip-prop">QWidget::toolTip</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#statusTip-prop">QWidget::statusTip</a><span lang="zh-cn">。</span></p>
 <!-- @@@whatsThis -->
 <!-- $$$width-prop$$$width -->
 <h3 class="fn" id="width-prop"><a name="width-prop"></a><span class="name">width</span> : const <span class="type">int</span></h3>
-<p>This property holds the width of the widget excluding any window frame</p>
-<p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
-<p><b>Note: </b>Do not use this function to find the width of a screen on a <a href="qdesktopwidget.html">multiple screen desktop</a>. Read <a href="qdesktopwidget.html#screen-geometry">this note</a> for details.</p><p>By default, this property contains a value that depends on the user's platform and screen geometry.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件的宽度，不包括任何窗口框架</font></p>
+<p><font style="vertical-align: inherit;">有关</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry"><font style="vertical-align: inherit;">窗口几何</font></a><font style="vertical-align: inherit;">问题的概述，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry">窗口几何</a>文档。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">不要使用此功能在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qdesktopwidget.html"><font style="vertical-align: inherit;">多屏桌面</font></a><font style="vertical-align: inherit;">上查找屏幕的宽度。有关详细信息，请阅读</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qdesktopwidget.html#screen-geometry"><font style="vertical-align: inherit;">此注释</font></a><font style="vertical-align: inherit;">。</font></p><p><font style="vertical-align: inherit;">默认情况下，此属性包含一个取决于用户平台和屏幕几何形状的值。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>width</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#geometry-prop">geometry</a>, <a href="qwidget.html#height-prop">height</a>, and <a href="qwidget.html#size-prop">size</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#geometry-prop">geometry</a>, <a href="qwidget.html#height-prop">height</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#size-prop">size</a><span lang="zh-cn">。</span></p>
 <!-- @@@width -->
 <!-- $$$windowFilePath-prop$$$windowFilePath$$$setWindowFilePathconstQString& -->
 <h3 class="fn" id="windowFilePath-prop"><a name="windowFilePath-prop"></a><span class="name">windowFilePath</span> : <span class="type"><a href="../qtcore/qstring.html">QString</a></span></h3>
-<p>This property holds the file path associated with a widget</p>
-<p>This property only makes sense for windows. It associates a file path with a window. If you set the file path, but have not set the window title, Qt sets the window title to the file name of the specified path, obtained using <a href="../qtcore/qfileinfo.html#fileName">QFileInfo::fileName</a>().</p>
-<p>If the window title is set at any point, then the window title takes precedence and will be shown instead of the file path string.</p>
-<p>Additionally, on <a href="../qtdoc/internationalization.html#macos">macOS</a>, this has an added benefit that it sets the <a href="http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/XHIGWindows/chapter_17_section_3.html">proxy icon</a> for the window, assuming that the file path exists.</p>
-<p>If no file path is set, this property contains an empty string.</p>
-<p>By default, this property contains an empty string.</p>
-<p>This property was introduced in  Qt 4.4.</p>
+<p><font style="vertical-align: inherit;">此属性保存与组件关联的文件路径</font></p>
+<p><font style="vertical-align: inherit;">这个属性只对windows有意义。它将文件路径与窗口相关联。如果你设置了文件路径，但没有设置窗口标题，Qt将窗口标题设置为指定路径的文件名，使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qfileinfo.html#fileName"><font style="vertical-align: inherit;">QFileInfo::fileName</font></a><font style="vertical-align: inherit;"> ()获取。</font></p>
+<p><font style="vertical-align: inherit;">如果在任何时候设置了窗口标题，则窗口标题优先并且将显示而不是文件路径字符串。</font></p>
+<p><font style="vertical-align: inherit;">此外，在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/internationalization.html#macos"><font style="vertical-align: inherit;">macOS 上</font></a><font style="vertical-align: inherit;">，这有一个额外的好处，它为窗口设置</font><a href="http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/XHIGWindows/chapter_17_section_3.html"><font style="vertical-align: inherit;">代理图标</font></a><font style="vertical-align: inherit;">，假设文件路径存在。</font></p>
+<p><font style="vertical-align: inherit;">如果未设置文件路径，则此属性包含一个空字符串。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性包含一个空字符串。</font></p>
+<p><font style="vertical-align: inherit;">这个属性是在 Qt 4.4 中引入的。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>windowFilePath</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWindowFilePath</b></span>(const QString &amp;<i>filePath</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#windowTitle-prop">windowTitle</a> and <a href="qwidget.html#windowIcon-prop">windowIcon</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#windowTitle-prop">windowTitle</a> 
+<span lang="zh-cn">和 </span><a href="qwidget.html#windowIcon-prop">windowIcon</a><span lang="zh-cn">。</span></p>
 <!-- @@@windowFilePath -->
 <!-- $$$windowFlags-prop$$$windowFlags$$$setWindowFlagsQt::WindowFlags -->
 <h3 class="fn" id="windowFlags-prop"><a name="windowFlags-prop"></a><span class="name">windowFlags</span> : <span class="type"><a href="../qtcore/qt.html#WindowType-enum">Qt::WindowFlags</a></span></h3>
-<p>Window flags are a combination of a type (e.g&#x2e; <a href="../qtcore/qt.html#WindowType-enum">Qt::Dialog</a>) and zero or more hints to the window system (e.g&#x2e; <a href="../qtcore/qt.html#WindowType-enum">Qt::FramelessWindowHint</a>).</p>
-<p>If the widget had type <a href="../qtcore/qt.html#WindowType-enum">Qt::Widget</a> or <a href="../qtcore/qt.html#WindowType-enum">Qt::SubWindow</a> and becomes a window (<a href="../qtcore/qt.html#WindowType-enum">Qt::Window</a>, <a href="../qtcore/qt.html#WindowType-enum">Qt::Dialog</a>, etc.), it is put at position (0, 0) on the desktop. If the widget is a window and becomes a <a href="../qtcore/qt.html#WindowType-enum">Qt::Widget</a> or <a href="../qtcore/qt.html#WindowType-enum">Qt::SubWindow</a>, it is put at position (0, 0) relative to its parent widget.</p>
-<p><b>Note: </b>This function calls <a href="qwidget.html#setParent">setParent</a>() when changing the flags for a window, causing the widget to be hidden. You must call <a href="qwidget.html#show">show</a>() to make the widget visible again..</p><p><b>访问函数：</b></p>
+<p><font style="vertical-align: inherit;">窗口标志是一个类型（例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowType-enum"><font style="vertical-align: inherit;">Qt::Dialog</font></a><font style="vertical-align: inherit;">）和零个或多个窗口系统提示（例</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowType-enum"><font style="vertical-align: inherit;">Qt::FramelessWindowHint</font></a><font style="vertical-align: inherit;">）的组合。</font></p>
+<p><font style="vertical-align: inherit;">如果组件的类型为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowType-enum"><font style="vertical-align: inherit;">Qt::Widget</font></a><font style="vertical-align: inherit;">或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowType-enum"><font style="vertical-align: inherit;">Qt::SubWindow</font></a><font style="vertical-align: inherit;">并成为窗口（</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowType-enum"><font style="vertical-align: inherit;">Qt::Window</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowType-enum"><font style="vertical-align: inherit;">Qt::Dialog</font></a><font style="vertical-align: inherit;">等），则将其放置在桌面上的位置 (0, 0)。如果组件是一个窗口并成为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowType-enum"><font style="vertical-align: inherit;">Qt::Widget</font></a><font style="vertical-align: inherit;">或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowType-enum"><font style="vertical-align: inherit;">Qt::SubWindow</font></a><font style="vertical-align: inherit;">，则它被放置在相对于其父组件的位置 (0, 0)。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">此函数在更改窗口的标志时调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#setParent"><font style="vertical-align: inherit;">setParent</font></a><font style="vertical-align: inherit;"> ()，导致组件被隐藏。您必须调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#show"><font style="vertical-align: inherit;">show</font></a><font style="vertical-align: inherit;"> () 使组件再次可见<span lang="zh-cn">。</span></font></p><p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> Qt::WindowFlags </td><td class="memItemRight bottomAlign"><span class="name"><b>windowFlags</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWindowFlags</b></span>(Qt::WindowFlags <i>type</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#windowType">windowType</a>(), <a href="qwidget.html#setWindowFlag">setWindowFlag</a>(), and <a href="qtwidgets-widgets-windowflags-example.html">Window Flags Example</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#windowType">windowType</a>(), <a href="qwidget.html#setWindowFlag">setWindowFlag</a>(),
+<span lang="zh-cn">和</span> <a href="qtwidgets-widgets-windowflags-example.html">
+<span lang="zh-cn">窗口标志示例</span></a><span lang="zh-cn">。</span></p>
 <!-- @@@windowFlags -->
 <!-- $$$windowIcon-prop$$$windowIcon$$$setWindowIconconstQIcon&$$$windowIconChangedconstQIcon& -->
 <h3 class="fn" id="windowIcon-prop"><a name="windowIcon-prop"></a><span class="name">windowIcon</span> : <span class="type"><a href="../qtgui/qicon.html">QIcon</a></span></h3>
-<p>This property holds the widget's icon</p>
-<p>This property only makes sense for windows. If no icon has been set, windowIcon() returns the application icon (<a href="qapplication.html#windowIcon-prop">QApplication::windowIcon</a>()).</p>
+<p><font style="vertical-align: inherit;">此属性包含组件的图标</font></p>
+<p><font style="vertical-align: inherit;">这个属性只对窗口有意义。如果没有设置图标，windowIcon() 返回应用程序图标 ( </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qapplication.html#windowIcon-prop"><font style="vertical-align: inherit;">QApplication::windowIcon</font></a><font style="vertical-align: inherit;"> ())。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QIcon </td><td class="memItemRight bottomAlign"><span class="name"><b>windowIcon</b></span>() const</td></tr>
@@ -1393,54 +1398,59 @@ GTK 样式、Mac 样式和 Windows Vista 样式，依赖第三方 API 来渲染�
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qwidget.html#windowIconChanged">windowIconChanged</a></b></span>(const QIcon &amp;<i>icon</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#windowTitle-prop">windowTitle</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#windowTitle-prop">windowTitle</a><span lang="zh-cn">。</span></p>
 <!-- @@@windowIcon -->
 <!-- $$$windowModality-prop$$$windowModality$$$setWindowModalityQt::WindowModality -->
 <h3 class="fn" id="windowModality-prop"><a name="windowModality-prop"></a><span class="name">windowModality</span> : <span class="type"><a href="../qtcore/qt.html#WindowModality-enum">Qt::WindowModality</a></span></h3>
-<p>This property holds which windows are blocked by the modal widget</p>
-<p>This property only makes sense for windows. A modal widget prevents widgets in other windows from getting input. The value of this property controls which windows are blocked when the widget is visible. Changing this property while the window is visible has no effect; you must <a href="qwidget.html#hide">hide</a>() the widget first, then <a href="qwidget.html#show">show</a>() it again.</p>
-<p>By default, this property is <a href="../qtcore/qt.html#WindowModality-enum">Qt::NonModal</a>.</p>
-<p>This property was introduced in  Qt 4.1.</p>
+<p><font style="vertical-align: inherit;">此属性保存哪些窗口被模态组件<span lang="zh-cn">阻塞</span></font></p>
+<p><font style="vertical-align: inherit;">这个属性只对窗口有意义。模态组件可防止其他窗口中的组件获取输入。此属性的值控制当组件可见时阻止哪些窗口。在窗口可见时更改此属性无效；您必须先</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#hide"><font style="vertical-align: inherit;">隐藏</font></a><font style="vertical-align: inherit;">() 
+组件，然后再次</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#show"><font style="vertical-align: inherit;">显示</font></a><font style="vertical-align: inherit;">() 它。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowModality-enum"><font style="vertical-align: inherit;">Qt::NonModal</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">这个属性是在 Qt 4.1 中引入的。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> Qt::WindowModality </td><td class="memItemRight bottomAlign"><span class="name"><b>windowModality</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWindowModality</b></span>(Qt::WindowModality <i>windowModality</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#isWindow">isWindow</a>(), <a href="qwidget.html#modal-prop">QWidget::modal</a>, and <a href="qdialog.html">QDialog</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#isWindow">isWindow</a>(), <a href="qwidget.html#modal-prop">QWidget::modal</a>,
+<span lang="zh-cn">和 </span><a href="qdialog.html">QDialog</a><span lang="zh-cn">。</span></p>
 <!-- @@@windowModality -->
 <!-- $$$windowModified-prop$$$isWindowModified$$$setWindowModifiedbool -->
 <h3 class="fn" id="windowModified-prop"><a name="windowModified-prop"></a><span class="name">windowModified</span> : <span class="type">bool</span></h3>
-<p>This property holds whether the document shown in the window has unsaved changes</p>
-<p>A modified window is a window whose content has changed but has not been saved to disk. This flag will have different effects varied by the platform. On <a href="../qtdoc/internationalization.html#macos">macOS</a> the close button will have a modified look; on other platforms, the window title will have an '*' (asterisk).</p>
-<p>The window title must contain a &quot;[*]&quot; placeholder, which indicates where the '*' should appear. Normally, it should appear right after the file name (e.g&#x2e;, &quot;document1.txt[*] - Text Editor&quot;). If the window isn't modified, the placeholder is simply removed.</p>
-<p>Note that if a widget is set as modified, all its ancestors will also be set as modified. However, if you call <code>setWindowModified(false)</code> on a widget, this will not propagate to its parent because other children of the parent might have been modified.</p>
+<p><font style="vertical-align: inherit;">此属性保存窗口中显示的文档是否有未保存的更改</font></p>
+<p><font style="vertical-align: inherit;">修改后的窗口是内容已更改但尚未保存到磁盘的窗口。此标志将具有因平台而异的不同效果。在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/internationalization.html#macos"><font style="vertical-align: inherit;">macOS 上</font></a><font style="vertical-align: inherit;">，关闭按钮的外观会有所修改；在其他平台上，窗口标题将带有“*”（星号）。</font></p>
+<p><font style="vertical-align: inherit;">窗口标题必须包含一个“[*]”占位符，它指示“*”应该出现的位置。通常，它应该出现在文件名之后（例如，“document1.txt[*] - 文本编辑器”）。如果未修改窗口，则简单地删除占位符。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果组件设置为已修改，则其所有祖先也将设置为已修改。但是，如果您调用</font><code>setWindowModified(false)</code><font style="vertical-align: inherit;">一个组件，这将不会传播到其父级，因为父级的其他子级可能已被修改。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>isWindowModified</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWindowModified</b></span>(<i>bool</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#windowTitle-prop">windowTitle</a>, <a href="qtwidgets-mainwindows-application-example.html">Application Example</a>, <a href="qtwidgets-mainwindows-sdi-example.html">SDI Example</a>, and <a href="qtwidgets-mainwindows-mdi-example.html">MDI Example</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#windowTitle-prop">windowTitle</a>, <a href="qtwidgets-mainwindows-application-example.html">Application 
+<span lang="zh-cn">示例</span></a>, <a href="qtwidgets-mainwindows-sdi-example.html">SDI 
+<span lang="zh-cn">示例</span></a>, <span lang="zh-cn">和 </span>
+<a href="qtwidgets-mainwindows-mdi-example.html">MDI <span lang="zh-cn">示例</span></a>.</p>
 <!-- @@@windowModified -->
 <!-- $$$windowOpacity-prop$$$windowOpacity$$$setWindowOpacityqreal -->
 <h3 class="fn" id="windowOpacity-prop"><a name="windowOpacity-prop"></a><span class="name">windowOpacity</span> : <span class="type">double</span></h3>
-<p>This property holds the level of opacity for the window.</p>
-<p>The valid range of opacity is from 1.0 (completely opaque) to 0.0 (completely transparent).</p>
-<p>By default the value of this property is 1.0&#x2e;</p>
-<p>This feature is available on Embedded Linux, <a href="../qtdoc/internationalization.html#macos">macOS</a>, Windows, and X11 platforms that support the Composite extension.</p>
-<p><b>Note: </b>On X11 you need to have a composite manager running, and the X11 specific _NET_WM_WINDOW_OPACITY atom needs to be supported by the window manager you are using.</p><p><b>Warning:</b> Changing this property from opaque to transparent might issue a paint event that needs to be processed before the window is displayed correctly. This affects mainly the use of QPixmap::grabWindow(). Also note that semi-transparent windows update and resize significantly slower than opaque windows.</p>
+<p><font style="vertical-align: inherit;">此属性保存窗口的不透明度级别。</font></p>
+<p><font style="vertical-align: inherit;">明度的有效范围是从 1.0（完全不透明）到 0.0（完全透明）。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性的值为 1.0。</font></p>
+<p><font style="vertical-align: inherit;">此功能在支持 Composite 扩展的嵌入式 Linux、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/internationalization.html#macos"><font style="vertical-align: inherit;">macOS</font></a><font style="vertical-align: inherit;">、Windows 和 X11 平台。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">在 X11 上，您需要运行复合管理器，并且您正在使用的窗口管理器需要支持 X11 特定的 _NET_WM_WINDOW_OPACITY 原子。</font></p><p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">将此属性从不透明更改为透明可能会发出需要在正确显示窗口之前处理的绘制事件。这主要影响 QPixmap::grabWindow() 的使用。另请注意，半透明窗口的更新和调整大小明显慢于不透明窗口。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> qreal </td><td class="memItemRight bottomAlign"><span class="name"><b>windowOpacity</b></span>() const</td></tr>
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setWindowOpacity</b></span>(qreal <i>level</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#setMask">setMask</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#setMask">setMask</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@windowOpacity -->
 <!-- $$$windowTitle-prop$$$windowTitle$$$setWindowTitleconstQString&$$$windowTitleChangedconstQString& -->
 <h3 class="fn" id="windowTitle-prop"><a name="windowTitle-prop"></a><span class="name">windowTitle</span> : <span class="type"><a href="../qtcore/qstring.html">QString</a></span></h3>
-<p>This property holds the window title (caption)</p>
-<p>This property only makes sense for top-level widgets, such as windows and dialogs. If no caption has been set, the title is based of the <a href="qwidget.html#windowFilePath-prop">windowFilePath</a>. If neither of these is set, then the title is an empty string.</p>
-<p>If you use the <a href="qwidget.html#windowModified-prop">windowModified</a> mechanism, the window title must contain a &quot;[*]&quot; placeholder, which indicates where the '*' should appear. Normally, it should appear right after the file name (e.g&#x2e;, &quot;document1.txt[*] - Text Editor&quot;). If the <a href="qwidget.html#windowModified-prop">windowModified</a> property is <code>false</code> (the default), the placeholder is simply removed.</p>
-<p>On some desktop platforms (including Windows and Unix), the application name (from <a href="../qtgui/qguiapplication.html#applicationDisplayName-prop">QGuiApplication::applicationDisplayName</a>) is added at the end of the window title, if set. This is done by the QPA plugin, so it is shown to the user, but isn't part of the windowTitle string.</p>
+<p><font style="vertical-align: inherit;">此属性保存窗口标题（标题）</font></p>
+<p><font style="vertical-align: inherit;">此属性仅对顶级组件有意义，例如窗口和对话框。如果未设置标题，则标题基于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#windowFilePath-prop"><font style="vertical-align: inherit;">windowFilePath</font></a><font style="vertical-align: inherit;">。如果这些都没有设置，则标题是一个空字符串。</font></p>
+<p><font style="vertical-align: inherit;">如果您使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#windowModified-prop"><font style="vertical-align: inherit;">windowModified</font></a><font style="vertical-align: inherit;">机制，则窗口标题必须包含一个“[*]”占位符，它指示“*”应该出现的位置。通常，它应该出现在文件名之后（例如，“document1.txt[*] - 文本编辑器”）。如果</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#windowModified-prop"><font style="vertical-align: inherit;">windowModified</font></a><font style="vertical-align: inherit;">属性是</font><code>false</code><font style="vertical-align: inherit;">（默认值），则简单地删除占位符。</font></p>
+<p><font style="vertical-align: inherit;">在某些桌面平台（包括 Windows 和 Unix）上，应用程序名称（来自</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qguiapplication.html#applicationDisplayName-prop"><font style="vertical-align: inherit;">QGuiApplication::applicationDisplayName</font></a><font style="vertical-align: inherit;">）会添加到窗口标题的末尾（如果已设置）。这是由 QPA 插件完成的，因此它会显示给用户，但不是 windowTitle 字符串的一部分。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>windowTitle</b></span>() const</td></tr>
@@ -1450,33 +1460,36 @@ GTK 样式、Mac 样式和 Windows Vista 样式，依赖第三方 API 来渲染�
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="qwidget.html#windowTitleChanged">windowTitleChanged</a></b></span>(const QString &amp;<i>title</i>)</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#windowIcon-prop">windowIcon</a>, <a href="qwidget.html#windowModified-prop">windowModified</a>, and <a href="qwidget.html#windowFilePath-prop">windowFilePath</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#windowIcon-prop">windowIcon</a>, <a href="qwidget.html#windowModified-prop">windowModified</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#windowFilePath-prop">windowFilePath</a><span lang="zh-cn">。</span></p>
 <!-- @@@windowTitle -->
 <!-- $$$x-prop$$$x -->
 <h3 class="fn" id="x-prop"><a name="x-prop"></a><span class="name">x</span> : const <span class="type">int</span></h3>
-<p>This property holds the x coordinate of the widget relative to its parent including any window frame</p>
-<p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
-<p>By default, this property has a value of 0.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件相对于其父级的 x 坐标，包括任何窗口框架</font></p>
+<p><font style="vertical-align: inherit;">有关</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry"><font style="vertical-align: inherit;">窗口几何</font></a><font style="vertical-align: inherit;">问题的概述，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry">窗口几何</a>文档。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性的值为 0。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>x</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#frameGeometry-prop">frameGeometry</a>, <a href="qwidget.html#y-prop">y</a>, and <a href="qwidget.html#pos-prop">pos</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#frameGeometry-prop">frameGeometry</a>, <a href="qwidget.html#y-prop">y</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#pos-prop">pos</a><span lang="zh-cn">。</span></p>
 <!-- @@@x -->
 <!-- $$$y-prop$$$y -->
 <h3 class="fn" id="y-prop"><a name="y-prop"></a><span class="name">y</span> : const <span class="type">int</span></h3>
-<p>This property holds the y coordinate of the widget relative to its parent and including any window frame</p>
-<p>See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an overview of geometry issues with windows.</p>
-<p>By default, this property has a value of 0.</p>
+<p><font style="vertical-align: inherit;">此属性保存组件相对于其父级的 y 坐标，包括任何窗口框架</font></p>
+<p><font style="vertical-align: inherit;">有关</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry"><font style="vertical-align: inherit;">窗口几何</font></a><font style="vertical-align: inherit;">问题的概述，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry">窗口几何</a>文档。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，此属性的值为 0。</font></p>
 <p><b>访问函数：</b></p>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>y</b></span>() const</td></tr>
 </table></div>
-<p><b>请参考 </b><a href="qwidget.html#frameGeometry-prop">frameGeometry</a>, <a href="qwidget.html#x-prop">x</a>, and <a href="qwidget.html#pos-prop">pos</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#frameGeometry-prop">frameGeometry</a>, <a href="qwidget.html#x-prop">x</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#pos-prop">pos</a><span lang="zh-cn">。</span></p>
 <!-- @@@y -->
 </div>
 <div class="func">
-<h2>Member Function Documentation</h2>
+<h2><span lang="zh-cn">成员函数文档</span></h2>
 <!-- $$$QWidget[overload1]$$$QWidgetQWidget*Qt::WindowFlags -->
 <h3 class="fn" id="QWidget"><a name="QWidget"></a>QWidget::<span class="name">QWidget</span>(<span class="type"><a href="qwidget.html#QWidget">QWidget</a></span> *<i>parent</i> = nullptr, <span class="type"><a href="../qtcore/qt.html#WindowType-enum">Qt::WindowFlags</a></span> <i>f</i> = ...)</h3>
 <p>Constructs a widget which is a child of <i>parent</i>, with widget flags set to <i>f</i>.</p>
