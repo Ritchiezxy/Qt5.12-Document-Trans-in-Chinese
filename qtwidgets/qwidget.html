@@ -1855,7 +1855,7 @@ GTK 样式、Mac 样式和 Windows Vista 样式，依赖第三方 API 来渲染�
 <!-- $$$grabShortcut[overload1]$$$grabShortcutconstQKeySequence&Qt::ShortcutContext -->
 <h3 class="fn" id="grabShortcut"><a name="grabShortcut"></a><span class="type">int</span> QWidget::<span class="name">grabShortcut</span>(const <span class="type"><a href="../qtgui/qkeysequence.html">QKeySequence</a></span> &amp;<i>key</i>, <span class="type"><a href="../qtcore/qt.html#ShortcutContext-enum">Qt::ShortcutContext</a></span> <i>context</i> = Qt::WindowShortcut)</h3>
 <p><font style="vertical-align: inherit;">向 Qt 的快捷系统添加一个快捷方式，该系统在给定的<i>上下文</i>中监视给定的</font><i><font style="vertical-align: inherit;">键（key）</font></i><font style="vertical-align: inherit;">序列。如果<i>上下文</i>是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#ShortcutContext-enum">Qt::ApplicationShortcut</a>，则快捷方式适用于整个应用程序。否则，它要么是这个组件的本地<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#ShortcutContext-enum">Qt::WidgetShortcut</a>，要么是窗口本身的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#ShortcutContext-enum">Qt::WindowShortcut</a>。</font></p>
-<p><font style="vertical-align: inherit;">如果相同的</font><i><font style="vertical-align: inherit;">按键</font></i><font style="vertical-align: inherit;">序列被多个小部件抓取，当</font><i><font style="vertical-align: inherit;">按<span lang="zh-cn">键（key）</span></font></i><font style="vertical-align: inherit;">序列发生时，一个</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qevent.html#Type-enum"><font style="vertical-align: inherit;">QEvent::Shortcut</font></a><font style="vertical-align: inherit;">事件会以不确定的顺序发送到所有应用它的小部件，但设置了“模糊<span lang="zh-cn">（ambiguous）</span>”标志为真。</font></p>
+<p><font style="vertical-align: inherit;">如果相同的</font><i><font style="vertical-align: inherit;">按键</font></i><font style="vertical-align: inherit;">序列被多个组件抓取，当</font><i><font style="vertical-align: inherit;">按<span lang="zh-cn">键（key）</span></font></i><font style="vertical-align: inherit;">序列发生时，一个</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qevent.html#Type-enum"><font style="vertical-align: inherit;">QEvent::Shortcut</font></a><font style="vertical-align: inherit;">事件会以不确定的顺序发送到所有应用它的组件，但设置了“模糊<span lang="zh-cn">（ambiguous）</span>”标志为真。</font></p>
 <p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">您通常不需要使用此功能；而是使用您需要的快捷键序列创建</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qaction.html"><font style="vertical-align: inherit;">QAction</font></a><font style="vertical-align: inherit;">（如果您还需要等效的菜单选项和工具栏按钮），或者如果您只需要键序列，则创建</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qshortcut.html"><font style="vertical-align: inherit;">QShortcut</font></a><font style="vertical-align: inherit;"> 
 。双方</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qaction.html"><font style="vertical-align: inherit;">的QAction</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qshortcut.html"><font style="vertical-align: inherit;">QShortcut</font></a><font style="vertical-align: inherit;">处理所有为你的事件过滤，并提供当用户触发键序列时触发信号，所以更容易比这个低层次的功能使用。</font></p>
 <p><b>请参考 </b><a href="qwidget.html#releaseShortcut">releaseShortcut</a>()
@@ -1863,42 +1863,42 @@ GTK 样式、Mac 样式和 Windows Vista 样式，依赖第三方 API 来渲染�
 <!-- @@@grabShortcut -->
 <!-- $$$graphicsEffect[overload1]$$$graphicsEffect -->
 <h3 class="fn" id="graphicsEffect"><a name="graphicsEffect"></a><span class="type"><a href="qgraphicseffect.html">QGraphicsEffect</a></span> *QWidget::<span class="name">graphicsEffect</span>() const</h3>
-<p><font style="vertical-align: inherit;">graphicsEffect 函数返回一个指向小部件图形效果的指针。</font></p>
-<p><font style="vertical-align: inherit;">如果小部件没有图形效果，则返回 0。</font></p>
+<p><font style="vertical-align: inherit;">graphicsEffect 函数返回一个指向组件图形效果的指针。</font></p>
+<p><font style="vertical-align: inherit;">如果组件没有图形效果，则返回 0。</font></p>
 <p><font style="vertical-align: inherit;">这个函数是在 Qt 4.6 中引入的。</font></p>
 <p><b>请参考 </b><a href="qwidget.html#setGraphicsEffect">setGraphicsEffect</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@graphicsEffect -->
 <!-- $$$graphicsProxyWidget[overload1]$$$graphicsProxyWidget -->
 <h3 class="fn" id="graphicsProxyWidget"><a name="graphicsProxyWidget"></a><span class="type"><a href="qgraphicsproxywidget.html">QGraphicsProxyWidget</a></span> *QWidget::<span class="name">graphicsProxyWidget</span>() const</h3>
-<p><font style="vertical-align: inherit;">返回图形视图中相应嵌入小部件的代理小部件；否则返回</font><code>nullptr</code><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">返回图形视图中相应嵌入组件的代理组件；否则返回</font><code>nullptr</code><font style="vertical-align: inherit;">。</font></p>
 <p><font style="vertical-align: inherit;">这个函数是在 Qt 4.5 中引入的。</font></p>
 <p><b>请参考 </b><a href="qgraphicsproxywidget.html#createProxyForChildWidget">QGraphicsProxyWidget::createProxyForChildWidget</a>()
 <span lang="zh-cn">和 </span><a href="qgraphicsscene.html#addWidget">QGraphicsScene::addWidget</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@graphicsProxyWidget -->
 <!-- $$$hasEditFocus[overload1]$$$hasEditFocus -->
 <h3 class="fn" id="hasEditFocus"><a name="hasEditFocus"></a><span class="type">bool</span> QWidget::<span class="name">hasEditFocus</span>() const</h3>
-<p><font style="vertical-align: inherit;">此小部件当前具有编辑焦点返回<code>true</code>；否则为<span lang="zh-cn">false</span>。</font></p>
+<p><font style="vertical-align: inherit;">此组件当前具有编辑焦点返回<code>true</code>；否则为<span lang="zh-cn">false</span>。</font></p>
 <p><font style="vertical-align: inherit;">此功能仅在<span lang="zh-cn">嵌入式Linux Qt</span> 中可用。</font></p>
 <p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qgraphicsproxywidget.html#createProxyForChildWidget"><font style="vertical-align: inherit;">QGraphicsProxyWidget::createProxyForChildWidget</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qgraphicsscene.html#addWidget"><font style="vertical-align: inherit;">QGraphicsScene::addWidget</font></a><font style="vertical-align: inherit;"> ()。</font></p>
 <!-- @@@hasEditFocus -->
 <!-- $$$hasHeightForWidth[overload1]$$$hasHeightForWidth -->
 <h3 class="fn" id="hasHeightForWidth"><a name="hasHeightForWidth"></a><code>[virtual] </code><span class="type">bool</span> QWidget::<span class="name">hasHeightForWidth</span>() const</h3>
-<p><font style="vertical-align: inherit;"><span lang="zh-cn">如果</span>小部件的首选高度取决于其宽度返回<code>true</code>；否则返回</font><code>false</code><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;"><span lang="zh-cn">如果</span>组件的首选高度取决于其宽度返回<code>true</code>；否则返回</font><code>false</code><font style="vertical-align: inherit;">。</font></p>
 	<font style="vertical-align: inherit;">这个函数是在 Qt 5.0 中引入的。</font><!-- @@@hasHeightForWidth --><!-- $$$heightForWidth[overload1]$$$heightForWidthint --><h3 class="fn" id="heightForWidth"><a name="heightForWidth"></a><code>[virtual] </code><span class="type">int</span> QWidget::<span class="name">heightForWidth</span>(<span class="type">int</span> <i>w</i>) const</h3>
-<p><font style="vertical-align: inherit;"><span lang="zh-cn">通过</span>给定宽度</font><i><font style="vertical-align: inherit;">w</font></i><font style="vertical-align: inherit;">，返回此小部件的首选高度。</font></p>
-<p><font style="vertical-align: inherit;">如果此小部件具有布局，则默认实现将返回布局的首选高度。如果没有布局，默认实现返回 -1 表示首选高度不依赖于宽度。</font></p>
+<p><font style="vertical-align: inherit;"><span lang="zh-cn">通过</span>给定宽度</font><i><font style="vertical-align: inherit;">w</font></i><font style="vertical-align: inherit;">，返回此组件的首选高度。</font></p>
+<p><font style="vertical-align: inherit;">如果此组件具有布局，则默认实现将返回布局的首选高度。如果没有布局，默认实现返回 -1 表示首选高度不依赖于宽度。</font></p>
 <!-- @@@heightForWidth -->
 <!-- $$$hide[overload1]$$$hide -->
 <h3 class="fn" id="hide"><a name="hide"></a><code>[slot] </code><span class="type">void</span> QWidget::<span class="name">hide</span>()</h3>
-<p><font style="vertical-align: inherit;">隐藏小部件。此函数等效于</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#visible-prop"><font style="vertical-align: inherit;">setVisible</font></a><font style="vertical-align: inherit;"> (false)。</font></p>
+<p><font style="vertical-align: inherit;">隐藏组件。此函数等效于</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#visible-prop"><font style="vertical-align: inherit;">setVisible</font></a><font style="vertical-align: inherit;"> (false)。</font></p>
 <p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">如果您正在使用</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qdialog.html"><font style="vertical-align: inherit;">QDialog</font></a><font style="vertical-align: inherit;">或其子类，并且在此函数之后调用</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#show"><font style="vertical-align: inherit;">show</font></a><font style="vertical-align: inherit;"> () 函数，则对话框将显示在其原始位置。</font></p><p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#hideEvent"><font style="vertical-align: inherit;">hideEvent</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#isHidden"><font style="vertical-align: inherit;">isHidden</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#show"><font style="vertical-align: inherit;">show</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#visible-prop"><font style="vertical-align: inherit;">setVisible</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#visible-prop"><font style="vertical-align: inherit;">isVisible</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#close"><font style="vertical-align: inherit;">close</font></a><font style="vertical-align: inherit;"> ()。</font></p>
 <!-- @@@hide -->
 <!-- $$$hideEvent[overload1]$$$hideEventQHideEvent* -->
 <h3 class="fn" id="hideEvent"><a name="hideEvent"></a><code>[virtual protected] </code><span class="type">void</span> QWidget::<span class="name">hideEvent</span>(<span class="type"><a href="../qtgui/qhideevent.html">QHideEvent</a></span> *<i>event</i>)</h3>
-<p><font style="vertical-align: inherit;">此事件处理程序可以在子类中重新实现以接收小部件隐藏事件。事件在<i>event<span lang="zh-cn">
+<p><font style="vertical-align: inherit;">此事件处理程序可以在子类中重新实现以接收组件隐藏事件。事件在<i>event<span lang="zh-cn">
 </span></i><span lang="zh-cn">参数</span>中传递。</font></p>
-<p><font style="vertical-align: inherit;">隐藏事件在隐藏后立即发送到小部件。</font></p>
-<p><font style="vertical-align: inherit;">注意：当窗口系统改变其映射状态时，小部件接收自发显示和隐藏事件，例如，当用户最小化窗口时自发隐藏事件，当窗口再次恢复时自发显示事件。在接收到自发隐藏事件后，widget 仍然被认为是</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#visible-prop"><font style="vertical-align: inherit;">isVisible</font></a><font style="vertical-align: inherit;"> ()意义上的可见。</font></p>
+<p><font style="vertical-align: inherit;">隐藏事件在隐藏后立即发送到组件。</font></p>
+<p><font style="vertical-align: inherit;">注意：当窗口系统改变其映射状态时，组件接收自发显示和隐藏事件，例如，当用户最小化窗口时自发隐藏事件，当窗口再次恢复时自发显示事件。在接收到自发隐藏事件后，widget 仍然被认为是</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#visible-prop"><font style="vertical-align: inherit;">isVisible</font></a><font style="vertical-align: inherit;"> ()意义上的可见。</font></p>
 <p><b>请参考 </b><a href="qwidget.html#visible-prop">visible</a>, <a href="qwidget.html#event">event</a>(),
 <span lang="zh-cn">和</span> <a href="../qtgui/qhideevent.html">QHideEvent</a><span lang="zh-cn">。</span></p>
 <!-- @@@hideEvent -->
