@@ -2435,63 +2435,69 @@ isAccepted() <span lang="zh-cn">传进来时就是</span> true ，因此您不�
 <!-- @@@setFixedSize -->
 <!-- $$$setFixedWidth[overload1]$$$setFixedWidthint -->
 <h3 class="fn" id="setFixedWidth"><a name="setFixedWidth"></a><span class="type">void</span> QWidget::<span class="name">setFixedWidth</span>(<span class="type">int</span> <i>w</i>)</h3>
-<p>Sets both the minimum and maximum width of the widget to <i>w</i> without changing the heights. Provided for convenience.</p>
-<p><b>请参考 </b><a href="qwidget.html#sizeHint-prop">sizeHint</a>(), <a href="qwidget.html#minimumSize-prop">minimumSize</a>(), <a href="qwidget.html#maximumSize-prop">maximumSize</a>(), and <a href="qwidget.html#setFixedSize">setFixedSize</a>().</p>
+<p><font style="vertical-align: inherit;">将组件的最小和最大宽度设置为</font><i><font style="vertical-align: inherit;">w</font></i><font style="vertical-align: inherit;">而不更改高度。提供方便。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#sizeHint-prop">sizeHint</a>(), <a href="qwidget.html#minimumSize-prop">minimumSize</a>(), <a href="qwidget.html#maximumSize-prop">maximumSize</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#setFixedSize">setFixedSize</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setFixedWidth -->
 <!-- $$$setFocus[overload1]$$$setFocusQt::FocusReason -->
 <h3 class="fn" id="setFocus"><a name="setFocus"></a><span class="type">void</span> QWidget::<span class="name">setFocus</span>(<span class="type"><a href="../qtcore/qt.html#FocusReason-enum">Qt::FocusReason</a></span> <i>reason</i>)</h3>
-<p>Gives the keyboard input focus to this widget (or its focus proxy) if this widget or one of its parents is the <a href="qwidget.html#isActiveWindow-prop">active window</a>. The <i>reason</i> argument will be passed into any focus event sent from this function, it is used to give an explanation of what caused the widget to get focus. If the window is not active, the widget will be given the focus when the window becomes active.</p>
-<p>First, a focus about to change event is sent to the focus widget (if any) to tell it that it is about to lose the focus. Then focus is changed, a focus out event is sent to the previous focus item and a focus in event is sent to the new item to tell it that it just received the focus. (Nothing happens if the focus in and focus out widgets are the same.)</p>
-<p><b>Note: </b>On embedded platforms, <a href="qwidget.html#setFocus-1">setFocus</a>() will not cause an input panel to be opened by the input method. If you want this to happen, you have to send a <a href="../qtcore/qevent.html#Type-enum">QEvent::RequestSoftwareInputPanel</a> event to the widget yourself.</p><p><a href="qwidget.html#setFocus-1">setFocus</a>() gives focus to a widget regardless of its focus policy, but does not clear any keyboard grab (see <a href="qwidget.html#grabKeyboard">grabKeyboard</a>()).</p>
-<p>Be aware that if the widget is hidden, it will not accept focus until it is shown.</p>
-<p><b>Warning:</b> If you call <a href="qwidget.html#setFocus-1">setFocus</a>() in a function which may itself be called from <a href="qwidget.html#focusOutEvent">focusOutEvent</a>() or <a href="qwidget.html#focusInEvent">focusInEvent</a>(), you may get an infinite recursion.</p>
-<p><b>请参考 </b><a href="qwidget.html#focus-prop">hasFocus</a>(), <a href="qwidget.html#clearFocus">clearFocus</a>(), <a href="qwidget.html#focusInEvent">focusInEvent</a>(), <a href="qwidget.html#focusOutEvent">focusOutEvent</a>(), <a href="qwidget.html#focusPolicy-prop">setFocusPolicy</a>(), <a href="qwidget.html#focusWidget">focusWidget</a>(), <a href="qapplication.html#focusWidget">QApplication::focusWidget</a>(), <a href="qwidget.html#grabKeyboard">grabKeyboard</a>(), <a href="qwidget.html#grabMouse">grabMouse</a>(), <a href="focus.html">Keyboard Focus in Widgets</a>, and <a href="../qtcore/qevent.html#Type-enum">QEvent::RequestSoftwareInputPanel</a>.</p>
+<p><font style="vertical-align: inherit;">如果此组件或其父级之一是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#isActiveWindow-prop"><font style="vertical-align: inherit;">活动 window ，</font></a><font style="vertical-align: inherit;">则将键盘输入焦点赋予此组件（或其焦点代理）。该</font><i><font style="vertical-align: inherit;">reason 
+（理由）</font></i><font style="vertical-align: inherit;">参数将被传递给这个函数发送的任何焦点事件，它是用来给的是什么引起的组件获得焦点的解释。如果窗口未处于活动状态，则当窗口变为活动状态时，组件将获得焦点。</font></p>
+<p><font style="vertical-align: inherit;">首先，将要更改焦点的事件发送到焦点组件（如果有），以告诉它即将失去焦点。然后焦点被改变，一个 focus out 事件被发送到前一个焦点项目，一个 focus in 事件被发送到新项目，告诉它刚刚收到焦点。（如果焦点输入和焦点输出组件相同，则不会发生任何事情。）</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">在嵌入式平台上，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#setFocus-1"><font style="vertical-align: inherit;">setFocus</font></a><font style="vertical-align: inherit;"> () 不会导致输入法打开输入面板。如果您希望发生这种情况，您必须自己向组件发送</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qevent.html#Type-enum"><font style="vertical-align: inherit;">QEvent::RequestSoftwareInputPanel</font></a><font style="vertical-align: inherit;">事件。</font></p><p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">在嵌入式平台上，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#setFocus-1"><font style="vertical-align: inherit;">setFocus</font></a><font style="vertical-align: inherit;"> () 不会导致输入法打开输入面板。如果您希望发生这种情况，您必须自己向组件发送</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qevent.html#Type-enum"><font style="vertical-align: inherit;">QEvent::RequestSoftwareInputPanel</font></a><font style="vertical-align: inherit;">事件。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果组件处于隐藏状态，则在显示之前它不会接受焦点。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">如果您在一个函数中调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#setFocus-1"><font style="vertical-align: inherit;">setFocus</font></a><font style="vertical-align: inherit;"> ()，而该函数本身可能会从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#focusOutEvent"><font style="vertical-align: inherit;">focusOutEvent</font></a><font style="vertical-align: inherit;"> () 或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#focusInEvent"><font style="vertical-align: inherit;">focusInEvent</font></a><font style="vertical-align: inherit;"> ()调用，您可能会得到无限递归。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#focus-prop">hasFocus</a>(), <a href="qwidget.html#clearFocus">clearFocus</a>(), <a href="qwidget.html#focusInEvent">focusInEvent</a>(), <a href="qwidget.html#focusOutEvent">focusOutEvent</a>(), <a href="qwidget.html#focusPolicy-prop">setFocusPolicy</a>(), <a href="qwidget.html#focusWidget">focusWidget</a>(), <a href="qapplication.html#focusWidget">QApplication::focusWidget</a>(), <a href="qwidget.html#grabKeyboard">grabKeyboard</a>(), <a href="qwidget.html#grabMouse">grabMouse</a>(), <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/focus.html"><font style="vertical-align: inherit;">Widgets中的键盘焦点</font></a>,
+<span lang="zh-cn">和</span><a href="../qtcore/qevent.html#Type-enum">QEvent::RequestSoftwareInputPanel</a><span lang="zh-cn">。</span></p>
 <!-- @@@setFocus -->
 <!-- $$$setFocus$$$setFocus -->
 <h3 class="fn" id="setFocus-1"><a name="setFocus-1"></a><code>[slot] </code><span class="type">void</span> QWidget::<span class="name">setFocus</span>()</h3>
 <p>这是一个重载函数。</p>
-<p>Gives the keyboard input focus to this widget (or its focus proxy) if this widget or one of its parents is the <a href="qwidget.html#isActiveWindow-prop">active window</a>.</p>
+<p><font style="vertical-align: inherit;">如果此组件或其父级之一是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#isActiveWindow-prop"><font style="vertical-align: inherit;">活动 window ，</font></a><font style="vertical-align: inherit;">则将键盘输入焦点赋予此组件（或其焦点代理）。</font></p>
 <!-- @@@setFocus -->
 <!-- $$$setFocusProxy[overload1]$$$setFocusProxyQWidget* -->
 <h3 class="fn" id="setFocusProxy"><a name="setFocusProxy"></a><span class="type">void</span> QWidget::<span class="name">setFocusProxy</span>(<span class="type"><a href="qwidget.html#QWidget">QWidget</a></span> *<i>w</i>)</h3>
-<p>Sets the widget's focus proxy to widget <i>w</i>. If <i>w</i> is 0, the function resets this widget to have no focus proxy.</p>
-<p>Some widgets can &quot;have focus&quot;, but create a child widget, such as <a href="qlineedit.html">QLineEdit</a>, to actually handle the focus. In this case, the widget can set the line edit to be its focus proxy.</p>
-<p>setFocusProxy() sets the widget which will actually get focus when &quot;this widget&quot; gets it. If there is a focus proxy, <a href="qwidget.html#setFocus-1">setFocus</a>() and <a href="qwidget.html#focus-prop">hasFocus</a>() operate on the focus proxy.</p>
-<p><b>请参考 </b><a href="qwidget.html#focusProxy">focusProxy</a>().</p>
+<p><font style="vertical-align: inherit;">将组件的焦点代理设置为组件</font><i><font style="vertical-align: inherit;">w</font></i><font style="vertical-align: inherit;">。如果</font><i><font style="vertical-align: inherit;">w</font></i><font style="vertical-align: inherit;">为 0，则该函数将此组件重置为没有焦点代理。</font></p>
+<p><font style="vertical-align: inherit;">一些组件可以“拥有焦点”，但会创建一个子组件（例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qlineedit.html"><font style="vertical-align: inherit;">QLineEdit</font></a><font style="vertical-align: inherit;">）来实际处理焦点。在这种情况下，组件可以将行编辑设置为它的焦点代理。</font></p>
+<p><font style="vertical-align: inherit;">setFocusProxy() 设置组件，当“这个组件”获得它时，它将实际获得焦点。如果有焦点代理，则</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#setFocus-1"><font style="vertical-align: inherit;">setFocus</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#focus-prop"><font style="vertical-align: inherit;">hasFocus</font></a><font style="vertical-align: inherit;"> () 对焦点代理进行操作。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#focusProxy">focusProxy</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setFocusProxy -->
 <!-- $$$setForegroundRole[overload1]$$$setForegroundRoleQPalette::ColorRole -->
 <h3 class="fn" id="setForegroundRole"><a name="setForegroundRole"></a><span class="type">void</span> QWidget::<span class="name">setForegroundRole</span>(<span class="type"><a href="../qtgui/qpalette.html#ColorRole-enum">QPalette::ColorRole</a></span> <i>role</i>)</h3>
-<p>Sets the foreground role of the widget to <i>role</i>.</p>
-<p>The foreground role defines the color from the widget's <a href="qwidget.html#palette-prop">palette</a> that is used to draw the foreground.</p>
-<p>If <i>role</i> is <a href="../qtgui/qpalette.html#ColorRole-enum">QPalette::NoRole</a>, the widget uses a foreground role that contrasts with the background role.</p>
-<p>Note that styles are free to choose any color from the palette. You can modify the palette or set a style sheet if you don't achieve the result you want with setForegroundRole().</p>
-<p><b>请参考 </b><a href="qwidget.html#foregroundRole">foregroundRole</a>() and <a href="qwidget.html#backgroundRole">backgroundRole</a>().</p>
+<p><font style="vertical-align: inherit;">将组件的前景角色设置为</font><i><font style="vertical-align: inherit;">role</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">前景角色定义了用于绘制前景的组件</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#palette-prop"><font style="vertical-align: inherit;">调色板</font></a><font style="vertical-align: inherit;">的颜色。</font></p>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">role<span lang="zh-cn">（</span>角色<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qpalette.html#ColorRole-enum"><font style="vertical-align: inherit;">QPalette::NoRole</font></a><font style="vertical-align: inherit;">，则组件使用与背景角色形成对比的前景角色。</font></p>
+<p><font style="vertical-align: inherit;">请注意，样式可以从调色板中自由选择任何颜色。如果使用 setForegroundRole() 没有达到您想要的结果，您可以修改调色板或设置样式表。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#foregroundRole">foregroundRole</a>()
+<span lang="zh-cn">和 </span><a href="qwidget.html#backgroundRole">backgroundRole</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setForegroundRole -->
 <!-- $$$setGeometry -->
 <h3 class="fn" id="setGeometry-1"><a name="setGeometry-1"></a><span class="type">void</span> QWidget::<span class="name">setGeometry</span>(<span class="type">int</span> <i>x</i>, <span class="type">int</span> <i>y</i>, <span class="type">int</span> <i>w</i>, <span class="type">int</span> <i>h</i>)</h3>
 <p>这是一个重载函数。</p>
-<p>This corresponds to <a href="qwidget.html#geometry-prop">setGeometry</a>(<a href="../qtcore/qrect.html">QRect</a>(<i>x</i>, <i>y</i>, <i>w</i>, <i>h</i>)).</p>
-<p><b>Note:</b> Setter function for property <a href="qwidget.html#geometry-prop">geometry</a>. </p><!-- @@@setGeometry -->
+<p><font style="vertical-align: inherit;">这对应于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#geometry-prop"><font style="vertical-align: inherit;">setGeometry</font></a><font style="vertical-align: inherit;"> ( </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qrect.html"><font style="vertical-align: inherit;">QRect</font></a><font style="vertical-align: inherit;"> ( </font><i><font style="vertical-align: inherit;">x</font></i><font style="vertical-align: inherit;"> , </font><i><font style="vertical-align: inherit;">y</font></i><font style="vertical-align: inherit;"> , </font><i><font style="vertical-align: inherit;">w</font></i><font style="vertical-align: inherit;"> , </font><i><font style="vertical-align: inherit;">h</font></i><font style="vertical-align: inherit;"> ))。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">属性</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#geometry-prop"><font style="vertical-align: inherit;">几何的</font></a><span lang="zh-cn">设置</span><font style="vertical-align: inherit;">函数。</font></p><!-- @@@setGeometry -->
 <!-- $$$setGraphicsEffect[overload1]$$$setGraphicsEffectQGraphicsEffect* -->
 <h3 class="fn" id="setGraphicsEffect"><a name="setGraphicsEffect"></a><span class="type">void</span> QWidget::<span class="name">setGraphicsEffect</span>(<span class="type"><a href="qgraphicseffect.html">QGraphicsEffect</a></span> *<i>effect</i>)</h3>
-<p>The setGraphicsEffect function is for setting the widget's graphics effect.</p>
-<p>Sets <i>effect</i> as the widget's effect. If there already is an effect installed on this widget, <a href="qwidget.html">QWidget</a> will delete the existing effect before installing the new <i>effect</i>.</p>
-<p>If <i>effect</i> is the installed effect on a different widget, setGraphicsEffect() will remove the effect from the widget and install it on this widget.</p>
-<p><a href="qwidget.html">QWidget</a> takes ownership of <i>effect</i>.</p>
-<p><b>Note: </b>This function will apply the effect on itself and all its children.</p><p><b>Note: </b>Graphics effects are not supported for OpenGL-based widgets, such as QGLWidget, <a href="qopenglwidget.html">QOpenGLWidget</a> and <a href="../qtquick/qquickwidget.html">QQuickWidget</a>.</p><p>This function was introduced in  Qt 4.6.</p>
-<p><b>请参考 </b><a href="qwidget.html#graphicsEffect">graphicsEffect</a>().</p>
+<p><font style="vertical-align: inherit;">setGraphicsEffect 函数用于设置组件的图形效果。</font></p>
+<p><font style="vertical-align: inherit;">为组件<span lang="zh-cn">设置</span>效果<i>effect</i>。如果这个组件上已经安装了一个效果，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">会在安装新</font><i><font style="vertical-align: inherit;">效果</font></i><font style="vertical-align: inherit;"><span lang="zh-cn">（<i>effect</i>）</span>之前删除现有的<i>效果<span lang="zh-cn">（effect）</span></i>。</font></p>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">effect</font></i><font style="vertical-align: inherit;">是在不同组件上安装的效果， setGraphicsEffect() 将从组件中删除效果并将其安装在此组件上。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">拥有</font><i><font style="vertical-align: inherit;">effect 的</font></i><font style="vertical-align: inherit;">所有权。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">此函数将对自身及其所有子项应用效果。</font></p><p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">基于 OpenGL 的组件不支持图形效果，例如 QGLWidget、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qopenglwidget.html"><font style="vertical-align: inherit;">QOpenGLWidget</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickwidget.html"><font style="vertical-align: inherit;">QQuickWidget</font></a><font style="vertical-align: inherit;">。</font></p><p>
+	<font style="vertical-align: inherit;">这个函数是在 Qt 4.6 中引入的。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#graphicsEffect">graphicsEffect</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setGraphicsEffect -->
 <!-- $$$setHidden[overload1]$$$setHiddenbool -->
 <h3 class="fn" id="setHidden"><a name="setHidden"></a><code>[slot] </code><span class="type">void</span> QWidget::<span class="name">setHidden</span>(<span class="type">bool</span> <i>hidden</i>)</h3>
-<p>Convenience function, equivalent to <a href="qwidget.html#visible-prop">setVisible</a>(!<i>hidden</i>).</p>
-<p><b>请参考 </b><a href="qwidget.html#isHidden">isHidden</a>().</p>
+<p><font style="vertical-align: inherit;">便捷功能，相当于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#visible-prop"><font style="vertical-align: inherit;">setVisible</font></a><span lang="zh-cn">(!</span><i><font style="vertical-align: inherit;">hidden</font></i><span lang="zh-cn">)</span><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#isHidden">isHidden</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setHidden -->
 <!-- $$$setLayout[overload1]$$$setLayoutQLayout* -->
 <h3 class="fn" id="setLayout"><a name="setLayout"></a><span class="type">void</span> QWidget::<span class="name">setLayout</span>(<span class="type"><a href="qlayout.html">QLayout</a></span> *<i>layout</i>)</h3>
-<p>Sets the layout manager for this widget to <i>layout</i>.</p>
-<p>If there already is a layout manager installed on this widget, <a href="qwidget.html">QWidget</a> won't let you install another. You must first delete the existing layout manager (returned by <a href="qwidget.html#layout">layout</a>()) before you can call setLayout() with the new layout.</p>
-<p>If <i>layout</i> is the layout manager on a different widget, setLayout() will reparent the layout and make it the layout manager for this widget.</p>
-<p>Example:</p>
+<p><font style="vertical-align: inherit;">将此组件的布局管理器设置为</font><i><font style="vertical-align: inherit;">layout</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">如果这个组件上已经安装了一个布局管理器，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">不会让你安装另一个。您必须先删除现有的布局管理器（由</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#layout"><font style="vertical-align: inherit;">layout</font></a><font style="vertical-align: inherit;"> ()返回），然后才能使用新布局调用 setLayout()。</font></p>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">layout </font></i>
+<font style="vertical-align: inherit;">是不同组件上的布局管理器，则 setLayout() 将重新设置布局的父级并使其成为该组件的布局管理器。</font></p>
+<p><span lang="zh-cn">例如：</span></p>
 <pre class="cpp">
 
       <span class="type"><a href="qvboxlayout.html">QVBoxLayout</a></span> <span class="operator">*</span>layout <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qvboxlayout.html">QVBoxLayout</a></span>;
@@ -2499,15 +2505,16 @@ isAccepted() <span lang="zh-cn">传进来时就是</span> true ，因此您不�
       setLayout(layout);
 
 </pre>
-<p>An alternative to calling this function is to pass this widget to the layout's constructor.</p>
-<p>The <a href="qwidget.html">QWidget</a> will take ownership of <i>layout</i>.</p>
-<p><b>请参考 </b><a href="qwidget.html#layout">layout</a>() and <a href="layout.html">Layout Management</a>.</p>
+<p><font style="vertical-align: inherit;">调用此函数的另一种方法是将此组件传递给布局的构造函数。</font></p>
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget的</font></a><font style="vertical-align: inherit;">将<span lang="zh-cn">持有不布局器</span>的所有权</font><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#layout">layout</a>() <span lang="zh-cn">和 
+</span><a href="layout.html"><span lang="zh-cn">布局管理</span></a><span lang="zh-cn">。</span></p>
 <!-- @@@setLayout -->
 <!-- $$$setMask[overload1]$$$setMaskconstQBitmap& -->
 <h3 class="fn" id="setMask"><a name="setMask"></a><span class="type">void</span> QWidget::<span class="name">setMask</span>(const <span class="type"><a href="../qtgui/qbitmap.html">QBitmap</a></span> &amp;<i>bitmap</i>)</h3>
-<p>Causes only the pixels of the widget for which <i>bitmap</i> has a corresponding 1 bit to be visible. If the region includes pixels outside the <a href="qwidget.html#rect-prop">rect</a>() of the widget, window system controls in that area may or may not be visible, depending on the platform.</p>
-<p>Note that this effect can be slow if the region is particularly complex.</p>
-<p>The following code shows how an image with an alpha channel can be used to generate a mask for a widget:</p>
+<p>使得只有位图对应1位的组件的像素是可见的。如果该区域包含组件<a href="qwidget.html#rect-prop">rect</a>()之外的像素，则该区域中的窗口系统组件可能是可见的，也可能是不可见的，这取决于平台。</p>
+<p><font style="vertical-align: inherit;">请注意，如果区域特别复杂，这种效果可能会很慢。</font></p>
+<p><font style="vertical-align: inherit;">以下代码显示了如何使用带有 Alpha 通道的图像为组件生成遮罩：</font></p>
 <pre class="cpp">
 
       <span class="type"><a href="qlabel.html">QLabel</a></span> topLevelLabel;
@@ -2516,78 +2523,84 @@ isAccepted() <span lang="zh-cn">传进来时就是</span> true ，因此您不�
       topLevelLabel<span class="operator">.</span>setMask(pixmap<span class="operator">.</span>mask());
 
 </pre>
-<p>The label shown by this code is masked using the image it contains, giving the appearance that an irregularly-shaped image is being drawn directly onto the screen.</p>
-<p>Masked widgets receive mouse events only on their visible portions.</p>
-<p><b>请参考 </b><a href="qwidget.html#mask">mask</a>(), <a href="qwidget.html#clearMask">clearMask</a>(), <a href="qwidget.html#windowOpacity-prop">windowOpacity</a>(), and <a href="qtwidgets-widgets-shapedclock-example.html">Shaped Clock Example</a>.</p>
+<p><font style="vertical-align: inherit;">
+此代码显示的标签使用其包含的图像进行屏蔽，从而渲染出不规则形状的图像被直接绘制到屏幕上。</font></p>
+<p><font style="vertical-align: inherit;">屏蔽组件仅在其可见部分接收鼠标事件。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#mask">mask</a>(), <a href="qwidget.html#clearMask">clearMask</a>(), <a href="qwidget.html#windowOpacity-prop">windowOpacity</a>(),
+<span lang="zh-cn">和 </span>
+<a href="qtwidgets-widgets-shapedclock-example.html">时钟案例</a>.</p>
 <!-- @@@setMask -->
 <!-- $$$setMask$$$setMaskconstQRegion& -->
 <h3 class="fn" id="setMask-1"><a name="setMask-1"></a><span class="type">void</span> QWidget::<span class="name">setMask</span>(const <span class="type"><a href="../qtgui/qregion.html">QRegion</a></span> &amp;<i>region</i>)</h3>
 <p>这是一个重载函数。</p>
-<p>Causes only the parts of the widget which overlap <i>region</i> to be visible. If the region includes pixels outside the <a href="qwidget.html#rect-prop">rect</a>() of the widget, window system controls in that area may or may not be visible, depending on the platform.</p>
-<p>Note that this effect can be slow if the region is particularly complex.</p>
-<p><b>请参考 </b><a href="qwidget.html#windowOpacity-prop">windowOpacity</a>.</p>
+<p><font style="vertical-align: inherit;">仅使重叠</font><i><font style="vertical-align: inherit;">region<span lang="zh-cn">（</span>区域<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">的组件部分可见。如果该区域包含窗口组件</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#rect-prop"><font style="vertical-align: inherit;">rect</font></a><font style="vertical-align: inherit;"> ()之外的像素，则该<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#rect-prop">区域</a>中的窗口系统组件可能可见，也可能不可见，具体取决于平台。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果区域特别复杂，这种效果可能会很慢。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#windowOpacity-prop">windowOpacity</a><span lang="zh-cn">。</span></p>
 <!-- @@@setMask -->
 <!-- $$$setMaximumSize -->
 <h3 class="fn" id="setMaximumSize-1"><a name="setMaximumSize-1"></a><span class="type">void</span> QWidget::<span class="name">setMaximumSize</span>(<span class="type">int</span> <i>maxw</i>, <span class="type">int</span> <i>maxh</i>)</h3>
 <p>这是一个重载函数。</p>
-<p>This function corresponds to <a href="qwidget.html#maximumSize-prop">setMaximumSize</a>(<a href="../qtcore/qsize.html">QSize</a>(<i>maxw</i>, <i>maxh</i>)). Sets the maximum width to <i>maxw</i> and the maximum height to <i>maxh</i>.</p>
-<p><b>Note:</b> Setter function for property <a href="qwidget.html#maximumSize-prop">maximumSize</a>. </p><!-- @@@setMaximumSize -->
+<p><font style="vertical-align: inherit;">该函数对应于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#maximumSize-prop"><font style="vertical-align: inherit;">setMaximumSize</font></a><font style="vertical-align: inherit;"> ( </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qsize.html"><font style="vertical-align: inherit;">QSize</font></a><font style="vertical-align: inherit;"> ( </font><i><font style="vertical-align: inherit;">maxw</font></i><font style="vertical-align: inherit;"> , </font><i><font style="vertical-align: inherit;">maxh</font></i><font style="vertical-align: inherit;"> ))。将最大宽度设置为</font><i><font style="vertical-align: inherit;">maxw</font></i><font style="vertical-align: inherit;">，将最大高度设置为</font><i><font style="vertical-align: inherit;">maxh</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">属性</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#maximumSize-prop"><font style="vertical-align: inherit;">maximumSize 的</font></a><span lang="zh-cn">设置</span><font style="vertical-align: inherit;">函数。</font></p><!-- @@@setMaximumSize -->
 <!-- $$$setMinimumSize -->
 <h3 class="fn" id="setMinimumSize-1"><a name="setMinimumSize-1"></a><span class="type">void</span> QWidget::<span class="name">setMinimumSize</span>(<span class="type">int</span> <i>minw</i>, <span class="type">int</span> <i>minh</i>)</h3>
 <p>这是一个重载函数。</p>
-<p>This function corresponds to <a href="qwidget.html#minimumSize-prop">setMinimumSize</a>(<a href="../qtcore/qsize.html">QSize</a>(minw, minh)). Sets the minimum width to <i>minw</i> and the minimum height to <i>minh</i>.</p>
-<p><b>Note:</b> Setter function for property <a href="qwidget.html#minimumSize-prop">minimumSize</a>. </p><!-- @@@setMinimumSize -->
+<p><font style="vertical-align: inherit;">该函数对应于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#minimumSize-prop"><font style="vertical-align: inherit;">setMinimumSize</font></a><font style="vertical-align: inherit;"> ( </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qsize.html"><font style="vertical-align: inherit;">QSize</font></a><font style="vertical-align: inherit;"> (minw, minh))。将最小宽度设置为</font><i><font style="vertical-align: inherit;">minw</font></i><font style="vertical-align: inherit;">，将最小高度设置为</font><i><font style="vertical-align: inherit;">minh</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">属性</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#minimumSize-prop"><font style="vertical-align: inherit;">minimumSize 的</font></a><span lang="zh-cn">设置</span><font style="vertical-align: inherit;">函数。</font></p><!-- @@@setMinimumSize -->
 <!-- $$$setParent[overload1]$$$setParentQWidget* -->
 <h3 class="fn" id="setParent"><a name="setParent"></a><span class="type">void</span> QWidget::<span class="name">setParent</span>(<span class="type"><a href="qwidget.html#QWidget">QWidget</a></span> *<i>parent</i>)</h3>
-<p>Sets the parent of the widget to <i>parent</i>, and resets the window flags. The widget is moved to position (0, 0) in its new parent.</p>
-<p>If the new parent widget is in a different window, the reparented widget and its children are appended to the end of the <a href="qwidget.html#focusPolicy-prop">tab chain</a> of the new parent widget, in the same internal order as before. If one of the moved widgets had keyboard focus, setParent() calls <a href="qwidget.html#clearFocus">clearFocus</a>() for that widget.</p>
-<p>If the new parent widget is in the same window as the old parent, setting the parent doesn't change the tab order or keyboard focus.</p>
-<p>If the &quot;new&quot; parent widget is the old parent widget, this function does nothing.</p>
-<p><b>Note: </b>The widget becomes invisible as part of changing its parent, even if it was previously visible. You must call <a href="qwidget.html#show">show</a>() to make the widget visible again.</p><p><b>Warning:</b> It is very unlikely that you will ever need this function. If you have a widget that changes its content dynamically, it is far easier to use <a href="qstackedwidget.html">QStackedWidget</a>.</p>
-<p><b>请参考 </b><a href="qwidget.html#windowFlags-prop">setWindowFlags</a>().</p>
+<p><font style="vertical-align: inherit;">将组件的父级设置为</font><i><font style="vertical-align: inherit;">parent</font></i><font style="vertical-align: inherit;">，并重置窗口标志。组件移动到其新父级中的位置 (0, 0)。</font></p>
+<p><font style="vertical-align: inherit;">如果新的父窗口组件位于不同的窗口中，则重新设置父窗口的窗口组件及其子窗口会按照与以前相同的内部顺序附加到新父窗口组件的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#focusPolicy-prop"><font style="vertical-align: inherit;">选项卡链</font></a><font style="vertical-align: inherit;">的末尾。如果移动的组件之一具有键盘焦点，则 setParent()为该组件调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#clearFocus"><font style="vertical-align: inherit;">clearFocus</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<p><font style="vertical-align: inherit;">如果新的父组件与旧的父组件在同一窗口中，则设置父组件不会更改 Tab 键顺序或键盘焦点。</font></p>
+<p><font style="vertical-align: inherit;">如果“新”父组件是旧的父组件，则此函数不执行任何操作。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">作为更改其父级的一部分，组件变得不可见，即使它以前是可见的。您必须调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#show"><font style="vertical-align: inherit;">show</font></a><font style="vertical-align: inherit;"> () 使组件再次可见。</font></p><p><b>Warning:</b> It is very unlikely that you will ever need this function. If you have a widget that changes its content dynamically, it is far easier to use <a href="qstackedwidget.html">QStackedWidget</a>.</p>
+<p><b>请参考 </b><a href="qwidget.html#windowFlags-prop">setWindowFlags</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setParent -->
 <!-- $$$setParent$$$setParentQWidget*Qt::WindowFlags -->
 <h3 class="fn" id="setParent-1"><a name="setParent-1"></a><span class="type">void</span> QWidget::<span class="name">setParent</span>(<span class="type"><a href="qwidget.html#QWidget">QWidget</a></span> *<i>parent</i>, <span class="type"><a href="../qtcore/qt.html#WindowType-enum">Qt::WindowFlags</a></span> <i>f</i>)</h3>
 <p>这是一个重载函数。</p>
-<p>This function also takes widget flags, <i>f</i> as an argument.</p>
+<p><font style="vertical-align: inherit;">此函数还采用组件标志</font><i><font style="vertical-align: inherit;">f</font></i><font style="vertical-align: inherit;">作为参数。</font></p>
 <!-- @@@setParent -->
 <!-- $$$setShortcutAutoRepeat[overload1]$$$setShortcutAutoRepeatintbool -->
 <h3 class="fn" id="setShortcutAutoRepeat"><a name="setShortcutAutoRepeat"></a><span class="type">void</span> QWidget::<span class="name">setShortcutAutoRepeat</span>(<span class="type">int</span> <i>id</i>, <span class="type">bool</span> <i>enable</i> = true)</h3>
-<p>If <i>enable</i> is true, auto repeat of the shortcut with the given <i>id</i> is enabled; otherwise it is disabled.</p>
-<p>This function was introduced in  Qt 4.2.</p>
-<p><b>请参考 </b><a href="qwidget.html#grabShortcut">grabShortcut</a>() and <a href="qwidget.html#releaseShortcut">releaseShortcut</a>().</p>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">enable</font></i><font style="vertical-align: inherit;">为 true，则启用具有给定</font><i><font style="vertical-align: inherit;">id</font></i><font style="vertical-align: inherit;">的快捷方式的自动重复；否则它被禁用。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 4.2 中引入的。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#grabShortcut">grabShortcut</a>()
+<span lang="zh-cn">和 </span><a href="qwidget.html#releaseShortcut">releaseShortcut</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setShortcutAutoRepeat -->
 <!-- $$$setShortcutEnabled[overload1]$$$setShortcutEnabledintbool -->
 <h3 class="fn" id="setShortcutEnabled"><a name="setShortcutEnabled"></a><span class="type">void</span> QWidget::<span class="name">setShortcutEnabled</span>(<span class="type">int</span> <i>id</i>, <span class="type">bool</span> <i>enable</i> = true)</h3>
-<p>If <i>enable</i> is true, the shortcut with the given <i>id</i> is enabled; otherwise the shortcut is disabled.</p>
-<p><b>Warning:</b> You should not normally need to use this function since Qt's shortcut system enables/disables shortcuts automatically as widgets become hidden/visible and gain or lose focus. It is best to use <a href="qaction.html">QAction</a> or <a href="qshortcut.html">QShortcut</a> to handle shortcuts, since they are easier to use than this low-level function.</p>
-<p><b>请参考 </b><a href="qwidget.html#grabShortcut">grabShortcut</a>() and <a href="qwidget.html#releaseShortcut">releaseShortcut</a>().</p>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">enable</font></i><font style="vertical-align: inherit;">为 true，则启用具有给定</font><i><font style="vertical-align: inherit;">id</font></i><font style="vertical-align: inherit;">的快捷方式；否则快捷方式将被禁用。</font></p>
+<p><b><font style="vertical-align: inherit;"><span lang="zh-cn">警</span>告：</font></b><font style="vertical-align: inherit;">您通常不需要使用此功能，因为 Qt 的快捷方式系统会在组件隐藏/可见以及获得或失去焦点时自动启用/禁用快捷方式。最好使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qaction.html"><font style="vertical-align: inherit;">QAction</font></a><font style="vertical-align: inherit;">或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qshortcut.html"><font style="vertical-align: inherit;">QShortcut</font></a><font style="vertical-align: inherit;">来处理快捷方式，因为它们比这个低级函数更容易使用。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#grabShortcut">grabShortcut</a>()
+<span lang="zh-cn">和 </span><a href="qwidget.html#releaseShortcut">releaseShortcut</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setShortcutEnabled -->
 <!-- $$$setSizeIncrement -->
 <h3 class="fn" id="setSizeIncrement-1"><a name="setSizeIncrement-1"></a><span class="type">void</span> QWidget::<span class="name">setSizeIncrement</span>(<span class="type">int</span> <i>w</i>, <span class="type">int</span> <i>h</i>)</h3>
 <p>这是一个重载函数。</p>
-<p>Sets the x (width) size increment to <i>w</i> and the y (height) size increment to <i>h</i>.</p>
-<p><b>Note:</b> Setter function for property <a href="qwidget.html#sizeIncrement-prop">sizeIncrement</a>. </p><!-- @@@setSizeIncrement -->
+<p><font style="vertical-align: inherit;">将 x（宽度）大小增量设置为</font><i><font style="vertical-align: inherit;">w</font></i><font style="vertical-align: inherit;">，将 y（高度）大小增量设置为</font><i><font style="vertical-align: inherit;">h</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">属性</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#sizeIncrement-prop"><font style="vertical-align: inherit;">sizeIncrement 的</font></a><span lang="zh-cn">设置</span><font style="vertical-align: inherit;">函数。</font></p><!-- @@@setSizeIncrement -->
 <!-- $$$setSizePolicy -->
 <h3 class="fn" id="setSizePolicy-1"><a name="setSizePolicy-1"></a><span class="type">void</span> QWidget::<span class="name">setSizePolicy</span>(<span class="type"><a href="qsizepolicy.html#Policy-enum">QSizePolicy::Policy</a></span> <i>horizontal</i>, <span class="type"><a href="qsizepolicy.html#Policy-enum">QSizePolicy::Policy</a></span> <i>vertical</i>)</h3>
 <p>这是一个重载函数。</p>
-<p>Sets the size policy of the widget to <i>horizontal</i> and <i>vertical</i>, with standard stretch and no height-for-width.</p>
-<p><b>Note:</b> Setter function for property <a href="qwidget.html#sizePolicy-prop">sizePolicy</a>. </p><p><b>请参考 </b><a href="qsizepolicy.html#QSizePolicy">QSizePolicy::QSizePolicy</a>().</p>
+<p><font style="vertical-align: inherit;">将组件的大小策略设置为<i>horizontal</i>和<i>vertical</i>，具有标准拉伸并且没有高度换宽度。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">属性</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#sizePolicy-prop"><font style="vertical-align: inherit;">sizePolicy 的</font></a><span lang="zh-cn">设置</span><font style="vertical-align: inherit;">函数。</font></p><p><b>请参考 </b><a href="qsizepolicy.html#QSizePolicy">QSizePolicy::QSizePolicy</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setSizePolicy -->
 <!-- $$$setStyle[overload1]$$$setStyleQStyle* -->
 <h3 class="fn" id="setStyle"><a name="setStyle"></a><span class="type">void</span> QWidget::<span class="name">setStyle</span>(<span class="type"><a href="qstyle.html">QStyle</a></span> *<i>style</i>)</h3>
-<p>Sets the widget's GUI style to <i>style</i>. The ownership of the style object is not transferred.</p>
-<p>If no style is set, the widget uses the application's style, <a href="qapplication.html#style">QApplication::style</a>() instead.</p>
-<p>Setting a widget's style has no effect on existing or future child widgets.</p>
-<p><b>Warning:</b> This function is particularly useful for demonstration purposes, where you want to show Qt's styling capabilities. Real applications should avoid it and use one consistent GUI style instead.</p>
-<p><b>Warning:</b> Qt style sheets are currently not supported for custom <a href="qstyle.html">QStyle</a> subclasses. We plan to address this in some future release.</p>
-<p><b>请参考 </b><a href="qwidget.html#style">style</a>(), <a href="qstyle.html">QStyle</a>, <a href="qapplication.html#style">QApplication::style</a>(), and <a href="qapplication.html#setStyle">QApplication::setStyle</a>().</p>
+<p><font style="vertical-align: inherit;">将组件的 GUI 样式设置为</font><i><font style="vertical-align: inherit;">style</font></i><font style="vertical-align: inherit;">。样式对象的所有权不会转移。</font></p>
+<p><font style="vertical-align: inherit;">如果没有设置样式，组件将使用应用程序的样式</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qapplication.html#style"><font style="vertical-align: inherit;">QApplication::style</font></a><font style="vertical-align: inherit;"> () 代替。</font></p>
+<p><font style="vertical-align: inherit;">置组件的样式对现有或未来的子组件没有影响。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">此函数对于演示目的特别有用，您希望在其中展示 Qt 的样式功能。真正的应用程序应该避免它并使用一种一致的 GUI 样式来代替。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">自定义</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qstyle.html"><font style="vertical-align: inherit;">QStyle</font></a><font style="vertical-align: inherit;">子类当前不支持 Qt 样式表。我们计划在未来的某个版本中解决这个问题。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#style">style</a>(), <a href="qstyle.html">QStyle</a>, <a href="qapplication.html#style">QApplication::style</a>(),
+<span lang="zh-cn">和 </span><a href="qapplication.html#setStyle">QApplication::setStyle</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setStyle -->
 <!-- $$$setTabOrder[overload1]$$$setTabOrderQWidget*QWidget* -->
 <h3 class="fn" id="setTabOrder"><a name="setTabOrder"></a><code>[static] </code><span class="type">void</span> QWidget::<span class="name">setTabOrder</span>(<span class="type"><a href="qwidget.html#QWidget">QWidget</a></span> *<i>first</i>, <span class="type"><a href="qwidget.html#QWidget">QWidget</a></span> *<i>second</i>)</h3>
-<p>Puts the <i>second</i> widget after the <i>first</i> widget in the focus order.</p>
-<p>It effectively removes the <i>second</i> widget from its focus chain and inserts it after the <i>first</i> widget.</p>
-<p>Note that since the tab order of the <i>second</i> widget is changed, you should order a chain like this:</p>
+<p><span lang="zh-cn">将</span><i><font style="vertical-align: inherit;"><span lang="zh-cn">second（第二）个组件放在first（第一个）组件聚焦顺序之后。</span></font></i></p>
+<p><font style="vertical-align: inherit;">它有效地从其焦点链中删除了</font><i><font style="vertical-align: inherit;">第二</font></i><font style="vertical-align: inherit;">个组件，并将其插入到</font><i><font style="vertical-align: inherit;">第一</font></i><font style="vertical-align: inherit;">个组件之后。</font></p>
+<p><font style="vertical-align: inherit;">请注意，由于</font><i><font style="vertical-align: inherit;">第二</font></i><font style="vertical-align: inherit;">个组件的 Tab 键顺序已更改，因此您应该订购这样的链：</font></p>
 <pre class="cpp">
 
   setTabOrder(a<span class="operator">,</span> b); <span class="comment">// a to b</span>
@@ -2595,7 +2608,7 @@ isAccepted() <span lang="zh-cn">传进来时就是</span> true ，因此您不�
   setTabOrder(c<span class="operator">,</span> d); <span class="comment">// a to b to c to d</span>
 
 </pre>
-<p><i>not</i> like this:</p>
+<p><i><font style="vertical-align: inherit;">不是</font></i><font style="vertical-align: inherit;">这样：</font></p>
 <pre class="cpp">
 
   <span class="comment">// WRONG</span>
@@ -2604,227 +2617,247 @@ isAccepted() <span lang="zh-cn">传进来时就是</span> true ，因此您不�
   setTabOrder(b<span class="operator">,</span> c); <span class="comment">// a to b to c, but not c to d</span>
 
 </pre>
-<p>If <i>first</i> or <i>second</i> has a focus proxy, setTabOrder() correctly substitutes the proxy.</p>
-<p><b>Note: </b>Since Qt 5.10: A widget that has a child as focus proxy is understood as a compound widget. When setting a tab order between one or two compound widgets, the local tab order inside each will be preserved. This means that if both widgets are compound widgets, the resulting tab order will be from the last child inside <i>first</i>, to the first child inside <i>second</i>.</p><p><b>请参考 </b><a href="qwidget.html#focusPolicy-prop">setFocusPolicy</a>(), <a href="qwidget.html#setFocusProxy">setFocusProxy</a>(), and <a href="focus.html">Keyboard Focus in Widgets</a>.</p>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">第一个</font></i><font style="vertical-align: inherit;">或</font><i><font style="vertical-align: inherit;">第二个</font></i><font style="vertical-align: inherit;">具有焦点代理，则 setTabOrder() 会正确替换该代理。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">从 Qt 5.10 开始：具有子代作为焦点代理的组件被理解为复合组件。在一个或两个复合组件之间设置 Tab 键顺序时，将保留每个内部的本地 Tab 键顺序。这意味着如果两个组件都是复合组件，则生成的 Tab 键顺序将从</font><i><font style="vertical-align: inherit;">first 中</font></i><font style="vertical-align: inherit;">的最后一个子级到</font><i><font style="vertical-align: inherit;">second 中</font></i><font style="vertical-align: inherit;">的第一个子级。</font></p><p><b>请参考 </b><a href="qwidget.html#focusPolicy-prop">setFocusPolicy</a>(), <a href="qwidget.html#setFocusProxy">setFocusProxy</a>(),
+	<span lang="zh-cn">和 </span><a href="focus.html"><span lang="zh-cn">组件中的键盘焦点</span></a><span lang="zh-cn">。</span></p>
 <!-- @@@setTabOrder -->
 <!-- $$$setWindowFlag[overload1]$$$setWindowFlagQt::WindowTypebool -->
 <h3 class="fn" id="setWindowFlag"><a name="setWindowFlag"></a><span class="type">void</span> QWidget::<span class="name">setWindowFlag</span>(<span class="type"><a href="../qtcore/qt.html#WindowType-enum">Qt::WindowType</a></span> <i>flag</i>, <span class="type">bool</span> <i>on</i> = true)</h3>
-<p>Sets the window flag <i>flag</i> on this widget if <i>on</i> is true; otherwise clears the flag.</p>
-<p>This function was introduced in  Qt 5.9.</p>
-<p><b>请参考 </b><a href="qwidget.html#windowFlags-prop">setWindowFlags</a>(), <a href="qwidget.html#windowFlags-prop">windowFlags</a>(), and <a href="qwidget.html#windowType">windowType</a>().</p>
+<p>S<font style="vertical-align: inherit;">如果<i>on</i>为真，则<i>在</i>此组件<i>上</i>设置窗口标志</font><i><font style="vertical-align: inherit;">flag</font></i><font style="vertical-align: inherit;">；否则清除标志。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 5.9 中引入的。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#windowFlags-prop">setWindowFlags</a>(), <a href="qwidget.html#windowFlags-prop">windowFlags</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#windowType">windowType</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setWindowFlag -->
 <!-- $$$setWindowRole[overload1]$$$setWindowRoleconstQString& -->
 <h3 class="fn" id="setWindowRole"><a name="setWindowRole"></a><span class="type">void</span> QWidget::<span class="name">setWindowRole</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>role</i>)</h3>
-<p>Sets the window's role to <i>role</i>. This only makes sense for windows on X11.</p>
-<p><b>请参考 </b><a href="qwidget.html#windowRole">windowRole</a>().</p>
+<p><font style="vertical-align: inherit;">将窗口的角色设置为</font><i><font style="vertical-align: inherit;">role</font></i><font style="vertical-align: inherit;">。这仅对 X11 上的  
+<span lang="zh-cn">窗口</span>有意义。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#windowRole">windowRole</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setWindowRole -->
 <!-- $$$setWindowState[overload1]$$$setWindowStateQt::WindowStates -->
 <h3 class="fn" id="setWindowState"><a name="setWindowState"></a><span class="type">void</span> QWidget::<span class="name">setWindowState</span>(<span class="type"><a href="../qtcore/qt.html#WindowState-enum">Qt::WindowStates</a></span> <i>windowState</i>)</h3>
-<p>Sets the window state to <i>windowState</i>. The window state is a OR'ed combination of <a href="../qtcore/qt.html#WindowState-enum">Qt::WindowState</a>: <a href="../qtcore/qt.html#WindowState-enum">Qt::WindowMinimized</a>, <a href="../qtcore/qt.html#WindowState-enum">Qt::WindowMaximized</a>, <a href="../qtcore/qt.html#WindowState-enum">Qt::WindowFullScreen</a>, and <a href="../qtcore/qt.html#WindowState-enum">Qt::WindowActive</a>.</p>
-<p>If the window is not visible (i.e&#x2e; <a href="qwidget.html#visible-prop">isVisible</a>() returns <code>false</code>), the window state will take effect when <a href="qwidget.html#show">show</a>() is called. For visible windows, the change is immediate. For example, to toggle between full-screen and normal mode, use the following code:</p>
+<p><font style="vertical-align: inherit;">窗口状态是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowState-enum"><font style="vertical-align: inherit;">Qt::WindowState</font></a><span lang="zh-cn">（<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowState-enum"><font style="vertical-align: inherit;">Qt::WindowMinimized</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowState-enum"><font style="vertical-align: inherit;">Qt::WindowMaximized</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowState-enum"><font style="vertical-align: inherit;">Qt::WindowFullScreen</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowState-enum"><font style="vertical-align: inherit;">Qt::WindowActive</font></a></span><font style="vertical-align: inherit;"><span lang="zh-cn">）</span>的 OR 组合。</font></p>
+<p><font style="vertical-align: inherit;">如果窗口不可见（即</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#visible-prop"><font style="vertical-align: inherit;">isVisible</font></a><font style="vertical-align: inherit;"> () 返回</font><code>false</code><font style="vertical-align: inherit;">），则调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#show"><font style="vertical-align: inherit;">show</font></a><font style="vertical-align: inherit;"> ()时窗口状态生效。对于可见窗口，更改是即时的。例如，要在全屏和普通模式之间切换，请使用以下代码：</font></p>
 <pre class="cpp">
 
   w<span class="operator">-</span><span class="operator">&gt;</span>setWindowState(w<span class="operator">-</span><span class="operator">&gt;</span>windowState() <span class="operator">^</span> <span class="type">Qt</span><span class="operator">::</span>WindowFullScreen);
 
 </pre>
-<p>In order to restore and activate a minimized window (while preserving its maximized and/or full-screen state), use the following:</p>
+<p><font style="vertical-align: inherit;">为了恢复和激活最小化的窗口（同时保留其最大化和/或全屏状态），请使用以下命令：</font></p>
 <pre class="cpp">
 
   w<span class="operator">-</span><span class="operator">&gt;</span>setWindowState((w<span class="operator">-</span><span class="operator">&gt;</span>windowState() <span class="operator">&amp;</span> <span class="operator">~</span><span class="type">Qt</span><span class="operator">::</span>WindowMinimized) <span class="operator">|</span> <span class="type">Qt</span><span class="operator">::</span>WindowActive);
 
 </pre>
-<p>Calling this function will hide the widget. You must call <a href="qwidget.html#show">show</a>() to make the widget visible again.</p>
-<p><b>Note: </b>On some window systems <a href="../qtcore/qt.html#WindowState-enum">Qt::WindowActive</a> is not immediate, and may be ignored in certain cases.</p><p>When the window state changes, the widget receives a <a href="qwidget.html#changeEvent">changeEvent</a>() of type <a href="../qtcore/qevent.html#Type-enum">QEvent::WindowStateChange</a>.</p>
-<p><b>请参考 </b><a href="../qtcore/qt.html#WindowState-enum">Qt::WindowState</a> and <a href="qwidget.html#windowState">windowState</a>().</p>
+<p><font style="vertical-align: inherit;">调用此函数将隐藏组件。您必须调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#show"><font style="vertical-align: inherit;">show</font></a><font style="vertical-align: inherit;"> () 使组件再次可见。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">在某些窗口系统上，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowState-enum"><font style="vertical-align: inherit;">Qt::WindowActive</font></a><font style="vertical-align: inherit;">不是即时的，在某些情况下可能会被忽略。</font></p><p><font style="vertical-align: inherit;">当窗口状态改变时，组件会收到一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qevent.html#Type-enum">QEvent::WindowStateChange</a>类型的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#changeEvent"><font style="vertical-align: inherit;">changeEvent</font></a><font style="vertical-align: inherit;"> () 。</font></p>
+<p><b>请参考 </b><a href="../qtcore/qt.html#WindowState-enum">Qt::WindowState</a> 
+<span lang="zh-cn">和 </span><a href="qwidget.html#windowState">windowState</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@setWindowState -->
 <!-- $$$setupUi[overload1]$$$setupUiQWidget* -->
 <h3 class="fn" id="setupUi"><a name="setupUi"></a><span class="type">void</span> QWidget::<span class="name">setupUi</span>(<span class="type"><a href="qwidget.html#QWidget">QWidget</a></span> *<i>widget</i>)</h3>
-<p>Sets up the user interface for the specified <i>widget</i>.</p>
-<p><b>Note: </b>This function is available with widgets that derive from user interface descriptions created using <a href="../qtdoc/uic.html">uic</a>.</p><p><b>请参考 </b><a href="../qtdesigner/designer-using-a-ui-file.html">Using a Designer UI File in Your Application</a>.</p>
+<p><font style="vertical-align: inherit;">为指定的</font><i><font style="vertical-align: inherit;">组件</font></i><font style="vertical-align: inherit;"><i>widget</i>设置用户界面。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">此功能可用于从使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/uic.html"><font style="vertical-align: inherit;">uic</font></a><font style="vertical-align: inherit;">创建的用户界面描述派生的组件。</font></p><p><b>请参考 <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html"><font style="vertical-align: inherit;">在您的应用程序中使用设计器 UI 文件</font></a><span lang="zh-cn">。</span></b></p>
 <!-- @@@setupUi -->
 <!-- $$$show[overload1]$$$show -->
 <h3 class="fn" id="show"><a name="show"></a><code>[slot] </code><span class="type">void</span> QWidget::<span class="name">show</span>()</h3>
-<p>Shows the widget and its child widgets.</p>
-<p>This is equivalent to calling <a href="qwidget.html#showFullScreen">showFullScreen</a>(), <a href="qwidget.html#showMaximized">showMaximized</a>(), or <a href="qwidget.html#visible-prop">setVisible</a>(true), depending on the platform's default behavior for the window flags.</p>
-<p><b>请参考 </b><a href="qwidget.html#raise">raise</a>(), <a href="qwidget.html#showEvent">showEvent</a>(), <a href="qwidget.html#hide">hide</a>(), <a href="qwidget.html#visible-prop">setVisible</a>(), <a href="qwidget.html#showMinimized">showMinimized</a>(), <a href="qwidget.html#showMaximized">showMaximized</a>(), <a href="qwidget.html#showNormal">showNormal</a>(), <a href="qwidget.html#visible-prop">isVisible</a>(), and <a href="qwidget.html#windowFlags-prop">windowFlags</a>().</p>
+<p><font style="vertical-align: inherit;">显示组件及其子组件。</font></p>
+<p><font style="vertical-align: inherit;">这相当于调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#showFullScreen"><font style="vertical-align: inherit;">showFullScreen</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#showMaximized"><font style="vertical-align: inherit;">showMaximized</font></a><font style="vertical-align: inherit;"> () 或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#visible-prop"><font style="vertical-align: inherit;">setVisible</font></a><font style="vertical-align: inherit;"> (true)，具体取决于平台对窗口标志的默认行为。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#raise"><font style="vertical-align: inherit;">raise</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#showEvent"><font style="vertical-align: inherit;">showEvent</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#hide"><font style="vertical-align: inherit;">hide</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#visible-prop"><font style="vertical-align: inherit;">setVisible</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#showMinimized"><font style="vertical-align: inherit;">showMinimized</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#showMaximized"><font style="vertical-align: inherit;">showMaximized</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#showNormal"><font style="vertical-align: inherit;">showNormal</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#visible-prop"><font style="vertical-align: inherit;">isVisible</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#windowFlags-prop"><font style="vertical-align: inherit;">windowFlags</font></a><font style="vertical-align: inherit;"> ()。</font></p>
 <!-- @@@show -->
 <!-- $$$showEvent[overload1]$$$showEventQShowEvent* -->
 <h3 class="fn" id="showEvent"><a name="showEvent"></a><code>[virtual protected] </code><span class="type">void</span> QWidget::<span class="name">showEvent</span>(<span class="type"><a href="../qtgui/qshowevent.html">QShowEvent</a></span> *<i>event</i>)</h3>
-<p>This event handler can be reimplemented in a subclass to receive widget show events which are passed in the <i>event</i> parameter.</p>
-<p>Non-spontaneous show events are sent to widgets immediately before they are shown. The spontaneous show events of windows are delivered afterwards.</p>
-<p>Note: A widget receives spontaneous show and hide events when its mapping status is changed by the window system, e.g&#x2e; a spontaneous hide event when the user minimizes the window, and a spontaneous show event when the window is restored again. After receiving a spontaneous hide event, a widget is still considered visible in the sense of <a href="qwidget.html#visible-prop">isVisible</a>().</p>
-<p><b>请参考 </b><a href="qwidget.html#visible-prop">visible</a>, <a href="qwidget.html#event">event</a>(), and <a href="../qtgui/qshowevent.html">QShowEvent</a>.</p>
+<p><font style="vertical-align: inherit;">此事件处理程序可以在子类中重新实现，以接收在</font><i><font style="vertical-align: inherit;">event</font></i><font style="vertical-align: inherit;">参数中传递的组件显示事件。</font></p>
+<p>非自发的显示事件在显示之前立即发送到组件。自发的窗口展示事件是随后交付的。</p>
+<p>
+注意:当窗口系统改变窗口的映射状态时，窗口组件会收到自发的显示和隐藏事件，例如，当用户最小化窗口时，会收到自发的隐藏事件，当窗口再次恢复时，会收到自发的显示事件。在接收到自发的隐藏事件后，组件仍然被认为是可见的，即<a href="qwidget.html#visible-prop">isVisible</a>()。</p>
+<p><b>请参考 </b><a href="qwidget.html#visible-prop">visible</a>, <a href="qwidget.html#event">event</a>(),
+<span lang="zh-cn">和 </span><a href="../qtgui/qshowevent.html">QShowEvent</a><span lang="zh-cn">。</span></p>
 <!-- @@@showEvent -->
 <!-- $$$showFullScreen[overload1]$$$showFullScreen -->
 <h3 class="fn" id="showFullScreen"><a name="showFullScreen"></a><code>[slot] </code><span class="type">void</span> QWidget::<span class="name">showFullScreen</span>()</h3>
-<p>Shows the widget in full-screen mode.</p>
-<p>Calling this function only affects <a href="qwidget.html#isWindow">windows</a>.</p>
-<p>To return from full-screen mode, call <a href="qwidget.html#showNormal">showNormal</a>().</p>
-<p>Full-screen mode works fine under Windows, but has certain problems under X. These problems are due to limitations of the ICCCM protocol that specifies the communication between X11 clients and the window manager. ICCCM simply does not understand the concept of non-decorated full-screen windows. Therefore, the best we can do is to request a borderless window and place and resize it to fill the entire screen. Depending on the window manager, this may or may not work. The borderless window is requested using MOTIF hints, which are at least partially supported by virtually all modern window managers.</p>
-<p>An alternative would be to bypass the window manager entirely and create a window with the <a href="../qtcore/qt.html#WindowType-enum">Qt::X11BypassWindowManagerHint</a> flag. This has other severe problems though, like totally broken keyboard focus and very strange effects on desktop changes or when the user raises other windows.</p>
-<p>X11 window managers that follow modern post-ICCCM specifications support full-screen mode properly.</p>
-<p><b>请参考 </b><a href="qwidget.html#showNormal">showNormal</a>(), <a href="qwidget.html#showMaximized">showMaximized</a>(), <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), and <a href="qwidget.html#visible-prop">isVisible</a>().</p>
+<p><font style="vertical-align: inherit;">以全屏模式显示组件。</font></p>
+<p><font style="vertical-align: inherit;">调用这个函数只影响</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#isWindow"><font style="vertical-align: inherit;"><span lang="zh-cn">窗口</span></font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">要从全屏模式返回，请调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#showNormal"><font style="vertical-align: inherit;">showNormal</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<p><font style="vertical-align: inherit;">全屏模式在 Windows 下工作正常，但在 X系统 下有一些问题。这些问题是由于指定 X11 客户端和窗口管理器之间通信的 ICCCM 协议的限制。ICCCM 根本不理解非装饰全屏窗口的概念。因此，我们能做的最好的事情就是请求一个无边框窗口并放置并调整其大小以填充整个屏幕。根据窗口管理器的不同，这可能有效，也可能无效。使用 MOTIF 提示请求无边框窗口，几乎所有现代窗口管理器至少部分支持这些提示。</font></p>
+<p><font style="vertical-align: inherit;">另一种方法是完全绕过窗口管理器并使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowType-enum"><font style="vertical-align: inherit;">Qt::X11BypassWindowManagerHint</font></a><font style="vertical-align: inherit;">标志创建一个窗口。但是，这还有其他严重的问题，例如完全损坏的键盘焦点以及对桌面更改或用户提升其他窗口时的非常奇怪的影响。</font></p>
+<p><font style="vertical-align: inherit;">遵循现代后 ICCCM 规范的 X11 窗口管理器正确支持全屏模式。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#showNormal">showNormal</a>(), <a href="qwidget.html#showMaximized">showMaximized</a>(), <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#visible-prop">isVisible</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@showFullScreen -->
 <!-- $$$showMaximized[overload1]$$$showMaximized -->
 <h3 class="fn" id="showMaximized"><a name="showMaximized"></a><code>[slot] </code><span class="type">void</span> QWidget::<span class="name">showMaximized</span>()</h3>
-<p>Shows the widget maximized.</p>
-<p>Calling this function only affects <a href="qwidget.html#isWindow">windows</a>.</p>
-<p>On X11, this function may not work properly with certain window managers. See the <a href="application-windows.html#window-geometry">Window Geometry</a> documentation for an explanation.</p>
-<p><b>请参考 </b><a href="qwidget.html#setWindowState">setWindowState</a>(), <a href="qwidget.html#showNormal">showNormal</a>(), <a href="qwidget.html#showMinimized">showMinimized</a>(), <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), and <a href="qwidget.html#visible-prop">isVisible</a>().</p>
+<p><font style="vertical-align: inherit;">显示最大化的组件。</font></p>
+<p><font style="vertical-align: inherit;">调用这个函数只影响</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#isWindow"><font style="vertical-align: inherit;">windows</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">在 X11 上，此功能可能无法与某些窗口管理器一起正常工作。有关解释，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/application-windows.html#window-geometry"><font style="vertical-align: inherit;">窗口几何</font></a><font style="vertical-align: inherit;">文档。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#setWindowState">setWindowState</a>(), <a href="qwidget.html#showNormal">showNormal</a>(), <a href="qwidget.html#showMinimized">showMinimized</a>(), <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#visible-prop">isVisible</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@showMaximized -->
 <!-- $$$showMinimized[overload1]$$$showMinimized -->
 <h3 class="fn" id="showMinimized"><a name="showMinimized"></a><code>[slot] </code><span class="type">void</span> QWidget::<span class="name">showMinimized</span>()</h3>
-<p>Shows the widget minimized, as an icon.</p>
-<p>Calling this function only affects <a href="qwidget.html#isWindow">windows</a>.</p>
-<p><b>请参考 </b><a href="qwidget.html#showNormal">showNormal</a>(), <a href="qwidget.html#showMaximized">showMaximized</a>(), <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), <a href="qwidget.html#visible-prop">isVisible</a>(), and <a href="qwidget.html#minimized-prop">isMinimized</a>().</p>
+<p><font style="vertical-align: inherit;">将最小化的组件显示为图标。</font></p>
+<p><font style="vertical-align: inherit;">调用这个函数只影响</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#isWindow"><font style="vertical-align: inherit;"><span lang="zh-cn">窗口</span></font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#showNormal">showNormal</a>(), <a href="qwidget.html#showMaximized">showMaximized</a>(), <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), <a href="qwidget.html#visible-prop">isVisible</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#minimized-prop">isMinimized</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@showMinimized -->
 <!-- $$$showNormal[overload1]$$$showNormal -->
 <h3 class="fn" id="showNormal"><a name="showNormal"></a><code>[slot] </code><span class="type">void</span> QWidget::<span class="name">showNormal</span>()</h3>
-<p>Restores the widget after it has been maximized or minimized.</p>
-<p>Calling this function only affects <a href="qwidget.html#isWindow">windows</a>.</p>
-<p><b>请参考 </b><a href="qwidget.html#setWindowState">setWindowState</a>(), <a href="qwidget.html#showMinimized">showMinimized</a>(), <a href="qwidget.html#showMaximized">showMaximized</a>(), <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(), and <a href="qwidget.html#visible-prop">isVisible</a>().</p>
+<p><font style="vertical-align: inherit;">在最大化或最小化后恢复组件。</font></p>
+<p><font style="vertical-align: inherit;">调用这个函数只影响</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#isWindow"><font style="vertical-align: inherit;"><span lang="zh-cn">窗口</span></font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#setWindowState">setWindowState</a>(), <a href="qwidget.html#showMinimized">showMinimized</a>(), <a href="qwidget.html#showMaximized">showMaximized</a>(), <a href="qwidget.html#show">show</a>(), <a href="qwidget.html#hide">hide</a>(),
+<span lang="zh-cn">和 </span><a href="qwidget.html#visible-prop">isVisible</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@showNormal -->
 <!-- $$$stackUnder[overload1]$$$stackUnderQWidget* -->
 <h3 class="fn" id="stackUnder"><a name="stackUnder"></a><span class="type">void</span> QWidget::<span class="name">stackUnder</span>(<span class="type"><a href="qwidget.html#QWidget">QWidget</a></span> *<i>w</i>)</h3>
-<p>Places the widget under <i>w</i> in the parent widget's stack.</p>
-<p>To make this work, the widget itself and <i>w</i> must be siblings.</p>
-<p><b>请参考 </b><a href="qwidget.html#raise">raise</a>() and <a href="qwidget.html#lower">lower</a>().</p>
+<p><font style="vertical-align: inherit;">将组件放在父组件堆栈中的</font><i><font style="vertical-align: inherit;">w</font></i><font style="vertical-align: inherit;">下。</font></p>
+<p><font style="vertical-align: inherit;">为了完成这项工作，组件本身和</font><i><font style="vertical-align: inherit;">w</font></i><font style="vertical-align: inherit;">必须是兄弟姐妹。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#raise">raise</a>() <span lang="zh-cn">和 
+</span><a href="qwidget.html#lower">lower</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@stackUnder -->
 <!-- $$$style[overload1]$$$style -->
 <h3 class="fn" id="style"><a name="style"></a><span class="type"><a href="qstyle.html">QStyle</a></span> *QWidget::<span class="name">style</span>() const</h3>
-<p><b>请参考 </b><a href="qwidget.html#setStyle">QWidget::setStyle</a>(), <a href="qapplication.html#setStyle">QApplication::setStyle</a>(), and <a href="qapplication.html#style">QApplication::style</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#setStyle">QWidget::setStyle</a>(), <a href="qapplication.html#setStyle">QApplication::setStyle</a>(),
+<span lang="zh-cn">和 </span><a href="qapplication.html#style">QApplication::style</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@style -->
 <!-- $$$tabletEvent[overload1]$$$tabletEventQTabletEvent* -->
 <h3 class="fn" id="tabletEvent"><a name="tabletEvent"></a><code>[virtual protected] </code><span class="type">void</span> QWidget::<span class="name">tabletEvent</span>(<span class="type"><a href="../qtgui/qtabletevent.html">QTabletEvent</a></span> *<i>event</i>)</h3>
-<p>This event handler, for event <i>event</i>, can be reimplemented in a subclass to receive tablet events for the widget.</p>
-<p>If you reimplement this handler, it is very important that you <a href="../qtcore/qevent.html">ignore()</a> the event if you do not handle it, so that the widget's parent can interpret it.</p>
-<p>The default implementation ignores the event.</p>
-<p>If tablet tracking is switched off, tablet move events only occur if the stylus is in contact with the tablet, or at least one stylus button is pressed, while the stylus is being moved. If tablet tracking is switched on, tablet move events occur even while the stylus is hovering in proximity of the tablet, with no buttons pressed.</p>
-<p><b>请参考 </b><a href="../qtcore/qevent.html#ignore">QEvent::ignore</a>(), <a href="../qtcore/qevent.html#accept">QEvent::accept</a>(), <a href="qwidget.html#event">event</a>(), <a href="qwidget.html#tabletTracking-prop">setTabletTracking</a>(), and <a href="../qtgui/qtabletevent.html">QTabletEvent</a>.</p>
+<p><font style="vertical-align: inherit;">这个事件处理程序，用于 <span lang="zh-cn">平板电脑时间</span></font><i><font style="vertical-align: inherit;">event</font></i><font style="vertical-align: inherit;">，可以在子类中重新实现，以接收组件的平板电脑事件。</font></p>
+<p><font style="vertical-align: inherit;">如果你重新实现这个处理程序，如果你不处理它，<a href="../qtcore/qevent.html">ignore()</a>事件是非常重要的，这样组件的父级可以解释它。</font></p>
+<p><font style="vertical-align: inherit;">默认实现忽略该事件。</font></p>
+<p><font style="vertical-align: inherit;">如果平板电脑跟踪关闭，则平板电脑移动事件仅在触控笔与平板电脑接触或在移动触控笔时按下至少一个触控笔按钮时才会发生。如果平板电脑跟踪打开，即使手写笔悬停在平板电脑附近，没有按下任何按钮，也会发生平板电脑移动事件。</font></p>
+<p><b>请参考 </b><a href="../qtcore/qevent.html#ignore">QEvent::ignore</a>(), <a href="../qtcore/qevent.html#accept">QEvent::accept</a>(), <a href="qwidget.html#event">event</a>(), <a href="qwidget.html#tabletTracking-prop">setTabletTracking</a>(),
+<span lang="zh-cn">和 </span><a href="../qtgui/qtabletevent.html">QTabletEvent</a><span lang="zh-cn">。</span></p>
 <!-- @@@tabletEvent -->
 <!-- $$$testAttribute[overload1]$$$testAttributeQt::WidgetAttribute -->
 <h3 class="fn" id="testAttribute"><a name="testAttribute"></a><span class="type">bool</span> QWidget::<span class="name">testAttribute</span>(<span class="type"><a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WidgetAttribute</a></span> <i>attribute</i>) const</h3>
-<p>Returns <code>true</code> if attribute <i>attribute</i> is set on this widget; otherwise returns <code>false</code>.</p>
-<p><b>请参考 </b><a href="qwidget.html#setAttribute">setAttribute</a>().</p>
+<p><span lang="zh-cn">如果</span><font style="vertical-align: inherit;">在此组件上设置了属性</font><i><font style="vertical-align: inherit;">attribute返回<code>true</code></font></i><font style="vertical-align: inherit;">；否则返回</font><code>false</code><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#setAttribute">setAttribute</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@testAttribute -->
 <!-- $$$underMouse[overload1]$$$underMouse -->
 <h3 class="fn" id="underMouse"><a name="underMouse"></a><span class="type">bool</span> QWidget::<span class="name">underMouse</span>() const</h3>
-<p>Returns <code>true</code> if the widget is under the mouse cursor; otherwise returns <code>false</code>.</p>
-<p>This value is not updated properly during drag and drop operations.</p>
-<p><b>请参考 </b><a href="qwidget.html#enterEvent">enterEvent</a>() and <a href="qwidget.html#leaveEvent">leaveEvent</a>().</p>
+<p><font style="vertical-align: inherit;"><span lang="zh-cn">如果</span>组件在鼠标光标下返回<code>true</code>；否则返回</font><code>false</code><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">此值在拖放操作期间未正确更新。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#enterEvent">enterEvent</a>()
+<span lang="zh-cn">和 </span><a href="qwidget.html#leaveEvent">leaveEvent</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@underMouse -->
 <!-- $$$ungrabGesture[overload1]$$$ungrabGestureQt::GestureType -->
 <h3 class="fn" id="ungrabGesture"><a name="ungrabGesture"></a><span class="type">void</span> QWidget::<span class="name">ungrabGesture</span>(<span class="type"><a href="../qtcore/qt.html#GestureType-enum">Qt::GestureType</a></span> <i>gesture</i>)</h3>
-<p>Unsubscribes the widget from a given <i>gesture</i> type</p>
-<p>This function was introduced in  Qt 4.6.</p>
-<p><b>请参考 </b><a href="qwidget.html#grabGesture">grabGesture</a>() and <a href="qgestureevent.html">QGestureEvent</a>.</p>
+<p><font style="vertical-align: inherit;">从给定的</font><i><font style="vertical-align: inherit;">gesture<span lang="zh-cn">（</span>手势</font></i><font style="vertical-align: inherit;"><span lang="zh-cn">）</span>类型取消订阅组件<span lang="zh-cn">。</span></font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 4.6 中引入的。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#grabGesture">grabGesture</a>()
+<span lang="zh-cn">和 </span><a href="qgestureevent.html">QGestureEvent</a><span lang="zh-cn">。</span></p>
 <!-- @@@ungrabGesture -->
 <!-- $$$update[overload1]$$$update -->
 <h3 class="fn" id="update"><a name="update"></a><code>[slot] </code><span class="type">void</span> QWidget::<span class="name">update</span>()</h3>
-<p>Updates the widget unless updates are disabled or the widget is hidden.</p>
-<p>This function does not cause an immediate repaint; instead it schedules a paint event for processing when Qt returns to the main event loop. This permits Qt to optimize for more speed and less flicker than a call to <a href="qwidget.html#repaint">repaint</a>() does.</p>
-<p>Calling update() several times normally results in just one <a href="qwidget.html#paintEvent">paintEvent</a>() call.</p>
-<p>Qt normally erases the widget's area before the <a href="qwidget.html#paintEvent">paintEvent</a>() call. If the <a href="../qtcore/qt.html#WidgetAttribute-enum">Qt::WA_OpaquePaintEvent</a> widget attribute is set, the widget is responsible for painting all its pixels with an opaque color.</p>
-<p><b>请参考 </b><a href="qwidget.html#repaint">repaint</a>(), <a href="qwidget.html#paintEvent">paintEvent</a>(), <a href="qwidget.html#updatesEnabled-prop">setUpdatesEnabled</a>(), and <a href="qtwidgets-widgets-analogclock-example.html">Analog Clock Example</a>.</p>
+<p><font style="vertical-align: inherit;">除非禁用更新或隐藏组件，否则更新组件。</font></p>
+<p><font style="vertical-align: inherit;">此函数不会立即重新绘制；相反，它会在 Qt 返回到主事件循环时安排一个绘制事件进行处理。与调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#repaint"><font style="vertical-align: inherit;">repaint</font></a><font style="vertical-align: inherit;"> ()相比，这允许 Qt 进行优化以获得更高的速度和更少的闪烁。</font></p>
+<p><font style="vertical-align: inherit;">多次调用 update() 通常只会导致一次</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#paintEvent"><font style="vertical-align: inherit;">paintEvent</font></a><font style="vertical-align: inherit;"> () 调用。</font></p>
+<p><font style="vertical-align: inherit;">Qt 通常在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#paintEvent"><font style="vertical-align: inherit;">paintEvent</font></a><font style="vertical-align: inherit;"> () 调用之前擦除组件的区域。如果设置了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WidgetAttribute-enum"><font style="vertical-align: inherit;">Qt::WA_OpaquePaintEvent</font></a><font style="vertical-align: inherit;">组件属性，则组件负责用不透明颜色绘制其所有像素。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#repaint">repaint</a>(), <a href="qwidget.html#paintEvent">paintEvent</a>(), <a href="qwidget.html#updatesEnabled-prop">setUpdatesEnabled</a>(),
+<span lang="zh-cn">和 </span>
+<a href="qtwidgets-widgets-analogclock-example.html"><span lang="zh-cn">模拟时钟案例</span></a><span lang="zh-cn">。</span></p>
 <!-- @@@update -->
 <!-- $$$update$$$updateintintintint -->
 <h3 class="fn" id="update-1"><a name="update-1"></a><span class="type">void</span> QWidget::<span class="name">update</span>(<span class="type">int</span> <i>x</i>, <span class="type">int</span> <i>y</i>, <span class="type">int</span> <i>w</i>, <span class="type">int</span> <i>h</i>)</h3>
 <p>这是一个重载函数。</p>
-<p>This version updates a rectangle (<i>x</i>, <i>y</i>, <i>w</i>, <i>h</i>) inside the widget.</p>
+<p><font style="vertical-align: inherit;">此版本更新组件内的矩形<span lang="zh-cn">区域</span>（</font><i><font style="vertical-align: inherit;">x</font></i><font style="vertical-align: inherit;">、</font><i><font style="vertical-align: inherit;">y</font></i><font style="vertical-align: inherit;">、</font><i><font style="vertical-align: inherit;">w</font></i><font style="vertical-align: inherit;">、</font><i><font style="vertical-align: inherit;">h</font></i><font style="vertical-align: inherit;">）。</font></p>
 <!-- @@@update -->
 <!-- $$$update$$$updateconstQRect& -->
 <h3 class="fn" id="update-2"><a name="update-2"></a><span class="type">void</span> QWidget::<span class="name">update</span>(const <span class="type"><a href="../qtcore/qrect.html">QRect</a></span> &amp;<i>rect</i>)</h3>
 <p>这是一个重载函数。</p>
-<p>This version updates a rectangle <i>rect</i> inside the widget.</p>
+<p><font style="vertical-align: inherit;">此版本更新组件内的矩形<span lang="zh-cn">区域</span></font><i><font style="vertical-align: inherit;">rect</font></i><font style="vertical-align: inherit;">。</font></p>
 <!-- @@@update -->
 <!-- $$$update$$$updateconstQRegion& -->
 <h3 class="fn" id="update-3"><a name="update-3"></a><span class="type">void</span> QWidget::<span class="name">update</span>(const <span class="type"><a href="../qtgui/qregion.html">QRegion</a></span> &amp;<i>rgn</i>)</h3>
 <p>这是一个重载函数。</p>
-<p>This version repaints a region <i>rgn</i> inside the widget.</p>
+<p>此版本在组件内重新绘制区域rgn。</p>
 <!-- @@@update -->
 <!-- $$$updateGeometry[overload1]$$$updateGeometry -->
 <h3 class="fn" id="updateGeometry"><a name="updateGeometry"></a><span class="type">void</span> QWidget::<span class="name">updateGeometry</span>()</h3>
-<p>Notifies the layout system that this widget has changed and may need to change geometry.</p>
-<p>Call this function if the <a href="qwidget.html#sizeHint-prop">sizeHint</a>() or <a href="qwidget.html#sizePolicy-prop">sizePolicy</a>() have changed.</p>
-<p>For explicitly hidden widgets, updateGeometry() is a no-op. The layout system will be notified as soon as the widget is shown.</p>
+<p><font style="vertical-align: inherit;">通知布局系统此组件已更改并且可能需要更改几何图形。</font></p>
+<p><font style="vertical-align: inherit;">如果</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#sizeHint-prop"><font style="vertical-align: inherit;">sizeHint</font></a><font style="vertical-align: inherit;"> () 或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#sizePolicy-prop"><font style="vertical-align: inherit;">sizePolicy</font></a><font style="vertical-align: inherit;"> () 已更改，则调用此函数。</font></p>
+<p><font style="vertical-align: inherit;">对于显式隐藏的组件，updateGeometry() 是空操作。显示组件后将立即通知布局系统。</font></p>
 <!-- @@@updateGeometry -->
 <!-- $$$updateMicroFocus[overload1]$$$updateMicroFocus -->
 <h3 class="fn" id="updateMicroFocus"><a name="updateMicroFocus"></a><code>[protected slot] </code><span class="type">void</span> QWidget::<span class="name">updateMicroFocus</span>()</h3>
-<p>Updates the widget's micro focus.</p>
+<p><font style="vertical-align: inherit;">更新组件的微焦点。</font></p>
 <!-- @@@updateMicroFocus -->
 <!-- $$$visibleRegion[overload1]$$$visibleRegion -->
 <h3 class="fn" id="visibleRegion"><a name="visibleRegion"></a><span class="type"><a href="../qtgui/qregion.html">QRegion</a></span> QWidget::<span class="name">visibleRegion</span>() const</h3>
-<p>Returns the unobscured region where paint events can occur.</p>
-<p>For visible widgets, this is an approximation of the area not covered by other widgets; otherwise, this is an empty region.</p>
-<p>The <a href="qwidget.html#repaint">repaint</a>() function calls this function if necessary, so in general you do not need to call it.</p>
+<p><font style="vertical-align: inherit;">返回可能发生绘制事件的未遮挡区域。</font></p>
+<p><font style="vertical-align: inherit;">对于可见组件，这是其他组件未覆盖的区域的近似值；否则，这是一个空区域。</font></p>
+<p><font style="vertical-align: inherit;"><a href="qwidget.html#repaint">repaint</a><span lang="zh-cn">()</span>函数调用（如有必要）这个函数，所以一般你不需要调用它。</font></p>
 <!-- @@@visibleRegion -->
 <!-- $$$wheelEvent[overload1]$$$wheelEventQWheelEvent* -->
 <h3 class="fn" id="wheelEvent"><a name="wheelEvent"></a><code>[virtual protected] </code><span class="type">void</span> QWidget::<span class="name">wheelEvent</span>(<span class="type"><a href="../qtgui/qwheelevent.html">QWheelEvent</a></span> *<i>event</i>)</h3>
-<p>This event handler, for event <i>event</i>, can be reimplemented in a subclass to receive wheel events for the widget.</p>
-<p>If you reimplement this handler, it is very important that you <a href="../qtcore/qevent.html">ignore()</a> the event if you do not handle it, so that the widget's parent can interpret it.</p>
-<p>The default implementation ignores the event.</p>
-<p><b>请参考 </b><a href="../qtcore/qevent.html#ignore">QEvent::ignore</a>(), <a href="../qtcore/qevent.html#accept">QEvent::accept</a>(), <a href="qwidget.html#event">event</a>(), and <a href="../qtgui/qwheelevent.html">QWheelEvent</a>.</p>
+<p><font style="vertical-align: inherit;">这个事件处理程序，用于<span lang="zh-cn">滚轮</span>事件 </font><i><font style="vertical-align: inherit;">event</font></i><font style="vertical-align: inherit;">，可以在子类中重新实现，以接收组件的<span lang="zh-cn">滚轮</span>事件。</font></p>
+<p><font style="vertical-align: inherit;">如果你重新实现这个处理程序，如果你不处理它，<span lang="zh-cn">调用</span><a href="../qtcore/qevent.html">ignore()</a><span lang="zh-cn">忽略</span>事件是非常重要的，这样组件的父级可以解释它。</font></p>
+<p><font style="vertical-align: inherit;">默认实现忽略该事件。</font></p>
+<p><b>请参考 </b><a href="../qtcore/qevent.html#ignore">QEvent::ignore</a>(), <a href="../qtcore/qevent.html#accept">QEvent::accept</a>(), <a href="qwidget.html#event">event</a>(),
+<span lang="zh-cn">和 </span><a href="../qtgui/qwheelevent.html">QWheelEvent</a><span lang="zh-cn">。</span></p>
 <!-- @@@wheelEvent -->
 <!-- $$$winId[overload1]$$$winId -->
 <h3 class="fn" id="winId"><a name="winId"></a><span class="type">WId</span> QWidget::<span class="name">winId</span>() const</h3>
-<p>Returns the window system identifier of the widget.</p>
-<p>Portable in principle, but if you use it you are probably about to do something non-portable. Be careful.</p>
-<p>If a widget is non-native (alien) and winId() is invoked on it, that widget will be provided a native handle.</p>
-<p>This value may change at run-time. An event with type <a href="../qtcore/qevent.html#Type-enum">QEvent::WinIdChange</a> will be sent to the widget following a change in window system identifier.</p>
-<p><b>请参考 </b><a href="qwidget.html#find">find</a>().</p>
+<p><font style="vertical-align: inherit;">返回组件的窗口系统标识符。</font></p>
+<p><font style="vertical-align: inherit;">原则上是可移植的，但如果你使用它，你可能会做一些不可移植的事情。当心。</font></p>
+<p><font style="vertical-align: inherit;">如果一个组件是非本地的（外来的）并且在其上调用了 winId()，那么该组件将被提供一个本地句柄。</font></p>
+<p><font style="vertical-align: inherit;">此值可能会在运行时更改。在窗口系统标识符发生更改后，将向组件发送类型为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qevent.html#Type-enum"><font style="vertical-align: inherit;">QEvent::WinIdChange</font></a><font style="vertical-align: inherit;">的事件。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#find">find</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@winId -->
 <!-- $$$window[overload1]$$$window -->
 <h3 class="fn" id="window"><a name="window"></a><span class="type"><a href="qwidget.html#QWidget">QWidget</a></span> *QWidget::<span class="name">window</span>() const</h3>
-<p>Returns the window for this widget, i.e&#x2e; the next ancestor widget that has (or could have) a window-system frame.</p>
-<p>If the widget is a window, the widget itself is returned.</p>
-<p>Typical usage is changing the window title:</p>
+<p><font style="vertical-align: inherit;">返回此组件的窗口，即具有（或可能具有）窗口系统框架的下一个祖先组件。</font></p>
+<p><font style="vertical-align: inherit;">如果组件是一个窗口，则返回组件本身。</font></p>
+<p><font style="vertical-align: inherit;">典型用法是更改窗口标题：</font></p>
 <pre class="cpp">
 
   aWidget<span class="operator">-</span><span class="operator">&gt;</span>window()<span class="operator">-</span><span class="operator">&gt;</span>setWindowTitle(<span class="string">&quot;New Window Title&quot;</span>);
 
 </pre>
-<p><b>请参考 </b><a href="qwidget.html#isWindow">isWindow</a>().</p>
+<p><b>请参考 </b><a href="qwidget.html#isWindow">isWindow</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@window -->
 <!-- $$$windowHandle[overload1]$$$windowHandle -->
 <h3 class="fn" id="windowHandle"><a name="windowHandle"></a><span class="type"><a href="../qtgui/qwindow.html">QWindow</a></span> *QWidget::<span class="name">windowHandle</span>() const</h3>
-<p>If this is a native widget, return the associated <a href="../qtgui/qwindow.html">QWindow</a>. Otherwise return null.</p>
-<p>Native widgets include toplevel widgets, QGLWidget, and child widgets on which <a href="qwidget.html#winId">winId</a>() was called.</p>
-<p>This function was introduced in  Qt 5.0.</p>
-<p><b>请参考 </b><a href="qwidget.html#winId">winId</a>().</p>
+<p><font style="vertical-align: inherit;">如果这是本机组件，则返回关联的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qwindow.html"><font style="vertical-align: inherit;">QWindow</font></a><font style="vertical-align: inherit;">。否则返回空值。</font></p>
+<p><font style="vertical-align: inherit;">本机组件包括顶级组件、QGLWidget 和调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#winId"><font style="vertical-align: inherit;">winId</font></a><font style="vertical-align: inherit;"> () 的子组件。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 5.0 中引入的。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#winId">winId</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@windowHandle -->
 <!-- $$$windowIconChanged -->
 <h3 class="fn" id="windowIconChanged"><a name="windowIconChanged"></a><code>[signal] </code><span class="type">void</span> QWidget::<span class="name">windowIconChanged</span>(const <span class="type"><a href="../qtgui/qicon.html">QIcon</a></span> &amp;<i>icon</i>)</h3>
-<p>This signal is emitted when the window's icon has changed, with the new <i>icon</i> as an argument.</p>
-<p>This function was introduced in  Qt 5.2.</p>
-<p><b>Note:</b> Notifier signal for property <a href="qwidget.html#windowIcon-prop">windowIcon</a>. </p><!-- @@@windowIconChanged -->
+<p><font style="vertical-align: inherit;">当窗口的图标改变时发出这个信号，新</font><i><font style="vertical-align: inherit;">图标</font></i><font style="vertical-align: inherit;">作为参数。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 5.2 中引入的。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">属性</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#windowIcon-prop"><font style="vertical-align: inherit;">windowIcon 的</font></a><font style="vertical-align: inherit;">通知程序信号。</font></p><!-- @@@windowIconChanged -->
 <!-- $$$windowRole[overload1]$$$windowRole -->
 <h3 class="fn" id="windowRole"><a name="windowRole"></a><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QWidget::<span class="name">windowRole</span>() const</h3>
-<p>Returns the window's role, or an empty string.</p>
-<p><b>请参考 </b><a href="qwidget.html#setWindowRole">setWindowRole</a>(), <a href="qwidget.html#windowIcon-prop">windowIcon</a>, and <a href="qwidget.html#windowTitle-prop">windowTitle</a>.</p>
+<p><font style="vertical-align: inherit;">返回窗口的角色，或一个空字符串。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#setWindowRole">setWindowRole</a>(), <a href="qwidget.html#windowIcon-prop">windowIcon</a>,
+<span lang="zh-cn">和 </span><a href="qwidget.html#windowTitle-prop">windowTitle</a><span lang="zh-cn">。</span></p>
 <!-- @@@windowRole -->
 <!-- $$$windowState[overload1]$$$windowState -->
 <h3 class="fn" id="windowState"><a name="windowState"></a><span class="type"><a href="../qtcore/qt.html#WindowState-enum">Qt::WindowStates</a></span> QWidget::<span class="name">windowState</span>() const</h3>
-<p>Returns the current window state. The window state is a OR'ed combination of <a href="../qtcore/qt.html#WindowState-enum">Qt::WindowState</a>: <a href="../qtcore/qt.html#WindowState-enum">Qt::WindowMinimized</a>, <a href="../qtcore/qt.html#WindowState-enum">Qt::WindowMaximized</a>, <a href="../qtcore/qt.html#WindowState-enum">Qt::WindowFullScreen</a>, and <a href="../qtcore/qt.html#WindowState-enum">Qt::WindowActive</a>.</p>
-<p><b>请参考 </b><a href="../qtcore/qt.html#WindowState-enum">Qt::WindowState</a> and <a href="qwidget.html#setWindowState">setWindowState</a>().</p>
+<p><font style="vertical-align: inherit;">返回当前窗口状态。窗口状态是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowState-enum"><font style="vertical-align: inherit;">Qt::WindowState</font></a><font style="vertical-align: inherit;"><span lang="zh-cn">(<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowState-enum">Qt::WindowMinimized</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowState-enum">Qt::WindowMaximized</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowState-enum">Qt::WindowFullScreen</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowState-enum">Qt::WindowActive</a>)</span>的 OR 组合。</font></p>
+<p><b>请参考 </b><a href="../qtcore/qt.html#WindowState-enum">Qt::WindowState</a> 
+<span lang="zh-cn">和 </span><a href="qwidget.html#setWindowState">setWindowState</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@windowState -->
 <!-- $$$windowTitleChanged -->
 <h3 class="fn" id="windowTitleChanged"><a name="windowTitleChanged"></a><code>[signal] </code><span class="type">void</span> QWidget::<span class="name">windowTitleChanged</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>title</i>)</h3>
-<p>This signal is emitted when the window's title has changed, with the new <i>title</i> as an argument.</p>
-<p>This function was introduced in  Qt 5.2.</p>
-<p><b>Note:</b> Notifier signal for property <a href="qwidget.html#windowTitle-prop">windowTitle</a>. </p><!-- @@@windowTitleChanged -->
+<p><font style="vertical-align: inherit;">当窗口的标题改变时发出这个信号，新</font><i><font style="vertical-align: inherit;">标题</font></i><font style="vertical-align: inherit;">作为参数。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 5.2 中引入的。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">属性</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#windowTitle-prop"><font style="vertical-align: inherit;">windowTitle 的</font></a><font style="vertical-align: inherit;">通知程序信号。</font></p><!-- @@@windowTitleChanged -->
 <!-- $$$windowType[overload1]$$$windowType -->
 <h3 class="fn" id="windowType"><a name="windowType"></a><span class="type"><a href="../qtcore/qt.html#WindowType-enum">Qt::WindowType</a></span> QWidget::<span class="name">windowType</span>() const</h3>
-<p>Returns the window type of this widget. This is identical to <a href="qwidget.html#windowFlags-prop">windowFlags</a>() &amp; <a href="../qtcore/qt.html#WindowType-enum">Qt::WindowType_Mask</a>.</p>
-<p><b>请参考 </b><a href="qwidget.html#windowFlags-prop">windowFlags</a>.</p>
+<p><font style="vertical-align: inherit;">返回此组件的窗口类型。这与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#windowFlags-prop"><font style="vertical-align: inherit;">windowFlags</font></a><font style="vertical-align: inherit;"> () &amp; </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#WindowType-enum"><font style="vertical-align: inherit;">Qt::WindowType_Mask 相同</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#windowFlags-prop">windowFlags</a><span lang="zh-cn">。</span></p>
 <!-- @@@windowType -->
 </div>
 <div class="macros">
-<h2>Macro Documentation</h2>
+<h2><span lang="zh-cn">宏文档</span></h2>
 <!-- $$$QWIDGETSIZE_MAX[overload1]$$$QWIDGETSIZE_MAX -->
 <h3 class="fn" id="QWIDGETSIZE_MAX"><a name="QWIDGETSIZE_MAX"></a><span class="name">QWIDGETSIZE_MAX</span></h3>
-<p>Defines the maximum size for a <a href="qwidget.html">QWidget</a> object.</p>
-<p>The largest allowed size for a widget is <a href="../qtcore/qsize.html">QSize</a>(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX), i.e&#x2e; <a href="../qtcore/qsize.html">QSize</a> (16777215,16777215).</p>
-<p><b>请参考 </b><a href="qwidget.html#maximumSize-prop">QWidget::setMaximumSize</a>().</p>
+<p><font style="vertical-align: inherit;">定义</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">对象的最大尺寸。</font></p>
+<p><font style="vertical-align: inherit;">组件允许的最大尺寸是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qsize.html"><font style="vertical-align: inherit;">QSize</font></a><font style="vertical-align: inherit;"> (QWIDGETSIZE_MAX, QWIDGETSIZE_MAX)，即</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qsize.html"><font style="vertical-align: inherit;">QSize</font></a><font style="vertical-align: inherit;"> (16777215,16777215)。</font></p>
+<p><b>请参考 </b><a href="qwidget.html#maximumSize-prop">QWidget::setMaximumSize</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@QWIDGETSIZE_MAX -->
 </div>
         </div>
