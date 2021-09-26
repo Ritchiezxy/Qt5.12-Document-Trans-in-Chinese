@@ -47,8 +47,7 @@
 <ul>
 <li class="level1"><a href="#style-rules">样式规则</a></li>
 <li class="level1"><a href="#selector-types">选择器类型</a></li>
-<li class="level1"><a href="#sub-controls"><a name="sub-controls"></a>
-<span lang="zh-cn">子控件</span></a></li>
+<li class="level1"><a href="#sub-controls">子组件</a></li>
 <li class="level1"><a href="#pseudo-states">伪选择器</a></li>
 <li class="level1"><a href="#conflict-resolution">解决冲突</a></li>
 <li class="level1"><a href="#cascading">级联</a></li>
@@ -90,40 +89,42 @@ QPushButton及其子类(例如， <code>MyPushButton</code>)应该使用红色�
   <span class="type"><a href="qcombobox.html">QComboBox</a></span> { color: red }
 
 </pre>
-<p>The declaration part of a style rule is a list of <code><i>property</i>: <i>value</i></code> pairs, enclosed in braces (<code>{}</code>) and separated with semicolons. For example:</p>
+<p><font style="vertical-align: inherit;">样式规则的声明部分是一对列表，用大括号 ( )括起来并用分号分隔。例如：</font><code><i>property</i>: <i>value</i>{}</code></p>
 <pre class="cpp">
 
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span> { color: red; background<span class="operator">-</span>color: white }
 
 </pre>
-<p>See the <a href="stylesheet-reference.html#list-of-properties">List of Properties</a> section below for the list of properties provided by Qt widgets.</p>
+<p><font style="vertical-align: inherit;">有关Qt 组件提供</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#list-of-properties"><font style="vertical-align: inherit;">的属性列表，</font></a><font style="vertical-align: inherit;">请参阅下面<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#list-of-properties">的属性列表</a>部分。</font></p>
 <a name="selector-types"></a>
-<h2 id="selector-types">Selector Types</h2>
-<p>All the examples so far used the simplest type of selector, the Type Selector. Qt Style Sheets support all the <a href="http://www.w3.org/TR/REC-CSS2/selector.html#q1">selectors defined in CSS2</a>. The table below summarizes the most useful types of selectors.</p>
+<h2 id="selector-types"><font style="vertical-align: inherit;">选择器类型</font></h2>
+<p><font style="vertical-align: inherit;">到目前为止，所有示例都使用了最简单的选择器类型，即类型选择器。Qt 样式表支持</font><a href="http://www.w3.org/TR/REC-CSS2/selector.html#q1"><font style="vertical-align: inherit;">CSS2 中定义的</font></a><font style="vertical-align: inherit;">所有<a href="http://www.w3.org/TR/REC-CSS2/selector.html#q1">选择器</a>。下表总结了最有用的选择器类型。</font></p>
 <div class="table"><table class="generic" width="100%">
- <thead><tr class="qt-style"><th >Selector</th><th >Example</th><th >Explanation</th></tr></thead>
-<tr valign="top" class="odd"><td >Universal Selector</td><td ><code>*</code></td><td >Matches all widgets.</td></tr>
-<tr valign="top" class="even"><td >Type Selector</td><td ><code>QPushButton</code></td><td >Matches instances of <a href="qpushbutton.html">QPushButton</a> and of its subclasses.</td></tr>
-<tr valign="top" class="odd"><td >Property Selector</td><td ><code>QPushButton[flat=&quot;false&quot;]</code></td><td >Matches instances of <a href="qpushbutton.html">QPushButton</a> that are not <a href="qpushbutton.html#flat-prop">flat</a>. You may use this selector to test for any Qt <a href="../qtcore/properties.html">property</a> that supports <a href="../qtcore/qvariant.html#toString">QVariant::toString</a>() (see the <a href="../qtcore/qvariant.html#toString">toString()</a> function documentation for details). In addition, the special <code>class</code> property is supported, for the name of the class.<p>This selector may also be used to test dynamic properties. For more information on customization using dynamic properties, refer to <a href="stylesheet-examples.html#customizing-using-dynamic-properties">Customizing Using Dynamic Properties</a>.</p>
-<p>Instead of <code>=</code>, you can also use <code>~=</code> to test whether a Qt property of type <a href="../qtcore/qstringlist.html">QStringList</a> contains a given <a href="../qtcore/qstring.html">QString</a>.</p>
-<p><b>Warning:</b> If the value of the Qt property changes after the style sheet has been set, it might be necessary to force a style sheet recomputation. One way to achieve this is to unset the style sheet and set it again.</p>
+ <thead><tr class="qt-style"><th ><font style="vertical-align: inherit;">选择器</font></th><th ><font style="vertical-align: inherit;">例子</font></th><th ><font style="vertical-align: inherit;">解释</font></th></tr></thead>
+<tr valign="top" class="odd"><td ><font style="vertical-align: inherit;">通用选择器</font></td><td ><code>*</code></td><td ><font style="vertical-align: inherit;">匹配所有组件。</font></td></tr>
+<tr valign="top" class="even"><td ><font style="vertical-align: inherit;">类型选择器</font></td><td ><code>QPushButton</code></td><td ><font style="vertical-align: inherit;">匹配</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">及其子类的实例。</font></td></tr>
+<tr valign="top" class="odd"><td ><font style="vertical-align: inherit;">属性选择器</font></td><td ><code>QPushButton[flat=&quot;false&quot;]</code></td><td ><font style="vertical-align: inherit;">匹配不<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html#flat-prop">平坦</a>（flat）的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">实例。您可以使用此选择器来测试任何支持<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#toString">QVariant::toString</a> () 的Qt<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/properties.html">属性</a><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#toString">（</a>有关详细信息，请参阅<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#toString">toString()</a>函数文档）。此外，还支持特殊属性，用于类名。</font><code>class</code><p><font style="vertical-align: inherit;">此选择器还可用于测试动态属性。有关使用动态属性进行</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-examples.html#customizing-using-dynamic-properties"><font style="vertical-align: inherit;">自定义的</font></a><font style="vertical-align: inherit;">更多信息，请参阅<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-examples.html#customizing-using-dynamic-properties">使用动态属性</a>进行<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-examples.html#customizing-using-dynamic-properties">自定义</a>。</font></p>
+<p><font style="vertical-align: inherit;">取而代之的是</font><code>=</code><font style="vertical-align: inherit;">，您还可以使用</font><code>~=</code><font style="vertical-align: inherit;">来测试</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qstringlist.html"><font style="vertical-align: inherit;">QStringList</font></a><font style="vertical-align: inherit;">类型的 Qt 属性是否包含给定的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qstring.html"><font style="vertical-align: inherit;">QString</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">如果在设置样式表后 Qt 属性的值发生变化，则可能需要强制重新计算样式表。实现此目的的一种方法是取消设置样式表并重新设置。</font></p>
 </td></tr>
-<tr valign="top" class="even"><td >Class Selector</td><td ><code>.QPushButton</code></td><td >Matches instances of <a href="qpushbutton.html">QPushButton</a>, but not of its subclasses.<p>This is equivalent to <code>*[class~=&quot;QPushButton&quot;]</code>.</p>
+<tr valign="top" class="even"><td ><font style="vertical-align: inherit;">ID </font>
+	<a name="id-selector0"></a><font style="vertical-align: inherit;">选择器</font></td><td ><code>.QPushButton</code></td><td ><font style="vertical-align: inherit;">匹配</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton 的</font></a><font style="vertical-align: inherit;">实例，但不匹配其子类。</font><p><font style="vertical-align: inherit;">这相当于</font><code>*[class~="QPushButton"]</code><font style="vertical-align: inherit;">.</font></p>
 </td></tr>
-<tr valign="top" class="odd"><td >ID <a name="id-selector"></a> Selector</td><td ><code>QPushButton#okButton</code></td><td >Matches all <a href="qpushbutton.html">QPushButton</a> instances whose <a href="../qtcore/qobject.html#objectName-prop">object name</a> is <code>okButton</code>.</td></tr>
-<tr valign="top" class="even"><td >Descendant Selector</td><td ><code>QDialog QPushButton</code></td><td >Matches all instances of <a href="qpushbutton.html">QPushButton</a> that are descendants (children, grandchildren, etc.) of a <a href="qdialog.html">QDialog</a>.</td></tr>
-<tr valign="top" class="odd"><td >Child Selector</td><td ><code>QDialog &gt; QPushButton</code></td><td >Matches all instances of <a href="qpushbutton.html">QPushButton</a> that are direct children of a <a href="qdialog.html">QDialog</a>.</td></tr>
+<tr valign="top" class="odd"><td ><font style="vertical-align: inherit;">ID </font><a name="id-selector"></a><font style="vertical-align: inherit;">选择器</font></td><td ><code>QPushButton#okButton</code></td><td ><font style="vertical-align: inherit;">匹配<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#objectName-prop">对象名称</a>为<code>okButton</code> 的所有</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">实例。</font></td></tr>
+<tr valign="top" class="even"><td ><font style="vertical-align: inherit;">后代选择器</font></td><td ><code>QDialog QPushButton</code></td><td ><font style="vertical-align: inherit;">
+	配<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qdialog.html">QDialog 的</a>所有后代（子、孙等）的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">实例。</font></td></tr>
+<tr valign="top" class="odd"><td ><font style="vertical-align: inherit;">子选择器</font></td><td ><code>QDialog &gt; QPushButton</code></td><td ><font style="vertical-align: inherit;">匹配<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qdialog.html">QDialog 的</a>直接子级</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton 的</font></a><font style="vertical-align: inherit;">所有实例。</font></td></tr>
 </table></div>
-<h2 id="sub-controls">Sub-Controls</h2>
-<p>For styling complex widgets, it is necessary to access subcontrols of the widget, such as the drop-down button of a <a href="qcombobox.html">QComboBox</a> or the up and down arrows of a <a href="qspinbox.html">QSpinBox</a>. Selectors may contain <i>subcontrols</i> that make it possible to restrict the application of a rule to specific widget subcontrols. For example:</p>
+<h2 id="sub-controls"><font style="vertical-align: inherit;">子组件</font></h2>
+<p><font style="vertical-align: inherit;">对于复杂的组件样式，需要访问组件的子组件，例如</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qcombobox.html"><font style="vertical-align: inherit;">QComboBox</font></a><font style="vertical-align: inherit;">的下拉按钮或</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qspinbox.html"><font style="vertical-align: inherit;">QSpinBox 的</font></a><font style="vertical-align: inherit;">上下箭头。选择器可能包含子</font><i><font style="vertical-align: inherit;">组件</font></i><font style="vertical-align: inherit;">，可以将规则的应用限制为特定的组件子组件。例如：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qcombobox.html">QComboBox</a></span><span class="operator">::</span>drop<span class="operator">-</span>down { image: url(dropdown<span class="operator">.</span>png) }
 
 </pre>
-<p>The above rule styles the drop-down button of all <a href="qcombobox.html">QComboBox</a>es. Although the double-colon (<code>::</code>) syntax is reminiscent of CSS3 Pseudo-Elements, Qt Sub-Controls differ conceptually from these and have different cascading semantics.</p>
-<p>Sub-controls are always positioned with respect to another element - a reference element. This reference element could be the widget or another Sub-control. For example, the <a href="stylesheet-reference.html#drop-down-sub">::drop-down</a> of a <a href="qcombobox.html">QComboBox</a> is placed, by default, in the top right corner of the Padding rectangle of the <a href="qcombobox.html">QComboBox</a>. The <a href="stylesheet-reference.html#drop-down-sub">::drop-down</a> is placed, by default, in the Center of the Contents rectangle of the <a href="stylesheet-reference.html#drop-down-sub">::drop-down</a> Sub-control. See the <a href="stylesheet-reference.html#list-of-stylable-widgets">List of Stylable Widgets</a> below for the Sub-controls to use to style a widget and their default positions.</p>
-<p>The origin rectangle to be used can be changed using the <a href="stylesheet-reference.html#subcontrol-origin-prop">subcontrol-origin</a> property. For example, if we want to place the drop-down in the margin rectangle of the <a href="qcombobox.html">QComboBox</a> instead of the default Padding rectangle, we can specify:</p>
+<p><font style="vertical-align: inherit;">上述规则为所有</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qcombobox.html"><font style="vertical-align: inherit;">QComboBox</font></a><font style="vertical-align: inherit;"> es的下拉按钮设置样式。尽管双冒号 ( </font><code>::</code><font style="vertical-align: inherit;">) 语法让人联想到 CSS3 伪元素，但 Qt 子组件在概念上与这些不同，并且具有不同的级联语义。</font></p>
+<p><font style="vertical-align: inherit;">子组件总是相对于另一个元素 - 参考元素定位。此参考元素可以是组件或另一个子组件。例如，<a href="stylesheet-reference.html#drop-down-sub">::drop-down</a><span lang="zh-cn">（下拉）</span>一个的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qcombobox.html"><font style="vertical-align: inherit;">QComboBox</font></a><font style="vertical-align: inherit;">被放置，默认情况下，在的填充矩形的右上角</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qcombobox.html"><font style="vertical-align: inherit;">QComboBox</font></a><font style="vertical-align: inherit;">。该<a href="stylesheet-reference.html#drop-down-sub">::drop-down</a><span lang="zh-cn">（下拉）</span>放置，默认情况下，在该中心的内容矩形中的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#drop-down-sub"><font style="vertical-align: inherit;">::下拉</font></a><font style="vertical-align: inherit;">子组件。有关用于</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#list-of-stylable-widgets"><font style="vertical-align: inherit;">设置组件</font></a><font style="vertical-align: inherit;">样式及其默认位置的子组件，请参阅下面的可样式化组件列表。</font></p>
+<p><font style="vertical-align: inherit;">可以使用</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#subcontrol-origin-prop"><font style="vertical-align: inherit;">subcontrol-origin</font></a><font style="vertical-align: inherit;">属性更改要使用的原点矩形。例如，如果我们想将下拉框放置在</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qcombobox.html"><font style="vertical-align: inherit;">QComboBox</font></a><font style="vertical-align: inherit;">的边距矩形而不是默认的 Padding 矩形中，我们可以指定：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qcombobox.html">QComboBox</a></span> {
@@ -134,9 +135,11 @@ QPushButton及其子类(例如， <code>MyPushButton</code>)应该使用红色�
   }
 
 </pre>
-<p>The alignment of the drop-down within the Margin rectangle is changed using <a href="stylesheet-reference.html#subcontrol-position-prop">subcontrol-position</a> property.</p>
-<p>The <a href="stylesheet-reference.html#width-prop">width</a> and <a href="stylesheet-reference.html#height-prop">height</a> properties can be used to control the size of the Sub-control. Note that setting a <a href="stylesheet-reference.html#image-prop">image</a> implicitly sets the size of a Sub-control.</p>
-<p>The relative positioning scheme (<a href="stylesheet-reference.html#position-prop">position</a> : relative), allows the position of the Sub-Control to be offset from its initial position. For example, when the <a href="qcombobox.html">QComboBox</a>'s drop-down button is pressed, we might like the arrow inside to be offset to give a &quot;pressed&quot; effect. To achieve this, we can specify:</p>
+<p><font style="vertical-align: inherit;">使用</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#subcontrol-position-prop"><font style="vertical-align: inherit;">subcontrol-position</font></a><font style="vertical-align: inherit;">属性更改 Margin 矩形内下拉列表的对齐方式。</font></p>
+<p>
+<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#width-prop">
+<font style="vertical-align: inherit;">宽度</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#height-prop"><font style="vertical-align: inherit;">高度</font></a><font style="vertical-align: inherit;">属性可以被用来控制子组件的大小。请注意，设置</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#image-prop"><font style="vertical-align: inherit;">图像会</font></a><font style="vertical-align: inherit;">隐式设置子组件的大小。</font></p>
+<p><font style="vertical-align: inherit;">相对定位方案（</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#position-prop"><font style="vertical-align: inherit;">position</font></a><font style="vertical-align: inherit;"> : relative ），允许子组件的位置从其初始位置偏移。例如，当按下</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qcombobox.html"><font style="vertical-align: inherit;">QComboBox</font></a><font style="vertical-align: inherit;">的下拉按钮时，我们可能希望内部的箭头偏移以产生“按下”效果。为此，我们可以指定：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qcombobox.html">QComboBox</a></span><span class="operator">::</span>down<span class="operator">-</span>arrow {
@@ -148,104 +151,107 @@ QPushButton及其子类(例如， <code>MyPushButton</code>)应该使用红色�
   }
 
 </pre>
-<p>The absolute positioning scheme (<a href="stylesheet-reference.html#position-prop">position</a> : absolute), allows the position and size of the Sub-control to be changed with respect to the reference element.</p>
-<p>Once positioned, they are treated the same as widgets and can be styled using the <a href="stylesheet-customizing.html#box-model">box model</a>.</p>
-<p>See the <a href="stylesheet-reference.html#list-of-sub-controls">List of Sub-Controls</a> below for a list of supported sub-controls, and <a href="stylesheet-examples.html#customizing-the-qpushbutton-s-menu-indicator-sub-control">Customizing the QPushButton's Menu Indicator Sub-Control</a> for a realistic example.</p>
-<p><b>Note: </b>With complex widgets such as <a href="qcombobox.html">QComboBox</a> and <a href="qscrollbar.html">QScrollBar</a>, if one property or sub-control is customized, <b>all</b> the other properties or sub-controls must be customized as well.</p><a name="pseudo-states"></a>
-<h2 id="pseudo-states">Pseudo-States</h2>
-<p>Selectors may contain <i>pseudo-states</i> that denote that restrict the application of the rule based on the widget's state. Pseudo-states appear at the end of the selector, with a colon (<code>:</code>) in between. For example, the following rule applies when the mouse hovers over a <a href="qpushbutton.html">QPushButton</a>:</p>
+<p><font style="vertical-align: inherit;">绝对定位方案（</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#position-prop"><font style="vertical-align: inherit;">position</font></a><font style="vertical-align: inherit;"> : absolute ）允许子组件的位置和大小相对于参考元素进行更改。</font></p>
+<p><font style="vertical-align: inherit;">定位后，它们将被视为组件，并且可以使用</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-customizing.html#box-model"><font style="vertical-align: inherit;"><span lang="zh-cn">盒</span>模型</font></a><font style="vertical-align: inherit;">进行样式<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-customizing.html#box-model">设置</a>。</font></p>
+<p><font style="vertical-align: inherit;">请参阅下面</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#list-of-sub-controls"><font style="vertical-align: inherit;">的子组件</font></a><font style="vertical-align: inherit;">列表以获取支持的子组件列表，以及</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-examples.html#customizing-the-qpushbutton-s-menu-indicator-sub-control"><font style="vertical-align: inherit;">自定义 
+QPushButton 的菜单指示器子组件</font></a><font style="vertical-align: inherit;">以获取实际示例。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">对于</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qcombobox.html"><font style="vertical-align: inherit;">QComboBox</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qscrollbar.html"><font style="vertical-align: inherit;">QScrollBar</font></a><font style="vertical-align: inherit;">等复杂组件，如果自定义了一个属性或子组件，则</font><b><font style="vertical-align: inherit;">所有</font></b><font style="vertical-align: inherit;">其他属性或子组件也必须自定义。</font></p><a name="pseudo-states"></a>
+<h2 id="pseudo-states"><font style="vertical-align: inherit;">伪状态</font></h2>
+<p><font style="vertical-align: inherit;">选择器可能包含</font><i><font style="vertical-align: inherit;">伪状态</font></i><font style="vertical-align: inherit;">，表示基于组件的状态限制规则的应用。伪状态出现在选择器的末尾，中间有一个冒号 ( </font><code>:</code><font style="vertical-align: inherit;">)。例如，当鼠标悬停在</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton 上</font></a><font style="vertical-align: inherit;">时，以下规则适用：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span>:hover { color: white }
 
 </pre>
-<p>Pseudo-states can be negated using the exclamation operator. For example, the following rule applies when the mouse does not hover over a <a href="qradiobutton.html">QRadioButton</a>:</p>
+<p><font style="vertical-align: inherit;">可以使用感叹号来否定伪状态。例如，当鼠标未悬停在</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qradiobutton.html"><font style="vertical-align: inherit;">QRadioButton 上</font></a><font style="vertical-align: inherit;">时，以下规则适用：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qradiobutton.html">QRadioButton</a></span>:<span class="operator">!</span>hover { color: red }
 
 </pre>
-<p>Pseudo-states can be chained, in which case a logical AND is implied. For example, the following rule applies to when the mouse hovers over a checked <a href="qcheckbox.html">QCheckBox</a>:</p>
+<p>Pseudo-states can be chained, in which case a logical AND is implied. For example, the following rule applies to when the mouse hovers over a checked <a href="qcheckbox.html">QCheckBox</a>:<font style="vertical-align: inherit;">可以链接伪状态，在这种情况下，逻辑与是隐含的。例如，以下规则适用于鼠标悬停在选中的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qcheckbox.html"><font style="vertical-align: inherit;">QCheckBox </font></a>
+<font style="vertical-align: inherit;"><span lang="zh-cn">上时</span>：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qcheckbox.html">QCheckBox</a></span>:hover:checked { color: white }
 
 </pre>
-<p>Negated Pseudo-states may appear in Pseudo-state chains. For example, the following rule applies when the mouse hovers over a <a href="qpushbutton.html">QPushButton</a> that is not pressed:</p>
+<p><font style="vertical-align: inherit;">否定的伪状态可能出现在伪状态链中。例如，当鼠标悬停在未按下的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">上时，以下规则适用：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span>:hover:<span class="operator">!</span>pressed { color: blue; }
 
 </pre>
-<p>If needed, logical OR can be expressed using the comma operator:</p>
+<p><font style="vertical-align: inherit;">如果需要，可以使用逗号运算符表示逻辑 OR：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qcheckbox.html">QCheckBox</a></span>:hover<span class="operator">,</span> <span class="type"><a href="qcheckbox.html">QCheckBox</a></span>:checked { color: white }
 
 </pre>
-<p>Pseudo-states can appear in combination with subcontrols. For example:</p>
+<p><font style="vertical-align: inherit;">伪状态可以与子组件组合出现。例如：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qcombobox.html">QComboBox</a></span><span class="operator">::</span>drop<span class="operator">-</span>down:hover { image: url(dropdown_bright<span class="operator">.</span>png) }
 
 </pre>
-<p>See the <a href="stylesheet-reference.html#list-of-pseudo-states">List of Pseudo-States</a> section below for the list of pseudo-states provided by Qt widgets.</p>
+<p><font style="vertical-align: inherit;"><span lang="zh-cn">参</span>见</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#list-of-pseudo-states"><font style="vertical-align: inherit;">伪<span lang="zh-cn">状态列表</span></font></a><font style="vertical-align: inherit;"><span lang="zh-cn">章节查看</span>Qt<span lang="zh-cn">提供的</span>组件伪状态列表。</font></p>
 <a name="conflict-resolution"></a>
-<h2 id="conflict-resolution">Conflict Resolution</h2>
-<p>Conflicts arise when several style rules specify the same properties with different values. Consider the following style sheet:</p>
+<h2 id="conflict-resolution"><font style="vertical-align: inherit;">解决冲突</font></h2>
+<p><font style="vertical-align: inherit;">当多个样式规则使用不同的值指定相同的属性时，就会出现冲突。考虑以下样式表：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span><span class="preprocessor">#okButton { color: gray }</span>
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span> { color: red }
 
 </pre>
-<p>Both rules match <a href="qpushbutton.html">QPushButton</a> instances called <code>okButton</code> and there is a conflict for the <code>color</code> property. To resolve this conflict, we must take into account the <i>specificity</i> of the selectors. In the above example, <code>QPushButton#okButton</code> is considered more specific than <code>QPushButton</code>, because it (usually) refers to a single object, not to all instances of a class.</p>
-<p>Similarly, selectors with pseudo-states are more specific than ones that do not specify pseudo-states. Thus, the following style sheet specifies that a <a href="qpushbutton.html">QPushButton</a> should have white text when the mouse is hovering over it, otherwise red text:</p>
+<p><font style="vertical-align: inherit;">两个规则都匹配调用的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">实例</font><code>okButton</code><font style="vertical-align: inherit;">，并且</font><code>color</code><font style="vertical-align: inherit;">属性存在冲突。为了解决这个冲突，我们必须考虑选择器的</font><i><font style="vertical-align: inherit;">特殊性</font></i><font style="vertical-align: inherit;">。在上面的例子中，</font><code>QPushButton#okButton</code><font style="vertical-align: inherit;">被认为比 更具体</font><code>QPushButton</code><font style="vertical-align: inherit;">，因为它（通常）指的是单个对象，而不是类的所有实例。</font></p>
+<p><font style="vertical-align: inherit;">类似地，具有伪状态的选择器比不指定伪状态的选择器更具体。因此，下面的样式表指定当鼠标悬停在</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton 上时</font></a><font style="vertical-align: inherit;">应该有白色文本，否则为红色文本：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span>:hover { color: white }
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span> { color: red }
 
 </pre>
-<p>Here's a tricky one:</p>
+<p><font style="vertical-align: inherit;">这是一个棘手的问题：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span>:hover { color: white }
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span>:enabled { color: red }
 
 </pre>
-<p>Here, both selectors have the same specificity, so if the mouse hovers over the button while it is enabled, the second rule takes precedence. If we want the text to be white in that case, we can reorder the rules like this:</p>
+<p><font style="vertical-align: inherit;">在这里，两个选择器具有相同的特性，因此如果鼠标在启用时悬停在按钮上，则第二个规则优先。如果我们希望文本在这种情况下是白色的，我们可以像这样重新排序规则：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span>:enabled { color: red }
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span>:hover { color: white }
 
 </pre>
-<p>Alternatively, we can make the first rule more specific:</p>
+<p><font style="vertical-align: inherit;">或者，我们可以使第一条规则更具体：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span>:hover:enabled { color: white }
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span>:enabled { color: red }
 
 </pre>
-<p>A similar issue arises in conjunction with Type Selectors. Consider the following example:</p>
+<p><font style="vertical-align: inherit;">与类型选择器一起出现类似的问题。考虑以下示例：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span> { color: red }
   <span class="type"><a href="qabstractbutton.html">QAbstractButton</a></span> { color: gray }
 
 </pre>
-<p>Both rules apply to <a href="qpushbutton.html">QPushButton</a> instances (since <a href="qpushbutton.html">QPushButton</a> inherits <a href="qabstractbutton.html">QAbstractButton</a>) and there is a conflict for the <a href="stylesheet-reference.html#color-prop">color</a> property. Because <a href="qpushbutton.html">QPushButton</a> inherits <a href="qabstractbutton.html">QAbstractButton</a>, it might be tempting to assume that <code>QPushButton</code> is more specific than <code>QAbstractButton</code>. However, for style sheet computations, all Type Selectors have the same specificity, and the rule that appears last takes precedence. In other words, <a href="stylesheet-reference.html#color-prop">color</a> is set to <code>gray</code> for all <a href="qabstractbutton.html">QAbstractButton</a>s, including <a href="qpushbutton.html">QPushButton</a>s. If we really want <a href="qpushbutton.html">QPushButton</a>s to have red text, we can always reorder the rules.</p>
-<p>For determining the specificity of a rule, Qt Style Sheets follow the <a href="http://www.w3.org/TR/REC-CSS2/cascade.html#specificity">CSS2 Specification</a>:</p>
-<blockquote><p><i>A selector's specificity is calculated as follows:</i></p>
+<p><font style="vertical-align: inherit;">这两个规则都适用于</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">实例（因为</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">继承</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qabstractbutton.html"><font style="vertical-align: inherit;">QAbstractButton</font></a><font style="vertical-align: inherit;">）并且</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#color-prop"><font style="vertical-align: inherit;">颜色</font></a><font style="vertical-align: inherit;">属性存在冲突。因为</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">继承了</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qabstractbutton.html"><font style="vertical-align: inherit;">QAbstractButton</font></a><font style="vertical-align: inherit;">，所以可能会假设它</font><code>QPushButton</code><font style="vertical-align: inherit;">比 更具体</font><code>QAbstractButton</code><font style="vertical-align: inherit;">。但是，对于样式表计算，所有类型选择器都具有相同的特性，最后出现的规则优先。换句话说，</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#color-prop"><font style="vertical-align: inherit;">颜色</font></a><span lang="zh-cn">（</span><font style="vertical-align: inherit;"><span lang="zh-cn">color)</span></font><code>gray</code><font style="vertical-align: inherit;"><span lang="zh-cn">被设置给了</span>所有</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qabstractbutton.html"><font style="vertical-align: inherit;">QAbstractButton</font></a><font style="vertical-align: inherit;"> ，包括</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;"> 
+。如果我们真的希望</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">有红色文本，我们可以随时重新排序规则。</font></p>
+<p><font style="vertical-align: inherit;">为了确定规则的特殊性，Qt 样式表遵循</font><a href="http://www.w3.org/TR/REC-CSS2/cascade.html#specificity"><font style="vertical-align: inherit;">CSS2 规范</font></a><font style="vertical-align: inherit;">：</font></p>
+<blockquote><p><i><font style="vertical-align: inherit;">选择器的特异性计算如下：</font></i></p>
 <ul>
-<li><i>count the number of ID attributes in the selector (= a)</i></li>
-<li><i>count the number of other attributes and pseudo-classes in the selector (= b)</i></li>
-<li><i>count the number of element names in the selector (= c)</i></li>
-<li><i>ignore pseudo-elements [i.e&#x2e;, <a href="stylesheet-reference.html#subcontrols">subcontrols</a>].</i></li>
+<li><i><font style="vertical-align: inherit;">计算选择器中 ID 属性的数量（= a）</font></i></li>
+<li><i><font style="vertical-align: inherit;">算选择器中其他属性和伪类的数量（= b）</font></i></li>
+<li><i><font style="vertical-align: inherit;">计算选择器中元素名称的数量（= c）</font></i></li>
+	<li><i><font style="vertical-align: inherit;">忽略伪元素[即子</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-reference.html#subcontrols"><font style="vertical-align: inherit;">组件</font></a><font style="vertical-align: inherit;">]。</font></i></li>
 </ul>
-<p><i>Concatenating the three numbers a-b-c (in a number system with a large base) gives the specificity.</i></p>
-<p><i>Some examples:</i></p>
+<p><i><font style="vertical-align: inherit;">连接三个数字 abc（在具有大基数的数字系统中）给出了特异性。</font></i></p>
+<p><i><font style="vertical-align: inherit;">一些例子：</font></i></p>
 <pre class="cpp">
 
   <span class="operator">*</span>             {}  <span class="comment">/* a=0 b=0 c=0 -&gt; specificity =   0 */</span>
@@ -260,57 +266,58 @@ QPushButton及其子类(例如， <code>MyPushButton</code>)应该使用红色�
 </pre>
 </blockquote>
 <a name="cascading"></a>
-<h2 id="cascading">Cascading</h2>
-<p>Style sheets can be set on the <a href="qapplication.html">QApplication</a>, on parent widgets, and on child widgets. An arbitrary widget's effective style sheet is obtained by merging the style sheets set on the widget's ancestors (parent, grandparent, etc.), as well as any style sheet set on the <a href="qapplication.html">QApplication</a>.</p>
-<p>When conflicts arise, the widget's own style sheet is always preferred to any inherited style sheet, irrespective of the specificity of the conflicting rules. Likewise, the parent widget's style sheet is preferred to the grandparent's, etc.</p>
-<p>One consequence of this is that setting a style rule on a widget automatically gives it precedence over other rules specified in the ancestor widgets' style sheets or the <a href="qapplication.html">QApplication</a> style sheet. Consider the following example. First, we set a style sheet on the <a href="qapplication.html">QApplication</a>:</p>
+<h2 id="cascading"><font style="vertical-align: inherit;">级联</font></h2>
+<p><font style="vertical-align: inherit;">样式表可以在</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qapplication.html"><font style="vertical-align: inherit;">QApplication</font></a><font style="vertical-align: inherit;">、父组件和子组件上设置。通过合并组件的祖先（父、祖父等）上设置的样式表以及</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qapplication.html"><font style="vertical-align: inherit;">QApplication</font></a><font style="vertical-align: inherit;">上设置的任何样式表，可以获得任意组件的有效样式表。</font></p>
+<p><font style="vertical-align: inherit;">当发生冲突时，无论冲突规则的特殊性如何，组件自己的样式表总是优先于任何继承的样式表。同样，父组件的样式表优先于祖父组件等。</font></p>
+<p><font style="vertical-align: inherit;">这样做的一个结果是，在组件上设置样式规则会自动使其优先于在祖先组件的样式表或</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qapplication.html"><font style="vertical-align: inherit;">QApplication</font></a><font style="vertical-align: inherit;">样式表中指定的其他规则。考虑以下示例。首先，我们在</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qapplication.html"><font style="vertical-align: inherit;">QApplication</font></a><font style="vertical-align: inherit;">上设置一个样式表：</font></p>
 <pre class="cpp">
 
   <a href="qapplication.html#qApp">qApp</a><span class="operator">-</span><span class="operator">&gt;</span>setStyleSheet(<span class="string">&quot;QPushButton { color: white }&quot;</span>);
 
 </pre>
-<p>Then we set a style sheet on a <a href="qpushbutton.html">QPushButton</a> object:</p>
+<p><font style="vertical-align: inherit;">然后我们在</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">对象上设置一个样式表：</font></p>
 <pre class="cpp">
 
   myPushButton<span class="operator">-</span><span class="operator">&gt;</span>setStyleSheet(<span class="string">&quot;* { color: blue }&quot;</span>);
 
 </pre>
-<p>The style sheet on the <a href="qpushbutton.html">QPushButton</a> forces the <a href="qpushbutton.html">QPushButton</a> (and any child widget) to have blue text, in spite of the more specific rule set provided by the application-wide style sheet.</p>
-<p>The result would have been the same if we had written</p>
+<p><font style="vertical-align: inherit;">在样式表</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">力</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">（以及任何子组件）有蓝色的文字，尽管应用程序范围内的样式表提供的更具体规则集。</font></p>
+<p><font style="vertical-align: inherit;">如果我们写了，结果会是一样的</font></p>
 <pre class="cpp">
 
   myPushButton<span class="operator">-</span><span class="operator">&gt;</span>setStyleSheet(<span class="string">&quot;color: blue&quot;</span>);
 
 </pre>
-<p>except that if the <a href="qpushbutton.html">QPushButton</a> had children (which is unlikely), the style sheet would have no impact on them.</p>
-<p>Style sheet cascading is a complex topic. Refer to the <a href="http://www.w3.org/TR/CSS2/cascade.html#cascade">CSS2 Specification</a> for the gory details. Be aware that Qt currently doesn't implement <code>!important</code>.</p>
+<p><font style="vertical-align: inherit;">除了如果</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">有孩子（这不太可能），样式表对他们没有影响。</font></p>
+<p><font style="vertical-align: inherit;">样式表级联是一个复杂的话题。有关详细信息，请参阅</font><a href="http://www.w3.org/TR/CSS2/cascade.html#cascade"><font style="vertical-align: inherit;">CSS2 规范</font></a><font style="vertical-align: inherit;">。请注意，Qt 目前没有实现</font><code>!important</code><font style="vertical-align: inherit;">.</font></p>
 <a name="inheritance"></a>
-<h2 id="inheritance">Inheritance</h2>
-<p>In classic CSS, when font and color of an item is not explicitly set, it gets automatically inherited from the parent. By default, when using Qt Style Sheets, a widget does <b>not</b> automatically inherit its font and color setting from its parent widget.</p>
-<p>For example, consider a <a href="qpushbutton.html">QPushButton</a> inside a <a href="qgroupbox.html">QGroupBox</a>:</p>
+<h2 id="inheritance"><span lang="zh-cn">继承</span></h2>
+<p><font style="vertical-align: inherit;">在经典 CSS 中，当未明确设置项目的字体和颜色时，它会自动从父项继承。默认情况下，使用Qt样式表时，组件并</font><b><font style="vertical-align: inherit;">不能</font></b><font style="vertical-align: inherit;">自动继承其父组件的字体和颜色设置。</font></p>
+<p><font style="vertical-align: inherit;">例如，考虑<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qgroupbox.html">QGroupBox</a>内的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">：</font></p>
 <pre class="cpp">
 
   <a href="qapplication.html#qApp">qApp</a><span class="operator">-</span><span class="operator">&gt;</span>setStyleSheet(<span class="string">&quot;QGroupBox { color: red; } &quot;</span>);
 
 </pre>
-<p>The <a href="qpushbutton.html">QPushButton</a> does not have an explicit color set. Hence, instead of inheriting color of its parent <a href="qgroupbox.html">QGroupBox</a>, it has the system color. If we want to set the color on a <a href="qgroupbox.html">QGroupBox</a> and its children, we can write:</p>
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">没有一个明确的颜色设置。因此，它没有继承其父</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qgroupbox.html"><font style="vertical-align: inherit;">QGroupBox 的</font></a><font style="vertical-align: inherit;">颜色，而是具有系统颜色。如果我们想在</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qgroupbox.html"><font style="vertical-align: inherit;">QGroupBox</font></a><font style="vertical-align: inherit;">及其子项上设置颜色，我们可以这样写：</font></p>
 <pre class="cpp">
 
   <a href="qapplication.html#qApp">qApp</a><span class="operator">-</span><span class="operator">&gt;</span>setStyleSheet(<span class="string">&quot;QGroupBox, QGroupBox * { color: red; }&quot;</span>);
 
 </pre>
-<p>In contrast, setting a font and palette using <a href="qwidget.html#font-prop">QWidget::setFont</a>() and <a href="qwidget.html#palette-prop">QWidget::setPalette</a>() propagates to child widgets.</p>
-<p>If you would prefer that the font and palette propagate to child widgets, you can set the <a href="../qtcore/qt.html#ApplicationAttribute-enum">Qt::AA_UseStyleSheetPropagationInWidgetStyles</a> flag, like this:</p>
-<p>Usage:</p>
+<p><font style="vertical-align: inherit;">相反，使用</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#font-prop"><font style="vertical-align: inherit;">QWidget::setFont</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#palette-prop"><font style="vertical-align: inherit;">QWidget::setPalette</font></a><font style="vertical-align: inherit;"> ()设置字体和调色板会传播到子组件。</font></p>
+<p><font style="vertical-align: inherit;">如果您希望字体和调色板传播到子组件，您可以设置</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#ApplicationAttribute-enum"><font style="vertical-align: inherit;">Qt::AA_UseStyleSheetPropagationInWidgetStyles</font></a><font style="vertical-align: inherit;">标志，如下所示：</font></p>
+<p><font style="vertical-align: inherit;">用法：</font></p>
 <pre class="cpp">
 
   <span class="type"><a href="../qtcore/qcoreapplication.html">QCoreApplication</a></span><span class="operator">::</span>setAttribute(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>AA_UseStyleSheetPropagationInWidgetStyles<span class="operator">,</span> <span class="keyword">true</span>);
 
 </pre>
-<p>When the widget-style font and palette propagation is enabled, font and palette changes made through Qt Style Sheets will behave as though the user had manually called the corresponding <a href="qwidget.html#palette-prop">QWidget::setPalette</a>() and <a href="qwidget.html#font-prop">QWidget::setFont</a>() methods on all of the QWidgets targeted by the style sheet. If this would have caused propagation in C++, it will cause propagation in style sheets and vice versa.</p>
+<p>当启用了组件样式的字体和调色板传播时，通过Qt样式表进行的字体和调色板更改将表现得就像用户在样式表所针对的所有QWidgets上手动调用了相应的<a href="qwidget.html#palette-prop">QWidget::setPalette</a>()和 <a href="qwidget.html#font-prop">QWidget::setFont</a>()方法一样。如果这将导致在C++中传播，那么它将导致在样式表中传播，反之亦然。</p>
 <a name="widgets-inside-c-namespaces"></a>
-<h2 id="widgets-inside-c-namespaces">Widgets Inside C++ Namespaces</h2>
-<p>The Type Selector can be used to style widgets of a particular type. For example,</p>
+<h2 id="widgets-inside-c-namespaces"><font style="vertical-align: inherit;">C++ 
+命名空间中的组件</font></h2>
+<p><font style="vertical-align: inherit;">类型选择器可用于为特定类型的组件设置样式。例如，</font></p>
 <pre class="cpp">
 
   <span class="keyword">class</span> MyPushButton : <span class="keyword">public</span> <span class="type"><a href="qpushbutton.html">QPushButton</a></span> {
@@ -321,7 +328,7 @@ QPushButton及其子类(例如， <code>MyPushButton</code>)应该使用红色�
   <a href="qapplication.html#qApp">qApp</a><span class="operator">-</span><span class="operator">&gt;</span>setStyleSheet(<span class="string">&quot;MyPushButton { background: yellow; }&quot;</span>);
 
 </pre>
-<p>Qt Style Sheet uses QObject::className() of the widget to determine when to apply the Type Selector. When custom widgets are inside namespaces, the QObject::className() returns &lt;namespace&gt;::&lt;classname&gt;. This conflicts with the syntax for <a href="stylesheet-syntax.html#sub-controls">Sub-Controls</a>. To overcome this problem, when using the Type Selector for widgets inside namespaces, we must replace the &quot;::&quot; with &quot;--&quot;. For example,</p>
+<p><font style="vertical-align: inherit;">Qt 样式表使用组件的 QObject::className() 来确定何时应用类型选择器。当自定义组件位于命名空间内时，QObject::className() 返回 &lt;namespace&gt;::&lt;classname&gt;。这与</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtwidgets/stylesheet-syntax.html#sub-controls"><font style="vertical-align: inherit;">Sub-Controls</font></a><font style="vertical-align: inherit;">的语法冲突。为了克服这个问题，当对命名空间内的组件使用类型选择器时，我们必须将“::”替换为“--”。例如，</font></p>
 <pre class="cpp">
 
   <span class="keyword">namespace</span> ns {
@@ -335,9 +342,9 @@ QPushButton及其子类(例如， <code>MyPushButton</code>)应该使用红色�
 
 </pre>
 <a name="setting-qobject-properties"></a>
-<h2 id="setting-qobject-properties">Setting QObject Properties</h2>
-<p>From 4.3 and above, any designable <a href="../qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a> can be set using the qproperty-&lt;property name&gt; syntax.</p>
-<p>For example,</p>
+<h2 id="setting-qobject-properties"><font style="vertical-align: inherit;">设置 QObject 属性</font></h2>
+<p><font style="vertical-align: inherit;">从 4.3 及更高版本开始，可以使用 qproperty-&lt;property name&gt; 语法设置任何可设计的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY"><font style="vertical-align: inherit;">Q_PROPERTY</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">例如，</font></p>
 <pre class="cpp">
 
   MyLabel { qproperty<span class="operator">-</span>pixmap: url(pixmap<span class="operator">.</span>png); }
@@ -345,7 +352,7 @@ QPushButton及其子类(例如， <code>MyPushButton</code>)应该使用红色�
   <span class="type"><a href="qpushbutton.html">QPushButton</a></span> { qproperty<span class="operator">-</span>iconSize: <span class="number">20px</span> <span class="number">20px</span>; }
 
 </pre>
-<p>If the property references an enum declared with Q_ENUMS, you should reference its constants by name, i.e&#x2e;, not their numeric value.</p>
+<p><font style="vertical-align: inherit;">如果属性引用了一个用 Q_ENUMS 声明的枚举，你应该通过名称引用它的常量，<span lang="zh-cn">也就是说</span>不是它们的数值。</font></p>
 </div>
 <!-- @@@stylesheet-syntax.html -->
 <p class="naviNextPrevious footerNavi">
