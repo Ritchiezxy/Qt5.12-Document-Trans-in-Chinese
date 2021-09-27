@@ -26,8 +26,9 @@
     <div class="main-rounded">
       <div class="navigationbar">
         <table><tr>
-<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qmlextendingexamples.html">Qt QML Examples</a></td><td >Extending QML - Adding Types Example</td></tr></table><table class="buildversion"><tr>
-<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 Reference Documentation</a></td>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qmlextendingexamples.html">Qt QML Examples</a></td><td >
+			扩展QML -添加类型示例</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
         </tr></table>
       </div>
     </div>
@@ -44,14 +45,14 @@
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">Extending QML - Adding Types Example</h1>
+<h1 class="title">扩展QML -添加类型示例</h1>
 <span class="subtitle"></span>
 <!-- $$$referenceexamples/adding-brief -->
-<p>Exporting C++ Classes.</p>
+<p>导出C++类。</p>
 <!-- @@@referenceexamples/adding -->
 <!-- $$$referenceexamples/adding-description -->
 <div class="descr"> <a name="details"></a>
-<p>The Adding Types Example shows how to add a new object type, <code>Person</code>, to QML. The <code>Person</code> type can be used from QML like this:</p>
+<p>添加类型示例展示了如何向QML添加新的对象类型Person。Person类型可以像这样从QML中使用:</p>
 <pre class="qml">
 
   import People 1.0
@@ -63,8 +64,9 @@
 
 </pre>
 <a name="declare-the-person-class"></a>
-<h2 id="declare-the-person-class">Declare the Person Class</h2>
-<p>All QML types map to C++ types. Here we declare a basic C++ Person class with the two properties we want accessible on the QML type - name and shoeSize. Although in this example we use the same name for the C++ class as the QML type, the C++ class can be named differently, or appear in a namespace.</p>
+<h2 id="declare-the-person-class">声明Person类</h2>
+<p>所有QML类型都映射到C++类型。在这里，我们声明了一个基本的C++ 
+Person类，其中包含我们希望在QML类型上访问的两个属性——name和shoeSize。尽管在本例中，我们使用了与QML类型相同的C++类名称，但是C++类可以以不同的方式命名，或者出现在一个名称空间中。</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> Person : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
@@ -88,7 +90,7 @@
 
 </pre>
 <a name="define-the-person-class"></a>
-<h2 id="define-the-person-class">Define the Person Class</h2>
+<h2 id="define-the-person-class">定义Person类</h2>
 <pre class="cpp">
 
   Person<span class="operator">::</span>Person(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent)
@@ -117,12 +119,13 @@
   }
 
 </pre>
-<p>The Person class implementation is quite basic. The property accessors simply return members of the object instance.</p>
-<p>The <code>main.cpp</code> file also calls the <code>qmlRegisterType()</code> function to register the <code>Person</code> type with QML as a type in the People library version 1.0, and defines the mapping between the C++ and QML class names.</p>
+<p>Person类实现非常基础。属性访问器只是返回对象实例的成员。</p>
+<p>
+main.cpp文件还调用qmlRegisterType()函数以将Person类型注册为People库1.0版本中的类型，并定义C++和QML类名之间的映射。</p>
 <a name="running-the-example"></a>
-<h2 id="running-the-example">Running the Example</h2>
-<p>The main.cpp file in the example includes a simple shell application that loads and runs the QML snippet shown at the beginning of this page.</p>
-<p>Files:</p>
+<h2 id="running-the-example">运行这个例子</h2>
+<p>示例中的main.cpp文件包含一个简单的shell应用程序，该应用程序加载并运行本页开头显示的QML代码片段。</p>
+<p><span lang="zh-cn">文件：</span></p>
 <ul>
 <li><a href="qtqml-referenceexamples-adding-adding-pro.html">referenceexamples/adding/adding.pro</a></li>
 <li><a href="qtqml-referenceexamples-adding-adding-qrc.html">referenceexamples/adding/adding.qrc</a></li>
