@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- worldtimeclockbuilder.qdoc -->
+  <title>World Time Clock Builder Example | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="examples-designer.html">Qt Designer Examples</a></td><td ><font style="vertical-align: inherit;">世界时间时钟生成器示例</font></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><span lang="zh-cn">目录</span></h3>
+<ul>
+<li class="level1"><a href="#preparation"><span lang="zh-cn">准备</span></a></li>
+<li class="level1"><a href="#loading-and-building-the-form">
+<font style="vertical-align: inherit;">加载和构建表单</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><font style="vertical-align: inherit;">世界时间时钟生成器示例</font></h1>
+<span class="subtitle"></span>
+<!-- $$$worldtimeclockbuilder-brief -->
+<p><font style="vertical-align: inherit;">用 Qt Designer 创建包含可在运行时动态生成的自定义组件的表单。</font></p>
+<!-- @@@worldtimeclockbuilder -->
+<!-- $$$worldtimeclockbuilder-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/worldtimeclockbuilder-example.png" alt="" /></p><p><font style="vertical-align: inherit;">此示例使用包含</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-worldtimeclockplugin-example.html"><font style="vertical-align: inherit;"><span lang="zh-cn">世界时时钟插件</span></font></a><font style="vertical-align: inherit;">示例中描述的自定义组件插件的表单，并使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/qtuitools-module.html">QtUiTools</a>模块的一部分</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html"><font style="vertical-align: inherit;">QUiLoader</font></a><font style="vertical-align: inherit;">类动态生成用户界面。</font></p>
+<a name="preparation"></a>
+<h2 id="preparation"><span lang="zh-cn">准备</span></h2>
+<p><font style="vertical-align: inherit;">与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-calculatorbuilder-example.html"><font style="vertical-align: inherit;">Calculator 
+<span lang="zh-cn">生成器</span></font></a><font style="vertical-align: inherit;">示例一样，此示例的项目文件需要包含适当的定义，以确保它是针对所需的 Qt 模块构建的。</font></p>
+<pre class="cpp">
+
+  QT          += widgets uitools
+  SOURCES     = main.cpp
+  RESOURCES   = worldtimeclockbuilder.qrc
+
+</pre>
+<p>B<font style="vertical-align: inherit;">通过附加</font><code>form</code><font style="vertical-align: inherit;">到</font><code>CONFIG</code><font style="vertical-align: inherit;">声明，我们指示</font><code>qmake</code><font style="vertical-align: inherit;">生成对</font><code>libQtUiTools</code><font style="vertical-align: inherit;">包含</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/qtuitools-module.html"><font style="vertical-align: inherit;">QtUiTools</font></a><font style="vertical-align: inherit;">类的库的依赖<span lang="zh-cn">项</span>。</font></p>
+<p><font style="vertical-align: inherit;">请注意，我们不会通知</font><code>qmake</code><font style="vertical-align: inherit;">任何 UI 文件，因此不会处理任何 UI 文件并将其构建到应用程序中。资源文件包含我们希望使用的特定表单的条目：</font></p>
+<pre class="cpp">
+
+  &lt;!DOCTYPE RCC&gt;&lt;RCC version=&quot;1.0&quot;&gt;
+  &lt;qresource prefix=&quot;/forms&quot;&gt;
+     &lt;file&gt;form.ui&lt;/file&gt;
+  &lt;/qresource&gt;
+  &lt;/RCC&gt;
+
+</pre>
+<p><font style="vertical-align: inherit;">表单不需要以这种方式包含在应用程序中。为方便起见，我们仅在应用程序资源中包含一个表单，并保持示例简短。</font></p>
+<a name="loading-and-building-the-form"></a>
+<h2 id="loading-and-building-the-form"><font style="vertical-align: inherit;">加载和构建表单</font></h2>
+<p><font style="vertical-align: inherit;">于这个例子只加载和显示一个预先准备好的表单，所有的工作都可以在 main() 
+函数中完成。我们正在使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/qtuitools-module.html"><font style="vertical-align: inherit;">QtUiTools</font></a><font style="vertical-align: inherit;">库中的一个类，因此，除了编写应用程序通常需要的任何其他 Qt 类之外，我们还必须包含适当的头文件：</font></p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &lt;QtUiTools&gt;</span>
+
+</pre>
+<p><font style="vertical-align: inherit;">main 函数用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qdir.html#Q_INIT_RESOURCE"><font style="vertical-align: inherit;">Q_INIT_RESOURCE</font></a><font style="vertical-align: inherit;"> () 宏初始化资源系统，并以通常的方式构造一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qapplication.html"><font style="vertical-align: inherit;">QApplication</font></a><font style="vertical-align: inherit;">实例：</font></p>
+<pre class="cpp">
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span>argv<span class="operator">[</span><span class="operator">]</span>)
+  {
+      Q_INIT_RESOURCE(worldtimeclockbuilder);
+
+      <span class="type"><a href="../qtwidgets/qapplication.html">QApplication</a></span> app(argc<span class="operator">,</span> argv);
+
+      <span class="type"><a href="../qtuitools/quiloader.html">QUiLoader</a></span> loader;
+
+</pre>
+<p><font style="vertical-align: inherit;">我们构造了一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html"><font style="vertical-align: inherit;">QUiLoader</font></a><font style="vertical-align: inherit;">对象来处理我们想要使用的表单。</font></p>
+<p><font style="vertical-align: inherit;">表单本身是使用资源文件中定义的路径从资源文件系统中获取的。我们使用表单加载器来加载和构造表单：</font></p>
+<pre class="cpp">
+
+      <span class="type"><a href="../qtcore/qfile.html">QFile</a></span> file(<span class="string">&quot;:/forms/form.ui&quot;</span>);
+      file<span class="operator">.</span>open(<span class="type"><a href="../qtcore/qfile.html">QFile</a></span><span class="operator">::</span>ReadOnly);
+
+      <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>widget <span class="operator">=</span> loader<span class="operator">.</span>load(<span class="operator">&amp;</span>file);
+
+      file<span class="operator">.</span>close();
+      widget<span class="operator">-</span><span class="operator">&gt;</span>show();
+
+</pre>
+<p><font style="vertical-align: inherit;">加载表单后，可以关闭资源文件并显示组件。</font></p>
+<pre class="cpp">
+
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">表单加载器确保在加载表单时正确设置表单中对象之间的所有信号和槽连接。因此，时间由世界时间时钟组件更新，时区旋转框可用于更改时针的位置。</font></p>
+<p><span lang="zh-cn">文件</span></p>
+<ul>
+<li><a href="qtdesigner-worldtimeclockbuilder-form-ui.html">worldtimeclockbuilder/form.ui</a></li>
+<li><a href="qtdesigner-worldtimeclockbuilder-main-cpp.html">worldtimeclockbuilder/main.cpp</a></li>
+<li><a href="qtdesigner-worldtimeclockbuilder-worldtimeclockbuilder-pro.html">worldtimeclockbuilder/worldtimeclockbuilder.pro</a></li>
+<li><a href="qtdesigner-worldtimeclockbuilder-worldtimeclockbuilder-qrc.html">worldtimeclockbuilder/worldtimeclockbuilder.qrc</a></li>
+</ul>
+</div>
+<!-- @@@worldtimeclockbuilder -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>WidgetFactory Class | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">C++ Classes</a></td><td ><font style="vertical-align: inherit;">WidgetFactory 类</font></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesigner-internal-widgetfactory.html#reimplemented-public-functions"><font style="vertical-align: inherit;">重新实现的公共<span lang="zh-cn">函数</span></font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesigner-internal-widgetfactory.html#details"><font style="vertical-align: inherit;">详细说明</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">WidgetFactory <span lang="zh-cn">类</span></h1>
+<span class="small-subtitle">(<a href="qdesigner-internal-widgetfactory.html">qdesigner_internal::WidgetFactory</a>)<br/></span>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="../qtcore/qobject.html">QObject</a></td></tr></table></div><ul>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesigner-internal-widgetfactory-members.html"><font style="vertical-align: inherit;">所有成员的列表，包括继承的成员</font></a></li>
+</ul>
+<a name="reimplemented-public-functions"></a>
+<h2 id="reimplemented-public-functions"><font style="vertical-align: inherit;">重新实现的公共<span lang="zh-cn">函数</span></font></h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QWidget *</td><td class="memItemRight bottomAlign"><b><a href="qdesigner-internal-widgetfactory.html#containerOfWidget">containerOfWidget</a></b>(QWidget *<i>w</i>) const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QLayout *</td><td class="memItemRight bottomAlign"><b><a href="qdesigner-internal-widgetfactory.html#createLayout">createLayout</a></b>(QWidget *<i>widget</i>, QLayout *<i>parentLayout</i>, int <i>type</i>) const override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QWidget *</td><td class="memItemRight bottomAlign"><b><a href="qdesigner-internal-widgetfactory.html#widgetOfContainer">widgetOfContainer</a></b>(QWidget *<i>w</i>) const override</td></tr>
+</table></div>
+<a name="details"></a>
+<div class="func">
+<h2><font style="vertical-align: inherit;">成员函数文档</font></h2>
+<!-- $$$containerOfWidget[overload1]$$$containerOfWidgetQWidget* -->
+<h3 class="fn" id="containerOfWidget"><a name="containerOfWidget"></a><code>[override virtual] </code><span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *WidgetFactory::<span class="name">containerOfWidget</span>(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *<i>w</i>) const</h3>
+<p><font style="vertical-align: inherit;">当</font><i><font style="vertical-align: inherit;">w</font></i><font style="vertical-align: inherit;">是设计<span lang="zh-cn">器</span>已知的容器时，返回应将子项插入其中的<span lang="zh-cn">组件</span>。</font></p>
+<p><font style="vertical-align: inherit;">通常是</font><i><font style="vertical-align: inherit;">w</font></i><font style="vertical-align: inherit;">本身，但也有例外（例如，一个tabwidget被设计者称为容器，但是子widget应该插入到tabwidget的当前页面中。在这种情况下，tabwidget的当前页面会被<span lang="zh-cn">返回</span>。）</font></p>
+<!-- @@@containerOfWidget -->
+<!-- $$$createLayout[overload1]$$$createLayoutQWidget*QLayout*int -->
+<h3 class="fn" id="createLayout"><a name="createLayout"></a><code>[override virtual] </code><span class="type"><a href="../qtwidgets/qlayout.html">QLayout</a></span> *WidgetFactory::<span class="name">createLayout</span>(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *<i>widget</i>, <span class="type"><a href="../qtwidgets/qlayout.html">QLayout</a></span> *<i>parentLayout</i>, <span class="type">int</span> <i>type</i>) const</h3>
+<p><span lang="zh-cn">在组件<i>widget</i> 创建类型为<i>type（<code>HBox</code>, <code>VBox</code> 
+或 <code>Grid</code>）</i> 的布局器。</span></p>
+<!-- @@@createLayout -->
+<!-- $$$widgetOfContainer[overload1]$$$widgetOfContainerQWidget* -->
+<h3 class="fn" id="widgetOfContainer"><a name="widgetOfContainer"></a><code>[override virtual] </code><span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *WidgetFactory::<span class="name">widgetOfContainer</span>(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *<i>w</i>) const</h3>
+<p>
+返回的实际设计师组件容器w。这通常是w本身,但它可能是一个w的父级别或比父级更高的级别(例如,当处理一个tabwidget并且w是一个容器并且包含和布局了子组件，但设计师所知道的实际组件是w的父组件tabwidget。在这种情况下，将返回tabwidget。)</p>
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

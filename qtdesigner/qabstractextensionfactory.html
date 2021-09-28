@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- extension.cpp -->
+  <title>QAbstractExtensionFactory Class | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">C++ Classes</a></td><td >QAbstractExtensionFactory</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions"><span lang="zh-cn">公用函数</span></a></li>
+<li class="level1"><a href="#details"><span lang="zh-cn">详细信息</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QAbstractExtensionFactory<span lang="zh-cn"> 类</span></h1>
+<!-- $$$QAbstractExtensionFactory-brief -->
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractextensionfactory.html"><font style="vertical-align: inherit;">QAbstractExtensionFactory</font></a><font style="vertical-align: inherit;">类为Qt Designer的扩展工厂的接口。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractextensionfactory.html#details"><font style="vertical-align: inherit;">更多的...</font></a></p>
+<!-- @@@QAbstractExtensionFactory -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QAbstractExtensionFactory&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += designer</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="qextensionfactory.html">QExtensionFactory</a></p>
+</td></tr></table></div><ul>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractextensionfactory-members.html"><font style="vertical-align: inherit;">所有成员的列表，包括继承的成员</font></a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qabstractextensionfactory.html#dtor.QAbstractExtensionFactory">~QAbstractExtensionFactory</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QObject *</td><td class="memItemRight bottomAlign"><b><a href="qabstractextensionfactory.html#extension">extension</a></b>(QObject *<i>object</i>, const QString &amp;<i>iid</i>) const = 0</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$QAbstractExtensionFactory-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractextensionfactory.html"><font style="vertical-align: inherit;">QAbstractExtensionFactory</font></a><font style="vertical-align: inherit;">类为Qt Designer的扩展工厂的接口。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractextensionfactory.html"><font style="vertical-align: inherit;">QAbstractExtensionFactory</font></a><font style="vertical-align: inherit;">不<span lang="zh-cn">可以</span>直接实例化<span lang="zh-cn">，应该使用</span>用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">在</font><i><font style="vertical-align: inherit;">Qt Designer 中</font></i><font style="vertical-align: inherit;">，扩展工厂用于根据需要查找和创建命名扩展。因此，在实现自定义扩展时，您还必须创建</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">，即能够创建扩展实例的类，并使用</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionmanager.html"><font style="vertical-align: inherit;">扩展管理器</font></a><font style="vertical-align: inherit;">注册它。</font></p>
+<p><font style="vertical-align: inherit;">当需要扩展时，</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionmanager.html"><font style="vertical-align: inherit;">扩展管理器</font></a><font style="vertical-align: inherit;">将运行其所有注册工厂，为每个调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#createExtension"><font style="vertical-align: inherit;">QExtensionFactory::createExtension</font></a><font style="vertical-align: inherit;"> () 直到找到第一个能够为所选对象创建请求扩展的工厂。然后这个工厂将创建扩展的一个实例</font></p>
+</div>
+<p><span lang="zh-cn">请参考</span><b> </b><a href="qextensionfactory.html">QExtensionFactory</a> 
+<span lang="zh-cn">和</span><a href="qextensionmanager.html">QExtensionManager</a><span lang="zh-cn">。</span></p>
+<!-- @@@QAbstractExtensionFactory -->
+<div class="func">
+<h2><font style="vertical-align: inherit;">成员函数文档</font></h2>
+<!-- $$$~QAbstractExtensionFactory[overload1]$$$~QAbstractExtensionFactory -->
+<h3 class="fn" id="dtor.QAbstractExtensionFactory"><a name="dtor.QAbstractExtensionFactory"></a><code>[virtual] </code>QAbstractExtensionFactory::<span class="name">~QAbstractExtensionFactory</span>()</h3>
+<p><font style="vertical-align: inherit;">毁扩展工厂。</font></p>
+<!-- @@@~QAbstractExtensionFactory -->
+<!-- $$$extension[overload1]$$$extensionQObject*constQString& -->
+<h3 class="fn" id="extension"><a name="extension"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *QAbstractExtensionFactory::<span class="name">extension</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>object</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>iid</i>) const</h3>
+<p><font style="vertical-align: inherit;">返回给定<i>对象的</i></font><i><font style="vertical-align: inherit;">iid</font></i><font style="vertical-align: inherit;">指定的扩展名。</font></p>
+<!-- @@@extension -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

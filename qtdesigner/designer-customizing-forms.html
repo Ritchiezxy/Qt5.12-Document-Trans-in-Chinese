@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- designer-manual.qdoc -->
+  <title>Customizing Qt Designer Forms | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><font style="vertical-align: inherit;">自定义 Qt 设计<span lang="zh-cn">师</span>表单</font></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="designer-stylesheet.html" />
+  <link rel="next" href="designer-using-custom-widgets.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="designer-stylesheet.html"><span lang="zh-cn">
+在QT设计师中使用样式表</span></a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="designer-using-custom-widgets.html">
+<span lang="zh-cn">在Qt设计师中使用自定义组件</span></a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><span lang="zh-cn">目录</span></h3>
+<ul>
+<li class="level1"><a href="#modifying-the-form-settings"><span lang="zh-cn">
+修改表单设置</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><font style="vertical-align: inherit;">自定义 Qt 设计<span lang="zh-cn">师</span>表单</font></h1>
+<span class="subtitle"></span>
+<!-- $$$designer-customizing-forms.html-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/designer-form-settings.png" alt="" /></p><p><font style="vertical-align: inherit;">在</font><i><font style="vertical-align: inherit;">Qt Designer 中</font></i><font style="vertical-align: inherit;">保存表单时，它会存储为 UI 文件。一些表单设置，例如网格设置或默认布局的边距和间距，与表单的组件一起存储。这些设置在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/uic.html"><font style="vertical-align: inherit;">uic</font></a><font style="vertical-align: inherit;">生成表单的 C++ 代码时使用。有关如何在应用程序中使用表单的更多信息，请参阅在应用程序中</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html"><font style="vertical-align: inherit;">使用设计<span lang="zh-cn">师</span> UI 文件</font></a><font style="vertical-align: inherit;">部分。</font></p>
+<a name="modifying-the-form-settings"></a>
+<h2 id="modifying-the-form-settings"><span lang="zh-cn">修改表单设置</span></h2>
+<p><font style="vertical-align: inherit;">要修改表单设置，打开</font><b><font style="vertical-align: inherit;">表单</font></b><font style="vertical-align: inherit;">菜单并选择</font><b><font style="vertical-align: inherit;">表单设置...</font></b></p>
+<p><font style="vertical-align: inherit;">在表单设置对话框中，您可以指定表单的</font><b><font style="vertical-align: inherit;">作者</font></b><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">可以更改表单默认布局 ( </font><b><font style="vertical-align: inherit;">Layout Default</font></b><font style="vertical-align: inherit;"> )的边距和间距属性。这些默认布局属性将被相应的</font><b><font style="vertical-align: inherit;">Layout Function</font></b><font style="vertical-align: inherit;">替换，如果指定了该函数，则在</font><code>uic</code><font style="vertical-align: inherit;">为表单生成代码时。表单设置对话框允许您指定边距和间距的功能。</font></p>
+<a name="layoutfunction"></a><div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/designer-form-layoutfunction.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">Layout Function<span lang="zh-cn">（</span>布局<span lang="zh-cn">函数）</span></font></b><p><font style="vertical-align: inherit;">当为表单生成代码时，默认布局属性将被相应的</font><b><font style="vertical-align: inherit;">Layout Function</font></b><font style="vertical-align: inherit;"><span lang="zh-cn">（布局函数）</span>替换</font><code>uic</code><font style="vertical-align: inherit;">。当不同的环境需要相同表单的不同布局时，这很有用。</font></p>
+<p><font style="vertical-align: inherit;">要为表单的边距和间距指定布局功能，请选中</font><b><font style="vertical-align: inherit;">Layout Function<span lang="zh-cn">（</span>布局<span lang="zh-cn">函数）</span></font></b><font style="vertical-align: inherit;">组框以启用行编辑。</font></p>
+</td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">您还可以指定表单的</font><b><font style="vertical-align: inherit;">Include Hints</font></b><font style="vertical-align: inherit;">；即，提供一个头文件列表，然后将这些头文件包含在表单窗口的关联 UI 文件中。头文件可以是本地的，即相对于项目目录</font><code>"mywidget.h"</code><font style="vertical-align: inherit;">，或全局的，即 Qt 或编译器标准库的一部分：</font><code>&lt;QtWidgets/QWidget&gt;</code><font style="vertical-align: inherit;">.</font></p>
+<p><font style="vertical-align: inherit;">最后，您可以指定用于将像素图加载到表单窗口中的</font><b><font style="vertical-align: inherit;">函数</font></b><font style="vertical-align: inherit;">（像素图<b>函数</b>）。</font></p>
+</div>
+<!-- @@@designer-customizing-forms.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="designer-stylesheet.html"><span lang="zh-cn">
+在QT设计师中使用样式表</span></a>
+<span class="naviSeparator">  &#9702;  
+<a class="nextPage" href="designer-using-custom-widgets.html">
+<span lang="zh-cn">在Qt设计师中使用自定义组件</span></a></span>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

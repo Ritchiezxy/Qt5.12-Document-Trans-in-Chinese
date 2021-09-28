@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- designer-manual.qdoc -->
+  <title>Saving, Previewing and Printing Forms in Qt Designer | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><font style="vertical-align: inherit;">在 Qt Designer 中保存、预览和打印表单</font></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="designer-layouts.html" />
+  <link rel="next" href="designer-buddy-mode.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="designer-layouts.html"><span lang="zh-cn">在Qt设计师中使用布局</span></a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="designer-buddy-mode.html">Qt<span lang="zh-cn">设计师的伙伴编辑模式</span></a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><span lang="zh-cn">目录</span></h3>
+<ul>
+<li class="level1"><a href="#viewing-the-form-s-code">查看表单的代码</a></li>
+<li class="level1"><a href="#saving-and-printing-the-form">保存和打印表格</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><font style="vertical-align: inherit;">在 Qt Designer 中保存、预览和打印表单</font></h1>
+<span class="subtitle"></span>
+<!-- $$$designer-preview.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><font style="vertical-align: inherit;">尽管</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">的表单是正在编辑的组件的准确表示，但在编辑时预览最终外观还是很有用的。可以通过打开“</font><b><font style="vertical-align: inherit;">表单”</font></b><font style="vertical-align: inherit;">菜单并选择“</font><b><font style="vertical-align: inherit;">预览</font></b><font style="vertical-align: inherit;">”或在<b>表单中</b>按</font><b><font style="vertical-align: inherit;">Ctrl+R</font></b><font style="vertical-align: inherit;">来激活此功能。</font></p>
+<p class="centerAlign"><img src="images/designer-dialog-preview.png" alt="" /></p><p><font style="vertical-align: inherit;">预览准确地显示了在应用程序中使用时最终组件的外观。</font></p>
+<p><font style="vertical-align: inherit;">从 Qt 4.4 开始，可以预览具有各种皮肤的表单 - 默认皮肤、使用 Qt 样式表创建的皮肤或设备皮肤。此功能模拟</font><code>QApplication::setStyleSheet()</code><font style="vertical-align: inherit;">在应用程序中调用的效果。</font></p>
+<p><font style="vertical-align: inherit;">要预览带有皮肤的表单，请打开</font><b><font style="vertical-align: inherit;"><span lang="zh-cn">Edit（编辑）</span></font></b><font style="vertical-align: inherit;">菜单并选择</font><b><font style="vertical-align: inherit;">首选项<span lang="zh-cn">（Preferences）</span>...</font></b></p>
+<p><font style="vertical-align: inherit;">您将看到如下所示的对话框：</font></p>
+<p class="centerAlign"><img src="images/designer-preview-style.png" alt="" /></p><p>
+	<font style="vertical-align: inherit;">在 <b>Print/Preview Configuration<span lang="zh-cn">（</span></b></font><b><font style="vertical-align: inherit;">打印/预览配置</font></b><font style="vertical-align: inherit;"><span lang="zh-cn">）</span>复选框必须进行检查，以皮肤激活预览。您可以从<b>Style</b> 
+	<span lang="zh-cn">（</span></font><b><font style="vertical-align: inherit;">样式<span lang="zh-cn">）</span></font></b><font style="vertical-align: inherit;">下拉框中选择提供的<span lang="zh-cn">样式</span>。</font></p>
+<p class="centerAlign"><img src="images/designer-preview-style-selection.png" alt="" /></p><p><font style="vertical-align: inherit;">或者，您可以预览使用 Qt 样式表创建的自定义样式表。下图显示了 Qt 样式表语法和相应输出的示例。</font></p>
+<p class="centerAlign"><img src="images/designer-preview-stylesheet.png" alt="" /></p><p><font style="vertical-align: inherit;">另一种选择是使用设备外观预览您的表单。</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">中提供了通用设备皮肤的列表，但是，您也可以使用带有</font><b><font style="vertical-align: inherit;">浏览...</font></b><font style="vertical-align: inherit;">选项的其他 QVFB 皮肤。</font></p>
+<p class="centerAlign"><img src="images/designer-preview-deviceskin-selection.png" alt="" /></p>
+<h2 id="viewing-the-form-s-code">查看表单的代码</h2>
+<p><font style="vertical-align: inherit;">从 Qt 4.4 开始，可以查看用户界面编译器 (uic) 为</font><i><font style="vertical-align: inherit;">Qt 设计器</font></i><font style="vertical-align: inherit;">表单生成的代码。</font></p>
+<p class="centerAlign"><img src="images/designer-form-viewcode.png" alt="" /></p><p>
+	<font style="vertical-align: inherit;">从<b>Form</b>菜单中选择</font><b><font style="vertical-align: inherit;">View Code...</font></b><font style="vertical-align: inherit;">，将显示一个包含生成代码的对话框。下面的屏幕截图是由.</font><code>uic</code></p>
+<p class="centerAlign"><img src="images/designer-code-viewer.png" alt="" /></p><a name="saving-and-printing-the-form"></a>
+<h2 id="saving-and-printing-the-form"><font style="vertical-align: inherit;">保存和打印表<span lang="zh-cn">单</span></font></h2>
+<p><font style="vertical-align: inherit;">在</font><i><font style="vertical-align: inherit;">Qt Designer 中</font></i><font style="vertical-align: inherit;">创建的表单可以保存为图像或打印。</font></p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/designer-file-menu.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">保存<span lang="zh-cn">表单</span></font></b><p><font style="vertical-align: inherit;">要将表单另存为图像，请选择“</font><b><font style="vertical-align: inherit;">保存图像...”</font></b><font style="vertical-align: inherit;">选项。文件将以</font><code>.png</code><font style="vertical-align: inherit;">格式保存。</font></p>
+<p><b><font style="vertical-align: inherit;">打印表<span lang="zh-cn">单</span></font></b></p>
+<p><font style="vertical-align: inherit;">要打印表单，请选择</font><b><font style="vertical-align: inherit;">打印...</font></b><font style="vertical-align: inherit;">选项。</font></p>
+</td></tr>
+</table></div>
+</div>
+<!-- @@@designer-preview.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="designer-layouts.html">Using Layouts in Qt Designer</a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="designer-buddy-mode.html">Qt Designer's Buddy Editing Mode</a>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

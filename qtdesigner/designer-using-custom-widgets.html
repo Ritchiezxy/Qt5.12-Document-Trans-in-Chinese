@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- designer-manual.qdoc -->
+  <title>Using Custom Widgets with Qt Designer | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><font style="vertical-align: inherit;">在 Qt Designer 中使用自定义小部件</font></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="designer-customizing-forms.html" />
+  <link rel="next" href="designer-creating-custom-widgets.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="designer-customizing-forms.html"><span lang="zh-cn">
+自定义</span>Qt设计<span lang="zh-cn">师</span>窗体</a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="designer-creating-custom-widgets.html">为Qt设计器创建自定义部件</a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><span lang="zh-cn">目录</span></h3>
+<ul>
+<li class="level1"><a href="#handling-custom-widgets"><span lang="zh-cn">处理自定义组件</span></a></li>
+<li class="level2"><a href="#promoting-widgets"><span lang="zh-cn">提升组件</span></a></li>
+<li class="level2"><a href="#user-defined-custom-widgets"><span lang="zh-cn">
+使用自定义组件</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><font style="vertical-align: inherit;">在 Qt Designer 中使用自定义小部件</font></h1>
+<span class="subtitle"></span>
+<!-- $$$designer-using-custom-widgets.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">可以通过其可扩展的插件机制显示自定义小部件，允许用户和第三方扩展可设计小部件的范围。或者，可以使用现有小部件作为提供类似 API 的小部件类的占位符。</font></p>
+<a name="handling-custom-widgets"></a>
+<h2 id="handling-custom-widgets">处理自定义组件</h2>
+<p><font style="vertical-align: inherit;">尽管</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">支持所有标准 Qt 小部件，但由于多种原因，某些专用小部件可能无法作为标准使用：</font></p>
+<ul>
+<li><font style="vertical-align: inherit;">在设计用户界面时，自定义小部件可能不可用。</font></li>
+<li><font style="vertical-align: inherit;">自定义小部件可能是特定于平台的，设计人员可能会在不同的平台上为最终用户开发用户界面。</font></li>
+<li><font style="vertical-align: inherit;">自定义小部件的源代码不可用，或者用户界面设计人员由于非技术原因无法使用小部件。</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">在上述情况下，仍然可以设计表单以在应用程序中使用自定义小部件。为此，我们可以使用</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">的小部件<span lang="zh-cn">提升</span>功能。</font></p>
+<p><font style="vertical-align: inherit;">在所有其他情况下，如果自定义小部件的源代码可用，我们可以调整自定义小部件以与</font><i><font style="vertical-align: inherit;">Qt 设计<span lang="zh-cn">师</span></font></i><font style="vertical-align: inherit;">一起使用。</font></p>
+<a name="promoting-widgets"></a>
+<h3 >提升组件</h3>
+<p class="centerAlign"><img src="images/designer-promoting-widgets.png" alt="" /></p><p><font style="vertical-align: inherit;">如果必须设计某些表单，但设计人员无法使用某些自定义小部件，我们可以替换类似的小部件来表示缺失的小部件。例如，我们可能是一个自定义的按钮类的实例，</font><code>MyPushButton</code><font style="vertical-align: inherit;">与实例</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">和促进这些来</font><code>MyPushButton</code><font style="vertical-align: inherit;">使</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/uic.html"><font style="vertical-align: inherit;">UIC</font></a><font style="vertical-align: inherit;">产生这种缺少类适合的代码。</font></p>
+<p><font style="vertical-align: inherit;">选择窗口小组件用作占位符时，将丢失窗口小部件的API与标准QT小部件进行比较。对于继承标准类的专用小部件，占位符的明显选择是自定义小部件的基类；例如，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qslider.html"><font style="vertical-align: inherit;">QSlider</font></a><font style="vertical-align: inherit;">可能用于专门的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qslider.html"><font style="vertical-align: inherit;">QSlider</font></a><font style="vertical-align: inherit;">子类。</font></p>
+<p><font style="vertical-align: inherit;">对于不与标准 Qt 小部件共享公共 API 的专用小部件，值得考虑调整自定义小部件以在</font><i><font style="vertical-align: inherit;">Qt 设计器中</font></i><font style="vertical-align: inherit;">使用。如果这是不可能的，那么</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">是占位符小部件的明显选择，因为它是所有小部件的最小公分母。</font></p>
+<p><font style="vertical-align: inherit;">要添加占位符，请选择合适基类的对象，然后从表单的上下文菜单中选择“</font><b><font style="vertical-align: inherit;"><span lang="zh-cn">Prompt 
+to</span>...</font></b><font style="vertical-align: inherit;"> ”。在对话框下方输入类名和头文件后，选择</font><b><font style="vertical-align: inherit;">Add</font></b><font style="vertical-align: inherit;">。占位符类现在将与基类一起出现在上面的列表中。单击“</font><b><font style="vertical-align: inherit;"><span lang="zh-cn">Prompt</span>”</font></b><font style="vertical-align: inherit;">按钮以接受此选择。</font></p>
+<p><font style="vertical-align: inherit;">现在，当在基类的对象上打开表单的上下文菜单时，占位符类将出现在</font><b><font style="vertical-align: inherit;">提升到</font></b><font style="vertical-align: inherit;">子菜单中，从而可以方便地将对象提升到该类。</font></p>
+<p><font style="vertical-align: inherit;">通过从表单的上下文菜单中选择</font><b><font style="vertical-align: inherit;">Demote to</font></b><font style="vertical-align: inherit;">，可以将提升的小部件恢复为其基类。</font></p>
+<a name="user-defined-custom-widgets"></a>
+<h3 >使用自定义组件</h3>
+<p class="centerAlign"><img src="images/worldtimeclockplugin-example.png" alt="" /></p><p><font style="vertical-align: inherit;">自定义小部件可以与</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">一起使用，让设计人员有机会使用将在应用程序中使用的实际小部件而不是占位符小部件来配置用户界面。创建自定义小部件插件的过程在本手册的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html"><font style="vertical-align: inherit;">为 Qt 设计器创建自定义小部件</font></a><font style="vertical-align: inherit;">一章中描述。</font></p>
+<p><font style="vertical-align: inherit;">要使用以这种方式创建的插件，需要确保插件位于</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">搜索插件的路径上。一般情况下，存储在其中的插件</font><code>$QTDIR/plugins/designer</code><font style="vertical-align: inherit;">会在</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">启动时加载。可以在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html#buildingandinstallingtheplugin"><font style="vertical-align: inherit;">此处</font></a><font style="vertical-align: inherit;">找到有关构建和安装插件的更多信息。您还可以参考</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/plugins-howto.html"><font style="vertical-align: inherit;">Plugins HOWTO</font></a><font style="vertical-align: inherit;">文档以获取有关创建插件的信息。</font></p>
+</div>
+<!-- @@@designer-using-custom-widgets.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="designer-customizing-forms.html"><span lang="zh-cn">
+自定义</span>Qt设计<span lang="zh-cn">师</span>窗体</a>
+<span class="naviSeparator">  &#9702;  
+<a class="nextPage" href="designer-creating-custom-widgets.html">为Qt设计器创建自定义部件</a></span>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- designer-manual.qdoc -->
+  <title>Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td >Qt设计师手册</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.12.3 参考指南</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><span lang="zh-cn">目录</span></h3>
+<ul>
+<li class="level1"><a href="#table-of-contents"><span lang="zh-cn">目录</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt设计师手册</h1>
+<span class="subtitle"></span>
+<!-- $$$qtdesigner-manual.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">是用于设计和构建带有</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qtwidgets-index.html"><font style="vertical-align: inherit;">Qt 
+<span lang="zh-cn">组件</span> </font></a><font style="vertical-align: inherit;">
+<span lang="zh-cn">的图</span>形用户界面 (GUI) 的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qtwidgets-index.html">Qt 工具</a>。您可以以所见即所得 (WYSIWYG) 的方式组合和自定义您的窗口或对话框，并使用不同的样式和分辨率对其进行测试。</font></p>
+<p><font style="vertical-align: inherit;">使用</font><i><font style="vertical-align: inherit;">Qt 
+设计师</font></i><font style="vertical-align: inherit;">创建的组件和表单与编程代码无缝集成，使用 Qt 的信号和槽机制，以便您可以轻松地为图形元素分配行为。</font><i><font style="vertical-align: inherit;">Qt Designer 中</font></i><font style="vertical-align: inherit;">设置的所有属性都可以在代码中动态更改。此外，组件推广和自定义插件等功能允许您在</font><i><font style="vertical-align: inherit;">Qt Designer 中</font></i><font style="vertical-align: inherit;">使用自己的组件。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">您可以选择使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-index.html"><font style="vertical-align: inherit;">Qt Quick</font></a><font style="vertical-align: inherit;">进行用户界面设计而不是组件。这是编写多种应用程序的一种更简单的方法。它支持完全可定制的外观、触摸反应元素和平滑的动画过渡，并得到 OpenGL 图形加速的支持。</font></p><p>
+	<font style="vertical-align: inherit;">如果您是</font><i><font style="vertical-align: inherit;">Qt 
+	<span lang="zh-cn">设计师</span></font></i><font style="vertical-align: inherit;">的<span lang="zh-cn">新手</span></font><font style="vertical-align: inherit;">，您可以查看<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-to-know.html"><span lang="zh-cn">开始了解Qt设计师</span></a>文档。有关如何使用</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">的快速教程，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-quick-start.html"><font style="vertical-align: inherit;"><span lang="zh-cn">Qt 
+	Designer</span>快速入门</font></a><font style="vertical-align: inherit;">。</font></p>
+<p class="centerAlign"><img src="images/designer-multiple-screenshot.png" alt="" /></p><a name="table-of-contents"></a>
+<h2 id="table-of-contents"><span lang="zh-cn">目录</span></h2>
+<ul>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-quick-start.html"><font style="vertical-align: inherit;">Qt 设计<span lang="zh-cn">师</span>快速入门</font></a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-editing-mode.html"><font style="vertical-align: inherit;">Qt Designer 的编辑模式</font></a><ul>
+<li>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html">
+<font style="vertical-align: inherit;"><span lang="zh-cn">组件</span>编辑模式</font></a></li>
+<li>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-connection-mode.html">
+<font style="vertical-align: inherit;">信号槽编辑模式</font></a></li>
+<li>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-buddy-mode.html">
+<font style="vertical-align: inherit;"><span lang="zh-cn">伙伴</span>编辑模式</font></a></li>
+<li>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-tab-order.html">
+<font style="vertical-align: inherit;"><span lang="zh-cn">Tab</span>顺序编辑模式</font></a></li>
+</ul>
+</li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-layouts.html"><font style="vertical-align: inherit;">在 Qt Designer 中使用布局</font></a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-preview.html"><font style="vertical-align: inherit;">在 Qt Designer 中保存、预览和打印表单</font></a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-containers.html"><font style="vertical-align: inherit;">在 Qt Designer 中使用容器</font></a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html"><font style="vertical-align: inherit;">在 Qt Designer 中创建主窗口</font></a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-resources.html"><font style="vertical-align: inherit;">使用 Qt Designer 编辑资源</font></a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-stylesheet.html"><font style="vertical-align: inherit;">在 Qt Designer 中使用样式表</font></a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html"><font style="vertical-align: inherit;">在您的应用程序中使用设计器 UI 文件</font></a></li>
+<li><font style="vertical-align: inherit;">高级使用</font><ul>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-customizing-forms.html"><font style="vertical-align: inherit;">自定义 Qt 设计<span lang="zh-cn">师</span>表单</font></a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-custom-widgets.html"><font style="vertical-align: inherit;">
+在 Qt <span lang="zh-cn">设计师</span> 中使用自定义组件</font></a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html"><font style="vertical-align: inherit;">为 Qt Designer 创建自定义组件</font></a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets-extensions.html"><font style="vertical-align: inherit;">创建自定义组件扩展</font></a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-ui-file-format.html"><font style="vertical-align: inherit;">Qt Designer 的 UI 文件格式</font></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<!-- @@@qtdesigner-manual.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

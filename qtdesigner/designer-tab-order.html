@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- designer-manual.qdoc -->
+  <title>Qt Designer's Tab Order Editing Mode | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><font style="vertical-align: inherit;">Qt Designer 的<span lang="zh-cn">Tab顺序</span>编辑模式</font></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="designer-buddy-mode.html" />
+  <link rel="next" href="designer-using-containers.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="designer-buddy-mode.html"><span lang="zh-cn">
+Qt设计师的伙伴模式</span></a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="designer-using-containers.html"><span lang="zh-cn">
+在Qt设计师中使用容器</span></a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><span lang="zh-cn">目录</span></h3>
+<ul>
+<li class="level1"><a href="#setting-the-tab-order"><span lang="zh-cn">设置标签顺序</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><font style="vertical-align: inherit;">Qt Designer 的<span lang="zh-cn">Tab顺序</span>编辑模式</font></h1>
+<span class="subtitle"></span>
+<!-- $$$designer-tab-order.html-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/designer-tab-order-mode.png" alt="" /></p><p><font style="vertical-align: inherit;">许多用户希望能够仅使用键盘在小部件和控件之间导航。Qt 允许用户使用</font><b><font style="vertical-align: inherit;">Tab</font></b><font style="vertical-align: inherit;">和</font><b><font style="vertical-align: inherit;">Shift+Tab</font></b><font style="vertical-align: inherit;">键盘快捷键在输入小部件之间导航。默认的</font><i><font style="vertical-align: inherit;">Tab 键顺序</font></i><font style="vertical-align: inherit;">基于构建小部件的顺序。尽管此顺序对于许多用户来说可能已经足够了，但通常最好明确指定 Tab 键顺序以使您的应用程序更易于使用。</font></p>
+<a name="setting-the-tab-order"></a>
+<h2 id="setting-the-tab-order"><font style="vertical-align: inherit;">设置<span lang="zh-cn">标签</span>键顺序</font></h2>
+<p><font style="vertical-align: inherit;">要进入 Tab 键顺序编辑模式，请打开</font><b><font style="vertical-align: inherit;">Edit</font></b><font style="vertical-align: inherit;">菜单并选择</font><b><font style="vertical-align: inherit;">Edit Tab Order</font></b><font style="vertical-align: inherit;">。在这种模式下，表单中的每个输入小部件都显示有一个数字，指示其在 Tab 键顺序中的位置。因此，如果用户给第一个输入小部件输入焦点，然后按下 Tab 键，焦点将移动到第二个输入小部件，依此类推。</font></p>
+<p><font style="vertical-align: inherit;">Tab 键顺序是通过按正确顺序单击每个数字来定义的。您单击的第一个数字将变为红色，表示当前在 Tab 键顺序链中编辑的位置。与数字关联的小部件将成为 Tab 键顺序链中的第一个。单击另一个小部件将使其成为 Tab 键顺序中的第二个小部件，依此类推。</font></p>
+<p><font style="vertical-align: inherit;">重复此过程，直到您对表单中的 Tab 键顺序感到满意——如果您看到其余的小部件已按正确顺序排列，则无需单击每个输入小部件。已设置顺序的数字变为绿色，而尚未单击的数字保持蓝色。</font></p>
+<p><font style="vertical-align: inherit;">如果出错，只需在任意数字外双击或从表单的上下文菜单中选择</font><b><font style="vertical-align: inherit;">Restart
+<span lang="zh-cn">（</span>重新启动<span lang="zh-cn">）</span></font></b><font style="vertical-align: inherit;"><span lang="zh-cn">即可重新开</span>始。如果您的表单上有许多小部件，并且想要更改 Tab 键顺序链中间或末尾的 Tab 键顺序，您可以在任何位置对其进行编辑。按</font><b><font style="vertical-align: inherit;">Ctrl</font></b><font style="vertical-align: inherit;">并单击要开始的数字。或者，在上下文菜单中选择</font><b><font style="vertical-align: inherit;">Start from Here<span lang="zh-cn">（</span>从这里开始</font></b><font style="vertical-align: inherit;"><span lang="zh-cn">）</span>。</font></p>
+</div>
+<!-- @@@designer-tab-order.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="designer-buddy-mode.html"><span lang="zh-cn">
+Qt设计师的伙伴模式</span></a>
+<span class="naviSeparator">  &#9702;  
+<a class="nextPage" href="designer-using-containers.html"><span lang="zh-cn">
+在Qt设计师中使用容器</span></a></span>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
