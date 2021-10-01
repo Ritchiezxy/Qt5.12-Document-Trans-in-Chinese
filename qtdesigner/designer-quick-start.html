@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- designer-manual.qdoc -->
+  <title>A Quick Start to Qt Designer | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><font style="vertical-align: inherit;">Qt 设计器快速入门</font></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<p class="naviNextPrevious headerNavi">
+</p><p/>
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><font style="vertical-align: inherit;">Qt 设计器快速入门</font></h1>
+<span class="subtitle"></span>
+<!-- $$$designer-quick-start.html-description -->
+<div class="descr"> <font style="vertical-align: inherit;">使用</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">包括</font><b><font style="vertical-align: inherit;">四个</font></b><font style="vertical-align: inherit;">基本步骤：</font><ol class="1" type="1"><li><font style="vertical-align: inherit;">使用</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">包括</font><b><font style="vertical-align: inherit;">四个</font></b><font style="vertical-align: inherit;">基本步骤：</font></li>
+<li><font style="vertical-align: inherit;">将对象放在表单上</font></li>
+<li><font style="vertical-align: inherit;">将信号连接到槽</font></li>
+<li><font style="vertical-align: inherit;">预览表<span lang="zh-cn">单</span></font></li>
+</ol>
+<p class="centerAlign"><img src="images/rgbController-screenshot.png" alt="" /></p><p><font style="vertical-align: inherit;">假设您想设计一个组件（参见上面的屏幕截图），其中包含操作红色、绿色和蓝色 (RGB) 值所需的控件——一种可以在图像处理程序中随处可见的组件。</font></p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/designer-choosing-form.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">选择表<span lang="zh-cn">单</span></font></b><p><font style="vertical-align: inherit;">您首先从“<b>新建表单<span lang="zh-cn">（Create 
+	 Form）</span>”</b>对话框中选择</font><b><font style="vertical-align: inherit;"><span lang="zh-cn">组件</span></font></b><font style="vertical-align: inherit;">。</font></p>
+</td></tr>
+</table></div>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/rgbController-arrangement.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">
+	 在表单上放置组件</font></b><p><font style="vertical-align: inherit;">将三个标签、三个旋转框和三个垂直滑块拖到您的表单上。要更改标签的默认文本，只需双击它即可。您可以根据您希望它们的布局方式来安排它们。</font></p>
+</td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">为了确保它们在您的程序中完全像这样布局，您需要将这些组件放置到一个布局中。我们将分三个一组进行。选择“红色”标签。然后，按住</font><b><font style="vertical-align: inherit;">Ctrl 的</font></b><font style="vertical-align: inherit;">同时选择其相应的旋转框和滑块。在</font><b><font style="vertical-align: inherit;">表单</font></b><font style="vertical-align: inherit;">菜单中，选择</font><b><font style="vertical-align: inherit;">Lay Out in a Grid<span lang="zh-cn">（</span>在网格中布局</font></b><font style="vertical-align: inherit;"><span lang="zh-cn">）</span>。</font></p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/rgbController-form-gridLayout.png" alt="" /></td><td ><img src="images/rgbController-selectForLayout.png" alt="" /></td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">对其他两个标签及其相应的旋转框和滑块也重复此步骤。</font></p>
+<p><font style="vertical-align: inherit;">下一步是将所有三个布局合并为一个</font><b><font style="vertical-align: inherit;">主布局</font></b><font style="vertical-align: inherit;">。主要布局是顶级组件（在本例中为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">）的布局。重要的是您的顶级组件具有布局；否则，调整窗口大小时，窗口上的组件将不会调整大小。要设置布局，请</font><b><font style="vertical-align: inherit;">右键单击</font></b><font style="vertical-align: inherit;">表单上三个单独布局之外的任意位置，然后选择</font><b><font style="vertical-align: inherit;">“水平</font></b><font style="vertical-align: inherit;">布局<b>”</b>。或者，您也可以选择</font><b><font style="vertical-align: inherit;">在网格中</font></b><font style="vertical-align: inherit;">布局——您仍会看到相同的排列（如下所示）。</font></p>
+<p>&nbsp;</p>
+<p class="centerAlign"><img src="images/rgbController-final-layout.png" alt="" /></p><p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">在表单上看不到主要布局。要检查您是否安装了主布局，请尝试调整表单大小；您的组件应相应地调整大小。或者，您可以查看</font><i><font style="vertical-align: inherit;">Qt Designer</font></i><font style="vertical-align: inherit;">的</font><b><font style="vertical-align: inherit;">Object Inspector</font></b><font style="vertical-align: inherit;">。如果您的顶级组件没有布局，您将在其旁边看到损坏的布局图标</font> <img src="images/rgbController-no-toplevel-layout.png" alt="" /> .</p><p><font style="vertical-align: inherit;">当您单击滑块并将其拖动到某个值时，您希望旋转框显示滑块的位置。要完成此行为，您需要将滑块的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qabstractslider.html#valueChanged"><font style="vertical-align: inherit;">valueChanged()</font></a><font style="vertical-align: inherit;">信号连接到旋转框的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qspinbox.html#value-prop"><font style="vertical-align: inherit;">setValue()</font></a><font style="vertical-align: inherit;">插槽。您还需要进行反向连接，例如，将旋转框的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qspinbox.html#valueChanged-1"><font style="vertical-align: inherit;">valueChanged()</font></a><font style="vertical-align: inherit;">信号连接到滑块的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qabstractslider.html#value-prop"><font style="vertical-align: inherit;">setValue()</font></a><font style="vertical-align: inherit;">槽。</font></p>
+<p><font style="vertical-align: inherit;">为此，您必须通过按<b>F4</b>或从<b>编辑</b>菜单中选择<b>编辑信号/槽</b>来切换到</font><b><font style="vertical-align: inherit;">编辑信号/槽</font></b><font style="vertical-align: inherit;">模式。</font></p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/rgbController-signalsAndSlots.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">将信号连接到槽</font></b><p><font style="vertical-align: inherit;">单击滑块并将光标拖向旋转框。将弹出如下所示的</font><b><font style="vertical-align: inherit;">配置连接</font></b><font style="vertical-align: inherit;">对话框。选择正确的信号和槽，然后单击</font><b><font style="vertical-align: inherit;">OK</font></b><font style="vertical-align: inherit;">。</font></p>
+</td></tr>
+</table></div>
+<p class="centerAlign"><img src="images/rgbController-configure-connection1.png" alt="" /></p><p><font style="vertical-align: inherit;">重复该步骤（以相反的顺序），单击旋转框并将光标拖向滑块，将旋转框的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qspinbox.html#valueChanged-1"><font style="vertical-align: inherit;">valueChanged()</font></a><font style="vertical-align: inherit;">信号连接到滑块的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qabstractslider.html#value-prop"><font style="vertical-align: inherit;">setValue()</font></a><font style="vertical-align: inherit;">槽。</font></p>
+<p><font style="vertical-align: inherit;">您可以使用下面的屏幕截图作为选择正确信号和槽的指南。</font></p>
+<p class="centerAlign"><img src="images/rgbController-configure-connection2.png" alt="" /></p><p><font style="vertical-align: inherit;">
+	在您已成功连接 RGB 控制器的“RED”组件的对象，对“GREEN”和“BLUE”组件也执行相同操作。</font></p>
+<p><font style="vertical-align: inherit;">由于 RGB 值范围在 0 到 255 之间，我们需要将旋转框和滑块限制在该特定范围内。</font></p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/rgbController-property-editing.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">设置组件属性</font></b><p><font style="vertical-align: inherit;">单击第一个旋转框。在</font><b><font style="vertical-align: inherit;">Property Editor 中</font></b><font style="vertical-align: inherit;">，您将看到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qspinbox.html"><font style="vertical-align: inherit;">QSpinBox</font></a><font style="vertical-align: inherit;">的属性。为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qspinbox.html#maximum-prop"><font style="vertical-align: inherit;">最大</font></a><font style="vertical-align: inherit;">属性输入“255” 。然后，单击第一个垂直滑块，您将看到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qabstractslider.html"><font style="vertical-align: inherit;">QAbstractSlider</font></a><font style="vertical-align: inherit;">的属性。也为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qabstractslider.html#maximum-prop"><font style="vertical-align: inherit;">最大</font></a><font style="vertical-align: inherit;">属性输入“255” 。对剩余的旋转框和滑块重复此过程。</font></p>
+</td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">现在，我们预览您的表单以查看它在您的应用程序中的外观 - 按</font><b><font style="vertical-align: inherit;">Ctrl + R</font></b><font style="vertical-align: inherit;">或从“<b>表单”</b>菜单中选择“</font><b><font style="vertical-align: inherit;">预览</font></b><font style="vertical-align: inherit;">” 。尝试拖动滑块 - 旋转框也会反映其值（反之亦然）。此外，您可以调整它的大小以查看用于管理子组件的布局如何响应不同的窗口大小。</font></p>
+</div>
+<!-- @@@designer-quick-start.html -->
+<p class="naviNextPrevious footerNavi">
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

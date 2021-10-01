@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- dynamicpropertysheet.qdoc -->
+  <title>QDesignerDynamicPropertySheetExtension 类 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">C++ </a>
+			<span lang="zh-cn">类</span></td><td >QDesignerDynamicPropertySheetExtension</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QDesignerDynamicPropertySheetExtension 类</h1>
+<!-- $$$QDesignerDynamicPropertySheetExtension-brief -->
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerdynamicpropertysheetextension.html"><font style="vertical-align: inherit;">QDesignerDynamicPropertySheetExtension</font></a><font style="vertical-align: inherit;">类允许你操纵Qt设计师的属性编辑器窗口小部件的动态特性。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerdynamicpropertysheetextension.html#details"><font style="vertical-align: inherit;">更多...</font></a></p>
+<!-- @@@QDesignerDynamicPropertySheetExtension -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QDesignerDynamicPropertySheetExtension&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += designer</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 4.3</td></tr></table></div><ul>
+<li><a href="qdesignerdynamicpropertysheetextension-members.html">所有成员的列表，包括继承成员。</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qdesignerdynamicpropertysheetextension.html#dtor.QDesignerDynamicPropertySheetExtension">~QDesignerDynamicPropertySheetExtension</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="qdesignerdynamicpropertysheetextension.html#addDynamicProperty">addDynamicProperty</a></b>(const QString &amp;<i>propertyName</i>, const QVariant &amp;<i>value</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerdynamicpropertysheetextension.html#canAddDynamicProperty">canAddDynamicProperty</a></b>(const QString &amp;<i>propertyName</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerdynamicpropertysheetextension.html#dynamicPropertiesAllowed">dynamicPropertiesAllowed</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerdynamicpropertysheetextension.html#isDynamicProperty">isDynamicProperty</a></b>(int <i>index</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerdynamicpropertysheetextension.html#removeDynamicProperty">removeDynamicProperty</a></b>(int <i>index</i>) = 0</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$QDesignerDynamicPropertySheetExtension-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerdynamicpropertysheetextension.html"><font style="vertical-align: inherit;">QDesignerDynamicPropertySheetExtension</font></a><font style="vertical-align: inherit;">类允许你操纵Qt设计师的属性编辑器窗口小部件的动态特性。</font></p>
+</div>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#dynamic-properties"><font style="vertical-align: inherit;">动态属性</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@QDesignerDynamicPropertySheetExtension -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$~QDesignerDynamicPropertySheetExtension[overload1]$$$~QDesignerDynamicPropertySheetExtension -->
+<h3 class="fn" id="dtor.QDesignerDynamicPropertySheetExtension"><a name="dtor.QDesignerDynamicPropertySheetExtension"></a><code>[virtual] </code>QDesignerDynamicPropertySheetExtension::<span class="name">~QDesignerDynamicPropertySheetExtension</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁动态属性表扩展。</font></p>
+<!-- @@@~QDesignerDynamicPropertySheetExtension -->
+<!-- $$$addDynamicProperty[overload1]$$$addDynamicPropertyconstQString&constQVariant& -->
+<h3 class="fn" id="addDynamicProperty"><a name="addDynamicProperty"></a><code>[pure virtual] </code><span class="type">int</span> QDesignerDynamicPropertySheetExtension::<span class="name">addDynamicProperty</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>propertyName</i>, const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>value</i>)</h3>
+<p><font style="vertical-align: inherit;">添加名为</font><i><font style="vertical-align: inherit;">propertyName</font></i><font style="vertical-align: inherit;">的动态属性并将其值设置为</font><i><font style="vertical-align: inherit;">value</font></i><font style="vertical-align: inherit;">。如果添加成功，则返回属性的索引；否则返回 -1 表示失败。</font></p>
+<!-- @@@addDynamicProperty -->
+<!-- $$$canAddDynamicProperty[overload1]$$$canAddDynamicPropertyconstQString& -->
+<h3 class="fn" id="canAddDynamicProperty"><a name="canAddDynamicProperty"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerDynamicPropertySheetExtension::<span class="name">canAddDynamicProperty</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>propertyName</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">propertyName</font></i><font style="vertical-align: inherit;">是动态属性的有效唯一名称，则返回 true ；否则返回false。</font></p>
+<!-- @@@canAddDynamicProperty -->
+<!-- $$$dynamicPropertiesAllowed[overload1]$$$dynamicPropertiesAllowed -->
+<h3 class="fn" id="dynamicPropertiesAllowed"><a name="dynamicPropertiesAllowed"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerDynamicPropertySheetExtension::<span class="name">dynamicPropertiesAllowed</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果小部件支持动态属性，则返回 true；否则返回false。</font></p>
+<!-- @@@dynamicPropertiesAllowed -->
+<!-- $$$isDynamicProperty[overload1]$$$isDynamicPropertyint -->
+<h3 class="fn" id="isDynamicProperty"><a name="isDynamicProperty"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerDynamicPropertySheetExtension::<span class="name">isDynamicProperty</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果给定</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性是动态属性，则返回 true ；否则返回false。</font></p>
+<!-- @@@isDynamicProperty -->
+<!-- $$$removeDynamicProperty[overload1]$$$removeDynamicPropertyint -->
+<h3 class="fn" id="removeDynamicProperty"><a name="removeDynamicProperty"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerDynamicPropertySheetExtension::<span class="name">removeDynamicProperty</span>(<span class="type">int</span> <i>index</i>)</h3>
+<p><font style="vertical-align: inherit;">删除给定</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的动态属性。如果操作成功则返回真；否则返回false。</font></p>
+<!-- @@@removeDynamicProperty -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- designer-manual.qdoc -->
+  <title>开始了解Qt设计师 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td >开始了解Qt设计师</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<p class="naviNextPrevious headerNavi">
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-to-know.html#launching-designer"><font style="vertical-align: inherit;">启动设计师</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-to-know.html#the-user-interface"><font style="vertical-align: inherit;">用户界面</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-to-know.html#the-concept-of-layouts-in-qt"><font style="vertical-align: inherit;">Qt中布局的概念</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">开始了解Qt设计师</h1>
+<span class="subtitle"></span>
+<!-- $$$designer-to-know.html-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/designer-screenshot.png" alt="" /></p><a name="launching-designer"></a>
+<h2 id="launching-designer"><font style="vertical-align: inherit;">启动设计师</font></h2>
+<p><font style="vertical-align: inherit;">安装 Qt 后，您可以像启动开发主机上的任何其他应用程序一样启动</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">。您也可以直接从 Qt Creator启动</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">。Qt Creator在<b>设计</b>模式下自动打开集成</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">中的所有 .ui 文件。</font></p>
+<p><font style="vertical-align: inherit;">通常，集成的</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">包含与独立</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">相同的功能。有关差异的更多信息，请参阅</font><a href="http://doc.qt.io/qtcreator/index.html"><font style="vertical-align: inherit;">Qt Creator 手册</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">如果您有不适合 Qt Creator</font><b><font style="vertical-align: inherit;">设计</font></b><font style="vertical-align: inherit;">模式的大型表单，您可以在独立的</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">打开它们。</font></p>
+<a name="the-user-interface"></a>
+<h2 id="the-user-interface"><font style="vertical-align: inherit;">用户界面</font></h2>
+<p><font style="vertical-align: inherit;">当用作独立应用程序时，</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的用户界面可以配置为提供多窗口用户界面（默认模式），或者可以在停靠窗口模式下使用。在集成开发环境 (IDE) 中使用时，只有多窗口用户界面可用。您可以从“<b>编辑”</b>菜单的</font><b><font style="vertical-align: inherit;">“首选项”</font></b><font style="vertical-align: inherit;">对话框中切换模式。</font></p>
+<p><font style="vertical-align: inherit;">在多窗口模式下，您可以排列每个工具窗口以适合您的工作风格。主窗口包含一个菜单栏、一个工具栏和一个组件框，其中包含可用于创建用户界面的组件。</font></p>
+<a name="mainwindow"></a><div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/designer-main-window.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">Qt 设计师的主窗口</font></b><p><font style="vertical-align: inherit;">菜单栏提供用于管理表单、使用剪贴板和访问特定于应用程序的帮助的所有标准操作。当前编辑模式、工具窗口和正在使用的表单也可以通过菜单栏访问。</font></p>
+<p><font style="vertical-align: inherit;">工具栏显示编辑表单时使用的常用操作。这些也可以通过主菜单获得。</font></p>
+<p><font style="vertical-align: inherit;">组件框提供用于设计组件的常用组件和布局。这些被分组到反映其用途或特征的类别中。</font></p>
+</td></tr>
+</table></div>
+<p><i><font style="vertical-align: inherit;">Qt 设计师 的</font></i><font style="vertical-align: inherit;">大多数功能都可以通过菜单栏、工具栏或组件框访问。某些功能也可通过可在表单窗口上打开的上下文菜单使用。在大多数平台上，鼠标右键用于打开上下文菜单。</font></p>
+<a name="widgetbox"></a><div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/designer-widget-box.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">Qt 设计师 的组件框</font></b><p><font style="vertical-align: inherit;">组件框提供了一系列标准 Qt 组件、布局和其他可用于在表单上创建用户界面的对象。组件框中的每个类别都包含具有相似用途或相关功能的组件。</font></p>
+<p><font style="vertical-align: inherit;">您可以通过单击类别标签旁边的手柄来显示类别中的所有可用对象。在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html"><font style="vertical-align: inherit;">Widget Editing Mode 下</font></a><font style="vertical-align: inherit;">，您可以通过将适当的项目从 Widget 框拖到表单上，然后将它们放在所需位置来向表单添加对象。</font></p>
+<p><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供了一个便笺簿功能，允许您将经常使用的对象收集在一个单独的类别中。通过将它们从表单拖放到组件框上，可以用当前显示在表单中的任何组件填充便笺簿类别。这些组件的使用方式与任何其他组件的使用方式相同，但它们也可以包含子组件。在组件上打开上下文菜单以更改其名称或将其从便笺簿中删除。</font></p>
+</td></tr>
+</table></div>
+<a name="the-concept-of-layouts-in-qt"></a>
+<h2 id="the-concept-of-layouts-in-qt"><font style="vertical-align: inherit;">Qt中布局的概念</font></h2>
+<p><font style="vertical-align: inherit;">布局用于排列和管理构成用户界面的元素。Qt 提供了许多类来自动处理布局—— </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qhboxlayout.html"><font style="vertical-align: inherit;">QHBoxLayout</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qvboxlayout.html"><font style="vertical-align: inherit;">QVBoxLayout</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qgridlayout.html"><font style="vertical-align: inherit;">QGridLayout</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qformlayout.html"><font style="vertical-align: inherit;">QFormLayout</font></a><font style="vertical-align: inherit;">。这些类解决了自动布置组件的挑战，提供行为可预测的用户界面。幸运的是，使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">排列组件不需要了解布局类。相反，选中其中的</font><b><font style="vertical-align: inherit;"><span lang="zh-cn">水平布局</span></font></b><font style="vertical-align: inherit;">，</font><b><font style="vertical-align: inherit;"><span lang="zh-cn">网格布局</span></font></b><font style="vertical-align: inherit;">等，从上下文菜单选项。</font></p>
+<p><font style="vertical-align: inherit;">每个 Qt 组件都有一个推荐的大小，称为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#sizeHint-prop"><font style="vertical-align: inherit;">sizeHint()</font></a><font style="vertical-align: inherit;">。布局管理器将尝试调整组件的大小以满足其大小提示。在某些情况下，不需要具有不同的尺寸。例如，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qlineedit.html"><font style="vertical-align: inherit;">QLineEdit</font></a><font style="vertical-align: inherit;">的高度始终是一个固定值，具体取决于字体大小和样式。在其他情况下，您可能需要更改大小，例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qlineedit.html"><font style="vertical-align: inherit;">QLineEdit</font></a><font style="vertical-align: inherit;">的宽度或项目视图组件的宽度和高度。这是组件大小约束—— </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#minimumSize-prop"><font style="vertical-align: inherit;">minimumSize</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#maximumSize-prop"><font style="vertical-align: inherit;">maximumSize</font></a><font style="vertical-align: inherit;">约束发挥作用的地方。这些是您可以在属性编辑器中设置的属性。例如，要覆盖默认的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#sizeHint-prop"><font style="vertical-align: inherit;">sizeHint()</font></a><font style="vertical-align: inherit;">，只需设置</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#minimumSize-prop"><font style="vertical-align: inherit;">minimumSize</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#maximumSize-prop"><font style="vertical-align: inherit;">maximumSize</font></a><font style="vertical-align: inherit;">为相同的值。或者，要将当前大小用作大小约束值，请从组件的上下文菜单中选择“</font><b><font style="vertical-align: inherit;">大小约束”</font></b><font style="vertical-align: inherit;">选项之一。然后布局将确保满足这些约束。要通过代码控制组件的大小，您可以在代码中重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#sizeHint-prop"><font style="vertical-align: inherit;">sizeHint()</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">下面的屏幕截图显示了使用网格设计的基本用户界面的细分。屏幕截图上的坐标显示了网格中每个组件的位置。</font></p>
+<p class="centerAlign"><img src="images/addressbook-tutorial-part3-labeled-layout.png" alt="" /></p><p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">在网格内部，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html"><font style="vertical-align: inherit;">QPushButton</font></a><font style="vertical-align: inherit;">对象实际上是嵌套的。右边的按钮首先放在一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qvboxlayout.html"><font style="vertical-align: inherit;">QVBoxLayout 中</font></a><font style="vertical-align: inherit;">；底部的按钮首先放置在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qhboxlayout.html"><font style="vertical-align: inherit;">QHBoxLayout 中</font></a><font style="vertical-align: inherit;">。最后，它们被放入</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qgridlayout.html"><font style="vertical-align: inherit;">QGridLayout 的</font></a><font style="vertical-align: inherit;">坐标 (1,2) 和 (2,1) 中。</font></p><p><font style="vertical-align: inherit;">为了形象化，将布局想象成一个尽可能缩小的盒子，试图以整齐的排列</font><i><font style="vertical-align: inherit;">挤压</font></i><font style="vertical-align: inherit;">你的组件，同时最大限度地利用可用空间。</font></p>
+<p><font style="vertical-align: inherit;">Qt 的布局有助于您：</font></p>
+<ol class="1" type="1"><li><font style="vertical-align: inherit;">调整用户面部的大小以适应不同的窗口大小。</font></li>
+<li><font style="vertical-align: inherit;">调整用户界面中元素的大小以适应不同的本地化。</font></li>
+<li><font style="vertical-align: inherit;">排列元素以符合不同平台的布局指南。</font></li>
+</ol>
+<p><font style="vertical-align: inherit;">因此，您不再需要为不同的平台、设置和语言重新排列组件。</font></p>
+<p><font style="vertical-align: inherit;">下面的示例显示了不同的本地化如何影响用户界面。当本地化需要更多空间来容纳更长的文本字符串时，Qt 布局会自动缩放以适应这一点，同时确保用户界面看起来可展示并仍然符合平台指南。</font></p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th ><font style="vertical-align: inherit;">英文对话框<span lang="zh-cn"></span></font></th><th >
+	 <span lang="zh-cn">法语对话框</span></th></tr></thead>
+<tr valign="top" class="odd"><td ><p class="centerAlign"><img src="images/designer-english-dialog.png" alt="" /></p></td><td ><p class="centerAlign"><img src="images/designer-french-dialog.png" alt="" /></p></td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">布局组件的过程包括创建布局层次结构，同时设置尽可能少的组件大小限制。</font></p>
+<p><font style="vertical-align: inherit;">有关 Qt 布局类的更多技术观点，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/layout.html"><font style="vertical-align: inherit;">布局管理</font></a><font style="vertical-align: inherit;">文档。</font></p>
+</div>
+<!-- @@@designer-to-know.html -->
+<p class="naviNextPrevious footerNavi">
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

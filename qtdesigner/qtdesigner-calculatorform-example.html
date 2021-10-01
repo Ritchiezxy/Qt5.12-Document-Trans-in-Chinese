@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- calculatorform.qdoc -->
+  <title>Calculator Form Example | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/examples-designer.html"><font style="vertical-align: inherit;">Qt 设计<span lang="zh-cn">师</span>示例</font></a></td><td ><font style="vertical-align: inherit;">计算器表<span lang="zh-cn">单</span>示例</font></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-calculatorform-example.html#preparation"><font style="vertical-align: inherit;">准备</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-calculatorform-example.html#calculatorform-class-definition"><font style="vertical-align: inherit;">CalculatorForm 类定义</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-calculatorform-example.html#calculatorform-class-implementation"><font style="vertical-align: inherit;">CalculatorForm 类实现</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><font style="vertical-align: inherit;">计算器表<span lang="zh-cn">单</span>示例</font></h1>
+<span class="subtitle"></span>
+<!-- $$$calculatorform-brief -->
+<p><font style="vertical-align: inherit;">在应用程序中使用使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">创建的表单。</font></p>
+<!-- @@@calculatorform -->
+<!-- $$$calculatorform-description -->
+<div class="descr"> <a name="details"></a>
+<p><font style="vertical-align: inherit;">计算器表单示例展示了如何通过使用来自<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html">QWidget</a>子类的用户界面信息在应用程序中使用使用</font><i><font style="vertical-align: inherit;">Qt<span lang="zh-cn">设计师</span></font></i><font style="vertical-align: inherit;">创建的表单。我们使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html">uic 的自动连接</a>功能自动将表单上组件的信号连接到我们代码中的插槽。</font></p>
+<p class="centerAlign"><img src="images/calculatorform-example.png" alt="Screenshot of the Calculator Form example" /></p><p><font style="vertical-align: inherit;">该示例展示了两个用于输入整数值的旋转框和一个显示它们总和的标签。每当更新任何一个旋转框时，组件和表单之间的信号槽连接确保标签也更新。</font></p>
+<a name="preparation"></a>
+<h2 id="preparation"><font style="vertical-align: inherit;">准备</font></h2>
+<p><font style="vertical-align: inherit;">本示例的用户界面完全使用</font><i><font style="vertical-align: inherit;">Qt 
+<span lang="zh-cn">设计师</span>设计</font></i><font style="vertical-align: inherit;">。结果是一个描述表单、使用的组件、它们之间的任何信号槽连接以及其他标准用户界面属性的 UI 文件。</font></p>
+<p><font style="vertical-align: inherit;">为了确保示例可以使用这个文件，我们需要</font><code>FORMS</code><font style="vertical-align: inherit;">在示例的项目文件中包含一个声明：</font></p>
+<pre class="cpp">
+
+  FORMS       = calculatorform.ui
+
+</pre>
+<p><font style="vertical-align: inherit;">项目构建完成后，</font><code>uic</code><font style="vertical-align: inherit;">将创建一个头文件，让我们构建表单。</font></p>
+<a name="calculatorform-class-definition"></a>
+<h2 id="calculatorform-class-definition">CalculatorForm 类<span lang="zh-cn">定义</span></h2>
+<p><code>CalculatorForm</code><font style="vertical-align: inherit;">类使用中所描述的用户界面</font><code>calculatorform.ui</code><font style="vertical-align: inherit;">的文件。要访问表单及其目录，我们需要包含在构建过程中</font><code>ui_calculatorform.h</code><font style="vertical-align: inherit;">创建的头文件</font><code>uic</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &quot;ui_calculatorform.h&quot;</span>
+
+</pre>
+<p><font style="vertical-align: inherit;">我们</font><code>CalculatorForm</code><font style="vertical-align: inherit;">通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">继承 QWidget 来</font></a><font style="vertical-align: inherit;">定义类，因为表单本身是基于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget 的</font></a><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> CalculatorForm : <span class="keyword">public</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> CalculatorForm(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> on_inputSpinBox1_valueChanged(<span class="type">int</span> value);
+      <span class="type">void</span> on_inputSpinBox2_valueChanged(<span class="type">int</span> value);
+
+  <span class="keyword">private</span>:
+      Ui<span class="operator">::</span>CalculatorForm ui;
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">除了构造函数之外，该类还包含两个私有插槽，它们根据</font><code>uic</code><font style="vertical-align: inherit;">. 私有</font><code>ui</code><font style="vertical-align: inherit;">成员变量指的是表单，用于访问用户界面的目录。</font></p>
+<a name="calculatorform-class-implementation"></a>
+<h2 id="calculatorform-class-implementation"><font style="vertical-align: inherit;">CalculatorForm 类实现</font></h2>
+<p><font style="vertical-align: inherit;">构造函数简单地调用基类的构造函数并设置表单的用户界面。</font></p>
+<pre class="cpp">
+
+  CalculatorForm<span class="operator">::</span>CalculatorForm(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>(parent)
+  {
+      ui<span class="operator">.</span>setupUi(<span class="keyword">this</span>);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">用户界面设置了该</font><code>setupUI()</code><font style="vertical-align: inherit;">功能。我们</font><code>this</code><font style="vertical-align: inherit;">作为参数传递给这个函数，以使用</font><code>CalculatorForm</code><font style="vertical-align: inherit;">组件本身作为用户界面的容器。</font></p>
+<p><font style="vertical-align: inherit;">为了自动连接来自用户界面中定义的旋转框的信号，我们使用命名约定来指示用户界面中的哪些组件及其信号应连接到每个插槽。每当用户界面中名为“inputSpinBox1”的旋转框发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qspinbox.html#valueChanged-1"><font style="vertical-align: inherit;">valueChanged()</font></a><font style="vertical-align: inherit;">信号时，就会调用第一个槽：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> CalculatorForm<span class="operator">::</span>on_inputSpinBox1_valueChanged(<span class="type">int</span> value)
+  {
+      ui<span class="operator">.</span>outputWidget<span class="operator">-</span><span class="operator">&gt;</span>setText(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><span class="operator">::</span>number(value <span class="operator">+</span> ui<span class="operator">.</span>inputSpinBox2<span class="operator">-</span><span class="operator">&gt;</span>value()));
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">发生这种情况时，我们使用信号提供的值通过直接设置其新文本来更新输出标签。我们通过类的私有</font><code>ui</code><font style="vertical-align: inherit;">变量访问输出标签和另一个旋转框。</font></p>
+<p><font style="vertical-align: inherit;">每当名为“inputSpinBox2”的第二个旋转框发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qspinbox.html#valueChanged-1"><font style="vertical-align: inherit;">valueChanged()</font></a><font style="vertical-align: inherit;">信号时，就会调用第二个插槽：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> CalculatorForm<span class="operator">::</span>on_inputSpinBox2_valueChanged(<span class="type">int</span> value)
+  {
+      ui<span class="operator">.</span>outputWidget<span class="operator">-</span><span class="operator">&gt;</span>setText(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><span class="operator">::</span>number(value <span class="operator">+</span> ui<span class="operator">.</span>inputSpinBox1<span class="operator">-</span><span class="operator">&gt;</span>value()));
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">在这种情况下，读取第一个旋转框的值并将其与信号提供的值组合。同样，输出标签直接通过</font><code>ui</code><font style="vertical-align: inherit;">变量更新。</font></p>
+<p><font style="vertical-align: inherit;">文件：</font></p>
+<ul>
+<li><a href="qtdesigner-calculatorform-calculatorform-cpp.html">calculatorform/calculatorform.cpp</a></li>
+<li><a href="qtdesigner-calculatorform-calculatorform-h.html">calculatorform/calculatorform.h</a></li>
+<li><a href="qtdesigner-calculatorform-calculatorform-pro.html">calculatorform/calculatorform.pro</a></li>
+<li><a href="qtdesigner-calculatorform-calculatorform-ui.html">calculatorform/calculatorform.ui</a></li>
+<li><a href="qtdesigner-calculatorform-main-cpp.html">calculatorform/main.cpp</a></li>
+</ul>
+</div>
+<!-- @@@calculatorform -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
