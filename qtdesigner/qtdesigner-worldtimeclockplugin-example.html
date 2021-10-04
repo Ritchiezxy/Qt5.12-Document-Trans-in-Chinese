@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- worldtimeclockplugin.qdoc -->
+  <title>世界时间时钟插件示例 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="examples-designer.html">Qt 设计师 Examples</a></td><td >
+			世界时间时钟插件示例</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#worldtimeclock-class">WorldTimeClock 类</a></li>
+<li class="level1"><a href="#worldtimeclockplugin-class">WorldTimeClockPlugin 类</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-worldtimeclockplugin-example.html#the-project-file-worldtimeclockplugin-pro"><font style="vertical-align: inherit;">项目文件：worldtimeclockplugin.pro</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">世界时间时钟插件示例</h1>
+<span class="subtitle"></span>
+<!-- $$$worldtimeclockplugin-brief -->
+<p><font style="vertical-align: inherit;">为使用信号和槽的</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">创建自定义组件插件。</font></p>
+<!-- @@@worldtimeclockplugin -->
+<!-- $$$worldtimeclockplugin-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/worldtimeclockplugin-example.png" alt="" /></p><p><font style="vertical-align: inherit;">在这个例子中，我们通过引入信号和槽的概念，简单地扩展了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html"><font style="vertical-align: inherit;">自定义控件插件</font></a><font style="vertical-align: inherit;">示例及其自定义控件（基于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qtwidgets-widgets-analogclock-example.html"><font style="vertical-align: inherit;">模拟时钟</font></a><font style="vertical-align: inherit;">示例）。</font></p>
+<p><font style="vertical-align: inherit;">世界时间时钟插件示例包含两个类：</font></p>
+<ul>
+<li><code>WorldTimeClock</code><font style="vertical-align: inherit;"> 是一个带有时针和分针的自定义时钟组件，每隔几秒钟就会自动更新一次。</font></li>
+<li><code>WorldTimeClockPlugin</code><font style="vertical-align: inherit;">将</font><code>WorldTimeClock</code><font style="vertical-align: inherit;">类公开给</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">。</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">首先，我们将通过提供信号和插槽来查看</font><code>WorldTimeClock</code><font style="vertical-align: inherit;">扩展</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html"><font style="vertical-align: inherit;">自定义<span lang="zh-cn">组件</span>插件</font></a><font style="vertical-align: inherit;">示例</font><code>AnalogClock</code><font style="vertical-align: inherit;">类的类。然后我们将快速查看</font><code>WorldTimeClockPlugin</code><font style="vertical-align: inherit;">该类，但该类在大多数情况下与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html"><font style="vertical-align: inherit;"><span lang="zh-cn">自定义组件插件</span></font></a><font style="vertical-align: inherit;">示例的实现相同。</font></p>
+<p><font style="vertical-align: inherit;">最后我们看一下插件的项目文件。自定义组件插件的项目文件需要一些附加信息以确保它们在</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">工作。这也包含在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html"><font style="vertical-align: inherit;">自定义组件插件</font></a><font style="vertical-align: inherit;">示例中，但由于其重要性（自定义组件插件依赖于</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供的组件，必须在我们使用的项目文件中指定）我们将在此处重复。</font></p>
+<a name="worldtimeclock-class"></a>
+<h2 id="worldtimeclock-class">WorldTimeClock 类</h2>
+<p><font style="vertical-align: inherit;">在</font><code>WorldTimeClock</code><font style="vertical-align: inherit;">类继承</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget的</font></a><font style="vertical-align: inherit;">，并且是一个自定义时钟组件与时针和分针是每隔几秒钟自动更新。这个例子与<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html"><span lang="zh-cn">自定义组件插件</span></a>示例的不同之处在于，在自定义组件类中引入了信号和槽：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> QDESIGNER_WIDGET_EXPORT WorldTimeClock : <span class="keyword">public</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> WorldTimeClock(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+  <span class="keyword">public</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> setTimeZone(<span class="type">int</span> hourOffset);
+
+  <span class="keyword">signals</span>:
+      <span class="type">void</span> updated(<span class="type"><a href="../qtcore/qtime.html">QTime</a></span> currentTime);
+
+  <span class="keyword">protected</span>:
+      <span class="type">void</span> paintEvent(<span class="type">QPaintEvent</span> <span class="operator">*</span>event) override;
+
+  <span class="keyword">private</span>:
+      <span class="type">int</span> timeZoneOffset <span class="operator">=</span> <span class="number">0</span>;
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">请注意</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#QDESIGNER_WIDGET_EXPORT"><font style="vertical-align: inherit;">QDESIGNER_WIDGET_EXPORT</font></a><font style="vertical-align: inherit;">宏的使用。这是确保</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">可以在某些平台上创建组件实例所必需的，但最好在所有平台上使用它。</font></p>
+<p><font style="vertical-align: inherit;">我们</font><code>setTimeZone()</code><font style="vertical-align: inherit;">使用关联</font><code>timeZoneOffset</code><font style="vertical-align: inherit;">变量声明插槽，并声明一个</font><code>updated()</code><font style="vertical-align: inherit;">信号，该信号将当前时间作为参数，并在重新绘制组件时发出。</font></p>
+<p class="centerAlign"><img src="images/worldtimeclock-connection.png" alt="" /></p><p><font style="vertical-align: inherit;">例如，在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的工作区中，我们可以使用<i>Qt 设计师</i>编辑信号和槽的模式将</font><code>WorldTimeClock</code><font style="vertical-align: inherit;">组件的</font><code>updated()</code><font style="vertical-align: inherit;">信号连接到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qtimeedit.html"><font style="vertical-align: inherit;">QTimeEdit</font></a><font style="vertical-align: inherit;">的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qdatetimeedit.html#time-prop"><font style="vertical-align: inherit;">setTime()</font></a><font style="vertical-align: inherit;">槽。</font></p>
+<p class="centerAlign"><img src="images/worldtimeclock-signalandslot.png" alt="" /></p><p><font style="vertical-align: inherit;">我们还可以将</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qspinbox.html"><font style="vertical-align: inherit;">QSpinBox</font></a><font style="vertical-align: inherit;">的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qspinbox.html#valueChanged-1"><font style="vertical-align: inherit;">valueChanged()</font></a><font style="vertical-align: inherit;">信号连接到</font><code>WorldTimeClock</code><font style="vertical-align: inherit;">的</font><code>setTimeZone()</code><font style="vertical-align: inherit;">槽。</font></p>
+<a name="worldtimeclockplugin-class"></a>
+<h2 id="worldtimeclockplugin-class">WorldTimeClockPlugin 类</h2>
+<p><code>WorldTimeClockPlugin</code> 类向<i>Qt设计师</i>公开了<code>WorldTimeClock</code> 
+类。它的定义等价于<a href="qtdesigner-customwidgetplugin-example.html">自定义组件插件</a>示例中的插件类。特定于这个自定义组件的类定义的唯一部分是类名:</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> WorldTimeClockPlugin : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span>
+                               <span class="keyword">public</span> <span class="type"><a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a></span>
+  {
+      Q_OBJECT
+      Q_PLUGIN_METADATA(IID <span class="string">&quot;org.qt-project.Qt.QDesignerCustomWidgetInterface&quot;</span>)
+      Q_INTERFACES(<span class="type"><a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a></span>)
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> WorldTimeClockPlugin(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+      bool isContainer() <span class="keyword">const</span> override;
+      bool isInitialized() <span class="keyword">const</span> override;
+      <span class="type">QIcon</span> icon() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> domXml() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> group() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> includeFile() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> name() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> toolTip() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> whatsThis() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>createWidget(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent) override;
+      <span class="type">void</span> initialize(<span class="type"><a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a></span> <span class="operator">*</span>core) override;
+
+  <span class="keyword">private</span>:
+      bool initialized <span class="operator">=</span> <span class="keyword">false</span>;
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">插件类为</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供了关于我们插件的基本信息，例如它的类名和它的包含文件。此外，它知道如何创建</font><code>WorldTimeClockPlugin</code><font style="vertical-align: inherit;">组件的实例。</font><code>WorldTimeClockPlugin</code><font style="vertical-align: inherit;">还定义了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#initialize"><font style="vertical-align: inherit;">initialize()</font></a><font style="vertical-align: inherit;">函数，该函数在插件加载到</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">后调用。该函数的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">参数为插件提供了通往所有</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;"> API 的网关。</font></p>
+<p><font style="vertical-align: inherit;">在</font><code>WorldTimeClockPlugin</code><font style="vertical-align: inherit;">类继承两者</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">的QObject</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html"><font style="vertical-align: inherit;">QDesignerCustomWidgetInterface</font></a><font style="vertical-align: inherit;">。重要的是要记住，在使用多重继承时，要确保使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INTERFACES">Q_INTERFACES</a> () 宏使元对象系统知道所有接口（即不继承</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_OBJECT"><font style="vertical-align: inherit;">Q_OBJECT</font></a><font style="vertical-align: inherit;">的类）。这使得<i>Qt 设计师</i>能够使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#qobject_cast">qobject_cast</a> (QObject * object) 来查询支持的接口，只使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>指针。</font></p>
+<p><font style="vertical-align: inherit;">实现</font><code>WorldTimeClockPlugin</code><font style="vertical-align: inherit;">也等价于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html"><font style="vertical-align: inherit;"><span lang="zh-cn">自定义组件插件</span></font></a><font style="vertical-align: inherit;">示例中的插件接口实现（只是类名和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#domXml"><font style="vertical-align: inherit;">QDesignerCustomWidgetInterface::domXml</font></a><font style="vertical-align: inherit;"> ()的实现不同）。要记住的主要事情是使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA"><font style="vertical-align: inherit;">Q_PLUGIN_METADATA</font></a><font style="vertical-align: inherit;"> () 宏导出</font><code>WorldTimeClockPlugin</code><font style="vertical-align: inherit;">用于</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的类：</font></p>
+<pre class="cpp">
+
+      Q_PLUGIN_METADATA(IID <span class="string">&quot;org.qt-project.Qt.QDesignerCustomWidgetInterface&quot;</span>)
+
+</pre>
+<p><font style="vertical-align: inherit;">没有这个宏，Qt 设计师 就无法使用组件。</font></p>
+<a name="the-project-file-worldtimeclockplugin-pro"></a>
+<h2 id="the-project-file-worldtimeclockplugin-pro"><font style="vertical-align: inherit;">项目文件：worldtimeclockplugin.pro</font></h2>
+<p><font style="vertical-align: inherit;">自定义组件插件的项目文件需要一些附加信息以确保它们在</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">按预期工作：</font></p>
+<pre class="cpp">
+
+  QT          += widgets uiplugin
+  CONFIG     += plugin
+  TEMPLATE    = lib
+
+</pre>
+<p><code>EMPLATE</code> 变量的值与<code>CONFIG</code> 变量中的关键字plugin结合在一起，使得<code>qmake</code> 
+将自定义组件创建为插件库。</p>
+<p><font style="vertical-align: inherit;">该</font><code>QT</code><font style="vertical-align: inherit;">变量包含关键字</font><code>uiplugin</code><font style="vertical-align: inherit;">。该插件类型通过实现抽象接口</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html"><font style="vertical-align: inherit;">QDesignerCustomWidgetInterface</font></a><font style="vertical-align: inherit;">或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetcollectioninterface.html"><font style="vertical-align: inherit;">QDesignerCustomWidgetCollectionInterface</font></a><font style="vertical-align: inherit;">为自定义组件创建提供工厂函数，适用于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html"><font style="vertical-align: inherit;">QUiLoader</font></a><font style="vertical-align: inherit;">。它不依赖于</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">库。访问</font><i><font style="vertical-align: inherit;">Qt 设计师 的</font></i><font style="vertical-align: inherit;">其他接口以实现容器扩展或其他</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">特定功能的插件遵循不同的规则，并由其他示例涵盖。</font></p>
+<p><font style="vertical-align: inherit;">组件的头文件和源文件以通常的方式声明，此外我们提供了插件接口的实现，以便</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">可以使用自定义组件。</font></p>
+<pre class="cpp">
+
+  HEADERS     = worldtimeclock.h \
+                worldtimeclockplugin.h
+  SOURCES     = worldtimeclock.cpp \
+                worldtimeclockplugin.cpp
+
+</pre>
+<p><font style="vertical-align: inherit;">确保插件安装在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">搜索到的位置很重要。我们通过为项目指定目标路径并将其添加到要安装的项目列表来完成此操作：</font></p>
+<pre class="cpp">
+
+  target.path = $$[QT_INSTALL_PLUGINS]/designer
+  INSTALLS += target
+
+</pre>
+<p><font style="vertical-align: inherit;">自定义组件创建为库，并在安装项目时与其他</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">插件一起安装（使用</font><code>make install</code><font style="vertical-align: inherit;">或等效的安装过程）。后面我们会通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA">Q_PLUGIN_METADATA</a> ()宏导出相关的widget信息，确保它被</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">识别为插件。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果您希望插件出现在 Visual Studio 集成中，则必须在发布模式下构建插件，并且必须将它们的库复制到集成安装路径中的插件目录中（例如，请参阅 参考资料</font><code>C:/program files/trolltech as/visual studio integration/plugins</code><font style="vertical-align: inherit;">）。</font></p>
+<p><font style="vertical-align: inherit;">有关插件的更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/plugins-howto.html"><font style="vertical-align: inherit;">如何创建 Qt 插件</font></a><font style="vertical-align: inherit;">文档。</font></p>
+<p><font style="vertical-align: inherit;">文件：</font></p>
+<ul>
+<li><a href="qtdesigner-worldtimeclockplugin-worldtimeclock-cpp.html">worldtimeclockplugin/worldtimeclock.cpp</a></li>
+<li><a href="qtdesigner-worldtimeclockplugin-worldtimeclock-h.html">worldtimeclockplugin/worldtimeclock.h</a></li>
+<li><a href="qtdesigner-worldtimeclockplugin-worldtimeclockplugin-cpp.html">worldtimeclockplugin/worldtimeclockplugin.cpp</a></li>
+<li><a href="qtdesigner-worldtimeclockplugin-worldtimeclockplugin-h.html">worldtimeclockplugin/worldtimeclockplugin.h</a></li>
+<li><a href="qtdesigner-worldtimeclockplugin-worldtimeclockplugin-pro.html">worldtimeclockplugin/worldtimeclockplugin.pro</a></li>
+</ul>
+</div>
+<!-- @@@worldtimeclockplugin -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

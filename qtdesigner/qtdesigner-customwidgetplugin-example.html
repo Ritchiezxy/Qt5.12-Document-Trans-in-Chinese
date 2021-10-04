@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- customwidgetplugin.qdoc -->
+  <title>自定义组件插件示例 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="examples-designer.html">Qt<span lang="zh-cn">设计师示例</span></a></td><td >
+			为 Qt 设计师 创建自定义组件</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html#preparation"><font style="vertical-align: inherit;">准备</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html#analogclock-class-definition-and-implementation"><font style="vertical-align: inherit;">AnalogClock 类的定义和实现</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html#analogclockplugin-class-definition"><font style="vertical-align: inherit;">AnalogClockPlugin 类定义</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html#analogclockplugin-implementation"><font style="vertical-align: inherit;">模拟时钟插件实现</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">自定义组件插件示例</h1>
+<span class="subtitle"></span>
+<!-- $$$customwidgetplugin-brief -->
+<p>为 Qt 设计师 创建自定义<span lang="zh-cn">插件</span></p>
+<!-- @@@customwidgetplugin -->
+<!-- $$$customwidgetplugin-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/customwidgetplugin-example.png" alt="" /></p><p><font style="vertical-align: inherit;">在此示例中，使用的自定义组件基于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qtwidgets-widgets-analogclock-example.html"><font style="vertical-align: inherit;">模拟时钟示例</font></a><font style="vertical-align: inherit;">，不提供任何自定义信号或插槽。</font></p>
+<a name="preparation"></a>
+<h2 id="preparation"><font style="vertical-align: inherit;">准备</font></h2>
+<p><font style="vertical-align: inherit;">为了提供可以与</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">一起使用的自定义组件，我们需要提供一个自包含的实现并提供一个插件接口。在本例中，为了方便起见，我们重用了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qtwidgets-widgets-analogclock-example.html"><font style="vertical-align: inherit;">模拟时钟示例</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">由于自定义组件插件依赖于</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供的组件，我们使用的项目文件需要包含有关</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">库组件的信息：</font></p>
+<pre class="cpp">
+
+  CONFIG      += plugin
+  TEMPLATE    = lib
+  QT          += widgets uiplugin
+
+</pre>
+<p><font style="vertical-align: inherit;">该</font><code>TEMPLATE</code><font style="vertical-align: inherit;">变量的值使</font><code>qmake</code><font style="vertical-align: inherit;">创建自定义窗口组件用作图书馆。后面我们会通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA"><font style="vertical-align: inherit;">Q_PLUGIN_METADATA</font></a><font style="vertical-align: inherit;"> ()宏导出相关widget信息，确保<span lang="zh-cn">组件</span>会被Qt识别为插件。</font></p>
+<p><font style="vertical-align: inherit;">该</font><code>CONFIG</code><font style="vertical-align: inherit;">变量设置为</font><code>plugin</code><font style="vertical-align: inherit;">，这确保</font><code>qmake</code><font style="vertical-align: inherit;">将自定义组件视为插件库。</font></p>
+<p><font style="vertical-align: inherit;">该</font><code>QT</code><font style="vertical-align: inherit;">变量包含关键字</font><code>uiplugin</code><font style="vertical-align: inherit;">。该插件类型通过实现抽象接口</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html"><font style="vertical-align: inherit;">QDesignerCustomWidgetInterface</font></a><font style="vertical-align: inherit;">或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetcollectioninterface.html"><font style="vertical-align: inherit;">QDesignerCustomWidgetCollectionInterface</font></a><font style="vertical-align: inherit;">为自定义组件创建提供工厂函数，适用于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html"><font style="vertical-align: inherit;">QUiLoader</font></a><font style="vertical-align: inherit;">。它不依赖于</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">库。访问</font><i><font style="vertical-align: inherit;">Qt 设计师 </font></i>
+<font style="vertical-align: inherit;">的其他接口以实现容器扩展或其他</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">特定功能的插件遵循不同的规则，并由其他示例涵盖。</font></p>
+<p><font style="vertical-align: inherit;">组件的头文件和源文件以通常的方式声明，我们提供了插件接口的实现，以便</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">可以使用自定义组件：</font></p>
+<pre class="cpp">
+
+  HEADERS     = analogclock.h \
+                customwidgetplugin.h
+  SOURCES     = analogclock.cpp \
+                customwidgetplugin.cpp
+  OTHER_FILES += analogclock.json
+
+</pre>
+<p><font style="vertical-align: inherit;">保插件安装在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">搜索到的位置也很重要。我们通过为项目指定目标路径并将其添加到要安装的项目列表来完成此操作：</font></p>
+<pre class="cpp">
+
+  target.path = $$[QT_INSTALL_PLUGINS]/designer
+  INSTALLS += target
+
+</pre>
+<p><font style="vertical-align: inherit;">自定义组件创建为库，并在安装项目时与其他</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">插件一起安装（使用</font><code>make install</code><font style="vertical-align: inherit;">或等效的安装过程）。后面我们会通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA">Q_PLUGIN_METADATA</a> ()宏导出相关的组件信息，确保它被</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">识别为插件。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果您希望插件出现在 Visual Studio 集成中，则必须在发布模式下构建插件，并且必须将它们的库复制到集成安装路径中的插件目录中（例如，请参阅 参考资料</font><code>C:/program files/trolltech as/visual studio integration/plugins</code><font style="vertical-align: inherit;">）。</font></p>
+<p><font style="vertical-align: inherit;">有关插件的更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/plugins-howto.html"><font style="vertical-align: inherit;">如何创建 Qt 插件</font></a><font style="vertical-align: inherit;">文档。</font></p>
+<a name="analogclock-class-definition-and-implementation"></a>
+<h2 id="analogclock-class-definition-and-implementation"><font style="vertical-align: inherit;">AnalogClock 类的定义和实现</font></h2>
+<p><font style="vertical-align: inherit;">所述</font><code>AnalogClock</code><font style="vertical-align: inherit;">类的定义和完全按照在所描述的相同的方式实现的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qtwidgets-widgets-analogclock-example.html"><font style="vertical-align: inherit;">模拟时钟示例</font></a><font style="vertical-align: inherit;">。由于该类是自包含的，并且不需要任何外部配置，因此它可以不加修改地用作</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">的自定义组件。</font></p>
+<a name="analogclockplugin-class-definition"></a>
+<h2 id="analogclockplugin-class-definition"><font style="vertical-align: inherit;">AnalogClockPlugin 类定义</font></h2>
+<p>The <code>AnalogClock</code> class is exposed to <i>Qt 设计师</i> through the <code>AnalogClockPlugin</code> class. This class inherits from both <a href="../qtcore/qobject.html">QObject</a> and the <a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a> class, and implements an interface defined by <a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a>:<code>AnalogClock</code> 
+类通过<code>AnalogClockPlugin</code> 类暴露给Qt设计师。这个类继承了<a href="../qtcore/qobject.html">QObject</a>和<a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a>类，并实现了一个由<a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a>定义的接口:</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> AnalogClockPlugin : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span> <span class="keyword">public</span> <span class="type"><a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a></span>
+  {
+      Q_OBJECT
+      Q_PLUGIN_METADATA(IID <span class="string">&quot;org.qt-project.Qt.QDesignerCustomWidgetInterface&quot;</span>)
+      Q_INTERFACES(<span class="type"><a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a></span>)
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> AnalogClockPlugin(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+      bool isContainer() <span class="keyword">const</span> override;
+      bool isInitialized() <span class="keyword">const</span> override;
+      <span class="type">QIcon</span> icon() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> domXml() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> group() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> includeFile() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> name() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> toolTip() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> whatsThis() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>createWidget(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent) override;
+      <span class="type">void</span> initialize(<span class="type"><a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a></span> <span class="operator">*</span>core) override;
+
+  <span class="keyword">private</span>:
+      bool initialized <span class="operator">=</span> <span class="keyword">false</span>;
+  };
+
+</pre>
+<p>这些函数提供了有关Qt 设计师可以在<a href="designer-to-know.html#widgetbox">组件框</a>中使用的组件的信息。<code>initialized</code> 
+<span lang="zh-cn">（</span>初始化<span lang="zh-cn">）</span>的私有成员变量用于记录插件是否已被<i>Qt 设计师</i>初始化。</p>
+<p><font style="vertical-align: inherit;">请注意，特定于该特定自定义组件的类定义的唯一部分是类名。</font></p>
+<a name="analogclockplugin-implementation"></a>
+<h2 id="analogclockplugin-implementation"><font style="vertical-align: inherit;">模拟时钟插件实现</font></h2>
+<p><font style="vertical-align: inherit;">类构造函数简单地调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">基类构造函数并将</font><code>initialized</code><font style="vertical-align: inherit;">变量设置为</font><code>false<span lang="zh-cn">。</span></code></p>
+<pre class="cpp">
+
+  AnalogClockPlugin<span class="operator">::</span>AnalogClockPlugin(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>(parent)
+  {
+  }
+
+</pre>
+<p><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">将在需要时通过调用</font><code>initialize()</code><font style="vertical-align: inherit;">函数来初始化插件：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> AnalogClockPlugin<span class="operator">::</span>initialize(<span class="type"><a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a></span> <span class="operator">*</span> <span class="comment">/* core */</span>)
+  {
+      <span class="keyword">if</span> (initialized)
+          <span class="keyword">return</span>;
+
+      initialized <span class="operator">=</span> <span class="keyword">true</span>;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">在此示例中，</font><code>initialized</code><font style="vertical-align: inherit;">测试了私有变量，并且仅</font><code>true</code><font style="vertical-align: inherit;">在插件尚未初始化时才设置为。虽然这个插件在初始化时不需要执行任何特殊代码，但我们可以在初始化测试之后包含这些代码。</font></p>
+<p><font style="vertical-align: inherit;">该</font><code>isInitialized()</code><font style="vertical-align: inherit;">函数让</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">知道插件是否可以使用：</font></p>
+<pre class="cpp">
+
+  bool AnalogClockPlugin<span class="operator">::</span>isInitialized() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> initialized;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">自定义组件的实例由该</font><code>createWidget()</code><font style="vertical-align: inherit;">函数提供。模拟时钟的实现很简单：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>AnalogClockPlugin<span class="operator">::</span>createWidget(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent)
+  {
+      <span class="keyword">return</span> <span class="keyword">new</span> AnalogClock(parent);
+  }
+
+</pre>
+<p>在本例中，自定义组件只需要指定父组件。如果需要向组件提供其他参数，可以在这里引入它们。</p>
+<p><font style="vertical-align: inherit;">以下函数为</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供了用于在组件框中表示组件的信息。该</font><code>name()</code><font style="vertical-align: inherit;">函数返回提供自定义组件的类的名称：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> AnalogClockPlugin<span class="operator">::</span>name() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html#QStringLiteral">QStringLiteral</a></span>(<span class="string">&quot;AnalogClock&quot;</span>);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">该</font><code>group()</code><font style="vertical-align: inherit;">函数用于描述自定义<span lang="zh-cn">组件</span>所属的<span lang="zh-cn">组件</span>类型：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> AnalogClockPlugin<span class="operator">::</span>group() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html#QStringLiteral">QStringLiteral</a></span>(<span class="string">&quot;Display Widgets [Examples]&quot;</span>);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">组件插件将放置在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">组件框中由其组名标识的部分中。用于在组件框中表示组件的图标由</font><code>icon()</code><font style="vertical-align: inherit;">函数返回：</font></p>
+<pre class="cpp">
+
+  <span class="type">QIcon</span> AnalogClockPlugin<span class="operator">::</span>icon() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type">QIcon</span>();
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">在这种情况下，我们返回一个空图标以指示我们没有可用于表示组件的图标。</font></p>
+<p><font style="vertical-align: inherit;">工具提示和“这是什么？” 可以为组件框中自定义组件的条目提供帮助。该</font><code>toolTip()</code><font style="vertical-align: inherit;">函数应返回一条描述组件的短消息：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> AnalogClockPlugin<span class="operator">::</span>toolTip() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span>();
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">该</font><code>whatsThis()</code><font style="vertical-align: inherit;">函数可以返回更长的描述：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> AnalogClockPlugin<span class="operator">::</span>whatsThis() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span>();
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">该</font><code>isContainer()</code><font style="vertical-align: inherit;">函数告诉</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">该组件是否应该用作其他组件的容器。如果没有，</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">将不允许用户在其中放置组件。</font></p>
+<pre class="cpp">
+
+  bool AnalogClockPlugin<span class="operator">::</span>isContainer() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="keyword">false</span>;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">Qt 中的大多数组件都可以包含子组件，但只有在</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">为此目的使用专用容器组件才有意义。通过返回</font><code>false</code><font style="vertical-align: inherit;">，我们表明自定义组件不能容纳其他组件；如果返回 true，</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">将允许将其他组件放置在模拟时钟内并定义布局。</font></p>
+<p><font style="vertical-align: inherit;">该</font><code>domXml()</code><font style="vertical-align: inherit;">函数提供了一种以</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">使用的标准 XML 格式包含组件的默认设置的方法。在这种情况下，我们只指定组件的几何形状：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> AnalogClockPlugin<span class="operator">::</span>domXml() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="string">&quot;&lt;ui language=\&quot;c++\&quot;&gt;\n&quot;</span>
+             <span class="string">&quot; &lt;widget class=\&quot;AnalogClock\&quot; name=\&quot;analogClock\&quot;&gt;\n&quot;</span>
+             <span class="string">&quot;  &lt;property name=\&quot;geometry\&quot;&gt;\n&quot;</span>
+             <span class="string">&quot;   &lt;rect&gt;\n&quot;</span>
+             <span class="string">&quot;    &lt;x&gt;0&lt;/x&gt;\n&quot;</span>
+             <span class="string">&quot;    &lt;y&gt;0&lt;/y&gt;\n&quot;</span>
+             <span class="string">&quot;    &lt;width&gt;100&lt;/width&gt;\n&quot;</span>
+             <span class="string">&quot;    &lt;height&gt;100&lt;/height&gt;\n&quot;</span>
+             <span class="string">&quot;   &lt;/rect&gt;\n&quot;</span>
+             <span class="string">&quot;  &lt;/property&gt;\n&quot;</span>
+             <span class="string">&quot;  &lt;property name=\&quot;toolTip\&quot; &gt;\n&quot;</span>
+             <span class="string">&quot;   &lt;string&gt;The current time&lt;/string&gt;\n&quot;</span>
+             <span class="string">&quot;  &lt;/property&gt;\n&quot;</span>
+             <span class="string">&quot;  &lt;property name=\&quot;whatsThis\&quot; &gt;\n&quot;</span>
+             <span class="string">&quot;   &lt;string&gt;The analog clock widget displays the current time.&lt;/string&gt;\n&quot;</span>
+             <span class="string">&quot;  &lt;/property&gt;\n&quot;</span>
+             <span class="string">&quot; &lt;/widget&gt;\n&quot;</span>
+             <span class="string">&quot;&lt;/ui&gt;\n&quot;</span>;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">如果组件提供了合理的大小提示，则无需在此处定义。此外，返回一个空字符串而不是一个</font><code>&lt;widget&gt;</code><font style="vertical-align: inherit;">元素将告诉</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">不要在组件框中安装组件。</font></p>
+<p><font style="vertical-align: inherit;">为了使应用程序可以使用模拟时钟组件，我们实现了</font><code>includeFile()</code><font style="vertical-align: inherit;">返回包含自定义组件类定义的头文件名称的函数：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> AnalogClockPlugin<span class="operator">::</span>includeFile() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html#QStringLiteral">QStringLiteral</a></span>(<span class="string">&quot;analogclock.h&quot;</span>);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">文件：</font></p>
+<ul>
+<li><a href="qtdesigner-customwidgetplugin-analogclock-cpp.html">customwidgetplugin/analogclock.cpp</a></li>
+<li><a href="qtdesigner-customwidgetplugin-analogclock-h.html">customwidgetplugin/analogclock.h</a></li>
+<li><a href="qtdesigner-customwidgetplugin-customwidgetplugin-cpp.html">customwidgetplugin/customwidgetplugin.cpp</a></li>
+<li><a href="qtdesigner-customwidgetplugin-customwidgetplugin-h.html">customwidgetplugin/customwidgetplugin.h</a></li>
+<li><a href="qtdesigner-customwidgetplugin-customwidgetplugin-pro.html">customwidgetplugin/customwidgetplugin.pro</a></li>
+</ul>
+</div>
+<!-- @@@customwidgetplugin -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

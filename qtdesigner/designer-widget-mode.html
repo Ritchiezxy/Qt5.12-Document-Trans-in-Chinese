@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- designer-manual.qdoc -->
+  <title>Qt 设计师的组件编辑模式 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td >
+			Qt<span lang="zh-cn">设计师</span>的控件编辑模式</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="designer-editing-mode.html" />
+  <link rel="next" href="designer-connection-mode.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="designer-editing-mode.html">Qt<span lang="zh-cn">设计师的编辑模式</span></a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="designer-connection-mode.html">Qt<span lang="zh-cn">设计师的信号槽编辑模式</span></a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html#editing-a-form"><font style="vertical-align: inherit;">编辑表<span lang="zh-cn">单</span></font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html#the-property-editor"><font style="vertical-align: inherit;">属性编辑器</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html#dynamic-properties"><font style="vertical-align: inherit;">动态属性</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html#the-object-inspector"><font style="vertical-align: inherit;">对象检查器</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt<span lang="zh-cn">设计师</span>的控件编辑模式</h1>
+<span class="subtitle"></span>
+<!-- $$$designer-widget-mode.html-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/designer-editing-mode.png" alt="" /></p><p>
+	在组件编辑模式中，可以将对象从主窗口的组件框拖到窗体、编辑、调整大小、在窗体上拖动，甚至在窗体之间拖动。对象属性可以交互修改，因此可以立即看到更改。编辑界面是直观的简单操作，但它仍然支持Qt强大的布局工具。</p>
+<p><font style="vertical-align: inherit;">要创建和编辑新表单，请打开“</font><b><font style="vertical-align: inherit;">文件”</font></b><font style="vertical-align: inherit;">菜单并选择“</font><b><font style="vertical-align: inherit;">新建表单...”</font></b><font style="vertical-align: inherit;">或按</font><b><font style="vertical-align: inherit;">Ctrl+N</font></b><font style="vertical-align: inherit;">。也可以通过从<b>文件</b>菜单中选择</font><b><font style="vertical-align: inherit;">打开表单...</font></b><font style="vertical-align: inherit;">或按<b>Ctrl+O</b>来编辑现有表单。</font></p>
+<p><font style="vertical-align: inherit;">在任何时候，您都可以通过从<b>文件</b>菜单中选择</font><b><font style="vertical-align: inherit;">另存为...</font></b><font style="vertical-align: inherit;">选项来保存表单。<i>Qt 
+<span lang="zh-cn">设计师</span></i>保存的 UI 文件包含有关所用对象的信息，以及它们之间信号和插槽连接的任何细节。</font></p>
+<a name="editing-a-form"></a>
+<h2 id="editing-a-form"><font style="vertical-align: inherit;">编辑表格</font></h2>
+<p><font style="vertical-align: inherit;">默认情况下，新表单以组件编辑模式打开。要从其他模式切换到编辑模式，请从<b>编辑</b>菜单中选择</font><b><font style="vertical-align: inherit;">编辑组件</font></b><font style="vertical-align: inherit;">或按<b>F3</b>键。</font></p>
+<p><font style="vertical-align: inherit;">通过将对象从主窗口组件框中拖放到窗体上的所需位置，将对象添加到窗体中。到达那里后，只需拖动它们或使用光标键即可移动它们。同时按下</font><b><font style="vertical-align: inherit;">Ctrl</font></b><font style="vertical-align: inherit;">键可逐像素移动所选组件，而单独使用光标键可使所选组件在移动时与网格对齐。可以通过用鼠标左键单击来选择对象。您还可以使用</font><b><font style="vertical-align: inherit;">Tab</font></b><font style="vertical-align: inherit;">键更改选择。</font></p>
+<p><font style="vertical-align: inherit;">组件框包含许多不同类别的对象，所有这些对象都可以根据需要放置在表单上。唯一需要做更多准备的对象是</font><b><font style="vertical-align: inherit;">Container</font></b><font style="vertical-align: inherit;">组件。这些在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-containers.html"><font style="vertical-align: inherit;">使用 Qt 设计师</font></a><font style="vertical-align: inherit;">中的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-containers.html">容器</a>一章中有更详细的描述。</font></p>
+<a name="selectingobjects"></a><div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/designer-selecting-widget.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">选择对象</font></b><p><font style="vertical-align: inherit;">窗体上的对象通过用鼠标左键单击来选择。当一个对象被选中时，每个角落和每边的中点都会显示调整大小的手柄，表明它可以调整大小。</font></p>
+<p><font style="vertical-align: inherit;">要选择其他对象，请按住</font><b><font style="vertical-align: inherit;">Control</font></b><font style="vertical-align: inherit;">键并单击它们。如果选择了多个对象，则当前对象将显示为不同颜色的调整大小手柄。</font></p>
+<p><font style="vertical-align: inherit;">要在布局内移动组件，请在拖动组件的同时按住</font><b><font style="vertical-align: inherit;">Shift</font></b><font style="vertical-align: inherit;">和</font><b><font style="vertical-align: inherit;">Control</font></b><font style="vertical-align: inherit;">。这会将选择扩展到组件的父布局。</font></p>
+<p><font style="vertical-align: inherit;">或者，可以在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html#the-object-inspector"><font style="vertical-align: inherit;">对象检查器中</font></a><font style="vertical-align: inherit;">选择<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html#the-object-inspector">对象</a>。</font></p>
+</td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">当一个<span lang="zh-cn">组件</span>被选中时，可以对其进行剪切、复制、粘贴等普通剪贴板操作。所有这些操作都可以根据需要完成和撤消。</font></p>
+<p><font style="vertical-align: inherit;">可以使用以下快捷方式：</font></p>
+<a name="shortcutsforediting"></a><div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th ><span lang="zh-cn">动作</span></th><th ><font style="vertical-align: inherit;">捷径</font></th><th ><font style="vertical-align: inherit;">描述</font></th></tr></thead>
+<tr valign="top" class="odd"><td ><font style="vertical-align: inherit;">
+	<span lang="zh-cn">剪切</span></font></td><td ><b>Ctrl+X</b></td><td ><font style="vertical-align: inherit;">将选定对象剪切到剪贴板。</font></td></tr>
+<tr valign="top" class="even"><td ><font style="vertical-align: inherit;">复制</font></td><td ><b>Ctrl+C</b></td><td ><font style="vertical-align: inherit;">将选定的对象复制到剪贴板。</font></td></tr>
+<tr valign="top" class="odd"><td ><font style="vertical-align: inherit;">粘贴</font></td><td ><b>Ctrl+V</b></td><td ><font style="vertical-align: inherit;">将剪贴板中的对象粘贴到表单上。</font></td></tr>
+<tr valign="top" class="even"><td ><font style="vertical-align: inherit;">删除</font></td><td ><b>Delete</b></td><td ><font style="vertical-align: inherit;">删除选定的对象。</font></td></tr>
+<tr valign="top" class="odd"><td ><font style="vertical-align: inherit;">克隆对象</font></td><td ><b>Ctrl+drag</b> (leftmouse button)</td><td ><font style="vertical-align: inherit;">制作选定对象或对象组的副本。</font></td></tr>
+<tr valign="top" class="even"><td ><font style="vertical-align: inherit;">预览</font></td><td ><b>Ctrl+R</b></td><td ><font style="vertical-align: inherit;">显示表单的预览。</font></td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">上述所有操作（克隆除外）都可以通过“</font><b><font style="vertical-align: inherit;">编辑”</font></b><font style="vertical-align: inherit;">菜单和表单的上下文菜单访问。这些菜单还提供了用于布置对象的功能以及用于选择表单上所有对象的全<b><span lang="zh-cn">全选</span></b>功能。</font></p>
+<p><font style="vertical-align: inherit;">组件不是唯一的对象；您可以根据需要制作任意数量的副本。要快速复制组件，您可以通过按住</font><b><font style="vertical-align: inherit;">Ctrl</font></b><font style="vertical-align: inherit;">键并拖动它来克隆它。这允许比剪贴板操作更快地复制组件并将其放置在表单上。</font></p>
+<a name="draganddrop"></a><div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/designer-dragging-onto-form.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">拖放</font></b><p>
+	 <i><font style="vertical-align: inherit;">Qt<span lang="zh-cn">设计师</span></font></i><font style="vertical-align: inherit;">广泛使用了 Qt 提供的拖放功能。组件可以从组件框中拖放到表单上。</font></p>
+<p><font style="vertical-align: inherit;">组件也可以在表单上“克隆”：按住</font><b><font style="vertical-align: inherit;">Ctrl</font></b><font style="vertical-align: inherit;">并拖动组件会创建可拖动到新位置的组件副本。</font></p>
+<p><font style="vertical-align: inherit;">也可以将组件放到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html#the-object-inspector"><font style="vertical-align: inherit;">对象检查器上</font></a><font style="vertical-align: inherit;">以轻松处理嵌套布局。</font></p>
+</td></tr>
+</table></div>
+<p><i><font style="vertical-align: inherit;">Qt <span lang="zh-cn">设计师</span></font></i><font style="vertical-align: inherit;">允许选择要在表单之间复制、粘贴和拖动的对象。您可以使用此功能创建多个相同表单的副本，并在每个副本中尝试不同的布局。</font></p>
+<a name="the-property-editor"></a>
+<h3 ><font style="vertical-align: inherit;">属性编辑器</font></h3>
+<p><font style="vertical-align: inherit;">属性编辑器始终在表单上显示当前选定对象的属性。可用属性取决于正在编辑的对象，但提供的所有组件都具有通用属性，例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#objectName-prop"><font style="vertical-align: inherit;">objectName</font></a><font style="vertical-align: inherit;">（对象的内部名称）和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#enabled-prop"><font style="vertical-align: inherit;">enabled</font></a><font style="vertical-align: inherit;">（确定对象是否可以与之交互的属性）。</font></p>
+<a name="editingproperties"></a><div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/designer-property-editor.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">编辑属性</font></b><p><font style="vertical-align: inherit;">属性编辑器使用标准的 Qt 输入组件来管理表单上对象的属性。文本属性显示在行编辑中，整数属性显示在旋转框中，布尔属性显示在复选框中，复合属性（如颜色和大小）显示在输入组件的下拉列表中。</font></p>
+<p><font style="vertical-align: inherit;">修改后的属性用粗体标签表示。要重置它们，请单击右侧的箭头按钮。</font></p>
+<p><font style="vertical-align: inherit;">属性更改将应用​​于所有具有相同属性的选定对象。</font></p>
+</td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">属性编辑器会特别处理某些属性：</font></p>
+<ul>
+<li><font style="vertical-align: inherit;">复合属性——由多个值组成的属性——表示为可以扩展的节点，允许编辑它们的值。</font></li>
+<li><font style="vertical-align: inherit;">包含选择或选择标志的属性通过带有可检查项目的组合框进行编辑。</font></li>
+<li><font style="vertical-align: inherit;">允许访问丰富数据类型的属性，例如 QPalette，使用编辑属性时打开的对话框进行修改。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qlabel.html"><font style="vertical-align: inherit;">QLabel</font></a><font style="vertical-align: inherit;">和组件框</font><b><font style="vertical-align: inherit;">按钮</font></b><font style="vertical-align: inherit;">部分中的组件有一个</font><code>text</code><font style="vertical-align: inherit;">属性，也可以通过双击组件或按</font><b><font style="vertical-align: inherit;">F2</font></b><font style="vertical-align: inherit;">来编辑该属性。</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">对反斜杠 (\) 字符进行了特殊解释，从而可以在文本中插入换行符 (\n) 字符；\\ 字符序列用于在文本中插入一个反斜杠。还可以在编辑时打开上下文菜单，提供另一种在文本中插入特殊字符和换行符的方法。</font></li>
+</ul>
+<a name="dynamic-properties"></a>
+<h3 ><font style="vertical-align: inherit;">动态属性</font></h3>
+<p><font style="vertical-align: inherit;">属性编辑器还可用于向标准 Qt 组件和表单本身添加新的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#dynamic-properties"><font style="vertical-align: inherit;">动态属性</font></a><font style="vertical-align: inherit;">。从 Qt 4.4 开始，通过属性编辑器的工具栏添加和删除动态属性，如下所示。</font></p>
+<p class="centerAlign"><img src="images/designer-property-editor-toolbar.png" alt="" /></p><p><font style="vertical-align: inherit;">要添加动态属性，请单击</font><b><font style="vertical-align: inherit;">添加</font></b><font style="vertical-align: inherit;">按钮</font> <img src="images/designer-property-editor-add-dynamic.png" alt="" /> <font style="vertical-align: inherit;">。要删除它，请改为单击“</font><b><font style="vertical-align: inherit;">删除”</font></b><font style="vertical-align: inherit;">按钮</font> <img src="images/designer-property-editor-remove-dynamic.png" alt="" /> <font style="vertical-align: inherit;">。您还可以按字母顺序对属性进行排序，并通过单击“</font><b><font style="vertical-align: inherit;">配置”</font></b><font style="vertical-align: inherit;">按钮来更改颜色组</font> <img src="images/designer-property-editor-configure.png" alt="" /> .</p>
+<a name="the-object-inspector"></a>
+<h3 ><font style="vertical-align: inherit;">对象检查器</font></h3>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/designer-object-inspector.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">对象检查器</font></b><p><font style="vertical-align: inherit;">在</font><b><font style="vertical-align: inherit;">Object Inspector中</font></b><font style="vertical-align: inherit;">显示当前正在编辑的表格上的所有对象的层次列表。要显示容器组件或布局的子对象，请单击对象标签旁边的手柄。</font></p>
+<p><font style="vertical-align: inherit;">可以通过单击</font><b><font style="vertical-align: inherit;">对象检查器中</font></b><font style="vertical-align: inherit;">的相应项目来选择表单上的每个对象。右键单击打开表单的上下文菜单。如果您有许多重叠的对象，这些功能会很有用。要在</font><b><font style="vertical-align: inherit;">对象检查器中</font></b><font style="vertical-align: inherit;">定位对象，请使用</font><b><font style="vertical-align: inherit;">Ctrl+F</font></b><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">从 Qt 4.4 开始，双击对象的名称允许您使用就地编辑器更改对象的名称。</font></p>
+<p><font style="vertical-align: inherit;">从 Qt 4.5 开始，</font><b><font style="vertical-align: inherit;">对象检查器</font></b><font style="vertical-align: inherit;">显示容器的布局状态。如果布局有问题，则会显示损坏的布局图标 ###ICON。</font></p>
+</td></tr>
+</table></div>
+</div>
+<!-- @@@designer-widget-mode.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="designer-editing-mode.html">Qt<span lang="zh-cn">设计师的编辑模式</span></a>
+<span class="naviSeparator">  &#9702;  
+<a class="nextPage" href="designer-connection-mode.html">Qt<span lang="zh-cn">设计师的信号槽编辑模式</span></a></span>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- taskmenu.qdoc -->
+  <title>QDesignerTaskMenuExtension 类 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">C++ 
+			<span lang="zh-cn">类</span></a></td><td >QDesignerTaskMenuExtension</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QDesignerTaskMenuExtension 类</h1>
+<!-- $$$QDesignerTaskMenuExtension-brief -->
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html">
+<font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">类允许您自定义菜单项添加到Qt设计师的任务菜单。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html#details"><font style="vertical-align: inherit;">更多的...</font></a></p>
+<!-- @@@QDesignerTaskMenuExtension -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QDesignerTaskMenuExtension&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += designer</td></tr></table></div><ul>
+<li><a href="qdesignertaskmenuextension-members.html">所有成员的列表，包括继承成员。</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qdesignertaskmenuextension.html#dtor.QDesignerTaskMenuExtension">~QDesignerTaskMenuExtension</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QAction *</td><td class="memItemRight bottomAlign"><b><a href="qdesignertaskmenuextension.html#preferredEditAction">preferredEditAction</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QList&lt;QAction *&gt; </td><td class="memItemRight bottomAlign"><b><a href="qdesignertaskmenuextension.html#taskActions">taskActions</a></b>() const = 0</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$QDesignerTaskMenuExtension-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">类允许您自定义菜单项添加到Qt设计师的任务菜单。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">提供了一个用于创建自定义任务菜单扩展的接口。它通常用于在</font><i><font style="vertical-align: inherit;">Qt 设计师 </font></i>
+<font style="vertical-align: inherit;"><span lang="zh-cn">中创</span>建特定于插件的任务菜单条目。</font></p>
+<p><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">来提供其任务菜单。每当请求任务菜单时，</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">将查询所选组件的任务菜单扩展。</font></p>
+<p class="centerAlign"><img src="images/taskmenuextension-example-faded.png" alt="" /></p><p>
+	任务菜单扩展是QActions的集合。当带有指定扩展名的插件被选中时，操作作为条目出现在任务菜单中。上面的图片显示了自定义<b><span lang="zh-cn">编辑状态..</span>&#x2e;</b>在Qt 
+	Designer的默认任务菜单项之外出现的动作:<b>剪切</b>、<b>复制</b>、<b>粘贴</b>等。</p>
+<p><font style="vertical-align: inherit;">要创建自定义任务菜单扩展，您的扩展类必须从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">继承。例如：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> MyTaskMenuExtension : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span>
+          <span class="keyword">public</span> <span class="type"><a href="qdesignertaskmenuextension.html">QDesignerTaskMenuExtension</a></span>
+  {
+      Q_OBJECT
+      Q_INTERFACES(<span class="type"><a href="qdesignertaskmenuextension.html">QDesignerTaskMenuExtension</a></span>)
+
+  <span class="keyword">public</span>:
+      MyTaskMenuExtension(MyCustomWidget <span class="operator">*</span>widget<span class="operator">,</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent);
+
+      <span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span> <span class="operator">*</span>preferredEditAction() <span class="keyword">const</span>;
+      <span class="type"><a href="../qtcore/qlist.html">QList</a></span><span class="operator">&lt;</span><span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span> <span class="operator">*</span><span class="operator">&gt;</span> taskActions() <span class="keyword">const</span>;
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> mySlot();
+
+  <span class="keyword">private</span>:
+      MyCustomWidget <span class="operator">*</span>widget;
+      <span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span> <span class="operator">*</span>myAction;
+  };
+
+</pre>
+<p>因为我们正在实现一个接口，所以我们必须确保使用<a href="../qtcore/qobject.html#Q_INTERFACES">Q_INTERFACES</a>()宏让元对象系统知道它。这使Qt 
+Designer能够使用<a href="../qtcore/qobject.html#qobject_cast">qobject_cast</a>()函数来查询所支持的接口，<span lang="zh-cn">但</span>只<span lang="zh-cn">能</span>使用<a href="../qtcore/qobject.html">QObject</a>指针。</p>
+<p><font style="vertical-align: inherit;">您必须重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html#taskActions"><font style="vertical-align: inherit;">taskActions</font></a><font style="vertical-align: inherit;"> () 函数以返回将包含在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">任务菜单中的操作列表。或者，您可以重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html#preferredEditAction"><font style="vertical-align: inherit;">preferredEditAction</font></a><font style="vertical-align: inherit;"> () 函数以设置在选择插件并按</font><b><font style="vertical-align: inherit;">F2</font></b><font style="vertical-align: inherit;">时调用的操作。首选编辑操作必须是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html#taskActions"><font style="vertical-align: inherit;">taskActions</font></a><font style="vertical-align: inherit;"> ()返回的操作之一，如果未定义，按</font><b><font style="vertical-align: inherit;">F2</font></b><font style="vertical-align: inherit;">键将被忽略。</font></p>
+<p><font style="vertical-align: inherit;">在</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">，除非需要扩展，否则不会创建扩展。例如，当您在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">工作区中的组件上单击鼠标右键时，会创建一个任务菜单扩展。因此，您还必须使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">或子类构造扩展工厂，并使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionmanager.html"><font style="vertical-align: inherit;">扩展管理器</font></a><font style="vertical-align: inherit;">注册它。</font></p>
+<p><font style="vertical-align: inherit;">当需要任务菜单扩展时，</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionmanager.html"><font style="vertical-align: inherit;">扩展管理器</font></a><font style="vertical-align: inherit;">将运行所有已注册的工厂，为每个工厂调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#createExtension"><font style="vertical-align: inherit;">QExtensionFactory::createExtension</font></a><font style="vertical-align: inherit;"> ()，直到找到能够为所选组件创建任务菜单扩展的工厂。然后这个工厂将创建扩展的一个实例。</font></p>
+<p><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">有四种可用的扩展类型：</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html"><font style="vertical-align: inherit;">QDesignerContainerExtension</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignermembersheetextension.html"><font style="vertical-align: inherit;">QDesignerMemberSheetExtension</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">。无论请求的扩展与容器、成员表、属性表还是任务菜单相关联，</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的行为都是相同的。</font></p>
+<p><font style="vertical-align: inherit;">所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">类提供的标准扩展工厂，并且还可以用作用于定义扩展工厂的接口。您可以创建一个新的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">并重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#createExtension"><font style="vertical-align: inherit;">QExtensionFactory::createExtension</font></a><font style="vertical-align: inherit;"> () 函数。例如：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>ANewExtensionFactory<span class="operator">::</span>createExtension(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object<span class="operator">,</span>
+          <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>iid<span class="operator">,</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent) <span class="keyword">const</span>
+  {
+      <span class="keyword">if</span> (iid <span class="operator">!</span><span class="operator">=</span> Q_TYPEID(<span class="type"><a href="qdesignertaskmenuextension.html">QDesignerTaskMenuExtension</a></span>))
+          <span class="keyword">return</span> <span class="number">0</span>;
+
+      <span class="keyword">if</span> (MyCustomWidget <span class="operator">*</span>widget <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>MyCustomWidget<span class="operator">*</span><span class="operator">&gt;</span>(object))
+          <span class="keyword">return</span> <span class="keyword">new</span> MyTaskMenuExtension(widget<span class="operator">,</span> parent);
+
+      <span class="keyword">return</span> <span class="number">0</span>;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">或者您可以使用现有工厂，扩展</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#createExtension"><font style="vertical-align: inherit;">QExtensionFactory::createExtension</font></a><font style="vertical-align: inherit;"> () 函数，使工厂也能够创建任务菜单扩展。例如：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>AGeneralExtensionFactory<span class="operator">::</span>createExtension(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object<span class="operator">,</span>
+          <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>iid<span class="operator">,</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent) <span class="keyword">const</span>
+  {
+      MyCustomWidget <span class="operator">*</span>widget <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>MyCustomWidget<span class="operator">*</span><span class="operator">&gt;</span>(object);
+
+      <span class="keyword">if</span> (widget <span class="operator">&amp;</span><span class="operator">&amp;</span> (iid <span class="operator">=</span><span class="operator">=</span> Q_TYPEID(<span class="type"><a href="qdesignercontainerextension.html">QDesignerContainerExtension</a></span>))) {
+          <span class="keyword">return</span> <span class="keyword">new</span> MyContainerExtension(widget<span class="operator">,</span> parent);
+
+      } <span class="keyword">else</span> <span class="keyword">if</span> (widget <span class="operator">&amp;</span><span class="operator">&amp;</span> (iid <span class="operator">=</span><span class="operator">=</span> Q_TYPEID(<span class="type"><a href="qdesignertaskmenuextension.html">QDesignerTaskMenuExtension</a></span>))) {
+          <span class="keyword">return</span> <span class="keyword">new</span> MyTaskMenuExtension(widget<span class="operator">,</span> parent);
+
+      } <span class="keyword">else</span> {
+          <span class="keyword">return</span> <span class="number">0</span>;
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">有关使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">类的完整示例，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-taskmenuextension-example.html"><font style="vertical-align: inherit;">任务菜单扩展示例</font></a><font style="vertical-align: inherit;">。该示例展示了如何为</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">创建自定义组件插件，以及如何使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">类将自定义项添加到</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的任务菜单。</font></p>
+</div>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionmanager.html"><font style="vertical-align: inherit;">QExtensionManager</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets-extensions.html"><font style="vertical-align: inherit;">创建自定义组件扩展</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@QDesignerTaskMenuExtension -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$~QDesignerTaskMenuExtension[overload1]$$$~QDesignerTaskMenuExtension -->
+<h3 class="fn" id="dtor.QDesignerTaskMenuExtension"><a name="dtor.QDesignerTaskMenuExtension"></a><code>[virtual] </code>QDesignerTaskMenuExtension::<span class="name">~QDesignerTaskMenuExtension</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁任务菜单扩展。</font></p>
+<!-- @@@~QDesignerTaskMenuExtension -->
+<!-- $$$preferredEditAction[overload1]$$$preferredEditAction -->
+<h3 class="fn" id="preferredEditAction"><a name="preferredEditAction"></a><code>[virtual] </code><span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span> *QDesignerTaskMenuExtension::<span class="name">preferredEditAction</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回选择具有指定扩展名的插件并按</font><b><font style="vertical-align: inherit;">F2</font></b><font style="vertical-align: inherit;">时调用的操作。</font></p>
+<p><font style="vertical-align: inherit;">动作必须是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html#taskActions"><font style="vertical-align: inherit;">taskActions</font></a><font style="vertical-align: inherit;"> ()返回的动作之一。</font></p>
+<!-- @@@preferredEditAction -->
+<!-- $$$taskActions[overload1]$$$taskActions -->
+<h3 class="fn" id="taskActions"><a name="taskActions"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qlist.html">QList</a></span>&lt;<span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span> *&gt; QDesignerTaskMenuExtension::<span class="name">taskActions</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回任务菜单扩展为作为选择具有指定扩展名的插件时将包含在</font><i><font style="vertical-align: inherit;">Q<span lang="zh-cn">t</span> Designer</font></i><font style="vertical-align: inherit;">的任务菜单中的操作列表。</font></p>
+<p><font style="vertical-align: inherit;">必须重新实现该函数才能将操作添加到列表中。</font></p>
+<!-- @@@taskActions -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

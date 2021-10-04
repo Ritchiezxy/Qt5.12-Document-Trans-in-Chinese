@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- abstractformbuilder.cpp -->
+  <title>QAbstractFormBuilder 类 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">C++<span lang="zh-cn">类</span></a></td><td >QAbstractFormBuilder</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html#protected-types"><font style="vertical-align: inherit;">受保护的类型</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html#protected-variables"><font style="vertical-align: inherit;">受保护的变量</font></a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QAbstractFormBuilder 类</h1>
+<!-- $$$QAbstractFormBuilder-brief -->
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html"><font style="vertical-align: inherit;">QAbstractFormBuilder</font></a><font style="vertical-align: inherit;">类为创建在运行时的用户接口的类的默认实现。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html#details"><font style="vertical-align: inherit;">更多...</font></a></p>
+<!-- @@@QAbstractFormBuilder -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QAbstractFormBuilder&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += designer</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="qformbuilder.html">QFormBuilder</a></p>
+</td></tr></table></div><ul>
+<li><a href="qabstractformbuilder-members.html">所有成员的列表，包括继承成员。</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qabstractformbuilder.html#QAbstractFormBuilder">QAbstractFormBuilder</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qabstractformbuilder.html#dtor.QAbstractFormBuilder">~QAbstractFormBuilder</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qabstractformbuilder.html#errorString">errorString</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QWidget *</td><td class="memItemRight bottomAlign"><b><a href="qabstractformbuilder.html#load">load</a></b>(QIODevice *<i>device</i>, QWidget *<i>parent</i> = Q_NULLPTR)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qabstractformbuilder.html#save">save</a></b>(QIODevice *<i>device</i>, QWidget *<i>widget</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qabstractformbuilder.html#setWorkingDirectory">setWorkingDirectory</a></b>(const QDir &amp;<i>directory</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QDir </td><td class="memItemRight bottomAlign"><b><a href="qabstractformbuilder.html#workingDirectory">workingDirectory</a></b>() const</td></tr>
+</table></div>
+<a name="protected-types"></a>
+<h2 id="protected-types"><font style="vertical-align: inherit;">受保护的类型</font></h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> typedef </td><td class="memItemRight bottomAlign"><b><a href="qabstractformbuilder.html#DomPropertyHash-typedef">DomPropertyHash</a></b></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> typedef </td><td class="memItemRight bottomAlign"><b><a href="qabstractformbuilder.html#IconPaths-typedef">IconPaths</a></b></td></tr>
+</table></div>
+<a name="protected-variables"></a>
+<h2 id="protected-variables"><font style="vertical-align: inherit;">受保护的变量</font></h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qabstractformbuilder.html#d-var">d</a></b></td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$QAbstractFormBuilder-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html">
+<font style="vertical-align: inherit;">QAbstractFormBuilder</font></a><font style="vertical-align: inherit;">类为创建在运行时的用户接口的类的默认实现。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html"><font style="vertical-align: inherit;">QAbstractFormBuilder</font></a><font style="vertical-align: inherit;">为从用户界面文件构造表单提供了一个标准接口和一个默认实现。它不打算直接实例化。使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html"><font style="vertical-align: inherit;">QFormBuilder</font></a><font style="vertical-align: inherit;">类在运行时从 UI 文件创建用户界面。例如：</font></p>
+<pre class="cpp">
+
+          MyForm<span class="operator">::</span>MyForm(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent)
+              : <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>(parent)
+          {
+              <span class="type"><a href="qformbuilder.html">QFormBuilder</a></span> builder;
+              <span class="type"><a href="../qtcore/qfile.html">QFile</a></span> file(<span class="string">&quot;:/forms/myWidget.ui&quot;</span>);
+              file<span class="operator">.</span>open(<span class="type"><a href="../qtcore/qfile.html">QFile</a></span><span class="operator">::</span>ReadOnly);
+              <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>myWidget <span class="operator">=</span> builder<span class="operator">.</span>load(<span class="operator">&amp;</span>file<span class="operator">,</span> <span class="keyword">this</span>);
+              file<span class="operator">.</span>close();
+
+              <span class="type"><a href="../qtwidgets/qvboxlayout.html">QVBoxLayout</a></span> <span class="operator">*</span>layout <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="../qtwidgets/qvboxlayout.html">QVBoxLayout</a></span>;
+              layout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(myWidget);
+              setLayout(layout);
+          }
+
+</pre>
+<p><font style="vertical-align: inherit;">要覆盖表单构建器行为的某些方面，子类化</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html"><font style="vertical-align: inherit;">QAbstractFormBuilder</font></a><font style="vertical-align: inherit;">并重新实现相关的虚函数：</font></p>
+<ul>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html#load"><font style="vertical-align: inherit;">load</font></a><font style="vertical-align: inherit;"> () 处理从任意 QIODevices 读取 UI 格式文件，并从它们包含的 XML 数据构建组件。</font></li>
+<li>&nbsp;<a href="qabstractformbuilder.html#save">save</a>()处理以UI格式将组件细节保存到任意QIODevices。</li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html#workingDirectory"><font style="vertical-align: inherit;">workingDirectory</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html#setWorkingDirectory"><font style="vertical-align: inherit;">setWorkingDirectory</font></a><font style="vertical-align: inherit;"> () 控制保存表单的目录。表单构建器在相对于该目录的路径上查找其他资源。</font></li>
+</ul>
+<p><a href="qformbuilder.html">QFormBuilder</a>类通常由嵌入Qt <span lang="zh-cn">设计师</span>的定制组件和应用程序使用。需要在运行时动态生成用户界面的独立应用程序可以使<a href="../qtuitools/qtuitools-index.html">Qt<span lang="zh-cn"> 
+UI工具</span></a>模块中的<a href="../qtuitools/quiloader.html">QUiLoader</a>。</p>
+</div>
+<p><b>请参考 </b><a href="../qtuitools/qtuitools-index.html">Qt UI<span lang="zh-cn">工具</span></a><span lang="zh-cn">。</span></p>
+<!-- @@@QAbstractFormBuilder -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QAbstractFormBuilder[overload1]$$$QAbstractFormBuilder -->
+<h3 class="fn" id="QAbstractFormBuilder"><a name="QAbstractFormBuilder"></a>QAbstractFormBuilder::<span class="name">QAbstractFormBuilder</span>()</h3>
+<p><font style="vertical-align: inherit;">构造一个新的表单生成器。</font></p>
+<!-- @@@QAbstractFormBuilder -->
+<!-- $$$~QAbstractFormBuilder[overload1]$$$~QAbstractFormBuilder -->
+<h3 class="fn" id="dtor.QAbstractFormBuilder"><a name="dtor.QAbstractFormBuilder"></a><code>[virtual] </code>QAbstractFormBuilder::<span class="name">~QAbstractFormBuilder</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁表单生成器。</font></p>
+<!-- @@@~QAbstractFormBuilder -->
+<!-- $$$errorString[overload1]$$$errorString -->
+<h3 class="fn" id="errorString"><a name="errorString"></a><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QAbstractFormBuilder::<span class="name">errorString</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html#load"><font style="vertical-align: inherit;">load</font></a><font style="vertical-align: inherit;"> () 中发生的最后一个错误的可读描述。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 5.0 中引入的。</font></p>
+<p><b>请参考 </b><a href="qabstractformbuilder.html#load">load</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@errorString -->
+<!-- $$$load[overload1]$$$loadQIODevice*QWidget* -->
+<h3 class="fn" id="load"><a name="load"></a><code>[virtual] </code><span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *QAbstractFormBuilder::<span class="name">load</span>(<span class="type"><a href="../qtcore/qiodevice.html">QIODevice</a></span> *<i>device</i>, <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *<i>parent</i> = Q_NULLPTR)</h3>
+<p><font style="vertical-align: inherit;">给定</font><i><font style="vertical-align: inherit;">device<span lang="zh-cn">（</span>设备<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">加载组件的 XML 表示，并构造具有指定</font><i><font style="vertical-align: inherit;">parent
+<span lang="zh-cn">（</span>父级<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">的新组件。</font></p>
+<p><b>请参考 </b><a href="qabstractformbuilder.html#save">save</a>() and <a href="qabstractformbuilder.html#errorString">errorString</a>().</p>
+<!-- @@@load -->
+<!-- $$$save[overload1]$$$saveQIODevice*QWidget* -->
+<h3 class="fn" id="save"><a name="save"></a><code>[virtual] </code><span class="type">void</span> QAbstractFormBuilder::<span class="name">save</span>(<span class="type"><a href="../qtcore/qiodevice.html">QIODevice</a></span> *<i>device</i>, <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *<i>widget</i>)</h3>
+<p><font style="vertical-align: inherit;">以标准 UI 文件格式将给定</font><i><font style="vertical-align: inherit;">widget<span lang="zh-cn">（</span>组件<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">的 XML 表示形式保存到指定</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">device（</span>设备<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qabstractformbuilder.html#load">load</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@save -->
+<!-- $$$setWorkingDirectory[overload1]$$$setWorkingDirectoryconstQDir& -->
+<h3 class="fn" id="setWorkingDirectory"><a name="setWorkingDirectory"></a><span class="type">void</span> QAbstractFormBuilder::<span class="name">setWorkingDirectory</span>(const <span class="type"><a href="../qtcore/qdir.html">QDir</a></span> &amp;<i>directory</i>)</h3>
+<p><font style="vertical-align: inherit;">将表单生成器的当前工作目录设置为指定<i>directory<span lang="zh-cn">(</span></i></font><i><font style="vertical-align: inherit;">目录<span lang="zh-cn">)</span></font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qabstractformbuilder.html#workingDirectory">workingDirectory</a>().</p>
+<!-- @@@setWorkingDirectory -->
+<!-- $$$workingDirectory[overload1]$$$workingDirectory -->
+<h3 class="fn" id="workingDirectory"><a name="workingDirectory"></a><span class="type"><a href="../qtcore/qdir.html">QDir</a></span> QAbstractFormBuilder::<span class="name">workingDirectory</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回表单构建器的当前工作目录。</font></p>
+<p><b>请参考 </b><a href="qabstractformbuilder.html#setWorkingDirectory">setWorkingDirectory</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@workingDirectory -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- default_extensionfactory.cpp -->
+  <title>QExtensionFactory 类 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">
+			C++ <span lang="zh-cn">类</span></a></td><td >QExtensionFactory</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#reimplemented-public-functions"><font style="vertical-align: inherit;">重新实现公用函数</font></a></li>
+<li class="level1"><a href="#static-public-members">静态公用成员</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#protected-functions"><font style="vertical-align: inherit;">受保护的<span lang="zh-cn">函数</span></font></a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QExtensionFactory 类</h1>
+<!-- $$$QExtensionFactory-brief -->
+<p><span lang="zh-cn"><a href="qextensionfactory.html">QExtensionFactory</a>类允许您创建一个能够在Qt 
+Designer中创建自定义扩展实例的工厂。<a href="#details">更多...</a></span></p>
+<!-- @@@QExtensionFactory -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QExtensionFactory&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += designer</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="../qtcore/qobject.html">QObject</a> and <a href="qabstractextensionfactory.html">QAbstractExtensionFactory</a></td></tr></table></div><ul>
+<li><a href="qextensionfactory-members.html">所有成员的列表，包括继承成员。</a></li>
+<li><a href="qextensionfactory-obsolete.html">废弃的成员</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qextensionfactory.html#QExtensionFactory">QExtensionFactory</a></b>(QExtensionManager *<i>parent</i> = Q_NULLPTR)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QExtensionManager *</td><td class="memItemRight bottomAlign"><b><a href="qextensionfactory.html#extensionManager">extensionManager</a></b>() const</td></tr>
+</table></div>
+<a name="reimplemented-public-functions"></a>
+<h2 id="reimplemented-public-functions">Reimplemented 公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QObject *</td><td class="memItemRight bottomAlign"><b><a href="qextensionfactory.html#extension">extension</a></b>(QObject *<i>object</i>, const QString &amp;<i>iid</i>) const override</td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#public-functions">QObject</a>继承的 31 个公共函数</font></li>
+<li class="fn"><font style="vertical-align: inherit;">1 个从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractextensionfactory.html#public-functions">QAbstractExtensionFactory</a>继承的公共函数</font></li>
+</ul>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">静态公用成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> const QMetaObject </td><td class="memItemRight bottomAlign"><b><a href="qextensionfactory.html#staticMetaObject-var">staticMetaObject</a></b></td></tr>
+</table></div>
+<ul>
+<li class="fn">9 静态公用成员 inherited from <a href="../qtcore/qobject.html#static-public-members">QObject</a></li>
+</ul>
+<a name="protected-functions"></a>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QObject *</td><td class="memItemRight bottomAlign"><b><a href="qextensionfactory.html#createExtension">createExtension</a></b>(QObject *<i>object</i>, const QString &amp;<i>iid</i>, QObject *<i>parent</i>) const</td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#protected-functions">QObject</a>继承的 9 个受保护的函数</font></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#properties">QObject</a>继承的 1 个属性</font></li>
+<li class="fn"><font style="vertical-align: inherit;">1 个从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#public-slots">QObject</a>继承的公共槽</font></li>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#signals">QObject</a>继承的 2 个信号</font></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QExtensionFactory-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><span lang="zh-cn"><a href="qextensionfactory.html">QExtensionFactory</a>类允许您创建一个能够在Qt 
+Designer中创建自定义扩展实例的工厂。<a href="#details">更多...</a></span></p>
+<p><font style="vertical-align: inherit;">在</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">，除非需要扩展，否则不会创建扩展。因此，在实现自定义扩展时，您还必须创建一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">，即能够创建扩展实例的类，并使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionmanager.html"><font style="vertical-align: inherit;">扩展管理器</font></a><font style="vertical-align: inherit;">注册它。</font></p>
+<p><a href="qextensionmanager.html">QExtensionManager</a>类为Qt设计师提供了扩展管理工具。当需要扩展时，Qt 
+Designer的<a href="qextensionmanager.html">扩展管理器</a>将遍历所有已注册的工厂，为每个工厂调用<a href="qextensionfactory.html#createExtension">QExtensionFactory::createExtension</a>，直到找到第一个能够为选定对象创建请求扩展的工厂。然后，该工厂将创建扩展的实例。</p>
+<p><font style="vertical-align: inherit;">Qt 设计师 中有四种可用的扩展类型：</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html"><font style="vertical-align: inherit;">QDesignerContainerExtension</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignermembersheetextension.html"><font style="vertical-align: inherit;">QDesignerMemberSheetExtension</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">。无论请求的扩展与多页容器、成员表、属性表还是任务菜单相关联，Qt 设计师 的行为都是相同的。</font></p>
+<p><font style="vertical-align: inherit;">您可以创建一个新的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">并重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#createExtension"><font style="vertical-align: inherit;">QExtensionFactory::createExtension</font></a><font style="vertical-align: inherit;"> () 函数。例如：</font></p>
+<pre class="cpp">
+
+          <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> <span class="operator">*</span>ANewExtensionFactory<span class="operator">::</span>createExtension(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> <span class="operator">*</span>object<span class="operator">,</span>
+                  <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>iid<span class="operator">,</span> <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> <span class="operator">*</span>parent) <span class="keyword">const</span>
+          {
+              <span class="keyword">if</span> (iid <span class="operator">!</span><span class="operator">=</span> Q_TYPEID(<span class="type"><a href="qdesignercontainerextension.html">QDesignerContainerExtension</a></span>))
+                  <span class="keyword">return</span> <span class="number">0</span>;
+
+              <span class="keyword">if</span> (MyCustomWidget <span class="operator">*</span>widget <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>MyCustomWidget<span class="operator">*</span><span class="operator">&gt;</span>
+                     (object))
+                  <span class="keyword">return</span> <span class="keyword">new</span> MyContainerExtension(widget<span class="operator">,</span> parent);
+
+              <span class="keyword">return</span> <span class="number">0</span>;
+          }
+
+</pre>
+<p><font style="vertical-align: inherit;">或者您可以使用现有工厂，扩展</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#createExtension"><font style="vertical-align: inherit;">QExtensionFactory::createExtension</font></a><font style="vertical-align: inherit;"> () 函数，使工厂也能够创建您的扩展。例如：</font></p>
+<pre class="cpp">
+
+          <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> <span class="operator">*</span>AGeneralExtensionFactory<span class="operator">::</span>createExtension(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> <span class="operator">*</span>object<span class="operator">,</span>
+                  <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>iid<span class="operator">,</span> <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> <span class="operator">*</span>parent) <span class="keyword">const</span>
+          {
+              MyCustomWidget <span class="operator">*</span>widget <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>MyCustomWidget<span class="operator">*</span><span class="operator">&gt;</span>(object);
+
+              <span class="keyword">if</span> (widget <span class="operator">&amp;</span><span class="operator">&amp;</span> (iid <span class="operator">=</span><span class="operator">=</span> Q_TYPEID(<span class="type"><a href="qdesignertaskmenuextension.html">QDesignerTaskMenuExtension</a></span>))) {
+                  <span class="keyword">return</span> <span class="keyword">new</span> MyTaskMenuExtension(widget<span class="operator">,</span> parent);
+
+              } <span class="keyword">else</span> <span class="keyword">if</span> (widget <span class="operator">&amp;</span><span class="operator">&amp;</span> (iid <span class="operator">=</span><span class="operator">=</span> Q_TYPEID(<span class="type"><a href="qdesignercontainerextension.html">QDesignerContainerExtension</a></span>))) {
+                  <span class="keyword">return</span> <span class="keyword">new</span> MyContainerExtension(widget<span class="operator">,</span> parent);
+
+              } <span class="keyword">else</span> {
+                  <span class="keyword">return</span> <span class="number">0</span>;
+              }
+          }
+
+</pre>
+<p><font style="vertical-align: inherit;">有关使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">类的完整示例，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-taskmenuextension-example.html"><font style="vertical-align: inherit;">任务菜单扩展示例</font></a><font style="vertical-align: inherit;">。该示例展示了如何为 Qt 设计师 创建自定义组件插件，以及如何使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">类将自定义项添加到 Qt 设计师 的任务菜单。</font></p>
+</div>
+<p><b><font style="vertical-align: inherit;">参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionmanager.html"><font style="vertical-align: inherit;">QExtensionManager</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractextensionfactory.html"><font style="vertical-align: inherit;">QAbstractExtensionFactory</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@QExtensionFactory -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QExtensionFactory[overload1]$$$QExtensionFactoryQExtensionManager* -->
+<h3 class="fn" id="QExtensionFactory"><a name="QExtensionFactory"></a>QExtensionFactory::<span class="name">QExtensionFactory</span>(<span class="type"><a href="qextensionmanager.html">QExtensionManager</a></span> *<i>parent</i> = Q_NULLPTR)</h3>
+<p>Constructs an extension factory with the given <i>parent</i>.</p>
+<!-- @@@QExtensionFactory -->
+<!-- $$$createExtension[overload1]$$$createExtensionQObject*constQString&QObject* -->
+<h3 class="fn" id="createExtension"><a name="createExtension"></a><code>[virtual protected] </code><span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *QExtensionFactory::<span class="name">createExtension</span>(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>object</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>iid</i>, <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>parent</i>) const</h3>
+<p><font style="vertical-align: inherit;">使用给定的</font><i><font style="vertical-align: inherit;">parent</font></i><font style="vertical-align: inherit;">构造一个扩展工厂。</font></p>
+<p><b>请参考 </b><a href="qextensionfactory.html#extension">extension</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@createExtension -->
+<!-- $$$extension[overload1]$$$extensionQObject*constQString& -->
+<h3 class="fn" id="extension"><a name="extension"></a><code>[override virtual] </code><span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *QExtensionFactory::<span class="name">extension</span>(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>object</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>iid</i>) const</h3>
+<p><font style="vertical-align: inherit;">从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractextensionfactory.html#extension"><font style="vertical-align: inherit;">QAbstractExtensionFactory::extension</font></a><font style="vertical-align: inherit;"> ()重新实现。</font></p>
+<p><font style="vertical-align: inherit;">回给定<i>object<span lang="zh-cn">（</span>对象<span lang="zh-cn">）</span>的</i></font><i><font style="vertical-align: inherit;">iid</font></i><font style="vertical-align: inherit;">指定的扩展名。</font></p>
+<p><b>请参考 </b><a href="qextensionfactory.html#createExtension">createExtension</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@extension -->
+<!-- $$$extensionManager[overload1]$$$extensionManager -->
+<h3 class="fn" id="extensionManager"><a name="extensionManager"></a><span class="type"><a href="qextensionmanager.html">QExtensionManager</a></span> *QExtensionFactory::<span class="name">extensionManager</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回扩展工厂的扩展管理器。</font></p>
+<!-- @@@extensionManager -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

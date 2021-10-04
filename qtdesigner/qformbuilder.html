@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- formbuilder.cpp -->
+  <title>QFormBuilder 类 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">C++ 
+			<span lang="zh-cn">类</span></a></td><td >QFormBuilder</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QFormBuilder 类</h1>
+<!-- $$$QFormBuilder-brief -->
+<p><font style="vertical-align: inherit;">所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html"><font style="vertical-align: inherit;">QFormBuilder</font></a><font style="vertical-align: inherit;">类用于动态构建用户界面从用户界面文件在运行时。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html#details"><font style="vertical-align: inherit;">更多...</font></a></p>
+<!-- @@@QFormBuilder -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QFormBuilder&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += designer</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="qabstractformbuilder.html">QAbstractFormBuilder</a></td></tr></table></div><ul>
+<li><a href="qformbuilder-members.html">所有成员的列表，包括继承成员。</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qformbuilder.html#QFormBuilder">QFormBuilder</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qformbuilder.html#dtor.QFormBuilder">~QFormBuilder</a></b>() override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qformbuilder.html#addPluginPath">addPluginPath</a></b>(const QString &amp;<i>pluginPath</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qformbuilder.html#clearPluginPaths">clearPluginPaths</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QList&lt;QDesignerCustomWidgetInterface *&gt; </td><td class="memItemRight bottomAlign"><b><a href="qformbuilder.html#customWidgets">customWidgets</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QStringList </td><td class="memItemRight bottomAlign"><b><a href="qformbuilder.html#pluginPaths">pluginPaths</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qformbuilder.html#setPluginPath">setPluginPath</a></b>(const QStringList &amp;<i>pluginPaths</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html#public-functions">QAbstractFormBuilder</a>继承的 5 个公共函数</font></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QFormBuilder-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html"><font style="vertical-align: inherit;">QFormBuilder</font></a><font style="vertical-align: inherit;">类用于运行时动态构建用户界面从用户界面文件。</font></p>
+<p><a href="qformbuilder.html">QFormBuilder</a>类提供了在运行时动态创建用户界面的机制，该机制基于使用<i>Qt Designer</i>创建的UI文件。例如:</p>
+<pre class="cpp">
+
+          MyForm<span class="operator">::</span>MyForm(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent)
+              : <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>(parent)
+          {
+              <span class="type"><a href="qformbuilder.html#QFormBuilder">QFormBuilder</a></span> builder;
+              <span class="type"><a href="../qtcore/qfile.html">QFile</a></span> file(<span class="string">&quot;:/forms/myWidget.ui&quot;</span>);
+              file<span class="operator">.</span>open(<span class="type"><a href="../qtcore/qfile.html">QFile</a></span><span class="operator">::</span>ReadOnly);
+              <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>myWidget <span class="operator">=</span> builder<span class="operator">.</span>load(<span class="operator">&amp;</span>file<span class="operator">,</span> <span class="keyword">this</span>);
+              file<span class="operator">.</span>close();
+
+              <span class="type"><a href="../qtwidgets/qvboxlayout.html">QVBoxLayout</a></span> <span class="operator">*</span>layout <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="../qtwidgets/qvboxlayout.html">QVBoxLayout</a></span>;
+              layout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(myWidget);
+              setLayout(layout);
+          }
+
+</pre>
+<p><font style="vertical-align: inherit;">通过在示例的资源 ( </font><code>myForm.qrc</code><font style="vertical-align: inherit;">) 中包含用户界面，我们确保在示例运行时它会出现：</font></p>
+<pre class="cpp">
+
+      <span class="operator">&lt;</span><span class="operator">!</span>DOCTYPE RCC<span class="operator">&gt;</span><span class="operator">&lt;</span>RCC version<span class="operator">=</span><span class="string">&quot;1.0&quot;</span><span class="operator">&gt;</span>
+      <span class="operator">&lt;</span>qresource prefix<span class="operator">=</span><span class="string">&quot;/forms&quot;</span><span class="operator">&gt;</span>
+         <span class="operator">&lt;</span>file<span class="operator">&gt;</span>mywidget<span class="operator">.</span>ui<span class="operator">&lt;</span><span class="operator">/</span>file<span class="operator">&gt;</span>
+      <span class="operator">&lt;</span><span class="operator">/</span>qresource<span class="operator">&gt;</span>
+      <span class="operator">&lt;</span><span class="operator">/</span>RCC<span class="operator">&gt;</span>
+
+</pre>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html"><font style="vertical-align: inherit;">QFormBuilder</font></a><font style="vertical-align: inherit;">扩展了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qabstractformbuilder.html"><font style="vertical-align: inherit;">QAbstractFormBuilder</font></a><font style="vertical-align: inherit;">基类，其中包含许多用于支持自定义组件插件的函数：</font></p>
+<ul>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html#pluginPaths"><font style="vertical-align: inherit;">pluginPaths</font></a><font style="vertical-align: inherit;"> () 返回表单构建器在加载自定义组件插件时搜索的路径列表。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html#addPluginPath"><font style="vertical-align: inherit;">addPluginPath</font></a><font style="vertical-align: inherit;"> () 允许使用表单构建器注册其他路径。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html#setPluginPath"><font style="vertical-align: inherit;">setPluginPath</font></a><font style="vertical-align: inherit;"> () 用于用从其他来源获得的列表替换现有的路径列表。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html#clearPluginPaths"><font style="vertical-align: inherit;">clearPluginPaths</font></a><font style="vertical-align: inherit;"> () 删除所有在表单构建器中注册的路径。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html#customWidgets"><font style="vertical-align: inherit;">customWidgets</font></a><font style="vertical-align: inherit;"> () 返回插件接口列表，可用于创建已注册自定义组件的新实例。</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html"><font style="vertical-align: inherit;">QFormBuilder</font></a><font style="vertical-align: inherit;">类通常<span lang="zh-cn">被用于</span>自定义<span lang="zh-cn">嵌入到Qt设计师中的</span>组件和应用程序</font><font style="vertical-align: inherit;">。需要在运行时动态生成用户界面的独立应用程序使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/qtuitools-module.html">QtUiTools</a>模块中的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html"><font style="vertical-align: inherit;">QUiLoader</font></a><font style="vertical-align: inherit;">类。</font></p>
+</div>
+<p><b>请参考 </b><a href="qabstractformbuilder.html">QAbstractFormBuilder</a> 
+<span lang="zh-cn">和 </span><a href="../qtuitools/qtuitools-index.html">Qt UI Tools</a><span lang="zh-cn">。</span></p>
+<!-- @@@QFormBuilder -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QFormBuilder[overload1]$$$QFormBuilder -->
+<h3 class="fn" id="QFormBuilder"><a name="QFormBuilder"></a>QFormBuilder::<span class="name">QFormBuilder</span>()</h3>
+<p><font style="vertical-align: inherit;">构造一个新的表单生成器。</font></p>
+<!-- @@@QFormBuilder -->
+<!-- $$$~QFormBuilder[overload1]$$$~QFormBuilder -->
+<h3 class="fn" id="dtor.QFormBuilder"><a name="dtor.QFormBuilder"></a><code>[override virtual] </code>QFormBuilder::<span class="name">~QFormBuilder</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁表单生成器。</font></p>
+<!-- @@@~QFormBuilder -->
+<!-- $$$addPluginPath[overload1]$$$addPluginPathconstQString& -->
+<h3 class="fn" id="addPluginPath"><a name="addPluginPath"></a><span class="type">void</span> QFormBuilder::<span class="name">addPluginPath</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>pluginPath</i>)</h3>
+<p><font style="vertical-align: inherit;">将</font><i><font style="vertical-align: inherit;">pluginPath</font></i><font style="vertical-align: inherit;">指定的新插件路径添加到加载自定义组件插件时表单构建器将搜索的路径列表中。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html#setPluginPath"><font style="vertical-align: inherit;">setPluginPath</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qformbuilder.html#clearPluginPaths"><font style="vertical-align: inherit;">clearPluginPaths</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@addPluginPath -->
+<!-- $$$clearPluginPaths[overload1]$$$clearPluginPaths -->
+<h3 class="fn" id="clearPluginPaths"><a name="clearPluginPaths"></a><span class="type">void</span> QFormBuilder::<span class="name">clearPluginPaths</span>()</h3>
+<p><font style="vertical-align: inherit;">清除表单构建器用于搜索自定义组件插件的路径列表。</font></p>
+<p><b>请参考 </b><a href="qformbuilder.html#pluginPaths">pluginPaths</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@clearPluginPaths -->
+<!-- $$$customWidgets[overload1]$$$customWidgets -->
+<h3 class="fn" id="customWidgets"><a name="customWidgets"></a><span class="type"><a href="../qtcore/qlist.html">QList</a></span>&lt;<span class="type"><a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a></span> *&gt; QFormBuilder::<span class="name">customWidgets</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回可用插件列表。</font></p>
+<!-- @@@customWidgets -->
+<!-- $$$pluginPaths[overload1]$$$pluginPaths -->
+<h3 class="fn" id="pluginPaths"><a name="pluginPaths"></a><span class="type"><a href="../qtcore/qstringlist.html">QStringList</a></span> QFormBuilder::<span class="name">pluginPaths</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回表单构建器搜索插件的路径列表。</font></p>
+<p><b>请参考 </b><a href="qformbuilder.html#addPluginPath">addPluginPath</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@pluginPaths -->
+<!-- $$$setPluginPath[overload1]$$$setPluginPathconstQStringList& -->
+<h3 class="fn" id="setPluginPath"><a name="setPluginPath"></a><span class="type">void</span> QFormBuilder::<span class="name">setPluginPath</span>(const <span class="type"><a href="../qtcore/qstringlist.html">QStringList</a></span> &amp;<i>pluginPaths</i>)</h3>
+<p><font style="vertical-align: inherit;">将插件路径列表设置为</font><i><font style="vertical-align: inherit;">pluginPaths</font></i><font style="vertical-align: inherit;">指定的列表。</font></p>
+<p><b>请参考 </b><a href="qformbuilder.html#addPluginPath">addPluginPath</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setPluginPath -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

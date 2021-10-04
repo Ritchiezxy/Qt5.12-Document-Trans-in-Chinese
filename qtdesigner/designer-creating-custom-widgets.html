@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- designer-manual.qdoc -->
+  <title>为 Qt 设计师 创建自定义组件 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td >
+			为 Qt 设计师 创建自定义组件</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="designer-using-custom-widgets.html" />
+  <link rel="next" href="designer-creating-custom-widgets-extensions.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="designer-using-custom-widgets.html">
+<span lang="zh-cn">在Qt设计师中使用自定义组件</span></a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="designer-creating-custom-widgets-extensions.html">
+<span lang="zh-cn">创建自定义组件扩展</span></a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html#getting-started"><font style="vertical-align: inherit;">入门</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html#providing-an-interface-description"><font style="vertical-align: inherit;">提供接口描述</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html#notes-on-the-domxml-function"><font style="vertical-align: inherit;">在注释</font><code>domXml()</code><font style="vertical-align: inherit;">功能</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html#plugin-requirements"><font style="vertical-align: inherit;">插件要求</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html#creating-well-behaved-widgets"><font style="vertical-align: inherit;">创建行为良好的组件</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html#building-and-installing-the-plugin"><font style="vertical-align: inherit;">构建和安装插件</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html#a-simple-plugin"><font style="vertical-align: inherit;">一个简单的插件</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html#splitting-up-the-plugin"><font style="vertical-align: inherit;">拆分插件</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html#related-examples"><font style="vertical-align: inherit;">相关例子</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">为 Qt 设计师 创建自定义组件</h1>
+<span class="subtitle"></span>
+<!-- $$$designer-creating-custom-widgets.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的基于插件的架构允许编辑用户定义的和第三方自定义组件，就像使用标准 Qt 组件一样。</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">可以使用自定义组件的所有功能，包括组件属性、信号和槽。由于</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">在表单设计过程中使用真实的组件，因此自定义组件的外观将与预览时相同。</font></p>
+<p class="centerAlign"><img src="images/worldtimeclockplugin-example.png" alt="" /></p><p>
+	<a href="qtdesigner-module.html">QtDesigner</a>模块提供了在Qt<span lang="zh-cn">
+	</span>Designer中创建自定义组件的能力。</p>
+<a name="getting-started"></a>
+<h2 id="getting-started"><font style="vertical-align: inherit;">入门</font></h2>
+<p><font style="vertical-align: inherit;">要将自定义组件与</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">集成，您需要对组件进行合适的描述和适当的</font><code>.pro</code><font style="vertical-align: inherit;">文件。</font></p>
+<a name="providing-an-interface-description"></a>
+<h3 ><font style="vertical-align: inherit;">提供接口描述</font></h3>
+<p><font style="vertical-align: inherit;">要通知</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">您要提供的组件类型，请创建</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html"><font style="vertical-align: inherit;">QDesignerCustomWidgetInterface</font></a><font style="vertical-align: inherit;">的子类，该子类描述组件公开的各种属性。其中大部分是由基类中纯虚函数提供的，因为只有插件的作者才能提供这些信息。</font></p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th ><font style="vertical-align: inherit;">功能</font></th><th ><font style="vertical-align: inherit;">返回值说明</font></th></tr></thead>
+<tr valign="top" class="odd"><td ><code>name()</code></td><td ><font style="vertical-align: inherit;">提供组件的类的名称。</font></td></tr>
+<tr valign="top" class="even"><td ><code>group()</code></td><td ><font style="vertical-align: inherit;">组件所属的</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">组件框中的组。</font></td></tr>
+<tr valign="top" class="odd"><td ><code>toolTip()</code></td><td ><font style="vertical-align: inherit;">帮助用户在</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">识别组件的简短描述。</font></td></tr>
+<tr valign="top" class="even"><td ><code>whatsThis()</code></td><td ><font style="vertical-align: inherit;">为</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">用户提供的组件的详细说明。</font></td></tr>
+<tr valign="top" class="odd"><td ><code>includeFile()</code></td><td ><font style="vertical-align: inherit;">必须包含在使用此组件的应用程序中的头文件。此信息存储在 UI 文件中，并将用于在它为包含自定义组件的表单生成的代码中</font><code>uic</code><font style="vertical-align: inherit;">创建合适的</font><code>#includes</code><font style="vertical-align: inherit;">语句。</font></td></tr>
+<tr valign="top" class="even"><td ><code>icon()</code></td><td ><font style="vertical-align: inherit;">可用于表示</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的组件框中的组件的图标。</font></td></tr>
+<tr valign="top" class="odd"><td ><code>isContainer()</code></td><td ><font style="vertical-align: inherit;">如果组件将用于保存子组件，则为真；否则为假。</font></td></tr>
+<tr valign="top" class="even"><td ><code>createWidget()</code></td><td >
+	<span lang="zh-cn">&nbsp;一个指向定制组件实例的<a href="../qtwidgets/qwidget.html">QWidget</a>指针。</span><p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;"> createWidget() 是一个工厂函数，只负责创建组件。在 load() 返回之前，自定义组件的属性将不可用。</font></p></td></tr>
+<tr valign="top" class="odd"><td ><code>domXml()</code></td><td ><font style="vertical-align: inherit;">组件属性的描述，例如其对象名称、大小提示和其他标准</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">属性。</font></td></tr>
+<tr valign="top" class="even"><td ><code>codeTemplate()</code></td><td ><font style="vertical-align: inherit;">此函数保留供</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">将来使用。</font></td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">还可以重新实现另外两个虚函数：</font></p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><code>initialize()</code></td><td ><font style="vertical-align: inherit;">为自定义组件设置扩展和其他功能。自定义容器扩展（参见</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html"><font style="vertical-align: inherit;">QDesignerContainerExtension</font></a><font style="vertical-align: inherit;">）和任务菜单扩展（参见</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">）应该在这个函数中设置。</font></td></tr>
+<tr valign="top" class="even"><td ><code>isInitialized()</code></td><td ><font style="vertical-align: inherit;">如果组件已初始化，则返回 true；否则返回 false。重新实现通常会检查</font><code>initialize()</code><font style="vertical-align: inherit;">函数是否已被调用并返回此测试的结果。</font></td></tr>
+</table></div>
+<a name="notes-on-the-domxml-function"></a>
+<h3 ><code>domXml()</code> <span lang="zh-cn">函数注意事项</span></h3>
+<p><code>domXml()</code><font style="vertical-align: inherit;">函数返回一个 UI 文件片段，</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的组件工厂使用它来创建自定义组件及其适用的属性。</font></p>
+<p>从Qt 4.4开始，Qt 
+Designer的组件框允许一个完整的UI文件来描述一个自定义组件。可以使用&lt;ui&gt;标签加载UI文件。指定&lt;ui&gt;标记允许添加包含自定义组件附加信息的&lt;customwidget&gt;元素。如果不需要额外的信息，<code>&lt;widget&gt;</code>标签就足够了</p>
+<p><font style="vertical-align: inherit;">如果自定义组件没有提供合理的大小提示，则有必要</font><code>domXml()</code><font style="vertical-align: inherit;">在子类中的函数返回的字符串中指定默认几何图形。例如，</font><code>AnalogClockPlugin</code><font style="vertical-align: inherit;">由</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html"><font style="vertical-align: inherit;"><span lang="zh-cn">自定义组件插件</span></font></a><font style="vertical-align: inherit;">示例提供的，通过以下方式定义了一个默认的 widgetgeometry：</font></p>
+<pre class="cpp">
+
+      ...
+             <span class="string">&quot;  &lt;property name=\&quot;geometry\&quot;&gt;\n&quot;</span>
+             <span class="string">&quot;   &lt;rect&gt;\n&quot;</span>
+             <span class="string">&quot;    &lt;x&gt;0&lt;/x&gt;\n&quot;</span>
+             <span class="string">&quot;    &lt;y&gt;0&lt;/y&gt;\n&quot;</span>
+             <span class="string">&quot;    &lt;width&gt;100&lt;/width&gt;\n&quot;</span>
+             <span class="string">&quot;    &lt;height&gt;100&lt;/height&gt;\n&quot;</span>
+             <span class="string">&quot;   &lt;/rect&gt;\n&quot;</span>
+             <span class="string">&quot;  &lt;/property&gt;\n&quot;</span>
+      ...
+
+</pre>
+<p><code>domXml()</code><font style="vertical-align: inherit;">函数的一个附加功能是，如果它返回一个空字符串，则该组件将不会安装在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的组件框中。但是，它仍然可以被表单中的其他组件使用。此功能用于隐藏不应由用户明确创建但其他组件需要的组件。</font></p>
+<p><font style="vertical-align: inherit;">完整的自定义组件规范如下所示：</font></p>
+<pre class="cpp">
+
+  <span class="operator">&lt;</span>ui language<span class="operator">=</span><span class="string">&quot;c++&quot;</span><span class="operator">&gt;</span> displayname<span class="operator">=</span><span class="string">&quot;MyWidget&quot;</span><span class="operator">&gt;</span>
+      <span class="operator">&lt;</span>widget <span class="keyword">class</span><span class="operator">=</span><span class="string">&quot;widgets::MyWidget&quot;</span> name<span class="operator">=</span><span class="string">&quot;mywidget&quot;</span><span class="operator">/</span><span class="operator">&gt;</span>
+      <span class="operator">&lt;</span>customwidgets<span class="operator">&gt;</span>
+          <span class="operator">&lt;</span>customwidget<span class="operator">&gt;</span>
+              <span class="operator">&lt;</span><span class="keyword">class</span><span class="operator">&gt;</span>widgets<span class="operator">::</span>MyWidget<span class="operator">&lt;</span><span class="operator">/</span><span class="keyword">class</span><span class="operator">&gt;</span>
+              <span class="operator">&lt;</span>addpagemethod<span class="operator">&gt;</span>addPage<span class="operator">&lt;</span><span class="operator">/</span>addpagemethod<span class="operator">&gt;</span>
+              <span class="operator">&lt;</span>propertyspecifications<span class="operator">&gt;</span>
+                  <span class="operator">&lt;</span>stringpropertyspecification name<span class="operator">=</span><span class="string">&quot;fileName&quot;</span> notr<span class="operator">=</span><span class="string">&quot;true&quot;</span> type<span class="operator">=</span><span class="string">&quot;singleline&quot;</span><span class="operator">/</span><span class="operator">&gt;</span>
+                  <span class="operator">&lt;</span>stringpropertyspecification name<span class="operator">=</span><span class="string">&quot;text&quot;</span> type<span class="operator">=</span><span class="string">&quot;richtext&quot;</span><span class="operator">/</span><span class="operator">&gt;</span>
+                  <span class="operator">&lt;</span>tooltip name<span class="operator">=</span><span class="string">&quot;text&quot;</span><span class="operator">&gt;</span>Explanatory text to be shown in Property Editor<span class="operator">&lt;</span><span class="operator">/</span>tooltip<span class="operator">&gt;</span>
+              <span class="operator">&lt;</span><span class="operator">/</span>propertyspecifications<span class="operator">&gt;</span>
+          <span class="operator">&lt;</span><span class="operator">/</span>customwidget<span class="operator">&gt;</span>
+      <span class="operator">&lt;</span><span class="operator">/</span>customwidgets<span class="operator">&gt;</span>
+  <span class="operator">&lt;</span><span class="operator">/</span>ui<span class="operator">&gt;</span>
+
+</pre>
+<p><code>&lt;ui&gt;</code><font style="vertical-align: inherit;">标签属性：</font></p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th ><font style="vertical-align: inherit;">属性</font></th><th >
+	 <span lang="zh-cn">出现</span></th><th ><span lang="zh-cn">值</span></th><th >
+	 <span lang="zh-cn">注释</span></th></tr></thead>
+<tr valign="top" class="odd"><td ><code>language</code></td><td >
+	<span lang="zh-cn">可选</span></td><td >&quot;c++&quot;, &quot;jambi&quot;</td><td ><font style="vertical-align: inherit;">此属性指定自定义组件适用的语言。它主要是为了防止 C++ 插件出现在 Qt Jambi 中。</font></td></tr>
+<tr valign="top" class="even"><td ><code>displayname</code></td><td >
+	<span lang="zh-cn">可选</span></td><td >Class name</td><td ><font style="vertical-align: inherit;">该属性的值出现在<span lang="zh-cn">组件</span>框中，可用于剥离命名空间。</font></td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">该</font><code>&lt;addpagemethod&gt;</code><font style="vertical-align: inherit;">标签告诉</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/uic.html"><font style="vertical-align: inherit;">uic</font></a><font style="vertical-align: inherit;">应该使用哪种方法将页面添加到容器组件。这适用于需要调用特定方法来添加子项而不是通过传递父项来添加子项的容器组件。特别是，这与不是</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">中提供的容器的子类但基于</font><i><font style="vertical-align: inherit;">当前页</font></i><font style="vertical-align: inherit;">概念的容器相关。此外，您需要为它们提供容器扩展。</font></p>
+<p><font style="vertical-align: inherit;">该</font><code>&lt;propertyspecifications&gt;</code><font style="vertical-align: inherit;">元素可以包含属性元信息列表。</font></p>
+<p><code>&lt;tooltip&gt;</code><font style="vertical-align: inherit;">当鼠标悬停在属性上时，该标记可用于指定要在属性编辑器中显示的工具提示。属性名称在属性中给出，</font><code>name</code><font style="vertical-align: inherit;">元素文本是工具提示。此功能是在 Qt 5.6 中添加的。</font></p>
+<p><font style="vertical-align: inherit;">对于字符串类型的属性，</font><code>&lt;stringpropertyspecification&gt;</code><font style="vertical-align: inherit;">可以使用标记。此标签具有以下属性：</font></p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th ><font style="vertical-align: inherit;">属性</font></th><th >
+	 <span lang="zh-cn">表现</span></th><th ><span lang="zh-cn">值</span></th><th >
+	 <span lang="zh-cn">注释</span></th></tr></thead>
+<tr valign="top" class="odd"><td ><code>name</code></td><td ><span lang="zh-cn">
+	必需</span></td><td ><span lang="zh-cn">属性名称</span></td></tr>
+<tr valign="top" class="even"><td ><code>type</code></td><td >
+	<span lang="zh-cn">必需</span></td><td ><span lang="zh-cn">参考下表</span></td><td ><font style="vertical-align: inherit;">属性的值决定了属性编辑器将如何处理它们。</font></td></tr>
+<tr valign="top" class="odd"><td ><code>notr</code></td><td ><span lang="zh-cn">
+	可选</span></td><td >&quot;true&quot;, &quot;false&quot;</td><td ><font style="vertical-align: inherit;">如果属性为“true”，则不打算翻译该值。</font></td></tr>
+</table></div>
+<p><code>type</code><font style="vertical-align: inherit;">字符串属性的属性值：</font></p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th ><span lang="zh-cn">值</span></th><th >
+	 <span lang="zh-cn">类型</span></th></tr></thead>
+<tr valign="top" class="odd"><td ><code>&quot;richtext&quot;</code></td><td >
+	<span lang="zh-cn">富文本</span></td></tr>
+<tr valign="top" class="even"><td ><code>&quot;multiline&quot;</code></td><td >
+	<span lang="zh-cn">多行纯文本</span></td></tr>
+<tr valign="top" class="odd"><td ><code>&quot;singleline&quot;</code></td><td >
+	<span lang="zh-cn">单行纯文本</span></td></tr>
+<tr valign="top" class="even"><td ><code>&quot;stylesheet&quot;</code></td><td >
+	<span lang="zh-cn">CSS样式表</span></td></tr>
+<tr valign="top" class="odd"><td ><code>&quot;objectname&quot;</code></td><td ><font style="vertical-align: inherit;">对象名称（受限制的有效字符集）。</font></td></tr>
+<tr valign="top" class="even"><td ><code>&quot;url&quot;</code></td><td >
+	<span lang="zh-cn">URL</span><font style="vertical-align: inherit;">，文件名。</font></td></tr>
+</table></div>
+<a name="plugin-requirements"></a>
+<h2 id="plugin-requirements"><font style="vertical-align: inherit;">插件要求</font></h2>
+<p><font style="vertical-align: inherit;">为了让插件在所有平台上都能正常工作，您需要确保它们导出</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">所需的符号。</font></p>
+<p><font style="vertical-align: inherit;">首先，必须导出插件类，以便</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">加载插件。使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA"><font style="vertical-align: inherit;">Q_PLUGIN_METADATA</font></a><font style="vertical-align: inherit;"> () 宏来做到这一点。此外，必须使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#QDESIGNER_WIDGET_EXPORT"><font style="vertical-align: inherit;">QDESIGNER_WIDGET_EXPORT</font></a><font style="vertical-align: inherit;">宏来定义插件中的每个自定义组件类，</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">将实例化该类。</font></p>
+<a name="creating-well-behaved-widgets"></a>
+<h2 id="creating-well-behaved-widgets"><font style="vertical-align: inherit;">创建行为良好的组件</font></h2>
+<p><font style="vertical-align: inherit;">一些自定义组件具有特殊的用户界面功能，可能使它们的行为与</font><i><font style="vertical-align: inherit;"> 
+Qt<span lang="zh-cn">设</span>计器中的</font></i><font style="vertical-align: inherit;">许多标准组件不同。具体来说，如果自定义组件因为调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#grabKeyboard"><font style="vertical-align: inherit;">QWidget::grabKeyboard</font></a><font style="vertical-align: inherit;"> ()而抓取键盘，则会影响</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的操作<span lang="zh-cn">。</span></font></p>
+<p><font style="vertical-align: inherit;">要在</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">为自定义组件提供特殊行为，请提供 initialize() 函数的实现，以便为</font><i><font style="vertical-align: inherit;"> 
+Qt<span lang="zh-cn">设</span>计器</font></i><font style="vertical-align: inherit;">特定行为配置组件构造过程。该函数将在对 createWidget() 的任何调用之前第一次被调用，并且可能会设置一个内部标志，以便稍后在<i>Qt<span lang="zh-cn">设</span>计器</i>调用插件的 createWidget() 函数时进行测试。</font></p>
+<a name="buildingandinstallingtheplugin"></a><a name="building-and-installing-the-plugin"></a>
+<h2 id="building-and-installing-the-plugin"><font style="vertical-align: inherit;">构建和安装插件</font></h2>
+<a name="a-simple-plugin"></a>
+<h3 ><font style="vertical-align: inherit;">一个简单的插件</font></h3>
+<p><font style="vertical-align: inherit;">在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html"><font style="vertical-align: inherit;">自定义的<span lang="zh-cn">组件</span>插件示例</font></a><font style="vertical-align: inherit;">演示了一个简单的</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">插件。</font></p>
+<p><code>.pro</code><font style="vertical-align: inherit;">文件的插件必须指定自定义组件和插件接口都标题和来源。通常，这个文件只需要指定插件的项目将被构建为一个库，但具有对</font><i><font style="vertical-align: inherit;">Qt 设计师 </font></i>
+<font style="vertical-align: inherit;">的特定插件支持。这是通过以下声明完成的：</font></p>
+<pre class="cpp">
+
+  QT          += widgets uiplugin
+  CONFIG      += plugin
+  TEMPLATE    = lib
+
+</pre>
+<p><code>QT</code> 变量包含关键字uiplugin。它表明插件只使用抽象接口<a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a>和<a href="qdesignercustomwidgetcollectioninterface.html">QDesignerCustomWidgetCollectionInterface</a>，并且没有到Qt设计师库的链接。当访问Qt 
+Designer中其他具有链接的接口时，应使用设计师;这确保了插件动态链接到Qt 设计师库，并在运行时依赖于它们。</p>
+<p><font style="vertical-align: inherit;">如果插件是在与</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">不兼容的模式下构建的，它们将不会被加载和安装。有关插件的更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/plugins-howto.html"><font style="vertical-align: inherit;">插件 HOWTO</font></a><font style="vertical-align: inherit;">文档。</font></p>
+<p><font style="vertical-align: inherit;">还需要确保该插件与其他</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">组件插件一起安装：</font></p>
+<pre class="cpp">
+
+  target.path = $$[QT_INSTALL_PLUGINS]/designer
+  INSTALLS += target
+
+</pre>
+<p><font style="vertical-align: inherit;">该</font><code>$[QT_INSTALL_PLUGINS]</code><font style="vertical-align: inherit;">变量是已安装 Qt 插件位置的占位符。您可以通过在运行应用程序之前设置环境变量来配置</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">以在其他位置查找插件</font><code>QT_PLUGIN_PATH</code><font style="vertical-align: inherit;">。</font></p>
+<p><b><span lang="zh-cn">注意：</span></b><i>Qt 设计师</i> 将在提供的每个路径中查找<code>designer</code> 
+子目录。</p><p><font style="vertical-align: inherit;">有关使用 Qt 应用程序自定义库和插件路径的更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qcoreapplication.html#libraryPaths"><font style="vertical-align: inherit;">QCoreApplication::libraryPaths</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<a name="splitting-up-the-plugin"></a>
+<h3 ><font style="vertical-align: inherit;">拆分插件</font></h3>
+<p><font style="vertical-align: inherit;">在实际场景中，您不希望使用自定义组件的应用程序依赖于上述简单方法所引入的</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">头文件和库。</font></p>
+<p><font style="vertical-align: inherit;">以下部分描述了如何解决此问题。</font></p>
+<a name="linking-the-widget-into-the-application"></a>
+<h4 ><font style="vertical-align: inherit;">将组件链接到应用程序</font></h4>
+<p><font style="vertical-align: inherit;">通过创建包含的文件，可以在应用程序和</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">之间共享自定义组件的源文件和头文件</font><code>.pri</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  INCLUDEPATH <span class="operator">+</span><span class="operator">=</span> $$PWD
+  HEADERS <span class="operator">+</span><span class="operator">=</span> $$PWD<span class="operator">/</span>analogclock<span class="operator">.</span>h
+  SOURCES <span class="operator">+</span><span class="operator">=</span> $$PWD<span class="operator">/</span>analogclock<span class="operator">.</span>cpp
+
+</pre>
+<p><font style="vertical-align: inherit;">然后该文件将包含</font><code>.pro</code><font style="vertical-align: inherit;">在插件和应用程序的文件中：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">include</span>(customwidget<span class="operator">.</span>pri)
+
+</pre>
+<a name="sharing-the-widget-using-a-library"></a>
+<h4 ><font style="vertical-align: inherit;">使用库共享组件</font></h4>
+<p><font style="vertical-align: inherit;">一种方法是将组件放入链接到</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">插件和应用程序的库中。建议使用静态库以避免在运行时定位库的问题。</font></p>
+<p><font style="vertical-align: inherit;">对于共享库，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/sharedlibrary.html"><font style="vertical-align: inherit;">创建共享库</font></a><font style="vertical-align: inherit;">。</font></p>
+<a name="using-the-plugin-with-quiloader"></a>
+<h4 ><font style="vertical-align: inherit;">将插件与 QUiLoader 配合使用</font></h4>
+<p><font style="vertical-align: inherit;">向</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html"><font style="vertical-align: inherit;">QUiLoader</font></a><font style="vertical-align: inherit;">添加自定义组件的首选方法是将其子类化，重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html#createWidget"><font style="vertical-align: inherit;">QUiLoader::createWidget</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<p><font style="vertical-align: inherit;">但是，也可以使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">自定义组件插件（参见</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html#pluginPaths"><font style="vertical-align: inherit;">QUiLoader::pluginPaths</font></a><font style="vertical-align: inherit;"> () 和相关函数）。为了避免将</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">库部署到目标设备上，这些插件应该没有与</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">库的链接（</font><code>QT = uiplugin</code><font style="vertical-align: inherit;"><span lang="zh-cn">，</span>参见</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html#buildingandinstallingtheplugin"><font style="vertical-align: inherit;">为 Qt 设计师#BuildingandInstallingthePlugin 创建自定义组件</font></a><font style="vertical-align: inherit;">）。</font></p>
+<a name="related-examples"></a>
+<h2 id="related-examples"><font style="vertical-align: inherit;">相关例子</font></h2>
+<p><font style="vertical-align: inherit;">有关在</font><i><font style="vertical-align: inherit;">Qt 设计师 </font></i>
+<font style="vertical-align: inherit;"><span lang="zh-cn">中使</span>用自定义组件的更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html"><font style="vertical-align: inherit;">自定义组件插件</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-worldtimeclockplugin-example.html"><font style="vertical-align: inherit;">世界时钟插件</font></a><font style="vertical-align: inherit;">示例，了解有关在</font><i><font style="vertical-align: inherit;">Qt 设计师中</font></i><font style="vertical-align: inherit;">使用自定义组件的更多信息。此外，您可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetcollectioninterface.html"><font style="vertical-align: inherit;">QDesignerCustomWidgetCollectionInterface</font></a><font style="vertical-align: inherit;">类将多个自定义组件组合到一个库中。</font></p>
+</div>
+<!-- @@@designer-creating-custom-widgets.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="designer-using-custom-widgets.html">
+<span lang="zh-cn">在Qt设计师中使用自定义组件</span></a>
+<span class="naviSeparator">  &#9702;  
+<a class="nextPage" href="designer-creating-custom-widgets-extensions.html">
+<span lang="zh-cn">创建自定义组件扩展</span></a></span>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

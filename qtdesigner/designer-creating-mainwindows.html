@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- designer-manual.qdoc -->
+  <title>Creating Main Windows in Qt 设计师 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td >
+			在 Qt 设计师 中创建主窗口</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="designer-using-containers.html" />
+  <link rel="next" href="designer-resources.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="designer-using-containers.html"><span lang="zh-cn">
+在Qt设计师中使用容器</span></a><span lang="zh-cn"> </span><span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="designer-resources.html"><span lang="zh-cn">
+在Qt设计师中使用资源</span></a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#menus"><font style="vertical-align: inherit;">菜单</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#creating-a-menu"><font style="vertical-align: inherit;">创建菜单</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#creating-a-menu-entry"><font style="vertical-align: inherit;">创建菜单项</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#toolbars"><font style="vertical-align: inherit;">工具栏</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#creating-and-removing-a-toolbar"><font style="vertical-align: inherit;">创建和删除工具栏</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#adding-and-removing-toolbar-buttons"><font style="vertical-align: inherit;">添加和删​​除工具栏按钮</font></a></li>
+<li class="level1">
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#actions">
+<font style="vertical-align: inherit;"><span lang="zh-cn">动作</span></font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#the-action-editor"><font style="vertical-align: inherit;">动作编辑器</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#creating-an-action"><font style="vertical-align: inherit;">创建动作</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#adding-an-action"><font style="vertical-align: inherit;">添加动作</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#dock-widgets"><font style="vertical-align: inherit;">停靠组件</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#adding-a-dock-widget"><font style="vertical-align: inherit;">添加 Dock 组件</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">在 Qt 设计师 中创建主窗口</h1>
+<span class="subtitle"></span>
+<!-- $$$designer-creating-mainwindows.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">可用于创建用于不同目的的用户界面，并为每个用户界面提供不同类型的表单模板。主窗口模板用于创建带有菜单栏、工具栏和停靠窗口组件的应用程序窗口。</font></p>
+<p><font style="vertical-align: inherit;">通过打开</font><b><font style="vertical-align: inherit;">File</font></b><font style="vertical-align: inherit;">菜单并选择</font><b><font style="vertical-align: inherit;">New Form...</font></b><font style="vertical-align: inherit;">选项或按</font><b><font style="vertical-align: inherit;">Ctrl+N</font></b><font style="vertical-align: inherit;">来创建一个新的主窗口。然后，选择</font><b><font style="vertical-align: inherit;">主窗口</font></b><font style="vertical-align: inherit;">模板。该模板提供了一个主应用程序窗口，默认情况下包含一个菜单栏和一个工具栏——如果不需要，可以将其删除。</font></p>
+<p><font style="vertical-align: inherit;">如果删除菜单栏，则可以通过从上下文菜单中选择“</font><b><font style="vertical-align: inherit;">创建菜单栏”</font></b><font style="vertical-align: inherit;">选项来创建一个新的菜单栏，该菜单是通过在主窗口窗体中右键单击获得的。</font></p>
+<p><font style="vertical-align: inherit;">一个应用程序只能有</font><b><font style="vertical-align: inherit;">一个</font></b><font style="vertical-align: inherit;">菜单栏，但可以有</font><b><font style="vertical-align: inherit;">多个</font></b><font style="vertical-align: inherit;">工具栏。</font></p>
+<a name="menus"></a>
+<h2 id="menus"><font style="vertical-align: inherit;">菜</font></h2>
+<p><font style="vertical-align: inherit;">通过修改</font><b><font style="vertical-align: inherit;">Type Here</font></b><font style="vertical-align: inherit;">占位符将菜单添加到菜单栏中。其中之一始终用于编辑目的，不会显示在预览或完成的窗口中。</font></p>
+<p><font style="vertical-align: inherit;">创建后，可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html#the-property-editor"><font style="vertical-align: inherit;">属性编辑器</font></a><font style="vertical-align: inherit;">访问菜单的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html#the-property-editor">属性</a>，并且可以为此目的通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html#the-object-inspector"><font style="vertical-align: inherit;">对象检查器</font></a><font style="vertical-align: inherit;">访问每个菜单。</font></p>
+<p><font style="vertical-align: inherit;">可以通过在菜单栏中的标签上打开上下文菜单并选择</font><b><font style="vertical-align: inherit;">Remove Menu 'menu_name'</font></b><font style="vertical-align: inherit;">来<b>删除</b>现有菜单。</font></p>
+<a name="creatingamenu"></a><div class="float-left"><p><img src="images/designer-creating-menu1.png" alt="" /> <img src="images/designer-creating-menu2.png" alt="" /> <br />
+ <img src="images/designer-creating-menu3.png" alt="" /> <img src="images/designer-creating-menu4.png" alt="" /></p>
+</div><a name="creating-a-menu"></a>
+<h3 ><font style="vertical-align: inherit;">创建菜单</font></h3>
+<p><font style="vertical-align: inherit;">双击占位符项目开始编辑。可以修改使用行编辑显示的菜单文本。</font></p>
+<p><font style="vertical-align: inherit;">插入新菜单所需的文本。插入与号字符 (&amp;) 会使后面的字母用作菜单的助记符。</font></p>
+<p><font style="vertical-align: inherit;">按</font><b><font style="vertical-align: inherit;">Return</font></b><font style="vertical-align: inherit;">或</font><b><font style="vertical-align: inherit;">Enter</font></b><font style="vertical-align: inherit;">接受新文本，或按</font><b><font style="vertical-align: inherit;">Escape</font></b><font style="vertical-align: inherit;">拒绝。如果需要，您可以稍后撤消编辑操作。</font></p>
+<div class="clear-both"></div><p><font style="vertical-align: inherit;">菜单也可以在菜单栏中重新排列，只需将它们拖放到首选位置即可。垂直红线表示将插入菜单的位置。</font></p>
+<p><font style="vertical-align: inherit;">菜单可以包含任意数量的条目和分隔符，并且可以嵌套到所需的深度。可以通过以通常的方式导航菜单结构来向菜单添加新条目。</font></p>
+<a name="creatingamenuentry"></a><div class="float-right"><p><img src="images/designer-creating-menu-entry1.png" alt="" /> <img src="images/designer-creating-menu-entry2.png" alt="" /> <br />
+ <img src="images/designer-creating-menu-entry3.png" alt="" /> <img src="images/designer-creating-menu-entry4.png" alt="" /></p>
+</div><a name="creating-a-menu-entry"></a>
+<h3 ><font style="vertical-align: inherit;">创建菜单项</font></h3>
+<p><font style="vertical-align: inherit;">双击</font><b><font style="vertical-align: inherit;">Type Here</font></b><font style="vertical-align: inherit;">占位符开始编辑，或双击</font><b><font style="vertical-align: inherit;">Add Separator</font></b><font style="vertical-align: inherit;">在菜单中的最后一个条目后插入新的分隔线。</font></p>
+<p><font style="vertical-align: inherit;">菜单项的文本使用行编辑显示，并且可以修改。</font></p>
+<p><font style="vertical-align: inherit;">插入新条目所需的文本，可选择使用与号 (&amp;) 来标记要用作条目助记符的字母。</font></p>
+<p><font style="vertical-align: inherit;">按</font><b><font style="vertical-align: inherit;">Return</font></b><font style="vertical-align: inherit;">或</font><b><font style="vertical-align: inherit;">Enter</font></b><font style="vertical-align: inherit;">接受新文本，或按</font><b><font style="vertical-align: inherit;">Escape</font></b><font style="vertical-align: inherit;">拒绝。可以通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#theactioneditor"><font style="vertical-align: inherit;">Action Editor</font></a><font style="vertical-align: inherit;">访问为此菜单条目创建的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#theactioneditor">操作</a>，并且可以在那里设置任何关联的键盘快捷键。</font></p>
+<div class="clear-both"></div><p><font style="vertical-align: inherit;">就像菜单一样，只需将条目拖放到首选位置即可移动条目。当一个条目被拖到一个关闭的菜单上时，菜单将打开以允许它插入那里。由于菜单条目基于操作，它们也可以拖放到工具栏上，在那里它们将显示为工具栏按钮。</font></p>
+<a name="toolbars"></a>
+<h2 id="toolbars"><font style="vertical-align: inherit;">工具栏</font></h2>
+<div class="float-left"><p><img src="images/designer-creating-toolbar.png" alt="" /></p>
+</div><a name="creating-and-removing-a-toolbar"></a>
+<h3 ><font style="vertical-align: inherit;">创建和删除工具栏</font></h3>
+<p><font style="vertical-align: inherit;">工具栏以类似于菜单栏的方式添加到主窗口：从表单的上下文菜单中选择</font><b><font style="vertical-align: inherit;">添加工具栏</font></b><font style="vertical-align: inherit;">选项。或者，如果主窗口中已有工具栏，您可以单击其右端的箭头以创建新工具栏。</font></p>
+<p><font style="vertical-align: inherit;">工具栏通过工具栏上下文菜单中的条目从表单中删除。</font></p>
+<div class="clear-both"></div><a name="adding-and-removing-toolbar-buttons"></a>
+<h3 ><font style="vertical-align: inherit;">添加和删​​除工具栏按钮</font></h3>
+<p><font style="vertical-align: inherit;">具栏按钮在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#theactioneditor"><font style="vertical-align: inherit;">动作编辑器中</font></a><font style="vertical-align: inherit;">作为动作创建并拖到工具栏上。由于操作可以由菜单项和工具栏按钮表示，因此它们可以在菜单和工具栏之间移动。</font></p>
+<div class="float-right"><p><img src="images/designer-adding-toolbar-action.png" alt="" /> <img src="images/designer-removing-toolbar-action.png" alt="" /></p>
+</div><p><font style="vertical-align: inherit;">要在菜单和工具栏之间共享操作，请将其图标从操作编辑器拖到工具栏，而不是从其条目所在的菜单中拖动。有关此过程的更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-mainwindows.html#adding-an-action"><font style="vertical-align: inherit;">添加操作</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">工具栏按钮通过工具栏的上下文菜单删除。</font></p>
+<div class="clear-both"></div><a name="actions"></a>
+<h2 id="actions"><span lang="zh-cn">动作</span></h2>
+<p><font style="vertical-align: inherit;">菜单栏和工具栏就位后，是时候用动作填充它们了。在动作编辑器窗口中创建了菜单和工具栏的新动作，简化了动作的创建和管理。</font></p>
+<a name="theactioneditor"></a><div class="float-left"><p><img src="images/designer-action-editor.png" alt="" /></p>
+</div><a name="the-action-editor"></a>
+<h3 ><font style="vertical-align: inherit;">动作编辑器</font></h3>
+<p><font style="vertical-align: inherit;">过打开“</font><b><font style="vertical-align: inherit;">工具”</font></b><font style="vertical-align: inherit;">菜单并打开“</font><b><font style="vertical-align: inherit;">动作编辑器”</font></b><font style="vertical-align: inherit;">选项来启用动作编辑<b>器</b>。</font></p>
+<p><font style="vertical-align: inherit;">动作编辑器允许您创建</font><b><font style="vertical-align: inherit;">新</font></b><font style="vertical-align: inherit;">动作和</font><b><font style="vertical-align: inherit;">删除</font></b><font style="vertical-align: inherit;">动作。它还提供了使用操作文本的搜索功能</font><b><font style="vertical-align: inherit;">Filter</font></b><font style="vertical-align: inherit;">。</font></p>
+<p><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的动作编辑器可以在经典的</font><b><font style="vertical-align: inherit;">图标视图</font></b><font style="vertical-align: inherit;">和</font><b><font style="vertical-align: inherit;">详细视图中查看</font></b><font style="vertical-align: inherit;">。下面的屏幕截图显示了</font><b><font style="vertical-align: inherit;">详细视图</font></b><font style="vertical-align: inherit;">中的动作编辑器。您还可以在菜单、工具栏和表单之间复制和粘贴操作。</font></p>
+<div class="clear-both"></div><a name="creating-an-action"></a>
+<h3 ><font style="vertical-align: inherit;">创建动作</font></h3>
+<p><font style="vertical-align: inherit;">要创建动作，请使用动作编辑器的“</font><b><font style="vertical-align: inherit;">新建”</font></b><font style="vertical-align: inherit;">按钮，然后会弹出一个输入对话框。为新操作提供</font><b><font style="vertical-align: inherit;">文本</font></b><font style="vertical-align: inherit;">——这是将出现在菜单项中并作为操作的工具提示的文本。文本也会自动添加到“动作”前缀，创建动作的</font><b><font style="vertical-align: inherit;">Object Name</font></b><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">此外，该对话框提供了为操作选择</font><b><font style="vertical-align: inherit;">图标</font></b><font style="vertical-align: inherit;">以及删除当前图标的选项。</font></p>
+<p><font style="vertical-align: inherit;">一旦创建了操作，就可以在任何适用的操作中使用它。</font></p>
+<div class="clear-left"></div><a name="addinganaction"></a><div class="float-right"><p><img src="images/designer-adding-menu-action.png" alt="" /> <img src="images/designer-adding-toolbar-action.png" alt="" /></p>
+</div><a name="adding-an-action"></a>
+<h3 ><font style="vertical-align: inherit;">添加动作</font></h3>
+<p><font style="vertical-align: inherit;">要将动作添加到菜单或工具栏，只需在动作编辑器中的动作上按鼠标左键，然后将其拖到首选位置即可。</font></p>
+<p><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供突出显示的指导线，告诉您将在何处添加操作。找到正确的位置后，松开鼠标按钮以添加操作。</font></p>
+<div class="clear-right"></div><a name="dock-widgets"></a>
+<h2 id="dock-widgets"><font style="vertical-align: inherit;">停靠组件</font></h2>
+<p><font style="vertical-align: inherit;">由于停靠组件是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-containers.html"><font style="vertical-align: inherit;">容器组件</font></a><font style="vertical-align: inherit;">，因此可以以通常的方式将它们添加到表单中。添加到表单后，默认情况下不会将停靠组件放置在任何特定的停靠区域中；您需要将每个组件的</font><b><font style="vertical-align: inherit;">停靠</font></b><font style="vertical-align: inherit;">属性设置为 true 并为其</font><b><font style="vertical-align: inherit;">dockWidgetArea</font></b><font style="vertical-align: inherit;">属性选择适当的值。</font></p>
+<a name="addingadockwidget"></a><div class="float-left"><p><img src="images/designer-adding-dockwidget.png" alt="" /></p>
+</div><a name="adding-a-dock-widget"></a>
+<h3 ><font style="vertical-align: inherit;">添加 Dock 组件</font></h3>
+<p><font style="vertical-align: inherit;">要将停靠窗口组件添加到表单，请从窗口组件框的</font><b><font style="vertical-align: inherit;">容器</font></b><font style="vertical-align: inherit;">部分拖动一个，然后将其放到主表单区域。不要将停靠组件添加到现有布局。相反，打开</font><b><font style="vertical-align: inherit;">属性编辑器</font></b><font style="vertical-align: inherit;">并启用</font><b><font style="vertical-align: inherit;">停靠</font></b><font style="vertical-align: inherit;">属性以将其放置在停靠区域中。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果在布局应用于中央组件之前将其添加到表单中，有时配置停靠组件会更容易。例如，可以取消停靠并调整其大小，从而更方便地添加子组件。</font></p>
+<p><span lang="zh-cn">停靠</span><font style="vertical-align: inherit;">组件可以选择性地作为独立的工具窗口浮动。因此，通过设置它们的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qdockwidget.html#windowTitle-prop"><font style="vertical-align: inherit;">windowTitle</font></a><font style="vertical-align: inherit;">属性来为它们提供窗口标题是很有用的。这也有助于在表单上识别它们。</font></p>
+<div class="clear-both"></div></div>
+<!-- @@@designer-creating-mainwindows.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="designer-using-containers.html">Using Containers in Qt 设计师</a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="designer-resources.html">Editing Resources with Qt 设计师</a>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

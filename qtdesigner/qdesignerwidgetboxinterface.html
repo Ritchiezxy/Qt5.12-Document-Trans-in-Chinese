@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- abstractwidgetbox.cpp -->
+  <title>QDesignerWidgetBoxInterface 类 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">C++ Classes</a></td><td >QDesignerWidgetBoxInterface</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#static-public-members">静态公用成员</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QDesignerWidgetBoxInterface 类</h1>
+<!-- $$$QDesignerWidgetBoxInterface-brief -->
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html"><font style="vertical-align: inherit;">QDesignerWidgetBoxInterface</font></a><font style="vertical-align: inherit;">类允许您控制Qt设计师的组件框中的目录。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#details"><font style="vertical-align: inherit;">更多...</font></a></p>
+<!-- @@@QDesignerWidgetBoxInterface -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QDesignerWidgetBoxInterface&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += designer</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="../qtwidgets/qwidget.html">QWidget</a></td></tr></table></div><ul>
+<li><a href="qdesignerwidgetboxinterface-members.html">所有成员的列表，包括继承成员。</a></li>
+<li><a href="qdesignerwidgetboxinterface-obsolete.html">废弃的成员</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qdesignerwidgetboxinterface.html#QDesignerWidgetBoxInterface">QDesignerWidgetBoxInterface</a></b>(QWidget *<i>parent</i> = Q_NULLPTR, Qt::WindowFlags <i>flags</i> = ...)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qdesignerwidgetboxinterface.html#dtor.QDesignerWidgetBoxInterface">~QDesignerWidgetBoxInterface</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QString </td><td class="memItemRight bottomAlign"><b><a href="qdesignerwidgetboxinterface.html#fileName">fileName</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerwidgetboxinterface.html#load">load</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerwidgetboxinterface.html#save">save</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerwidgetboxinterface.html#setFileName">setFileName</a></b>(const QString &amp;<i>fileName</i>) = 0</td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">216个从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#public-functions">QWidget</a>继承的公共函数</font></li>
+</ul>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">静态公用成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> const QMetaObject </td><td class="memItemRight bottomAlign"><b><a href="qdesignerwidgetboxinterface.html#staticMetaObject-var">staticMetaObject</a></b></td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">5<span lang="zh-cn">个</span>继承自<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#static-public-members">QWidget的</a>公用成员</font></li>
+</ul>
+<h3><font style="vertical-align: inherit;">其他继承成员</font></h3>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#properties">QWidget</a>继承的 59 个属性</font></li>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#public-slots">QWidget</a>继承的 19 个公共槽</font></li>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#signals">QWidget</a>继承的 3 个信号</font></li>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#protected-functions">QWidget</a>继承的 35 个受保护的函数</font></li>
+<li class="fn"><font style="vertical-align: inherit;">1 个从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#protected-slots">QWidget</a>继承的受保护槽</font></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QDesignerWidgetBoxInterface-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html"><font style="vertical-align: inherit;">QDesignerWidgetBoxInterface</font></a><font style="vertical-align: inherit;">类允许您控制Qt设计师的组件框中的目录。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html"><font style="vertical-align: inherit;">QDesignerWidgetBoxInterface</font></a><font style="vertical-align: inherit;">包含一组函数，这些函数通常用于操作</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的组件框的目录。</font></p>
+<p><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">使用一个 XML 文件来填充它的组件框。该文件的名称是组件框的属性之一，您可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#fileName"><font style="vertical-align: inherit;">fileName</font></a><font style="vertical-align: inherit;"> () 函数检索它。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html"><font style="vertical-align: inherit;">QDesignerWidgetBoxInterface</font></a><font style="vertical-align: inherit;">还提供了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#save"><font style="vertical-align: inherit;">save</font></a><font style="vertical-align: inherit;"> () 函数，该函数将组件框的目录保存在组件框的文件名属性指定的文件中。如果您对组件框进行了更改，例如将组件放入组件框中，而无需调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#save"><font style="vertical-align: inherit;">save</font></a><font style="vertical-align: inherit;"> () 函数，则只需调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#load"><font style="vertical-align: inherit;">load</font></a><font style="vertical-align: inherit;"> () 函数即可恢复原始内容：</font></p>
+<pre class="cpp">
+
+          <span class="type"><a href="qdesignerwidgetboxinterface.html#QDesignerWidgetBoxInterface">QDesignerWidgetBoxInterface</a></span> <span class="operator">*</span>widgetBox <span class="operator">=</span> <span class="number">0</span>:
+          widgetBox <span class="operator">=</span> formEditor<span class="operator">-</span><span class="operator">&gt;</span>widgetBox();
+
+          widgetBox<span class="operator">-</span><span class="operator">&gt;</span>load();
+
+</pre>
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html"><font style="vertical-align: inherit;">QDesignerWidgetBoxInterface</font></a><font style="vertical-align: inherit;">类不适合直接实例化。您可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html#widgetBox"><font style="vertical-align: inherit;">QDesignerFormEditorInterface::widgetBox</font></a><font style="vertical-align: inherit;"> () 函数检索 Qt 设计师 组件框的接口。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#initialize">QDesignerCustomWidgetInterface::initialize</a> () 函数的参数提供了指向</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">当前</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">对象（</font><code>formEditor</code><font style="vertical-align: inherit;">在上面的示例中）的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#initialize"><font style="vertical-align: inherit;">指针</font></a><font style="vertical-align: inherit;">。实现自定义组件插件时，您必须</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html"><font style="vertical-align: inherit;">继承 QDesignerCustomWidgetInterface</font></a><font style="vertical-align: inherit;">以将您的插件公开给</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">如果您想保存您的更改，同时保留原始目录，您可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#save"><font style="vertical-align: inherit;">save</font></a><font style="vertical-align: inherit;"> () 函数结合</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#setFileName"><font style="vertical-align: inherit;">setFileName</font></a><font style="vertical-align: inherit;"> () 函数将您的更改保存到另一个文件中。记得先存储原文件名：</font></p>
+<pre class="cpp">
+
+          <span class="type"><a href="../qtcore/qstring.html">QString</a></span> originalFile <span class="operator">=</span> widgetBox<span class="operator">-</span><span class="operator">&gt;</span>fileName();
+
+          widgetBox<span class="operator">-</span><span class="operator">&gt;</span>setFileName(<span class="string">&quot;myWidgetBox.xml&quot;</span>);
+          widgetBox<span class="operator">-</span><span class="operator">&gt;</span>save();
+
+</pre>
+<p><font style="vertical-align: inherit;">然后你可以通过将文件名重置为原始文件并调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#load"><font style="vertical-align: inherit;">load</font></a><font style="vertical-align: inherit;"> ()来恢复<span lang="zh-cn">组件框</span>的原始目录：</font></p>
+<pre class="cpp">
+
+          widgetBox<span class="operator">-</span><span class="operator">&gt;</span>setFileName(originalFile);
+          widgetBox<span class="operator">-</span><span class="operator">&gt;</span>load();
+
+</pre>
+<p><font style="vertical-align: inherit;">以类似的方式，您以后可以使用自定义的 XML 文件：</font></p>
+<pre class="cpp">
+
+          <span class="keyword">if</span> (widgetBox<span class="operator">-</span><span class="operator">&gt;</span>filename() <span class="operator">!</span><span class="operator">=</span> <span class="string">&quot;myWidgetBox.xml&quot;</span>) {
+              widgetBox<span class="operator">-</span><span class="operator">&gt;</span>setFileName(<span class="string">&quot;myWidgetBox.xml&quot;</span>);
+              widgetBox<span class="operator">-</span><span class="operator">&gt;</span>load();
+          }
+
+</pre>
+</div>
+<p><b>请参考 </b><a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a><span lang="zh-cn">。</span></p>
+<!-- @@@QDesignerWidgetBoxInterface -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QDesignerWidgetBoxInterface[overload1]$$$QDesignerWidgetBoxInterfaceQWidget*Qt::WindowFlags -->
+<h3 class="fn" id="QDesignerWidgetBoxInterface"><a name="QDesignerWidgetBoxInterface"></a>QDesignerWidgetBoxInterface::<span class="name">QDesignerWidgetBoxInterface</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>parent</i> = Q_NULLPTR, <span class="type"><a href="../qtcore/qt.html#WindowType-enum">Qt::WindowFlags</a></span> <i>flags</i> = ...)</h3>
+<p><font style="vertical-align: inherit;">使用给定的</font><i><font style="vertical-align: inherit;">parent
+<span lang="zh-cn">（</span>父级<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">和指定的窗口</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">flags（</span>标志<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">构造一个组件框界面。</font></p>
+<!-- @@@QDesignerWidgetBoxInterface -->
+<!-- $$$~QDesignerWidgetBoxInterface[overload1]$$$~QDesignerWidgetBoxInterface -->
+<h3 class="fn" id="dtor.QDesignerWidgetBoxInterface"><a name="dtor.QDesignerWidgetBoxInterface"></a><code>[virtual] </code>QDesignerWidgetBoxInterface::<span class="name">~QDesignerWidgetBoxInterface</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁组件框界面。</font></p>
+<!-- @@@~QDesignerWidgetBoxInterface -->
+<!-- $$$fileName[overload1]$$$fileName -->
+<h3 class="fn" id="fileName"><a name="fileName"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QDesignerWidgetBoxInterface::<span class="name">fileName</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">当前用于填充其组件框的 XML 文件的名称。</font></p>
+<p><b>请参考 </b><a href="qdesignerwidgetboxinterface.html#setFileName">setFileName</a>().</p>
+<!-- @@@fileName -->
+<!-- $$$load[overload1]$$$load -->
+<h3 class="fn" id="load"><a name="load"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerWidgetBoxInterface::<span class="name">load</span>()</h3>
+<p><font style="vertical-align: inherit;">通过加载（或重新加载）当前指定的 XML 文件来填充</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的组件框。如果文件加载成功则返回真；否则为假。</font></p>
+<p><b>请参考 </b><a href="qdesignerwidgetboxinterface.html#setFileName">setFileName</a>().</p>
+<!-- @@@load -->
+<!-- $$$save[overload1]$$$save -->
+<h3 class="fn" id="save"><a name="save"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerWidgetBoxInterface::<span class="name">save</span>()</h3>
+<p><font style="vertical-align: inherit;">将</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的组件框的目录保存在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#fileName"><font style="vertical-align: inherit;">fileName</font></a><font style="vertical-align: inherit;"> () 函数指定的文件中。如果内容保存成功则返回true；否则为假。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#fileName"><font style="vertical-align: inherit;">fileName</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#setFileName"><font style="vertical-align: inherit;">setFileName</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@save -->
+<!-- $$$setFileName[overload1]$$$setFileNameconstQString& -->
+<h3 class="fn" id="setFileName"><a name="setFileName"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerWidgetBoxInterface::<span class="name">setFileName</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>fileName</i>)</h3>
+<p><font style="vertical-align: inherit;">将</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">将用于填充其组件框的 XML 文件设置为</font><i><font style="vertical-align: inherit;">fileName</font></i><font style="vertical-align: inherit;">。您必须调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#load"><font style="vertical-align: inherit;">load</font></a><font style="vertical-align: inherit;"> () 以使用新的 XML 文件更新组件框。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#fileName"><font style="vertical-align: inherit;">fileName</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerwidgetboxinterface.html#load"><font style="vertical-align: inherit;">load</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@setFileName -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

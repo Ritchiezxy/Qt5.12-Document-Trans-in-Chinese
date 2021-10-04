@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- abstractformwindowcursor.cpp -->
+  <title>QDesignerFormWindowCursorInterface 类 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">C++ Classes</a></td><td >QDesignerFormWindowCursorInterface</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">公用类型</a></li>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QDesignerFormWindowCursorInterface 类</h1>
+<!-- $$$QDesignerFormWindowCursorInterface-brief -->
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html">
+<font style="vertical-align: inherit;">QDesignerFormWindowCursorInterface</font></a><font style="vertical-align: inherit;">类允许您查询和修改窗体窗口组件的选择，而且除了修改所有形式的组件的性能。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#details"><font style="vertical-align: inherit;">更多...</font></a></p>
+<!-- @@@QDesignerFormWindowCursorInterface -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QDesignerFormWindowCursorInterface&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += designer</td></tr></table></div><ul>
+<li><a href="qdesignerformwindowcursorinterface-members.html">所有成员的列表，包括继承成员。</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">公用类型</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#MoveMode-enum">MoveMode</a></b> { MoveAnchor, KeepAnchor }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#MoveOperation-enum">MoveOperation</a></b> { NoMove, Start, End, Next, ..., Down }</td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#dtor.QDesignerFormWindowCursorInterface">~QDesignerFormWindowCursorInterface</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QWidget *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#current">current</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QDesignerFormWindowInterface *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#formWindow">formWindow</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#hasSelection">hasSelection</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#isWidgetSelected">isWidgetSelected</a></b>(QWidget *<i>widget</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#movePosition">movePosition</a></b>(QDesignerFormWindowCursorInterface::MoveOperation <i>operation</i>, QDesignerFormWindowCursorInterface::MoveMode <i>mode</i> = MoveAnchor) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#position">position</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#resetWidgetProperty">resetWidgetProperty</a></b>(QWidget *<i>widget</i>, const QString &amp;<i>name</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QWidget *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#selectedWidget">selectedWidget</a></b>(int <i>index</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#selectedWidgetCount">selectedWidgetCount</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#setPosition">setPosition</a></b>(int <i>position</i>, QDesignerFormWindowCursorInterface::MoveMode <i>mode</i> = ...) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#setProperty">setProperty</a></b>(const QString &amp;<i>name</i>, const QVariant &amp;<i>value</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#setWidgetProperty">setWidgetProperty</a></b>(QWidget *<i>widget</i>, const QString &amp;<i>name</i>, const QVariant &amp;<i>value</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QWidget *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#widget">widget</a></b>(int <i>index</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowcursorinterface.html#widgetCount">widgetCount</a></b>() const = 0</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$QDesignerFormWindowCursorInterface-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html">
+<font style="vertical-align: inherit;">QDesignerFormWindowCursorInterface</font></a><font style="vertical-align: inherit;">类允许您查询和修改窗体窗口组件的选择，而且除了修改所有形式的组件的性能。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowCursorInterface</font></a><font style="vertical-align: inherit;">是一个方便的类，它为关联的表单窗口的文本光标提供了一个接口；它提供了一组函数，使您能够查询给定窗体窗口的选择并根据定义的模式 ( </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#MoveMode-enum"><font style="vertical-align: inherit;">MoveMode</font></a><font style="vertical-align: inherit;"> ) 和移动 ( </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#MoveOperation-enum"><font style="vertical-align: inherit;">MoveOperation</font></a><font style="vertical-align: inherit;"> )更改选择的焦点。您还可以使用该界面来查询表单的组件并更改其属性。</font></p>
+<p><font style="vertical-align: inherit;">该界面不打算直接实例化，而是提供对</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">当前窗体窗口的选择和组件的访问。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowInterface</font></a><font style="vertical-align: inherit;">总是提供一个关联的光标接口。可以使用静态</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#findFormWindow"><font style="vertical-align: inherit;">QDesignerFormWindowInterface::findFormWindow</font></a><font style="vertical-align: inherit;"> () 函数检索给定组件的表单窗口。例如：</font></p>
+<pre class="cpp">
+
+      <span class="type"><a href="qdesignerformwindowinterface.html">QDesignerFormWindowInterface</a></span> <span class="operator">*</span>formWindow <span class="operator">=</span> <span class="number">0</span>;
+      formWindow <span class="operator">=</span> <span class="type"><a href="qdesignerformwindowinterface.html">QDesignerFormWindowInterface</a></span><span class="operator">::</span>findFormWindow(myWidget);
+
+      formWindow<span class="operator">-</span><span class="operator">&gt;</span>cursor()<span class="operator">-</span><span class="operator">&gt;</span>setProperty(myWidget<span class="operator">,</span> myProperty<span class="operator">,</span> newValue);
+
+</pre>
+<p><font style="vertical-align: inherit;">您可以通过<i>Qt 设计师</i>的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowmanagerinterface.html">窗体窗口管理器</a>检索任何</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的当前窗体窗口。</font></p>
+<p><font style="vertical-align: inherit;">一旦有了表单窗口的光标界面，就可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#hasSelection"><font style="vertical-align: inherit;">hasSelection</font></a><font style="vertical-align: inherit;"> () 函数检查表单窗口是否有选择。您可以查询表单窗口的总</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#widgetCount"><font style="vertical-align: inherit;">widgetCount</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#selectedWidgetCount"><font style="vertical-align: inherit;">selectedWidgetCount</font></a><font style="vertical-align: inherit;"> ()。您可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#current"><font style="vertical-align: inherit;">current</font></a><font style="vertical-align: inherit;"> () 或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#selectedWidget"><font style="vertical-align: inherit;">selectedWidget</font></a><font style="vertical-align: inherit;"> () 函数检索当前选定的组件（或组件）。</font></p>
+<p><font style="vertical-align: inherit;">您可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#widget"><font style="vertical-align: inherit;">widget</font></a><font style="vertical-align: inherit;"> () 函数检索表单窗口的任何组件，并使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#isWidgetSelected"><font style="vertical-align: inherit;">isWidgetSelected</font></a><font style="vertical-align: inherit;"> () 函数检查是否选择了组件。您可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setProperty"><font style="vertical-align: inherit;">setProperty</font></a><font style="vertical-align: inherit;"> () 函数来设置所选组件的属性，并使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setWidgetProperty"><font style="vertical-align: inherit;">setWidgetProperty</font></a><font style="vertical-align: inherit;"> () 或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#resetWidgetProperty"><font style="vertical-align: inherit;">resetWidgetProperty</font></a><font style="vertical-align: inherit;"> () 函数来修改任何给定组件的属性。</font></p>
+<p><font style="vertical-align: inherit;">最后，您可以通过使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setPosition">setPosition</a> () 和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#movePosition">movePosition</a> () 函数更改文本光标的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#position"><font style="vertical-align: inherit;">位置</font></a><font style="vertical-align: inherit;">() 来更改选择。</font></p>
+</div>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowInterface</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowmanagerinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowManagerInterface</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@QDesignerFormWindowCursorInterface -->
+<div class="types">
+<h2><font style="vertical-align: inherit;">成员类型文档</font></h2>
+<!-- $$$MoveMode$$$MoveAnchor$$$KeepAnchor -->
+<h3 class="fn" id="MoveMode-enum"><a name="MoveMode-enum"></a>enum QDesignerFormWindowCursorInterface::<span class="name">MoveMode</span></h3>
+<p><font style="vertical-align: inherit;">此枚举描述了文本光标移动时使用的不同模式。</font></p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowCursorInterface::MoveAnchor</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign"><font style="vertical-align: inherit;">锚点随光标移动到新位置。</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowCursorInterface::KeepAnchor</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign"><font style="vertical-align: inherit;">锚点保留在光标的旧位置。</font></td></tr>
+</table></div>
+<!-- @@@MoveMode -->
+<!-- $$$MoveOperation$$$NoMove$$$Start$$$End$$$Next$$$Prev$$$Left$$$Right$$$Up$$$Down -->
+<h3 class="fn" id="MoveOperation-enum"><a name="MoveOperation-enum"></a>enum QDesignerFormWindowCursorInterface::<span class="name">MoveOperation</span></h3>
+<p><font style="vertical-align: inherit;">此枚举描述了表单窗口中可能发生的文本光标操作的类型。</font></p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst"><font style="vertical-align: inherit;">持续的</font></th><th class="tblval"><font style="vertical-align: inherit;">价值</font></th><th class="tbldscr"><font style="vertical-align: inherit;">描述</font></th></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowCursorInterface::NoMove</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign"><font style="vertical-align: inherit;">光标不动。</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowCursorInterface::Start</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign"><font style="vertical-align: inherit;">将光标移动到焦点链的开头。</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowCursorInterface::End</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign"><font style="vertical-align: inherit;">将光标移动到焦点链的末尾。</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowCursorInterface::Next</code></td><td class="topAlign tblval"><code>3</code></td><td class="topAlign"><font style="vertical-align: inherit;">将光标移动到焦点链中的下一个组件。</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowCursorInterface::Prev</code></td><td class="topAlign tblval"><code>4</code></td><td class="topAlign"><font style="vertical-align: inherit;">将光标移动到焦点链中的上一个组件。</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowCursorInterface::Left</code></td><td class="topAlign tblval"><code>5</code></td><td class="topAlign"><font style="vertical-align: inherit;">光标向左移动。</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowCursorInterface::Right</code></td><td class="topAlign tblval"><code>6</code></td><td class="topAlign"><font style="vertical-align: inherit;">光标向右移动。</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowCursorInterface::Up</code></td><td class="topAlign tblval"><code>7</code></td><td class="topAlign"><font style="vertical-align: inherit;">光标向上移动。</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowCursorInterface::Down</code></td><td class="topAlign tblval"><code>8</code></td><td class="topAlign"><font style="vertical-align: inherit;">光标向下移动。</font></td></tr>
+</table></div>
+<!-- @@@MoveOperation -->
+</div>
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$~QDesignerFormWindowCursorInterface[overload1]$$$~QDesignerFormWindowCursorInterface -->
+<h3 class="fn" id="dtor.QDesignerFormWindowCursorInterface"><a name="dtor.QDesignerFormWindowCursorInterface"></a><code>[virtual] </code>QDesignerFormWindowCursorInterface::<span class="name">~QDesignerFormWindowCursorInterface</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁光标接口。</font></p>
+<!-- @@@~QDesignerFormWindowCursorInterface -->
+<!-- $$$current[overload1]$$$current -->
+<h3 class="fn" id="current"><a name="current"></a><code>[pure virtual] </code><span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *QDesignerFormWindowCursorInterface::<span class="name">current</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回表单窗口中当前选定的组件。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowcursorinterface.html#selectedWidget">selectedWidget</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@current -->
+<!-- $$$formWindow[overload1]$$$formWindow -->
+<h3 class="fn" id="formWindow"><a name="formWindow"></a><code>[pure virtual] </code><span class="type"><a href="qdesignerformwindowinterface.html">QDesignerFormWindowInterface</a></span> *QDesignerFormWindowCursorInterface::<span class="name">formWindow</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回与此光标界面关联的窗体窗口界面。</font></p>
+<!-- @@@formWindow -->
+<!-- $$$hasSelection[overload1]$$$hasSelection -->
+<h3 class="fn" id="hasSelection"><a name="hasSelection"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerFormWindowCursorInterface::<span class="name">hasSelection</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果表单窗口包含一个选择，则返回 true；否则返回false。</font></p>
+<!-- @@@hasSelection -->
+<!-- $$$isWidgetSelected[overload1]$$$isWidgetSelectedQWidget* -->
+<h3 class="fn" id="isWidgetSelected"><a name="isWidgetSelected"></a><span class="type">bool</span> QDesignerFormWindowCursorInterface::<span class="name">isWidgetSelected</span>(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *<i>widget</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果选择了指定的</font><i><font style="vertical-align: inherit;">组件，</font></i><font style="vertical-align: inherit;">则返回 true ；否则返回false。</font></p>
+<!-- @@@isWidgetSelected -->
+<!-- $$$movePosition[overload1]$$$movePositionQDesignerFormWindowCursorInterface::MoveOperationQDesignerFormWindowCursorInterface::MoveMode -->
+<h3 class="fn" id="movePosition"><a name="movePosition"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerFormWindowCursorInterface::<span class="name">movePosition</span>(<span class="type"><a href="qdesignerformwindowcursorinterface.html#MoveOperation-enum">QDesignerFormWindowCursorInterface::MoveOperation</a></span> <i>operation</i>, <span class="type"><a href="qdesignerformwindowcursorinterface.html#MoveMode-enum">QDesignerFormWindowCursorInterface::MoveMode</a></span> <i>mode</i> = MoveAnchor)</h3>
+<p><font style="vertical-align: inherit;">使用指定的<i>mode</i>对游标执行给定的</font><i><font style="vertical-align: inherit;">操作</font></i><font style="vertical-align: inherit;">，如果成功完成则返回 true；否则返回false。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#position"><font style="vertical-align: inherit;">position</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setPosition"><font style="vertical-align: inherit;">setPosition</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@movePosition -->
+<!-- $$$position[overload1]$$$position -->
+<h3 class="fn" id="position"><a name="position"></a><code>[pure virtual] </code><span class="type">int</span> QDesignerFormWindowCursorInterface::<span class="name">position</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回光标位置。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setPosition"><font style="vertical-align: inherit;">setPosition</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#movePosition"><font style="vertical-align: inherit;">movePosition</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@position -->
+<!-- $$$resetWidgetProperty[overload1]$$$resetWidgetPropertyQWidget*constQString& -->
+<h3 class="fn" id="resetWidgetProperty"><a name="resetWidgetProperty"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowCursorInterface::<span class="name">resetWidgetProperty</span>(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *<i>widget</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>)</h3>
+<p><font style="vertical-align: inherit;">将指定<i>组件的</i>具有给定</font><i><font style="vertical-align: inherit;">名称</font></i><font style="vertical-align: inherit;">的属性重置为其默认值。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setPosition"><font style="vertical-align: inherit;">setPosition</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#movePosition"><font style="vertical-align: inherit;">movePosition</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@resetWidgetProperty -->
+<!-- $$$selectedWidget[overload1]$$$selectedWidgetint -->
+<h3 class="fn" id="selectedWidget"><a name="selectedWidget"></a><code>[pure virtual] </code><span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *QDesignerFormWindowCursorInterface::<span class="name">selectedWidget</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p><font style="vertical-align: inherit;">返回所选组件列表中具有给定</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">的组件。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#current"><font style="vertical-align: inherit;">current</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#widget"><font style="vertical-align: inherit;">widget</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@selectedWidget -->
+<!-- $$$selectedWidgetCount[overload1]$$$selectedWidgetCount -->
+<h3 class="fn" id="selectedWidgetCount"><a name="selectedWidgetCount"></a><code>[pure virtual] </code><span class="type">int</span> QDesignerFormWindowCursorInterface::<span class="name">selectedWidgetCount</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回表单窗口中选定组件的数量。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowcursorinterface.html#widgetCount">widgetCount</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@selectedWidgetCount -->
+<!-- $$$setPosition[overload1]$$$setPositionintQDesignerFormWindowCursorInterface::MoveMode -->
+<h3 class="fn" id="setPosition"><a name="setPosition"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowCursorInterface::<span class="name">setPosition</span>(<span class="type">int</span> <i>position</i>, <span class="type"><a href="qdesignerformwindowcursorinterface.html#MoveMode-enum">QDesignerFormWindowCursorInterface::MoveMode</a></span> <i>mode</i> = ...)</h3>
+<p><font style="vertical-align: inherit;">使用<i>mode <span lang="zh-cn">（</span>模式<span lang="zh-cn">）</span></i>将光标的位置设置为给定的</font><i><font style="vertical-align: inherit;">position<span lang="zh-cn">（</span>位置<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">，以指定它如何移动到那里。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#position"><font style="vertical-align: inherit;">position</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#movePosition"><font style="vertical-align: inherit;">movePosition</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@setPosition -->
+<!-- $$$setProperty[overload1]$$$setPropertyconstQString&constQVariant& -->
+<h3 class="fn" id="setProperty"><a name="setProperty"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowCursorInterface::<span class="name">setProperty</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>, const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>value</i>)</h3>
+<p><font style="vertical-align: inherit;">将当前选定组件的具有给定</font><i><font style="vertical-align: inherit;">名称</font></i><font style="vertical-align: inherit;">的属性设置为指定<i>value<span lang="zh-cn">（</span></i></font><i><font style="vertical-align: inherit;">值</font></i><font style="vertical-align: inherit;"><span lang="zh-cn">）</span>。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setWidgetProperty"><font style="vertical-align: inherit;">setWidgetProperty</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#resetWidgetProperty"><font style="vertical-align: inherit;">resetWidgetProperty</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@setProperty -->
+<!-- $$$setWidgetProperty[overload1]$$$setWidgetPropertyQWidget*constQString&constQVariant& -->
+<h3 class="fn" id="setWidgetProperty"><a name="setWidgetProperty"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowCursorInterface::<span class="name">setWidgetProperty</span>(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *<i>widget</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>, const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>value</i>)</h3>
+<p><font style="vertical-align: inherit;">将给定<i>widget<span lang="zh-cn">（</span>组件<span lang="zh-cn">）</span>的</i>具有给定</font><i><font style="vertical-align: inherit;">name<span lang="zh-cn">（</span>名称<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">的属性设置为指定<i>value<span lang="zh-cn">（</span>值<span lang="zh-cn">）</span></i>。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#resetWidgetProperty"><font style="vertical-align: inherit;">resetWidgetProperty</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setProperty"><font style="vertical-align: inherit;">setProperty</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@setWidgetProperty -->
+<!-- $$$widget[overload1]$$$widgetint -->
+<h3 class="fn" id="widget"><a name="widget"></a><code>[pure virtual] </code><span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *QDesignerFormWindowCursorInterface::<span class="name">widget</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p><font style="vertical-align: inherit;">在表单窗口的组件列表中返回具有给定</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">index（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">的组件。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#selectedWidget"><font style="vertical-align: inherit;">selectedWidget</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@widget -->
+<!-- $$$widgetCount[overload1]$$$widgetCount -->
+<h3 class="fn" id="widgetCount"><a name="widgetCount"></a><code>[pure virtual] </code><span class="type">int</span> QDesignerFormWindowCursorInterface::<span class="name">widgetCount</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回表单窗口中的组件数量。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowcursorinterface.html#selectedWidgetCount">selectedWidgetCount</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@widgetCount -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- abstractpropertyeditor.cpp -->
+  <title>QDesignerPropertyEditorInterface 类 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">C++ Classes</a></td><td >QDesignerPropertyEditorInterface</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#public-slots">公用槽函数</a></li>
+<li class="level1"><a href="#signals">信号</a></li>
+<li class="level1"><a href="#static-public-members">静态公用成员</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QDesignerPropertyEditorInterface 类</h1>
+<!-- $$$QDesignerPropertyEditorInterface-brief -->
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html"><font style="vertical-align: inherit;">QDesignerPropertyEditorInterface</font></a><font style="vertical-align: inherit;">类允许您查询和操作Qt设计师的属性编辑器的当前状态。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html#details"><font style="vertical-align: inherit;">更多的...</font></a></p>
+<!-- @@@QDesignerPropertyEditorInterface -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QDesignerPropertyEditorInterface&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += designer</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="../qtwidgets/qwidget.html">QWidget</a></td></tr></table></div><ul>
+<li><a href="qdesignerpropertyeditorinterface-members.html">所有成员的列表，包括继承成员。</a></li>
+<li><a href="qdesignerpropertyeditorinterface-obsolete.html">废弃的成员</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertyeditorinterface.html#QDesignerPropertyEditorInterface">QDesignerPropertyEditorInterface</a></b>(QWidget *<i>parent</i>, Qt::WindowFlags <i>flags</i> = ...)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertyeditorinterface.html#dtor.QDesignerPropertyEditorInterface">~QDesignerPropertyEditorInterface</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QDesignerFormEditorInterface *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertyeditorinterface.html#core">core</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QString </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertyeditorinterface.html#currentPropertyName">currentPropertyName</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertyeditorinterface.html#isReadOnly">isReadOnly</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QObject *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertyeditorinterface.html#object">object</a></b>() const = 0</td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">216个从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#public-functions">QWidget</a>继承的公共函数</font></li>
+</ul>
+<a name="public-slots"></a>
+<h2 id="public-slots">公用槽函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertyeditorinterface.html#setObject">setObject</a></b>(QObject *<i>object</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertyeditorinterface.html#setPropertyValue">setPropertyValue</a></b>(const QString &amp;<i>name</i>, const QVariant &amp;<i>value</i>, bool <i>changed</i> = ...) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertyeditorinterface.html#setReadOnly">setReadOnly</a></b>(bool <i>readOnly</i>) = 0</td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#public-slots">QWidget</a>继承的 19 个公共槽</font></li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">信号</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertyeditorinterface.html#propertyChanged">propertyChanged</a></b>(const QString &amp;<i>name</i>, const QVariant &amp;<i>value</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#signals">QWidget</a>继承的 3 个信号</font></li>
+</ul>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">静态公用成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> const QMetaObject </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertyeditorinterface.html#staticMetaObject-var">staticMetaObject</a></b></td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">5<span lang="zh-cn">个</span>继承自<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#static-public-members">QWidget的</a>公用成员</font></li>
+</ul>
+<h3><font style="vertical-align: inherit;">其他继承成员</font></h3>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#properties">QWidget</a>继承的 59 个属性</font></li>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#protected-functions">QWidget</a>继承的 35 个受保护的函数</font></li>
+<li class="fn"><font style="vertical-align: inherit;">1 个从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#protected-slots">QWidget</a>继承的受保护槽</font></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QDesignerPropertyEditorInterface-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html"><font style="vertical-align: inherit;">QDesignerPropertyEditorInterface</font></a><font style="vertical-align: inherit;">类允许您查询和操作Qt设计师的属性编辑器的当前状态</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html"><font style="vertical-align: inherit;">QDesignerPropertyEditorInterface</font></a><font style="vertical-align: inherit;">包含一组函数，这些函数通常用于查询属性编辑器的当前状态，以及几个操作其状态的插槽。该接口还提供了一个信号，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html#propertyChanged"><font style="vertical-align: inherit;">propertyChanged</font></a><font style="vertical-align: inherit;"> ()，每当属性编辑器中的属性发生变化时都会发出该信号。信号的参数是更改的属性及其新值。</font></p>
+<p><font style="vertical-align: inherit;">例如，在实现自定义组件插件时，您可以将信号连接到自定义插槽：</font></p>
+<pre class="cpp">
+
+          <span class="type"><a href="qdesignerpropertyeditorinterface.html#QDesignerPropertyEditorInterface">QDesignerPropertyEditorInterface</a></span> <span class="operator">*</span>propertyEditor <span class="operator">=</span> <span class="number">0</span>;
+          propertyEditor <span class="operator">=</span> formEditor<span class="operator">-</span><span class="operator">&gt;</span>propertyEditor();
+
+          connect(propertyEditor<span class="operator">,</span> SIGNAL(propertyChanged(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><span class="operator">,</span><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span>))<span class="operator">,</span>
+                  <span class="keyword">this</span><span class="operator">,</span> SLOT(checkProperty(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><span class="operator">,</span><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span>)));
+
+</pre>
+<p><font style="vertical-align: inherit;">然后，当属于特定组件的指定属性发生更改时，自定义槽可以检查新值是否在我们想要的范围内：</font></p>
+<pre class="cpp">
+
+          <span class="type">void</span> checkProperty(<span class="type"><a href="../qtcore/qstring.html">QString</a></span> property<span class="operator">,</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> value) {
+              <span class="type"><a href="qdesignerpropertyeditorinterface.html#QDesignerPropertyEditorInterface">QDesignerPropertyEditorInterface</a></span> <span class="operator">*</span>propertyEditor <span class="operator">=</span> <span class="number">0</span>;
+              propertyEditor <span class="operator">=</span> formEditor<span class="operator">-</span><span class="operator">&gt;</span>propertyEditor();
+
+              <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object <span class="operator">=</span> propertyeditor<span class="operator">-</span><span class="operator">&gt;</span>object();
+              MyCustomWidget <span class="operator">*</span>widget <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>MyCustomWidget<span class="operator">&gt;</span>(object);
+
+              <span class="keyword">if</span> (widget <span class="operator">&amp;</span><span class="operator">&amp;</span> property <span class="operator">=</span><span class="operator">=</span> aProperty <span class="operator">&amp;</span><span class="operator">&amp;</span> value <span class="operator">!</span><span class="operator">=</span> expectedValue)
+                  {<span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>}
+          }
+
+</pre>
+<p><span lang="zh-cn"><a href="qdesignerpropertyeditorinterface.html">QDesignerPropertyEditorInterface</a></span>类不打算直接实例化。你可以使用<a href="qdesignerformeditorinterface.html#propertyEditor">QDesignerFormEditorInterface::propertyEditor</a>()函数来检索Qt 
+Designer属性编辑器的接口。<a href="qdesignercustomwidgetinterface.html#initialize">QDesignerCustomWidgetInterface::initialize</a>()函数的参数提供了一个指向Qt设计师当前<a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a>对象(上面例子中的formEditor)的指针。当实现自定义组件插件时，你必须子类化QDesignerCustomWidgetInterface来将你的插件暴露给Qt 
+Designer。</p>
+<p><font style="vertical-align: inherit;">访问属性编辑器的功能是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html#core"><font style="vertical-align: inherit;">核心</font></a><font style="vertical-align: inherit;">（）函数，您可以使用检索到表单编辑器的界面中，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html#currentPropertyName"><font style="vertical-align: inherit;">currentPropertyName</font></a><font style="vertical-align: inherit;">（）函数返回的属性编辑器当前选择的属性的名称，该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html#object"><font style="vertical-align: inherit;">对象</font></a><font style="vertical-align: inherit;">（）函数返回</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">工作区中当前选定的对象，如果属性编辑器被写保护（否则为 false），则返回 true的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html#isReadOnly"><font style="vertical-align: inherit;">isReadOnly</font></a><font style="vertical-align: inherit;"> () 函数。</font></p>
+<p><font style="vertical-align: inherit;">操作属性编辑器状态的槽是可用于更改<i>Qt 设计师</i>工作区中当前选定对象的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html#setObject"><font style="vertical-align: inherit;">setObject</font></a><font style="vertical-align: inherit;"> ()槽、更改给定属性值的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html#setPropertyValue">setPropertyValue</a> () 槽和用于更改给定属性值的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html#setReadOnly">setReadOnly</a> () 槽控制属性编辑器的写保护。</font></p>
+</div>
+<p><b>请参考 </b><a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a><span lang="zh-cn">。</span></p>
+<!-- @@@QDesignerPropertyEditorInterface -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QDesignerPropertyEditorInterface[overload1]$$$QDesignerPropertyEditorInterfaceQWidget*Qt::WindowFlags -->
+<h3 class="fn" id="QDesignerPropertyEditorInterface"><a name="QDesignerPropertyEditorInterface"></a>QDesignerPropertyEditorInterface::<span class="name">QDesignerPropertyEditorInterface</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>parent</i>, <span class="type"><a href="../qtcore/qt.html#WindowType-enum">Qt::WindowFlags</a></span> <i>flags</i> = ...)</h3>
+<p><font style="vertical-align: inherit;">使用给定的</font><i><font style="vertical-align: inherit;">父级</font></i><font style="vertical-align: inherit;">和指定的窗口<i>flags<span lang="zh-cn">（</span></i></font><i><font style="vertical-align: inherit;">标志<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">构造一个属性编辑器界面。</font></p>
+<!-- @@@QDesignerPropertyEditorInterface -->
+<!-- $$$~QDesignerPropertyEditorInterface[overload1]$$$~QDesignerPropertyEditorInterface -->
+<h3 class="fn" id="dtor.QDesignerPropertyEditorInterface"><a name="dtor.QDesignerPropertyEditorInterface"></a><code>[virtual] </code>QDesignerPropertyEditorInterface::<span class="name">~QDesignerPropertyEditorInterface</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁属性编辑器界面。</font></p>
+<!-- @@@~QDesignerPropertyEditorInterface -->
+<!-- $$$core[overload1]$$$core -->
+<h3 class="fn" id="core"><a name="core"></a><code>[virtual] </code><span class="type"><a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a></span> *QDesignerPropertyEditorInterface::<span class="name">core</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回一个指向</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的当前</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">对象的指针。</font></p>
+<!-- @@@core -->
+<!-- $$$currentPropertyName[overload1]$$$currentPropertyName -->
+<h3 class="fn" id="currentPropertyName"><a name="currentPropertyName"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QDesignerPropertyEditorInterface::<span class="name">currentPropertyName</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回属性编辑器中当前选定属性的名称。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertyeditorinterface.html#setPropertyValue">setPropertyValue</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@currentPropertyName -->
+<!-- $$$isReadOnly[overload1]$$$isReadOnly -->
+<h3 class="fn" id="isReadOnly"><a name="isReadOnly"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerPropertyEditorInterface::<span class="name">isReadOnly</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果属性编辑器被写保护，则返回<span lang="zh-cn">真</span>；否则为假。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertyeditorinterface.html#setReadOnly">setReadOnly</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@isReadOnly -->
+<!-- $$$object[overload1]$$$object -->
+<h3 class="fn" id="object"><a name="object"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *QDesignerPropertyEditorInterface::<span class="name">object</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">工作区中当前选定的对象。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertyeditorinterface.html#setObject">setObject</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@object -->
+<!-- $$$propertyChanged[overload1]$$$propertyChangedconstQString&constQVariant& -->
+<h3 class="fn" id="propertyChanged"><a name="propertyChanged"></a><code>[signal] </code><span class="type">void</span> QDesignerPropertyEditorInterface::<span class="name">propertyChanged</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>, const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>value</i>)</h3>
+<p><font style="vertical-align: inherit;">每当属性编辑器中的属性发生更改时，都会发出此信号。更改的属性及其新值分别由</font><i><font style="vertical-align: inherit;">name<span lang="zh-cn">(</span>名称<span lang="zh-cn">)</span></font></i><font style="vertical-align: inherit;">和</font><i><font style="vertical-align: inherit;">value<span lang="zh-cn">(</span>值<span lang="zh-cn">)</span></font></i><font style="vertical-align: inherit;">指定。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertyeditorinterface.html#setPropertyValue">setPropertyValue</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@propertyChanged -->
+<!-- $$$setObject[overload1]$$$setObjectQObject* -->
+<h3 class="fn" id="setObject"><a name="setObject"></a><code>[pure virtual slot] </code><span class="type">void</span> QDesignerPropertyEditorInterface::<span class="name">setObject</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>object</i>)</h3>
+<p><font style="vertical-align: inherit;">将</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">工作区中当前选定的对象更改为</font><i><font style="vertical-align: inherit;">object</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertyeditorinterface.html#object">object</a>().</p>
+<!-- @@@setObject -->
+<!-- $$$setPropertyValue[overload1]$$$setPropertyValueconstQString&constQVariant&bool -->
+<h3 class="fn" id="setPropertyValue"><a name="setPropertyValue"></a><code>[pure virtual slot] </code><span class="type">void</span> QDesignerPropertyEditorInterface::<span class="name">setPropertyValue</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>, const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>value</i>, <span class="type">bool</span> <i>changed</i> = ...)</h3>
+<p><font style="vertical-align: inherit;">将</font><i><font style="vertical-align: inherit;">name</font></i><font style="vertical-align: inherit;">指定的属性的值设置为</font><i><font style="vertical-align: inherit;">value</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">此外，该属性在属性编辑器中被标记为已</font><i><font style="vertical-align: inherit;">changed
+<span lang="zh-cn">（</span>更改<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">，即其值与默认值不同。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html#currentPropertyName"><font style="vertical-align: inherit;">currentPropertyName</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertyeditorinterface.html#propertyChanged"><font style="vertical-align: inherit;">propertyChanged</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@setPropertyValue -->
+<!-- $$$setReadOnly[overload1]$$$setReadOnlybool -->
+<h3 class="fn" id="setReadOnly"><a name="setReadOnly"></a><code>[pure virtual slot] </code><span class="type">void</span> QDesignerPropertyEditorInterface::<span class="name">setReadOnly</span>(<span class="type">bool</span> <i>readOnly</i>)</h3>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">readOnly</font></i><font style="vertical-align: inherit;">为真，则属性编辑器被写保护；否则写保护被删除。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertyeditorinterface.html#isReadOnly">isReadOnly</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setReadOnly -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

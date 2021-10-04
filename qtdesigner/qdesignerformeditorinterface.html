@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- abstractformeditor.cpp -->
+  <title>QDesignerFormEditorInterface 类 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">C++ Classes</a></td><td >QDesignerFormEditorInterface</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#static-public-members">静态公用成员</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QDesignerFormEditorInterface 类</h1>
+<!-- $$$QDesignerFormEditorInterface-brief -->
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">类允许您访问的Qt 设计师的各种组件。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html#details"><font style="vertical-align: inherit;">更多...</font></a></p>
+<!-- @@@QDesignerFormEditorInterface -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QDesignerFormEditorInterface&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += designer</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="../qtcore/qobject.html">QObject</a></td></tr></table></div><ul>
+<li><a href="qdesignerformeditorinterface-members.html">所有成员的列表，包括继承成员。</a></li>
+<li><a href="qdesignerformeditorinterface-obsolete.html">废弃的成员</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#QDesignerFormEditorInterface">QDesignerFormEditorInterface</a></b>(QObject *<i>parent</i> = Q_NULLPTR)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#dtor.QDesignerFormEditorInterface">~QDesignerFormEditorInterface</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QDesignerActionEditorInterface *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#actionEditor">actionEditor</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QExtensionManager *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#extensionManager">extensionManager</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QDesignerFormWindowManagerInterface *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#formWindowManager">formWindowManager</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QDesignerObjectInspectorInterface *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#objectInspector">objectInspector</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QDesignerPropertyEditorInterface *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#propertyEditor">propertyEditor</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#setActionEditor">setActionEditor</a></b>(QDesignerActionEditorInterface *<i>actionEditor</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#setObjectInspector">setObjectInspector</a></b>(QDesignerObjectInspectorInterface *<i>objectInspector</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#setPropertyEditor">setPropertyEditor</a></b>(QDesignerPropertyEditorInterface *<i>propertyEditor</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#setWidgetBox">setWidgetBox</a></b>(QDesignerWidgetBoxInterface *<i>widgetBox</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QWidget *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#topLevel">topLevel</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QDesignerWidgetBoxInterface *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#widgetBox">widgetBox</a></b>() const</td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#public-functions">QObject</a>继承的 31 个公<span lang="zh-cn">用</span>函数</font></li>
+</ul>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">静态公用成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> const QMetaObject </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformeditorinterface.html#staticMetaObject-var">staticMetaObject</a></b></td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">9 继承自<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#static-public-members">QObject </a>
+<span lang="zh-cn">的静态</span>公用成员</font></li>
+</ul>
+<h3><font style="vertical-align: inherit;">其他继承成员</font></h3>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#properties">QObject</a>继承的 1 个属性</font></li>
+<li class="fn"><font style="vertical-align: inherit;">1 个从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#public-slots">QObject</a>继承的公共槽</font></li>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#signals">QObject</a>继承的 2 个信号</font></li>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#protected-functions">QObject</a>继承的 9 个受保护的函数</font></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QDesignerFormEditorInterface-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">类允许您访问的Qt 设计师的各种组件。</font></p>
+<p><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的当前</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">对象保存有关</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的所有组件的信息：动作编辑器、对象检查器、属性编辑器、组件框以及扩展和表单窗口管理器。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">包含一组为所有这些组件提供接口的函数。它们通常用于查询（和操作）相应的组件。例如：</font></p>
+<pre class="cpp">
+
+          <span class="type"><a href="qdesignerobjectinspectorinterface.html">QDesignerObjectInspectorInterface</a></span> <span class="operator">*</span>objectInspector <span class="operator">=</span> <span class="number">0</span>;
+          objectInspector <span class="operator">=</span> formEditor<span class="operator">-</span><span class="operator">&gt;</span>objectInspector();
+
+          <span class="type"><a href="qdesignerformwindowmanagerinterface.html">QDesignerFormWindowManagerInterface</a></span> <span class="operator">*</span>manager <span class="operator">=</span> <span class="number">0</span>;
+          manager <span class="operator">=</span> formEditor<span class="operator">-</span><span class="operator">&gt;</span>formWindowManager();
+
+          objectInspector<span class="operator">-</span><span class="operator">&gt;</span>setFormWindow(manager<span class="operator">-</span><span class="operator">&gt;</span>formWindow(<span class="number">0</span>));
+
+</pre>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">不打算直接实例化。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#initialize">QDesignerCustomWidgetInterface::initialize</a> () 函数的参数提供了指向</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">当前</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">对象（</font><code>formEditor</code><font style="vertical-align: inherit;">在上面的示例中）的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#initialize"><font style="vertical-align: inherit;">指针</font></a><font style="vertical-align: inherit;">。实现自定义组件插件时，您必须</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html"><font style="vertical-align: inherit;">继承 QDesignerCustomWidgetInterface</font></a><font style="vertical-align: inherit;">以将您的插件公开给</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">还提供了可以设置动作编辑器、属性编辑器、对象检查器和组件框的功能。这些仅在您想提供自己的自定义组件时有用。</font></p>
+<p><font style="vertical-align: inherit;">如果设计师嵌入到另一个程序中，则可以提供自己的设置管理器。</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的组件使用<span lang="zh-cn">管理器</span>来存储/检索持久配置设置。默认管理器使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qsettings.html"><font style="vertical-align: inherit;">QSettings</font></a><font style="vertical-align: inherit;">作为后端。</font></p>
+<p><font style="vertical-align: inherit;">最后，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">提供了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html#topLevel"><font style="vertical-align: inherit;">topLevel</font></a><font style="vertical-align: inherit;"> () 函数，该函数返回</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的顶级组件。</font></p>
+</div>
+<p><b>请参考 </b><a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a><span lang="zh-cn">。</span></p>
+<!-- @@@QDesignerFormEditorInterface -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QDesignerFormEditorInterface[overload1]$$$QDesignerFormEditorInterfaceQObject* -->
+<h3 class="fn" id="QDesignerFormEditorInterface"><a name="QDesignerFormEditorInterface"></a>QDesignerFormEditorInterface::<span class="name">QDesignerFormEditorInterface</span>(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>parent</i> = Q_NULLPTR)</h3>
+<p><font style="vertical-align: inherit;">使用给定的<i>parent</i>构造一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">对象。</font></p>
+<!-- @@@QDesignerFormEditorInterface -->
+<!-- $$$~QDesignerFormEditorInterface[overload1]$$$~QDesignerFormEditorInterface -->
+<h3 class="fn" id="dtor.QDesignerFormEditorInterface"><a name="dtor.QDesignerFormEditorInterface"></a><code>[virtual] </code>QDesignerFormEditorInterface::<span class="name">~QDesignerFormEditorInterface</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">对象。</font></p>
+<!-- @@@~QDesignerFormEditorInterface -->
+<!-- $$$actionEditor[overload1]$$$actionEditor -->
+<h3 class="fn" id="actionEditor"><a name="actionEditor"></a><span class="type"><a href="qdesigneractioneditorinterface.html">QDesignerActionEditorInterface</a></span> *QDesignerFormEditorInterface::<span class="name">actionEditor</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的动作编辑器的界面。</font></p>
+<p><b>请参考 </b><a href="qdesignerformeditorinterface.html#setActionEditor">setActionEditor</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@actionEditor -->
+<!-- $$$extensionManager[overload1]$$$extensionManager -->
+<h3 class="fn" id="extensionManager"><a name="extensionManager"></a><span class="type"><a href="qextensionmanager.html">QExtensionManager</a></span> *QDesignerFormEditorInterface::<span class="name">extensionManager</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的扩展管理器的接口。</font></p>
+<!-- @@@extensionManager -->
+<!-- $$$formWindowManager[overload1]$$$formWindowManager -->
+<h3 class="fn" id="formWindowManager"><a name="formWindowManager"></a><span class="type"><a href="qdesignerformwindowmanagerinterface.html">QDesignerFormWindowManagerInterface</a></span> *QDesignerFormEditorInterface::<span class="name">formWindowManager</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的窗口管理器的接口。</font></p>
+<!-- @@@formWindowManager -->
+<!-- $$$objectInspector[overload1]$$$objectInspector -->
+<h3 class="fn" id="objectInspector"><a name="objectInspector"></a><span class="type"><a href="qdesignerobjectinspectorinterface.html">QDesignerObjectInspectorInterface</a></span> *QDesignerFormEditorInterface::<span class="name">objectInspector</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的对象<span lang="zh-cn">检查器</span>的接口。</font></p>
+<p><b>请参考 </b><a href="qdesignerformeditorinterface.html#setObjectInspector">setObjectInspector</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@objectInspector -->
+<!-- $$$propertyEditor[overload1]$$$propertyEditor -->
+<h3 class="fn" id="propertyEditor"><a name="propertyEditor"></a><span class="type"><a href="qdesignerpropertyeditorinterface.html">QDesignerPropertyEditorInterface</a></span> *QDesignerFormEditorInterface::<span class="name">propertyEditor</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的属性编辑器的接口。</font></p>
+<p><b>请参考 </b><a href="qdesignerformeditorinterface.html#setPropertyEditor">setPropertyEditor</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@propertyEditor -->
+<!-- $$$setActionEditor[overload1]$$$setActionEditorQDesignerActionEditorInterface* -->
+<h3 class="fn" id="setActionEditor"><a name="setActionEditor"></a><span class="type">void</span> QDesignerFormEditorInterface::<span class="name">setActionEditor</span>(<span class="type"><a href="qdesigneractioneditorinterface.html">QDesignerActionEditorInterface</a></span> *<i>actionEditor</i>)</h3>
+<p><font style="vertical-align: inherit;">将</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的动作编辑器设置为指定的</font><i><font style="vertical-align: inherit;">actionEditor</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qdesignerformeditorinterface.html#actionEditor">actionEditor</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setActionEditor -->
+<!-- $$$setObjectInspector[overload1]$$$setObjectInspectorQDesignerObjectInspectorInterface* -->
+<h3 class="fn" id="setObjectInspector"><a name="setObjectInspector"></a><span class="type">void</span> QDesignerFormEditorInterface::<span class="name">setObjectInspector</span>(<span class="type"><a href="qdesignerobjectinspectorinterface.html">QDesignerObjectInspectorInterface</a></span> *<i>objectInspector</i>)</h3>
+<p><font style="vertical-align: inherit;">将</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的对象检查<i>器</i>设置为指定的</font><i><font style="vertical-align: inherit;">objectInspector</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qdesignerformeditorinterface.html#objectInspector">objectInspector</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setObjectInspector -->
+<!-- $$$setPropertyEditor[overload1]$$$setPropertyEditorQDesignerPropertyEditorInterface* -->
+<h3 class="fn" id="setPropertyEditor"><a name="setPropertyEditor"></a><span class="type">void</span> QDesignerFormEditorInterface::<span class="name">setPropertyEditor</span>(<span class="type"><a href="qdesignerpropertyeditorinterface.html">QDesignerPropertyEditorInterface</a></span> *<i>propertyEditor</i>)</h3>
+<p><font style="vertical-align: inherit;">将</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的属性编辑器设置为指定的</font><i><font style="vertical-align: inherit;">propertyEditor</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qdesignerformeditorinterface.html#propertyEditor">propertyEditor</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setPropertyEditor -->
+<!-- $$$setWidgetBox[overload1]$$$setWidgetBoxQDesignerWidgetBoxInterface* -->
+<h3 class="fn" id="setWidgetBox"><a name="setWidgetBox"></a><span class="type">void</span> QDesignerFormEditorInterface::<span class="name">setWidgetBox</span>(<span class="type"><a href="qdesignerwidgetboxinterface.html">QDesignerWidgetBoxInterface</a></span> *<i>widgetBox</i>)</h3>
+<p><i><font style="vertical-align: inherit;"><span lang="zh-cn">将</span>Qt设计<span lang="zh-cn">师</span></font></i><font style="vertical-align: inherit;">的工具<span lang="zh-cn">箱设置为</span>指定</font><i><font style="vertical-align: inherit;">widgetBox</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qdesignerformeditorinterface.html#widgetBox">widgetBox</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setWidgetBox -->
+<!-- $$$topLevel[overload1]$$$topLevel -->
+<h3 class="fn" id="topLevel"><a name="topLevel"></a><span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> *QDesignerFormEditorInterface::<span class="name">topLevel</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的顶级组件。</font></p>
+<!-- @@@topLevel -->
+<!-- $$$widgetBox[overload1]$$$widgetBox -->
+<h3 class="fn" id="widgetBox"><a name="widgetBox"></a><span class="type"><a href="qdesignerwidgetboxinterface.html">QDesignerWidgetBoxInterface</a></span> *QDesignerFormEditorInterface::<span class="name">widgetBox</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的组件框的接口。</font></p>
+<p><b>请参考 </b><a href="qdesignerformeditorinterface.html#setWidgetBox">setWidgetBox</a>().</p>
+<!-- @@@widgetBox -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

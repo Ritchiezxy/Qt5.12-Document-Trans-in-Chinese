@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- designer-manual.qdoc -->
+  <title>在Qt设计师中使用布局 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td >在Qt设计师中使用布局</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="designer-widget-mode.html" />
+  <link rel="next" href="designer-connection-mode.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="designer-widget-mode.html">Q<span lang="zh-cn">t设计师的组件编辑模式</span></a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="designer-connection-mode.html">Qt<span lang="zh-cn">设计师的信号槽编辑模式</span></a></p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-layouts.html#setting-a-top-level-layout"><font style="vertical-align: inherit;">设置顶层布局</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-layouts.html#layout-objects"><font style="vertical-align: inherit;">布局对象</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-layouts.html#inserting-objects-into-a-layout"><font style="vertical-align: inherit;">将对象插入布局</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-layouts.html#layout-types"><font style="vertical-align: inherit;">布局类型</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-layouts.html#horizontal-and-vertical-box-layouts"><font style="vertical-align: inherit;">水平和垂直（框）布局</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-layouts.html#the-grid-layout"><font style="vertical-align: inherit;">网格布局</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-layouts.html#the-form-layout"><font style="vertical-align: inherit;">表单布局</font></a></li>
+<li class="level2">
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-layouts.html#splitter-layouts">
+<font style="vertical-align: inherit;"><span lang="zh-cn">分割</span>器布局</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-layouts.html#shortcut-keys"><font style="vertical-align: inherit;">快捷键</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">在Qt设计师中使用布局</h1>
+<span class="subtitle"></span>
+<!-- $$$designer-layouts.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><font style="vertical-align: inherit;">在使用表单之前，需要将表单上的对象放置到布局中。这可确保在应用程序中预览或使用表单时正确显示对象。在布局中放置对象还可以确保在调整窗体大小时正确调整它们的大小。</font></p>
+<p><font style="vertical-align: inherit;">一旦组件被插入到布局中，就不可能单独移动和调整它们的大小，因为布局本身控制其中每个组件的几何形状，考虑到间隔器提供的提示。可以在布局中添加垫片以影响组件的几何形状。</font></p>
+<p><font style="vertical-align: inherit;">布局可以嵌套以形成层次结构。例如，要实现具有水平按钮行的典型对话框布局，可以使用垂直框布局和包含底部按钮的水平框布局来布局对话框元素。Qt布局系统的介绍请参考</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/layout.html"><font style="vertical-align: inherit;">布局管理</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">要中断布局，请按</font><b><font style="vertical-align: inherit;">Ctrl+0</font></b><font style="vertical-align: inherit;">或从表单的上下文菜单、<b>表单</b>菜单或主工具栏中选择</font><b><font style="vertical-align: inherit;"><span lang="zh-cn">打破</span>布局</font></b><font style="vertical-align: inherit;">。</font></p>
+<a name="setting-a-top-level-layout"></a>
+<h2 id="setting-a-top-level-layout"><font style="vertical-align: inherit;">设置顶层布局</font></h2>
+<p><font style="vertical-align: inherit;">可以通过清除选择（在表单本身上单击鼠标左键）并应用布局来设置表单的顶级布局。顶层布局是必要的，以确保您的组件在调整窗口大小时正确调整大小。要检查您是否设置了顶级布局，请预览您的组件并尝试通过拖动大小手柄来调整窗口大小。</font></p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><img src="images/designer-set-layout.png" alt="" /></td><td ><b><font style="vertical-align: inherit;">应用布局</font></b><p><font style="vertical-align: inherit;">要应用布局，您可以从左侧显示的工具栏中或从下面显示的上下文菜单中选择您选择的布局。</font></p>
+</td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">类似地，顶级布局分别设置在容器组件（</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qgroupbox.html"><font style="vertical-align: inherit;">QGroupBox</font></a><font style="vertical-align: inherit;">）或基于页面的容器组件（</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qtabwidget.html"><font style="vertical-align: inherit;">QTabWidget</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qtoolbox.html"><font style="vertical-align: inherit;">QToolBox</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qstackedwidget.html"><font style="vertical-align: inherit;">QStackedWidget</font></a><font style="vertical-align: inherit;">）的页面上。需要选择容器组件才能成功。</font></p>
+<p><font style="vertical-align: inherit;">顶级布局在对象检查器中作为单独的对象不可见。它们的属性显示在属性编辑器中主窗体、容器组件或容器组件页面的组件属性下方。</font></p>
+<p class="centerAlign"><img src="images/designer-set-layout2.png" alt="" /></p><a name="layout-objects"></a>
+<h2 id="layout-objects"><font style="vertical-align: inherit;">布局对象</font></h2>
+<p><font style="vertical-align: inherit;">布局对象是通过将布局应用于一组现有对象来创建的。这是通过选择您需要管理的对象并使用主工具栏、</font><b><font style="vertical-align: inherit;">表单</font></b><font style="vertical-align: inherit;">菜单或表单的上下文菜单应用标准布局之一来实现的。</font></p>
+<p><font style="vertical-align: inherit;">布局对象由表单上的红框指示，并在对象检查器中显示为对象。它的属性（边距和约束）显示在属性编辑器中。</font></p>
+<p><font style="vertical-align: inherit;">可以选择布局对象并将其与其他组件和布局对象一起放置在另一个布局中，以构建布局层次结构。</font></p>
+<p><font style="vertical-align: inherit;">选择子布局对象时，可以通过在单击它时按下</font><b><font style="vertical-align: inherit;">Shift</font></b><font style="vertical-align: inherit;">键来选择其父布局对象。这使得在层次结构中选择特定布局成为可能，否则由于框架较小，这很困难。</font></p>
+<a name="inserting-objects-into-a-layout"></a>
+<h2 id="inserting-objects-into-a-layout"><font style="vertical-align: inherit;">将对象插入布局</font></h2>
+<a name="insertingobjectsintoalayout"></a><p><font style="vertical-align: inherit;">通过将对象从其当前位置拖放到所需位置，可以将对象插入到现有布局中。将对象拖到布局上时，布局中会显示一个蓝色光标，以指示将添加对象的位置。</font></p>
+<p class="centerAlign"><img src="images/designer-layout-inserting.png" alt="" /></p><p class="figCaption"><font style="vertical-align: inherit;">将对象插入布局</font></p>
+<a name="layout-types"></a>
+<h2 id="layout-types"><font style="vertical-align: inherit;">布局类型</font></h2>
+<a name="horizontal-and-vertical-box-layouts"></a>
+<h3 ><font style="vertical-align: inherit;">水平和垂直（框）布局</font></h3>
+<p><font style="vertical-align: inherit;">在窗体上排列对象的最简单方法是将它们放置在水平或垂直布局中。水平布局确保其中的组件水平对齐；垂直布局确保它们垂直对齐。</font></p>
+<p><font style="vertical-align: inherit;">水平和垂直布局可以组合和嵌套到任何深度。但是，如果您需要更多地控制对象的<span lang="zh-cn">布局</span>，请考虑使用网格布局。</font></p>
+<a name="the-grid-layout"></a>
+<h3 ><font style="vertical-align: inherit;">网格布局</font></h3>
+<p><font style="vertical-align: inherit;">可以通过将对象放置在网格布局中来创建复杂的表单布局。这种布局使表单设计者可以更自由地在表单上排列组件，但会导致布局不够灵活。但是，对于某些表单布局，网格排列比水平和垂直布局的嵌套排列更合适。</font></p>
+<a name="the-form-layout"></a>
+<h3 ><font style="vertical-align: inherit;">表单布局</font></h3>
+<p><font style="vertical-align: inherit;">所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qformlayout.html"><font style="vertical-align: inherit;">QFormLayout</font></a><font style="vertical-align: inherit;">类管理在一个两列形式的组件; 左列包含标签，右列包含字段组件，例如行编辑、旋转框等。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qformlayout.html"><font style="vertical-align: inherit;">QFormLayout</font></a><font style="vertical-align: inherit;">类遵循各种平台外观指南并支持长行换行。</font></p>
+<p class="centerAlign"><img src="images/designer-form-layout.png" alt="" /></p><p><font style="vertical-align: inherit;">上面的 UI 文件产生如下所示的预览。</font></p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th >Windows XP</th><th ><a href="../qtdoc/internationalization.html#macos">macOS</a></th><th >Cleanlooks</th></tr></thead>
+<tr valign="top" class="odd"><td ><img src="images/designer-form-layout-windowsXP.png" alt="" /></td><td ><img src="images/designer-form-layout-macintosh.png" alt="" /></td><td ><img src="images/designer-form-layout-cleanlooks.png" alt="" /></td></tr>
+</table></div>
+<a name="splitter-layouts"></a>
+<h3 ><font style="vertical-align: inherit;">分<span lang="zh-cn">割</span>器布局</font></h3>
+<p><font style="vertical-align: inherit;">管理窗体上对象布局的另一种常用方法是将它们放置在拆分器中。这些拆分器以与正常布局相同的方式水平或垂直排列对象，但也允许用户调整分配给每个对象的空间量。</font></p>
+<p class="centerAlign"><img src="images/designer-splitter-layout.png" alt="" /></p><p><font style="vertical-align: inherit;">尽管</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qsplitter.html"><font style="vertical-align: inherit;">QSplitter</font></a><font style="vertical-align: inherit;">是一个容器组件，但</font><i><font style="vertical-align: inherit;">Qt<span lang="zh-cn">设计师</span></font></i><font style="vertical-align: inherit;">将拆分器对象视为应用于现有组件的布局。要将一组组件放入拆分器，请按</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html#selectingobjects"><font style="vertical-align: inherit;">此处所述</font></a><font style="vertical-align: inherit;">选择它们<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-widget-mode.html#selectingobjects">，</a>然后使用适当的工具栏按钮、键盘快捷键或</font><b><font style="vertical-align: inherit;">布局</font></b><font style="vertical-align: inherit;">上下文菜单条目应用拆分器布局。</font></p>
+<a name="shortcut-keys"></a>
+<h2 id="shortcut-keys"><font style="vertical-align: inherit;">快捷键</font></h2>
+<p><font style="vertical-align: inherit;">除了标准工具栏和上下文菜单条目之外，还有一组键盘快捷键可用于在组件上应用布局。</font></p>
+<a name="layoutshortcuts"></a><div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th ><font style="vertical-align: inherit;">布局</font></th><th ><font style="vertical-align: inherit;">捷径</font></th><th ><font style="vertical-align: inherit;">描述</font></th></tr></thead>
+<tr valign="top" class="odd"><td ><font style="vertical-align: inherit;">水平的</font></td><td ><b>Ctrl+1</b></td><td ><font style="vertical-align: inherit;">将选定的对象放置在水平布局中。</font></td></tr>
+<tr valign="top" class="even"><td ><font style="vertical-align: inherit;">垂直的</font></td><td ><b>Ctrl+2</b></td><td ><font style="vertical-align: inherit;">将选定的对象放置在垂直布局中。</font></td></tr>
+<tr valign="top" class="odd"><td ><font style="vertical-align: inherit;">网格</font></td><td ><b>Ctrl+5</b></td><td ><font style="vertical-align: inherit;">将选定对象放置在网格布局中。</font></td></tr>
+<tr valign="top" class="even"><td ><span lang="zh-cn">框架</span></td><td ><b>Ctrl+6</b></td><td ><font style="vertical-align: inherit;">将所选对象放置在表单布局中。</font></td></tr>
+<tr valign="top" class="odd"><td ><span lang="zh-cn">水平分割器</span></td><td ><b>Ctrl+3</b></td><td ><font style="vertical-align: inherit;">创建一个水平<span lang="zh-cn">分割</span>器并将选定的对象放置在其中。</font></td></tr>
+<tr valign="top" class="even"><td ><span lang="zh-cn">垂直分割器</span></td><td ><b>Ctrl+4</b></td><td ><font style="vertical-align: inherit;">创建一个垂直<span lang="zh-cn">分割</span>器并将选定的对象放置在其中。</font></td></tr>
+<tr valign="top" class="odd"><td ><font style="vertical-align: inherit;">调整大小</font></td><td ><b>Ctrl+J</b></td><td ><font style="vertical-align: inherit;">调整布局的大小，确保每个子对象都有足够的空间来显示其目录。有关更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#adjustSize"><font style="vertical-align: inherit;">QWidget::adjustSize</font></a><font style="vertical-align: inherit;"> ()。</font></td></tr>
+</table></div>
+<p><b><font style="vertical-align: inherit;">注意：Ctrl+0</font></b><font style="vertical-align: inherit;">用于<span lang="zh-cn">打破</span>布局。</font></p></div>
+<!-- @@@designer-layouts.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="designer-widget-mode.html">Qt<span lang="zh-cn">设计师的组件编辑模式</span></a>
+<span class="naviSeparator">  &#9702;  
+<a class="nextPage" href="designer-connection-mode.html">Qt<span lang="zh-cn">设计师的信号槽编辑模式</span></a></span>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
