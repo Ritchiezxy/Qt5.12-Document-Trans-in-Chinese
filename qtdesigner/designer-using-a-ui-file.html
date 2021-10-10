@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- designer-manual.qdoc -->
+  <title>Using a Designer UI File in Your Application | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td >Using a Designer UI File in Your Application</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="designer-stylesheet.html" />
+  <link rel="next" href="designer-using-custom-widgets.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="designer-stylesheet.html"><span lang="zh-cn">
+在Qt设计师中使用样式表</span></a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="designer-using-custom-widgets.html">
+<span lang="zh-cn">在Qt设计师中使用自定义组件</span></a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#compile-time-form-processing"><font style="vertical-align: inherit;">编译时表单处理</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#the-direct-approach"><font style="vertical-align: inherit;">直接方法</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#the-single-inheritance-approach"><font style="vertical-align: inherit;">单一继承方法</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#the-multiple-inheritance-approach"><font style="vertical-align: inherit;">多重继承方法</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#reacting-to-language-changes"><font style="vertical-align: inherit;">对语言变化做出反应</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#run-time-form-processing"><font style="vertical-align: inherit;">运行时表单处理</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#the-uitools-approach"><font style="vertical-align: inherit;">UiTools 方法</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#automatic-connections"><font style="vertical-align: inherit;">自动连接</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#a-dialog-without-auto-connect"><font style="vertical-align: inherit;">没有自动连接的对话框</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#widgets-and-dialogs-with-auto-connect"><font style="vertical-align: inherit;">具有自动连接功能的组件和对话框</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">在您的应用程序中使用设计师 UI 文件</h1>
+<span class="subtitle"></span>
+<!-- $$$designer-using-a-ui-file.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><font style="vertical-align: inherit;">Qt 设计师 UI 文件以 XML 格式表示表单的组件树。可以处理的表格：</font></p>
+<ul>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#compile-time-form-processing"><font style="vertical-align: inherit;">在编译时</font></a><font style="vertical-align: inherit;">，这意味着表单被转换为可以编译的 C++ 代码。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#run-time-form-processing"><font style="vertical-align: inherit;">在运行时</font></a><font style="vertical-align: inherit;">，这意味着表单由</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html"><font style="vertical-align: inherit;">QUiLoader</font></a><font style="vertical-align: inherit;">类处理，该类在解析 XML 文件时动态构造组件树。</font></li>
+</ul>
+<a name="compile-time-form-processing"></a>
+<h2 id="compile-time-form-processing"><font style="vertical-align: inherit;">编译时表单处理</font></h2>
+<p><font style="vertical-align: inherit;">您可以使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">创建用户界面组件，并在构建应用程序时使用 Qt 的集成构建工具</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qmake/qmake-manual.html"><font style="vertical-align: inherit;">qmake</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/uic.html"><font style="vertical-align: inherit;">uic</font></a><font style="vertical-align: inherit;">为它们生成代码。生成的代码包含表单的用户界面对象。它是一个 C++ 结构，包含：</font></p>
+<ul>
+<li><font style="vertical-align: inherit;">指向表单组件、布局、布局项、按钮组和操作的指针。</font></li>
+<li><font style="vertical-align: inherit;">调用成员函数</font><code>setupUi()</code><font style="vertical-align: inherit;">以在父组件上构建组件树。</font></li>
+<li><font style="vertical-align: inherit;">被调用的成员函数</font><code>retranslateUi()</code><font style="vertical-align: inherit;">处理表单的字符串属性的转换。有关更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#reacting-to-language-changes"><font style="vertical-align: inherit;">对语言更改做出反应</font></a><font style="vertical-align: inherit;">。</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">生成的代码可以包含在您的应用程序中并直接从中使用。或者，您可以使用它来扩展标准组件的子类。</font></p>
+<p><font style="vertical-align: inherit;">可以通过以下方法之一在您的应用程序中使用编译时处理的表单：</font></p>
+<ul>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#the-direct-approach"><font style="vertical-align: inherit;">直接方法</font></a><font style="vertical-align: inherit;">：构建一个组件用作组件的占位符，并在其中设置用户界面。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#the-single-inheritance-approach"><font style="vertical-align: inherit;">单一继承方法</font></a><font style="vertical-align: inherit;">：您子类化表单的基类（例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qdialog.html"><font style="vertical-align: inherit;">QDialog</font></a><font style="vertical-align: inherit;">），并包含表单用户界面对象的私有实例。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#the-multiple-inheritance-approach"><font style="vertical-align: inherit;">多重继承方法</font></a><font style="vertical-align: inherit;">：您子类化表单的基类和表单的用户界面对象。这允许在子类的范围内直接使用表单中定义的组件。</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">为了演示，我们创建了一个简单的计算器表单应用程序。它基于原始的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-calculatorform-example.html"><font style="vertical-align: inherit;"><span lang="zh-cn">计算器表单</span></font></a><font style="vertical-align: inherit;">示例。</font></p>
+<p><font style="vertical-align: inherit;">该应用程序由一个源文件</font><code>main.cpp</code><font style="vertical-align: inherit;">和一个 UI 文件组成。</font></p>
+<p><code>calculatorform.ui</code><font style="vertical-align: inherit;">使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">设计的文件如下所示：</font></p>
+<p class="centerAlign"><img src="images/directapproach-calculatorform.png" alt="" /></p><p><font style="vertical-align: inherit;">我们将使用</font><code>qmake</code><font style="vertical-align: inherit;">来构建可执行文件，因此我们需要编写一个</font><code>.pro</code><font style="vertical-align: inherit;">文件：</font></p>
+<pre class="cpp">
+
+  HEADERS     = calculatorform.h
+
+</pre>
+<p><font style="vertical-align: inherit;">我们将使用</font><code>qmake</code><font style="vertical-align: inherit;">来构建可执行文件，因此我们需要编写一个</font><code>.pro</code><font style="vertical-align: inherit;">文件：</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">您可以使用 Qt Creator 创建计算器表单项目。它会自动生成 main.cpp、UI 和 .pro 文件，然后您可以修改这些文件。</font></p><a name="the-direct-approach"></a>
+<h3 ><font style="vertical-align: inherit;">直接方法</font></h3>
+<p><font style="vertical-align: inherit;">要使用直接方法，我们将</font><code>ui_calculatorform.h</code><font style="vertical-align: inherit;">文件直接包含在</font><code>main.cpp</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &quot;ui_calculatorform.h&quot;</span>
+
+</pre>
+<p><font style="vertical-align: inherit;">该</font><code>main</code><font style="vertical-align: inherit;">函数通过构建一个标准的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">来创建计算器组件，我们用它来托管</font><code>calculatorform.ui</code><font style="vertical-align: inherit;">文件描述的用户界面。</font></p>
+<pre class="cpp">
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span>argv<span class="operator">[</span><span class="operator">]</span>)
+  {
+      <span class="type"><a href="../qtwidgets/qapplication.html">QApplication</a></span> app(argc<span class="operator">,</span> argv);
+      <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>widget <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>;
+      Ui<span class="operator">::</span>CalculatorForm ui;
+      ui<span class="operator">.</span>setupUi(widget);
+
+      widget<span class="operator">-</span><span class="operator">&gt;</span>show();
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">在这种情况下，</font><code>Ui::CalculatorForm</code><font style="vertical-align: inherit;">是来自</font><code>ui_calculatorform.h</code><font style="vertical-align: inherit;">文件的接口描述对象，用于设置对话框的所有组件及其信号和插槽之间的连接。</font></p>
+<p><font style="vertical-align: inherit;">直接方法提供了一种在您的应用程序中使用简单、自包含组件的快捷方式。然而，使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">创建的组件通常需要与应用程序代码的其余部分紧密集成。例如，</font><code>CalculatorForm</code><font style="vertical-align: inherit;">上面提供的代码将编译并运行，但</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qspinbox.html"><font style="vertical-align: inherit;">QSpinBox</font></a><font style="vertical-align: inherit;">对象不会与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qlabel.html"><font style="vertical-align: inherit;">QLabel</font></a><font style="vertical-align: inherit;">交互，因为我们需要一个自定义槽来执行添加操作并将结果显示在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qlabel.html"><font style="vertical-align: inherit;">QLabel 中</font></a><font style="vertical-align: inherit;">。为此，我们需要使用单继承方法。</font></p>
+<a name="the-single-inheritance-approach"></a>
+<h3 ><font style="vertical-align: inherit;">单一继承方法</font></h3>
+<p><font style="vertical-align: inherit;">为了使用单继承方法，我们将标准 Qt 组件子类化并包含表单用户界面对象的私有实例。这可以采用以下形式：</font></p>
+<ul>
+<li><font style="vertical-align: inherit;">成员变量</font></li>
+<li><font style="vertical-align: inherit;">指针成员变量</font></li>
+</ul>
+<a name="using-a-member-variable"></a>
+<h4 ><font style="vertical-align: inherit;">使用成员变量</font></h4>
+<p><font style="vertical-align: inherit;">在这种方法中，我们将 Qt 组件子类化并从构造函数中设置用户界面。以这种方式使用的组件将表单中使用的组件和布局暴露给 Qt 组件子类，并提供一个标准系统，用于在用户界面和应用程序中的其他对象之间建立信号和槽连接。生成的</font><code>Ui::CalculatorForm</code><font style="vertical-align: inherit;">结构是类的成员。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-calculatorform-example.html"><font style="vertical-align: inherit;">计算器表单</font></a><font style="vertical-align: inherit;">示例中使用了这种方法。</font></p>
+<p><font style="vertical-align: inherit;">为了确保我们可以使用用户界面，我们需要</font><code>uic</code><font style="vertical-align: inherit;">在引用之前包含生成的头文件</font><code>Ui::CalculatorForm</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &quot;ui_calculatorform.h&quot;</span>
+
+</pre>
+<p><font style="vertical-align: inherit;">这意味着</font><code>.pro</code><font style="vertical-align: inherit;">必须更新文件以包含</font><code>calculatorform.h</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  HEADERS     = calculatorform.h
+
+</pre>
+<p><font style="vertical-align: inherit;">子类的定义方式如下：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> CalculatorForm : <span class="keyword">public</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> CalculatorForm(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> on_inputSpinBox1_valueChanged(<span class="type">int</span> value);
+      <span class="type">void</span> on_inputSpinBox2_valueChanged(<span class="type">int</span> value);
+
+  <span class="keyword">private</span>:
+      Ui<span class="operator">::</span>CalculatorForm ui;
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">该类的重要特性是</font><code>ui</code><font style="vertical-align: inherit;">提供用于设置和管理用户界面的代码的私有对象。</font></p>
+<p><font style="vertical-align: inherit;">子类的构造函数只通过调用</font><code>ui</code><font style="vertical-align: inherit;">对象的</font><code>setupUi()</code><font style="vertical-align: inherit;">函数来构造和配置对话框的所有组件和布局。完成此操作后，可以根据需要修改用户界面。</font></p>
+<pre class="cpp">
+
+  CalculatorForm<span class="operator">::</span>CalculatorForm(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>(parent)
+  {
+      ui<span class="operator">.</span>setupUi(<span class="keyword">this</span>);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">我们可以通过添加 on_&lt;object name&gt; - 前缀以通常的方式连接用户界面组件中的信号和槽。有关更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#widgets-and-dialogs-with-auto-connect"><font style="vertical-align: inherit;"><span lang="zh-cn">组件和对话框自动连接</span></font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">这种方法的优点是它简单地使用继承来提供基于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">的界面，并将用户界面组件变量封装在</font><code>ui</code><font style="vertical-align: inherit;">数据成员中。我们可以使用这个方法在同一个组件中定义多个用户界面，每个用户界面都包含在自己的命名空间中，并覆盖（或组合）它们。例如，此方法可用于从现有表单创建单个选项卡。</font></p>
+<a name="using-a-pointer-member-variable"></a>
+<h4 ><font style="vertical-align: inherit;">使用指针成员变量</font></h4>
+<p><font style="vertical-align: inherit;">或者，该</font><code>Ui::CalculatorForm</code><font style="vertical-align: inherit;">结构可以成为类的指针成员。标头如下所示：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">namespace</span> Ui {
+      <span class="keyword">class</span> CalculatorForm;
+  }
+
+  <span class="keyword">class</span> CalculatorForm : <span class="keyword">public</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>
+  <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+  <span class="keyword">virtual</span> <span class="operator">~</span>CalculatorForm();
+  <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+  <span class="keyword">private</span>:
+      Ui<span class="operator">::</span>CalculatorForm <span class="operator">*</span>ui;
+  <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+
+</pre>
+<p><font style="vertical-align: inherit;">对应的源文件如下所示：</font></p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &quot;ui_calculatorform.h&quot;</span>
+
+  CalculatorForm<span class="operator">::</span>CalculatorForm(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent) :
+      <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>(parent)<span class="operator">,</span> ui(<span class="keyword">new</span> Ui<span class="operator">::</span>CalculatorForm)
+  {
+      ui<span class="operator">-</span><span class="operator">&gt;</span>setupUi(<span class="keyword">this</span>);
+  }
+
+  CalculatorForm<span class="operator">::</span><span class="operator">~</span>CalculatorForm()
+  {
+      <span class="keyword">delete</span> ui;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">这种方法的优点是用户界面对象可以被前向声明，这意味着我们不必</font><code>ui_calculatorform.h</code><font style="vertical-align: inherit;">在头文件中包含生成的文件。然后可以在不重新编译相关源文件的情况下更改表单。如果类受到二进制兼容性限制，这一点尤其重要。</font></p>
+<p><font style="vertical-align: inherit;">我们通常为库和大型应用程序推荐这种方法。有关更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/sharedlibrary.html"><font style="vertical-align: inherit;">创建共享库</font></a><font style="vertical-align: inherit;">。</font></p>
+<a name="the-multiple-inheritance-approach"></a>
+<h3 ><font style="vertical-align: inherit;">多重继承方法</font></h3>
+<p><font style="vertical-align: inherit;">使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">创建的表单可以与标准的基于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">的类一起子类化。这种方法使表单中定义的所有用户界面组件可以在子类的范围内直接访问，并且可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#connect-4"><font style="vertical-align: inherit;">connect()</font></a><font style="vertical-align: inherit;">函数以通常的方式进行信号和插槽连接。</font></p>
+<p><font style="vertical-align: inherit;">此方法用于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/qtuitools-multipleinheritance-example.html"><font style="vertical-align: inherit;">多重继承</font></a><font style="vertical-align: inherit;">示例。</font></p>
+<p><font style="vertical-align: inherit;">我们需要包含从文件</font><code>uic</code><font style="vertical-align: inherit;">生成的头文件，</font><code>calculatorform.ui</code><font style="vertical-align: inherit;">如下：</font></p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &quot;ui_calculatorform.h&quot;</span>
+
+</pre>
+<p><font style="vertical-align: inherit;">该类的定义方式与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#the-single-inheritance-approach"><font style="vertical-align: inherit;">单继承方法中</font></a><font style="vertical-align: inherit;">使用的方式类似，不同之处在于这次我们同时继承</font><i><font style="vertical-align: inherit;">了</font></i> <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">和</font><code>Ui::CalculatorForm</code><font style="vertical-align: inherit;">，如下所示：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> CalculatorForm : <span class="keyword">public</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span><span class="operator">,</span> <span class="keyword">private</span> Ui<span class="operator">::</span>CalculatorForm
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> CalculatorForm(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> on_inputSpinBox1_valueChanged(<span class="type">int</span> value);
+      <span class="type">void</span> on_inputSpinBox2_valueChanged(<span class="type">int</span> value);
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">我们</font><code>Ui::CalculatorForm</code><font style="vertical-align: inherit;">私下继承以确保用户界面对象在我们的子类中是私有的。我们也可以使用</font><code>public</code><font style="vertical-align: inherit;">or</font><code>protected</code><font style="vertical-align: inherit;">关键字继承它，就像我们</font><code>ui</code><font style="vertical-align: inherit;">在前一种情况下可以公开或受保护的一样。</font></p>
+<p><font style="vertical-align: inherit;">子类的构造函数执行许多与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-using-a-ui-file.html#the-single-inheritance-approach"><font style="vertical-align: inherit;">单继承</font></a><font style="vertical-align: inherit;">示例中使用的构造函数相同的任务：</font></p>
+<pre class="cpp">
+
+  CalculatorForm<span class="operator">::</span>CalculatorForm(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>(parent)
+  {
+      setupUi(<span class="keyword">this</span>);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">在这种情况下，用户界面中使用的组件可以像手动创建的组件一样访问。我们不再需要</font><code>ui</code><font style="vertical-align: inherit;">前缀来访问它们。</font></p>
+<a name="reacting-to-language-changes"></a>
+<h3 ><font style="vertical-align: inherit;">对语言变化做出反应</font></h3>
+<p><font style="vertical-align: inherit;">如果用户界面语言发生变化，Qt 通过发送</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qevent.html#Type-enum"><font style="vertical-align: inherit;">QEvent::LanguageChange</font></a><font style="vertical-align: inherit;">类型的事件通知应用程序。为了调用</font><code>retranslateUi()</code><font style="vertical-align: inherit;">用户界面对象的成员函数，我们</font><code>QWidget::changeEvent()</code><font style="vertical-align: inherit;">在form类中重新实现，如下：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> CalculatorForm<span class="operator">::</span>changeEvent(<span class="type"><a href="../qtcore/qevent.html">QEvent</a></span> <span class="operator">*</span>e)
+  {
+      <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span><span class="operator">::</span>changeEvent(e);
+      <span class="keyword">switch</span> (e<span class="operator">-</span><span class="operator">&gt;</span>type()) {
+      <span class="keyword">case</span> <span class="type"><a href="../qtcore/qevent.html">QEvent</a></span><span class="operator">::</span>LanguageChange:
+          ui<span class="operator">-</span><span class="operator">&gt;</span>retranslateUi(<span class="keyword">this</span>);
+          <span class="keyword">break</span>;
+      <span class="keyword">default</span>:
+          <span class="keyword">break</span>;
+     }
+  }
+
+</pre>
+<a name="run-time-form-processing"></a>
+<h2 id="run-time-form-processing"><font style="vertical-align: inherit;">运行时表单处理</font></h2>
+<p><font style="vertical-align: inherit;">或者，可以在运行时处理表单，生成动态生成的用户界面。这可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/qtuitools-module.html"><font style="vertical-align: inherit;">QtUiTools</font></a><font style="vertical-align: inherit;">模块来完成，该模块提供了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html"><font style="vertical-align: inherit;">QUiLoader</font></a><font style="vertical-align: inherit;">类来处理使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">创建的表单。</font></p>
+<a name="the-uitools-approach"></a>
+<h3 ><font style="vertical-align: inherit;">UiTools 方法</font></h3>
+<p><font style="vertical-align: inherit;">在运行时处理表单需要包含 UI 文件的资源文件。此外，应用程序需要配置为使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/qtuitools-module.html"><font style="vertical-align: inherit;">QtUiTools</font></a><font style="vertical-align: inherit;">模块。这是通过在</font><code>qmake</code><font style="vertical-align: inherit;">项目文件中包含以下声明来完成的，以确保正确编译和链接应用程序。</font></p>
+<pre class="cpp">
+
+  QT += uitools
+
+</pre>
+<p><font style="vertical-align: inherit;">所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html"><font style="vertical-align: inherit;">QUiLoader</font></a><font style="vertical-align: inherit;">类提供一个形式加载器对象来构建用户界面。可以从任何</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qiodevice.html"><font style="vertical-align: inherit;">QIODevice</font></a><font style="vertical-align: inherit;">检索该用户界面，例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qfile.html"><font style="vertical-align: inherit;">QFile</font></a><font style="vertical-align: inherit;">对象，以获取存储在项目资源文件中的表单。所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html#load"><font style="vertical-align: inherit;">QUiLoader ::负载</font></a><font style="vertical-align: inherit;">（）函数构造的形式使用窗口组件包含在文件中的用户接口描述。</font></p>
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/qtuitools-module.html"><font style="vertical-align: inherit;">QtUiTools</font></a><font style="vertical-align: inherit;">模块类可以使用下面的指令包括：</font></p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &lt;QtUiTools&gt;</span>
+
+</pre>
+<p><font style="vertical-align: inherit;">所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/quiloader.html#load"><font style="vertical-align: inherit;">QUiLoader ::</font></a><span lang="zh-cn">load</span><font style="vertical-align: inherit;">（）函数被调用，如图从这个代码</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/qtuitools-textfinder-example.html"><font style="vertical-align: inherit;">文字搜索器</font></a><font style="vertical-align: inherit;">示例：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">static</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>loadUiFile(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent)
+  {
+      <span class="type"><a href="../qtcore/qfile.html">QFile</a></span> file(<span class="string">&quot;:/forms/textfinder.ui&quot;</span>);
+      file<span class="operator">.</span>open(<span class="type"><a href="../qtcore/qiodevice.html">QIODevice</a></span><span class="operator">::</span>ReadOnly);
+
+      <span class="type"><a href="../qtuitools/quiloader.html">QUiLoader</a></span> loader;
+      <span class="keyword">return</span> loader<span class="operator">.</span>load(<span class="operator">&amp;</span>file<span class="operator">,</span> parent);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">在运行时使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/qtuitools-module.html"><font style="vertical-align: inherit;">QtUiTools</font></a><font style="vertical-align: inherit;">构建其用户界面的类中，我们可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#findChild"><font style="vertical-align: inherit;">QObject::findChild</font></a><font style="vertical-align: inherit;"> ()定位表单中的对象。例如，在下面的代码中，我们根据它们的对象名称和组件类型定位一些组件：</font></p>
+<pre class="cpp">
+
+      ui_findButton <span class="operator">=</span> findChild<span class="operator">&lt;</span><span class="type"><a href="../qtwidgets/qpushbutton.html">QPushButton</a></span><span class="operator">*</span><span class="operator">&gt;</span>(<span class="string">&quot;findButton&quot;</span>);
+      ui_textEdit <span class="operator">=</span> findChild<span class="operator">&lt;</span><span class="type"><a href="../qtwidgets/qtextedit.html">QTextEdit</a></span><span class="operator">*</span><span class="operator">&gt;</span>(<span class="string">&quot;textEdit&quot;</span>);
+      ui_lineEdit <span class="operator">=</span> findChild<span class="operator">&lt;</span><span class="type"><a href="../qtwidgets/qlineedit.html">QLineEdit</a></span><span class="operator">*</span><span class="operator">&gt;</span>(<span class="string">&quot;lineEdit&quot;</span>);
+
+</pre>
+<p><font style="vertical-align: inherit;">在运行时处理表单使开发人员可以自由地更改程序的用户界面，只需更改 UI 文件即可。这在自定义程序以满足各种用户需求时很有用，例如超大图标或用于辅助功能支持的不同配色方案。</font></p>
+<a name="automatic-connections"></a>
+<h2 id="automatic-connections"><font style="vertical-align: inherit;">自动连接</font></h2>
+<p><font style="vertical-align: inherit;">为编译时或运行时形式定义的信号和槽连接可以手动或自动设置，使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html"><font style="vertical-align: inherit;">QMetaObject</font></a><font style="vertical-align: inherit;">在信号和适当命名的槽之间建立连接的能力。</font></p>
+<p><font style="vertical-align: inherit;">通常，在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qdialog.html"><font style="vertical-align: inherit;">QDialog 中</font></a><font style="vertical-align: inherit;">，如果我们想在接受用户输入的信息之前对其进行处理，我们需要将</font><b><font style="vertical-align: inherit;">OK</font></b><font style="vertical-align: inherit;">按钮的 clicked() 信号连接到我们对话框中的自定义槽。我们将首先展示手动连接插槽的对话框示例，然后将其与使用自动连接的对话框进行比较。</font></p>
+<a name="a-dialog-without-auto-connect"></a>
+<h3 ><font style="vertical-align: inherit;">没有自动连接的对话框</font></h3>
+<p><font style="vertical-align: inherit;">我们以与以前相同的方式定义对话框，但现在除了构造函数之外还包括一个槽：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> ImageDialog : <span class="keyword">public</span> <span class="type"><a href="../qtwidgets/qdialog.html">QDialog</a></span><span class="operator">,</span> <span class="keyword">private</span> Ui<span class="operator">::</span>ImageDialog
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      ImageDialog(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent <span class="operator">=</span> <span class="number">0</span>);
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> checkValues();
+  };
+
+</pre>
+<p><code>checkValues()</code><font style="vertical-align: inherit;">槽将用于验证用户提供的值。</font></p>
+<p><font style="vertical-align: inherit;">在对话框的构造函数中，我们像以前一样设置组件，并将</font><b><font style="vertical-align: inherit;">取消</font></b><font style="vertical-align: inherit;">按钮的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qabstractbutton.html#clicked"><font style="vertical-align: inherit;">clicked()</font></a><font style="vertical-align: inherit;">信号连接到对话框的 reject() 槽。我们还禁用了两个按钮中的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qpushbutton.html#autoDefault-prop"><font style="vertical-align: inherit;">autoDefault</font></a><font style="vertical-align: inherit;">属性，以确保对话框不会干扰行编辑处理返回键事件的方式：</font></p>
+<pre class="cpp">
+
+  ImageDialog<span class="operator">::</span>ImageDialog(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="../qtwidgets/qdialog.html">QDialog</a></span>(parent)
+  {
+      setupUi(<span class="keyword">this</span>);
+      okButton<span class="operator">-</span><span class="operator">&gt;</span>setAutoDefault(<span class="keyword">false</span>);
+      cancelButton<span class="operator">-</span><span class="operator">&gt;</span>setAutoDefault(<span class="keyword">false</span>);
+      ...
+      connect(okButton<span class="operator">,</span> SIGNAL(clicked())<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> SLOT(checkValues()));
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">我们将</font><b><font style="vertical-align: inherit;">OK</font></b><font style="vertical-align: inherit;">按钮的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qabstractbutton.html#clicked"><font style="vertical-align: inherit;">clicked()</font></a><font style="vertical-align: inherit;">信号连接到对话框的 checkValues() 槽，我们实现如下：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> ImageDialog<span class="operator">::</span>checkValues()
+  {
+      <span class="keyword">if</span> (nameLineEdit<span class="operator">-</span><span class="operator">&gt;</span>text()<span class="operator">.</span>isEmpty())
+          (<span class="type">void</span>) <span class="type"><a href="../qtwidgets/qmessagebox.html">QMessageBox</a></span><span class="operator">::</span>information(<span class="keyword">this</span><span class="operator">,</span> tr(<span class="string">&quot;No Image Name&quot;</span>)<span class="operator">,</span>
+              tr(<span class="string">&quot;Please supply a name for the image.&quot;</span>)<span class="operator">,</span> <span class="type"><a href="../qtwidgets/qmessagebox.html">QMessageBox</a></span><span class="operator">::</span>Cancel);
+      <span class="keyword">else</span>
+          accept();
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">此自定义插槽执行最低限度的必要操作，以确保用户输入的数据有效 - 如果为图像指定了名称，它仅接受输入。</font></p>
+<a name="widgets-and-dialogs-with-auto-connect"></a>
+<h3 ><font style="vertical-align: inherit;">具有自动连接功能的组件和对话框</font></h3>
+<p><font style="vertical-align: inherit;">尽管在对话框中实现自定义槽并在构造函数中连接它很容易，但我们可以改为使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html"><font style="vertical-align: inherit;">QMetaObject</font></a><font style="vertical-align: inherit;">的自动连接工具将</font><b><font style="vertical-align: inherit;">OK</font></b><font style="vertical-align: inherit;">按钮的 clicked() 信号连接到我们子类中的插槽。</font><code>uic</code><font style="vertical-align: inherit;">在对话框的</font><code>setupUi()</code><font style="vertical-align: inherit;">函数中自动生成代码来做到这一点，所以我们只需要声明并实现一个名称遵循标准约定的槽：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> on_<span class="operator">&lt;</span>object name<span class="operator">&gt;</span>_<span class="operator">&lt;</span>signal name<span class="operator">&gt;</span>(<span class="operator">&lt;</span>signal parameters<span class="operator">&gt;</span>);
+
+</pre>
+<p><font style="vertical-align: inherit;">使用这个约定，我们可以定义和实现一个槽来响应鼠标点击</font><b><font style="vertical-align: inherit;">OK</font></b><font style="vertical-align: inherit;">按钮：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> ImageDialog : <span class="keyword">public</span> <span class="type"><a href="../qtwidgets/qdialog.html">QDialog</a></span><span class="operator">,</span> <span class="keyword">private</span> Ui<span class="operator">::</span>ImageDialog
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      ImageDialog(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent <span class="operator">=</span> <span class="number">0</span>);
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> on_okButton_clicked();
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">自动信号和槽连接的另一个示例是带有插槽的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtuitools/qtuitools-textfinder-example.html"><font style="vertical-align: inherit;">文本查找器</font></a><code>on_findButton_clicked()</code><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">我们使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html"><font style="vertical-align: inherit;">QMetaObject</font></a><font style="vertical-align: inherit;">的系统来启用信号和插槽连接：</font></p>
+<pre class="cpp">
+
+      <span class="type"><a href="../qtcore/qmetaobject.html">QMetaObject</a></span><span class="operator">::</span>connectSlotsByName(<span class="keyword">this</span>);
+
+</pre>
+<p><font style="vertical-align: inherit;">这使我们能够实现插槽，如下所示：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> TextFinder<span class="operator">::</span>on_findButton_clicked()
+  {
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> searchString <span class="operator">=</span> ui_lineEdit<span class="operator">-</span><span class="operator">&gt;</span>text();
+      <span class="type">QTextDocument</span> <span class="operator">*</span>document <span class="operator">=</span> ui_textEdit<span class="operator">-</span><span class="operator">&gt;</span>document();
+
+      bool found <span class="operator">=</span> <span class="keyword">false</span>;
+
+      <span class="comment">// undo previous change (if any)</span>
+      document<span class="operator">-</span><span class="operator">&gt;</span>undo();
+
+      <span class="keyword">if</span> (searchString<span class="operator">.</span>isEmpty()) {
+          <span class="type"><a href="../qtwidgets/qmessagebox.html">QMessageBox</a></span><span class="operator">::</span>information(<span class="keyword">this</span><span class="operator">,</span> tr(<span class="string">&quot;Empty Search Field&quot;</span>)<span class="operator">,</span>
+                                   tr(<span class="string">&quot;The search field is empty. &quot;</span>
+                                      <span class="string">&quot;Please enter a word and click Find.&quot;</span>));
+      } <span class="keyword">else</span> {
+          <span class="type">QTextCursor</span> highlightCursor(document);
+          <span class="type">QTextCursor</span> cursor(document);
+
+          cursor<span class="operator">.</span>beginEditBlock();
+      ...
+          cursor<span class="operator">.</span>endEditBlock();
+
+          <span class="keyword">if</span> (found <span class="operator">=</span><span class="operator">=</span> <span class="keyword">false</span>) {
+              <span class="type"><a href="../qtwidgets/qmessagebox.html">QMessageBox</a></span><span class="operator">::</span>information(<span class="keyword">this</span><span class="operator">,</span> tr(<span class="string">&quot;Word Not Found&quot;</span>)<span class="operator">,</span>
+                                       tr(<span class="string">&quot;Sorry, the word cannot be found.&quot;</span>));
+          }
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">信号和槽的自动连接为组件设计者提供了标准命名约定和显式接口。通过提供实现给定界面的源代码，用户界面设计者可以检查他们的设计是否真正有效，而无需自己编写代码。</font></p>
+</div>
+<!-- @@@designer-using-a-ui-file.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="designer-stylesheet.html">Using Stylesheets with Qt 设计师</a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="designer-using-custom-widgets.html">Using Custom Widgets with Qt 设计师</a>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- propertysheet.qdoc -->
+  <title>QDesignerPropertySheetExtension 类 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">C++ Classes</a></td><td >QDesignerPropertySheetExtension</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QDesignerPropertySheetExtension 类</h1>
+<!-- $$$QDesignerPropertySheetExtension-brief -->
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html">
+<font style="vertical-align: inherit;">QDesignerPropertySheetExtension</font></a><font style="vertical-align: inherit;">类允许您操作时显示在Qt设计师的属性编辑器窗口组件的属性。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html#details"><font style="vertical-align: inherit;">更多...</font></a></p>
+<!-- @@@QDesignerPropertySheetExtension -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QDesignerPropertySheetExtension&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += designer</td></tr></table></div><ul>
+<li><a href="qdesignerpropertysheetextension-members.html">所有成员的列表，包括继承成员。</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#dtor.QDesignerPropertySheetExtension">~QDesignerPropertySheetExtension</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#count">count</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#hasReset">hasReset</a></b>(int <i>index</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a></b>(const QString &amp;<i>name</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#isAttribute">isAttribute</a></b>(int <i>index</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#isChanged">isChanged</a></b>(int <i>index</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#isEnabled">isEnabled</a></b>(int <i>index</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#isVisible">isVisible</a></b>(int <i>index</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QVariant </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#property">property</a></b>(int <i>index</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QString </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#propertyGroup">propertyGroup</a></b>(int <i>index</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QString </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#propertyName">propertyName</a></b>(int <i>index</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#reset">reset</a></b>(int <i>index</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#setAttribute">setAttribute</a></b>(int <i>index</i>, bool <i>attribute</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#setChanged">setChanged</a></b>(int <i>index</i>, bool <i>changed</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#setProperty">setProperty</a></b>(int <i>index</i>, const QVariant &amp;<i>value</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#setPropertyGroup">setPropertyGroup</a></b>(int <i>index</i>, const QString &amp;<i>group</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerpropertysheetextension.html#setVisible">setVisible</a></b>(int <i>index</i>, bool <i>visible</i>) = 0</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$QDesignerPropertySheetExtension-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html">
+<font style="vertical-align: inherit;">QDesignerPropertySheetExtension</font></a><font style="vertical-align: inherit;">类允许您操作时显示在Qt设计师的属性编辑器窗口组件的属性。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension</font></a><font style="vertical-align: inherit;">提供了一组函数，这些函数通常用于查询组件的属性，以及在属性编辑器中操作属性的外观。例如：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="qdesignerpropertysheetextension.html">QDesignerPropertySheetExtension</a></span> <span class="operator">*</span>propertySheet  <span class="operator">=</span> <span class="number">0</span>;
+  <span class="type"><a href="qextensionmanager.html">QExtensionManager</a></span> manager <span class="operator">=</span> formEditor<span class="operator">-</span><span class="operator">&gt;</span>extensionManager();
+
+  propertySheet <span class="operator">=</span> qt_extension<span class="operator">&lt;</span><span class="type"><a href="qdesignerpropertysheetextension.html">QDesignerPropertySheetExtension</a></span><span class="operator">*</span><span class="operator">&gt;</span>(manager<span class="operator">,</span> widget);
+  <span class="type">int</span> index <span class="operator">=</span> propertySheet<span class="operator">-</span><span class="operator">&gt;</span>indexOf(QLatin1String(<span class="string">&quot;margin&quot;</span>));
+
+  propertySheet<span class="operator">-</span><span class="operator">&gt;</span>setProperty(index<span class="operator">,</span> <span class="number">10</span>);
+  propertySheet<span class="operator">-</span><span class="operator">&gt;</span>setChanged(index<span class="operator">,</span> <span class="keyword">true</span>);
+
+  <span class="keyword">delete</span> propertySheet;
+
+</pre>
+<p><font style="vertical-align: inherit;">请注意，如果使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html#setProperty"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension::setProperty</font></a><font style="vertical-align: inherit;"> () 函数更改属性的值，则不会更新撤消堆栈。为了确保可以使用撤消堆栈恢复属性的值，您必须使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setProperty"><font style="vertical-align: inherit;">QDesignerFormWindowCursorInterface::setProperty</font></a><font style="vertical-align: inherit;"> () 函数或其伙伴</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setWidgetProperty"><font style="vertical-align: inherit;">setWidgetProperty()</font></a><font style="vertical-align: inherit;">代替。</font></p>
+<p><font style="vertical-align: inherit;">在实现自定义组件插件时，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#initialize">QDesignerCustomWidgetInterface::initialize</a> () 函数的参数提供了指向</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">当前</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">对象（在上面的示例中<span lang="zh-cn">的</span></font><code>formEditor</code><font style="vertical-align: inherit;">）的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#initialize"><font style="vertical-align: inherit;">指针</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">可以通过使用 qt_extension() 函数查询</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的扩展管理器来检索属性表或任何其他扩展。当你想释放扩展时，你只需要删除指针。</font></p>
+<p><font style="vertical-align: inherit;">所有组件都有一个默认属性表，它用组件的属性（即用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a> () 宏定义的属性）填充</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的属性编辑器。但是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html">QDesignerPropertySheetExtension</a>还提供了一个用于创建自定义属性表扩展的接口。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b> <i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension</font></a><font style="vertical-align: inherit;">来提供其属性编辑器。每当在其工作区中选择组件时，</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">将查询组件的属性表扩展。如果所选组件具有已实现的属性表扩展，则此扩展将覆盖默认属性表。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">某些属性的属性表使用的数据类型是包含附加信息的不透明自定义</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">类型，而不是普通的 Qt 数据类型。例如，枚举、标志、图标、像素图和字符串就是这种情况。</font></p>
+<p><font style="vertical-align: inherit;">要创建属性表扩展，您的扩展类必须从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension</font></a><font style="vertical-align: inherit;">继承。然后，由于我们正在实现一个接口，我们必须确保使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INTERFACES"><font style="vertical-align: inherit;">Q_INTERFACES</font></a><font style="vertical-align: inherit;"> () 宏让元对象系统知道它：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> MyPropertySheetExtension : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span>
+          <span class="keyword">public</span> <span class="type"><a href="qdesignerpropertysheetextension.html">QDesignerPropertySheetExtension</a></span>
+  {
+      Q_OBJECT
+      Q_INTERFACES(<span class="type"><a href="qdesignerpropertysheetextension.html">QDesignerPropertySheetExtension</a></span>)
+
+  <span class="keyword">public</span>:
+      <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">这使得</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">能够使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#qobject_cast"><font style="vertical-align: inherit;">qobject_cast</font></a><font style="vertical-align: inherit;"> () 来<span lang="zh-cn">获取</span><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>指针查询支持的接口。</font></p>
+<p><font style="vertical-align: inherit;">在</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">，除非需要扩展，否则不会创建扩展。因此，在实现属性表扩展时，您还必须创建一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">，即能够创建扩展实例的类，并使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionmanager.html"><font style="vertical-align: inherit;">扩展管理器</font></a><font style="vertical-align: inherit;">注册它。</font></p>
+<p><font style="vertical-align: inherit;">当需要属性表扩展时，</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionmanager.html"><font style="vertical-align: inherit;">扩展管理器</font></a><font style="vertical-align: inherit;">将运行其所有注册工厂，为每个调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#createExtension"><font style="vertical-align: inherit;">QExtensionFactory::createExtension</font></a><font style="vertical-align: inherit;"> () 直到找到第一个能够为所选组件创建属性表扩展的工厂. 然后这个工厂将创建扩展的一个实例。如果找不到这样的工厂，</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">将使用默认的属性表。</font></p>
+<p><i><font style="vertical-align: inherit;">Qt 设计师 </font></i>
+<font style="vertical-align: inherit;">中有四种可用的扩展类型：</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html"><font style="vertical-align: inherit;">QDesignerContainerExtension</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignermembersheetextension.html"><font style="vertical-align: inherit;">QDesignerMemberSheetExtension</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">。无论请求的扩展与多页容器、成员表、属性表还是任务菜单相关联，Qt 设计师 的行为都是相同的。</font></p>
+<p><font style="vertical-align: inherit;">所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">类提供的标准扩展工厂，并且还可以用作用于定义扩展工厂的接口。您可以创建一个新的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">并重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#createExtension"><font style="vertical-align: inherit;">QExtensionFactory::createExtension</font></a><font style="vertical-align: inherit;"> () 函数。例如：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>ANewExtensionFactory<span class="operator">::</span>createExtension(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object<span class="operator">,</span>
+          <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>iid<span class="operator">,</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent) <span class="keyword">const</span>
+  {
+      <span class="keyword">if</span> (iid <span class="operator">!</span><span class="operator">=</span> Q_TYPEID(<span class="type"><a href="qdesignerpropertysheetextension.html">QDesignerPropertySheetExtension</a></span>))
+          <span class="keyword">return</span> <span class="number">0</span>;
+
+      <span class="keyword">if</span> (MyCustomWidget <span class="operator">*</span>widget <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>MyCustomWidget<span class="operator">*</span><span class="operator">&gt;</span>
+             (object))
+          <span class="keyword">return</span> <span class="keyword">new</span> MyPropertySheetExtension(widget<span class="operator">,</span> parent);
+
+      <span class="keyword">return</span> <span class="number">0</span>;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">或者您可以使用现有工厂，扩展</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#createExtension"><font style="vertical-align: inherit;">QExtensionFactory::createExtension</font></a><font style="vertical-align: inherit;"> () 函数，使工厂也能够创建属性表扩展扩展。例如：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>AGeneralExtensionFactory<span class="operator">::</span>createExtension(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object<span class="operator">,</span>
+          <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>iid<span class="operator">,</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent) <span class="keyword">const</span>
+  {
+      MyCustomWidget <span class="operator">*</span>widget <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>MyCustomWidget<span class="operator">*</span><span class="operator">&gt;</span>(object);
+
+      <span class="keyword">if</span> (widget <span class="operator">&amp;</span><span class="operator">&amp;</span> (iid <span class="operator">=</span><span class="operator">=</span> Q_TYPEID(<span class="type"><a href="qdesignertaskmenuextension.html">QDesignerTaskMenuExtension</a></span>))) {
+          <span class="keyword">return</span> <span class="keyword">new</span> MyTaskMenuExtension(widget<span class="operator">,</span> parent);
+
+      } <span class="keyword">else</span> <span class="keyword">if</span> (widget <span class="operator">&amp;</span><span class="operator">&amp;</span> (iid <span class="operator">=</span><span class="operator">=</span> Q_TYPEID(<span class="type"><a href="qdesignerpropertysheetextension.html">QDesignerPropertySheetExtension</a></span>))) {
+          <span class="keyword">return</span> <span class="keyword">new</span> MyPropertySheetExtension(widget<span class="operator">,</span> parent);
+
+      } <span class="keyword">else</span> {
+          <span class="keyword">return</span> <span class="number">0</span>;
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">有关使用扩展类的完整示例，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-taskmenuextension-example.html"><font style="vertical-align: inherit;">任务菜单扩展示例</font></a><font style="vertical-align: inherit;">。该示例展示了如何为 Qt 设计师 创建自定义组件插件，以及如何使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">类将自定义项添加到</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的任务菜单。</font></p>
+</div>
+<p><b>请参考 </b><a href="qdesignerdynamicpropertysheetextension.html">QDesignerDynamicPropertySheetExtension</a>, <a href="qextensionfactory.html">QExtensionFactory</a>, <a href="qextensionmanager.html">QExtensionManager</a>,
+<span lang="zh-cn">和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets-extensions.html"><font style="vertical-align: inherit;">创建自定义组件扩展</font></a>。</span></p>
+<!-- @@@QDesignerPropertySheetExtension -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$~QDesignerPropertySheetExtension[overload1]$$$~QDesignerPropertySheetExtension -->
+<h3 class="fn" id="dtor.QDesignerPropertySheetExtension"><a name="dtor.QDesignerPropertySheetExtension"></a><code>[virtual] </code>QDesignerPropertySheetExtension::<span class="name">~QDesignerPropertySheetExtension</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁属性表扩展。</font></p>
+<!-- @@@~QDesignerPropertySheetExtension -->
+<!-- $$$count[overload1]$$$count -->
+<h3 class="fn" id="count"><a name="count"></a><code>[pure virtual] </code><span class="type">int</span> QDesignerPropertySheetExtension::<span class="name">count</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回所选组件的属性数。</font></p>
+<!-- @@@count -->
+<!-- $$$hasReset[overload1]$$$hasResetint -->
+<h3 class="fn" id="hasReset"><a name="hasReset"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerPropertySheetExtension::<span class="name">hasReset</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果给定</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的属性编辑器中具有重置按钮，则返回 true ，否则返回 false。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a>()
+<span lang="zh-cn">和 </span>
+<a href="qdesignerpropertysheetextension.html#reset">reset</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@hasReset -->
+<!-- $$$indexOf[overload1]$$$indexOfconstQString& -->
+<h3 class="fn" id="indexOf"><a name="indexOf"></a><code>[pure virtual] </code><span class="type">int</span> QDesignerPropertySheetExtension::<span class="name">indexOf</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>) const</h3>
+<p><font style="vertical-align: inherit;">返回给定属性</font><i><font style="vertical-align: inherit;">name<span lang="zh-cn">（</span>名称<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">的索引。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#propertyName">propertyName</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@indexOf -->
+<!-- $$$isAttribute[overload1]$$$isAttributeint -->
+<h3 class="fn" id="isAttribute"><a name="isAttribute"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerPropertySheetExtension::<span class="name">isAttribute</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果给定</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性是一个属性，则返回 true，该属性将从 UI 文件中</font><i><font style="vertical-align: inherit;">排除</font></i><font style="vertical-align: inherit;">，否则返回 false。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a>()
+<span lang="zh-cn">和 </span>
+<a href="qdesignerpropertysheetextension.html#setAttribute">setAttribute</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@isAttribute -->
+<!-- $$$isChanged[overload1]$$$isChangedint -->
+<h3 class="fn" id="isChanged"><a name="isChanged"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerPropertySheetExtension::<span class="name">isChanged</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果给定</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性值与属性的默认值不同，则返回 true ，否则返回 false。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a>(), <a href="qdesignerpropertysheetextension.html#setChanged">setChanged</a>(),
+<span lang="zh-cn">和 </span>
+<a href="qdesignerpropertysheetextension.html#reset">reset</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@isChanged -->
+<!-- $$$isEnabled[overload1]$$$isEnabledint -->
+<h3 class="fn" id="isEnabled"><a name="isEnabled"></a><code>[virtual] </code><span class="type">bool</span> QDesignerPropertySheetExtension::<span class="name">isEnabled</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果在<i>Qt 设计师</i>的属性编辑器中启用了给定</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性，则返回 true ，否则返回 false。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 5.0 中引入的。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@isEnabled -->
+<!-- $$$isVisible[overload1]$$$isVisibleint -->
+<h3 class="fn" id="isVisible"><a name="isVisible"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerPropertySheetExtension::<span class="name">isVisible</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果给定</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的属性编辑器中可见，则返回 true ，否则返回 false。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html#indexOf"><font style="vertical-align: inherit;">indexOf</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html#setVisible"><font style="vertical-align: inherit;">setVisible</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@isVisible -->
+<!-- $$$property[overload1]$$$propertyint -->
+<h3 class="fn" id="property"><a name="property"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> QDesignerPropertySheetExtension::<span class="name">property</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p><font style="vertical-align: inherit;">返回给定</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性值。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a>(), <a href="qdesignerpropertysheetextension.html#setProperty">setProperty</a>(), <font style="vertical-align: inherit;">
+和</font><a href="qdesignerpropertysheetextension.html#propertyGroup">propertyGroup</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@property -->
+<!-- $$$propertyGroup[overload1]$$$propertyGroupint -->
+<h3 class="fn" id="propertyGroup"><a name="propertyGroup"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QDesignerPropertySheetExtension::<span class="name">propertyGroup</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p><font style="vertical-align: inherit;">返回给定</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性的属性组。</font></p>
+<p><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的属性编辑器支持属性组，即相关属性的部分。可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html#setPropertyGroup"><font style="vertical-align: inherit;">setPropertyGroup</font></a><font style="vertical-align: inherit;"> () 函数将属性与组相关联。任何属性的默认组是定义它的类的名称。例如，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#objectName-prop"><font style="vertical-align: inherit;">QObject::objectName</font></a><font style="vertical-align: inherit;">属性出现在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">属性组中。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a>()
+<span lang="zh-cn">和 </span>
+<a href="qdesignerpropertysheetextension.html#setPropertyGroup">setPropertyGroup</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@propertyGroup -->
+<!-- $$$propertyName[overload1]$$$propertyNameint -->
+<h3 class="fn" id="propertyName"><a name="propertyName"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QDesignerPropertySheetExtension::<span class="name">propertyName</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p><font style="vertical-align: inherit;">回给定</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性名称。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@propertyName -->
+<!-- $$$reset[overload1]$$$resetint -->
+<h3 class="fn" id="reset"><a name="reset"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerPropertySheetExtension::<span class="name">reset</span>(<span class="type">int</span> <i>index</i>)</h3>
+<p><font style="vertical-align: inherit;">将给定</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性值重置为默认值。如果可以找到默认值，则返回 true，否则返回 false。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a>(), <a href="qdesignerpropertysheetextension.html#hasReset">hasReset</a>(),
+<span lang="zh-cn">和 </span>
+<a href="qdesignerpropertysheetextension.html#isChanged">isChanged</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@reset -->
+<!-- $$$setAttribute[overload1]$$$setAttributeintbool -->
+<h3 class="fn" id="setAttribute"><a name="setAttribute"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerPropertySheetExtension::<span class="name">setAttribute</span>(<span class="type">int</span> <i>index</i>, <span class="type">bool</span> <i>attribute</i>)</h3>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">attribute</font></i><font style="vertical-align: inherit;">为true，则给定<span lang="zh-cn">index（</span></font><i><font style="vertical-align: inherit;">索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性将成为将从UI 文件中</font><i><font style="vertical-align: inherit;">排除</font></i><font style="vertical-align: inherit;">的属性；否则将被包括在内。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a>()
+<span lang="zh-cn">和 </span>
+<a href="qdesignerpropertysheetextension.html#isAttribute">isAttribute</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setAttribute -->
+<!-- $$$setChanged[overload1]$$$setChangedintbool -->
+<h3 class="fn" id="setChanged"><a name="setChanged"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerPropertySheetExtension::<span class="name">setChanged</span>(<span class="type">int</span> <i>index</i>, <span class="type">bool</span> <i>changed</i>)</h3>
+<p><font style="vertical-align: inherit;">根据<i>changed<span lang="zh-cn">（</span>更改<span lang="zh-cn">）</span>的</i>参数设置给定<i>index<span lang="zh-cn">（</span></i></font><i><font style="vertical-align: inherit;">索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性是否与其默认值不同。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a>()
+<span lang="zh-cn">和 </span>
+<a href="qdesignerpropertysheetextension.html#isChanged">isChanged</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setChanged -->
+<!-- $$$setProperty[overload1]$$$setPropertyintconstQVariant& -->
+<h3 class="fn" id="setProperty"><a name="setProperty"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerPropertySheetExtension::<span class="name">setProperty</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>value</i>)</h3>
+<p><font style="vertical-align: inherit;">设置给定<i>index<span lang="zh-cn">（</span>索引<span lang="zh-cn">）</span></i>处的属性</font><i><font style="vertical-align: inherit;">value<span lang="zh-cn">（</span>值</font></i><font style="vertical-align: inherit;"><span lang="zh-cn">）</span>。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">如果使用此函数更改属性的值，则不会更新撤消堆栈。为了确保可以使用撤消堆栈恢复属性的值，您必须使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setProperty"><font style="vertical-align: inherit;">QDesignerFormWindowCursorInterface::setProperty</font></a><font style="vertical-align: inherit;"> () 函数或其伙伴</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setWidgetProperty"><font style="vertical-align: inherit;">setWidgetProperty()</font></a><font style="vertical-align: inherit;">代替。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a>(), <a href="qdesignerpropertysheetextension.html#property">property</a>(), and <a href="qdesignerpropertysheetextension.html#propertyGroup">propertyGroup</a>().</p>
+<!-- @@@setProperty -->
+<!-- $$$setPropertyGroup[overload1]$$$setPropertyGroupintconstQString& -->
+<h3 class="fn" id="setPropertyGroup"><a name="setPropertyGroup"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerPropertySheetExtension::<span class="name">setPropertyGroup</span>(<span class="type">int</span> <i>index</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>group</i>)</h3>
+<p><font style="vertical-align: inherit;">将给定</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">index（</span>索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性的属性组设置为</font><i><font style="vertical-align: inherit;">group</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">将属性与组相关联会使其显示在属性编辑器中该组的部分中。任何属性的默认属性组都是定义它的类的名称。例如，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#objectName-prop"><font style="vertical-align: inherit;">QObject::objectName</font></a><font style="vertical-align: inherit;">属性出现在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">属性组中。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html#indexOf"><font style="vertical-align: inherit;">indexOf</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html#property"><font style="vertical-align: inherit;">property</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html#propertyGroup"><font style="vertical-align: inherit;">propertyGroup</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@setPropertyGroup -->
+<!-- $$$setVisible[overload1]$$$setVisibleintbool -->
+<h3 class="fn" id="setVisible"><a name="setVisible"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerPropertySheetExtension::<span class="name">setVisible</span>(<span class="type">int</span> <i>index</i>, <span class="type">bool</span> <i>visible</i>)</h3>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">visible</font></i><font style="vertical-align: inherit;">为true，则给定<i>index<span lang="zh-cn">（</span></i></font><i><font style="vertical-align: inherit;">索引<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">处的属性在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的属性编辑器中可见；否则该属性是隐藏的。</font></p>
+<p><b>请参考 </b><a href="qdesignerpropertysheetextension.html#indexOf">indexOf</a>()
+<span lang="zh-cn">和 </span>
+<a href="qdesignerpropertysheetextension.html#isVisible">isVisible</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setVisible -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

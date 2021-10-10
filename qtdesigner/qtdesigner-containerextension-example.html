@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- containerextension.qdoc -->
+  <title>容器扩展示例 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="examples-designer.html">Qt 设计师 Examples</a></td><td >容器扩展示例</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-containerextension-example.html#the-project-file-containerextension-pro"><font style="vertical-align: inherit;">项目文件：containerextension.pro</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-containerextension-example.html#multipagewidgetplugin-class-definition"><font style="vertical-align: inherit;">MultiPageWidgetPlugin 类定义</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-containerextension-example.html#multipagewidgetplugin-class-implementation"><font style="vertical-align: inherit;">MultiPageWidgetPlugin 类实现</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-containerextension-example.html#multipagewidgetextensionfactory-class-definition"><font style="vertical-align: inherit;">MultiPageWidgetExtensionFactory 类定义</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-containerextension-example.html#multipagewidgetextensionfactory-class-implementation"><font style="vertical-align: inherit;">MultiPageWidgetExtensionFactory 类实现</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-containerextension-example.html#multipagewidgetcontainerextension-class-definition"><font style="vertical-align: inherit;">MultiPageWidgetContainerExtension 类定义</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-containerextension-example.html#multipagewidgetcontainerextension-class-implementation"><font style="vertical-align: inherit;">MultiPageWidgetContainerExtension 类实现</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-containerextension-example.html#multipagewidget-class-definition"><font style="vertical-align: inherit;">MultiPageWidget 类定义</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">容器扩展示例</h1>
+<span class="subtitle"></span>
+<!-- $$$containerextension-brief -->
+<p><font style="vertical-align: inherit;">为</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">创建自定义多页插件。</font></p>
+<!-- @@@containerextension -->
+<!-- $$$containerextension-description -->
+<div class="descr"> <a name="details"></a>
+<p><font style="vertical-align: inherit;">容器扩展示例展示了如何使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html">QDesignerContainerExtension</a>类为</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">创建自定义多页插件。</font></p>
+<p class="centerAlign"><img src="images/containerextension-example.png" alt="" /></p><p><font style="vertical-align: inherit;">为了提供可以与</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">一起使用的自定义组件，我们需要提供一个自包含的实现。在这个例子中，我们使用一个自定义的多页组件来展示容器扩展功能。</font></p>
+<p>扩展是修改<i>Qt 设计师</i>行为的对象。<a href="qdesignercontainerextension.html">QDesignerContainerExtension</a>使<i>Qt 设计师</i>能够管理和操作一个定制的多页组件，也就是在组件中添加和删除页面。</p>
+<p><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">有四种可用的扩展类型：</font></p>
+<ul>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignermembersheetextension.html"><font style="vertical-align: inherit;">QDesignerMemberSheetExtension</font></a><font style="vertical-align: inherit;">提供了一个扩展，允许您操作组件的成员函数，当使用 Qt 设计师的编辑信号和槽的模式配置连接时显示该函数。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension</font></a><font style="vertical-align: inherit;">提供了一个扩展，允许您操作显示在 Qt 设计师 的属性编辑器中的组件的属性。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">提供了一个扩展，允许您将自定义菜单条目添加到</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的任务菜单。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html"><font style="vertical-align: inherit;">QDesignerContainerExtension</font></a><font style="vertical-align: inherit;">提供了一个扩展，允许您向</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">的多页面容器插件添加（和删除）页面。</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">您可以按照与本示例相同的模式使用所有扩展，只需替换相应的扩展基类。有关更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-module.html"><font style="vertical-align: inherit;">Qt 设计师 C++ 类</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">容器扩展示例包括四类：</font></p>
+<ul>
+<li><code>MultiPageWidget</code><font style="vertical-align: inherit;"> 是一个自定义容器组件，允许用户操作和填充其页面，并使用组合框在这些页面之间导航。</font></li>
+<li><code>MultiPageWidgetPlugin</code><font style="vertical-align: inherit;">将</font><code>MultiPageWidget</code><font style="vertical-align: inherit;">类公开给</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">。</font></li>
+<li><code>MultiPageWidgetExtensionFactory</code><font style="vertical-align: inherit;">创建一个</font><code>MultiPageWidgetContainerExtension</code><font style="vertical-align: inherit;">对象。</font></li>
+<li><code>MultiPageWidgetContainerExtension</code><font style="vertical-align: inherit;"> 提供容器扩展。</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">自定义组件插件的项目文件需要一些附加信息以确保它们在</font><i><font style="vertical-align: inherit;">Qt 设计师 </font></i><font style="vertical-align: inherit;">
+中工作。例如，自定义组件插件依赖于</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供的组件，这必须在我们使用的项目文件中指定。我们将首先看一下插件的项目文件。</font></p>
+<p><font style="vertical-align: inherit;">然后我们将继续复习这个</font><code>MultiPageWidgetPlugin</code><font style="vertical-align: inherit;">类，看看</font><code>MultiPageWidgetExtensionFactory</code><font style="vertical-align: inherit;">和</font><code>MultiPageWidgetContainerExtension</code><font style="vertical-align: inherit;">类。最后，我们将快速浏览一下</font><code>MultiPageWidget</code><font style="vertical-align: inherit;">类定义。</font></p>
+<a name="the-project-file-containerextension-pro"></a>
+<h2 id="the-project-file-containerextension-pro"><font style="vertical-align: inherit;">项目文件：containerextension.pro</font></h2>
+<p><font style="vertical-align: inherit;">项目文件必须包含一些附加信息以确保插件按预期工作：</font></p>
+<pre class="cpp">
+
+  TEMPLATE = lib
+  CONFIG  += plugin
+  QT      += widgets designer
+
+</pre>
+<p><code>TEMPLATE</code> 变量的值使得<code>qmake</code> 将自定义组件创建为库。稍后，我们将使用<a href="../qtcore/qtplugin.html#Q_PLUGIN_METADATA">Q_PLUGIN_METADATA</a>()宏来导出相关的组件信息，以确保Qt将组件识别为插件。</p>
+<p><font style="vertical-align: inherit;">该</font><code>CONFIG</code><font style="vertical-align: inherit;">变量设置为</font><code>plugin</code><font style="vertical-align: inherit;">，这确保</font><code>qmake</code><font style="vertical-align: inherit;">将自定义组件视为插件库。</font></p>
+<p><font style="vertical-align: inherit;">该</font><code>QT</code><font style="vertical-align: inherit;">变量包含的值</font><code>designer</code><font style="vertical-align: inherit;">。由于插件使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供的需要链接的组件，此值确保我们的插件链接到</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的库 ( </font><code>libQtDesigner.so</code><font style="vertical-align: inherit;">)。</font></p>
+<p><font style="vertical-align: inherit;">组件的头文件和源文件以通常的方式声明：</font></p>
+<pre class="cpp">
+
+  HEADERS += multipagewidget.h \
+             multipagewidgetplugin.h \
+             multipagewidgetcontainerextension.h \
+             multipagewidgetextensionfactory.h
+
+  SOURCES += multipagewidget.cpp \
+             multipagewidgetplugin.cpp \
+             multipagewidgetcontainerextension.cpp \
+             multipagewidgetextensionfactory.cpp
+
+  OTHER_FILES += multipagewidget.json
+
+</pre>
+<p><font style="vertical-align: inherit;">我们提供了插件接口的实现，以便</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">可以使用自定义组件。在这个特定的例子中，我们还提供了容器扩展接口和扩展工厂的实现。</font></p>
+<p><font style="vertical-align: inherit;">确保插件安装在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">搜索到的位置很重要。我们通过为项目指定目标路径并将其添加到要安装的项目列表来完成此操作：</font></p>
+<pre class="cpp">
+
+  target.path = $$[QT_INSTALL_PLUGINS]/designer
+  INSTALLS += target
+
+</pre>
+<p><font style="vertical-align: inherit;">容器扩展作为库创建，并在安装项目时与其他</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">插件一起安装（使用</font><code>make install</code><font style="vertical-align: inherit;">或等效的安装过程）。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果您希望插件出现在 Visual Studio 集成中，则必须在发布模式下构建插件，并且必须将它们的库复制到集成安装路径中的插件目录中（例如，请参阅 参考资料</font><code>C:/program files/trolltech as/visual studio integration/plugins</code><font style="vertical-align: inherit;">）。</font></p>
+<p><font style="vertical-align: inherit;">有关插件的更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/plugins-howto.html"><font style="vertical-align: inherit;">如何创建 Qt 插件</font></a><font style="vertical-align: inherit;">文档。</font></p>
+<a name="multipagewidgetplugin-class-definition"></a>
+<h2 id="multipagewidgetplugin-class-definition"><font style="vertical-align: inherit;">MultiPageWidgetPlugin 类定义</font></h2>
+<p><code>MultiPageWidgetPlugin</code> 类向<i>Qt 设计师</i>公开<code>MultiPageWidget</code> 
+类。它的定义类似于<a href="qtdesigner-customwidgetplugin-example.html">自定义组件插件示例</a>中的插件类。特定于这个自定义组件的类定义部分是类名和两个私有槽:</p>
+<pre class="cpp">
+
+  <span class="preprocessor">#ifndef MULTIPAGEWIDGETPLUGIN_H</span>
+  <span class="preprocessor">#define MULTIPAGEWIDGETPLUGIN_H</span>
+
+  <span class="preprocessor">#include &lt;QtUiPlugin/QDesignerCustomWidgetInterface&gt;</span>
+
+  <span class="keyword">class</span> <span class="type">QIcon</span>;
+  <span class="keyword">class</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>;
+
+  <span class="keyword">class</span> MultiPageWidgetPlugin: <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span> <span class="keyword">public</span> <span class="type"><a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a></span>
+  {
+      Q_OBJECT
+      Q_PLUGIN_METADATA(IID <span class="string">&quot;org.qt-project.Qt.QDesignerCustomWidget&quot;</span>)
+      Q_INTERFACES(<span class="type"><a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a></span>)
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> MultiPageWidgetPlugin(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> name() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> group() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> toolTip() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> whatsThis() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> includeFile() <span class="keyword">const</span> override;
+      <span class="type">QIcon</span> icon() <span class="keyword">const</span> override;
+      bool isContainer() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>createWidget(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent) override;
+      bool isInitialized() <span class="keyword">const</span> override;
+      <span class="type">void</span> initialize(<span class="type"><a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a></span> <span class="operator">*</span>formEditor) override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> domXml() <span class="keyword">const</span> override;
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> currentIndexChanged(<span class="type">int</span> index);
+      <span class="type">void</span> pageTitleChanged(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>title);
+
+  <span class="keyword">private</span>:
+      bool initialized <span class="operator">=</span> <span class="keyword">false</span>;
+  };
+
+  <span class="preprocessor">#endif</span>
+
+</pre>
+<p><font style="vertical-align: inherit;">插件类为</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供了关于我们插件的基本信息，例如它的类名和它的包含文件。此外，它知道如何创建</font><code>MultiPageWidget</code><font style="vertical-align: inherit;">组件的实例。</font><code>MultiPageWidgetPlugin</code><font style="vertical-align: inherit;">还定义了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#initialize"><font style="vertical-align: inherit;">initialize()</font></a><font style="vertical-align: inherit;">函数，该函数在插件加载到</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">后调用。该函数的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">参数为插件提供了通往所有</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;"> API 的网关。</font></p>
+<p><font style="vertical-align: inherit;">在像我们这样的多页组件的情况下，我们还必须实现两个私有槽 currentIndexChanged() 和 pageTitleChanged()，以便能够在用户查看另一个页面或更改其中一个页面时更新</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的属性编辑器标题。为了能够给每个页面自己的标题，我们选择使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#windowTitle-prop"><font style="vertical-align: inherit;">QWidget::windowTitle</font></a><font style="vertical-align: inherit;">属性来存储页面标题（更多信息参见 MultiPageWidget 类</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-containerextension-multipagewidget-cpp.html"><font style="vertical-align: inherit;">实现</font></a><font style="vertical-align: inherit;">）。请注意，当前无法在不使用预定义属性作为占位符的情况下向页面添加自定义属性（例如，页面标题）。</font></p>
+<p><code>MultiPageWidgetPlugin</code> 类继承了<a href="../qtcore/qobject.html">QObject</a>和<a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a>。重要的是要记住，当使用多重继承时，要确保所有的接口(即不继承<a href="../qtcore/qobject.html#Q_OBJECT">Q_OBJECT</a>的类)都是使用<a href="../qtcore/qobject.html#Q_INTERFACES">Q_INTERFACES</a>()宏让元对象系统知道的。这使得<i>Qt 设计师</i>可以使用<a href="../qtcore/qobject.html#qobject_cast">qobject_cast</a>(QObject 
+* object)<span lang="zh-cn">转换<a href="../qtcore/qobject.html">QObject</a>指针</span>来查询支持的接口。</p>
+<a name="multipagewidgetplugin-class-implementation"></a>
+<h2 id="multipagewidgetplugin-class-implementation"><font style="vertical-align: inherit;">MultiPageWidgetPlugin 类实现</font></h2>
+<p><font style="vertical-align: inherit;">MultiPageWidgetPlugin 类实现在大多数情况下等同于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html"><font style="vertical-align: inherit;"><span lang="zh-cn">自定义组件插件示例</span></font></a><font style="vertical-align: inherit;">的插件类：</font></p>
+<pre class="cpp">
+
+  MultiPageWidgetPlugin<span class="operator">::</span>MultiPageWidgetPlugin(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>(parent)
+  {
+  }
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> MultiPageWidgetPlugin<span class="operator">::</span>name() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> QLatin1String(<span class="string">&quot;MultiPageWidget&quot;</span>);
+  }
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> MultiPageWidgetPlugin<span class="operator">::</span>group() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> QLatin1String(<span class="string">&quot;Display Widgets [Examples]&quot;</span>);
+  }
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> MultiPageWidgetPlugin<span class="operator">::</span>toolTip() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span>();
+  }
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> MultiPageWidgetPlugin<span class="operator">::</span>whatsThis() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span>();
+  }
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> MultiPageWidgetPlugin<span class="operator">::</span>includeFile() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> QLatin1String(<span class="string">&quot;multipagewidget.h&quot;</span>);
+  }
+
+  <span class="type">QIcon</span> MultiPageWidgetPlugin<span class="operator">::</span>icon() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type">QIcon</span>();
+  }
+
+  bool MultiPageWidgetPlugin<span class="operator">::</span>isInitialized() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> initialized;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">不同的函数之一是 isContainer() 函数，它在此示例中返回 true，因为我们的自定义组件旨在用作容器。</font></p>
+<pre class="cpp">
+
+  bool MultiPageWidgetPlugin<span class="operator">::</span>isContainer() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="keyword">true</span>;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">另一个不同的函数是创建我们的自定义组件的函数：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>MultiPageWidgetPlugin<span class="operator">::</span>createWidget(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent)
+  {
+      MultiPageWidget <span class="operator">*</span>widget <span class="operator">=</span> <span class="keyword">new</span> MultiPageWidget(parent);
+      connect(widget<span class="operator">,</span> <span class="operator">&amp;</span>MultiPageWidget<span class="operator">::</span>currentIndexChanged<span class="operator">,</span>
+              <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>MultiPageWidgetPlugin<span class="operator">::</span>currentIndexChanged);
+      connect(widget<span class="operator">,</span> <span class="operator">&amp;</span>MultiPageWidget<span class="operator">::</span>pageTitleChanged<span class="operator">,</span>
+              <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>MultiPageWidgetPlugin<span class="operator">::</span>pageTitleChanged);
+      <span class="keyword">return</span> widget;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">除了创建和返回组件外，我们还将自定义容器组件的 currentIndexChanged() 信号连接到插件的 currentIndexChanged() 槽，以确保</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的属性编辑器在用户查看另一个页面时更新。我们还将组件的 pageTitleChanged() 信号连接到插件的 pageTitleChanged() 槽。</font></p>
+<p><font style="vertical-align: inherit;">每当我们的自定义组件的 currentIndexChanged()</font><i><font style="vertical-align: inherit;">信号</font></i><font style="vertical-align: inherit;">发出时，即每当用户查看另一个页面时，都会调用 currentIndexChanged() 槽：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> MultiPageWidgetPlugin<span class="operator">::</span>currentIndexChanged(<span class="type">int</span> index)
+  {
+      Q_UNUSED(index);
+      MultiPageWidget <span class="operator">*</span>widget <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>MultiPageWidget<span class="operator">*</span><span class="operator">&gt;</span>(sender());
+
+</pre>
+<p><font style="vertical-align: inherit;">首先，我们使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#sender"><font style="vertical-align: inherit;">QObject::sender</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#qobject_cast"><font style="vertical-align: inherit;">qobject_cast</font></a><font style="vertical-align: inherit;"> () 函数检索发出信号的对象。如果在信号激活的槽中调用它，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#sender"><font style="vertical-align: inherit;">QObject::sender</font></a><font style="vertical-align: inherit;"> () 返回一个指向发送信号的对象的指针；否则返回 0。</font></p>
+<pre class="cpp">
+
+      <span class="keyword">if</span> (widget) {
+          <span class="type"><a href="qdesignerformwindowinterface.html">QDesignerFormWindowInterface</a></span> <span class="operator">*</span>form <span class="operator">=</span> <span class="type"><a href="qdesignerformwindowinterface.html">QDesignerFormWindowInterface</a></span><span class="operator">::</span>findFormWindow(widget);
+          <span class="keyword">if</span> (form)
+              form<span class="operator">-</span><span class="operator">&gt;</span>emitSelectionChanged();
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">一旦我们有了组件，我们就可以更新属性编辑器。</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension</font></a><font style="vertical-align: inherit;">类来提供其属性编辑器，只要在其工作区中选择了组件，Qt 设计师就会查询组件的属性表扩展并更新属性编辑器。</font></p>
+<p><font style="vertical-align: inherit;">所以我们想要实现的是通知</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">我们的组件的</font><i><font style="vertical-align: inherit;">内部</font></i><font style="vertical-align: inherit;">选择发生了变化：首先我们使用静态</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#findFormWindow"><font style="vertical-align: inherit;">QDesignerFormWindowInterface::findFormWindow</font></a><font style="vertical-align: inherit;"> () 函数来检索包含该widget的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowInterface</font></a><font style="vertical-align: inherit;">对象。该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowInterface</font></a><font style="vertical-align: inherit;">类允许您查询和操作出现在Qt设计师的工作空间形式的窗口。然后，我们要做的就是发出其</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#emitSelectionChanged"><font style="vertical-align: inherit;">emitSelectionChanged()</font></a><font style="vertical-align: inherit;">信号，强制更新属性编辑器。</font></p>
+<p>当更改页面标题时，属性编辑器的一般刷新是不够的，因为实际上需要更新的是页面的属性扩展。出于这个原因，我们需要访问我们想要更改标题的页面的<a href="qdesignerpropertysheetextension.html">QDesignerPropertySheetExtension</a>对象。<a href="qdesignerpropertysheetextension.html">QDesignerPropertySheetExtension</a>类也允许你操作组件的属性，但要获得扩展，我们必须首先获取对<i>Qt 设计师</i>r的扩展管理器的访问:</p>
+<pre class="cpp">
+
+  <span class="type">void</span> MultiPageWidgetPlugin<span class="operator">::</span>pageTitleChanged(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>title)
+  {
+      Q_UNUSED(title);
+      MultiPageWidget <span class="operator">*</span>widget <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>MultiPageWidget<span class="operator">*</span><span class="operator">&gt;</span>(sender());
+      <span class="keyword">if</span> (widget) {
+          <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>page <span class="operator">=</span> widget<span class="operator">-</span><span class="operator">&gt;</span>widget(widget<span class="operator">-</span><span class="operator">&gt;</span>currentIndex());
+          <span class="type"><a href="qdesignerformwindowinterface.html">QDesignerFormWindowInterface</a></span> <span class="operator">*</span>form;
+          form <span class="operator">=</span> <span class="type"><a href="qdesignerformwindowinterface.html">QDesignerFormWindowInterface</a></span><span class="operator">::</span>findFormWindow(widget);
+
+</pre>
+<p><font style="vertical-align: inherit;">同样，我们首先使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#sender"><font style="vertical-align: inherit;">QObject::sender</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#qobject_cast"><font style="vertical-align: inherit;">qobject_cast</font></a><font style="vertical-align: inherit;"> () 函数检索发出信号的组件。然后我们从发出信号的组件中检索当前页面，并使用静态</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#findFormWindow"><font style="vertical-align: inherit;">QDesignerFormWindowInterface::findFormWindow</font></a><font style="vertical-align: inherit;"> () 函数来检索包含我们的组件的表单。</font></p>
+<pre class="cpp">
+
+              <span class="type"><a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a></span> <span class="operator">*</span>editor <span class="operator">=</span> form<span class="operator">-</span><span class="operator">&gt;</span>core();
+              <span class="type"><a href="qextensionmanager.html">QExtensionManager</a></span> <span class="operator">*</span>manager <span class="operator">=</span> editor<span class="operator">-</span><span class="operator">&gt;</span>extensionManager();
+
+</pre>
+<p><font style="vertical-align: inherit;">现在我们有了表单窗口，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowInterface</font></a><font style="vertical-align: inherit;">类提供了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#core"><font style="vertical-align: inherit;">core()</font></a><font style="vertical-align: inherit;">函数，它返回当前的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">对象。该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">类允许您访问的Qt 设计师的各种组件。特别是，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html#extensionManager"><font style="vertical-align: inherit;">QDesignerFormEditorInterface::extensionManager</font></a><font style="vertical-align: inherit;"> () 函数返回对当前扩展管理器的引用。</font></p>
+<pre class="cpp">
+
+              <span class="type"><a href="qdesignerpropertysheetextension.html">QDesignerPropertySheetExtension</a></span> <span class="operator">*</span>sheet;
+              sheet <span class="operator">=</span> qt_extension<span class="operator">&lt;</span><span class="type"><a href="qdesignerpropertysheetextension.html">QDesignerPropertySheetExtension</a></span><span class="operator">*</span><span class="operator">&gt;</span>(manager<span class="operator">,</span> page);
+              <span class="keyword">const</span> <span class="type">int</span> propertyIndex <span class="operator">=</span> sheet<span class="operator">-</span><span class="operator">&gt;</span>indexOf(QLatin1String(<span class="string">&quot;windowTitle&quot;</span>));
+              sheet<span class="operator">-</span><span class="operator">&gt;</span>setChanged(propertyIndex<span class="operator">,</span> <span class="keyword">true</span>);
+          }
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">一旦我们有了扩展管理器，我们就可以更新扩展表：首先，我们使用 qt_extension() 函数检索要更改标题的页面的属性扩展。然后我们使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html#indexOf"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension::indexOf</font></a><font style="vertical-align: inherit;"> () 函数检索页面标题的索引。如前所述，我们选择使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#windowTitle-prop"><font style="vertical-align: inherit;">QWidget::windowTitle</font></a><font style="vertical-align: inherit;">属性来存储页面标题（有关更多信息，请参阅 MultiPageWidget 类</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-containerextension-multipagewidget-cpp.html"><font style="vertical-align: inherit;">实现</font></a><font style="vertical-align: inherit;">）。最后，我们通过调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html#setChanged"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension::setChanged</font></a><font style="vertical-align: inherit;"> () 函数隐式地强制更新页面的属性表。</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> MultiPageWidgetPlugin<span class="operator">::</span>initialize(<span class="type"><a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a></span> <span class="operator">*</span>formEditor)
+  {
+      <span class="keyword">if</span> (initialized)
+          <span class="keyword">return</span>;
+
+</pre>
+<p><font style="vertical-align: inherit;">还要注意 initialize() 函数：该</font><code>initialize()</code><font style="vertical-align: inherit;">函数采用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">对象作为参数。</font></p>
+<pre class="cpp">
+
+      <span class="type"><a href="qextensionmanager.html">QExtensionManager</a></span> <span class="operator">*</span>manager <span class="operator">=</span> formEditor<span class="operator">-</span><span class="operator">&gt;</span>extensionManager();
+
+</pre>
+<p><font style="vertical-align: inherit;">创建与自定义组件插件关联的扩展时，我们需要访问</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的当前扩展管理器，我们从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">参数中检索该扩展管理器。</font></p>
+<p><font style="vertical-align: inherit;">除了允许您操作组件的属性之外，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionmanager.html"><font style="vertical-align: inherit;">QExtensionManager</font></a><font style="vertical-align: inherit;">类还为</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供了扩展管理工具。使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的当前扩展管理器，您可以检索给定对象的扩展。您还可以注册和取消注册给定对象的扩展。请记住，扩展是一个修改</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">行为的对象。</font></p>
+<p><font style="vertical-align: inherit;">注册扩展时，实际上注册的是关联的扩展工厂。在</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">，扩展工厂用于根据需要查找和创建命名扩展。因此，在此示例中，直到</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">必须知道关联的组件是否为容器时，才会创建容器扩展本身。</font></p>
+<pre class="cpp">
+
+      <span class="type"><a href="qextensionfactory.html">QExtensionFactory</a></span> <span class="operator">*</span>factory <span class="operator">=</span> <span class="keyword">new</span> MultiPageWidgetExtensionFactory(manager);
+
+      Q_ASSERT(manager <span class="operator">!</span><span class="operator">=</span> <span class="number">0</span>);
+      manager<span class="operator">-</span><span class="operator">&gt;</span>registerExtensions(factory<span class="operator">,</span> Q_TYPEID(<span class="type"><a href="qdesignercontainerextension.html">QDesignerContainerExtension</a></span>));
+
+      initialized <span class="operator">=</span> <span class="keyword">true</span>;
+  }
+
+</pre>
+<p>我们创建了一个<code>MultiPageWidgetExtensionFactory</code> 对象，我们使用从<a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a>参数获取的<i>Qt 设计师</i><span lang="zh-cn">的当</span>前<a href="qextensionmanager.html">扩展管理器</a>注册该对象。第一个参数是新创建的工厂，第二个参数是扩展标识符，它是一个字符串。<code>Q_TYPEID()</code>宏只是将字符串转换为<a href="../qtcore/qlatin1string.html">QLatin1String</a>。</p>
+<p><code>MultiPageWidgetExtensionFactory</code> 类是<a href="qextensionfactory.html">QExtensionFactory</a>的子类。当<i>Qt 设计师</i>必须知道一个组件是否是容器时，<i>Qt 设计师</i>的扩展管理器将遍历其所有注册的工厂，调用第一个能够为该组件创建容器扩展的工厂。该工厂将依次创建一个<code>MultiPageWidgetExtension</code> 
+对象。</p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> MultiPageWidgetPlugin<span class="operator">::</span>domXml() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> QLatin1String(<span class="string">&quot;\
+  &lt;ui language=\&quot;c++\&quot;&gt;\
+      &lt;widget class=\&quot;MultiPageWidget\&quot; name=\&quot;multipagewidget\&quot;&gt;\
+          &lt;widget class=\&quot;QWidget\&quot; name=\&quot;page\&quot; /&gt;\
+      &lt;/widget&gt;\
+      &lt;customwidgets&gt;\
+          &lt;customwidget&gt;\
+              &lt;class&gt;MultiPageWidget&lt;/class&gt;\
+              &lt;extends&gt;QWidget&lt;/extends&gt;\
+              &lt;addpagemethod&gt;addPage&lt;/addpagemethod&gt;\
+          &lt;/customwidget&gt;\
+      &lt;/customwidgets&gt;\
+  &lt;/ui&gt;&quot;</span>);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">最后来看一下</font><code>domXml()</code><font style="vertical-align: inherit;">函数。此函数包括</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">使用的标准 XML 格式的组件的默认设置。在这种情况下，我们指定容器的第一页；必须在此函数中指定多页组件的任何初始页面。</font></p>
+<pre class="cpp">
+
+      Q_PLUGIN_METADATA(IID <span class="string">&quot;org.qt-project.Qt.QDesignerCustomWidget&quot;</span>)
+
+</pre>
+<p><font style="vertical-align: inherit;">记住使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA"><font style="vertical-align: inherit;">Q_PLUGIN_METADATA</font></a><font style="vertical-align: inherit;"> () 宏导出<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA">MultiPageWidgetPlugin</a>类以与 Qt 的插件处理类一起使用：该宏确保</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">可以访问和构建自定义组件。没有这个宏，</font><i><font style="vertical-align: inherit;">Qt 设计师 就</font></i><font style="vertical-align: inherit;">无法使用组件。</font></p>
+<a name="multipagewidgetextensionfactory-class-definition"></a>
+<h2 id="multipagewidgetextensionfactory-class-definition"><font style="vertical-align: inherit;">MultiPageWidgetExtensionFactory 类定义</font></h2>
+<p><code>MultiPageWidgetExtensionFactory</code> 类继承了<a href="qextensionfactory.html">QExtensionFactory</a>，它为<i>Qt 设计师</i>提供了一个标准的扩展工厂。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> MultiPageWidgetExtensionFactory: <span class="keyword">public</span> <span class="type"><a href="qextensionfactory.html">QExtensionFactory</a></span>
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> MultiPageWidgetExtensionFactory(<span class="type"><a href="qextensionmanager.html">QExtensionManager</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+  <span class="keyword">protected</span>:
+      <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>createExtension(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object<span class="operator">,</span> <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>iid<span class="operator">,</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent) <span class="keyword">const</span> override;
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">子类的目的是重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#createExtension"><font style="vertical-align: inherit;">QExtensionFactory::createExtension</font></a><font style="vertical-align: inherit;"> () 函数，使其能够创建</font><code>MultiPageWidget</code><font style="vertical-align: inherit;">容器扩展。</font></p>
+<a name="multipagewidgetextensionfactory-class-implementation"></a>
+<h2 id="multipagewidgetextensionfactory-class-implementation"><font style="vertical-align: inherit;">MultiPageWidgetExtensionFactory 类实现</font></h2>
+<p><font style="vertical-align: inherit;">类构造函数简单地调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">基类构造函数：</font></p>
+<pre class="cpp">
+
+  MultiPageWidgetExtensionFactory<span class="operator">::</span>MultiPageWidgetExtensionFactory(<span class="type"><a href="qextensionmanager.html">QExtensionManager</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="qextensionfactory.html">QExtensionFactory</a></span>(parent)
+  {}
+
+</pre>
+<p><font style="vertical-align: inherit;">如上所述，当</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">必须知道关联的组件是否是容器时，会调用工厂。</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>MultiPageWidgetExtensionFactory<span class="operator">::</span>createExtension(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object<span class="operator">,</span>
+                                                            <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>iid<span class="operator">,</span>
+                                                            <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent) <span class="keyword">const</span>
+  {
+      MultiPageWidget <span class="operator">*</span>widget <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>MultiPageWidget<span class="operator">*</span><span class="operator">&gt;</span>(object);
+
+      <span class="keyword">if</span> (widget <span class="operator">&amp;</span><span class="operator">&amp;</span> (iid <span class="operator">=</span><span class="operator">=</span> Q_TYPEID(<span class="type"><a href="qdesignercontainerextension.html">QDesignerContainerExtension</a></span>)))
+          <span class="keyword">return</span> <span class="keyword">new</span> MultiPageWidgetContainerExtension(widget<span class="operator">,</span> parent);
+      <span class="keyword">return</span> nullptr;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">无论请求的扩展与容器、成员表、属性表还是任务菜单相关联，<i>Qt 设计师</i>的行为都是相同的：它的扩展管理器运行所有注册的扩展工厂，调用</font><code>createExtension()</code><font style="vertical-align: inherit;">每个扩展工厂，直到一个响应创建请求的扩展工厂延期。</font></p>
+<p><font style="vertical-align: inherit;">所以我们做的第一件事</font><code>MultiPageWidgetExtensionFactory::createExtension()</code><font style="vertical-align: inherit;">是检查请求扩展的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">是否实际上是一个</font><code>MultiPageWidget</code><font style="vertical-align: inherit;">对象。然后我们检查请求的扩展是否是容器扩展。</font></p>
+<p><font style="vertical-align: inherit;">如果对象是请求容器扩展的 MultiPageWidget，我们创建并返回一个</font><code>MultiPageWidgetExtension</code><font style="vertical-align: inherit;">对象。否则，我们只需返回一个空指针，允许</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的扩展管理器继续搜索已注册的工厂。</font></p>
+<a name="multipagewidgetcontainerextension-class-definition"></a>
+<h2 id="multipagewidgetcontainerextension-class-definition"><font style="vertical-align: inherit;">MultiPageWidgetContainerExtension 类定义</font></h2>
+<p><code>MultiPageWidgetContainerExtension</code> 类继承了<a href="qdesignercontainerextension.html">QDesignerContainerExtension</a>，它允许你在<i>Qt 设计师</i>中的多页容器插件中添加(和删除)页面。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> MultiPageWidgetContainerExtension: <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span>
+                                           <span class="keyword">public</span> <span class="type"><a href="qdesignercontainerextension.html">QDesignerContainerExtension</a></span>
+  {
+      Q_OBJECT
+      Q_INTERFACES(<span class="type"><a href="qdesignercontainerextension.html">QDesignerContainerExtension</a></span>)
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> MultiPageWidgetContainerExtension(MultiPageWidget <span class="operator">*</span>widget<span class="operator">,</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent);
+
+      <span class="type">void</span> addWidget(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>widget) override;
+      <span class="type">int</span> count() <span class="keyword">const</span> override;
+      <span class="type">int</span> currentIndex() <span class="keyword">const</span> override;
+      <span class="type">void</span> insertWidget(<span class="type">int</span> index<span class="operator">,</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>widget) override;
+      <span class="type">void</span> remove(<span class="type">int</span> index) override;
+      <span class="type">void</span> setCurrentIndex(<span class="type">int</span> index) override;
+      <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>widget(<span class="type">int</span> index) <span class="keyword">const</span> override;
+
+  <span class="keyword">private</span>:
+      MultiPageWidget <span class="operator">*</span>myWidget;
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">重要的是要认识到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html"><font style="vertical-align: inherit;">QDesignerContainerExtension</font></a><font style="vertical-align: inherit;">类仅用于为</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供对自定义多页组件功能的访问；您的自定义多页组件必须实现与扩展功能相对应的功能。</font></p>
+<p><font style="vertical-align: inherit;">还要注意，我们实现了一个带有</font><i><font style="vertical-align: inherit;">两个</font></i><font style="vertical-align: inherit;">参数的构造函数：父组件和</font><code>MultiPageWidget</code><font style="vertical-align: inherit;">为其请求任务菜单的对象。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html">QDesignerContainerExtension</a>在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的任务菜单中提供了<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html">几个菜单项</a>，使用户能够在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的工作区中向关联的自定义多页组件添加或删除页面。</font></p>
+<a name="multipagewidgetcontainerextension-class-implementation"></a>
+<h2 id="multipagewidgetcontainerextension-class-implementation"><font style="vertical-align: inherit;">MultiPageWidgetContainerExtension 类实现</font></h2>
+<p><font style="vertical-align: inherit;">在构造函数中，我们保存对</font><code>MultiPageWidget</code><font style="vertical-align: inherit;">作为参数发送的对象的引用，即与扩展关联的组件。稍后我们将需要它来访问执行请求操作的自定义多页组件。</font></p>
+<pre class="cpp">
+
+  MultiPageWidgetContainerExtension<span class="operator">::</span>MultiPageWidgetContainerExtension(MultiPageWidget <span class="operator">*</span>widget<span class="operator">,</span>
+                                                                       <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>(parent)
+      <span class="operator">,</span> myWidget(widget)
+  {
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">要完全启用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">来管理和操作您的自定义多页组件，您必须重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html"><font style="vertical-align: inherit;">QDesignerContainerExtension 的</font></a><font style="vertical-align: inherit;">所有功能：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> MultiPageWidgetContainerExtension<span class="operator">::</span>addWidget(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>widget)
+  {
+      myWidget<span class="operator">-</span><span class="operator">&gt;</span>addPage(widget);
+  }
+
+  <span class="type">int</span> MultiPageWidgetContainerExtension<span class="operator">::</span>count() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> myWidget<span class="operator">-</span><span class="operator">&gt;</span>count();
+  }
+
+  <span class="type">int</span> MultiPageWidgetContainerExtension<span class="operator">::</span>currentIndex() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> myWidget<span class="operator">-</span><span class="operator">&gt;</span>currentIndex();
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">您必须重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html#addWidget"><font style="vertical-align: inherit;">addWidget()</font></a><font style="vertical-align: inherit;">将给定页面添加到容器中，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html#count"><font style="vertical-align: inherit;">count()</font></a><font style="vertical-align: inherit;">返回容器中的页面数，而</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html#currentIndex"><font style="vertical-align: inherit;">currentIndex()</font></a><font style="vertical-align: inherit;">返回当前选定页面的索引。</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> MultiPageWidgetContainerExtension<span class="operator">::</span>insertWidget(<span class="type">int</span> index<span class="operator">,</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>widget)
+  {
+      myWidget<span class="operator">-</span><span class="operator">&gt;</span>insertPage(index<span class="operator">,</span> widget);
+  }
+
+  <span class="type">void</span> MultiPageWidgetContainerExtension<span class="operator">::</span>remove(<span class="type">int</span> index)
+  {
+      myWidget<span class="operator">-</span><span class="operator">&gt;</span>removePage(index);
+  }
+
+  <span class="type">void</span> MultiPageWidgetContainerExtension<span class="operator">::</span>setCurrentIndex(<span class="type">int</span> index)
+  {
+      myWidget<span class="operator">-</span><span class="operator">&gt;</span>setCurrentIndex(index);
+  }
+
+  <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span><span class="operator">*</span> MultiPageWidgetContainerExtension<span class="operator">::</span>widget(<span class="type">int</span> index) <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> myWidget<span class="operator">-</span><span class="operator">&gt;</span>widget(index);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">您必须重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html#insertWidget"><font style="vertical-align: inherit;">insertWidget()</font></a><font style="vertical-align: inherit;">在给定索引处向容器添加给定页面，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html#remove"><font style="vertical-align: inherit;">remove()</font></a><font style="vertical-align: inherit;">删除给定索引处的页面，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html#setCurrentIndex"><font style="vertical-align: inherit;">setCurrentIndex()</font></a><font style="vertical-align: inherit;">设置当前选定页面的索引，最后</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html#widget"><font style="vertical-align: inherit;">widget()</font></a><font style="vertical-align: inherit;">返回页面给定的索引。</font></p>
+<a name="multipagewidget-class-definition"></a>
+<h2 id="multipagewidget-class-definition"><font style="vertical-align: inherit;">MultiPageWidget 类定义</font></h2>
+<p><font style="vertical-align: inherit;">MultiPageWidget 类是一个自定义容器组件，它允许用户操作和填充其页面，并使用组合框在这些页面之间导航。</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> MultiPageWidget : <span class="keyword">public</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>
+  {
+      Q_OBJECT
+      Q_PROPERTY(<span class="type">int</span> currentIndex READ currentIndex WRITE setCurrentIndex)
+      Q_PROPERTY(<span class="type"><a href="../qtcore/qstring.html">QString</a></span> pageTitle READ pageTitle WRITE setPageTitle STORED <span class="keyword">false</span>)
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> MultiPageWidget(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+      <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> sizeHint() <span class="keyword">const</span> override;
+
+      <span class="type">int</span> count() <span class="keyword">const</span>;
+      <span class="type">int</span> currentIndex() <span class="keyword">const</span>;
+      <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>widget(<span class="type">int</span> index);
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> pageTitle() <span class="keyword">const</span>;
+
+  <span class="keyword">public</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> addPage(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>page);
+      <span class="type">void</span> insertPage(<span class="type">int</span> index<span class="operator">,</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>page);
+      <span class="type">void</span> removePage(<span class="type">int</span> index);
+      <span class="type">void</span> setPageTitle(<span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="keyword">const</span> <span class="operator">&amp;</span>newTitle);
+      <span class="type">void</span> setCurrentIndex(<span class="type">int</span> index);
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> pageWindowTitleChanged();
+
+  <span class="keyword">signals</span>:
+      <span class="type">void</span> currentIndexChanged(<span class="type">int</span> index);
+      <span class="type">void</span> pageTitleChanged(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>title);
+
+  <span class="keyword">private</span>:
+      <span class="type"><a href="../qtwidgets/qstackedwidget.html">QStackedWidget</a></span> <span class="operator">*</span>stackWidget;
+      <span class="type"><a href="../qtwidgets/qcombobox.html">QComboBox</a></span> <span class="operator">*</span>comboBox;
+  };
+
+</pre>
+<p>需要注意的主要细节是，你的定制多页组件必须实现与<a href="qdesignercontainerextension.html">QDesignerContainerExtension</a>成员函数相对应的功能，因为<a href="qdesignercontainerextension.html">QDesignerContainerExtension</a>类只是为了让<i>Qt 设计师</i> 
+访问你的定制多页组件的功能。</p>
+<p>此外，我们声明了<code>currentIndex</code> 和<code>pageTitle</code> 
+属性，以及它们关联的set和get函数。通过将这些属性声明为属性，我们允许<i>Qt 设计师</i> 
+以管理MultiPageWidget组件从them 和<a href="../qtcore/qobject.html">QObject</a>继承的属性的方式来管理它们，例如使用属性编辑器。</p>
+<p><font style="vertical-align: inherit;">注意</font><code>STORED</code><font style="vertical-align: inherit;">属性声明中的</font><code>pageTitle</code><font style="vertical-align: inherit;">属性：</font><code>STORED</code><font style="vertical-align: inherit;">属性表示持久性，即声明在存储对象状态时是否必须记住属性的值。如上所述，我们选择使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#windowTitle-prop"><font style="vertical-align: inherit;">QWidget::windowTitle</font></a><font style="vertical-align: inherit;">属性存储页面标题，以便能够为每个页面提供自己的标题。出于这个原因，该</font><code>pageTitle</code><font style="vertical-align: inherit;">属性是一个“假”属性，用于编辑目的，不需要存储。</font></p>
+<p><font style="vertical-align: inherit;">我们还必须实现并发出 currentIndexChanged() 和 pageTitleChanged() 信号，以确保</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的属性编辑器在用户查看另一个页面或更改其中一个页面标题时更新。</font></p>
+<p><font style="vertical-align: inherit;">有关更多详细信息，请参阅 MultiPageWidget 类</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-containerextension-multipagewidget-cpp.html"><font style="vertical-align: inherit;">实现</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">文件：</font></p>
+<ul>
+<li><a href="qtdesigner-containerextension-containerextension-pro.html">containerextension/containerextension.pro</a></li>
+<li><a href="qtdesigner-containerextension-multipagewidget-cpp.html">containerextension/multipagewidget.cpp</a></li>
+<li><a href="qtdesigner-containerextension-multipagewidget-h.html">containerextension/multipagewidget.h</a></li>
+<li><a href="qtdesigner-containerextension-multipagewidgetcontainerextension-cpp.html">containerextension/multipagewidgetcontainerextension.cpp</a></li>
+<li><a href="qtdesigner-containerextension-multipagewidgetcontainerextension-h.html">containerextension/multipagewidgetcontainerextension.h</a></li>
+<li><a href="qtdesigner-containerextension-multipagewidgetextensionfactory-cpp.html">containerextension/multipagewidgetextensionfactory.cpp</a></li>
+<li><a href="qtdesigner-containerextension-multipagewidgetextensionfactory-h.html">containerextension/multipagewidgetextensionfactory.h</a></li>
+<li><a href="qtdesigner-containerextension-multipagewidgetplugin-cpp.html">containerextension/multipagewidgetplugin.cpp</a></li>
+<li><a href="qtdesigner-containerextension-multipagewidgetplugin-h.html">containerextension/multipagewidgetplugin.h</a></li>
+</ul>
+</div>
+<!-- @@@containerextension -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

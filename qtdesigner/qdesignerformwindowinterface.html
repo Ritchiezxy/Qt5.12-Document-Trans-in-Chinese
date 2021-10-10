@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- abstractformwindow.cpp -->
+  <title>QDesignerFormWindowInterface 类 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="qtdesigner-module.html">C++ Classes</a></td><td >QDesignerFormWindowInterface</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">公用类型</a></li>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#public-slots">公用槽函数</a></li>
+<li class="level1"><a href="#signals">信号</a></li>
+<li class="level1"><a href="#static-public-members">静态公用成员</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QDesignerFormWindowInterface 类</h1>
+<!-- $$$QDesignerFormWindowInterface-brief -->
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html">
+<font style="vertical-align: inherit;">QDesignerFormWindowInterface</font></a><font style="vertical-align: inherit;">类允许您查询和操作出现在Qt设计师的工作空间<span lang="zh-cn">表单</span>窗口。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#details"><font style="vertical-align: inherit;">更多...</font></a></p>
+<!-- @@@QDesignerFormWindowInterface -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QDesignerFormWindowInterface&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += designer</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="../qtwidgets/qwidget.html">QWidget</a></td></tr></table></div><ul>
+<li><a href="qdesignerformwindowinterface-members.html">所有成员的列表，包括继承成员。</a></li>
+<li><a href="qdesignerformwindowinterface-obsolete.html">废弃的成员</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">公用类型</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> flags </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#FeatureFlag-enum">Feature</a></b></td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#FeatureFlag-enum">FeatureFlag</a></b> { EditFeature, GridFeature, TabOrderFeature, DefaultFeature }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#ResourceFileSaveMode-enum">ResourceFileSaveMode</a></b> { SaveAllResourceFiles, SaveOnlyUsedResourceFiles, DontSaveResourceFiles }</td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#QDesignerFormWindowInterface">QDesignerFormWindowInterface</a></b>(QWidget *<i>parent</i> = Q_NULLPTR, Qt::WindowFlags <i>flags</i> = ...)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#dtor.QDesignerFormWindowInterface">~QDesignerFormWindowInterface</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QDir </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#absoluteDir">absoluteDir</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QStringList </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#activeResourceFilePaths">activeResourceFilePaths</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#addResourceFile">addResourceFile</a></b>(const QString &amp;<i>path</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QString </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#author">author</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QStringList </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#check目录">check目录</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QString </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#comment">comment</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QString </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#目录">目录</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QDesignerFormEditorInterface *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#core">core</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QDesignerFormWindowCursorInterface *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#cursor">cursor</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#emitSelectionChanged">emitSelectionChanged</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QString </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#exportMacro">exportMacro</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QDesignerFormWindowInterface::Feature </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#features">features</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QString </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#fileName">fileName</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QWidget *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#formContainer">formContainer</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QPoint </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#grid">grid</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#hasFeature">hasFeature</a></b>(QDesignerFormWindowInterface::Feature <i>feature</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QStringList </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#includeHints">includeHints</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#isDirty">isDirty</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#isManaged">isManaged</a></b>(QWidget *<i>widget</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#layoutDefault">layoutDefault</a></b>(int *<i>margin</i>, int *<i>spacing</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#layoutFunction">layoutFunction</a></b>(QString *<i>margin</i>, QString *<i>spacing</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QString </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#pixmapFunction">pixmapFunction</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#removeResourceFile">removeResourceFile</a></b>(const QString &amp;<i>path</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QDesignerFormWindowInterface::ResourceFileSaveMode </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#resourceFileSaveMode">resourceFileSaveMode</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QStringList </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#resourceFiles">resourceFiles</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setAuthor">setAuthor</a></b>(const QString &amp;<i>author</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setComment">setComment</a></b>(const QString &amp;<i>comment</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#set目录">set目录</a></b>(QIODevice *<i>device</i>, QString *<i>errorMessage</i> = ...) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setExportMacro">setExportMacro</a></b>(const QString &amp;<i>exportMacro</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setIncludeHints">setIncludeHints</a></b>(const QStringList &amp;<i>includeHints</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setLayoutDefault">setLayoutDefault</a></b>(int <i>margin</i>, int <i>spacing</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setLayoutFunction">setLayoutFunction</a></b>(const QString &amp;<i>margin</i>, const QString &amp;<i>spacing</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setMainContainer">setMainContainer</a></b>(QWidget *<i>mainContainer</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setPixmapFunction">setPixmapFunction</a></b>(const QString &amp;<i>pixmapFunction</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setResourceFileSaveMode">setResourceFileSaveMode</a></b>(QDesignerFormWindowInterface::ResourceFileSaveMode <i>behavior</i>) = 0</td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">216个从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#public-functions">QWidget</a>继承的公共函数</font></li>
+</ul>
+<a name="public-slots"></a>
+<h2 id="public-slots">公用槽函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#activateResourceFilePaths">activateResourceFilePaths</a></b>(const QStringList &amp;<i>paths</i>, int *<i>errorCount</i> = Q_NULLPTR, QString *<i>errorMessages</i> = Q_NULLPTR)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#clearSelection">clearSelection</a></b>(bool <i>update</i> = true) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#manageWidget">manageWidget</a></b>(QWidget *<i>widget</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#selectWidget">selectWidget</a></b>(QWidget *<i>widget</i>, bool <i>select</i> = true) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#set目录-1">set目录</a></b>(const QString &amp;<i>目录</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setDirty">setDirty</a></b>(bool <i>dirty</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setFeatures">setFeatures</a></b>(QDesignerFormWindowInterface::Feature <i>features</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setFileName">setFileName</a></b>(const QString &amp;<i>fileName</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#setGrid">setGrid</a></b>(const QPoint &amp;<i>grid</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#unmanageWidget">unmanageWidget</a></b>(QWidget *<i>widget</i>) = 0</td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#public-slots">QWidget</a>继承的 19 个公共槽</font></li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">信号</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#aboutToUnmanageWidget">aboutToUnmanageWidget</a></b>(QWidget *<i>widget</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#activated">activated</a></b>(QWidget *<i>widget</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#changed">changed</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#featureChanged">featureChanged</a></b>(QDesignerFormWindowInterface::Feature <i>feature</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#fileNameChanged">fileNameChanged</a></b>(const QString &amp;<i>fileName</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#geometryChanged">geometryChanged</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#mainContainerChanged">mainContainerChanged</a></b>(QWidget *<i>mainContainer</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#objectRemoved">objectRemoved</a></b>(QObject *<i>object</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#resourceFilesChanged">resourceFilesChanged</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#selectionChanged">selectionChanged</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#widgetManaged">widgetManaged</a></b>(QWidget *<i>widget</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#widgetRemoved">widgetRemoved</a></b>(QWidget *<i>widget</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#widgetUnmanaged">widgetUnmanaged</a></b>(QWidget *<i>widget</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#signals">QWidget</a>继承的 3 个信号</font></li>
+</ul>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">静态公用成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> QDesignerFormWindowInterface *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#findFormWindow">findFormWindow</a></b>(QWidget *<i>widget</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QDesignerFormWindowInterface *</td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#findFormWindow-1">findFormWindow</a></b>(QObject *<i>object</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QMetaObject </td><td class="memItemRight bottomAlign"><b><a href="qdesignerformwindowinterface.html#staticMetaObject-var">staticMetaObject</a></b></td></tr>
+</table></div>
+<ul>
+<li class="fn">5<span lang="zh-cn">个继承自</span><a href="../qtwidgets/qwidget.html#static-public-members">QWidget</a>静态公用成员</li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#properties">QWidget</a>继承的 59 个属性</font></li>
+<li class="fn"><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#protected-functions">QWidget</a>继承的 35 个受保护的函数</font></li>
+<li class="fn"><font style="vertical-align: inherit;">1 个从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html#protected-slots">QWidget</a>继承的受保护槽</font></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QDesignerFormWindowInterface-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html">
+<font style="vertical-align: inherit;">QDesignerFormWindowInterface</font></a><font style="vertical-align: inherit;">类允许您查询和操作出现在Qt设计师的工作空间<span lang="zh-cn">表单</span>窗口。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowInterface</font></a><font style="vertical-align: inherit;">提供有关关联表单窗口的信息，并允许更改其属性。该接口不打算直接实例化，而是提供对</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowmanagerinterface.html">窗体窗口管理器</a>控制的</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">当前窗体窗口的访问。</font></p>
+<p><font style="vertical-align: inherit;">如果您正在寻找包含特定组件的表单窗口，您可以使用静态</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#findFormWindow"><font style="vertical-align: inherit;">QDesignerFormWindowInterface::findFormWindow</font></a><font style="vertical-align: inherit;"> () 函数：</font></p>
+<pre class="cpp">
+
+      <span class="type"><a href="qdesignerformwindowinterface.html#QDesignerFormWindowInterface">QDesignerFormWindowInterface</a></span> <span class="operator">*</span>formWindow;
+      formWindow <span class="operator">=</span> <span class="type"><a href="qdesignerformwindowinterface.html#QDesignerFormWindowInterface">QDesignerFormWindowInterface</a></span><span class="operator">::</span>findFormWindow(myWidget);
+
+</pre>
+<p><font style="vertical-align: inherit;">但此外，您可以通过</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的窗体窗口管理器访问任何当前窗体窗口： 使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html#formWindowManager"><font style="vertical-align: inherit;">QDesignerFormEditorInterface::formWindowManager</font></a><font style="vertical-align: inherit;"> () 函数检索管理器的接口。一旦你有了这<span lang="zh-cn">个接口</span>，你就可以通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowmanagerinterface.html#formWindow">QDesignerFormWindowManagerInterface::formWindow</a> () 函数访问</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的所有当前窗体窗口。例如：</font></p>
+<pre class="cpp">
+
+      <span class="type"><a href="../qtcore/qlist.html">QList</a></span><span class="operator">&lt;</span><span class="type"><a href="qdesignerformwindowinterface.html#QDesignerFormWindowInterface">QDesignerFormWindowInterface</a></span> <span class="operator">*</span><span class="operator">&gt;</span> forms;
+      <span class="type"><a href="qdesignerformwindowinterface.html#QDesignerFormWindowInterface">QDesignerFormWindowInterface</a></span> <span class="operator">*</span>formWindow;
+
+      <span class="type"><a href="qdesignerformwindowmanagerinterface.html">QDesignerFormWindowManagerInterface</a></span> <span class="operator">*</span>manager <span class="operator">=</span> formEditor<span class="operator">-</span><span class="operator">&gt;</span>formWindowManager();
+
+      <span class="keyword">for</span> (<span class="type">int</span> i <span class="operator">=</span> <span class="number">0</span>; i <span class="operator">&lt;</span> manager<span class="operator">-</span><span class="operator">&gt;</span>formWindowCount(); i<span class="operator">+</span><span class="operator">+</span>) {
+          formWindow <span class="operator">=</span> manager<span class="operator">-</span><span class="operator">&gt;</span>formWindow(i);
+          forms<span class="operator">.</span>append(formWindow);
+      }
+
+</pre>
+<p><a href="qdesignercustomwidgetinterface.html#initialize">QDesignerCustomWidgetInterface::initialize</a>()函数的参数提供了<i>Qt 设计师</i>当前的<a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a>对象(上面例子中的formEditor)的指针。当实现自定义组件插件时，你必须子类化QDesignerCustomWidgetInterface类来将你的插件暴露给<i>Qt 设计师</i>。</p>
+<p><font style="vertical-align: inherit;">拥有表单窗口后，您可以查询其属性。例如，一个普通的自定义组件插件仅由</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">在其顶层管理，即它的任何子组件都不能在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的工作区中调整大小。但是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowInterface</font></a><font style="vertical-align: inherit;">为您提供了一些功能，使您能够控制组件是否应该由</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">管理：</font></p>
+<pre class="cpp">
+
+          <span class="keyword">if</span> (formWindow<span class="operator">-</span><span class="operator">&gt;</span>isManaged(myWidget))
+              formWindow<span class="operator">-</span><span class="operator">&gt;</span>manageWidget(myWidget<span class="operator">-</span><span class="operator">&gt;</span>childWidget);
+
+</pre>
+<p><font style="vertical-align: inherit;">关于<span lang="zh-cn">组件</span>管理的完整函数列表是：</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#isManaged"><font style="vertical-align: inherit;">isManaged</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#manageWidget"><font style="vertical-align: inherit;">manageWidget</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#unmanageWidget"><font style="vertical-align: inherit;">unmanageWidget</font></a><font style="vertical-align: inherit;"> ()。还有几个相关的信号：</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#widgetManaged"><font style="vertical-align: inherit;">widgetManaged</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#widgetRemoved"><font style="vertical-align: inherit;">widgetRemoved</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#aboutToUnmanageWidget"><font style="vertical-align: inherit;">aboutToUnmanageWidget</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#widgetUnmanaged"><font style="vertical-align: inherit;">widgetUnmanaged</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<p><font style="vertical-align: inherit;">除了控制widget的管理之外，还可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#selectWidget"><font style="vertical-align: inherit;">selectWidget</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#clearSelection"><font style="vertical-align: inherit;">clearSelection</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#emitSelectionChanged"><font style="vertical-align: inherit;">emitSelectionChanged</font></a><font style="vertical-align: inherit;"> ()函数，以及</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#selectionChanged"><font style="vertical-align: inherit;">selectionChanged</font></a><font style="vertical-align: inherit;"> ()信号来控制表单窗口中的当前选择。</font></p>
+<p>您还可以使用<a href="qdesignerformwindowinterface.html#absoluteDir">absoluteDir</a>()检索关于表单存储位置的信息，使用<a href="qdesignerformwindowinterface.html#includeHints">includeHints</a>()检索包含文件，使用<a href="qdesignerformwindowinterface.html#layoutDefault">layoutDefault</a>()、<a href="qdesignerformwindowinterface.html#layoutFunction">layoutFunction</a>()和<a href="qdesignerformwindowinterface.html#pixmapFunction">pixmapFunction</a>()检索布局和pixmap函数。您可以使用<a href="qdesignerformwindowinterface.html#isDirty">isDirty</a>()函数来确定表单窗口是否已被修改(但未保存)。您可以检索作者(),其<a href="qdesignerformwindowinterface.html#目录"><span lang="zh-cn">dir</span></a>(),它的<a href="qdesignerformwindowinterface.html#fileName">fileName</a>(),相关<a href="qdesignerformwindowinterface.html#comment">comment</a>()和<a href="qdesignerformwindowinterface.html#exportMacro">exportMacro</a>(),其mainContainer(),它的<a href="qdesignerformwindowinterface.html#features">features</a>(),其<a href="qdesignerformwindowinterface.html#grid">grid</a>()和<a href="qdesignerformwindowinterface.html#resourceFiles">resourceFiles</a>()。</p>
+<p><font style="vertical-align: inherit;">该<span lang="zh-cn">接口</span>为您提供了功能和插槽，允许您更改大部分信息。例外是存储表单窗口的目录。最后，有几个信号与上述信息和一般表单窗口的变化相关。</font></p>
+</div>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowCursorInterface</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowmanagerinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowManagerInterface</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@QDesignerFormWindowInterface -->
+<div class="types">
+<h2><font style="vertical-align: inherit;">成员类型文档</font></h2>
+<!-- $$$FeatureFlag$$$EditFeature$$$GridFeature$$$TabOrderFeature$$$DefaultFeature -->
+<h3 class="flags" id="FeatureFlag-enum"><a name="FeatureFlag-enum"></a>enum QDesignerFormWindowInterface::<span class="name">FeatureFlag</span><br/>flags QDesignerFormWindowInterface::<span class="name">Feature</span></h3>
+<p><font style="vertical-align: inherit;">此枚举描述了可用且可由表单窗口界面控制的功能。这些值在查询表单窗口以确定它支持哪些功能时使用：</font></p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">
+	<span lang="zh-cn">约束</span></th><th class="tblval"><font style="vertical-align: inherit;">价值</font></th><th class="tbldscr"><font style="vertical-align: inherit;">价值</font></th></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowInterface::EditFeature</code></td><td class="topAlign tblval"><code>0x01</code></td><td class="topAlign"><font style="vertical-align: inherit;">表格编辑</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowInterface::GridFeature</code></td><td class="topAlign tblval"><code>0x02</code></td><td class="topAlign"><font style="vertical-align: inherit;">用于编辑的网格显示和对齐网格功能</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowInterface::TabOrderFeature</code></td><td class="topAlign tblval"><code>0x04</code></td><td class="topAlign"><font style="vertical-align: inherit;">标签订单管理</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowInterface::DefaultFeature</code></td><td class="topAlign tblval"><code>EditFeature | GridFeature</code></td><td class="topAlign"><font style="vertical-align: inherit;">支持默认功能（表单编辑和网格）</font></td></tr>
+</table>
+	</div>
+<p><font style="vertical-align: inherit;">Feature 类型是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qflags.html"><font style="vertical-align: inherit;">QFlags</font></a><font style="vertical-align: inherit;"> &lt;FeatureFlag&gt;的 typedef 。它存储 FeatureFlag 值的 OR 组合。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#hasFeature"><font style="vertical-align: inherit;">hasFeature</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#features"><font style="vertical-align: inherit;">features</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@FeatureFlag -->
+<!-- $$$ResourceFileSaveMode$$$SaveAllResourceFiles$$$SaveOnlyUsedResourceFiles$$$DontSaveResourceFiles -->
+<h3 class="fn" id="ResourceFileSaveMode-enum"><a name="ResourceFileSaveMode-enum"></a>enum QDesignerFormWindowInterface::<span class="name">ResourceFileSaveMode</span></h3>
+<p><font style="vertical-align: inherit;">这个枚举描述了资源文件是如何保存的。</font></p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th>
+	<th class="tbldscr" style="width: 348px">Description</th></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowInterface::SaveAllResourceFiles</code></td><td class="topAlign tblval"><code>0</code></td>
+	<td class="topAlign" style="width: 348px"><font style="vertical-align: inherit;">保存所有资源文件。</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowInterface::SaveOnlyUsedResourceFiles</code></td><td class="topAlign tblval"><code>1</code></td>
+	<td class="topAlign" style="width: 348px"><font style="vertical-align: inherit;">保存表单使用的资源文件。</font></td></tr>
+<tr><td class="topAlign"><code>QDesignerFormWindowInterface::DontSaveResourceFiles</code></td><td class="topAlign tblval"><code>2</code></td>
+	<td class="topAlign" style="width: 348px"><font style="vertical-align: inherit;">不保存资源文件。</font></td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">这个枚举是在 Qt 5.0 中引入或修改的。</font></p>
+<!-- @@@ResourceFileSaveMode -->
+</div>
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QDesignerFormWindowInterface[overload1]$$$QDesignerFormWindowInterfaceQWidget*Qt::WindowFlags -->
+<h3 class="fn" id="QDesignerFormWindowInterface"><a name="QDesignerFormWindowInterface"></a>QDesignerFormWindowInterface::<span class="name">QDesignerFormWindowInterface</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>parent</i> = Q_NULLPTR, <span class="type"><a href="../qtcore/qt.html#WindowType-enum">Qt::WindowFlags</a></span> <i>flags</i> = ...)</h3>
+<p><font style="vertical-align: inherit;">使用给定的</font><i><font style="vertical-align: inherit;">parent
+<span lang="zh-cn">（</span>父级<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">和指定的窗口</font><i><font style="vertical-align: inherit;">flags<span lang="zh-cn">（</span>标志<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">构造一个窗体窗口界面。</font></p>
+<!-- @@@QDesignerFormWindowInterface -->
+<!-- $$$~QDesignerFormWindowInterface[overload1]$$$~QDesignerFormWindowInterface -->
+<h3 class="fn" id="dtor.QDesignerFormWindowInterface"><a name="dtor.QDesignerFormWindowInterface"></a><code>[virtual] </code>QDesignerFormWindowInterface::<span class="name">~QDesignerFormWindowInterface</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁窗体窗口界面。</font></p>
+<!-- @@@~QDesignerFormWindowInterface -->
+<!-- $$$aboutToUnmanageWidget[overload1]$$$aboutToUnmanageWidgetQWidget* -->
+<h3 class="fn" id="aboutToUnmanageWidget"><a name="aboutToUnmanageWidget"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">aboutToUnmanageWidget</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>widget</i>)</h3>
+<p><font style="vertical-align: inherit;">每当表单上的组件即将变为非托管时，就会发出此信号。当这个信号被发出时，指定的</font><i><font style="vertical-align: inherit;">widget</font></i><font style="vertical-align: inherit;">仍然被管理，并且一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#widgetUnmanaged"><font style="vertical-align: inherit;">widgetUnmanaged</font></a><font style="vertical-align: inherit;"> ()信号会跟随，指示它何时不再被管理。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#unmanageWidget"><font style="vertical-align: inherit;">unmanageWidget</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#isManaged"><font style="vertical-align: inherit;">isManaged</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@aboutToUnmanageWidget -->
+<!-- $$$absoluteDir[overload1]$$$absoluteDir -->
+<h3 class="fn" id="absoluteDir"><a name="absoluteDir"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qdir.html">QDir</a></span> QDesignerFormWindowInterface::<span class="name">absoluteDir</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回包含表单窗口中显示的表单的目录的绝对位置。</font></p>
+<!-- @@@absoluteDir -->
+<!-- $$$activateResourceFilePaths[overload1]$$$activateResourceFilePathsconstQStringList&int*QString* -->
+<h3 class="fn" id="activateResourceFilePaths"><a name="activateResourceFilePaths"></a><code>[slot] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">activateResourceFilePaths</span>(const <span class="type"><a href="../qtcore/qstringlist.html">QStringList</a></span> &amp;<i>paths</i>, <span class="type">int</span> *<i>errorCount</i> = Q_NULLPTR, <span class="type"><a href="../qtcore/qstring.html">QString</a></span> *<i>errorMessages</i> = Q_NULLPTR)</h3>
+<p><font style="vertical-align: inherit;">激活资源 (.qrc) 文件路径</font><i><font style="vertical-align: inherit;">路径</font></i><font style="vertical-align: inherit;">，返回</font><i><font style="vertical-align: inherit;">errorCount 中</font></i><font style="vertical-align: inherit;">的错误计数和</font><i><font style="vertical-align: inherit;">errorMessages 中的</font></i><font style="vertical-align: inherit;">错误消息。</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qresource.html"><font style="vertical-align: inherit;">QResource</font></a><font style="vertical-align: inherit;">类加载资源，使其可用于表单编辑。</font></p>
+<p><font style="vertical-align: inherit;">在 IDE 集成中，可以激活项目资源 (.qrc) 文件列表，使</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">可以使用它们。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 5.0 中引入的。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#activeResourceFilePaths"><font style="vertical-align: inherit;">activeResourceFilePaths</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qresource.html"><font style="vertical-align: inherit;">QResource</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@activateResourceFilePaths -->
+<!-- $$$activated[overload1]$$$activatedQWidget* -->
+<h3 class="fn" id="activated"><a name="activated"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">activated</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>widget</i>)</h3>
+<p><font style="vertical-align: inherit;">每当表单上的组件被激活时，就会发出此信号。激活的组件由<i><span lang="zh-cn">组件（</span>widget<span lang="zh-cn">）</span></i>指定。</font></p>
+<!-- @@@activated -->
+<!-- $$$activeResourceFilePaths[overload1]$$$activeResourceFilePaths -->
+<h3 class="fn" id="activeResourceFilePaths"><a name="activeResourceFilePaths"></a><span class="type"><a href="../qtcore/qstringlist.html">QStringList</a></span> QDesignerFormWindowInterface::<span class="name">activeResourceFilePaths</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回当前在</font><i><font style="vertical-align: inherit;">Qt 设计师 </font></i>
+<font style="vertical-align: inherit;"><span lang="zh-cn">中</span>加载的活动资源 (.qrc) 文件路径。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 5.0 中引入的。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#activateResourceFilePaths"><font style="vertical-align: inherit;">activateResourceFilePaths</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@activeResourceFilePaths -->
+<!-- $$$addResourceFile[overload1]$$$addResourceFileconstQString& -->
+<h3 class="fn" id="addResourceFile"><a name="addResourceFile"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">addResourceFile</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>path</i>)</h3>
+<p><font style="vertical-align: inherit;">将给定</font><i><font style="vertical-align: inherit;">path
+<span lang="zh-cn">（</span>路径<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">的资源文件添加到表单使用的资源文件中。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#resourceFiles"><font style="vertical-align: inherit;">resourceFiles</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#resourceFilesChanged"><font style="vertical-align: inherit;">resourceFilesChanged</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@addResourceFile -->
+<!-- $$$author[overload1]$$$author -->
+<h3 class="fn" id="author"><a name="author"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QDesignerFormWindowInterface::<span class="name">author</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回当前显示在窗口中的表单的作者或创建者的详细信息。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#setAuthor">setAuthor</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@author -->
+<!-- $$$changed[overload1]$$$changed -->
+<h3 class="fn" id="changed"><a name="changed"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">changed</span>()</h3>
+<p><font style="vertical-align: inherit;">每当表单更改时都会发出此信号。</font></p>
+<!-- @@@changed -->
+<!-- $$$check目录[overload1]$$$check目录 -->
+<h3 class="fn" id="check目录"><a name="check目录"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstringlist.html">QStringList</a></span> QDesignerFormWindowInterface::<span class="name">check目录</span>() const</h3>
+<p><font style="vertical-align: inherit;">对当前表单执行检查并返回有关潜在问题的富文本警告列表（例如，未布局表单上的顶级间隔符）。</font></p>
+<p><font style="vertical-align: inherit;">IDE 集成可以在处理开始保存操作之前调用它。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 5.0 中引入的。</font></p>
+<!-- @@@check目录 -->
+<!-- $$$clearSelection[overload1]$$$clearSelectionbool -->
+<h3 class="fn" id="clearSelection"><a name="clearSelection"></a><code>[pure virtual slot] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">clearSelection</span>(<span class="type">bool</span> <i>update</i> = true)</h3>
+<p><font style="vertical-align: inherit;">清除表单窗口中的当前选择。如果</font><i><font style="vertical-align: inherit;">update</font></i><font style="vertical-align: inherit;">为true，则</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#emitSelectionChanged"><font style="vertical-align: inherit;">调用emitSelectionChanged</font></a><font style="vertical-align: inherit;"> () 函数，发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#selectionChanged"><font style="vertical-align: inherit;">selectionChanged</font></a><font style="vertical-align: inherit;"> () 信号。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#selectWidget"><font style="vertical-align: inherit;">selectWidget</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@clearSelection -->
+<!-- $$$comment[overload1]$$$comment -->
+<h3 class="fn" id="comment"><a name="comment"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QDesignerFormWindowInterface::<span class="name">comment</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回有关当前显示在窗口中的表单的注释。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#setComment"><font style="vertical-align: inherit;">setComment</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@comment -->
+<!-- $$$目录[overload1]$$$目录 -->
+<h3 class="fn" id="目录"><a name="目录"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QDesignerFormWindowInterface::<span class="name">目录</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回当前显示在窗口中的表单目录的详细信息。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#set目录">set<span lang="zh-cn">Dir</span></a>()<span lang="zh-cn">。</span></p>
+<!-- @@@目录 -->
+<!-- $$$core[overload1]$$$core -->
+<h3 class="fn" id="core"><a name="core"></a><code>[virtual] </code><span class="type"><a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a></span> *QDesignerFormWindowInterface::<span class="name">core</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回一个指向</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的当前</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">对象的指针。</font></p>
+<!-- @@@core -->
+<!-- $$$cursor[overload1]$$$cursor -->
+<h3 class="fn" id="cursor"><a name="cursor"></a><code>[pure virtual] </code><span class="type"><a href="qdesignerformwindowcursorinterface.html">QDesignerFormWindowCursorInterface</a></span> *QDesignerFormWindowInterface::<span class="name">cursor</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回表单窗口使用的光标接口。</font></p>
+<!-- @@@cursor -->
+<!-- $$$emitSelectionChanged[overload1]$$$emitSelectionChanged -->
+<h3 class="fn" id="emitSelectionChanged"><a name="emitSelectionChanged"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">emitSelectionChanged</span>()</h3>
+<p><font style="vertical-align: inherit;">发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#selectionChanged"><font style="vertical-align: inherit;">selectionChanged</font></a><font style="vertical-align: inherit;"> () 信号。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#selectWidget"><font style="vertical-align: inherit;">selectWidget</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#clearSelection"><font style="vertical-align: inherit;">clearSelection</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@emitSelectionChanged -->
+<!-- $$$exportMacro[overload1]$$$exportMacro -->
+<h3 class="fn" id="exportMacro"><a name="exportMacro"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QDesignerFormWindowInterface::<span class="name">exportMacro</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回与当前显示在窗口中的表单关联的导出宏。当表单被编译以创建组件插件时使用导出宏。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#setExportMacro"><font style="vertical-align: inherit;">setExportMacro</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/designer-creating-custom-widgets.html"><font style="vertical-align: inherit;"><span lang="zh-cn">为Qt设计师创建自定义组件</span></font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@exportMacro -->
+<!-- $$$featureChanged[overload1]$$$featureChangedQDesignerFormWindowInterface::Feature -->
+<h3 class="fn" id="featureChanged"><a name="featureChanged"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">featureChanged</span>(<span class="type"><a href="qdesignerformwindowinterface.html#FeatureFlag-enum">QDesignerFormWindowInterface::Feature</a></span> <i>feature</i>)</h3>
+<p><font style="vertical-align: inherit;">每当表单中的特征发生变化时，都会发出此信号。<span lang="zh-cn">特性是由</span></font><i><font style="vertical-align: inherit;"><span lang="zh-cn">feature(功</span>能<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">指定。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#setFeatures">setFeatures</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@featureChanged -->
+<!-- $$$features[overload1]$$$features -->
+<h3 class="fn" id="features"><a name="features"></a><code>[pure virtual] </code><span class="type"><a href="qdesignerformwindowinterface.html#FeatureFlag-enum">QDesignerFormWindowInterface::Feature</a></span> QDesignerFormWindowInterface::<span class="name">features</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回与<span lang="zh-cn">接口</span>关联的表单窗口提供的功能组合。可以针对</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#FeatureFlag-enum"><font style="vertical-align: inherit;">Feature</font></a><font style="vertical-align: inherit;">枚举值测试返回的值，以确定窗口支持哪些功能。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#setFeatures"><font style="vertical-align: inherit;">setFeatures</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#hasFeature"><font style="vertical-align: inherit;">hasFeature</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@features -->
+<!-- $$$fileName[overload1]$$$fileName -->
+<h3 class="fn" id="fileName"><a name="fileName"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QDesignerFormWindowInterface::<span class="name">fileName</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回描述当前显示的表单的 UI 文件的文件名。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#setFileName">setFileName</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@fileName -->
+<!-- $$$fileNameChanged[overload1]$$$fileNameChangedconstQString& -->
+<h3 class="fn" id="fileNameChanged"><a name="fileNameChanged"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">fileNameChanged</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>fileName</i>)</h3>
+<p><font style="vertical-align: inherit;">只要表单的文件名发生变化，就会发出这个信号。新文件名由</font><i><font style="vertical-align: inherit;">fileName</font></i><font style="vertical-align: inherit;">指定。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#setFileName"><font style="vertical-align: inherit;">setFileName</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@fileNameChanged -->
+<!-- $$$findFormWindow[overload1]$$$findFormWindowQWidget* -->
+<h3 class="fn" id="findFormWindow"><a name="findFormWindow"></a><code>[static] </code><span class="type"><a href="qdesignerformwindowinterface.html#QDesignerFormWindowInterface">QDesignerFormWindowInterface</a></span> *QDesignerFormWindowInterface::<span class="name">findFormWindow</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>widget</i>)</h3>
+<p><font style="vertical-align: inherit;">返回给定</font><i><font style="vertical-align: inherit;">组件</font></i><font style="vertical-align: inherit;">的表单窗口<span lang="zh-cn">接口</span>。</font></p>
+<!-- @@@findFormWindow -->
+<!-- $$$findFormWindow$$$findFormWindowQObject* -->
+<h3 class="fn" id="findFormWindow-1"><a name="findFormWindow-1"></a><code>[static] </code><span class="type"><a href="qdesignerformwindowinterface.html#QDesignerFormWindowInterface">QDesignerFormWindowInterface</a></span> *QDesignerFormWindowInterface::<span class="name">findFormWindow</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>object</i>)</h3>
+<p><font style="vertical-align: inherit;">返回给定</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">object（</span>对象<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">的窗体窗口界面。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 4.4 中引入的。</font></p>
+<!-- @@@findFormWindow -->
+<!-- $$$formContainer[overload1]$$$formContainer -->
+<h3 class="fn" id="formContainer"><a name="formContainer"></a><code>[pure virtual] </code><span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *QDesignerFormWindowInterface::<span class="name">formContainer</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回包含主容器组件的组件的表单。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 5.0 中引入的。</font></p>
+<!-- @@@formContainer -->
+<!-- $$$geometryChanged[overload1]$$$geometryChanged -->
+<h3 class="fn" id="geometryChanged"><a name="geometryChanged"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">geometryChanged</span>()</h3>
+<p><font style="vertical-align: inherit;">只要表单的几何形状发生变化，就会发出此信号。</font></p>
+<!-- @@@geometryChanged -->
+<!-- $$$grid[overload1]$$$grid -->
+<h3 class="fn" id="grid"><a name="grid"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> QDesignerFormWindowInterface::<span class="name">grid</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回表单窗口使用的网格间距。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#setGrid">setGrid</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@grid -->
+<!-- $$$hasFeature[overload1]$$$hasFeatureQDesignerFormWindowInterface::Feature -->
+<h3 class="fn" id="hasFeature"><a name="hasFeature"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerFormWindowInterface::<span class="name">hasFeature</span>(<span class="type"><a href="qdesignerformwindowinterface.html#FeatureFlag-enum">QDesignerFormWindowInterface::Feature</a></span> <i>feature</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果表单窗口提供指定的</font><i><font style="vertical-align: inherit;">功能</font></i><font style="vertical-align: inherit;">，则返回 true ；否则返回false。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#features">features</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@hasFeature -->
+<!-- $$$includeHints[overload1]$$$includeHints -->
+<h3 class="fn" id="includeHints"><a name="includeHints"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstringlist.html">QStringList</a></span> QDesignerFormWindowInterface::<span class="name">includeHints</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回将包含在表单窗口的关联 UI 文件中的头文件列表。</font></p>
+<p><font style="vertical-align: inherit;">头文件可以是本地的，即相对于项目目录</font><code>"mywidget.h"</code><font style="vertical-align: inherit;">，或全局的，即 Qt 或编译器标准库的一部分：</font><code>&lt;QtGui/QWidget&gt;</code><font style="vertical-align: inherit;">.</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#setIncludeHints">setIncludeHints</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@includeHints -->
+<!-- $$$isDirty[overload1]$$$isDirty -->
+<h3 class="fn" id="isDirty"><a name="isDirty"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerFormWindowInterface::<span class="name">isDirty</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果表单窗口“脏”（已修改但未保存），则返回 true；否则返回false。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#setDirty"><font style="vertical-align: inherit;">setDirty</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@isDirty -->
+<!-- $$$isManaged[overload1]$$$isManagedQWidget* -->
+<h3 class="fn" id="isManaged"><a name="isManaged"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerFormWindowInterface::<span class="name">isManaged</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>widget</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果指定的</font><i><font style="vertical-align: inherit;">组件</font></i><font style="vertical-align: inherit;">由表单窗口管理，则返回 true ；否则返回false。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#manageWidget">manageWidget</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@isManaged -->
+<!-- $$$layoutDefault[overload1]$$$layoutDefaultint*int* -->
+<h3 class="fn" id="layoutDefault"><a name="layoutDefault"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">layoutDefault</span>(<span class="type">int</span> *<i>margin</i>, <span class="type">int</span> *<i>spacing</i>)</h3>
+<p><font style="vertical-align: inherit;">在指定的</font><i><font style="vertical-align: inherit;">margin
+<span lang="zh-cn">（</span>边距<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">和</font><i><font style="vertical-align: inherit;">spacing
+<span lang="zh-cn">（</span>间距<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">变量中填充表单默认布局的默认<i>边距</i>和<i>间距</i>。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#setLayoutDefault">setLayoutDefault</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@layoutDefault -->
+<!-- $$$layoutFunction[overload1]$$$layoutFunctionQString*QString* -->
+<h3 class="fn" id="layoutFunction"><a name="layoutFunction"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">layoutFunction</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span> *<i>margin</i>, <span class="type"><a href="../qtcore/qstring.html">QString</a></span> *<i>spacing</i>)</h3>
+<p><font style="vertical-align: inherit;">在指定的<i>margin</i> <span lang="zh-cn">（</span></font><i><font style="vertical-align: inherit;">边距<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">和</font><i><font style="vertical-align: inherit;">spacing
+<span lang="zh-cn">（</span>间距<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">变量中填充表单布局的当前边距和间距。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#setLayoutFunction">setLayoutFunction</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@layoutFunction -->
+<!-- $$$mainContainerChanged[overload1]$$$mainContainerChangedQWidget* -->
+<h3 class="fn" id="mainContainerChanged"><a name="mainContainerChanged"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">mainContainerChanged</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>mainContainer</i>)</h3>
+<p><font style="vertical-align: inherit;">每当主容器发生变化时，就会发出此信号。新容器由</font><i><font style="vertical-align: inherit;">mainContainer</font></i><font style="vertical-align: inherit;">指定。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#setMainContainer">setMainContainer</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@mainContainerChanged -->
+<!-- $$$manageWidget[overload1]$$$manageWidgetQWidget* -->
+<h3 class="fn" id="manageWidget"><a name="manageWidget"></a><code>[pure virtual slot] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">manageWidget</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>widget</i>)</h3>
+<p><font style="vertical-align: inherit;">指示表单窗口管理指定的</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">widget（</span>组件<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#isManaged"><font style="vertical-align: inherit;">isManaged</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#unmanageWidget"><font style="vertical-align: inherit;">unmanageWidget</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#widgetManaged"><font style="vertical-align: inherit;">widgetManaged</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@manageWidget -->
+<!-- $$$objectRemoved[overload1]$$$objectRemovedQObject* -->
+<h3 class="fn" id="objectRemoved"><a name="objectRemoved"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">objectRemoved</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>object</i>)</h3>
+<p><font style="vertical-align: inherit;">每当从表单中删除对象（例如操作或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qbuttongroup.html"><font style="vertical-align: inherit;">QButtonGroup</font></a><font style="vertical-align: inherit;">）时，就会发出此信号。被移除的</font><i><font style="vertical-align: inherit;">对象</font></i><font style="vertical-align: inherit;">由<i>object</i>指定。</font></p>
+<p><font style="vertical-align: inherit;">这个函数是在 Qt 4.5 中引入的。</font></p>
+<!-- @@@objectRemoved -->
+<!-- $$$pixmapFunction[overload1]$$$pixmapFunction -->
+<h3 class="fn" id="pixmapFunction"><a name="pixmapFunction"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QDesignerFormWindowInterface::<span class="name">pixmapFunction</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回用于将像素图加载到表单窗口中的函数的名称。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#setPixmapFunction">setPixmapFunction</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@pixmapFunction -->
+<!-- $$$removeResourceFile[overload1]$$$removeResourceFileconstQString& -->
+<h3 class="fn" id="removeResourceFile"><a name="removeResourceFile"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">removeResourceFile</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>path</i>)</h3>
+<p><font style="vertical-align: inherit;">从表单使用的资源文件列表中删除指定<i>path</i> 
+<span lang="zh-cn">（</span></font><i><font style="vertical-align: inherit;">路径<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">的资源文件。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#resourceFiles"><font style="vertical-align: inherit;">resourceFiles</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#resourceFilesChanged"><font style="vertical-align: inherit;">resourceFilesChanged</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@removeResourceFile -->
+<!-- $$$resourceFileSaveMode[overload1]$$$resourceFileSaveMode -->
+<h3 class="fn" id="resourceFileSaveMode"><a name="resourceFileSaveMode"></a><code>[pure virtual] </code><span class="type"><a href="qdesignerformwindowinterface.html#ResourceFileSaveMode-enum">QDesignerFormWindowInterface::ResourceFileSaveMode</a></span> QDesignerFormWindowInterface::<span class="name">resourceFileSaveMode</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回资源文件保存模式行为。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#setResourceFileSaveMode">setResourceFileSaveMode</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@resourceFileSaveMode -->
+<!-- $$$resourceFiles[overload1]$$$resourceFiles -->
+<h3 class="fn" id="resourceFiles"><a name="resourceFiles"></a><code>[pure virtual] </code><span class="type"><a href="../qtcore/qstringlist.html">QStringList</a></span> QDesignerFormWindowInterface::<span class="name">resourceFiles</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回表单窗口当前正在使用的资源文件的路径列表。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#addResourceFile"><font style="vertical-align: inherit;">addResourceFile</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#removeResourceFile"><font style="vertical-align: inherit;">removeResourceFile</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@resourceFiles -->
+<!-- $$$resourceFilesChanged[overload1]$$$resourceFilesChanged -->
+<h3 class="fn" id="resourceFilesChanged"><a name="resourceFilesChanged"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">resourceFilesChanged</span>()</h3>
+<p><font style="vertical-align: inherit;">每当表单使用的资源文件列表发生更改时，都会发出此信号。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#resourceFiles">resourceFiles</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@resourceFilesChanged -->
+<!-- $$$selectWidget[overload1]$$$selectWidgetQWidget*bool -->
+<h3 class="fn" id="selectWidget"><a name="selectWidget"></a><code>[pure virtual slot] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">selectWidget</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>widget</i>, <span class="type">bool</span> <i>select</i> = true)</h3>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">select</font></i><font style="vertical-align: inherit;"><span lang="zh-cn">（选择）</span>为 true，则选择给定的</font><i><font style="vertical-align: inherit;">widget
+<span lang="zh-cn">（</span>组件<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">；否则</font><i><font style="vertical-align: inherit;">widget<span lang="zh-cn">（</span>组件<span lang="zh-cn">）</span>将</font></i><font style="vertical-align: inherit;">被取消选择。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#clearSelection"><font style="vertical-align: inherit;">clearSelection</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#selectionChanged"><font style="vertical-align: inherit;">selectionChanged</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@selectWidget -->
+<!-- $$$selectionChanged[overload1]$$$selectionChanged -->
+<h3 class="fn" id="selectionChanged"><a name="selectionChanged"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">selectionChanged</span>()</h3>
+<p><font style="vertical-align: inherit;">只要表单中的选择发生变化，就会发出此信号。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#selectWidget"><font style="vertical-align: inherit;">selectWidget</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#clearSelection"><font style="vertical-align: inherit;">clearSelection</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@selectionChanged -->
+<!-- $$$setAuthor[overload1]$$$setAuthorconstQString& -->
+<h3 class="fn" id="setAuthor"><a name="setAuthor"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setAuthor</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>author</i>)</h3>
+<p><font style="vertical-align: inherit;">将表单的作者或创建者的详细信息设置为指定的</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">author（</span>作者<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#author">author</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setAuthor -->
+<!-- $$$setComment[overload1]$$$setCommentconstQString& -->
+<h3 class="fn" id="setComment"><a name="setComment"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setComment</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>comment</i>)</h3>
+<p><font style="vertical-align: inherit;">有关表单的信息设置为指定的</font><i><font style="vertical-align: inherit;">comment
+<span lang="zh-cn">（</span>注释<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">。此信息应该是关于表单的人类可读的注释。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#comment">comment</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setComment -->
+<!-- $$$set目录[overload1]$$$set目录QIODevice*QString* -->
+<h3 class="fn" id="set目录"><a name="set目录"></a><code>[pure virtual] </code><span class="type">bool</span> QDesignerFormWindowInterface::<span class="name">set<span lang="zh-cn">Dir</span></span>(<span class="type"><a href="../qtcore/qiodevice.html">QIODevice</a></span> *<i>device</i>, <span class="type"><a href="../qtcore/qstring.html">QString</a></span> *<i>errorMessage</i> = ...)</h3>
+<p><font style="vertical-align: inherit;">使用从给定</font><i><font style="vertical-align: inherit;">device<span lang="zh-cn">（</span>设备<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">获得的数据设置表单的目录并返回加载是否成功。如果失败，则在</font><i><font style="vertical-align: inherit;">errorMessage 中</font></i><font style="vertical-align: inherit;">返回错误消息。</font></p>
+<p><font style="vertical-align: inherit;">可以从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qfile.html"><font style="vertical-align: inherit;">QFile</font></a><font style="vertical-align: inherit;">对象或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qiodevice.html"><font style="vertical-align: inherit;">QIODevice 的</font></a><font style="vertical-align: inherit;">任何其他子类读取数据。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#目录">目录</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@set目录 -->
+<!-- $$$set目录$$$set目录constQString& -->
+<h3 class="fn" id="set目录-1"><a name="set目录-1"></a><code>[pure virtual slot] </code><span class="type">bool</span> QDesignerFormWindowInterface::<span class="name">set<span lang="zh-cn">Dir</span></span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<span lang="zh-cn">dir</span>)</h3>
+<p><font style="vertical-align: inherit;">使用从指定的</font><i><font style="vertical-align: inherit;">目录</font></i><font style="vertical-align: inherit;">字符串中读取的数据设置表单的目录，并返回操作是否成功。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#目录">目录</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@set目录 -->
+<!-- $$$setDirty[overload1]$$$setDirtybool -->
+<h3 class="fn" id="setDirty"><a name="setDirty"></a><code>[pure virtual slot] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setDirty</span>(<span class="type">bool</span> <i>dirty</i>)</h3>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">dirty</font></i><font style="vertical-align: inherit;">为真，则窗体窗口被标记为dirty，这意味着它被修改但不保存。如果</font><i><font style="vertical-align: inherit;">dirty</font></i><font style="vertical-align: inherit;">为false，则认为窗体窗口未修改。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#isDirty">isDirty</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setDirty -->
+<!-- $$$setExportMacro[overload1]$$$setExportMacroconstQString& -->
+<h3 class="fn" id="setExportMacro"><a name="setExportMacro"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setExportMacro</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>exportMacro</i>)</h3>
+<p><font style="vertical-align: inherit;">将表单窗口的导出宏设置为</font><i><font style="vertical-align: inherit;">exportMacro</font></i><font style="vertical-align: inherit;">。导出宏用于构建组件插件以将表单的界面导出到其他组件。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#exportMacro">exportMacro</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setExportMacro -->
+<!-- $$$setFeatures[overload1]$$$setFeaturesQDesignerFormWindowInterface::Feature -->
+<h3 class="fn" id="setFeatures"><a name="setFeatures"></a><code>[pure virtual slot] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setFeatures</span>(<span class="type"><a href="qdesignerformwindowinterface.html#FeatureFlag-enum">QDesignerFormWindowInterface::Feature</a></span> <i>features</i>)</h3>
+<p><font style="vertical-align: inherit;">为表单窗口启用指定的</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">features(特性)</span></font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#features"><font style="vertical-align: inherit;">features</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#featureChanged"><font style="vertical-align: inherit;">featureChanged</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@setFeatures -->
+<!-- $$$setFileName[overload1]$$$setFileNameconstQString& -->
+<h3 class="fn" id="setFileName"><a name="setFileName"></a><code>[pure virtual slot] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setFileName</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>fileName</i>)</h3>
+<p><font style="vertical-align: inherit;">将表单的文件名设置为给定的</font><i><font style="vertical-align: inherit;">fileName</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#features"><font style="vertical-align: inherit;">features</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#featureChanged"><font style="vertical-align: inherit;">featureChanged</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@setFileName -->
+<!-- $$$setGrid[overload1]$$$setGridconstQPoint& -->
+<h3 class="fn" id="setGrid"><a name="setGrid"></a><code>[pure virtual slot] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setGrid</span>(const <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> &amp;<i>grid</i>)</h3>
+<p>将窗体窗口的网格大小设置为<i>grid<span lang="zh-cn">(网格）</span></i>指定的点。在这个函数中，<a href="../qtcore/qpoint.html">QPoint</a>中的坐标用于指定网格中矩形的尺寸。</p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#grid">grid</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setGrid -->
+<!-- $$$setIncludeHints[overload1]$$$setIncludeHintsconstQStringList& -->
+<h3 class="fn" id="setIncludeHints"><a name="setIncludeHints"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setIncludeHints</span>(const <span class="type"><a href="../qtcore/qstringlist.html">QStringList</a></span> &amp;<i>includeHints</i>)</h3>
+<p><font style="vertical-align: inherit;">将包含在表单窗口的关联 UI 文件中的头文件设置为指定的</font><i><font style="vertical-align: inherit;">includeHints</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">头文件可以是本地的，即相对于项目目录</font><code>"mywidget.h"</code><font style="vertical-align: inherit;">，或全局的，即 Qt 或编译器标准库的一部分：</font><code>&lt;QtGui/QWidget&gt;</code><font style="vertical-align: inherit;">.</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#includeHints">includeHints</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setIncludeHints -->
+<!-- $$$setLayoutDefault[overload1]$$$setLayoutDefaultintint -->
+<h3 class="fn" id="setLayoutDefault"><a name="setLayoutDefault"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setLayoutDefault</span>(<span class="type">int</span> <i>margin</i>, <span class="type">int</span> <i>spacing</i>)</h3>
+<p><font style="vertical-align: inherit;">设置表单布局的默认</font><i><font style="vertical-align: inherit;">margin
+<span lang="zh-cn">（</span>边距<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">和</font><i><font style="vertical-align: inherit;">spacing
+<span lang="zh-cn">（</span>间距<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#layoutDefault">layoutDefault</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setLayoutDefault -->
+<!-- $$$setLayoutFunction[overload1]$$$setLayoutFunctionconstQString&constQString& -->
+<h3 class="fn" id="setLayoutFunction"><a name="setLayoutFunction"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setLayoutFunction</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>margin</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>spacing</i>)</h3>
+<p><font style="vertical-align: inherit;">设置表单布局的</font><i><font style="vertical-align: inherit;">margin
+<span lang="zh-cn">（</span>边距<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">和</font><i><font style="vertical-align: inherit;">spacing
+<span lang="zh-cn">（</span>间距<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">。</font></p>
+<p><code>uic</code><font style="vertical-align: inherit;">为表单生成代码时，即指定了函数，默认的布局属性会被相应的布局函数替换。当不同的环境需要相同表单的不同布局时，这很有用。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#layoutFunction">layoutFunction</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setLayoutFunction -->
+<!-- $$$setMainContainer[overload1]$$$setMainContainerQWidget* -->
+<h3 class="fn" id="setMainContainer"><a name="setMainContainer"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setMainContainer</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>mainContainer</i>)</h3>
+<p><font style="vertical-align: inherit;">将表单上的主容器组件设置为指定的</font><i><font style="vertical-align: inherit;">mainContainer</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#mainContainerChanged">mainContainerChanged</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setMainContainer -->
+<!-- $$$setPixmapFunction[overload1]$$$setPixmapFunctionconstQString& -->
+<h3 class="fn" id="setPixmapFunction"><a name="setPixmapFunction"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setPixmapFunction</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>pixmapFunction</i>)</h3>
+<p><font style="vertical-align: inherit;">将用于将像素图加载到表单窗口中的函数设置为给定的</font><i><font style="vertical-align: inherit;">pixmapFunction</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#pixmapFunction">pixmapFunction</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setPixmapFunction -->
+<!-- $$$setResourceFileSaveMode[overload1]$$$setResourceFileSaveModeQDesignerFormWindowInterface::ResourceFileSaveMode -->
+<h3 class="fn" id="setResourceFileSaveMode"><a name="setResourceFileSaveMode"></a><code>[pure virtual] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">setResourceFileSaveMode</span>(<span class="type"><a href="qdesignerformwindowinterface.html#ResourceFileSaveMode-enum">QDesignerFormWindowInterface::ResourceFileSaveMode</a></span> <i>behavior</i>)</h3>
+<p><font style="vertical-align: inherit;">设置资源文件保存模式<i>behavior<span lang="zh-cn">（</span></i></font><i><font style="vertical-align: inherit;">行为<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#resourceFileSaveMode">resourceFileSaveMode</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setResourceFileSaveMode -->
+<!-- $$$unmanageWidget[overload1]$$$unmanageWidgetQWidget* -->
+<h3 class="fn" id="unmanageWidget"><a name="unmanageWidget"></a><code>[pure virtual slot] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">unmanageWidget</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>widget</i>)</h3>
+<p><font style="vertical-align: inherit;">指示表单窗口不要管理指定的</font><i><font style="vertical-align: inherit;">组件</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#aboutToUnmanageWidget"><font style="vertical-align: inherit;">aboutToUnmanageWidget</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#widgetUnmanaged"><font style="vertical-align: inherit;">widgetUnmanaged</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@unmanageWidget -->
+<!-- $$$widgetManaged[overload1]$$$widgetManagedQWidget* -->
+<h3 class="fn" id="widgetManaged"><a name="widgetManaged"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">widgetManaged</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>widget</i>)</h3>
+<p><font style="vertical-align: inherit;">每当表单上的组件被管理时，就会发出此信号。新管理的组件由</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">widget</span></font></i><font style="vertical-align: inherit;">指定。</font></p>
+<p><b>请参考 </b><a href="qdesignerformwindowinterface.html#manageWidget">manageWidget</a>().</p>
+<!-- @@@widgetManaged -->
+<!-- $$$widgetRemoved[overload1]$$$widgetRemovedQWidget* -->
+<h3 class="fn" id="widgetRemoved"><a name="widgetRemoved"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">widgetRemoved</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>widget</i>)</h3>
+<p><font style="vertical-align: inherit;">每当从表单中删除组件时都会发出此信号。被移除的</font><i><font style="vertical-align: inherit;">组件</font></i><font style="vertical-align: inherit;">由<i>widget</i>指定。</font></p>
+<!-- @@@widgetRemoved -->
+<!-- $$$widgetUnmanaged[overload1]$$$widgetUnmanagedQWidget* -->
+<h3 class="fn" id="widgetUnmanaged"><a name="widgetUnmanaged"></a><code>[signal] </code><span class="type">void</span> QDesignerFormWindowInterface::<span class="name">widgetUnmanaged</span>(<span class="type"><a href="../qtwidgets/qwidget.html#QWidget">QWidget</a></span> *<i>widget</i>)</h3>
+<p><font style="vertical-align: inherit;">每当表单上的组件变得不受管理时，就会发出此信号。新发布的组件由</font><i><font style="vertical-align: inherit;">widget</font></i><font style="vertical-align: inherit;">指定。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#unmanageWidget"><font style="vertical-align: inherit;">unmanageWidget</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#aboutToUnmanageWidget"><font style="vertical-align: inherit;">aboutToUnmanageWidget</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@widgetUnmanaged -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

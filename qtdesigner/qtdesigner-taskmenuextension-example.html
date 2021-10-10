@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- taskmenuextension.qdoc -->
+  <title>任务菜单扩展示例 | Qt设计师手册</title>
+  <title>任务菜单扩展示例 | Qt设计师手册</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtdesigner-manual.html">Qt设计师手册</a></td><td ><a href="examples-designer.html">Qt<span lang="zh-cn"> 
+			设计师示例</span></a></td><td ><font style="vertical-align: inherit;">任务菜单扩展示例</font></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtdesigner-manual.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-taskmenuextension-example.html#the-project-file-taskmenuextension-pro"><font style="vertical-align: inherit;">项目文件：taskmenuextension.pro</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-taskmenuextension-example.html#tictactoeplugin-class-definition"><font style="vertical-align: inherit;">TicTacToePlugin 类定义</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-taskmenuextension-example.html#tictactoeplugin-class-implementation"><font style="vertical-align: inherit;">TicTacToePlugin 类实现</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-taskmenuextension-example.html#tictactoetaskmenufactory-class-definition"><font style="vertical-align: inherit;">TicTacToeTaskMenuFactory 类定义</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-taskmenuextension-example.html#tictactoetaskmenufactory-class-implementation"><font style="vertical-align: inherit;">TicTacToeTaskMenuFactory 类实现</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-taskmenuextension-example.html#tictactoetaskmenu-class-definition"><font style="vertical-align: inherit;">TicTacToeTaskMenu 类定义</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-taskmenuextension-example.html#tictactoetaskmenu-class-implementation"><font style="vertical-align: inherit;">TicTacToeTaskMenu 类实现</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-taskmenuextension-example.html#tictactoedialog-class-definition"><font style="vertical-align: inherit;">TicTacToeDialog 类定义</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-taskmenuextension-example.html#tictactoedialog-class-implementation"><font style="vertical-align: inherit;">TicTacToeDialog 类实现</font></a></li>
+<li class="level1"><a href="#tictactoe-class-definition">TicTacToe 
+<span lang="zh-cn">类定义</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><font style="vertical-align: inherit;">任务菜单扩展示例</font></h1>
+<span class="subtitle"></span>
+<!-- $$$taskmenuextension-brief -->
+<p><font style="vertical-align: inherit;">为</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">创建自定义组件插件并提供与插件关联的自定义任务菜单条目。</font></p>
+<!-- @@@taskmenuextension -->
+<!-- $$$taskmenuextension-description -->
+<div class="descr"> <a name="details"></a>
+<p><font style="vertical-align: inherit;">任务菜单扩展示例展示了如何为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-manual.html"><i><font style="vertical-align: inherit;">Qt 设计师</font></i></a><font style="vertical-align: inherit;">创建自定义组件插件，以及如何使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">类提供与插件关联的自定义任务菜单条目。</font></p>
+<p class="centerAlign"><img src="images/taskmenuextension-example-faded.png" alt="" /></p><p>
+	<font style="vertical-align: inherit;">为了提供可以与</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">一起使用的自定义组件，我们需要提供一个自包含的实现。在此示例中，我们使用了一个自定义组件，旨在显示任务菜单扩展功能：TicTacToe 组件。</font></p>
+<p><font style="vertical-align: inherit;">扩展是修改</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">行为的对象。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">当选择此扩展插件可以提供自定义任务的菜单项。</font></p>
+<p><i><font style="vertical-align: inherit;">Qt 设计师 </font></i>
+<font style="vertical-align: inherit;"><span lang="zh-cn">中有</span>四种可用的扩展类型：</font></p>
+<ul>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercontainerextension.html"><font style="vertical-align: inherit;">QDesignerContainerExtension</font></a><font style="vertical-align: inherit;">提供了一个扩展，允许您向</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">的多页面容器插件添加（和删除）页面。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignermembersheetextension.html"><font style="vertical-align: inherit;">QDesignerMemberSheetExtension</font></a><font style="vertical-align: inherit;">提供了一个扩展，允许您操作组件的成员函数，当使用 Qt 设计师的编辑信号和槽的模式配置连接时显示该函数。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerpropertysheetextension.html"><font style="vertical-align: inherit;">QDesignerPropertySheetExtension</font></a><font style="vertical-align: inherit;">提供了一个扩展，允许您操作显示在 Qt 设计师 的属性编辑器中的组件的属性。</font></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignertaskmenuextension.html"><font style="vertical-align: inherit;">QDesignerTaskMenuExtension</font></a><font style="vertical-align: inherit;">提供了一个扩展，允许您将自定义菜单条目添加到</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的任务菜单。</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">您可以按照与本示例相同的模式使用所有扩展，只需替换相应的扩展基类。有关更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-module.html"><font style="vertical-align: inherit;">Qt 设计师 C++ 类</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">任务菜单扩展示例包含五个类：</font></p>
+<ul>
+<li><code>TicTacToe</code><font style="vertical-align: inherit;"> 是一个自定义组件，可让用户玩井字游戏。</font></li>
+<li><code>TicTacToePlugin</code><font style="vertical-align: inherit;">将</font><code>TicTacToe</code><font style="vertical-align: inherit;">类公开给</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">。</font></li>
+<li><code>TicTacToeTaskMenuFactory</code><font style="vertical-align: inherit;">创建一个</font><code>TicTacToeTaskMenu</code><font style="vertical-align: inherit;">对象。</font></li>
+<li><code>TicTacToeTaskMenu</code><font style="vertical-align: inherit;"> 提供任务菜单扩展，即插件相关的任务菜单条目。</font></li>
+<li><code>TicTacToeDialog</code><font style="vertical-align: inherit;">允许用户修改加载到</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">中的井字游戏插件的状态。</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">自定义组件插件的项目文件需要一些附加信息以确保它们在</font><i><font style="vertical-align: inherit;">Qt 设计师 中</font></i><font style="vertical-align: inherit;">工作。例如，自定义组件插件依赖于</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供的组件，这必须在我们使用的项目文件中指定。我们将首先看一下插件的项目文件。</font></p>
+<p><font style="vertical-align: inherit;">然后我们将继续复习这个</font><code>TicTacToePlugin</code><font style="vertical-align: inherit;">类，看看</font><code>TicTacToeTaskMenuFactory</code><font style="vertical-align: inherit;">和</font><code>TicTacToeTaskMenu</code><font style="vertical-align: inherit;">类。最后，</font><code>TicTacToeDialog</code><font style="vertical-align: inherit;">在快速查看</font><code>TicTacToe</code><font style="vertical-align: inherit;">组件的类定义之前，我们将回顾该类。</font></p>
+<a name="the-project-file-taskmenuextension-pro"></a>
+<h2 id="the-project-file-taskmenuextension-pro"><font style="vertical-align: inherit;">项目文件：taskmenuextension.pro</font></h2>
+<p><font style="vertical-align: inherit;">项目文件必须包含一些附加信息以确保插件按预期工作：</font></p>
+<pre class="cpp">
+
+  QT      += widgets designer
+  TEMPLATE = lib
+  CONFIG  += plugin
+
+</pre>
+<p><font style="vertical-align: inherit;">该</font><code>TEMPLATE</code><font style="vertical-align: inherit;">变量的值使</font><code>qmake</code><font style="vertical-align: inherit;">创建自定义窗口组件用作库。后面我们会通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA"><font style="vertical-align: inherit;">Q_PLUGIN_METADATA</font></a><font style="vertical-align: inherit;"> ()宏导出相关组件信息，确保组件会被Qt识别为插件。</font></p>
+<p><font style="vertical-align: inherit;">该</font><code>CONFIG</code><font style="vertical-align: inherit;">变量设置为</font><code>plugin</code><font style="vertical-align: inherit;">，这确保</font><code>qmake</code><font style="vertical-align: inherit;">将自定义组件视为插件库。</font></p>
+<p><font style="vertical-align: inherit;">该</font><code>QT</code><font style="vertical-align: inherit;">变量包含的值</font><code>designer</code><font style="vertical-align: inherit;">。由于插件使用</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供的需要链接的组件，此值确保我们的插件链接到</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的库 ( </font><code>libQtDesigner.so</code><font style="vertical-align: inherit;">)。</font></p>
+<p><font style="vertical-align: inherit;">组件的头文件和源文件以通常的方式声明：</font></p>
+<pre class="cpp">
+
+  HEADERS += tictactoe.h \
+             tictactoedialog.h \
+             tictactoeplugin.h \
+             tictactoetaskmenu.h
+  SOURCES += tictactoe.cpp \
+             tictactoedialog.cpp \
+             tictactoeplugin.cpp \
+             tictactoetaskmenu.cpp
+  OTHER_FILES += tictactoe.json
+
+</pre>
+<p><font style="vertical-align: inherit;">我们提供了插件接口的实现，以便</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">可以使用自定义组件。在这个特定的例子中，我们还提供了任务菜单扩展和扩展工厂的实现以及一个对话框实现。</font></p>
+<p><font style="vertical-align: inherit;">确保插件安装在</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">搜索到的位置很重要。我们通过为项目指定目标路径并将其添加到要安装的项目列表来完成此操作：</font></p>
+<pre class="cpp">
+
+  target.path = $$[QT_INSTALL_PLUGINS]/designer
+  INSTALLS += target
+
+</pre>
+<p><font style="vertical-align: inherit;">任务菜单扩展被创建为一个库，并且在安装项目时将与其他</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">插件一起安装（使用</font><code>make install</code><font style="vertical-align: inherit;">或等效的安装过程）。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果您希望插件出现在 Visual Studio 集成中，则必须在发布模式下构建插件，并且必须将它们的库复制到集成安装路径中的插件目录中（例如，请参阅 参考资料</font><code>C:/program files/trolltech as/visual studio integration/plugins</code><font style="vertical-align: inherit;">）。</font></p>
+<p><font style="vertical-align: inherit;">有关插件的更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/plugins-howto.html"><font style="vertical-align: inherit;">如何创建 Qt 插件</font></a><font style="vertical-align: inherit;">文档。</font></p>
+<a name="tictactoeplugin-class-definition"></a>
+<h2 id="tictactoeplugin-class-definition"><font style="vertical-align: inherit;">TicTacToePlugin 类定义</font></h2>
+<p><code>TicTacToePlugin</code> 类向<i>Qt 设计师</i>公开了TicTacToe类。它的定义等价于自定义组件插件示例中的插件类。特定于这个<a href="qtdesigner-customwidgetplugin-example.html">自定义组件</a>的类定义的唯一部分是类名:</p>
+<pre class="cpp">
+
+  <span class="preprocessor">#ifndef TICTACTOEPLUGIN_H</span>
+  <span class="preprocessor">#define TICTACTOEPLUGIN_H</span>
+
+  <span class="preprocessor">#include &lt;QtUiPlugin/QDesignerCustomWidgetInterface&gt;</span>
+
+  <span class="keyword">class</span> <span class="type">QIcon</span>;
+  <span class="keyword">class</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>;
+
+  <span class="keyword">class</span> TicTacToePlugin : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span> <span class="keyword">public</span> <span class="type"><a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a></span>
+  {
+      Q_OBJECT
+      Q_PLUGIN_METADATA(IID <span class="string">&quot;org.qt-project.Qt.QDesignerCustomWidgetInterface&quot;</span>)
+      Q_INTERFACES(<span class="type"><a href="qdesignercustomwidgetinterface.html">QDesignerCustomWidgetInterface</a></span>)
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> TicTacToePlugin(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> name() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> group() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> toolTip() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> whatsThis() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> includeFile() <span class="keyword">const</span> override;
+      <span class="type">QIcon</span> icon() <span class="keyword">const</span> override;
+      bool isContainer() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>createWidget(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent) override;
+      bool isInitialized() <span class="keyword">const</span> override;
+      <span class="type">void</span> initialize(<span class="type"><a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a></span> <span class="operator">*</span>formEditor) override;
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> domXml() <span class="keyword">const</span> override;
+
+  <span class="keyword">private</span>:
+      bool initialized <span class="operator">=</span> <span class="keyword">false</span>;
+  };
+
+  <span class="preprocessor">#endif</span>
+
+</pre>
+<p><font style="vertical-align: inherit;">插件类为</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">提供了关于我们插件的基本信息，例如它的类名和它的包含文件。此外，它知道如何创建</font><code>TicTacToe</code><font style="vertical-align: inherit;">组件的实例。TicTacToePlugin 还定义了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#initialize"><font style="vertical-align: inherit;">initialize()</font></a><font style="vertical-align: inherit;">函数，该函数在插件加载到</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">后调用。该函数的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">参数为插件提供了通往所有</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;"> API 的网关。</font></p>
+<p><font style="vertical-align: inherit;">在</font><code>TicTacToePlugin</code><font style="vertical-align: inherit;">类继承两者</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">的QObject</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html"><font style="vertical-align: inherit;">QDesignerCustomWidgetInterface</font></a><font style="vertical-align: inherit;">。重要的是要记住，在使用多重继承时，要确保使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INTERFACES">Q_INTERFACES</a> () 宏使元对象系统知道所有接口（即不继承</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_OBJECT"><font style="vertical-align: inherit;">Q_OBJECT</font></a><font style="vertical-align: inherit;">的类）。这使得<i>Qt 设计师</i>能够使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#qobject_cast">qobject_cast</a> (QObject * object) 
+<span lang="zh-cn">转换<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>指针</span>来查询支持的接口<span lang="zh-cn">。</span></font></p>
+<a name="tictactoeplugin-class-implementation"></a>
+<h2 id="tictactoeplugin-class-implementation"><font style="vertical-align: inherit;">TicTacToePlugin 类实现</font></h2>
+<p><font style="vertical-align: inherit;">TicTacToePlugin 类实现在大多数情况下等同于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qtdesigner-customwidgetplugin-example.html"><font style="vertical-align: inherit;"><span lang="zh-cn">自定义组件插件</span></font></a><font style="vertical-align: inherit;">示例的插件类：</font></p>
+<pre class="cpp">
+
+  TicTacToePlugin<span class="operator">::</span>TicTacToePlugin(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>(parent)
+  {
+  }
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> TicTacToePlugin<span class="operator">::</span>name() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html#QStringLiteral">QStringLiteral</a></span>(<span class="string">&quot;TicTacToe&quot;</span>);
+  }
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> TicTacToePlugin<span class="operator">::</span>group() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html#QStringLiteral">QStringLiteral</a></span>(<span class="string">&quot;Display Widgets [Examples]&quot;</span>);
+  }
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> TicTacToePlugin<span class="operator">::</span>toolTip() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span>();
+  }
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> TicTacToePlugin<span class="operator">::</span>whatsThis() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span>();
+  }
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> TicTacToePlugin<span class="operator">::</span>includeFile() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html#QStringLiteral">QStringLiteral</a></span>(<span class="string">&quot;tictactoe.h&quot;</span>);
+  }
+
+  <span class="type">QIcon</span> TicTacToePlugin<span class="operator">::</span>icon() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type">QIcon</span>();
+  }
+
+  bool TicTacToePlugin<span class="operator">::</span>isContainer() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="keyword">false</span>;
+  }
+
+  <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>TicTacToePlugin<span class="operator">::</span>createWidget(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent)
+  {
+      TicTacToe <span class="operator">*</span>ticTacToe <span class="operator">=</span> <span class="keyword">new</span> TicTacToe(parent);
+      ticTacToe<span class="operator">-</span><span class="operator">&gt;</span>setState(<span class="type"><a href="../qtcore/qstring.html#QStringLiteral">QStringLiteral</a></span>(<span class="string">&quot;-X-XO----&quot;</span>));
+      <span class="keyword">return</span> ticTacToe;
+  }
+
+  bool TicTacToePlugin<span class="operator">::</span>isInitialized() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> initialized;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">唯一显着不同的函数是 initialize() 函数：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> TicTacToePlugin<span class="operator">::</span>initialize(<span class="type"><a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a></span> <span class="operator">*</span>formEditor)
+  {
+
+</pre>
+<p><code>initialize()</code><font style="vertical-align: inherit;">函数将</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">对象作为参数。该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">类提供对Qt设计师的组件。</font></p>
+<p><font style="vertical-align: inherit;">创建与自定义组件插件关联的扩展时，我们需要访问</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的当前扩展管理器，我们从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">参数中检索该扩展管理器。</font></p>
+<pre class="cpp">
+
+      <span class="keyword">if</span> (initialized)
+          <span class="keyword">return</span>;
+
+      <span class="type"><a href="qextensionmanager.html">QExtensionManager</a></span> <span class="operator">*</span>manager <span class="operator">=</span> formEditor<span class="operator">-</span><span class="operator">&gt;</span>extensionManager();
+      Q_ASSERT(manager <span class="operator">!</span><span class="operator">=</span> <span class="number">0</span>);
+
+</pre>
+<p><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformeditorinterface.html"><font style="vertical-align: inherit;">QDesignerFormEditorInterface</font></a><font style="vertical-align: inherit;">保存有关所有 Qt 设计师 组件的信息：动作编辑器、对象检查器、属性编辑器、组件框以及扩展和表单窗口管理器。</font></p>
+<p><i>Qt 设计师</i>'s <a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a> holds information about all Qt 设计师's components: The action editor, the object inspector, the property editor, the widget box, and the extension and form window managers.</p>
+<p><span lang="zh-cn"><a href="qextensionmanager.html">QExtensionManager</a>类为Qt设计师提供了扩展管理工具。使用<i>Qt 设计师</i>的当前扩展管理器，您可以检索给定对象的扩展。您还可以为给定对象注册和注销扩展。记住，扩展是修改<i>Qt 设计师</i>行为的对象。</span></p>
+<p><font style="vertical-align: inherit;">注册扩展时，实际上注册的是关联的扩展工厂。在</font><i><font style="vertical-align: inherit;">Qt 设计师 </font></i>
+<font style="vertical-align: inherit;">中，扩展工厂用于根据需要查找和创建命名扩展。因此，在此示例中，在用户请求任务菜单之前，不会创建任务菜单扩展本身。</font></p>
+<pre class="cpp">
+
+      manager<span class="operator">-</span><span class="operator">&gt;</span>registerExtensions(<span class="keyword">new</span> TicTacToeTaskMenuFactory(manager)<span class="operator">,</span>
+                                  Q_TYPEID(<span class="type"><a href="qdesignertaskmenuextension.html">QDesignerTaskMenuExtension</a></span>));
+
+      initialized <span class="operator">=</span> <span class="keyword">true</span>;
+  }
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> TicTacToePlugin<span class="operator">::</span>domXml() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> QLatin1String(<span class="string">&quot;\
+  &lt;ui language=\&quot;c++\&quot;&gt;\
+      &lt;widget class=\&quot;TicTacToe\&quot; name=\&quot;ticTacToe\&quot;/&gt;\
+      &lt;customwidgets&gt;\
+          &lt;customwidget&gt;\
+              &lt;class&gt;TicTacToe&lt;/class&gt;\
+              &lt;propertyspecifications&gt;\
+              &lt;tooltip name=\&quot;state\&quot;&gt;Tic Tac Toe state&lt;/tooltip&gt;\
+              &lt;stringpropertyspecification name=\&quot;state\&quot; notr=\&quot;true\&quot; type=\&quot;singleline\&quot;/&gt;\
+              &lt;/propertyspecifications&gt;\
+          &lt;/customwidget&gt;\
+      &lt;/customwidgets&gt;\
+  &lt;/ui&gt;&quot;</span>);
+  }
+
+</pre>
+<p>我们创建一个<code>TicTacToeTaskMenuFactory</code> 对象，使用从<a href="qdesignerformeditorinterface.html">QDesignerFormEditorInterface</a>参数检索的<i>Qt 设计师</i>当前扩展管理器注册该对象。第一个参数是新创建的工厂，第二个参数是扩展标识符，它是一个字符串。<code>Q_TYPEID()</code>宏只是将字符串转换为<a href="../qtcore/qlatin1string.html">QLatin1String</a>。</p>
+<p><code>TicTacToeTaskMenuFactory</code> 类是<a href="qextensionfactory.html">QExtensionFactory</a>的一个子类。当用户在具有指定任务菜单扩展的组件上单击鼠标右键请求任务菜单时，Qt 
+Designer的扩展管理器将遍历其所有注册的工厂，调用能够为所选组件创建任务菜单扩展的第一个工厂。该工厂将依次创建一个<code>TicTacToeTaskMenu</code> 
+对象(扩展)。</p>
+<p style="height: 60px"><font style="vertical-align: inherit;">我们省略了重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignercustomwidgetinterface.html#domXml"><font style="vertical-align: inherit;">QDesignerCustomWidgetInterface::domXml</font></a><font style="vertical-align: inherit;"> () 函数（包括 Qt 设计师 使用的标准 XML 格式的组件的默认设置），因为不需要默认值。</font></p>
+<pre class="cpp">
+
+      Q_PLUGIN_METADATA(IID <span class="string">&quot;org.qt-project.Qt.QDesignerCustomWidgetInterface&quot;</span>)
+
+</pre>
+<p><font style="vertical-align: inherit;">最后，我们使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA"><font style="vertical-align: inherit;">Q_PLUGIN_METADATA</font></a><font style="vertical-align: inherit;"> () 宏导出 TicTacToePlugin 类，以便与 Qt 的插件处理类一起使用：该宏确保</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">可以访问和构建自定义组件。没有这个宏，</font><i><font style="vertical-align: inherit;">Qt 设计师 </font></i>
+<font style="vertical-align: inherit;">就无法使用组件。</font></p>
+<a name="tictactoetaskmenufactory-class-definition"></a>
+<h2 id="tictactoetaskmenufactory-class-definition"><font style="vertical-align: inherit;">TicTacToeTaskMenuFactory 类定义</font></h2>
+<p><code>TicTacToeTaskMenuFactory</code> 类继承了<a href="qextensionfactory.html">QExtensionFactory</a>，它为<i>Qt 设计师</i>提供了一个标准的扩展工厂。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> TicTacToeTaskMenuFactory : <span class="keyword">public</span> <span class="type"><a href="qextensionfactory.html">QExtensionFactory</a></span>
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> TicTacToeTaskMenuFactory(<span class="type"><a href="qextensionmanager.html">QExtensionManager</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+  <span class="keyword">protected</span>:
+      <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>createExtension(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object<span class="operator">,</span> <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>iid<span class="operator">,</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent) <span class="keyword">const</span> override;
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">子类的目的是重新实现</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html#createExtension"><font style="vertical-align: inherit;">QExtensionFactory::createExtension</font></a><font style="vertical-align: inherit;"> () 函数，使其能够创建</font><code>TicTacToe</code><font style="vertical-align: inherit;">任务菜单扩展。</font></p>
+<a name="tictactoetaskmenufactory-class-implementation"></a>
+<h2 id="tictactoetaskmenufactory-class-implementation"><font style="vertical-align: inherit;">TicTacToeTaskMenuFactory 类实现</font></h2>
+<p><font style="vertical-align: inherit;">类构造函数简单地调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qextensionfactory.html"><font style="vertical-align: inherit;">QExtensionFactory</font></a><font style="vertical-align: inherit;">基类构造函数：</font></p>
+<pre class="cpp">
+
+  TicTacToeTaskMenuFactory<span class="operator">::</span>TicTacToeTaskMenuFactory(<span class="type"><a href="qextensionmanager.html">QExtensionManager</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="qextensionfactory.html">QExtensionFactory</a></span>(parent)
+  {
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">如上所述，当用户通过在</font><i><font style="vertical-align: inherit;">Qt 设计师 </font></i>
+<font style="vertical-align: inherit;">中具有指定任务菜单扩展名的组件上单击鼠标右键来请求任务菜单时，将调用工厂。</font></p>
+<p><font style="vertical-align: inherit;">无论请求的扩展与容器、成员表、属性表还是任务菜单相关联，<i>Qt 设计师</i>的行为都是相同的：它的扩展管理器运行所有注册的扩展工厂，调用</font><code>createExtension()</code><font style="vertical-align: inherit;">每个扩展工厂，直到一个响应创建请求的扩展工厂延期。</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>TicTacToeTaskMenuFactory<span class="operator">::</span>createExtension(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object<span class="operator">,</span>
+                                                     <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>iid<span class="operator">,</span>
+                                                     <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent) <span class="keyword">const</span>
+  {
+      <span class="keyword">if</span> (iid <span class="operator">!</span><span class="operator">=</span> Q_TYPEID(<span class="type"><a href="qdesignertaskmenuextension.html">QDesignerTaskMenuExtension</a></span>))
+          <span class="keyword">return</span> nullptr;
+
+      <span class="keyword">if</span> (TicTacToe <span class="operator">*</span>tic <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>TicTacToe<span class="operator">*</span><span class="operator">&gt;</span>(object))
+          <span class="keyword">return</span> <span class="keyword">new</span> TicTacToeTaskMenu(tic<span class="operator">,</span> parent);
+
+      <span class="keyword">return</span> nullptr;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">所以我们做的第一件事</font><code>TicTacToeTaskMenuFactory::createExtension()</code><font style="vertical-align: inherit;">是检查请求的扩展是否是任务菜单扩展。如果是，并且请求它的</font><code>TicTacToe</code><font style="vertical-align: inherit;">组件是组件，我们将创建并返回一个</font><code>TicTacToeTaskMenu</code><font style="vertical-align: inherit;">对象。否则，我们只需返回一个空指针，允许</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">的扩展管理器继续搜索已注册的工厂。</font></p>
+<a name="tictactoetaskmenu-class-definition"></a>
+<h2 id="tictactoetaskmenu-class-definition"><font style="vertical-align: inherit;">TicTacToeTaskMenu 类定义</font></h2>
+<p class="centerAlign"><img src="images/taskmenuextension-menu.png" alt="" /></p><p>
+	<code>TicTacToeTaskMenu</code> 类继承了<a href="qdesignertaskmenuextension.html">QDesignerTaskMenuExtension</a>，它允许你添加自定义条目(以QActions的形式)到<i>Qt 设计师</i>的任务菜单中。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> TicTacToeTaskMenu : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span> <span class="keyword">public</span> <span class="type"><a href="qdesignertaskmenuextension.html">QDesignerTaskMenuExtension</a></span>
+  {
+      Q_OBJECT
+      Q_INTERFACES(<span class="type"><a href="qdesignertaskmenuextension.html">QDesignerTaskMenuExtension</a></span>)
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> TicTacToeTaskMenu(TicTacToe <span class="operator">*</span>tic<span class="operator">,</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent);
+
+      <span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span> <span class="operator">*</span>preferredEditAction() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qlist.html">QList</a></span><span class="operator">&lt;</span><span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span> <span class="operator">*</span><span class="operator">&gt;</span> taskActions() <span class="keyword">const</span> override;
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> editState();
+
+  <span class="keyword">private</span>:
+      <span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span> <span class="operator">*</span>editStateAction;
+      TicTacToe <span class="operator">*</span>ticTacToe;
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">我们重新实现了</font><code>preferredEditAction()</code><font style="vertical-align: inherit;">和</font><code>taskActions()</code><font style="vertical-align: inherit;">函数。请注意，我们实现了一个带有</font><i><font style="vertical-align: inherit;">两个</font></i><font style="vertical-align: inherit;">参数的构造函数：父组件和为其请求任务菜单的组件</font><code>TicTacToe</code><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">此外，我们声明了私有</font><code>editState()</code><font style="vertical-align: inherit;">插槽、我们的自定义</font><code>editStateAction</code><font style="vertical-align: inherit;">以及指向</font><code>TicTacToe</code><font style="vertical-align: inherit;">我们要修改的状态的组件的私有指针。</font></p>
+<a name="tictactoetaskmenu-class-implementation"></a>
+<h2 id="tictactoetaskmenu-class-implementation"><font style="vertical-align: inherit;">TicTacToeTaskMenu 类实现</font></h2>
+<pre class="cpp">
+
+  TicTacToeTaskMenu<span class="operator">::</span>TicTacToeTaskMenu(TicTacToe <span class="operator">*</span>tic<span class="operator">,</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>(parent)
+      <span class="operator">,</span> editStateAction(<span class="keyword">new</span> <span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span>(tr(<span class="string">&quot;Edit State...&quot;</span>)<span class="operator">,</span> <span class="keyword">this</span>))
+      <span class="operator">,</span> ticTacToe(tic)
+  {
+      connect(editStateAction<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span><span class="operator">::</span>triggered<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>TicTacToeTaskMenu<span class="operator">::</span>editState);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">在构造函数中，我们首先保存对</font><code>TicTacToe</code><font style="vertical-align: inherit;">作为参数发送的组件的引用，即我们要修改的状态的组件。当我们的自定义操作被调用时，我们稍后将需要它。我们还创建了自定义</font><code>editStateAction</code><font style="vertical-align: inherit;">并将其连接到</font><code>editState()</code><font style="vertical-align: inherit;">槽。</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> TicTacToeTaskMenu<span class="operator">::</span>editState()
+  {
+      TicTacToeDialog dialog(ticTacToe);
+      dialog<span class="operator">.</span>exec();
+  }
+
+</pre>
+<p><code>editState()</code><font style="vertical-align: inherit;">每当用户在组件的任务菜单中选择“</font><b><font style="vertical-align: inherit;">编辑状态...”</font></b><font style="vertical-align: inherit;">选项时，就会调用该槽</font><code>TicTacToe</code><font style="vertical-align: inherit;">。该槽创建一个</font><code>TicTacToeDialog</code>渲染<font style="vertical-align: inherit;">组件的当前状态，并允许用户通过玩游戏来编辑其状态。</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span> <span class="operator">*</span>TicTacToeTaskMenu<span class="operator">::</span>preferredEditAction() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> editStateAction;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">我们重新实现该</font><code>preferredEditAction()</code><font style="vertical-align: inherit;">函数以返回我们的自定义</font><code>editStateAction</code><font style="vertical-align: inherit;">作为选择</font><code>TicTacToe</code><font style="vertical-align: inherit;">组件并按</font><b><font style="vertical-align: inherit;">F2</font></b><font style="vertical-align: inherit;">时应调用的操作。</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qlist.html">QList</a></span><span class="operator">&lt;</span><span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span> <span class="operator">*</span><span class="operator">&gt;</span> TicTacToeTaskMenu<span class="operator">::</span>taskActions() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qlist.html">QList</a></span><span class="operator">&lt;</span><span class="type"><a href="../qtwidgets/qaction.html">QAction</a></span> <span class="operator">*</span><span class="operator">&gt;</span>{editStateAction};
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">我们重新实现该</font><code>taskActions()</code><font style="vertical-align: inherit;">函数以返回自定义操作的列表，使这些操作显示在</font><code>TicTacToe</code><font style="vertical-align: inherit;">组件任务菜单中的默认菜单项的顶部。</font></p>
+<a name="tictactoedialog-class-definition"></a>
+<h2 id="tictactoedialog-class-definition"><font style="vertical-align: inherit;">TicTacToeDialog 类定义</font></h2>
+<p class="centerAlign"><img src="images/taskmenuextension-dialog.png" alt="" /></p><p><font style="vertical-align: inherit;">在</font><code>TicTacToeDialog</code><font style="vertical-align: inherit;">类继承</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qdialog.html"><font style="vertical-align: inherit;">了QDialog</font></a><font style="vertical-align: inherit;">。该对话框允许用户修改当前选定的井字游戏插件的状态。</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> TicTacToeDialog : <span class="keyword">public</span> <span class="type"><a href="../qtwidgets/qdialog.html">QDialog</a></span>
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> TicTacToeDialog(TicTacToe <span class="operator">*</span>plugin <span class="operator">=</span> nullptr<span class="operator">,</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+      <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> sizeHint() <span class="keyword">const</span> override;
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> resetState();
+      <span class="type">void</span> saveState();
+
+  <span class="keyword">private</span>:
+      TicTacToe <span class="operator">*</span>editor;
+      TicTacToe <span class="operator">*</span>ticTacToe;
+      <span class="type"><a href="../qtwidgets/qdialogbuttonbox.html">QDialogButtonBox</a></span> <span class="operator">*</span>buttonBox;
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">我们重新实现了这个</font><code>sizeHint()</code><font style="vertical-align: inherit;">功能。我们还声明了两个私有槽：</font><code>resetState()</code><font style="vertical-align: inherit;">和</font><code>saveState()</code><font style="vertical-align: inherit;">。除了对话框的按钮和布局之外，我们还声明了两个</font><code>TicTacToe</code><font style="vertical-align: inherit;">指针，一个指向用户可以与之交互的组件，另一个指向用户想要编辑的原始自定义组件插件。</font></p>
+<a name="tictactoedialog-class-implementation"></a>
+<h2 id="tictactoedialog-class-implementation"><font style="vertical-align: inherit;">TicTacToeDialog 类实现</font></h2>
+<pre class="cpp">
+
+  TicTacToeDialog<span class="operator">::</span>TicTacToeDialog(TicTacToe <span class="operator">*</span>tic<span class="operator">,</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="../qtwidgets/qdialog.html">QDialog</a></span>(parent)
+      <span class="operator">,</span> editor(<span class="keyword">new</span> TicTacToe)
+      <span class="operator">,</span> ticTacToe(tic)
+      <span class="operator">,</span> buttonBox(<span class="keyword">new</span> <span class="type"><a href="../qtwidgets/qdialogbuttonbox.html">QDialogButtonBox</a></span>(<span class="type"><a href="../qtwidgets/qdialogbuttonbox.html">QDialogButtonBox</a></span><span class="operator">::</span>Ok
+                                       <span class="operator">|</span> <span class="type"><a href="../qtwidgets/qdialogbuttonbox.html">QDialogButtonBox</a></span><span class="operator">::</span>Cancel
+                                       <span class="operator">|</span> <span class="type"><a href="../qtwidgets/qdialogbuttonbox.html">QDialogButtonBox</a></span><span class="operator">::</span>Reset))
+  {
+      editor<span class="operator">-</span><span class="operator">&gt;</span>setState(ticTacToe<span class="operator">-</span><span class="operator">&gt;</span>state());
+
+      connect(buttonBox<span class="operator">-</span><span class="operator">&gt;</span>button(<span class="type"><a href="../qtwidgets/qdialogbuttonbox.html">QDialogButtonBox</a></span><span class="operator">::</span>Reset)<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="../qtwidgets/qabstractbutton.html">QAbstractButton</a></span><span class="operator">::</span>clicked<span class="operator">,</span>
+              <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>TicTacToeDialog<span class="operator">::</span>resetState);
+      connect(buttonBox<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="../qtwidgets/qdialogbuttonbox.html">QDialogButtonBox</a></span><span class="operator">::</span>accepted<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>TicTacToeDialog<span class="operator">::</span>saveState);
+      connect(buttonBox<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="../qtwidgets/qdialogbuttonbox.html">QDialogButtonBox</a></span><span class="operator">::</span>rejected<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="../qtwidgets/qdialog.html">QDialog</a></span><span class="operator">::</span>reject);
+
+      <span class="type"><a href="../qtwidgets/qvboxlayout.html">QVBoxLayout</a></span> <span class="operator">*</span>mainLayout <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="../qtwidgets/qvboxlayout.html">QVBoxLayout</a></span>;
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(editor);
+      mainLayout<span class="operator">-</span><span class="operator">&gt;</span>addWidget(buttonBox);
+
+      setLayout(mainLayout);
+      setWindowTitle(tr(<span class="string">&quot;Edit State&quot;</span>));
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">在构造函数中，我们首先保存对作为参数发送的井字游戏组件的引用，即用户想要修改的状态的组件。然后我们创建一个新的</font><code>TicTacToe</code><font style="vertical-align: inherit;">组件，并将其状态设置为与参数组件的状态相同。</font></p>
+<p><font style="vertical-align: inherit;">最后，我们创建对话框的按钮和布局。</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> TicTacToeDialog<span class="operator">::</span>sizeHint() <span class="keyword">const</span>
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qsize.html">QSize</a></span>(<span class="number">250</span><span class="operator">,</span> <span class="number">250</span>);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">我们重新实现该</font><code>sizeHint()</code><font style="vertical-align: inherit;">函数以确保为对话框提供合理的大小。</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> TicTacToeDialog<span class="operator">::</span>resetState()
+  {
+      editor<span class="operator">-</span><span class="operator">&gt;</span>clearBoard();
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">每当用户按下</font><b><font style="vertical-align: inherit;">重置</font></b><font style="vertical-align: inherit;">按钮时都会调用该<code>resetState()</code>槽。我们唯一要做的就是调用</font><code>clearBoard()</code><font style="vertical-align: inherit;">编辑器组件的函数，即</font><code>TicTacToe</code><font style="vertical-align: inherit;">我们在对话框的构造函数中创建的组件。</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> TicTacToeDialog<span class="operator">::</span>saveState()
+  {
+
+</pre>
+<p><code>saveState()</code><font style="vertical-align: inherit;">每当用户按下</font><b><font style="vertical-align: inherit;">OK</font></b><font style="vertical-align: inherit;">按钮时都会调用该槽，并将编辑器组件的状态传输到我们要修改的状态的组件。为了使</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">可以看到状态的变化，我们需要使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowInterface</font></a><font style="vertical-align: inherit;">类设置后者的组件的状态属性。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowInterface</font></a><font style="vertical-align: inherit;">为您提供有关关联表单窗口的信息，并允许您更改其属性。该界面不打算直接实例化，而是提供对 Qt 设计师 的窗体窗口管理器控制的 Qt 设计师 当前窗体窗口的访问。</font></p>
+<p><font style="vertical-align: inherit;">如果您正在寻找包含特定组件的表单窗口，您可以使用静态</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#findFormWindow"><font style="vertical-align: inherit;">QDesignerFormWindowInterface::findFormWindow</font></a><font style="vertical-align: inherit;"> () 函数：</font></p>
+<pre class="cpp">
+
+      <span class="keyword">if</span> (<span class="type"><a href="qdesignerformwindowinterface.html">QDesignerFormWindowInterface</a></span> <span class="operator">*</span>formWindow
+              <span class="operator">=</span> <span class="type"><a href="qdesignerformwindowinterface.html">QDesignerFormWindowInterface</a></span><span class="operator">::</span>findFormWindow(ticTacToe)) {
+          formWindow<span class="operator">-</span><span class="operator">&gt;</span>cursor()<span class="operator">-</span><span class="operator">&gt;</span>setProperty(<span class="string">&quot;state&quot;</span><span class="operator">,</span> editor<span class="operator">-</span><span class="operator">&gt;</span>state());
+      }
+
+</pre>
+<p><font style="vertical-align: inherit;">在检索到组件的窗体窗口（我们要修改哪个状态）之后，我们使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowinterface.html#cursor"><font style="vertical-align: inherit;">QDesignerFormWindowInterface::cursor</font></a><font style="vertical-align: inherit;"> () 函数来检索窗体窗口的光标。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html"><font style="vertical-align: inherit;">QDesignerFormWindowCursorInterface</font></a><font style="vertical-align: inherit;">类提供到窗体窗口文本光标的接口。一旦我们有了光标，我们就可以最终使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdesigner/qdesignerformwindowcursorinterface.html#setProperty"><font style="vertical-align: inherit;">QDesignerFormWindowCursorInterface::setProperty</font></a><font style="vertical-align: inherit;"> () 函数设置状态属性。</font></p>
+<pre class="cpp">
+
+      accept();
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">最后我们调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qevent.html#accept"><font style="vertical-align: inherit;">QEvent::accept</font></a><font style="vertical-align: inherit;"> () 函数，它设置事件对象的接受标志。设置该</font><code>accept</code><font style="vertical-align: inherit;">参数表示事件接收者想要该事件。不需要的事件可能会传播到父组件。</font></p>
+<a name="tictactoe-class-definition"></a>
+<h2 id="tictactoe-class-definition">TicTacToe<span lang="zh-cn">类定义</span></h2>
+<p><font style="vertical-align: inherit;">该</font><code>TicTacToe</code><font style="vertical-align: inherit;">班是一个自定义插件，让用户玩井字棋游戏。</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> TicTacToe : <span class="keyword">public</span> <span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span>
+  {
+      Q_OBJECT
+      Q_PROPERTY(<span class="type"><a href="../qtcore/qstring.html">QString</a></span> state READ state WRITE setState)
+
+  <span class="keyword">public</span>:
+      <span class="keyword">explicit</span> TicTacToe(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+      <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> minimumSizeHint() <span class="keyword">const</span> override;
+      <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> sizeHint() <span class="keyword">const</span> override;
+      <span class="type">void</span> setState(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>newState);
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> state() <span class="keyword">const</span>;
+      <span class="type">void</span> clearBoard();
+
+  <span class="keyword">protected</span>:
+      <span class="type">void</span> mousePressEvent(<span class="type">QMouseEvent</span> <span class="operator">*</span>event) override;
+      <span class="type">void</span> paintEvent(<span class="type">QPaintEvent</span> <span class="operator">*</span>event) override;
+
+  <span class="keyword">private</span>:
+      <span class="keyword">enum</span> : <span class="type">char</span> { Empty <span class="operator">=</span> <span class="char">'-'</span><span class="operator">,</span> Cross <span class="operator">=</span> <span class="char">'X'</span><span class="operator">,</span> Nought <span class="operator">=</span> <span class="char">'O'</span> };
+
+      <span class="type"><a href="../qtcore/qrect.html">QRect</a></span> cellRect(<span class="type">int</span> row<span class="operator">,</span> <span class="type">int</span> col) <span class="keyword">const</span>;
+      <span class="type">int</span> cellWidth() <span class="keyword">const</span> { <span class="keyword">return</span> width() <span class="operator">/</span> <span class="number">3</span>; }
+      <span class="type">int</span> cellHeight() <span class="keyword">const</span> { <span class="keyword">return</span> height() <span class="operator">/</span> <span class="number">3</span>; }
+
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> myState;
+      <span class="type">int</span> turnNumber <span class="operator">=</span> <span class="number">0</span>;
+  };
+
+</pre>
+<p>在<code>TicTacToe</code> 类定义中要观察的主要细节是<code>state</code>属性及其 <code>state()</code>和<code>setState()</code> 
+函数的声明。</p>
+<p><font style="vertical-align: inherit;">我们需要将</font><code>TicTacToe</code><font style="vertical-align: inherit;">组件的状态声明为一个属性，以使其对</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">可见；允许</font><i><font style="vertical-align: inherit;">Qt 设计师</font></i><font style="vertical-align: inherit;">以与管理</font><code>TicTacToe</code><font style="vertical-align: inherit;">组件从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qwidget.html"><font style="vertical-align: inherit;">QWidget</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">继承的属性相同的方式管理它，例如具有属性编辑器。</font></p>
+<p><font style="vertical-align: inherit;">文件：</font></p>
+<ul>
+<li><a href="qtdesigner-taskmenuextension-taskmenuextension-pro.html">taskmenuextension/taskmenuextension.pro</a></li>
+<li><a href="qtdesigner-taskmenuextension-tictactoe-cpp.html">taskmenuextension/tictactoe.cpp</a></li>
+<li><a href="qtdesigner-taskmenuextension-tictactoe-h.html">taskmenuextension/tictactoe.h</a></li>
+<li><a href="qtdesigner-taskmenuextension-tictactoedialog-cpp.html">taskmenuextension/tictactoedialog.cpp</a></li>
+<li><a href="qtdesigner-taskmenuextension-tictactoedialog-h.html">taskmenuextension/tictactoedialog.h</a></li>
+<li><a href="qtdesigner-taskmenuextension-tictactoeplugin-cpp.html">taskmenuextension/tictactoeplugin.cpp</a></li>
+<li><a href="qtdesigner-taskmenuextension-tictactoeplugin-h.html">taskmenuextension/tictactoeplugin.h</a></li>
+<li><a href="qtdesigner-taskmenuextension-tictactoetaskmenu-cpp.html">taskmenuextension/tictactoetaskmenu.cpp</a></li>
+<li><a href="qtdesigner-taskmenuextension-tictactoetaskmenu-h.html">taskmenuextension/tictactoetaskmenu.h</a></li>
+</ul>
+</div>
+<!-- @@@taskmenuextension -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
