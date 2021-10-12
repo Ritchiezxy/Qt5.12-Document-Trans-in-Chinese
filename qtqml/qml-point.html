@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qmltypereference.qdoc -->
+  <title>point QML基本类型 | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >point QML基本类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc"><span lang="zh-cn">目录</span></a></h3>
+<ul>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">point QML基本类型</h1>
+<span class="subtitle"></span>
+<!-- $$$point-description -->
+<div class="descr"> <a name="details"></a>
+<p>具有x和y属性的值。</p>
+<p><code>point</code> 类型指的是具有<code>x</code>和<code>y</code> 属性的值。</p>
+<p>要创建一个<code>point</code> 值，指定它为“x,y”字符串:</p>
+<pre class="qml">
+
+  <span class="type">CustomObject</span> { <span class="name">myPointProperty</span>: <span class="string">&quot;0,20&quot;</span> }
+
+</pre>
+<p>或者使用<a href="qml-qtqml-qt.html#point-method">Qt.point()</a>函数:</p>
+<pre class="qml">
+
+  <span class="type">CustomObject</span> { <span class="name">myPointProperty</span>: <span class="name">Qt</span>.<span class="name">point</span>(<span class="number">0</span>, <span class="number">20</span>) }
+
+</pre>
+<p>当与C++集成时，请注意<a href="qtqml-cppintegration-data.html">从C++传递到QML</a>的任何<a href="../qtcore/qpoint.html">QPoint</a>或<a href="../qtcore/qpointf.html">QPointF</a>值都会自动转换为一个点值。当一个点值传递给C++时，它会自动转换为<a href="../qtcore/qpointf.html">QPointF</a>值。</p>
+</div>
+<p><b>请参考 </b><a href="qtqml-typesystem-basictypes.html">QML基本类型</a><span lang="zh-cn">。</span></p>
+<!-- @@@point -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
