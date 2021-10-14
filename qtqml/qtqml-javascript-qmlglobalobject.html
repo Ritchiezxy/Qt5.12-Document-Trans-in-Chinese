@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qmlglobalobject.qdoc -->
+  <title>QML Global Object | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >
+			QML全局对象</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#xmlhttprequest">XMLHttpRequest</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML全局对象</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-javascript-qmlglobalobject.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML JavaScript宿主环境实现了以下宿主对象和函数。这些都是内置的，可以从QML中加载的任何JavaScript代码中使用，而不需要额外的导入:</p>
+<ul>
+<li><a href="qml-qtqml-qt.html">Qt对象:</a>该对象特定于QML，并提供特定于QML环境的辅助方法和属性。</li>
+<li>qsTr(), qsTranslate(), qsTrId(), <a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a>(), <a href="../qtcore/qtglobal.html#QT_TRANSLATE_NOOP">QT_TRANSLATE_NOOP</a>(), and <a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP</a>() functions: These functions are specific to QML, and provide <a href="../qtlinguist/linguist-overview.html">translation capabilities</a> to the QML environment.qsTr()、qsTranslate()、qsTrId()、<a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a>()、<a href="../qtcore/qtglobal.html#QT_TRANSLATE_NOOP">QT_TRANSLATE_NOOP</a>()和<a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP</a>()函数:这些函数特定于QML，并向QML环境提供<a href="../qtlinguist/linguist-overview.html">翻译功能</a>。</li>
+<li>gc()函数:该函数特定于QML，并提供一种手动触发垃圾收集的方法。</li>
+<li>print()函数:该函数特定于QML，并提供一种向控制台输出信息的简单方法。</li>
+<li><a href="../qtdoc/qtquick-debugging.html#console-api">控制台对象</a>:该对象实现了<a href="http://getfirebug.com/wiki/index.php/Console_API">FireBug控制台API</a>的一个子集。</li>
+<li><a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a>, 
+DOMException:这些对象实现了<a href="http://www.w3.org/TR/XMLHttpRequest/">W3C 
+XMLHttpRequest规范</a>的一个子集。</li>
+</ul>
+<p><b>注意：</b>For more information about this, see <a href="qtqml-javascript-hostenvironment.html#javascript-environment-restrictions">JavaScript Environment Restrictions</a>.<a href="qjsengine.html#globalObject">globalObject()</a>函数不能用于修改<a href="qqmlengine.html">QQmlEngine</a>的全局对象。有关这方面的更多信息，请参见<a href="qtqml-javascript-hostenvironment.html#javascript-environment-restrictions">JavaScript环境限制</a>。</p><a name="xmlhttprequest"></a><a name="xmlhttprequest"></a>
+<h2 id="xmlhttprequest">XMLHttpRequest</h2>
+<p><a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">MLHttpRequest</a>对象，可用于通过网络异步获取数据。</p>
+<p><a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a>API实现了与许多流行的web浏览器相同的<a href="http://www.w3.org/TR/XMLHttpRequest/">W3C标准</a>，但有以下例外:</p>
+<ul>
+<li>QML的<a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a>不强制执行同源策略。</li>
+</ul>
+<p>此外，QML目前支持的<code>responseXML</code> XML DOM树是web浏览器中支持的<a href="http://www.w3.org/TR/DOM-Level-3-Core/">DOM Level 3 Core</a> 
+API的缩减子集。QML实现支持以下对象和属性:</p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th ><span lang="zh-cn">注意</span></th><th >
+	 <span lang="zh-cn">文档</span></th><th ><span lang="zh-cn">元素</span></th><th >
+	 <span lang="zh-cn">属性</span></th><th ><span lang="zh-cn"><b>字符数据</b></span></th><th >
+	 <span lang="zh-cn">文本</span></th></tr></thead>
+<tr valign="top" class="odd"><td ><ul>
+<li>nodeName</li>
+<li>nodeValue</li>
+<li>nodeType</li>
+<li>parentNode</li>
+<li>childNodes</li>
+<li>firstChild</li>
+<li>lastChild</li>
+<li>previousSibling</li>
+<li>nextSibling</li>
+<li>attributes</li>
+</ul>
+</td><td ><ul>
+<li>xmlVersion</li>
+<li>xmlEncoding</li>
+<li>xmlStandalone</li>
+<li>documentElement</li>
+</ul>
+</td><td ><ul>
+<li>tagName</li>
+</ul>
+</td><td ><ul>
+<li>name</li>
+<li>value</li>
+<li>ownerElement</li>
+</ul>
+</td><td ><ul>
+<li>data</li>
+<li>length</li>
+</ul>
+</td><td ><ul>
+<li>isElementContentWhitespace</li>
+<li>wholeText</li>
+</ul>
+</td></tr>
+</table></div>
+<p><a href="qtqml-xmlhttprequest-example.html">XMLHttpRequest示例</a>演示了如何使用<a href="qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a>对象发出请求并读取响应头。</p>
+</div>
+<!-- @@@qtqml-javascript-qmlglobalobject.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

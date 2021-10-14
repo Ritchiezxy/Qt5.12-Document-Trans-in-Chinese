@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmllistmodel.cpp -->
+  <title>ListElement QML 类型| Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >ListElement QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#details">详细信息</a></li>
+<li class="level2"><a href="#referencing-roles">引用的角色</a></li>
+<li class="level2"><a href="#example-usage">示例使用</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">ListElement QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$ListElement-brief -->
+<p>在<a href="qml-qtqml-models-listmodel.html">ListModel</a>中定义数据项。 <a href="#details">更多...</a></p>
+<!-- @@@ListElement -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句:</td><td class="memItemRight bottomAlign"> import QtQml.Models 2.12</td></tr></table></div><ul>
+<li><a href="qml-qtqml-models-listelement-members.html"></a></li>
+</ul>
+<!-- $$$ListElement-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p>列表元素在<a href="qml-qtqml-models-listmodel.html">ListModel</a>定义中定义，并表示将使用<a href="../qtquick/qml-qtquick-listview.html">ListView</a>或<a href="../qtquick/qml-qtquick-repeater.html">Repeater</a>项显示的列表中的项。</p>
+<p>列表元素的定义类似于其他QML元素，除了它们包含<i>role</i> 
+定义的集合而不是属性。使用与属性定义相同的语法，角色既定义访问数据的方式，也定义数据本身。</p>
+<p>用于角色的名称必须以小写字母开头，并且对给定模型中的所有元素都应该是通用的。值必须是简单的常量;字符串(在调用<a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a>时可选地引用)、布尔值(真，假)、数字或枚举值(如AlignText.AlignHCenter)。</p>
+<p>从Qt 5.11开始，<a href="qml-qtqml-models-listelement.html">ListElement</a>还允许将函数声明赋给角色。这允许定义带有可调用操作的<a href="qml-qtqml-models-listelement.html">ListElement</a>。</p>
+<a name="referencing-roles"></a>
+<h2 id="referencing-roles">引用的角色</h2>
+<p>委托使用角色名从列表元素中获取数据。每个角色名都可以在委托的作用域中访问，并引用当前元素中的相应角色。如果角色名使用不明确，可以通过<a href="../qtquick/qml-qtquick-listview.html#model-prop">model</a>属性(例如，<code>model.cost</code>而不是<code>cost</code>)。</p>
+<a name="example-usage"></a>
+<h2 id="example-usage">示例使用</h2>
+<p>下面的模型定义了一系列列表元素，每个元素都包含“name”和“cost”角色及其关联值。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtqml-models-listmodel.html">ListModel</a></span> {
+      <span class="name">id</span>: <span class="name">fruitModel</span>
+
+      <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;Apple&quot;</span>
+          <span class="name">cost</span>: <span class="number">2.45</span>
+      }
+      <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;Orange&quot;</span>
+          <span class="name">cost</span>: <span class="number">3.25</span>
+      }
+      <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;Banana&quot;</span>
+          <span class="name">cost</span>: <span class="number">1.95</span>
+      }
+  }
+
+</pre>
+<p>委托通过简单地引用name和cost来获取每个元素的<code>name</code> 和<code>cost</code>:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-listview.html">ListView</a></span> {
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      <span class="name">model</span>: <span class="name">fruitModel</span>
+      <span class="name">delegate</span>: <span class="name">Row</span> {
+          <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">&quot;Fruit: &quot;</span> <span class="operator">+</span> <span class="name">name</span> }
+          <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">&quot;Cost: $&quot;</span> <span class="operator">+</span> <span class="name">cost</span> }
+      }
+  }
+
+</pre>
+<p><b>请参考 </b><a href="qml-qtqml-models-listmodel.html">ListModel</a><span lang="zh-cn">。</span></p>
+<!-- @@@ListElement -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
