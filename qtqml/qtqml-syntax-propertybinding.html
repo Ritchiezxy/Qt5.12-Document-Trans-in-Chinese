@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- propertybinding.qdoc -->
+  <title>Property Binding | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >
+			<span lang="zh-cn">属性绑定</span></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#overview"><span lang="zh-cn">概览</span></a></li>
+<li class="level1"><a href="#creating-property-bindings-from-javascript">Creating Property Bindings from JavaScript</a></li>
+<li class="level2"><a href="#using-keyword-this-keyword-with-property-binding">Using <code>this</code> with Property Binding</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><span lang="zh-cn">属性绑定</span></h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-syntax-propertybinding.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>
+可以为对象的属性分配一个静态值，该值保持不变，直到显式地为它分配一个新值。然而，为了充分利用QML及其对动态对象行为的内置支持，大多数QML对象使用属性绑定。</p>
+<p>属性绑定是QML的核心特性，它允许开发人员指定不同对象属性之间的关系。当属性的依赖项值发生变化时，该属性将根据指定的关系自动更新。</p>
+<p>在幕后，QML引擎监视属性的依赖项(即绑定表达式中的变量)。当检测到更改时，QML引擎重新计算绑定表达式并将新结果应用到属性。</p>
+<a name="overview"></a>
+<h2 id="overview"><span lang="zh-cn">概览</span></h2>
+<p>要创建属性绑定，将为属性分配一个JavaScript表达式，该表达式的计算结果为所需的值。简单地说，绑定可以是对另一个属性的引用。以下面的例子为例，蓝色<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>的高度与其父矩形的高度绑定在一起:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">width</span>: <span class="number">100</span>
+          <span class="name">height</span>: <span class="name">parent</span>.<span class="name">height</span>
+          <span class="name">color</span>: <span class="string">&quot;blue&quot;</span>
+      }
+  }
+
+</pre>
+<p>每当父矩形的高度发生变化时，蓝色矩形的高度就会自动更新为相同的值。</p>
+<p>
+绑定可以包含任何有效的JavaScript表达式或语句，因为QML使用符合标准的JavaScript引擎。绑定可以访问对象属性，调用方法，并使用内置的JavaScript对象，如<code>Date</code> 
+和<code>Math</code>。下面是上一个示例的其他可能绑定:</p>
+<pre class="cpp">
+
+  height: parent<span class="operator">.</span>height <span class="operator">/</span> <span class="number">2</span>
+
+  height: Math<span class="operator">.</span>min(parent<span class="operator">.</span>width<span class="operator">,</span> parent<span class="operator">.</span>height)
+
+  height: parent<span class="operator">.</span>height <span class="operator">&gt;</span> <span class="number">100</span> <span class="operator">?</span> parent<span class="operator">.</span>height : parent<span class="operator">.</span>height<span class="operator">/</span><span class="number">2</span>
+
+  height: {
+      <span class="keyword">if</span> (parent<span class="operator">.</span>height <span class="operator">&gt;</span> <span class="number">100</span>)
+          <span class="keyword">return</span> parent<span class="operator">.</span>height
+      <span class="keyword">else</span>
+          <span class="keyword">return</span> parent<span class="operator">.</span>height <span class="operator">/</span> <span class="number">2</span>
+  }
+
+  height: someMethodThatReturnsHeight()
+
+</pre>
+<p>下面是一个更复杂的例子，涉及更多的对象和类型:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-column.html">Column</a></span> {
+      <span class="name">id</span>: <span class="name">column</span>
+      <span class="name">width</span>: <span class="number">200</span>
+      <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">topRect</span>
+          <span class="name">width</span>: <span class="name">Math</span>.<span class="name">max</span>(<span class="name">bottomRect</span>.<span class="name">width</span>, <span class="name">parent</span>.<span class="name">width</span><span class="operator">/</span><span class="number">2</span>)
+          <span class="name">height</span>: (<span class="name">parent</span>.<span class="name">height</span> <span class="operator">/</span> <span class="number">3</span>) <span class="operator">+</span> <span class="number">10</span>
+          <span class="name">color</span>: <span class="string">&quot;yellow&quot;</span>
+
+          <span class="type"><a href="../qtquick/qml-qtquick-textinput.html">TextInput</a></span> {
+              <span class="name">id</span>: <span class="name">myTextInput</span>
+              <span class="name">text</span>: <span class="string">&quot;Hello QML!&quot;</span>
+          }
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">bottomRect</span>
+          <span class="name">width</span>: <span class="number">100</span>
+          <span class="name">height</span>: <span class="number">50</span>
+          <span class="name">color</span>: <span class="name">myTextInput</span>.<span class="name">text</span>.<span class="name">length</span> <span class="operator">&lt;=</span> <span class="number">10</span> ? <span class="string">&quot;red&quot;</span> : <span class="string">&quot;blue&quot;</span>
+      }
+  }
+
+</pre>
+<p>在前面的例子中，</p>
+<ul>
+<li><code>topRect.width</code>取决于<code>bottomRect.width</code>和<code>column.width<span lang="zh-cn">
+</span></code></li>
+<li><span lang="zh-cn"><code>topRect.height</code>取决于<code>column.height</code></span></li>
+<li><code>bottomRect.color</code> <span lang="zh-cn">取决于</span> <code>myTextInput.text.length</code></li>
+</ul>
+<p>
+从语法上讲，绑定允许具有任意的复杂性。然而，如果绑定过于复杂——比如涉及多行或命令式循环——则可能表明该绑定不仅仅用于描述属性关系。复杂的绑定会降低代码的性能、可读性和可维护性。重新设计具有复杂绑定的组件可能是一个好主意，或者至少将绑定分解为一个单独的函数。</p>
+<a name="qml-javascript-assignment"></a><a name="creating-property-bindings-from-javascript"></a>
+<h2 id="creating-property-bindings-from-javascript">从JavaScript创建属性绑定</h2>
+<p>带有绑定的属性会根据需要自动更新。但是，如果稍后从JavaScript语句为该属性分配一个静态值，则绑定将被删除。</p>
+<p>例如，下面的<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>最初确保它的高度总是它的宽度的两倍。然而，当按下空格键时，宽<code>width*3</code>的当前值将被指定为<i><code>width</code> </i>
+的静态值。在此之后，即使<i><code>width</code> </i>改变，<i><code>height</code> </i>
+也将保持固定在这个值。静态值的赋值删除了绑定。</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">100</span>
+      <span class="name">height</span>: <span class="name">width</span> <span class="operator">*</span> <span class="number">2</span>
+
+      <span class="name">focus</span>: <span class="number">true</span>
+      <span class="name">Keys</span>.onSpacePressed: {
+          <span class="name">height</span> <span class="operator">=</span> <span class="name">width</span> <span class="operator">*</span> <span class="number">3</span>
+      }
+  }
+
+</pre>
+<p>如果目的是给矩形一个固定的高度并停止自动更新，那么这不是一个问题。但是，如果想要在<code>width</code> 和<code>height</code>之间建立新的关系，则必须将新的绑定表达式包装在Qt.binding()函数中:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">100</span>
+      <span class="name">height</span>: <span class="name">width</span> <span class="operator">*</span> <span class="number">2</span>
+
+      <span class="name">focus</span>: <span class="number">true</span>
+      <span class="name">Keys</span>.onSpacePressed: {
+          <span class="name">height</span> <span class="operator">=</span> <span class="name">Qt</span>.<span class="name">binding</span>(<span class="keyword">function</span>() { <span class="keyword">return</span> <span class="name">width</span> <span class="operator">*</span> <span class="number">3</span> })
+      }
+  }
+
+</pre>
+<p>现在，按下空格键后，矩形的高度将继续自动更新，始终是其宽度的三倍。</p>
+<a name="debugging-overwriting-of-bindings"></a>
+<h4 >调试绑定的覆盖</h4>
+<p>
+QML应用程序中出现bug的一个常见原因是意外地使用JavaScript语句的静态值覆盖了绑定。为了帮助开发人员跟踪这类问题，QML引擎能够在由于强制分配而丢失绑定时发出消息。</p>
+<p>为了生成这样的消息，您需要为<code>qt.qml.binding.removal</code>日志类别启用信息输出，例如通过调用:</p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qloggingcategory.html">QLoggingCategory</a></span><span class="operator">::</span>setFilterRules(<span class="type"><a href="../qtcore/qstring.html#QStringLiteral">QStringLiteral</a></span>(<span class="string">&quot;qt.qml.binding.removal.info=true&quot;</span>));
+
+</pre>
+<p>有关启用日志类别输出的更多信息，请参阅<a href="../qtcore/qloggingcategory.html">QLoggingCategory</a>文档。</p>
+<p>注意，在某些情况下，覆盖绑定是完全合理的。QML引擎生成的任何消息都应该被视为诊断辅助工具，而不必在没有进一步调查的情况下将其视为问题的证据。</p>
+<a name="using-keyword-this-keyword-with-property-binding"></a>
+<h3 >使用<code>this</code> 和属性绑定</h3>
+<p>当从JavaScript创建属性绑定时，可以使用this关键字引用接收绑定的对象。这对于解决属性名称的歧义很有帮助。</p>
+<p>例如，下面的<code>Component.onCompleted</code>处理程序是在<a href="../qtquick/qml-qtquick-item.html">Item</a>的范围内定义的。在这个范围中，width指的是项目的宽度，而不是<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>的宽度。要将矩形的高度绑定到它自己的宽度，绑定表达式必须显式引用<code>this.width</code>(或者，<code>rect.width</code>):</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">500</span>
+      <span class="name">height</span>: <span class="number">500</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">rect</span>
+          <span class="name">width</span>: <span class="number">100</span>
+          <span class="name">color</span>: <span class="string">&quot;yellow&quot;</span>
+      }
+
+      <span class="name">Component</span>.onCompleted: {
+          <span class="name">rect</span>.<span class="name">height</span> <span class="operator">=</span> <span class="name">Qt</span>.<span class="name">binding</span>(<span class="keyword">function</span>() { <span class="keyword">return</span> this.<span class="name">width</span> <span class="operator">*</span> <span class="number">2</span> })
+          <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;rect.height = &quot;</span> <span class="operator">+</span> <span class="name">rect</span>.<span class="name">height</span>) <span class="comment">// prints 200, not 1000</span>
+      }
+  }
+
+</pre>
+<p><b>注意： </b><code>this</code> 值不是在属性绑定之外定义的。详情请参阅<a href="qtqml-javascript-hostenvironment.html#javascript-environment-restrictions">JavaScript环境限制</a>。</p></div>
+<!-- @@@qtqml-syntax-propertybinding.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

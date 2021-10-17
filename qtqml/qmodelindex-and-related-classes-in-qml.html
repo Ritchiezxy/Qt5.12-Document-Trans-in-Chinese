@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlitemmodels.qdoc -->
+  <title>QModelIndex and related Classes in QML | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >
+			QModelIndex和QML中的相关类</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#qmodelindex-and-qpersistentmodelindex-types">
+QModelIndex和QPersistentModelIndex类型</a></li>
+<li class="level1"><a href="#qmodelindexlist-type">QModelIndexList
+<span lang="zh-cn">类型</span></a></li>
+<li class="level1"><a href="#qitemselectionrange-type"><a href="../qtcore/qitemselectionrange.html">QItemSelectionRang<span lang="zh-cn">e 
+类型</span></a></a></li>
+<li class="level1"><a href="#qitemselection-type">QItemSelection<span lang="zh-cn"> 
+类型</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QModelIndex和QML中的相关类</h1>
+<span class="subtitle"></span>
+<!-- $$$qmodelindex-and-related-classes-in-qml.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>自Qt 5.5以来，<a href="../qtcore/qmodelindex.html">QModelIndex</a>和<a href="../qtcore/qpersistentmodelindex.html">QPersistentModelIndex</a>在QML中作为基于值的类型公开。同样以类似的方式公开的还有<a href="../qtcore/qmodelindex.html#QModelIndexList-typedef">QModelIndexList</a>、<a href="../qtcore/qitemselectionrange.html">QItemSelectionRange</a>和<a href="../qtcore/qitemselection.html">QItemSelection</a>。这些类型中的所有对象都可以作为<code>var</code> 
+属性或普通JavaScript变量在QML和C++之间来回传递</p>
+<p>下面是对这些类暴露给QML的API的概述。要了解更多信息，请参考他们的C++文档。</p>
+<p><b>注意：</b>由于所有这些类型都公开为<a href="../qtcore/qobject.html#Q_GADGET">gadget</a>，因此不会发出属性更改通知信号。因此，绑定到它们的属性可能不会得到预期的结果。对于<a href="../qtcore/qpersistentmodelindex.html">QPersistentModelIndex</a>尤其如此。</p><a name="qmodelindex-and-qpersistentmodelindex-types"></a>
+<h2 id="qmodelindex-and-qpersistentmodelindex-types">
+QModelIndex和QPersistentModelIndex类型</h2>
+<ul>
+<li><b>row</b> : int</li>
+<li><b>column</b> : int</li>
+<li><b>parent</b> : <a href="../qtcore/qmodelindex.html">QModelIndex</a></li>
+<li><b>valid</b> : bool</li>
+<li><b>model</b> : <a href="../qtcore/qabstractitemmodel.html">QAbstractItemModel</a></li>
+<li><b>internalId</b> : quint64</li>
+</ul>
+<p>所有这些属性都是只读的，它们在C++中的对应属性也是如此。</p>
+<p><b>注意：</b>通常的警告适用于QML中的<a href="../qtcore/qmodelindex.html">QModelIndex</a>。如果底层模型更改或被删除，那么访问其属性可能会变得危险。因此，您不应该存储任何<a href="../qtcore/qmodelindex.html">QModelIndex</a>对象。但是，您可以以安全的方式存储QPersistentModelIndexe 
+对象。</p><a name="qmodelindexlist-type"></a>
+<h2 id="qmodelindexlist-type">QModelIndexList <span lang="zh-cn">类型</span></h2>
+<p><a href="../qtcore/qmodelindex.html#QModelIndexList-typedef">QModelIndexList</a>在QML中作为JavaScript数组公开。C++和C++之间会自动进行转换。事实上，任何JavaScript数组都可以转换回<a href="../qtcore/qmodelindex.html#QModelIndexList-typedef">QModelIndexList</a>，用无效的<a href="../qtcore/qmodelindex.html">QModelIndex</a>替换非<a href="../qtcore/qmodelindex.html">QModelIndex</a>对象。</p>
+<p><b>注意： </b><a href="../qtcore/qmodelindex.html">QModelIndex</a>到<a href="../qtcore/qpersistentmodelindex.html">QPersistentModelIndex</a>的转换发生在访问数组元素时，因为任何<a href="../qtcore/qmodelindex.html#QModelIndexList-typedef">QModelIndexList</a>属性在以这种方式公开时都会保留引用语义。</p><a name="qitemselectionrange-type"></a>
+<h2 id="qitemselectionrange-type"><a href="../qtcore/qitemselectionrange.html">QItemSelectionRange</a> 
+<span lang="zh-cn">类</span></h2>
+<ul>
+<li><b>top</b> : int</li>
+<li><b>left</b> : int</li>
+<li><b>bottom</b> : int</li>
+<li><b>right</b> : int</li>
+<li><b>width</b> : int</li>
+<li><b>height</b> : int</li>
+<li><b>topLeft</b> : <a href="../qtcore/qpersistentmodelindex.html">QPersistentModelIndex</a></li>
+<li><b>bottomRight</b> : <a href="../qtcore/qpersistentmodelindex.html">QPersistentModelIndex</a></li>
+<li><b>parent</b> : <a href="../qtcore/qmodelindex.html">QModelIndex</a></li>
+<li><b>valid</b> : bool</li>
+<li><b>empty</b> : bool</li>
+<li><b>model</b> : <a href="../qtcore/qabstractitemmodel.html">QAbstractItemModel</a></li>
+</ul>
+<p>所有这些属性都是只读的，它们在C++中的对应属性也是如此。此外，我们还公开了以下函数:</p>
+<ul>
+<li>bool <b>contains</b>(<a href="../qtcore/qmodelindex.html">QModelIndex</a> <i>index</i>)</li>
+<li>bool <b>contains</b>(int <i>row</i>, int <i>column</i>, <a href="../qtcore/qmodelindex.html">QModelIndex</a> <i>parentIndex</i>)</li>
+<li>bool <b>intersects</b>(<a href="../qtcore/qitemselectionrange.html">QItemSelectionRange</a> <i>other</i>)</li>
+<li><a href="../qtcore/qitemselectionrange.html">QItemSelectionRange</a> <b>intersected</b>(<a href="../qtcore/qitemselectionrange.html">QItemSelectionRange</a> <i>other</i>)</li>
+</ul>
+<a name="qitemselection-type"></a>
+<h2 id="qitemselection-type">QItemSelection Type</h2>
+<p>与<a href="../qtcore/qmodelindex.html#QModelIndexList-typedef">QModelIndexList</a>类似，<a href="../qtcore/qitemselection.html">QItemSelection</a>在QML中作为一个<a href="../qtcore/qitemselectionrange.html">QItemSelectionRange</a>对象的JavaScript数组公开。C++和C++之间会自动进行转换。事实上，任何JavaScript数组都可以转换回<a href="../qtcore/qitemselection.html">QItemSelection</a>，用空的<a href="../qtcore/qitemselectionrange.html">QItemSelectionRange</a>替换非<a href="../qtcore/qitemselectionrange.html">QItemSelectionRange</a>对象。</p>
+</div>
+<p><b>请参考 </b><a href="qml-qtqml-models-itemselectionmodel.html">ItemSelectionModel</a><span lang="zh-cn">。</span></p>
+<!-- @@@qmodelindex-and-related-classes-in-qml.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

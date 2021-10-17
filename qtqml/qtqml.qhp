@@ -215,7 +215,7 @@
             <keyword name="Date" id="QML.Date" ref="qml-qtqml-date.html"/>
             <keyword name="Defining JavaScript Resources in QML" id="Defining JavaScript Resources in QML" ref="qtqml-javascript-resources.html"/>
             <keyword name="Defining Object Types through QML Documents" id="Defining Object Types through QML Documents" ref="qtqml-documents-definetypes.html"/>
-            <keyword name="Defining QML Types from C++" id="Defining QML Types from C++" ref="qtqml-cppintegration-definetypes.html"/>
+            <keyword name="Defining QML 类型s from C++" id="Defining QML 类型s from C++" ref="qtqml-cppintegration-definetypes.html"/>
             <keyword name="DelegateChoice" id="QML.DelegateChoice" ref="qml-qt-labs-qmlmodels-delegatechoice.html"/>
             <keyword name="DelegateChooser" id="QML.DelegateChooser" ref="qml-qt-labs-qmlmodels-delegatechooser.html"/>
             <keyword name="DelegateModel" id="QML.DelegateModel" ref="qml-qtqml-models-delegatemodel.html"/>
@@ -388,7 +388,7 @@
             <keyword name="Structure of a QML Document" id="Structure of a QML Document" ref="qtqml-documents-structure.html"/>
             <keyword name="The Declarative State Machine Framework" id="The Declarative State Machine Framework" ref="qmlstatemachine.html"/>
             <keyword name="The QML Reference" id="The QML Reference" ref="qmlreference.html"/>
-            <keyword name="The QML Type System" id="The QML Type System" ref="qtqml-typesystem-topic.html"/>
+            <keyword name="The QML 类型System" id="The QML 类型System" ref="qtqml-typesystem-topic.html"/>
             <keyword name="TimeoutTransition" id="QML.TimeoutTransition" ref="qml-qtqml-statemachine-timeouttransition.html"/>
             <keyword name="Timer" id="QML.Timer" ref="qml-qtqml-timer.html"/>
             <keyword name="WorkerScript" id="QML.WorkerScript" ref="qml-workerscript.html"/>

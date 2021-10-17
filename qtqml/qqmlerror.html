@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlerror.cpp -->
+  <title>QQmlError  类 | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-module.html">C++ Classes</a></td><td >QQmlError</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#related-non-members">相关非成员</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QQmlError <span lang="zh-cn">类</span></h1>
+<!-- $$$QQmlError-brief -->
+<p><a href="qqmlerror.html">QQmlError</a>类封装了一个QML错误。 <a href="#details">更多...</a></p>
+<!-- @@@QQmlError -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 头文件：</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlError&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr><tr><td class="memItemLeft rightAlign topAlign"> 
+	<span lang="zh-cn">自从：</span></td><td class="memItemRight bottomAlign">  Qt 5.0</td></tr></table></div><ul>
+<li><a href="qqmlerror-members.html"></a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#QQmlError">QQmlError</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#QQmlError-1">QQmlError</a></b>(const QQmlError &amp;<i>other</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#column">column</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#description">description</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#isValid">isValid</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#line">line</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QtMsgType </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#messageType">messageType</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QObject *</td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#object">object</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#setColumn">setColumn</a></b>(int <i>column</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#setDescription">setDescription</a></b>(const QString &amp;<i>description</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#setLine">setLine</a></b>(int <i>line</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#setMessageType">setMessageType</a></b>(QtMsgType <i>messageType</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#setObject">setObject</a></b>(QObject *<i>object</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#setUrl">setUrl</a></b>(const QUrl &amp;<i>url</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#toString">toString</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QUrl </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#url">url</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QQmlError &amp;</td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#operator-eq">operator=</a></b>(const QQmlError &amp;<i>other</i>)</td></tr>
+</table></div>
+<a name="related-non-members"></a>
+<h2 id="related-non-members">相关非成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> QDebug </td><td class="memItemRight bottomAlign"><b><a href="qqmlerror.html#operator-lt-lt">operator&lt;&lt;</a></b>(QDebug <i>debug</i>, const QQmlError &amp;<i>error</i>)</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$QQmlError-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><a href="qqmlerror.html">QQmlError</a>类封装了一个QML错误。</p>
+<p><a href="qqmlerror.html">QQmlError</a>包括错误的文本描述，以及位置信息(文件、行和列)。<a href="qqmlerror.html#toString">toString</a>()方法创建一个包含所有这些信息的单行、人类可读的字符串，例如:</p>
+<pre class="cpp">
+
+  file:<span class="comment">///home/user/test.qml:7:8: Invalid property assignment: double expected</span>
+
+</pre>
+<p>您可以使用<a href="../qtcore/qtglobal.html#qDebug">qDebug</a>()、<a href="../qtcore/qtglobal.html#qInfo">qInfo</a>()或<a href="../qtcore/qtglobal.html#qWarning">qWarning</a>()将错误输出到控制台。此方法将尝试打开错误指示的文件，并包含额外的上下文信息。</p>
+<pre class="cpp">
+
+  file:<span class="comment">///home/user/test.qml:7:8: Invalid property assignment: double expected</span>
+          y: <span class="string">&quot;hello&quot;</span>
+             <span class="operator">^</span>
+
+</pre>
+</div>
+<p><b>请参考 </b><a href="../qtquick/qquickview.html#errors">QQuickView::errors</a>()
+<span lang="zh-cn">和 </span><a href="qqmlcomponent.html#errors">QQmlComponent::errors</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@QQmlError -->
+<div class="func">
+<h2><span lang="zh-cn">成员函数文档</span></h2>
+<!-- $$$QQmlError[overload1]$$$QQmlError -->
+<h3 class="fn" id="QQmlError"><a name="QQmlError"></a>QQmlError::<span class="name">QQmlError</span>()</h3>
+<p>创建一个空错误对象。</p>
+<!-- @@@QQmlError -->
+<!-- $$$QQmlError$$$QQmlErrorconstQQmlError& -->
+<h3 class="fn" id="QQmlError-1"><a name="QQmlError-1"></a>QQmlError::<span class="name">QQmlError</span>(const <span class="type"><a href="qqmlerror.html#QQmlError">QQmlError</a></span> &amp;<i>other</i>)</h3>
+<p>创建<i>other<span lang="zh-cn">（</span></i>其他<span lang="zh-cn">）</span>文件的副本。</p>
+<!-- @@@QQmlError -->
+<!-- $$$column[overload1]$$$column -->
+<h3 class="fn" id="column"><a name="column"></a><span class="type">int</span> QQmlError::<span class="name">column</span>() const</h3>
+<p>返回错误列号。</p>
+<p><b>请参考 </b><a href="qqmlerror.html#setColumn">setColumn</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@column -->
+<!-- $$$description[overload1]$$$description -->
+<h3 class="fn" id="description"><a name="description"></a><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QQmlError::<span class="name">description</span>() const</h3>
+<p>返回错误描述。</p>
+<p><b>请参考 </b><a href="qqmlerror.html#setDescription">setDescription</a>()<span lang="zh-cn">.</span></p>
+<!-- @@@description -->
+<!-- $$$isValid[overload1]$$$isValid -->
+<h3 class="fn" id="isValid"><a name="isValid"></a><span class="type">bool</span> QQmlError::<span class="name">isValid</span>() const</h3>
+<p>如果此错误有效则返回true，否则返回false。</p>
+<!-- @@@isValid -->
+<!-- $$$line[overload1]$$$line -->
+<h3 class="fn" id="line"><a name="line"></a><span class="type">int</span> QQmlError::<span class="name">line</span>() const</h3>
+<p>返回错误行号。</p>
+<p><b>请参考 </b><a href="qqmlerror.html#setLine">setLine</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@line -->
+<!-- $$$messageType[overload1]$$$messageType -->
+<h3 class="fn" id="messageType"><a name="messageType"></a><span class="type"><a href="../qtcore/qtglobal.html#QtMsgType-enum">QtMsgType</a></span> QQmlError::<span class="name">messageType</span>() const</h3>
+<p>返回消息类型。</p>
+<p>这个函数在Qt 5.9中引入。</p>
+<p><b>请参考 </b><a href="qqmlerror.html#setMessageType">setMessageType</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@messageType -->
+<!-- $$$object[overload1]$$$object -->
+<h3 class="fn" id="object"><a name="object"></a><span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *QQmlError::<span class="name">object</span>() const</h3>
+<p>返回发生此错误的最近的对象。绑定属性表达式中的异常将this设置为属性所属的对象。对于所有其他异常，它将为0。</p>
+<p><b>请参考 </b><a href="qqmlerror.html#setObject">setObject</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@object -->
+<!-- $$$setColumn[overload1]$$$setColumnint -->
+<h3 class="fn" id="setColumn"><a name="setColumn"></a><span class="type">void</span> QQmlError::<span class="name">setColumn</span>(<span class="type">int</span> <i>column</i>)</h3>
+<p>设置错误<i>column<span lang="zh-cn">（</span></i>列号<span lang="zh-cn">）</span>。</p>
+<p><b>请参考 </b><a href="qqmlerror.html#column">column</a>().</p>
+<!-- @@@setColumn -->
+<!-- $$$setDescription[overload1]$$$setDescriptionconstQString& -->
+<h3 class="fn" id="setDescription"><a name="setDescription"></a><span class="type">void</span> QQmlError::<span class="name">setDescription</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>description</i>)</h3>
+<p>设置错误<i>description<span lang="zh-cn">（</span></i>描述<span lang="zh-cn">）</span>。</p>
+<p><b>请参考 </b><a href="qqmlerror.html#description">description</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setDescription -->
+<!-- $$$setLine[overload1]$$$setLineint -->
+<h3 class="fn" id="setLine"><a name="setLine"></a><span class="type">void</span> QQmlError::<span class="name">setLine</span>(<span class="type">int</span> <i>line</i>)</h3>
+<p>设置错误<i>line</i> <span lang="zh-cn">（</span>行号<span lang="zh-cn">）</span>。</p>
+<p><b>请参考 </b><a href="qqmlerror.html#line">line</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setLine -->
+<!-- $$$setMessageType[overload1]$$$setMessageTypeQtMsgType -->
+<h3 class="fn" id="setMessageType"><a name="setMessageType"></a><span class="type">void</span> QQmlError::<span class="name">setMessageType</span>(<span class="type"><a href="../qtcore/qtglobal.html#QtMsgType-enum">QtMsgType</a></span> <i>messageType</i>)</h3>
+<p>Sets the <i>messageType</i> for this message. The message type determines which <a href="../qtcore/qdebug.html">QDebug</a> handlers are responsible for receiving the message.</p>
+<p>这个函数在Qt 5.9中引入。</p>
+<p><b>请参考 </b><a href="qqmlerror.html#messageType">messageType</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setMessageType -->
+<!-- $$$setObject[overload1]$$$setObjectQObject* -->
+<h3 class="fn" id="setObject"><a name="setObject"></a><span class="type">void</span> QQmlError::<span class="name">setObject</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>object</i>)</h3>
+<p>设置发生此错误的最近<i>object<span lang="zh-cn">（</span></i>对象<span lang="zh-cn">）</span>。</p>
+<p><b>请参考 </b><a href="qqmlerror.html#object">object</a>().</p>
+<!-- @@@setObject -->
+<!-- $$$setUrl[overload1]$$$setUrlconstQUrl& -->
+<h3 class="fn" id="setUrl"><a name="setUrl"></a><span class="type">void</span> QQmlError::<span class="name">setUrl</span>(const <span class="type"><a href="../qtcore/qurl.html">QUrl</a></span> &amp;<i>url</i>)</h3>
+<p>设置导致此错误的文件的<i>url</i>。</p>
+<p><b>请参考 </b><a href="qqmlerror.html#url">url</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setUrl -->
+<!-- $$$toString[overload1]$$$toString -->
+<h3 class="fn" id="toString"><a name="toString"></a><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QQmlError::<span class="name">toString</span>() const</h3>
+<p>以人类可读字符串的形式返回错误。</p>
+<!-- @@@toString -->
+<!-- $$$url[overload1]$$$url -->
+<h3 class="fn" id="url"><a name="url"></a><span class="type"><a href="../qtcore/qurl.html">QUrl</a></span> QQmlError::<span class="name">url</span>() const</h3>
+<p>返回导致此错误的文件的url。</p>
+<p><b>请参考 </b><a href="qqmlerror.html#setUrl">setUrl</a>().</p>
+<!-- @@@url -->
+<!-- $$$operator=[overload1]$$$operator=constQQmlError& -->
+<h3 class="fn" id="operator-eq"><a name="operator-eq"></a><span class="type"><a href="qqmlerror.html#QQmlError">QQmlError</a></span> &amp;QQmlError::<span class="name">operator=</span>(const <span class="type"><a href="qqmlerror.html#QQmlError">QQmlError</a></span> &amp;<i>other</i>)</h3>
+<p>将<i>other</i> 分配给此错误对象。</p>
+<!-- @@@operator= -->
+</div>
+<div class="relnonmem">
+<h2>相关非成员</h2>
+<!-- $$$operator<<[overload1]$$$operator<<QDebugconstQQmlError& -->
+<h3 class="fn" id="operator-lt-lt"><a name="operator-lt-lt"></a><span class="type"><a href="../qtcore/qdebug.html">QDebug</a></span> <span class="name">operator&lt;&lt;</span>(<span class="type"><a href="../qtcore/qdebug.html">QDebug</a></span> <i>debug</i>, const <span class="type"><a href="qqmlerror.html#QQmlError">QQmlError</a></span> &amp;<i>error</i>)</h3>
+<p>输出供<i>debug<span lang="zh-cn">（</span></i>调试<span lang="zh-cn">）</span>的可读<i>error<span lang="zh-cn">（</span></i>错误<span lang="zh-cn">）</span>版本。</p>
+<!-- @@@operator<< -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
