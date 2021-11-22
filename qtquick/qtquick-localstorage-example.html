@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- localstorage.qdoc -->
+  <title>Qt Quick 示例 - Local Storage | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td >
+			Qt Quick 示例 - 本地存储</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#running-the-example">运行该示例</a></li>
+<li class="level1"><a href="#activity-tracker">Activity Tracker</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 示例 - 本地存储</h1>
+<span class="subtitle"></span>
+<!-- $$$localstorage-brief -->
+<p>QML本地存储示例的集合。</p>
+<!-- @@@localstorage -->
+<!-- $$$localstorage-description -->
+<div class="descr"> <a name="details"></a>
+<div class="border"><p class="centerAlign"><img src="images/qml-localstorage-example.png" alt="" /></p></div><p>
+	本地存储是一组与Qt Quick的<a href="../qtdoc/topics-data-storage.html#local-storage">本地存储</a>功能相关的小QML示例。</p>
+<a name="running-the-example"></a>
+<h2 id="running-the-example">运行该示例</h2>
+<p>要从 <a href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a>运行示例，请打开<b>欢迎</b> 模式并从 <b>示例</b>中选择示例。有关更多信息，请访问<a href="http://doc.qt.io/qtcreator/creator-build-example-application.html">构建和运行示例</a>。</p>
+<a name="activity-tracker"></a>
+<h2 id="activity-tracker">活动追踪</h2>
+<p><i>活动跟踪器</i>可以让你跟踪散步、远足或自行车旅行。</p>
+<p>所有的数据库事务都在database .js中处理。在启动时检查数据库，如果数据库不存在就创建数据库。LocalStorage使用<a href="../qtsql/qtsql-attribution-sqlite.html#sqlite">SQLite</a>，它是一个自包含的、无服务器的公共域数据库。在每个操作或检索数据的函数的开始处理到数据库的连接。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-localstorage-localstorage-pro.html">localstorage/localstorage.pro</a></li>
+<li><a href="qtquick-localstorage-localstorage-database-js.html">localstorage/localstorage/Database.js</a></li>
+<li><a href="qtquick-localstorage-localstorage-header-qml.html">localstorage/localstorage/Header.qml</a></li>
+<li><a href="qtquick-localstorage-localstorage-mybutton-qml.html">localstorage/localstorage/MyButton.qml</a></li>
+<li><a href="qtquick-localstorage-localstorage-mydelegate-qml.html">localstorage/localstorage/MyDelegate.qml</a></li>
+<li><a href="qtquick-localstorage-localstorage-mymodel-qml.html">localstorage/localstorage/MyModel.qml</a></li>
+<li><a href="qtquick-localstorage-localstorage-localstorage-pro.html">localstorage/localstorage/localstorage.pro</a></li>
+<li><a href="qtquick-localstorage-localstorage-localstorage-qml.html">localstorage/localstorage/localstorage.qml</a></li>
+<li><a href="qtquick-localstorage-localstorage-localstorage-qrc.html">localstorage/localstorage/localstorage.qrc</a></li>
+<li><a href="qtquick-localstorage-localstorage-main-cpp.html">localstorage/localstorage/main.cpp</a></li>
+</ul>
+</div>
+<!-- @@@localstorage -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
