@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- topic.qdoc -->
+  <title>Important Concepts In Qt Quick - Data - Models, Views and Data Storage | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td >
+			Qt Quick中的重要概念 - 数据、 模型、视图和数据存储</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#models-and-views">Models and Views</a></li>
+<li class="level1"><a href="#data-storage-and-access">Data Storage and Access</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick中的重要概念 - 数据、 模型、视图和数据存储</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-modelviewsdata-topic.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>大多数应用程序都有需要显示给用户的数据。这些数据可能来自各种来源:网络源、本地文件和数据库都是常见的数据源。</p>
+<a name="models-and-views"></a>
+<h2 id="models-and-views"><span lang="zh-cn">模型和视图</span></h2>
+<p>
+在应用程序中以类似的方式显示类似的数据通常是有利的，这就产生了这样一种想法，即拥有一个包含数据的模型和一个显示数据的视图。视图将为模型中的每个数据显示一个委托。</p>
+<p>有关模型/视图范例如何在Qt Quick中实现的信息，请参阅<a href="qtquick-modelviewsdata-modelview.html">Qt 
+Quick中的模型和视图</a>页面。</p>
+<a name="data-storage-and-access"></a>
+<h2 id="data-storage-and-access">数据存储与访问</h2>
+<p>数据库通常用于在应用程序中存储信息。QtQuick通过<a href="qtquick-localstorage-qmlmodule.html">QtQuick.LocalStorage</a>模块简化了对关系数据库的访问。</p>
+</div>
+<!-- @@@qtquick-modelviewsdata-topic.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
