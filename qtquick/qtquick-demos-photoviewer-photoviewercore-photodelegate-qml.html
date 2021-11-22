@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>PhotoDelegate.qml Example File | Qt Quick 5.11</title>
+  <title>PhotoDelegate.qml 示例文件| Qt Quick 5.11</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -25,8 +25,8 @@
     <div class="main-rounded">
       <div class="navigationbar">
         <table><tr>
-<td ><a href="../qtdoc/index.html">Qt 5.11</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-demos-photoviewer-example.html">Qt Quick Demo - Photo Viewer</a></td><td >PhotoDelegate.qml Example File</td></tr></table><table class="buildversion"><tr>
-<td id="buildversion" width="100%" align="right">Qt 5.11.1 Reference Documentation</td>
+<td ><a href="../qtdoc/index.html">Qt 5.11</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-demos-photoviewer-example.html">Qt Quick Demo - Photo Viewer</a></td><td >PhotoDelegate.qml 示例文件</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.11.1 参考指南</td>
         </tr></table>
       </div>
     </div>
@@ -34,7 +34,7 @@
 <div class="line">
 <div class="content mainContent">
 <div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">PhotoDelegate.qml Example File</h1>
+<h1 class="title">PhotoDelegate.qml 示例文件</h1>
 <span class="subtitle">demos/photoviewer/PhotoViewerCore/PhotoDelegate.qml</span>
 <!-- $$$demos/photoviewer/PhotoViewerCore/PhotoDelegate.qml-description -->
 <div class="descr"> <a name="details"></a>
@@ -197,7 +197,7 @@
                       <span class="type"><a href="qml-qtquick-parentanimation.html">ParentAnimation</a></span> {
                           <span class="name">target</span>: <span class="name">photoWrapper</span>; <span class="name">via</span>: <span class="name">foreground</span>
                           <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> {
-                              <span class="name">target</span>: <span class="name">photoWrapper</span>; <span class="name">properties</span>: <span class="string">'x,y,rotation,opacity'</span>; <span class="name">duration</span>: <span class="number">600</span>; <span class="name">easing</span>.type: <span class="string">'OutQuart'</span>
+                              <span class="name">target</span>: <span class="name">photoWrapper</span>; <span class="name">属性</span>: <span class="string">'x,y,rotation,opacity'</span>; <span class="name">duration</span>: <span class="number">600</span>; <span class="name">easing</span>.type: <span class="string">'OutQuart'</span>
                           }
                       }
                   }
@@ -206,7 +206,7 @@
                   <span class="name">from</span>: <span class="string">'inGrid'</span>; <span class="name">to</span>: <span class="string">'stacked'</span>
                   <span class="type"><a href="qml-qtquick-parentanimation.html">ParentAnimation</a></span> {
                       <span class="name">target</span>: <span class="name">photoWrapper</span>; <span class="name">via</span>: <span class="name">foreground</span>
-                      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">properties</span>: <span class="string">'x,y,rotation,opacity'</span>; <span class="name">duration</span>: <span class="number">600</span>; <span class="name">easing</span>.type: <span class="string">'OutQuart'</span> }
+                      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">属性</span>: <span class="string">'x,y,rotation,opacity'</span>; <span class="name">duration</span>: <span class="number">600</span>; <span class="name">easing</span>.type: <span class="string">'OutQuart'</span> }
                   }
               },
               <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span> {
@@ -217,7 +217,7 @@
                           <span class="name">target</span>: <span class="name">photoWrapper</span>; <span class="name">via</span>: <span class="name">foreground</span>
                           <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> {
                               <span class="name">targets</span>: [ <span class="name">photoWrapper</span>, <span class="name">border</span> ]
-                              <span class="name">properties</span>: <span class="string">'x,y,width,height,opacity,rotation'</span>
+                              <span class="name">属性</span>: <span class="string">'x,y,width,height,opacity,rotation'</span>
                               <span class="name">duration</span>: <span class="name">gridItem</span>.<span class="name">GridView</span>.<span class="name">isCurrentItem</span> ? <span class="number">600</span> : <span class="number">1</span>; <span class="name">easing</span>.type: <span class="string">'OutQuart'</span>
                           }
                       }
@@ -229,7 +229,7 @@
                       <span class="name">target</span>: <span class="name">photoWrapper</span>; <span class="name">via</span>: <span class="name">foreground</span>
                       <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> {
                           <span class="name">targets</span>: [ <span class="name">photoWrapper</span>, <span class="name">border</span> ]
-                          <span class="name">properties</span>: <span class="string">'x,y,width,height,rotation,opacity'</span>
+                          <span class="name">属性</span>: <span class="string">'x,y,width,height,rotation,opacity'</span>
                           <span class="name">duration</span>: <span class="name">gridItem</span>.<span class="name">GridView</span>.<span class="name">isCurrentItem</span> ? <span class="number">600</span> : <span class="number">1</span>; <span class="name">easing</span>.type: <span class="string">'OutQuart'</span>
                       }
                   }
