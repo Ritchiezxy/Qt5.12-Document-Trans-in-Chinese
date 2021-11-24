@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- textinput.qdoc -->
+  <title>Qt Quick Text Input Handling and Validators | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td >
+			Qt Quick文本输入处理和验证器</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-textinput.html#text-visual-types"><font style="vertical-align: inherit;">文本可视化类型</font></a></li>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-textinput.html#validating-input-text"><font style="vertical-align: inherit;">验证输入文本</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick文本输入处理和验证器</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-input-textinput.html-description -->
+<div class="descr"> <a name="details"></a>
+<a name="text-visual-types"></a>
+<h2 id="text-visual-types">文本可视化类型</h2>
+<p>Qt Quick提供了几种在屏幕上显示文本的类型。<a href="qml-qtquick-text.html">Text</a>类型将在屏幕上显示格式化的文本，<a href="qml-qtquick-textedit.html">TextEdit</a>类型将在屏幕上放置多行编辑器，而<a href="qml-qtquick-textinput.html">TextInput</a>将在屏幕上放置单个可编辑行字段。</p>
+<p>要了解更多关于它们特定特性和属性的信息，请访问它们各自的文档。</p>
+<a name="validating-input-text"></a>
+<h2 id="validating-input-text">验证输入文本</h2>
+<p><i>验证器</i>类型强制执行<a href="qml-qtquick-textinput.html">TextInput</a>对象的类型和格式。</p>
+<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p>
+	<a href="qtquick-text-validator.html">Qt Quick文本验证器</a></p></td><td class="tblDescr"><p><font style="vertical-align: inherit;">验证文本输入的类型</font></p></td></tr>
+</table></div>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-column.html">Column</a></span> {
+      <span class="name">spacing</span>: <span class="number">10</span>
+
+      <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+          <span class="name">text</span>: <span class="string">&quot;Enter a value from 0 to 2000&quot;</span>
+      }
+      <span class="type"><a href="qml-qtquick-textinput.html">TextInput</a></span> {
+          <span class="name">focus</span>: <span class="number">true</span>
+          <span class="name">validator</span>: <span class="name">IntValidator</span> { <span class="name">bottom</span>:<span class="number">0</span>; <span class="name">top</span>: <span class="number">2000</span>}
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">验证器类型绑定到</font><code>TextInput</code><font style="vertical-align: inherit;">的</font><code>validator</code><font style="vertical-align: inherit;">属性。</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-column.html">Column</a></span> {
+      <span class="name">spacing</span>: <span class="number">10</span>
+
+      <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+          <span class="name">text</span>: <span class="string">&quot;Which basket?&quot;</span>
+      }
+      <span class="type"><a href="qml-qtquick-textinput.html">TextInput</a></span> {
+          <span class="name">focus</span>: <span class="number">true</span>
+          <span class="name">validator</span>: <span class="name">RegExpValidator</span> { <span class="name">regExp</span>: /fruit basket/ }
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">片段中的正则表达式将只允许输入的文本为</font><code>fruit basket</code><font style="vertical-align: inherit;">.</font></p>
+<p><font style="vertical-align: inherit;">请注意，QML 解析 JavaScript 正则表达式，而 Qt 的</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qregexp.html"><font style="vertical-align: inherit;">QRegExp</font></a><font style="vertical-align: inherit;">类的正则表达式基于 Perl 正则表达式。</font></p>
+</div>
+<!-- @@@qtquick-input-textinput.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- topic.qdoc -->
+  <title>Important Concepts In Qt Quick - User Input | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td >
+			Qt Quick 中的重要概念 - 用户输入</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-topic.html#input-from-pointing-devices"><font style="vertical-align: inherit;">来自定点设备的输入</font></a></li>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-topic.html#keyboard-input-and-keyboard-focus"><font style="vertical-align: inherit;">键盘输入和键盘焦点</font></a></li>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-topic.html#device-motion-gestures"><font style="vertical-align: inherit;">设备运动手势</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 中的重要概念 - 用户输入</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-input-topic.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><font style="vertical-align: inherit;">能够响应用户输入是用户界面设计的基本部分。根据应用程序解决的用例以及运行应用程序的设备的外形，接收用户输入的最佳方式可能会有所不同。</font></p>
+<a name="input-from-pointing-devices"></a>
+<h2 id="input-from-pointing-devices"><font style="vertical-align: inherit;">来自定点设备的输入</font></h2>
+<p><font style="vertical-align: inherit;">允许用户物理触摸屏幕以与应用程序交互是智能手机和平板电脑等便携式设备上流行的用户界面范例。在桌面应用程序中，根据鼠标光标位置检测和响应点击和按下是用户界面设计中的一个基本概念。</font></p>
+<p><font style="vertical-align: inherit;">各种</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquickhandlers-index.html"><font style="vertical-align: inherit;">输入处理程序</font></a><font style="vertical-align: inherit;">类型和可视对象类型（例如</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html"><font style="vertical-align: inherit;">Flickable</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html"><font style="vertical-align: inherit;">MouseArea ）</font></a><font style="vertical-align: inherit;">都支持触摸驱动和鼠标驱动的用户界面。</font></p>
+<p><font style="vertical-align: inherit;">另请参阅有关</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-mouseevents.html"><font style="vertical-align: inherit;">Qt Quick 中鼠标事件</font></a><font style="vertical-align: inherit;">的文档。</font></p>
+<a name="keyboard-input-and-keyboard-focus"></a>
+<h2 id="keyboard-input-and-keyboard-focus"><font style="vertical-align: inherit;">键盘输入和键盘焦点</font></h2>
+<p><font style="vertical-align: inherit;">支持键盘输入是许多应用程序用户界面的重要组成部分。</font></p>
+<p><font style="vertical-align: inherit;">任何视觉项目都可以通过</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-keys.html"><font style="vertical-align: inherit;">Keys</font></a><font style="vertical-align: inherit;">附加类型接收键盘输入。此外，当需要多个项目接收按键事件时，会出现</font><i><font style="vertical-align: inherit;">键盘焦点</font></i><font style="vertical-align: inherit;">问题，因为这些事件必须传递给正确的项目。有关此主题的更多信息，请参阅有关</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-focus.html"><font style="vertical-align: inherit;">Qt Quick 中键盘焦点</font></a><font style="vertical-align: inherit;">的文档。</font></p>
+<p><font style="vertical-align: inherit;">Qt Quick 还提供可视化文本项，自动接收键盘事件和按键，并显示适当的文本。有关该主题的深入信息，请参阅有关</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-textinput.html"><font style="vertical-align: inherit;">文本输入</font></a><font style="vertical-align: inherit;">的文档。</font></p>
+<a name="device-motion-gestures"></a>
+<h2 id="device-motion-gestures"><font style="vertical-align: inherit;">设备运动手势</font></h2>
+<p><font style="vertical-align: inherit;">使用加速度计或通过基于相机的手势识别检测设备手势，可以让用户与应用程序交互，而无需他们全神贯注。它还可以提供更具互动性和吸引力的体验。</font></p>
+<p><font style="vertical-align: inherit;">Qt Quick 本身并不提供对物理设备运动手势的一流支持；但是，</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtsensors/qtsensors-index.html"><font style="vertical-align: inherit;">Qt Sensors</font></a><font style="vertical-align: inherit;">模块为 QML 类型提供了对此类手势的支持。有关该主题的更多信息，请参阅</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtsensors/qtsensors-index.html"><font style="vertical-align: inherit;">Qt 传感器</font></a><font style="vertical-align: inherit;">模块文档。</font></p>
+</div>
+<!-- @@@qtquick-input-topic.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
