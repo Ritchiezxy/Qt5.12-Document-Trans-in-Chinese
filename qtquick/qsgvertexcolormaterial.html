@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qsgvertexcolormaterial.cpp -->
+  <title>QSGVertexColorMaterial 类 | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-module.html">C++ 类</a></td><td >QSGVertexColorMaterial</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QSGVertexColorMaterial 类</h1>
+<!-- $$$QSGVertexColorMaterial-brief -->
+<p><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgvertexcolormaterial.html"><font style="vertical-align: inherit;">QSGVertexColorMaterial</font></a><font style="vertical-align: inherit;">类提供了场景图中绘制每顶点着色几何形状的一种便捷方式。</font> <a href="#details">更多...</a></p>
+<!-- @@@QSGVertexColorMaterial -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign">头文件：</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QSGVertexColorMaterial&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += quick</td></tr><tr><td class="memItemLeft rightAlign topAlign">继承自：</td><td class="memItemRight bottomAlign"> <a href="qsgmaterial.html">QSGMaterial</a></td></tr></table></div><ul>
+<li><a href="qsgvertexcolormaterial-members.html">所有成员的列表，包括继承成员</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qsgvertexcolormaterial.html#QSGVertexColorMaterial">QSGVertexColorMaterial</a></b>()</td></tr>
+</table></div>
+<ul>
+<li class="fn">5 个公用函数继承自<a href="qsgmaterial.html#public-functions">QSGMaterial</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QSGVertexColorMaterial-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p>
+<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgvertexcolormaterial.html">
+<font style="vertical-align: inherit;">QSGVertexColorMaterial</font></a><font style="vertical-align: inherit;">类提供了场景图中绘制每顶点着色几何形状的一种便捷方式。</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">此实用程序类仅在与 Qt Quick 场景图的 OpenGL 后端一起运行时才起作用。</font></p>
+<p><font style="vertical-align: inherit;">顶点颜色材质将为几何体中的每个顶点赋予一种颜色。顶点之间的像素将被线性插值。颜色可以包含透明度。</font></p>
+<p><font style="vertical-align: inherit;">要使用顶点颜色渲染的几何体必须具有以下布局。属性位置 0 必须包含顶点。属性位置 1 必须包含颜色，RGBA 布局的 4 个值的元组。0 到 1 范围内的浮点数和 0 到 255 范围内的无符号字节都对颜色值有效。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">渲染管道需要预乘 alpha 的像素。</font></p><p><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qsggeometry.html#defaultAttributes_ColoredPoint2D"><font style="vertical-align: inherit;">QSGGeometry::defaultAttributes_ColoredPoint2D</font></a><font style="vertical-align: inherit;"> () 可用于构造与此材质兼容的属性集。</font></p>
+<p><font style="vertical-align: inherit;">顶点颜色材质在更新其渲染状态时会同时考虑当前不透明度和当前矩阵。</font></p>
+</div>
+<!-- @@@QSGVertexColorMaterial -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QSGVertexColorMaterial[overload1]$$$QSGVertexColorMaterial -->
+<h3 class="fn" id="QSGVertexColorMaterial"><a name="QSGVertexColorMaterial"></a>QSGVertexColorMaterial::<span class="name">QSGVertexColorMaterial</span>()</h3>
+<p><font style="vertical-align: inherit;">创建新的顶点颜色材质。</font></p>
+<!-- @@@QSGVertexColorMaterial -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

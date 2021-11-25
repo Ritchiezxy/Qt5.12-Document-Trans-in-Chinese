@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qquickpointattractor.cpp -->
+  <title>Attractor QML 类型 | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-qmlmodule.html">QML类型</a></td><td >Attractor<span lang="zh-cn">（吸引器）</span> QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Attractor<span lang="zh-cn">（吸引器）</span> QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Attractor-brief -->
+<p><font style="vertical-align: inherit;">用于将粒子吸引到特定点。</font> <a href="#details">更多...</a></p>
+<!-- @@@Attractor -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句：</td><td class="memItemRight bottomAlign"> import QtQuick.Particles 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign">继承自：</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtquick-particles-affector.html">Affector</a></p>
+</td></tr></table></div><ul>
+<li><a href="qml-qtquick-particles-attractor-members.html">所有成员的列表，包括继承成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-particles-attractor.html#affectedParameter-prop">affectedParameter</a></b></b> : AffectableParameter</li>
+<li class="fn"><b><b><a href="qml-qtquick-particles-attractor.html#proportionalToDistance-prop">proportionalToDistance</a></b></b> : Proportion</li>
+</ul>
+<!-- $$$Attractor-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p><font style="vertical-align: inherit;">请注意，此元素的大小和位置会影响它影响的粒子。吸引到的点的大小始终为 0x0，该点的位置由 pointX 和 pointY 属性指定。</font></p>
+<p><font style="vertical-align: inherit;">请注意，Attractor 具有标准的 Item x、y、width 和 height 属性。像其他影响因素一样，这些代表受影响的区域。它们不代表作为景点目标的 0x0 点。</font></p>
+<!-- @@@Attractor -->
+<h2>属性文档</h2>
+<!-- $$$affectedParameter -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="affectedParameter-prop">
+<td class="tblQmlPropNode"><p>
+<a name="affectedParameter-prop"></a><span class="name">affectedParameter</span> : <span class="type">AffectableParameter</span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">直接影响粒子的属性。</font></p>
+<ul>
+<li>Attractor.Position<span lang="zh-cn">(位置）</span></li>
+<li>Attractor.Velocity<span lang="zh-cn">（速度）</span></li>
+<li>Attractor.Acceleration<span lang="zh-cn">（加速度）</span></li>
+</ul>
+</div></div><!-- @@@affectedParameter -->
+<br/>
+<!-- $$$proportionalToDistance -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="proportionalToDistance-prop">
+<td class="tblQmlPropNode"><p>
+<a name="proportionalToDistance-prop"></a><span class="name">proportionalToDistance</span> : <span class="type">Proportion</span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">从粒子到点的距离如何影响吸引力的强度。</font></p>
+<ul>
+<li>Attractor.Constant<span lang="zh-cn">（常数）</span></li>
+<li>Attractor.Linear<span lang="zh-cn">（线性）</span></li>
+<li>Attractor.InverseLinear<span lang="zh-cn">（逆线性）</span></li>
+<li>Attractor.Quadratic<span lang="zh-cn">（二次方）</span></li>
+<li>Attractor.InverseQuadratic<span lang="zh-cn">（逆二次方）</span></li>
+</ul>
+</div></div><!-- @@@proportionalToDistance -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qquickturbulence.cpp -->
+  <title>Turbulence QML 类型 | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-qmlmodule.html">QML类型</a></td><td >Turbulence<span lang="zh-cn">（湍流）</span> QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Turbulence<span lang="zh-cn">(湍流）</span> QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Turbulence-brief -->
+<p><font style="vertical-align: inherit;">从噪声图像中提供类似流体的力。</font> <a href="#details">更多...</a></p>
+<!-- @@@Turbulence -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句：</td><td class="memItemRight bottomAlign"> import QtQuick.Particles 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign">继承自：</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtquick-particles-affector.html">Affector</a></p>
+</td></tr></table></div><ul>
+<li><a href="qml-qtquick-particles-turbulence-members.html">所有成员的列表，包括继承成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-particles-turbulence.html#noiseSource-prop">noiseSource</a></b></b> : url</li>
+<li class="fn"><b><b><a href="qml-qtquick-particles-turbulence.html#strength-prop">strength</a></b></b> : real</li>
+</ul>
+<!-- $$$Turbulence-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p><font style="vertical-align: inherit;">流元素在其影响的区域上缩放噪声源，并使用该源的卷曲来生成力矢量。</font></p>
+<p><font style="vertical-align: inherit;">湍流需要固定的大小。与其他影响器不同，0x0 湍流元素不会影响任何粒子。</font></p>
+<p><font style="vertical-align: inherit;">来源应该是比较平滑的黑白噪声，比如柏林噪声。</font></p>
+<!-- @@@Turbulence -->
+<h2>属性文档</h2>
+<!-- $$$noiseSource -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="noiseSource-prop">
+<td class="tblQmlPropNode"><p>
+<a name="noiseSource-prop"></a><span class="name">noiseSource</span> : <span class="type"><a href="../qtqml/qml-url.html">url</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">产生湍流的源图像。它将被缩放到元素的大小，因此相等或更大的大小将提供更好的结果。调整此图像是调整行为（例如漩涡在哪里或存在多少）的唯一方法。</font></p>
+<p><font style="vertical-align: inherit;">来源应该是相对平滑的黑白噪声图像，例如柏林噪声。如果没有提供，将使用默认图像。</font></p>
+</div></div><!-- @@@noiseSource -->
+<br/>
+<!-- $$$strength -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="strength-prop">
+<td class="tblQmlPropNode"><p>
+<a name="strength-prop"></a><span class="name">strength</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">任何一点的速度矢量的大小在零和二的平方根之间变化。然后将其乘以强度以获得受湍流影响的粒子的每秒速度。</font></p>
+</div></div><!-- @@@strength -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

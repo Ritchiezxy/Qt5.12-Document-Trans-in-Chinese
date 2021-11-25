@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qquickanimator.cpp -->
+  <title>OpacityAnimator QML 类型 | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-qmlmodule.html">QML类型</a></td><td >OpacityAnimator<span lang="zh-cn">（透明动画师）</span> QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">OpacityAnimator<span lang="zh-cn">（透明动画师）</span> QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$OpacityAnimator-brief -->
+<p><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-opacityanimator.html"><font style="vertical-align: inherit;">OpacityAnimator</font></a><font style="vertical-align: inherit;">类型的动画项的不透明度。</font> <a href="#details">更多...</a></p>
+<!-- @@@OpacityAnimator -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句：</td><td class="memItemRight bottomAlign"> import QtQuick 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.2</td></tr><tr><td class="memItemLeft rightAlign topAlign">继承自：</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtquick-animator.html">Animator</a></p>
+</td></tr></table></div><ul>
+<li><a href="qml-qtquick-opacityanimator-members.html">所有成员的列表，包括继承成员</a></li>
+</ul>
+<!-- $$$OpacityAnimator-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p><a href="qml-qtquick-animator.html">Animator</a>类型不同于普通的动画类型。当使用<a href="qml-qtquick-animator.html">Animator</a>时，动画可以在渲染线程中运行，当动画完成时，属性值将跳转到结束。</p>
+<p><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-item.html#opacity-prop"><font style="vertical-align: inherit;">Item::opacity</font></a><font style="vertical-align: inherit;">的值在动画完成后更新。</font></p>
+<p><font style="vertical-align: inherit;">以下代码段展示了如何将</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-opacityanimator.html"><font style="vertical-align: inherit;">OpacityAnimator</font></a><font style="vertical-align: inherit;">与 Rectangle<span lang="zh-cn">（矩形）</span> 项一起使用。</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">opacityBox</span>
+      <span class="name">width</span>: <span class="number">50</span>
+      <span class="name">height</span>: <span class="number">50</span>
+      <span class="name">color</span>: <span class="string">&quot;lightsteelblue&quot;</span>
+      <span class="type"><a href="qml-qtquick-opacityanimator.html">OpacityAnimator</a></span> {
+          <span class="name">target</span>: <span class="name">opacityBox</span>;
+          <span class="name">from</span>: <span class="number">0</span>;
+          <span class="name">to</span>: <span class="number">1</span>;
+          <span class="name">duration</span>: <span class="number">1000</span>
+          <span class="name">running</span>: <span class="number">true</span>
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">也可以使用</font><code>on</code><font style="vertical-align: inherit;">关键字将</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-opacityanimator.html"><font style="vertical-align: inherit;">OpacityAnimator</font></a><font style="vertical-align: inherit;">直接绑定到 Item 实例。</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">50</span>
+      <span class="name">height</span>: <span class="number">50</span>
+      <span class="name">color</span>: <span class="string">&quot;lightsteelblue&quot;</span>
+      OpacityAnimator on <span class="name">opacity</span>{
+          <span class="name">from</span>: <span class="number">0</span>;
+          <span class="name">to</span>: <span class="number">1</span>;
+          <span class="name">duration</span>: <span class="number">1000</span>
+      }
+  }
+
+</pre>
+<!-- @@@OpacityAnimator -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
