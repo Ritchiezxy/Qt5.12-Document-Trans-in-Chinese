@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- imports.qdoc -->
+  <title>Import Statements | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >
+			<span lang="zh-cn">导入语句</span></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-imports.html#syntax-of-an-import-statement"><font style="vertical-align: inherit;">导入语句的语法</font></a></li>
+<li class="level2"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-imports.html#import-types"><font style="vertical-align: inherit;">导入类型</font></a></li>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-imports.html#qml-import-path"><font style="vertical-align: inherit;">QML 导入路径</font></a></li>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-imports.html#debugging"><font style="vertical-align: inherit;">调试</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><span lang="zh-cn">导入语句</span></h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-syntax-imports.html-description -->
+<div class="descr"> <a name="details"></a>
+<a name="syntax-of-an-import-statement"></a>
+<h2 id="syntax-of-an-import-statement"><font style="vertical-align: inherit;">导入语句的语法</font></h2>
+<p><font style="vertical-align: inherit;">import 语句允许客户端告诉引擎在 QML 文档中使用了哪些模块、JavaScript 资源和组件目录。可以在文档中使用的类型取决于文档导入的模块、资源和目录。</font></p>
+<a name="import-types"></a>
+<h3 ><font style="vertical-align: inherit;">导入类型</font></h3>
+<p><font style="vertical-align: inherit;">有三种不同类型的导入。每种导入类型的语法略有不同，不同的导入类型适用不同的语义。</font></p>
+<a name="module-namespace-imports"></a>
+<h4 ><font style="vertical-align: inherit;">模块（命名空间）导入</font></h4>
+<p>最常见的导入类型是模块导入。客户端可以导入<a href="qtqml-modules-identifiedmodules.html">QML模块</a>，这些模块将QML对象类型和JavaScript资源注册到给定的名称空间中。</p>
+<p><font style="vertical-align: inherit;">模块导入的通用形式如下：</font></p>
+<pre class="cpp">
+
+  import <span class="operator">&lt;</span>ModuleIdentifier<span class="operator">&gt;</span> <span class="operator">&lt;</span>Version<span class="operator">.</span>Number<span class="operator">&gt;</span> <span class="operator">[</span>as <span class="operator">&lt;</span>Qualifier<span class="operator">&gt;</span><span class="operator">]</span>
+
+</pre>
+<ul>
+<li><code>&lt;ModuleIdentifier&gt;</code>是用点URI表示法指定的标识符，它唯一地标识模块提供的类型名称空间。</li>
+<li><code>&lt;Version.Number&gt;</code>是<code>MajorVersion.MinorVersion</code>表单的一个版本，它指定各种对象类型的定义和JavaScript资源将由于导入而可用。</li>
+<li><code>&lt;Qualifier&gt;</code>是一个可选的本地命名空间标识符，模块提供的对象类型和JavaScript资源将被安装到其中。如果省略，模块提供的对象类型和JavaScript资源将被安装到全局命名空间中。</li>
+</ul>
+<p>一个不合格的模块导入示例如下:</p>
+<pre class="cpp">
+
+  import <span class="type">QtQuick</span> <span class="number">2.0</span>
+
+</pre>
+<p><font style="vertical-align: inherit;">此导入允许使用</font><code>QtQuick</code><font style="vertical-align: inherit;">模块提供的所有类型，而无需指定限定符。例如创建矩形的客户端代码如下：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>
+      <span class="name">height</span>: <span class="number">100</span>
+      <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">合格模块导入的示例如下：</font></p>
+<pre class="cpp">
+
+  import <span class="type">QtQuick</span> <span class="number">2.0</span> as Quick
+
+</pre>
+<p><font style="vertical-align: inherit;">此导入允许同时导入多个提供冲突类型名称的模块，但是由于导入到限定名称空间的模块提供的类型的每次使用都必须在限定符之前，因此可以解决冲突由 QML 引擎明确表示。</font></p>
+<p><font style="vertical-align: inherit;">使用限定模块导入后创建矩形的客户端代码示例如下：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0 as Quick
+
+  <span class="type">Quick</span>.Rectangle {
+      <span class="name">width</span>: <span class="number">200</span>
+      <span class="name">height</span>: <span class="number">100</span>
+      <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">有关合格导入的更多信息，请参阅即将发​​布的有关</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-imports.html#importing-into-a-qualified-local-namespace"><font style="vertical-align: inherit;">导入到合格本地命名空间的部分</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果 QML 文档没有导入提供特定 QML 对象类型的模块，而是尝试使用该对象类型，则会发生错误。例如，以下 QML 文档不会导入</font><code>QtQuick</code><font style="vertical-align: inherit;">，因此尝试使用该</font><code>Rectangle</code><font style="vertical-align: inherit;">类型将失败：</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>
+      <span class="name">height</span>: <span class="number">100</span>
+      <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">在这种情况下，引擎将发出错误并拒绝加载文件。</font></p>
+<a name="non-module-namespace-imports"></a>
+<h5 ><font style="vertical-align: inherit;">非模块命名空间导入</font></h5>
+<p><font style="vertical-align: inherit;">类型也可以通过C++中的各种注册函数（如</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType"><font style="vertical-align: inherit;">qmlRegisterType</font></a><font style="vertical-align: inherit;"> ()）直接注册到命名空间中。以这种方式注册到命名空间中的类型可以通过导入命名空间来导入，就好像命名空间是一个模块标识符一样。</font></p>
+<p><font style="vertical-align: inherit;">这在客户端应用程序中最常见，它们用 C++ 定义自己的 QML 对象类型并手动将它们注册到 QML 类型系统。</font></p>
+<a name="importing-into-a-qualified-local-namespace"></a>
+<h5 ><font style="vertical-align: inherit;">导入到合格的本地命名空间</font></h5>
+<p><font style="vertical-align: inherit;">该</font><code>import</code><font style="vertical-align: inherit;">语句可以选择使用</font><code>as</code><font style="vertical-align: inherit;">关键字来指定应将类型导入特定的文档本地命名空间。如果指定了命名空间，则对导入可用的类型的任何引用都必须以本地命名空间限定符为前缀。</font></p>
+<p><font style="vertical-align: inherit;">下面，</font><code>QtQuick</code><font style="vertical-align: inherit;">模块被导入到命名空间“CoreItems”中。现在，对</font><code>QtQuick</code><font style="vertical-align: inherit;">模块中类型的任何引用都必须以</font><code>CoreItems</code><font style="vertical-align: inherit;">名称为前缀：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0 as CoreItems
+
+  <span class="type">CoreItems</span>.Rectangle {
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      <span class="type">CoreItems</span>.Text { <span class="name">text</span>: <span class="string">&quot;Hello, world!&quot;</span> }
+
+      <span class="comment">// WRONG! No namespace prefix - the Text type won't be found</span>
+      <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">&quot;Hello, world!&quot;</span> }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">命名空间充当文件范围内模块的标识符。命名空间不会成为根对象的属性，可以像使用属性、信号和方法那样从外部引用。</font></p>
+<p><font style="vertical-align: inherit;">如果需要使用两个具有相同名称但位于不同模块中的 QML 类型，则命名空间导入非常有用。在这种情况下，可以将两个模块导入不同的命名空间以确保代码引用正确的类型：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0 as CoreItems
+  import &quot;../textwidgets&quot; as MyModule
+
+  <span class="type">CoreItems</span>.Rectangle {
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      <span class="type">MyModule</span>.Text { <span class="name">text</span>: <span class="string">&quot;Hello from my custom text item!&quot;</span> }
+      <span class="type">CoreItems</span>.Text { <span class="name">text</span>: <span class="string">&quot;Hello from Qt Quick!&quot;</span> }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">请注意，可以将多个模块导入同一个命名空间，就像将多个模块导入全局命名空间一样。例如：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0 as Project
+  import QtMultimedia 5.0 as Project
+
+  <span class="type">Project</span>.Rectangle {
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">50</span>
+
+      <span class="type">Project</span>.Audio {
+          <span class="name">source</span>: <span class="string">&quot;music.wav&quot;</span>
+          <span class="name">autoPlay</span>: <span class="number">true</span>
+      }
+  }
+
+</pre>
+<a name="directory-imports"></a>
+<h4 ><font style="vertical-align: inherit;">目录导入</font></h4>
+<p><font style="vertical-align: inherit;">包含 QML 文档的目录也可以直接导入到 QML 文档中。这为将 QML 类型分割成可重用的分组提供了一种简单的方法：文件系统上的目录。</font></p>
+<p><font style="vertical-align: inherit;">目录导入的一般形式如下：</font></p>
+<pre class="qml">
+
+  import &quot;&lt;DirectoryPath&gt;&quot; [as &lt;Qualifier&gt;]
+
+</pre>
+<p><b>注意： </b><font style="vertical-align: inherit;">导入路径是网络透明的：应用程序可以从远程路径导入文档，就像从本地路径导入文档一样。请参阅QML 文档中</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-documents-networktransparency.html"><font style="vertical-align: inherit;">网络透明度</font></a><font style="vertical-align: inherit;">的一般 URL 解析规则。如果该目录是远程目录，则它必须包含一个</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-directoryimports.html#directory-listing-qmldir-files"><font style="vertical-align: inherit;">目录导入列表 qmldir 文件，</font></a><font style="vertical-align: inherit;">因为如果该</font><code>qmldir</code><font style="vertical-align: inherit;">文件不存在，QML 引擎将无法确定远程目录的内容。</font></p><p>
+	类似于<code>Qualifier</code>的语义适用于目录导入和模块导入;有关该主题的更多信息，请参阅前面关于<a href="qtqml-syntax-imports.html#importing-into-a-qualified-local-namespace">导入到合格本地命名空间</a>的部分。</p>
+<p><font style="vertical-align: inherit;">有关目录导入的更多信息，请参阅有关</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-directoryimports.html"><font style="vertical-align: inherit;">目录导入</font></a><font style="vertical-align: inherit;">的深入文档。</font></p>
+<a name="javascript-resource-imports"></a>
+<h4 ><font style="vertical-align: inherit;">JavaScript 资源导入</font></h4>
+<p><font style="vertical-align: inherit;">JavaScript 资源可以直接导入到 QML 文档中。每个 JavaScript 资源都必须有一个用于访问它的标识符。</font></p>
+<p><font style="vertical-align: inherit;">JavaScript 资源导入的通用形式如下：</font></p>
+<pre class="cpp">
+
+  import <span class="string">&quot;&lt;JavaScriptFile&gt;&quot;</span> as <span class="operator">&lt;</span>Identifier<span class="operator">&gt;</span>
+
+</pre>
+<p><font style="vertical-align: inherit;">请注意，</font><code>&lt;Identifier&gt;</code><font style="vertical-align: inherit;">在 QML 文档中必须是唯一的，这与可应用于模块导入的本地命名空间限定符不同。</font></p>
+<a name="javascript-resources-from-modules"></a>
+<h5 ><font style="vertical-align: inherit;">来自模块的 JavaScript 资源</font></h5>
+<p>通过向指定模块的qmldir文件中添加标识符定义，模块可以提供Javascript文件。</p>
+<p><font style="vertical-align: inherit;">例如，如果</font><code>projects.MyQMLProject.MyFunctions</code><font style="vertical-align: inherit;">使用以下</font><code>qmldir</code><font style="vertical-align: inherit;">文件指定模块，并安装到 QML 导入路径中：</font></p>
+<pre class="cpp">
+
+  module projects<span class="operator">.</span>MyQMLProject<span class="operator">.</span>MyFunctions
+  SystemFunctions <span class="number">1.0</span> SystemFunctions<span class="operator">.</span>js
+  UserFunctions <span class="number">1.0</span> UserFunctions<span class="operator">.</span>js
+
+</pre>
+<p><font style="vertical-align: inherit;">客户端应用程序能够通过导入模块并使用与声明资源关联的标识符来导入模块中声明的 JavaScript 资源：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+  import projects.MyQMLProject.MyFunctions 1.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">Component</span>.onCompleted: { <span class="name">SystemFunctions</span>.<span class="name">cleanUp</span>(); }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">如果模块被导入到文档本地命名空间，JavaScript 资源标识符必须以命名空间限定符为前缀才能使用：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+  import projects.MyQMLProject.MyFunctions 1.0 as MyFuncs
+  import org.example.Functions 1.0 as TheirFuncs
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">Component</span>.onCompleted: {
+          <span class="name">MyFuncs</span>.<span class="name">SystemFunctions</span>.<span class="name">cleanUp</span>();
+          <span class="name">TheirFuncs</span>.<span class="name">SystemFunctions</span>.<span class="name">shutdown</span>();
+      }
+  }
+
+</pre>
+<a name="further-information"></a>
+<h5 ><font style="vertical-align: inherit;">更多信息</font></h5>
+<p><font style="vertical-align: inherit;">有关 JavaScript 资源的更多信息，请参阅有关</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-resources.html"><font style="vertical-align: inherit;">在 QML 中定义 JavaScript 资源</font></a><font style="vertical-align: inherit;">的文档，有关如何导入 JavaScript 资源以及如何从 JavaScript 资源中使用导入的更多信息，请参阅有关</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-imports.html"><font style="vertical-align: inherit;">导入 JavaScript</font></a><font style="vertical-align: inherit;">的深入文档<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-imports.html">QML 中的资源</a>。</font></p>
+<a name="qml-import-path"></a>
+<h2 id="qml-import-path"><font style="vertical-align: inherit;">QML 导入路径</font></h2>
+<p>当导入<a href="qtqml-modules-identifiedmodules.html">已识别的模块</a>时，QML引擎将搜索<i>导入路径</i>以找到匹配的模块。</p>
+<p><font style="vertical-align: inherit;">这个导入路径，由</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#importPathList"><font style="vertical-align: inherit;">QQmlEngine::importPathList</font></a><font style="vertical-align: inherit;"> ()返回，定义了引擎搜索的默认位置。默认情况下，此列表包含：</font></p>
+<ul>
+<li><font style="vertical-align: inherit;">当前文件所在目录</font></li>
+<li><font style="vertical-align: inherit;"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtcore/qlibraryinfo.html#LibraryLocation-enum">QLibraryInfo::Qml2ImportsPath</a>指定的位置</font></li>
+<li><code>QML2_IMPORT_PATH</code><font style="vertical-align: inherit;">环境变量指定的路径</font></li>
+<li><font style="vertical-align: inherit;">资源中的 qrc:/qt-project.org/imports 路径。</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">可以通过</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#addImportPath"><font style="vertical-align: inherit;">QQmlEngine::addImportPath</font></a><font style="vertical-align: inherit;"> () 或</font><code>QML2_IMPORT_PATH</code><font style="vertical-align: inherit;">环境变量添加额外的导入路径。在运行</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtdoc/qtquick-qmlscene.html"><font style="vertical-align: inherit;">qmlscene</font></a><font style="vertical-align: inherit;">工具时，还可以使用该</font><code>-I</code><font style="vertical-align: inherit;">选项添加导入路径。</font></p>
+<a name="debugging"></a>
+<h2 id="debugging"><font style="vertical-align: inherit;">调试</font></h2>
+<p><code>QML_IMPORT_TRACE</code><font style="vertical-align: inherit;">当查找和加载模块出现问题时，环境变量可用于调试。有关更多信息，请参阅</font><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtdoc/qtquick-debugging.html#debugging-module-imports"><font style="vertical-align: inherit;">调试模块导入</font></a><font style="vertical-align: inherit;">。</font></p>
+</div>
+<!-- @@@qtqml-syntax-imports.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
