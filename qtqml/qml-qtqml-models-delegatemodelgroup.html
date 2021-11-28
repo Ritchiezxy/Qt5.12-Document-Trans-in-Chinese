@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmldelegatemodel.cpp -->
+  <title>DelegateModelGroup QML 类型| Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >DelegateModelGroup QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#signals">信号</a></li>
+<li class="level1"><a href="#methods">方法</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">DelegateModelGroup QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$DelegateModelGroup-brief -->
+<p><font style="vertical-align: inherit;">封装一组过滤的视觉数据项。</font> <a href="#details">更多...</a></p>
+<!-- @@@DelegateModelGroup -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句:</td><td class="memItemRight bottomAlign"> import QtQml.Models 2.12</td></tr></table></div><ul>
+<li><a href="qml-qtqml-models-delegatemodelgroup-members.html"></a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#count-prop">count</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#includeByDefault-prop">includeByDefault</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#name-prop">name</a></b></b> : string</li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">信号</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#changed-signal">changed</a></b></b>(array <i>removed</i>,  array <i>inserted</i>)</li>
+</ul>
+<a name="methods"></a>
+<h2 id="methods">方法</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#addGroups-method">addGroups</a></b></b>(int <i>index</i>,  int <i>count</i>,  stringlist <i>groups</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#create-method">create</a></b></b>(int <i>index</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#create-method-1">create</a></b></b>(int <i>index</i>,  jsdict <i>data</i>,  array groups = <i>undefined</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#create-method-2">create</a></b></b>(jsdict <i>data</i>,  array groups = <i>undefined</i>)</li>
+<li class="fn">object <b><b><a href="qml-qtqml-models-delegatemodelgroup.html#get-method">get</a></b></b>(int <i>index</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#insert-method">insert</a></b></b>(int <i>index</i>,  jsdict <i>data</i>,  array groups = <i>undefined</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#insert-method-1">insert</a></b></b>(jsdict <i>data</i>,  var groups = <i>undefined</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#move-method">move</a></b></b>(var <i>from</i>,  var <i>to</i>,  int <i>count</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#remove-method">remove</a></b></b>(int <i>index</i>,  int <i>count</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#removeGroups-method">removeGroups</a></b></b>(int <i>index</i>,  int <i>count</i>,  stringlist <i>groups</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#resolve-method">resolve</a></b></b>(int <i>from</i>,  int <i>to</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#setGroups-method">setGroups</a></b></b>(int <i>index</i>,  int <i>count</i>,  stringlist <i>groups</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodelgroup.html#setGroups-method-1">setGroups</a></b></b>(int <i>index</i>,  int <i>count</i>,  stringlist <i>groups</i>)</li>
+</ul>
+<!-- $$$DelegateModelGroup-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html">
+<font style="vertical-align: inherit;">DelegateModelGroup</font></a><font style="vertical-align: inherit;">类型提供解决的模型数据的手段</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"><font style="vertical-align: inherit;">DelegateModel</font></a><font style="vertical-align: inherit;">的委托项，以及排序和过滤这些委托的项。</font></p>
+<p><span lang="zh-cn"><a href="qml-qtqml-models-delegatemodel.html">DelegateModel</a></span>中初始的可实例化委托项集合由其项组表示，该项组通常直接反映分配给<a href="qml-qtqml-models-delegatemodel.html#model-attached-prop">DelegateModel::model</a>的模型的内容。通过将该<a href="qml-qtqml-models-delegatemodelgroup.html">DelegateModelGroup</a>的名称赋值给<a href="qml-qtqml-models-delegatemodel.html#filterOnGroup-prop">DelegateModel::filterOnGroup</a>属性，可以将该集合更改为<a href="qml-qtqml-models-delegatemodel.html#groups-attached-prop">DelegateModel::group</a>的任何其他成员的内容。</p>
+<p><font style="vertical-align: inherit;">可以使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#get-method">get()</a>函数访问</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html"><font style="vertical-align: inherit;">DelegateModelGroup 中</font></a><font style="vertical-align: inherit;">项的数据，该函数返回有关组成员资格和索引以及模型数据的信息。结合<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#move-method">move()</a>函数，这可用于实现视图排序，使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#remove-method">remove()</a>过滤视图中的项目，或使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#setGroups-method">setGroups()</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-package.html">Package</a>委托将项目分类到不同的视图中。不同的组只有在不相交时才能独立排序。在一个组中移动一个项目也会在它所属的所有其他组中移动它。</font></p>
+<p><font style="vertical-align: inherit;">可以通过使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#insert-method">insert()</a>函数将数据直接插入</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html"><font style="vertical-align: inherit;">DelegateModelGroup</font></a><font style="vertical-align: inherit;">来补充来自模型的数据。这可用于将模拟项或占位符项引入到视图中，这些项后来在可用时<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#resolve-method">解析</a>为真实模型数据。</font></p>
+<p><font style="vertical-align: inherit;">委托项也可以使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#create-method">create()</a>函数直接从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html"><font style="vertical-align: inherit;">DelegateModelGroup</font></a><font style="vertical-align: inherit;">实例化，从而可以在没有伴随视图类型的情况下使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a>或挑选应实例化的特定项，而不管它们当前是否在视图的可见范围内区域。</font></p>
+<p><b>请参考 </b>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-dynamicview-tutorial.html">
+<font style="vertical-align: inherit;">QML 动态视图排序教程</font></a><span lang="zh-cn">。</span></p>
+<!-- @@@DelegateModelGroup -->
+<h2>属性的文档</h2>
+<!-- $$$count -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="count-prop">
+<td class="tblQmlPropNode"><p>
+<a name="count-prop"></a><span class="name">count</span> : <span class="type"><a href="qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此属性保存组中的项<span lang="zh-cn">的</span>数<span lang="zh-cn">量</span>。</font></p>
+</div></div><!-- @@@count -->
+<br/>
+<!-- $$$includeByDefault -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="includeByDefault-prop">
+<td class="tblQmlPropNode"><p>
+<a name="includeByDefault-prop"></a><span class="name">includeByDefault</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此属性保存默认情况下是否将新项分配给该组。</font></p>
+</div></div><!-- @@@includeByDefault -->
+<br/>
+<!-- $$$name -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="name-prop">
+<td class="tblQmlPropNode"><p>
+<a name="name-prop"></a><span class="name">name</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此属性包含组的名称。</font></p>
+<p><font style="vertical-align: inherit;">模型中的每个组都必须有一个以小写字母开头的唯一名称。</font></p>
+</div></div><!-- @@@name -->
+<br/>
+<h2>Signal Documentation</h2>
+<!-- $$$changed -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="changed-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="changed-signal"></a><span class="name">changed</span>(<span class="type">array</span> <i>removed</i>,  <span class="type">array</span> <i>inserted</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">当项已从组中移除或插入到组中时，会发出此信号。</font></p>
+<p><i><font style="vertical-align: inherit;">removed <span lang="zh-cn">（</span>删除<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">和</font><i><font style="vertical-align: inherit;">inserted
+<span lang="zh-cn">（</span>插入<span lang="zh-cn">）</span>的</font></i><font style="vertical-align: inherit;">数组中的每个对象都有两个值；插入或删除的第一个项目的</font><i><font style="vertical-align: inherit;">索引</font></i><font style="vertical-align: inherit;">以及插入或删除的连续项目数的</font><i><font style="vertical-align: inherit;">计数</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">每个索引都针对先前的更改进行调整，所有删除的项目都位于任何插入的项之前。</font></p>
+<p><font style="vertical-align: inherit;">对应的处理程序是</font><code>onChanged</code><font style="vertical-align: inherit;">。</font></p>
+</div></div><!-- @@@changed -->
+<br/>
+<h2>Method Documentation</h2>
+<!-- $$$ -->
+<div class="qmlitem"><div class="fngroup">
+<div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="">
+<td class="tblQmlFuncNode"><p>
+<a name="create-method"></a><span class="name">create</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>)</p></td></tr>
+<tr valign="top" class="odd" id="">
+<td class="tblQmlFuncNode"><p>
+<a name="create-method-1"></a><span class="name">create</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>,  <span class="type">jsdict</span> <i>data</i>,  <span class="type">array</span> <span class="type">groups</span> = <i>undefined</i>)</p></td></tr>
+<tr valign="top" class="odd" id="">
+<td class="tblQmlFuncNode"><p>
+<a name="create-method-2"></a><span class="name">create</span>(<span class="type">jsdict</span> <i>data</i>,  <span class="type">array</span> <span class="type">groups</span> = <i>undefined</i>)</p></td></tr>
+</table></div>
+</div></div><div class="qmldoc"><p><font style="vertical-align: inherit;">返回对组中</font><i><font style="vertical-align: inherit;">index<span lang="zh-cn">（索引）</span></font></i><font style="vertical-align: inherit;">处的实例化项的引用。</font></p>
+<p><font style="vertical-align: inherit;">如果提供了<i>data</i>对象，它将被</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#insert-method"><font style="vertical-align: inherit;">插入</font></a><font style="vertical-align: inherit;">到</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">index</span>处，</font></i><font style="vertical-align: inherit;">并且将返回引用此新条目的项。可选的</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">group</span></font></i><font style="vertical-align: inherit;">参数标识新条目应属于的组，如果未指定，则这等于调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#create-method"><font style="vertical-align: inherit;">create()</font></a><font style="vertical-align: inherit;">的组。</font></p>
+<p><font style="vertical-align: inherit;">create 返回的所有项目都添加到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#persistedItems-prop"><font style="vertical-align: inherit;">persistedItems</font></a><font style="vertical-align: inherit;">组中。当未被任何视图引用时，该组中的项保持实例化。</font></p>
+</div></div><!-- @@@ -->
+<br/>
+<!-- $$$ -->
+<div class="qmlitem"><div class="fngroup">
+<div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="">
+<td class="tblQmlFuncNode"><p>
+<a name="insert-method"></a><span class="name">insert</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>,  <span class="type">jsdict</span> <i>data</i>,  <span class="type">array</span> <span class="type">groups</span> = <i>undefined</i>)</p></td></tr>
+<tr valign="top" class="odd" id="">
+<td class="tblQmlFuncNode"><p>
+<a name="insert-method-1"></a><span class="name">insert</span>(<span class="type">jsdict</span> <i>data</i>,  <span class="type"><a href="qml-var.html">var</a></span> <span class="type">groups</span> = <i>undefined</i>)</p></td></tr>
+</table></div>
+</div></div><div class="qmldoc"><p><font style="vertical-align: inherit;">使用与分配给<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#model-attached-prop">DelegateModel::model</a>的模型中的角色对应的<i>数据</i>值在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel 的</a></font><i><font style="vertical-align: inherit;">index</font></i><font style="vertical-align: inherit;">处创建一个新条目。</font></p>
+<p><font style="vertical-align: inherit;">如果未提供索引，则数据将附加到模型中。</font></p>
+<p><font style="vertical-align: inherit;">可选的<span class="type">groups</span> 参数标识新条目应属于的组，如果未指定，则这等于调用了组插入。</font></p>
+<p><font style="vertical-align: inherit;">稍后可以使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#resolve-method">resolve()</a>函数将插入到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"><font style="vertical-align: inherit;">DelegateModel 中的</font></a><font style="vertical-align: inherit;">数据与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#model-attached-prop"><font style="vertical-align: inherit;">DelegateModel::model 中</font></a><font style="vertical-align: inherit;">的现有条目合并。这可用于创建稍后由实际数据替换的占位符项。</font></p>
+</div></div><!-- @@@ -->
+<br/>
+<!-- $$$addGroups -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="addGroups-method">
+<td class="tblQmlFuncNode"><p>
+<a name="addGroups-method"></a><span class="name">addGroups</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>count</i>,  <span class="type">stringlist</span> <i>groups</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">将从<i>index</i> 开始的<i>count</i> 项添加到<i>groups</i>。</font></p>
+</div></div><!-- @@@addGroups -->
+<br/>
+<!-- $$$get -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="get-method">
+<td class="tblQmlFuncNode"><p>
+<a name="get-method"></a><span class="type">object</span> <span class="name">get</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">返回一个 javascript 对象，描述组中<i>index</i> 处的项目。</font></p>
+<p><font style="vertical-align: inherit;">返回的对象包含与来自附加的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"><font style="vertical-align: inherit;">DelegateModel 的委托</font></a><font style="vertical-align: inherit;">以及该项目的模型相同的信息。它具有以下特性：</font></p>
+<ul>
+<li><b>model</b> 项的模型数据。这与委托中的模型上下文属性相同</li>
+<li><b>groups</b> 项所属组的名称列表。可以编写此属性来更改项的成员资格。</li>
+<li><b>inItems</b> 该项是否属于该<a href="qml-qtqml-models-delegatemodel.html#items-prop"><span lang="zh-cn">项</span></a>组。写入此属性将从组中添加或删除该项。</li>
+<li><b>itemsIndex</b> 项组中<a href="qml-qtqml-models-delegatemodel.html#items-prop"><span lang="zh-cn">项</span></a>的索引。</li>
+<li><b>in&lt;GroupName&gt;</b> 是否属于动态组groupName。写入此属性将从组中添加或删除该项。</li>
+<li><b>&lt;groupName&gt;Index</b> 动态组<i>groupName</i>中项的索引。</li>
+<li><b>isUnresolved</b> 项目是否绑定到分配给<a href="qml-qtqml-models-delegatemodel.html#model-attached-prop">DelegateModel::model</a>的模型中的索引。如果项目没有绑定到模型，则返回true，如果绑定到模型则返回false。</li>
+</ul>
+</div></div><!-- @@@get -->
+<br/>
+<!-- $$$move -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="move-method">
+<td class="tblQmlFuncNode"><p>
+<a name="move-method"></a><span class="name">move</span>(<span class="type"><a href="qml-var.html">var</a></span> <i>from</i>,  <span class="type"><a href="qml-var.html">var</a></span> <i>to</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>count</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>Moves <i>count</i> at <i>from</i> in a group <i>to</i> a new position.</p>
+<p><b>注意： </b>The <a href="qml-qtqml-models-delegatemodel.html">DelegateModel</a> acts as a proxy model: it holds the delegates in a different order than the <a href="qml-qtqml-models-delegatemodel.html#model-prop">underlying model</a> has them. Any subsequent changes to the underlying model will not undo whatever reordering you have done via this function.</p></div></div><!-- @@@move -->
+<br/>
+<!-- $$$remove -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="remove-method">
+<td class="tblQmlFuncNode"><p>
+<a name="remove-method"></a><span class="name">remove</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>count</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><span lang="zh-cn">从<i>index</i>开始移除组中数量为<i>count</i>的项。</span></p>
+</div></div><!-- @@@remove -->
+<br/>
+<!-- $$$removeGroups -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="removeGroups-method">
+<td class="tblQmlFuncNode"><p>
+<a name="removeGroups-method"></a><span class="name">removeGroups</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>count</i>,  <span class="type">stringlist</span> <i>groups</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><span lang="zh-cn">从<i>index</i>开始移除组中数量为<i>count</i>的项。</span></p>
+</div></div><!-- @@@removeGroups -->
+<br/>
+<!-- $$$resolve -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="resolve-method">
+<td class="tblQmlFuncNode"><p>
+<a name="resolve-method"></a><span class="name">resolve</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>from</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>to</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">将</font><i><font style="vertical-align: inherit;">from</font></i><font style="vertical-align: inherit;">处的未解析项绑定到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#model-attached-prop"><font style="vertical-align: inherit;">DelegateModel::model</font></a><font style="vertical-align: inherit;">中索引</font><i><font style="vertical-align: inherit;">为 to 处的项</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">未解析项是其数据已</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#insert-method"><font style="vertical-align: inherit;">插入</font></a><font style="vertical-align: inherit;">到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html"><font style="vertical-align: inherit;">DelegateModelGroup</font></a><font style="vertical-align: inherit;">而不是从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#model-attached-prop"><font style="vertical-align: inherit;">DelegateModel::model</font></a><font style="vertical-align: inherit;">索引派生的条目。解析一个项会将目标索引处的项替换为未解析的项。已解析的项将在其绑定索引处反映源模型的数据，并且会在该索引像任何其他项目一样移动时移动。</font></p>
+<p><font style="vertical-align: inherit;">如果在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html"><font style="vertical-align: inherit;">DelegateModelGroup</font></a><font style="vertical-align: inherit;"> onChanged() 处理程序中替换了新项，则其插入和替换将作为原子操作传达给视图，从而创建模型内容未更改的外观，或者如果未解析的模型项目与以前未解决的项只是移动了。</font></p>
+</div></div><!-- @@@resolve -->
+<br/>
+<!-- $$$setGroups -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="setGroups-method">
+<td class="tblQmlFuncNode"><p>
+<a name="setGroups-method"></a><span class="name">setGroups</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>count</i>,  <span class="type">stringlist</span> <i>groups</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><span lang="zh-cn">从<i>index</i>开始为<i>groups</i>设置数量为count的项。</span></p>
+</div></div><!-- @@@setGroups -->
+<br/>
+<!-- $$$setGroups -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="setGroups-method-1">
+<td class="tblQmlFuncNode"><p>
+<a name="setGroups-method-1"></a><span class="name">setGroups</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>count</i>,  <span class="type">stringlist</span> <i>groups</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><span lang="zh-cn">从<i>index</i>开始为<i>groups</i>设置数量为count的项。</span></p>
+</div></div><!-- @@@setGroups -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- signals.qdoc -->
+  <title>Signal and Handler Event System | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >
+			信号和处理程序事件系统</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html#receiving-signals-with-signal-handlers"><font style="vertical-align: inherit;">使用信号处理程序接收信号</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html#property-change-signal-handlers"><font style="vertical-align: inherit;">属性更改信号处理程序</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html#using-the-connections-type"><font style="vertical-align: inherit;">使用连接类型</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html#attached-signal-handlers"><font style="vertical-align: inherit;">附加的信号处理程序</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html#adding-signals-to-custom-qml-types"><font style="vertical-align: inherit;">向自定义 QML 类型添加信号</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html#connecting-signals-to-methods-and-signals"><font style="vertical-align: inherit;">将信号连接到方法和信号</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">信号和处理程序事件系统</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-syntax-signals.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><font style="vertical-align: inherit;">应用程序和用户界面组件需要相互通信。例如，一个按钮需要知道用户已经点击了它。按钮可能会改变颜色以指示其状态或执行某些逻辑。同样，应用程序需要知道用户是否正在单击按钮。应用程序可能需要将此点击事件中继到其他应用程序。</font></p>
+<p><font style="vertical-align: inherit;">QML 具有信号和处理程序机制，其中</font><i><font style="vertical-align: inherit;">信号</font></i><font style="vertical-align: inherit;">是事件，信号通过</font><i><font style="vertical-align: inherit;">信号处理程序进行</font></i><font style="vertical-align: inherit;">响应。当发出信号时，会调用相应的信号处理程序。在处理程序中放置诸如脚本或其他操作之类的逻辑允许组件响应事件。</font></p>
+<a name="qml-signals-and-handlers"></a><a name="receiving-signals-with-signal-handlers"></a>
+<h2 id="receiving-signals-with-signal-handlers"><font style="vertical-align: inherit;">使用信号处理程序接收信号</font></h2>
+<p>T<font style="vertical-align: inherit;">要在为特定对象发出特定信号时接收通知，对象定义应声明一个名为</font><i><font style="vertical-align: inherit;">on&lt;Signal&gt;</font></i><font style="vertical-align: inherit;">的信号处理程序，其中</font><i><font style="vertical-align: inherit;">&lt;Signal&gt;</font></i><font style="vertical-align: inherit;">是<i>信号</i>的名称，首字母大写。信号处理程序应包含在调用信号处理程序时要执行的 JavaScript 代码。</font></p>
+<p><font style="vertical-align: inherit;">例如，来自<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquickcontrols/qtquickcontrols-index.html">Qt Quick Controls</a>模块的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquickcontrols/qml-qtquick-controls2-button.html"><font style="vertical-align: inherit;">Button</font></a><font style="vertical-align: inherit;">类型有一个信号，只要单击按钮就会发出信号。在这种情况下，用于接收此信号的信号处理程序应该是。在下面的示例中，无论何时单击按钮，都会调用处理程序，将随机颜色应用于父<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-rectangle.html">Rectangle</a>：</font><code>clickedonClickedonClicked</code></p>
+<pre class="qml">
+
+  import QtQuick 2.12
+  import QtQuick.Controls 2.12
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">rect</span>
+      <span class="name">width</span>: <span class="number">250</span>; <span class="name">height</span>: <span class="number">250</span>
+
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-button.html">Button</a></span> {
+          <span class="name">anchors</span>.bottom: <span class="name">parent</span>.<span class="name">bottom</span>
+          <span class="name">anchors</span>.horizontalCenter: <span class="name">parent</span>.<span class="name">horizontalCenter</span>
+          <span class="name">text</span>: <span class="string">&quot;Change color!&quot;</span>
+          <span class="name">onClicked</span>: {
+              <span class="name">rect</span>.<span class="name">color</span> <span class="operator">=</span> <span class="name">Qt</span>.<span class="name">rgba</span>(<span class="name">Math</span>.<span class="name">random</span>(), <span class="name">Math</span>.<span class="name">random</span>(), <span class="name">Math</span>.<span class="name">random</span>(), <span class="number">1</span>);
+          }
+      }
+  }
+
+</pre>
+<a name="property-change-signal-handlers"></a>
+<h3 ><font style="vertical-align: inherit;">属性更改信号处理程序</font></h3>
+<p><font style="vertical-align: inherit;">当 QML 属性的值发生变化时，会自动发出信号。这种类型的信号是</font><i><font style="vertical-align: inherit;">属性更改信号</font></i><font style="vertical-align: inherit;">，这些信号的信号处理程序以</font><i><font style="vertical-align: inherit;">on&lt;Property&gt;Changed</font></i><font style="vertical-align: inherit;">的形式编写，其中</font><i><font style="vertical-align: inherit;">&lt;Property&gt;</font></i><font style="vertical-align: inherit;">是<i>属性</i>的名称，首字母大写。</font></p>
+<p><font style="vertical-align: inherit;">例如，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html"><font style="vertical-align: inherit;">MouseArea</font></a><font style="vertical-align: inherit;">类型有一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html#pressed-prop"><font style="vertical-align: inherit;">pressed</font></a><font style="vertical-align: inherit;">属性。要在此属性更改时收到通知，请编写一个名为 的信号处理程序</font><code>onPressedChanged</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.12
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">rect</span>
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+          <span class="name">onPressedChanged</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;taphandler pressed?&quot;</span>, <span class="name">pressed</span>)
+      }
+  }
+
+</pre>
+<p>尽管<a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a>文档没有记录名为<code>onPressedChanged</code>的信号处理程序，但<code>pressed</code> 
+的属性存在这一事实会隐式地提供信号。</p>
+<a name="using-the-connections-type"></a>
+<h3 ><font style="vertical-align: inherit;">使用连接类型</font></h3>
+<p>在某些情况下，可能需要访问发出该信号的对象之外的信号。为此，QtQuick模块提供了<a href="qml-qtqml-connections.html">Connections</a>类型，用于连接到任意对象的信号。<a href="qml-qtqml-connections.html">Connections</a>对象可以从其指定的<a href="qml-qtqml-connections.html#target-prop">目标</a>接收任何信号。</p>
+<p><font style="vertical-align: inherit;">例如，</font><code>onClicked</code><font style="vertical-align: inherit;">在前面的示例中的处理程序可能已被由所述根接收</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-rectangle.html"><font style="vertical-align: inherit;">矩形</font></a><font style="vertical-align: inherit;">代替，通过将</font><code>onClicked</code><font style="vertical-align: inherit;">处理程序在一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-connections.html"><font style="vertical-align: inherit;">连接</font></a><font style="vertical-align: inherit;">具有其对象</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-connections.html#target-prop"><font style="vertical-align: inherit;">目标</font></a><font style="vertical-align: inherit;">集到</font><code>button</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.12
+  import QtQuick.Controls 2.12
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">rect</span>
+      <span class="name">width</span>: <span class="number">250</span>; <span class="name">height</span>: <span class="number">250</span>
+
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-button.html">Button</a></span> {
+          <span class="name">id</span>: <span class="name">button</span>
+          <span class="name">anchors</span>.bottom: <span class="name">parent</span>.<span class="name">bottom</span>
+          <span class="name">anchors</span>.horizontalCenter: <span class="name">parent</span>.<span class="name">horizontalCenter</span>
+          <span class="name">text</span>: <span class="string">&quot;Change color!&quot;</span>
+      }
+
+      <span class="type"><a href="qml-qtqml-connections.html">Connections</a></span> {
+          <span class="name">target</span>: <span class="name">button</span>
+          <span class="name">onClicked</span>: {
+              <span class="name">rect</span>.<span class="name">color</span> <span class="operator">=</span> <span class="name">Qt</span>.<span class="name">rgba</span>(<span class="name">Math</span>.<span class="name">random</span>(), <span class="name">Math</span>.<span class="name">random</span>(), <span class="name">Math</span>.<span class="name">random</span>(), <span class="number">1</span>);
+          }
+      }
+  }
+
+</pre>
+<a name="attached-signal-handlers"></a>
+<h3 ><font style="vertical-align: inherit;">附加的信号处理程序</font></h3>
+<p>
+<a href="qtqml-syntax-objectattributes.html#attached-properties-and-attached-signal-handlers">
+附加的信号处理程序</a>从附加类型接收信号，而不是从声明处理程序的对象接收信号。</p>
+<p><font style="vertical-align: inherit;">例如，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#completed-signal"><font style="vertical-align: inherit;">Component.onCompleted</font></a><font style="vertical-align: inherit;">是一个附加的信号处理程序。它通常用于在其创建过程完成时执行一些 JavaScript 代码。下面是一个例子：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.12
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">200</span>
+      <span class="name">color</span>: <span class="name">Qt</span>.<span class="name">rgba</span>(<span class="name">Qt</span>.<span class="name">random</span>(), <span class="name">Qt</span>.<span class="name">random</span>(), <span class="name">Qt</span>.<span class="name">random</span>(), <span class="number">1</span>)
+
+      <span class="name">Component</span>.onCompleted: {
+          <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;The rectangle's color is&quot;</span>, <span class="name">color</span>)
+      }
+  }
+
+</pre>
+<p><code>onCompleted</code> 处理程序没有响应来自矩形类型的已完成信号。相反，带有完成信号的<code>Component</code> 
+附加类型的对象会被QML引擎自动附加到矩形对象上。当创建<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>对象时，引擎发出这个信号，从而触发<code>Component.onCompleted</code>信号处理程序。</p>
+<p><font style="vertical-align: inherit;">附加的信号处理程序允许向对象通知对每个单独对象重要的特定信号。</font><code>Component.onCompleted</code><font style="vertical-align: inherit;">例如，如果没有附加的信号处理程序，如果不注册来自某个特殊对象的某个特殊信号，对象就无法接收此通知。所述</font><i><font style="vertical-align: inherit;">附接的信号处理程序</font></i><font style="vertical-align: inherit;">机制使得对象以接收特定的信号而无需额外的代码。</font></p>
+<p><font style="vertical-align: inherit;">有关</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-objectattributes.html#attached-properties-and-attached-signal-handlers"><font style="vertical-align: inherit;">附加信号处理程序</font></a><font style="vertical-align: inherit;">的更多信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-objectattributes.html#attached-properties-and-attached-signal-handlers">附加属性和附加信号处理</a>程序。</font></p>
+<a name="adding-signals-to-custom-qml-types"></a>
+<h2 id="adding-signals-to-custom-qml-types"><font style="vertical-align: inherit;">向自定义 QML 类型添加信号</font></h2>
+<p><font style="vertical-align: inherit;">可以通过</font><code>signal</code><font style="vertical-align: inherit;">关键字将信号添加到自定义 QML 类型中。</font></p>
+<p><font style="vertical-align: inherit;">定义新信号的语法是：</font></p>
+<p><code>signal &lt;name&gt;[([&lt;type&gt; &lt;parameter name&gt;[, ..&#x2e;]])]</code></p>
+<p><font style="vertical-align: inherit;">通过将信号作为方法调用来发出信号。</font></p>
+<p>例如，下面的代码定义在一个名为SquareButton.qml的文件中。根<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>对象有一个<code>activated</code> 
+的信号，每当点击子TapHandler时就会<code>tapped<span lang="zh-cn">（发出）</span></code>这个信号。在这个特定的例子中，激活的信号是由鼠标点击的x和y坐标发出的:</p>
+<pre class="qml">
+
+  <span class="comment">// SquareButton.qml</span>
+  import QtQuick 2.12
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">root</span>
+
+      signal <span class="type">activated</span>(real xPosition, real yPosition)
+      property <span class="type"><a href="qml-point.html">point</a></span> <span class="name">mouseXY</span>
+      property <span class="type"><a href="qml-int.html">int</a></span> <span class="name">side</span>: <span class="number">100</span>
+      <span class="name">width</span>: <span class="name">side</span>; <span class="name">height</span>: <span class="name">side</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+          <span class="name">id</span>: <span class="name">handler</span>
+          <span class="name">onTapped</span>: <span class="name">root</span>.<span class="name">activated</span>(<span class="name">mouseXY</span>.<span class="name">x</span>, <span class="name">mouseXY</span>.<span class="name">y</span>)
+          <span class="name">onPressedChanged</span>: <span class="name">mouseXY</span> <span class="operator">=</span> <span class="name">handler</span>.<span class="name">point</span>.<span class="name">position</span>
+      }
+  }
+
+</pre>
+<p>现在<code>SquareButton</code> 的任何对象都可以使用<code>onActivated</code> 信号处理程序连接到<code>activated</code> 
+信号:</p>
+<pre class="qml">
+
+  <span class="comment">// myapplication.qml</span>
+  <span class="type">SquareButton</span> {
+      <span class="name">onActivated</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Activated at &quot;</span> <span class="operator">+</span> <span class="name">xPosition</span> <span class="operator">+</span> <span class="string">&quot;,&quot;</span> <span class="operator">+</span> <span class="name">yPosition</span>)
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">有关为自定义 QML 类型编写信号的更多详细信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-objectattributes.html#signal-attributes"><font style="vertical-align: inherit;">信号属性</font></a><font style="vertical-align: inherit;">。</font></p>
+<a name="qml-connect-signals-to-method"></a><a name="connecting-signals-to-methods-and-signals"></a>
+<h2 id="connecting-signals-to-methods-and-signals"><font style="vertical-align: inherit;">将信号连接到方法和信号</font></h2>
+<p><font style="vertical-align: inherit;">信号对象具有</font><code>connect()</code><font style="vertical-align: inherit;">将信号连接到方法或另一个信号的方法。当信号连接到方法时，只要发出信号，就会自动调用该方法。这种机制使信号能够由方法而不是信号处理程序接收。</font></p>
+<p><font style="vertical-align: inherit;">下面，</font><code>messageReceived</code><font style="vertical-align: inherit;">使用</font><code>connect()</code><font style="vertical-align: inherit;">方法将信号连接到三种方法：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.12
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">relay</span>
+
+      signal <span class="type">messageReceived</span>(string person, string notice)
+
+      <span class="name">Component</span>.onCompleted: {
+          <span class="name">relay</span>.<span class="name">messageReceived</span>.<span class="name">connect</span>(<span class="name">sendToPost</span>)
+          <span class="name">relay</span>.<span class="name">messageReceived</span>.<span class="name">connect</span>(<span class="name">sendToTelegraph</span>)
+          <span class="name">relay</span>.<span class="name">messageReceived</span>.<span class="name">connect</span>(<span class="name">sendToEmail</span>)
+          <span class="name">relay</span>.<span class="name">messageReceived</span>(<span class="string">&quot;Tom&quot;</span>, <span class="string">&quot;Happy Birthday&quot;</span>)
+      }
+
+      <span class="keyword">function</span> <span class="name">sendToPost</span>(person, notice) {
+          <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Sending to post: &quot;</span> <span class="operator">+</span> <span class="name">person</span> <span class="operator">+</span> <span class="string">&quot;, &quot;</span> <span class="operator">+</span> <span class="name">notice</span>)
+      }
+      <span class="keyword">function</span> <span class="name">sendToTelegraph</span>(person, notice) {
+          <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Sending to telegraph: &quot;</span> <span class="operator">+</span> <span class="name">person</span> <span class="operator">+</span> <span class="string">&quot;, &quot;</span> <span class="operator">+</span> <span class="name">notice</span>)
+      }
+      <span class="keyword">function</span> <span class="name">sendToEmail</span>(person, notice) {
+          <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Sending to email: &quot;</span> <span class="operator">+</span> <span class="name">person</span> <span class="operator">+</span> <span class="string">&quot;, &quot;</span> <span class="operator">+</span> <span class="name">notice</span>)
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">在许多情况下，通过信号处理程序接收信号而不是使用 connect() 函数就足够了。然而，使用该</font><code>connect</code><font style="vertical-align: inherit;">方法允许一个信号被多个方法接收，如前面所示，这对于信号处理程序是不可能的，因为它们必须唯一命名。此外，该</font><code>connect</code><font style="vertical-align: inherit;">方法在将信号连接到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-dynamicobjectcreation.html"><font style="vertical-align: inherit;">动态创建的对象</font></a><font style="vertical-align: inherit;">时很有用。</font></p>
+<p><font style="vertical-align: inherit;">有相应</font><code>disconnect()</code><font style="vertical-align: inherit;">的去除连接信号的方法：</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">relay</span>
+      <span class="comment">//...</span>
+
+      <span class="keyword">function</span> <span class="name">removeTelegraphSignal</span>() {
+          <span class="name">relay</span>.<span class="name">messageReceived</span>.<span class="name">disconnect</span>(<span class="name">sendToTelegraph</span>)
+      }
+  }
+
+</pre>
+<a name="signal-to-signal-connect"></a>
+<h4 ><font style="vertical-align: inherit;">信号到信号连接</font></h4>
+<p><font style="vertical-align: inherit;">通过将信号连接到其他信号，该</font><code>connect()</code><font style="vertical-align: inherit;">方法可以形成不同的信号链。</font></p>
+<pre class="qml">
+
+  import QtQuick 2.12
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">forwarder</span>
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      signal <span class="type">send</span>()
+      <span class="name">onSend</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Send clicked&quot;</span>)
+
+      <span class="type"><a href="../qtquick/qml-qtquick-taphandler.html">TapHandler</a></span> {
+          <span class="name">id</span>: <span class="name">mousearea</span>
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onTapped</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Mouse clicked&quot;</span>)
+      }
+
+      <span class="name">Component</span>.onCompleted: {
+          <span class="name">mousearea</span>.<span class="name">tapped</span>.<span class="name">connect</span>(<span class="name">send</span>)
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">每当</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-taphandler.html"><font style="vertical-align: inherit;">TapHandler</font></a><font style="vertical-align: inherit;">的</font><code>tapped</code><font style="vertical-align: inherit;">信号发出时，</font><code>send</code><font style="vertical-align: inherit;">信号也会自动发出。</font></p>
+<pre class="cpp">
+
+  output:
+      MouseArea clicked
+      Send clicked
+
+</pre>
+</div>
+<!-- @@@qtqml-syntax-signals.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlapplicationengine.cpp -->
+  <title>QQmlApplicationEngine  类 | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-module.html">C++ 类</a></td><td >QQmlApplicationEngine</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#public-slots">公用槽函数</a></li>
+<li class="level1"><a href="#signals">信号</a></li>
+<li class="level1"><a href="#static-public-members">静态公用成员</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QQmlApplicationEngine 类</h1>
+<!-- $$$QQmlApplicationEngine-brief -->
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html"><font style="vertical-align: inherit;">QQmlApplicationEngine</font></a><font style="vertical-align: inherit;">提供了一种从单个 QML 文件加载应用程序的便捷方法。</font><a href="#details">更多...</a></p>
+<!-- @@@QQmlApplicationEngine -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 头文件：</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlApplicationEngine&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr><tr><td class="memItemLeft rightAlign topAlign"> 
+	<span lang="zh-cn">引入于：</span></td><td class="memItemRight bottomAlign">  Qt 5.1</td></tr><tr><td class="memItemLeft rightAlign topAlign">继承自：</td><td class="memItemRight bottomAlign"> <a href="qqmlengine.html">QQmlEngine</a></td></tr></table></div><ul>
+<li><a href="qqmlapplicationengine-members.html"></a></li>
+<li><a href="qqmlapplicationengine-obsolete.html">废弃的成员</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlapplicationengine.html#QQmlApplicationEngine">QQmlApplicationEngine</a></b>(QObject *<i>parent</i> = nullptr)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlapplicationengine.html#QQmlApplicationEngine-1">QQmlApplicationEngine</a></b>(const QUrl &amp;<i>url</i>, QObject *<i>parent</i> = nullptr)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlapplicationengine.html#QQmlApplicationEngine-2">QQmlApplicationEngine</a></b>(const QString &amp;<i>filePath</i>, QObject *<i>parent</i> = nullptr)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qqmlapplicationengine.html#dtor.QQmlApplicationEngine">~QQmlApplicationEngine</a></b>() override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QList&lt;QObject *&gt; </td><td class="memItemRight bottomAlign"><b><a href="qqmlapplicationengine.html#rootObjects">rootObjects</a></b>() const</td></tr>
+</table></div>
+<ul>
+<li class="fn">26 个公用函数继承自<a href="qqmlengine.html#public-functions">QQmlEngine</a></li>
+<li class="fn">15 个公用函数继承自<a href="qjsengine.html#public-functions">QJSEngine</a></li>
+<li class="fn">31 个公用函数继承自<a href="../qtcore/qobject.html#public-functions">QObject</a></li>
+</ul>
+<a name="public-slots"></a>
+<h2 id="public-slots">公用槽函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlapplicationengine.html#load">load</a></b>(const QUrl &amp;<i>url</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlapplicationengine.html#load-1">load</a></b>(const QString &amp;<i>filePath</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlapplicationengine.html#loadData">loadData</a></b>(const QByteArray &amp;<i>data</i>, const QUrl &amp;<i>url</i> = QUrl())</td></tr>
+</table></div>
+<ul>
+<li class="fn">1 个公用槽函数继承自<a href="qqmlengine.html#public-slots">QQmlEngine</a></li>
+<li class="fn">1 个公用槽函数继承自<a href="../qtcore/qobject.html#public-slots">QObject</a></li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">信号</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlapplicationengine.html#objectCreated">objectCreated</a></b>(QObject *<i>object</i>, const QUrl &amp;<i>url</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn">3 个信号继承自<a href="qqmlengine.html#signals">QQmlEngine</a></li>
+<li class="fn">2 个信号继承自<a href="../qtcore/qobject.html#signals">QObject</a></li>
+</ul>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">静态公用成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> const QMetaObject </td><td class="memItemRight bottomAlign"><b><a href="qqmlapplicationengine.html#staticMetaObject-var">staticMetaObject</a></b></td></tr>
+</table></div>
+<ul>
+<li class="fn">4 个静态公用成员继承自<a href="qqmlengine.html#static-public-members">QQmlEngine</a></li>
+<li class="fn">9 个静态公用成员继承自<a href="../qtcore/qobject.html#static-public-members">QObject</a></li>
+</ul>
+<h3>额外的继承成员</h3>
+<ul>
+<li class="fn">1 个属性继承自<a href="qqmlengine.html#properties">QQmlEngine</a></li>
+<li class="fn">1 个属性继承自<a href="../qtcore/qobject.html#properties">QObject</a></li>
+<li class="fn">1 个保护函数继承自<a href="qqmlengine.html#protected-functions">QQmlEngine</a></li>
+<li class="fn">9 个保护函数继承自<a href="../qtcore/qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QQmlApplicationEngine-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html"><font style="vertical-align: inherit;">QQmlApplicationEngine</font></a><font style="vertical-align: inherit;">提供了一种从单个 QML 文件加载应用程序的便捷方法。</font></p>
+<p><font style="vertical-align: inherit;">此类结合了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html"><font style="vertical-align: inherit;">QQmlEngine</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcomponent.html"><font style="vertical-align: inherit;">QQmlComponent</font></a><font style="vertical-align: inherit;">以提供一种方便的方法来加载单个 QML 文件。它还向 QML 公开了一些核心应用程序功能，C++/QML 混合应用程序通常会从 C++ 控制这些功能。</font></p>
+<p><font style="vertical-align: inherit;">它可以像这样使用：</font></p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &lt;QGuiApplication&gt;</span>
+  <span class="preprocessor">#include &lt;QQmlApplicationEngine&gt;</span>
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span>argv<span class="operator">[</span><span class="operator">]</span>)
+  {
+      <span class="type"><a href="../qtgui/qguiapplication.html">QGuiApplication</a></span> app(argc<span class="operator">,</span> argv);
+      <span class="type"><a href="qqmlapplicationengine.html#QQmlApplicationEngine">QQmlApplicationEngine</a></span> engine(<span class="string">&quot;main.qml&quot;</span>);
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html"><font style="vertical-align: inherit;">QQuickView</font></a><font style="vertical-align: inherit;">不同，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html"><font style="vertical-align: inherit;">QQmlApplicationEngine</font></a><font style="vertical-align: inherit;">不会自动创建根窗口。如果您使用 Qt Quick 中的可视项，则需要将它们放置在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-window-window.html"><font style="vertical-align: inherit;">Window 内</font></a><font style="vertical-align: inherit;">。</font></p>
+<p>如果你不使用任何需要<a href="qqmlapplicationengine.html">QQmlApplicationEngine</a>的QML模块(如<code>QtQuick</code>)，你也可以使用同时使用<a href="../qtcore/qcoreapplication.html">QCoreApplication</a>和<a href="qqmlapplicationengine.html">QQmlApplicationEngine</a>。</p>
+<p><font style="vertical-align: inherit;">来自默认</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html"><font style="vertical-align: inherit;">QQmlEngine</font></a><font style="vertical-align: inherit;">的配置更改列表：</font></p>
+<ul>
+<li><span lang="zh-cn">连接</span> Qt.<a href="qqmlengine.html#quit">quit</a>()
+<span lang="zh-cn">到</span> <a href="../qtcore/qcoreapplication.html#quit">QCoreApplication::quit</a>()</li>
+<li><font style="vertical-align: inherit;">从与主 QML 文件相邻的 i18n 目录自动加载翻译文件。</font></li>
+<li><font style="vertical-align: inherit;">如果场景包含</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickwindow.html"><font style="vertical-align: inherit;">QQuickWindow ，</font></a><font style="vertical-align: inherit;">则自动设置孵化控制器。</font></li>
+<li>自动设置QQmlFileSelector作为url拦截器，将文件选择器应用到所有QML文件和<span lang="zh-cn">资源</span>。</li>
+</ul>
+<p><font style="vertical-align: inherit;">可以使用从</font><a href="qqmlengine.html"><font style="vertical-align: inherit;">QQmlEngine</font></a><font style="vertical-align: inherit;">继承的方法进一步调整引擎行为。</font></p>
+</div>
+<!-- @@@QQmlApplicationEngine -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QQmlApplicationEngine[overload1]$$$QQmlApplicationEngineQObject* -->
+<h3 class="fn" id="QQmlApplicationEngine"><a name="QQmlApplicationEngine"></a>QQmlApplicationEngine::<span class="name">QQmlApplicationEngine</span>(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>parent</i> = nullptr)</h3>
+<p><font style="vertical-align: inherit;">使用给定的<i>parent</i>创建一个新的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html"><font style="vertical-align: inherit;">QQmlApplicationEngine</font></a><font style="vertical-align: inherit;">。您必须稍后调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html#load">load</a> () 才能加载 QML 文件。</font></p>
+<!-- @@@QQmlApplicationEngine -->
+<!-- $$$QQmlApplicationEngine$$$QQmlApplicationEngineconstQUrl&QObject* -->
+<h3 class="fn" id="QQmlApplicationEngine-1"><a name="QQmlApplicationEngine-1"></a>QQmlApplicationEngine::<span class="name">QQmlApplicationEngine</span>(const <span class="type"><a href="../qtcore/qurl.html">QUrl</a></span> &amp;<i>url</i>, <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>parent</i> = nullptr)</h3>
+<p><font style="vertical-align: inherit;">创建一个新的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html"><font style="vertical-align: inherit;">QQmlApplicationEngine</font></a><font style="vertical-align: inherit;">并<span lang="zh-cn">用</span>给定的</font><i><font style="vertical-align: inherit;">url</font></i><font style="vertical-align: inherit;">加载 QML 文件。这是为了方便而提供的，与使用空构造函数并在之后调用 load 相同。</font></p>
+<!-- @@@QQmlApplicationEngine -->
+<!-- $$$QQmlApplicationEngine$$$QQmlApplicationEngineconstQString&QObject* -->
+<h3 class="fn" id="QQmlApplicationEngine-2"><a name="QQmlApplicationEngine-2"></a>QQmlApplicationEngine::<span class="name">QQmlApplicationEngine</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>filePath</i>, <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>parent</i> = nullptr)</h3>
+<p><font style="vertical-align: inherit;">创建一个新的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html"><font style="vertical-align: inherit;">QQmlApplicationEngine</font></a><font style="vertical-align: inherit;">并在给定的</font><i><font style="vertical-align: inherit;">filePath</font></i><font style="vertical-align: inherit;">加载 QML 文件，该文件必须是本地文件路径。如果给出了相对路径，那么它将被解释为相对于应用程序的工作目录。</font></p>
+<p><font style="vertical-align: inherit;">这是为了方便而提供的，与使用空构造函数并在之后调用 load 相同。</font></p>
+<!-- @@@QQmlApplicationEngine -->
+<!-- $$$~QQmlApplicationEngine[overload1]$$$~QQmlApplicationEngine -->
+<h3 class="fn" id="dtor.QQmlApplicationEngine"><a name="dtor.QQmlApplicationEngine"></a><code>[override virtual] </code>QQmlApplicationEngine::<span class="name">~QQmlApplicationEngine</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html"><font style="vertical-align: inherit;">QQmlApplicationEngine</font></a><font style="vertical-align: inherit;">和它加载的所有 QML 对象。</font></p>
+<!-- @@@~QQmlApplicationEngine -->
+<!-- $$$load[overload1]$$$loadconstQUrl& -->
+<h3 class="fn" id="load"><a name="load"></a><code>[slot] </code><span class="type">void</span> QQmlApplicationEngine::<span class="name">load</span>(const <span class="type"><a href="../qtcore/qurl.html">QUrl</a></span> &amp;<i>url</i>)</h3>
+<p><font style="vertical-align: inherit;">加载位于</font><i><font style="vertical-align: inherit;">url</font></i><font style="vertical-align: inherit;">的根 QML 文件。由文件定义的对象树会立即为本地文件 url 创建。远程 url 是异步加载的，侦听</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html#objectCreated"><font style="vertical-align: inherit;">objectCreated</font></a><font style="vertical-align: inherit;">信号以确定对象树何时准备就绪。</font></p>
+<p><font style="vertical-align: inherit;">如果发生错误，则发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html#objectCreated"><font style="vertical-align: inherit;">objectCreated</font></a><font style="vertical-align: inherit;">信号，并使用空指针作为参数，并使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtglobal.html#qWarning"><font style="vertical-align: inherit;">qWarning</font></a><font style="vertical-align: inherit;">打印错误消息。</font></p>
+<!-- @@@load -->
+<!-- $$$load$$$loadconstQString& -->
+<h3 class="fn" id="load-1"><a name="load-1"></a><code>[slot] </code><span class="type">void</span> QQmlApplicationEngine::<span class="name">load</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>filePath</i>)</h3>
+<p><font style="vertical-align: inherit;">加载位于</font><i><font style="vertical-align: inherit;">filePath</font></i><font style="vertical-align: inherit;">的根 QML 文件。</font><i><font style="vertical-align: inherit;">filePath</font></i><font style="vertical-align: inherit;">必须是本地文件的路径。如果</font><i><font style="vertical-align: inherit;">filePath</font></i><font style="vertical-align: inherit;">是相对路径，则将其视为相对于应用程序的工作目录。文件定义的对象树被立即实例化。</font></p>
+<p><font style="vertical-align: inherit;">如果发生错误，则会使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtglobal.html#qWarning"><font style="vertical-align: inherit;">qWarning</font></a><font style="vertical-align: inherit;">打印错误消息。</font></p>
+<!-- @@@load -->
+<!-- $$$loadData[overload1]$$$loadDataconstQByteArray&constQUrl& -->
+<h3 class="fn" id="loadData"><a name="loadData"></a><code>[slot] </code><span class="type">void</span> QQmlApplicationEngine::<span class="name">loadData</span>(const <span class="type"><a href="../qtcore/qbytearray.html">QByteArray</a></span> &amp;<i>data</i>, const <span class="type"><a href="../qtcore/qurl.html">QUrl</a></span> &amp;<i>url</i> = QUrl())</h3>
+<p><font style="vertical-align: inherit;">加载</font><i><font style="vertical-align: inherit;">data 中</font></i><font style="vertical-align: inherit;">给出的 QML 。由<i>data</i> 定义的对象树被立即实例化。</font></p>
+<p><font style="vertical-align: inherit;">如果指定了</font><i><font style="vertical-align: inherit;">url</font></i><font style="vertical-align: inherit;">，它将用作组件的基本 url。这会影响数据和错误消息中的相对路径。</font></p>
+<p><font style="vertical-align: inherit;">如果发生错误，则会使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtglobal.html#qWarning"><font style="vertical-align: inherit;">qWarning</font></a><font style="vertical-align: inherit;">打印错误消息。</font></p>
+<!-- @@@loadData -->
+<!-- $$$objectCreated[overload1]$$$objectCreatedQObject*constQUrl& -->
+<h3 class="fn" id="objectCreated"><a name="objectCreated"></a><code>[signal] </code><span class="type">void</span> QQmlApplicationEngine::<span class="name">objectCreated</span>(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>object</i>, const <span class="type"><a href="../qtcore/qurl.html">QUrl</a></span> &amp;<i>url</i>)</h3>
+<p><font style="vertical-align: inherit;">当对象完成加载时发出此信号。如果加载成功，则</font><i><font style="vertical-align: inherit;">object</font></i><font style="vertical-align: inherit;">包含一个指向加载对象的指针，否则该指针为 NULL。</font></p>
+<p><font style="vertical-align: inherit;">该<i>url</i> 的组件</font><i><font style="vertical-align: inherit;">对象</font></i><font style="vertical-align: inherit;">从还提供了进来。</font></p>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">如果组件的路径是作为包含相对路径的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qstring.html"><font style="vertical-align: inherit;">QString</font></a><font style="vertical-align: inherit;">提供的，则</font><i><font style="vertical-align: inherit;">url</font></i><font style="vertical-align: inherit;">将包含文件的完全解析路径。</font></p><!-- @@@objectCreated -->
+<!-- $$$rootObjects[overload1]$$$rootObjects -->
+<h3 class="fn" id="rootObjects"><a name="rootObjects"></a><span class="type"><a href="../qtcore/qlist.html">QList</a></span>&lt;<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *&gt; QQmlApplicationEngine::<span class="name">rootObjects</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回由</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html"><font style="vertical-align: inherit;">QQmlApplicationEngine</font></a><font style="vertical-align: inherit;">实例化的所有根对象的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html">列表</a>。这将只包含通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlapplicationengine.html#load"><font style="vertical-align: inherit;">load</font></a><font style="vertical-align: inherit;"> () 或便利构造函数加载的对象。</font></p>
+<p><b>注意： </b><font style="vertical-align: inherit;">在 Qt 5.9 之前的版本中，此功能被标记为非</font><code>const</code><font style="vertical-align: inherit;">.</font></p><!-- @@@rootObjects -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

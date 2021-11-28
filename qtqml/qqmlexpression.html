@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlexpression.cpp -->
+  <title>QQmlExpression  类 | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-module.html">C++ 类</a></td><td >QQmlExpression</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#signals">信号</a></li>
+<li class="level1"><a href="#static-public-members">静态公用成员</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QQmlExpression 类</h1>
+<!-- $$$QQmlExpression-brief -->
+<p>&nbsp;<a href="qqmlexpression.html">QQmlExpression</a>类在QML上下文中计算JavaScript。 <a href="#details">更多...</a></p>
+<!-- @@@QQmlExpression -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 头文件：</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlExpression&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr><tr><td class="memItemLeft rightAlign topAlign"> 
+	<span lang="zh-cn">引入于:</span></td><td class="memItemRight bottomAlign">  Qt 5.0</td></tr><tr><td class="memItemLeft rightAlign topAlign">继承自：</td><td class="memItemRight bottomAlign"> <a href="../qtcore/qobject.html">QObject</a></td></tr></table></div><ul>
+<li><a href="qqmlexpression-members.html"></a></li>
+<li><a href="qqmlexpression-obsolete.html">废弃的成员</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#QQmlExpression">QQmlExpression</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#QQmlExpression-1">QQmlExpression</a></b>(QQmlContext *<i>ctxt</i>, QObject *<i>scope</i>, const QString &amp;<i>expression</i>, QObject *<i>parent</i> = nullptr)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#QQmlExpression-2">QQmlExpression</a></b>(const QQmlScriptString &amp;<i>script</i>, QQmlContext *<i>ctxt</i> = nullptr, QObject *<i>scope</i> = nullptr, QObject *<i>parent</i> = nullptr)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#dtor.QQmlExpression">~QQmlExpression</a></b>() override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#clearError">clearError</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#columnNumber">columnNumber</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QQmlContext *</td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#context">context</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QQmlEngine *</td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#engine">engine</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QQmlError </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#error">error</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QVariant </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#evaluate">evaluate</a></b>(bool *<i>valueIsUndefined</i> = nullptr)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#expression">expression</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#hasError">hasError</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#lineNumber">lineNumber</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#notifyOnValueChanged">notifyOnValueChanged</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QObject *</td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#scopeObject">scopeObject</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#setExpression">setExpression</a></b>(const QString &amp;<i>expression</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#setNotifyOnValueChanged">setNotifyOnValueChanged</a></b>(bool <i>notifyOnChange</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#setSourceLocation">setSourceLocation</a></b>(const QString &amp;<i>url</i>, int <i>line</i>, int <i>column</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#sourceFile">sourceFile</a></b>() const</td></tr>
+</table></div>
+<ul>
+<li class="fn">31 个公用函数继承自<a href="../qtcore/qobject.html#public-functions">QObject</a></li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">信号</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#valueChanged">valueChanged</a></b>()</td></tr>
+</table></div>
+<ul>
+<li class="fn">2 个信号继承自<a href="../qtcore/qobject.html#signals">QObject</a></li>
+</ul>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">静态公用成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> const QMetaObject </td><td class="memItemRight bottomAlign"><b><a href="qqmlexpression.html#staticMetaObject-var">staticMetaObject</a></b></td></tr>
+</table></div>
+<ul>
+<li class="fn">9 个静态公用成员继承自<a href="../qtcore/qobject.html#static-public-members">QObject</a></li>
+</ul>
+<h3>额外的继承成员</h3>
+<ul>
+<li class="fn">1 个属性继承自<a href="../qtcore/qobject.html#properties">QObject</a></li>
+<li class="fn">1 个公用槽函数继承自<a href="../qtcore/qobject.html#public-slots">QObject</a></li>
+<li class="fn">9 个保护函数继承自<a href="../qtcore/qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QQmlExpression-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p> <a href="qqmlexpression.html">QQmlExpression</a>类在QML上下文中计算JavaScript。</p>
+<p><font style="vertical-align: inherit;">例如，给定一个</font><code>main.qml</code><font style="vertical-align: inherit;">这样的文件：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">200</span>
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">以下代码在上述 QML 的上下文中计算 JavaScript 表达式：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="qqmlengine.html">QQmlEngine</a></span> <span class="operator">*</span>engine <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qqmlengine.html">QQmlEngine</a></span>;
+  <span class="type"><a href="qqmlcomponent.html">QQmlComponent</a></span> component(engine<span class="operator">,</span> <span class="type"><a href="../qtcore/qurl.html">QUrl</a></span><span class="operator">::</span>fromLocalFile(<span class="string">&quot;main.qml&quot;</span>));
+
+  <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> <span class="operator">*</span>myObject <span class="operator">=</span> component<span class="operator">.</span>create();
+  <span class="type"><a href="qqmlexpression.html#QQmlExpression">QQmlExpression</a></span> <span class="operator">*</span>expr <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qqmlexpression.html#QQmlExpression">QQmlExpression</a></span>(engine<span class="operator">-</span><span class="operator">&gt;</span>rootContext()<span class="operator">,</span> myObject<span class="operator">,</span> <span class="string">&quot;width * 2&quot;</span>);
+  <span class="type">int</span> result <span class="operator">=</span> expr<span class="operator">-</span><span class="operator">&gt;</span>evaluate()<span class="operator">.</span>toInt();  <span class="comment">// result = 400</span>
+
+</pre>
+</div>
+<!-- @@@QQmlExpression -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QQmlExpression[overload1]$$$QQmlExpression -->
+<h3 class="fn" id="QQmlExpression"><a name="QQmlExpression"></a>QQmlExpression::<span class="name">QQmlExpression</span>()</h3>
+<p><font style="vertical-align: inherit;">创建无效的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html"><font style="vertical-align: inherit;">QQmlExpression</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">由于表达式没有关联的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcontext.html"><font style="vertical-align: inherit;">QQmlContext</font></a><font style="vertical-align: inherit;">，这将是一个空表达式对象，其值将始终是无效的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@QQmlExpression -->
+<!-- $$$QQmlExpression$$$QQmlExpressionQQmlContext*QObject*constQString&QObject* -->
+<h3 class="fn" id="QQmlExpression-1"><a name="QQmlExpression-1"></a>QQmlExpression::<span class="name">QQmlExpression</span>(<span class="type"><a href="qqmlcontext.html">QQmlContext</a></span> *<i>ctxt</i>, <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>scope</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>expression</i>, <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>parent</i> = nullptr)</h3>
+<p><font style="vertical-align: inherit;">创建一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html"><font style="vertical-align: inherit;">QQmlExpression</font></a><font style="vertical-align: inherit;">对象，它是</font><i><font style="vertical-align: inherit;">parent</font></i><font style="vertical-align: inherit;">的<span lang="zh-cn">孩子</span>。</font></p>
+<p>表达式，JavaScript<span lang="zh-cn"> 表达式</span><i>expression<span lang="zh-cn"> 
+将在 QQmlContext类型的对象</span>ctxt</i> 中执行。如果指定了<i>scope</i>，则在表达式执行期间范围对象的属性也将在范围内。</p>
+<!-- @@@QQmlExpression -->
+<!-- $$$QQmlExpression$$$QQmlExpressionconstQQmlScriptString&QQmlContext*QObject*QObject* -->
+<h3 class="fn" id="QQmlExpression-2"><a name="QQmlExpression-2"></a>QQmlExpression::<span class="name">QQmlExpression</span>(const <span class="type"><a href="qqmlscriptstring.html">QQmlScriptString</a></span> &amp;<i>script</i>, <span class="type"><a href="qqmlcontext.html">QQmlContext</a></span> *<i>ctxt</i> = nullptr, <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>scope</i> = nullptr, <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>parent</i> = nullptr)</h3>
+<p><font style="vertical-align: inherit;">创建一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html"><font style="vertical-align: inherit;">QQmlExpression</font></a><font style="vertical-align: inherit;">对象，它是</font><i><font style="vertical-align: inherit;">parent</font></i><font style="vertical-align: inherit;">的<span lang="zh-cn">孩子</span>。</font></p>
+<p><font style="vertical-align: inherit;">该<i>script</i>提供了要计算的表达式、要计算它的上下文以及要计算它的作用域对象。如果提供，</font><i><font style="vertical-align: inherit;">ctxt</font></i><font style="vertical-align: inherit;">和</font><i><font style="vertical-align: inherit;">scope</font></i><font style="vertical-align: inherit;">将覆盖由</font><i><font style="vertical-align: inherit;">script</font></i><font style="vertical-align: inherit;">提供的上下文和范围对象。</font></p>
+<p><b>请参考 </b><a href="qqmlscriptstring.html">QQmlScriptString</a><span lang="zh-cn">。</span></p>
+<!-- @@@QQmlExpression -->
+<!-- $$$~QQmlExpression[overload1]$$$~QQmlExpression -->
+<h3 class="fn" id="dtor.QQmlExpression"><a name="dtor.QQmlExpression"></a><code>[override virtual] </code>QQmlExpression::<span class="name">~QQmlExpression</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html"><font style="vertical-align: inherit;">QQmlExpression</font></a><font style="vertical-align: inherit;">实例。</font></p>
+<!-- @@@~QQmlExpression -->
+<!-- $$$clearError[overload1]$$$clearError -->
+<h3 class="fn" id="clearError"><a name="clearError"></a><span class="type">void</span> QQmlExpression::<span class="name">clearError</span>()</h3>
+<p><font style="vertical-align: inherit;">清除任何表达式错误。在此之后调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html#hasError"><font style="vertical-align: inherit;">hasError</font></a><font style="vertical-align: inherit;"> () 将返回 false。</font></p>
+<p><b>请参考 </b><a href="qqmlexpression.html#hasError">hasError</a>()
+<span lang="zh-cn">和</span> <a href="qqmlexpression.html#error">error</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@clearError -->
+<!-- $$$columnNumber[overload1]$$$columnNumber -->
+<h3 class="fn" id="columnNumber"><a name="columnNumber"></a><span class="type">int</span> QQmlExpression::<span class="name">columnNumber</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回此表达式的源文件列号。源位置必须事先通过调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html#setSourceLocation"><font style="vertical-align: inherit;">setSourceLocation</font></a><font style="vertical-align: inherit;"> () 设置。</font></p>
+<!-- @@@columnNumber -->
+<!-- $$$context[overload1]$$$context -->
+<h3 class="fn" id="context"><a name="context"></a><span class="type"><a href="qqmlcontext.html">QQmlContext</a></span> *QQmlExpression::<span class="name">context</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回与此表达式关联的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcontext.html"><font style="vertical-align: inherit;">QQmlContext</font></a><font style="vertical-align: inherit;">，如果没有关联或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcontext.html"><font style="vertical-align: inherit;">QQmlContext</font></a><font style="vertical-align: inherit;">已被破坏，则返回0 。</font></p>
+<!-- @@@context -->
+<!-- $$$engine[overload1]$$$engine -->
+<h3 class="fn" id="engine"><a name="engine"></a><span class="type"><a href="qqmlengine.html">QQmlEngine</a></span> *QQmlExpression::<span class="name">engine</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回与此表达式关联的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html"><font style="vertical-align: inherit;">QQmlEngine</font></a><font style="vertical-align: inherit;">，如果没有关联或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html"><font style="vertical-align: inherit;">QQmlEngine</font></a><font style="vertical-align: inherit;">已被销毁，则返回0 。</font></p>
+<!-- @@@engine -->
+<!-- $$$error[overload1]$$$error -->
+<h3 class="fn" id="error"><a name="error"></a><span class="type"><a href="qqmlerror.html">QQmlError</a></span> QQmlExpression::<span class="name">error</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回上次调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html#evaluate"><font style="vertical-align: inherit;">evaluate</font></a><font style="vertical-align: inherit;"> () 的任何错误。如果没有错误，这将返回一个无效的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlerror.html"><font style="vertical-align: inherit;">QQmlError</font></a><font style="vertical-align: inherit;">实例。</font></p>
+<p><b>请参考 </b><a href="qqmlexpression.html#hasError">hasError</a>()
+<span lang="zh-cn">和 </span><a href="qqmlexpression.html#clearError">clearError</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@error -->
+<!-- $$$evaluate[overload1]$$$evaluatebool* -->
+<h3 class="fn" id="evaluate"><a name="evaluate"></a><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> QQmlExpression::<span class="name">evaluate</span>(<span class="type">bool</span> *<i>valueIsUndefined</i> = nullptr)</h3>
+<p><font style="vertical-align: inherit;">评估表达式，返回评估结果，如果表达式无效或有错误，则返回无效的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><i>valueIsUndefined</i> is set to true if the expression resulted in an undefined value.</p>
+<p><b>请参考 </b><a href="qqmlexpression.html#hasError">hasError</a>()
+<span lang="zh-cn">和 </span><a href="qqmlexpression.html#error">error</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@evaluate -->
+<!-- $$$expression[overload1]$$$expression -->
+<h3 class="fn" id="expression"><a name="expression"></a><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QQmlExpression::<span class="name">expression</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回表达式字符串。</font></p>
+<p><b>请参考 </b><a href="qqmlexpression.html#setExpression">setExpression</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@expression -->
+<!-- $$$hasError[overload1]$$$hasError -->
+<h3 class="fn" id="hasError"><a name="hasError"></a><span class="type">bool</span> QQmlExpression::<span class="name">hasError</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果最后一次调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html#evaluate"><font style="vertical-align: inherit;">evaluate</font></a><font style="vertical-align: inherit;"> () 导致错误，则返回true ，否则返回false。</font></p>
+<p><b>请参考 </b><a href="qqmlexpression.html#error">error</a>() <span lang="zh-cn">
+和 </span><a href="qqmlexpression.html#clearError">clearError</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@hasError -->
+<!-- $$$lineNumber[overload1]$$$lineNumber -->
+<h3 class="fn" id="lineNumber"><a name="lineNumber"></a><span class="type">int</span> QQmlExpression::<span class="name">lineNumber</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回此表达式的源文件行号。源位置必须事先通过调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html#setSourceLocation"><font style="vertical-align: inherit;">setSourceLocation</font></a><font style="vertical-align: inherit;"> () 设置。</font></p>
+<!-- @@@lineNumber -->
+<!-- $$$notifyOnValueChanged[overload1]$$$notifyOnValueChanged -->
+<h3 class="fn" id="notifyOnValueChanged"><a name="notifyOnValueChanged"></a><span class="type">bool</span> QQmlExpression::<span class="name">notifyOnValueChanged</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果在表达式的计算值更改时发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html#valueChanged"><font style="vertical-align: inherit;">valueChanged</font></a><font style="vertical-align: inherit;"> () 信号，则返回 true 。</font></p>
+<p><b>请参考 </b><a href="qqmlexpression.html#setNotifyOnValueChanged">setNotifyOnValueChanged</a>().</p>
+<!-- @@@notifyOnValueChanged -->
+<!-- $$$scopeObject[overload1]$$$scopeObject -->
+<h3 class="fn" id="scopeObject"><a name="scopeObject"></a><span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *QQmlExpression::<span class="name">scopeObject</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回表达式的范围对象（如果提供），否则返回 0。</font></p>
+<p><font style="vertical-align: inherit;">除了表达式的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcontext.html"><font style="vertical-align: inherit;">QQmlContext</font></a><font style="vertical-align: inherit;">提供的数据<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcontext.html">外</a>，作用域对象的属性也在表达式求值期间在作用域内。</font></p>
+<!-- @@@scopeObject -->
+<!-- $$$setExpression[overload1]$$$setExpressionconstQString& -->
+<h3 class="fn" id="setExpression"><a name="setExpression"></a><span class="type">void</span> QQmlExpression::<span class="name">setExpression</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>expression</i>)</h3>
+<p><font style="vertical-align: inherit;">将表达式设置为</font><i><font style="vertical-align: inherit;">expression</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qqmlexpression.html#expression">expression</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setExpression -->
+<!-- $$$setNotifyOnValueChanged[overload1]$$$setNotifyOnValueChangedbool -->
+<h3 class="fn" id="setNotifyOnValueChanged"><a name="setNotifyOnValueChanged"></a><span class="type">void</span> QQmlExpression::<span class="name">setNotifyOnValueChanged</span>(<span class="type">bool</span> <i>notifyOnChange</i>)</h3>
+<p><font style="vertical-align: inherit;">设置当表达式的计算值更改时是否发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html#valueChanged"><font style="vertical-align: inherit;">valueChanged</font></a><font style="vertical-align: inherit;"> () 信号。</font></p>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">notifyOnChange</font></i><font style="vertical-align: inherit;">为true，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html"><font style="vertical-align: inherit;">QQmlExpression</font></a><font style="vertical-align: inherit;">将监视表达式计算中涉及的属性，如果它们发生更改，则发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html#valueChanged"><font style="vertical-align: inherit;">QQmlExpression::valueChanged</font></a><font style="vertical-align: inherit;"> ()。这允许应用程序确保与表达式结果关联的任何值保持最新。</font></p>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">notifyOnChange</font></i><font style="vertical-align: inherit;">为false（默认），</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html"><font style="vertical-align: inherit;">QQmlExpression</font></a><font style="vertical-align: inherit;">将不会监视表达式计算中涉及的属性，并且永远不会发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html#valueChanged"><font style="vertical-align: inherit;">QQmlExpression::valueChanged</font></a><font style="vertical-align: inherit;"> ()。如果应用程序想要对表达式进行“一次性”评估，这会更有效。</font></p>
+<p><b>请参考 </b><a href="qqmlexpression.html#notifyOnValueChanged">notifyOnValueChanged</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@setNotifyOnValueChanged -->
+<!-- $$$setSourceLocation[overload1]$$$setSourceLocationconstQString&intint -->
+<h3 class="fn" id="setSourceLocation"><a name="setSourceLocation"></a><span class="type">void</span> QQmlExpression::<span class="name">setSourceLocation</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>url</i>, <span class="type">int</span> <i>line</i>, <span class="type">int</span> <i>column</i> = 0)</h3>
+<p><font style="vertical-align: inherit;">将此表达式的位置设置为<i>url 的</i></font><i><font style="vertical-align: inherit;">行</font></i><font style="vertical-align: inherit;">和</font><i><font style="vertical-align: inherit;">列</font></i><font style="vertical-align: inherit;">。此信息由脚本引擎使用。</font></p>
+<!-- @@@setSourceLocation -->
+<!-- $$$sourceFile[overload1]$$$sourceFile -->
+<h3 class="fn" id="sourceFile"><a name="sourceFile"></a><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QQmlExpression::<span class="name">sourceFile</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回此表达式的源文件 URL。源位置必须事先通过调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html#setSourceLocation"><font style="vertical-align: inherit;">setSourceLocation</font></a><font style="vertical-align: inherit;"> () 设置。</font></p>
+<!-- @@@sourceFile -->
+<!-- $$$valueChanged[overload1]$$$valueChanged -->
+<h3 class="fn" id="valueChanged"><a name="valueChanged"></a><code>[signal] </code><span class="type">void</span> QQmlExpression::<span class="name">valueChanged</span>()</h3>
+<p><font style="vertical-align: inherit;">每次表达式值从上次计算时发生变化时发出。在发出此信号之前，表达式必须至少被评估一次（通过调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlexpression.html#evaluate"><font style="vertical-align: inherit;">QQmlExpression::evaluate</font></a><font style="vertical-align: inherit;"> ()）。</font></p>
+<!-- @@@valueChanged -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

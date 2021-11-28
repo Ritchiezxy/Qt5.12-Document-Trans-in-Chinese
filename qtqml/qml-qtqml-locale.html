@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmllocale.cpp -->
+  <title>Locale QML 类型| Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >Locale QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#methods">方法</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#locale-string-format-types"><font style="vertical-align: inherit;">语言环境字符串格式类型</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Locale QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Locale-brief -->
+<p><font style="vertical-align: inherit;">提供特定于语言环境的属性和格式化数据。</font> <a href="#details">更多...</a></p>
+<!-- @@@Locale -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句:</td><td class="memItemRight bottomAlign"> import QtQml 2.12</td></tr></table></div><ul>
+<li><a href="qml-qtqml-locale-members.html"></a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#amText-prop">amText</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#decimalPoint-prop">decimalPoint</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#exponential-prop">exponential</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#firstDayOfWeek-prop">firstDayOfWeek</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#groupSeparator-prop">groupSeparator</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#measurementSystem-prop">measurementSystem</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#name-prop">name</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#nativeCountryName-prop">nativeCountryName</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#nativeLanguageName-prop">nativeLanguageName</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#negativeSign-prop">negativeSign</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#percent-prop">percent</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#pmText-prop">pmText</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#positiveSign-prop">positiveSign</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#textDirection-prop">textDirection</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#uiLanguages-prop">uiLanguages</a></b></b> : Array&lt;string&gt;</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#weekDays-prop">weekDays</a></b></b> : Array&lt;int&gt;</li>
+<li class="fn"><b><b><a href="qml-qtqml-locale.html#zeroDigit-prop">zeroDigit</a></b></b> : string</li>
+</ul>
+<a name="methods"></a>
+<h2 id="methods">方法</h2>
+<ul>
+<li class="fn">string <b><b><a href="qml-qtqml-locale.html#currencySymbol-method">currencySymbol</a></b></b>(<i>format</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-locale.html#dateFormat-method">dateFormat</a></b></b>(<i>type</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-locale.html#dateTimeFormat-method">dateTimeFormat</a></b></b>(<i>type</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-locale.html#dayName-method">dayName</a></b></b>(<i>day</i>, <i>type</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-locale.html#monthName-method">monthName</a></b></b>(<i>month</i>, <i>type</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-locale.html#standaloneDayName-method">standaloneDayName</a></b></b>(<i>day</i>, <i>type</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-locale.html#standaloneMonthName-method">standaloneMonthName</a></b></b>(<i>month</i>, <i>type</i>)</li>
+<li class="fn">string <b><b><a href="qml-qtqml-locale.html#timeFormat-method">timeFormat</a></b></b>(<i>type</i>)</li>
+</ul>
+<!-- $$$Locale-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p><font style="vertical-align: inherit;">Locale 对象只能通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#locale-method"><font style="vertical-align: inherit;">Qt.locale()</font></a><font style="vertical-align: inherit;">函数创建。不能直接创建。</font></p>
+<p><a href="qml-qtqml-qt.html#locale-method">Qt.locale()</a>函数返回一个JS 
+Locale对象，该对象表示带有指定名称的区域，其格式为"language[_territory][.codeset][@modifier]"
+<span lang="zh-cn">或</span> "C"。</p>
+<p><font style="vertical-align: inherit;">语言环境支持默认语言环境的概念，该概念由应用程序启动时系统的语言环境设置确定。如果没有参数传递给 Qt.locale() 则返回默认的语言环境对象。</font></p>
+<p><font style="vertical-align: inherit;">Locale 对象提供了许多为指定的语言环境提供数据的函数和属性。</font></p>
+<p><font style="vertical-align: inherit;">Locale 对象也可以传递给</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-date.html"><font style="vertical-align: inherit;">Date</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-number.html"><font style="vertical-align: inherit;">Number</font></a><font style="vertical-align: inherit;"> toLocaleString() 和 fromLocaleString() 方法，以便使用指定的语言环境在字符串之间进行转换。</font></p>
+<p><font style="vertical-align: inherit;">此示例显示为德语区域设置格式化的当前日期：</font></p>
+<pre class="cpp">
+
+  import <span class="type">QtQuick</span> <span class="number">2.0</span>
+
+  Text {
+      text: <span class="string">&quot;The date is: &quot;</span> <span class="operator">+</span> Date()<span class="operator">.</span>toLocaleString(<span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale(<span class="string">&quot;de_DE&quot;</span>))
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">以下示例以默认语言环境的正确格式显示指定的数字：</font></p>
+<pre class="cpp">
+
+  import <span class="type">QtQuick</span> <span class="number">2.0</span>
+
+  Text {
+      text: <span class="string">&quot;The value is: &quot;</span> <span class="operator">+</span> Number(<span class="number">23443.34</span>)<span class="operator">.</span>toLocaleString(<span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">.</span>locale())
+  }
+
+</pre>
+<p>Qt Quick Locale的数据基于Common Locale data Repository v1.8.1。</p>
+<a name="formattype"></a><a name="locale-string-format-types"></a>
+<h3 ><font style="vertical-align: inherit;">语言环境字符串格式类型</font></h3>
+<p><font style="vertical-align: inherit;">所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#monthName-method"><font style="vertical-align: inherit;">MONTHNAME（） </font></a><font style="vertical-align: inherit;">，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#standaloneMonthName-method"><font style="vertical-align: inherit;">standaloneMonthName（） </font></a><font style="vertical-align: inherit;">，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#dayName-method"><font style="vertical-align: inherit;">DAYNAME（）</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#standaloneDayName-method"><font style="vertical-align: inherit;">standaloneDayName（）</font></a><font style="vertical-align: inherit;">可以使用下列枚举值，以指定字符串表示的格式设置为一个日期的对象。</font></p>
+<ul>
+<li>Locale.LongFormat长版本的日和月名称;例如，返回“January”作为月份名称。</li>
+<li>Locale.ShortFormat 日和月名称的短版本;例如，返回“Jan”作为月份名称。</li>
+<li>Locale.NarrowFormat 
+当空间有限时使用的特殊版本的日和月名称;例如，返回“J”作为一个月的名称。请注意，窄格式可能包含不同月份和天数的相同文本，或者如果地区不支持窄名称，它甚至可能是一个空字符串，因此应该避免将其用于日期格式化。此外，对于系统区域设置，此格式与ShortFormat相同。</li>
+</ul>
+<p>另外，double-to-string和string-to-double转换函数包含在以下许可中:</p>
+<div class="LegaleseLeft"><p>Copyright (c) 1991 by AT&amp;T.</p>
+<p>Permission to use, copy, modify, and distribute this software for any purpose without fee is hereby granted, provided that this entire notice is included in all copies of any software which is or includes a copy or modification of this software and in all copies of the supporting documentation for such software.</p>
+<p>THIS SOFTWARE IS BEING PROVIDED &quot;AS IS&quot;, WITHOUT ANY EXPRESS OR IMPLIED WARRANTY. IN PARTICULAR, NEITHER THE AUTHOR NOR AT&amp;T MAKES ANY REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.</p>
+<p>This product includes software developed by the University of California, Berkeley and its contributors.</p>
+</div><p><b>请参考 </b><a href="qml-qtqml-date.html">Date</a> <span lang="zh-cn">和 
+	</span><a href="qml-qtqml-number.html">Number</a><span lang="zh-cn">。</span></p>
+<!-- @@@Locale -->
+<h2>属性的文档</h2>
+<!-- $$$amText -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="amText-prop">
+<td class="tblQmlPropNode"><p>
+<a name="amText-prop"></a><span class="name">amText</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>使用12小时时钟约定指定的时间的“AM”后缀的本地化名称。</p>
+</div></div><!-- @@@amText -->
+<br/>
+<!-- $$$decimalPoint -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="decimalPoint-prop">
+<td class="tblQmlPropNode"><p>
+<a name="decimalPoint-prop"></a><span class="name">decimalPoint</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>保存该区域的小数点字符。</p>
+</div></div><!-- @@@decimalPoint -->
+<br/>
+<!-- $$$exponential -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="exponential-prop">
+<td class="tblQmlPropNode"><p>
+<a name="exponential-prop"></a><span class="name">exponential</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">保存此语言环境的指数字符。</font></p>
+</div></div><!-- @@@exponential -->
+<br/>
+<!-- $$$firstDayOfWeek -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="firstDayOfWeek-prop">
+<td class="tblQmlPropNode"><p>
+<a name="firstDayOfWeek-prop"></a><span class="name">firstDayOfWeek</span> : <span class="type"><a href="qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">根据当前语言环境保存一周的第一天。</font></p>
+<ul>
+<li>Locale.Sunday = 0</li>
+<li>Locale.Monday = 1</li>
+<li>Locale.Tuesday = 2</li>
+<li>Locale.Wednesday = 3</li>
+<li>Locale.Thursday = 4</li>
+<li>Locale.Friday = 5</li>
+<li>Locale.Saturday = 6</li>
+</ul>
+<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">这些值与 
+JS 日期 API 匹配，这与</font><a href="../qtcore/qt.html#DayOfWeek-enum"><font style="vertical-align: inherit;">Qt::Sunday</font></a><font style="vertical-align: inherit;"> 
+= 7的 Qt C++ API 不同。</font></p></div></div><!-- @@@firstDayOfWeek -->
+<br/>
+<!-- $$$groupSeparator -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="groupSeparator-prop">
+<td class="tblQmlPropNode"><p>
+<a name="groupSeparator-prop"></a><span class="name">groupSeparator</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">保存此语言环境的组分隔符。</font></p>
+</div></div><!-- @@@groupSeparator -->
+<br/>
+<!-- $$$measurementSystem -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="measurementSystem-prop">
+<td class="tblQmlPropNode"><p>
+<a name="measurementSystem-prop"></a><span class="name">measurementSystem</span> : <span class="type"><a href="qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此属性定义用于测量的单位。</font></p>
+<ul>
+<li>Locale.MetricSystem <font style="vertical-align: inherit;">
+此值表示公制单位，例如米、厘米和毫米。</font></li>
+<li>Locale.ImperialUSSystem <font style="vertical-align: inherit;">
+此值指示英制单位，例如在美国使用的英寸和英里。</font>s.</li>
+<li>Locale.ImperialUKSystem <font style="vertical-align: inherit;">
+此值指示英制单位，例如在英国使用的英寸和英里。</font></li>
+<li>Locale.ImperialSystem <font style="vertical-align: inherit;">提供兼容性。与 Locale.ImperialUSSystem 相同。</font></li>
+</ul>
+</div></div><!-- @@@measurementSystem -->
+<br/>
+<!-- $$$name -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="name-prop">
+<td class="tblQmlPropNode"><p>
+<a name="name-prop"></a><span class="name">name</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">将此区域设置的语言和国家/地区保存为“language_country”形式的字符串，其中语言是小写的两个字母的 ISO 639 语言代码，国家/地区是大写的两个或三个字母的 ISO 3166 国家/地区代码。</font></p>
+</div></div><!-- @@@name -->
+<br/>
+<!-- $$$nativeCountryName -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="nativeCountryName-prop">
+<td class="tblQmlPropNode"><p>
+<a name="nativeCountryName-prop"></a><span class="name">nativeCountryName</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">为语言环境保留国家/地区的本地名称。例如，西班牙语/西班牙语言环境的“España”。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-locale.html#nativeLanguageName-prop">nativeLanguageName</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@nativeCountryName -->
+<br/>
+<!-- $$$nativeLanguageName -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="nativeLanguageName-prop">
+<td class="tblQmlPropNode"><p>
+<a name="nativeLanguageName-prop"></a><span class="name">nativeLanguageName</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">保存本地语言的本地名称。例如，瑞士-德国语言环境的“Schwiizertüütsch”。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-locale.html#nativeCountryName-prop">nativeCountryName</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@nativeLanguageName -->
+<br/>
+<!-- $$$negativeSign -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="negativeSign-prop">
+<td class="tblQmlPropNode"><p>
+<a name="negativeSign-prop"></a><span class="name">negativeSign</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">保存此语言环境的负号字符。</font></p>
+</div></div><!-- @@@negativeSign -->
+<br/>
+<!-- $$$percent -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="percent-prop">
+<td class="tblQmlPropNode"><p>
+<a name="percent-prop"></a><span class="name">percent</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">保存此语言环境的百分比字符。</font></p>
+</div></div><!-- @@@percent -->
+<br/>
+<!-- $$$pmText -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="pmText-prop">
+<td class="tblQmlPropNode"><p>
+<a name="pmText-prop"></a><span class="name">pmText</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">使用 12 小时制约定指定时间的“PM”后缀的本地化名称。</font></p>
+</div></div><!-- @@@pmText -->
+<br/>
+<!-- $$$positiveSign -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="positiveSign-prop">
+<td class="tblQmlPropNode"><p>
+<a name="positiveSign-prop"></a><span class="name">positiveSign</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">保存此语言环境的正号字符。</font></p>
+</div></div><!-- @@@positiveSign -->
+<br/>
+<!-- $$$textDirection -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="textDirection-prop">
+<td class="tblQmlPropNode"><p>
+<a name="textDirection-prop"></a><span class="name">textDirection</span> : <span class="type"><a href="qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">保存语言的文本方向：</font></p>
+<ul>
+<li>Qt.LeftToRight</li>
+<li>Qt.RightToLeft</li>
+</ul>
+</div></div><!-- @@@textDirection -->
+<br/>
+<!-- $$$uiLanguages -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="uiLanguages-prop">
+<td class="tblQmlPropNode"><p>
+<a name="uiLanguages-prop"></a><span class="name">uiLanguages</span> : <span class="type">Array</span>&lt;<span class="type"><a href="qml-string.html">string</a></span>&gt;</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">按优先顺序返回用于翻译目的的区域设置名称的有序列表。</font></p>
+<p><font style="vertical-align: inherit;">返回值表示用户希望在其中看到 UI 翻译的区域设置名称。</font></p>
+<p><font style="vertical-align: inherit;">列表中的第一项是最受欢迎的。</font></p>
+</div></div><!-- @@@uiLanguages -->
+<br/>
+<!-- $$$weekDays -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="weekDays-prop">
+<td class="tblQmlPropNode"><p>
+<a name="weekDays-prop"></a><span class="name">weekDays</span> : <span class="type">Array</span>&lt;<span class="type"><a href="qml-int.html">int</a></span>&gt;</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">保存根据当前区域设置被视为工作日的天数数组，其中星期日为 0，星期六为 6。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-locale.html#firstDayOfWeek-prop">firstDayOfWeek</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@weekDays -->
+<br/>
+<!-- $$$zeroDigit -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="zeroDigit-prop">
+<td class="tblQmlPropNode"><p>
+<a name="zeroDigit-prop"></a><span class="name">zeroDigit</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">Holds 返回此语言环境的零位字符。</font></p>
+</div></div><!-- @@@zeroDigit -->
+<br/>
+<h2>Method Documentation</h2>
+<!-- $$$currencySymbol -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="currencySymbol-method">
+<td class="tblQmlFuncNode"><p>
+<a name="currencySymbol-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">currencySymbol</span>(<i>format</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">返回指定</font><i><font style="vertical-align: inherit;">format<span lang="zh-cn">（</span>格式</font></i><font style="vertical-align: inherit;"><span lang="zh-cn">）</span>的货币符号：</font></p>
+<ul>
+<li>Locale.CurrencyIsoCode <font style="vertical-align: inherit;">货币的 ISO-4217 
+代码。</font></li>
+<li>Locale.CurrencySymbol <font style="vertical-align: inherit;">货币符号。</font></li>
+<li>Locale.CurrencyDisplayName <font style="vertical-align: inherit;">用户可读的货币名称。</font></li>
+</ul>
+<p><b>请参考 </b><a href="qml-qtqml-number.html#toLocaleCurrencyString-method">Number::toLocaleCurrencyString()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@currencySymbol -->
+<br/>
+<!-- $$$dateFormat -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="dateFormat-method">
+<td class="tblQmlFuncNode"><p>
+<a name="dateFormat-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">dateFormat</span>(<i>type</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">返回用于当前语言环境的日期格式。</font><i><font style="vertical-align: inherit;">type</font></i><font style="vertical-align: inherit;">指定要返回的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#formattype"><font style="vertical-align: inherit;">FormatType</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-date.html">Date</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@dateFormat -->
+<br/>
+<!-- $$$dateTimeFormat -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="dateTimeFormat-method">
+<td class="tblQmlFuncNode"><p>
+<a name="dateTimeFormat-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">dateTimeFormat</span>(<i>type</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">返回用于当前语言环境的日期时间格式。</font><i><font style="vertical-align: inherit;">type</font></i><font style="vertical-align: inherit;">指定要返回的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#formattype"><font style="vertical-align: inherit;">FormatType</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-date.html">Date</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@dateTimeFormat -->
+<br/>
+<!-- $$$dayName -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="dayName-method">
+<td class="tblQmlFuncNode"><p>
+<a name="dayName-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">dayName</span>(<i>day</i>, <i>type</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">以<i>type</i>指定的可选<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#formattype">FormatType</a>返回</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">day</span></font></i><font style="vertical-align: inherit;">的本地化名称（其中 0 代表星期日，1 代表星期一等等）。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-locale.html#monthName-method">monthName()</a> 
+<span lang="zh-cn">和 </span>
+<a href="qml-qtqml-locale.html#standaloneDayName-method">standaloneDayName()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@dayName -->
+<br/>
+<!-- $$$monthName -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="monthName-method">
+<td class="tblQmlFuncNode"><p>
+<a name="monthName-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">monthName</span>(<i>month</i>, <i>type</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">以<i>type</i>指定的可选<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#formattype">FormatType</a>返回</font><i><font style="vertical-align: inherit;">月份</font></i><font style="vertical-align: inherit;">(0-11)的本地化名称。</font></p>
+<p><b>注意： </b><font style="vertical-align: inherit;">所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qlocale.html"><font style="vertical-align: inherit;">QLocale</font></a><font style="vertical-align: inherit;"> C ++ API期望的范围内的（1-12），然而Locale.monthName（）预计为0-11％的JS Date对象。</font></p><p><b>请参考 </b><a href="qml-qtqml-locale.html#dayName-method">dayName()</a><span lang="zh-cn"> 
+		和</span> <a href="qml-qtqml-locale.html#standaloneMonthName-method">standaloneMonthName()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@monthName -->
+<br/>
+<!-- $$$standaloneDayName -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="standaloneDayName-method">
+<td class="tblQmlFuncNode"><p>
+<a name="standaloneDayName-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">standaloneDayName</span>(<i>day</i>, <i>type</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">返回的本地化名称<i>day</i> （其中0代表星期日，1代表星期一等），其作为一个独立的文本，在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#formattype"><font style="vertical-align: inherit;">FormatType</font></a><font style="vertical-align: inherit;">由指定的<i>type</i>。</font></p>
+<p><font style="vertical-align: inherit;">如果区域设置信息未指定独立日期名称，则返回值与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#dayName-method"><font style="vertical-align: inherit;">dayName() 中</font></a><font style="vertical-align: inherit;">的相同。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-locale.html#dayName-method">dayName()</a> 
+<span lang="zh-cn">和 </span>
+<a href="qml-qtqml-locale.html#standaloneMonthName-method">standaloneMonthName()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@standaloneDayName -->
+<br/>
+<!-- $$$standaloneMonthName -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="standaloneMonthName-method">
+<td class="tblQmlFuncNode"><p>
+<a name="standaloneMonthName-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">standaloneMonthName</span>(<i>month</i>, <i>type</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">以<i>type</i>指定的可选<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#formattype">FormatType</a>返回用作独立文本的<i>month</i>(0-11)的本地化名称。</font></p>
+<p><font style="vertical-align: inherit;">如果语言环境信息未指定独立月份名称，则返回值与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#monthName-method"><font style="vertical-align: inherit;">monthName() 中</font></a><font style="vertical-align: inherit;">的相同。</font></p>
+<p><b>注意： </b><font style="vertical-align: inherit;">所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qlocale.html"><font style="vertical-align: inherit;">QLocale</font></a><font style="vertical-align: inherit;"> C ++ API期望的范围内的（1-12），然而Locale.standaloneMonthName（）预计为0-11％的JS Date对象。</font></p><p><b>请参考 </b><a href="qml-qtqml-locale.html#monthName-method">monthName()</a> 
+		<span lang="zh-cn">和 </span>
+		<a href="qml-qtqml-locale.html#standaloneDayName-method">standaloneDayName()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@standaloneMonthName -->
+<br/>
+<!-- $$$timeFormat -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="timeFormat-method">
+<td class="tblQmlFuncNode"><p>
+<a name="timeFormat-method"></a><span class="type"><a href="qml-string.html">string</a></span> <span class="name">timeFormat</span>(<i>type</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">返回用于当前语言环境的时间格式。</font><i><font style="vertical-align: inherit;">type</font></i><font style="vertical-align: inherit;">指定要返回的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-locale.html#formattype"><font style="vertical-align: inherit;">FormatType</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-date.html">Date</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@timeFormat -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
