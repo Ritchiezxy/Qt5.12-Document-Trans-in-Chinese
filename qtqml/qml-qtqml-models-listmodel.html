@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmllistmodel.cpp -->
+  <title>ListModel QML 类型| Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >ListModel QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#methods">方法</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+<li class="level2"><a href="#example-usage">示例使用</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#modifying-list-models"><font style="vertical-align: inherit;">修改列表模型</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#using-threaded-list-models-with-workerscript"><font style="vertical-align: inherit;">在 WorkerScript 中使用线程列表模型</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">ListModel QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$ListModel-brief -->
+<p><font style="vertical-align: inherit;">定义自由格式列表数据源。</font> <a href="#details">更多...</a></p>
+<!-- @@@ListModel -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句:</td><td class="memItemRight bottomAlign"> import QtQml.Models 2.12</td></tr></table></div><ul>
+<li><a href="qml-qtqml-models-listmodel-members.html"></a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-models-listmodel.html#count-prop">count</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-listmodel.html#dynamicRoles-prop">dynamicRoles</a></b></b> : bool</li>
+</ul>
+<a name="methods"></a>
+<h2 id="methods">方法</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-models-listmodel.html#append-method">append</a></b></b>(jsobject <i>dict</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-listmodel.html#clear-method">clear</a></b></b>()</li>
+<li class="fn">object <b><b><a href="qml-qtqml-models-listmodel.html#get-method">get</a></b></b>(int <i>index</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-listmodel.html#insert-method">insert</a></b></b>(int <i>index</i>,  jsobject <i>dict</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-listmodel.html#move-method">move</a></b></b>(int <i>from</i>,  int <i>to</i>,  int <i>n</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-listmodel.html#remove-method">remove</a></b></b>(int <i>index</i>, <i> int count = 1</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-listmodel.html#set-method">set</a></b></b>(int <i>index</i>,  jsobject <i>dict</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-listmodel.html#setProperty-method">setProperty</a></b></b>(int <i>index</i>,  string <i>property</i>,  variant <i>value</i>)</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-listmodel.html#sync-method">sync</a></b></b>()</li>
+</ul>
+<!-- $$$ListModel-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p><a href="qml-qtqml-models-listmodel.html">ListModel</a>是<a href="qml-qtqml-models-listelement.html">ListElement</a>定义的简单容器，每个定义都包含数据角色。内容可以动态定义，也可以在QML中显式定义。</p>
+<p><font style="vertical-align: inherit;">模型中元素的数量可以从它的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#count-prop"><font style="vertical-align: inherit;">count</font></a><font style="vertical-align: inherit;">属性中获得。还提供了许多熟悉的方法来操作模型的内容，包括</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#append-method"><font style="vertical-align: inherit;">append()</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#insert-method"><font style="vertical-align: inherit;">insert()</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#move-method"><font style="vertical-align: inherit;">move()</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#remove-method"><font style="vertical-align: inherit;">remove()</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#set-method"><font style="vertical-align: inherit;">set()</font></a><font style="vertical-align: inherit;">。这些方法接受字典作为它们的参数；这些被模型转换为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listelement.html"><font style="vertical-align: inherit;">ListElement</font></a><font style="vertical-align: inherit;">对象。</font></p>
+<p><font style="vertical-align: inherit;">可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#setProperty-method"><font style="vertical-align: inherit;">setProperty()</font></a><font style="vertical-align: inherit;">方法通过模型操作元素，该方法允许设置和更改指定元素的角色。</font></p>
+<a name="example-usage"></a>
+<h2 id="example-usage">示例使用</h2>
+<p><font style="vertical-align: inherit;">以下示例显示了一个包含三个元素的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html"><font style="vertical-align: inherit;">ListModel</font></a><font style="vertical-align: inherit;">，角色分别为“name”和“cost”。</font></p>
+<div class="float-right"><p><img src="images/listmodel.png" alt="" /></p>
+</div><pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="qml-qtqml-models-listmodel.html">ListModel</a></span> {
+      <span class="name">id</span>: <span class="name">fruitModel</span>
+
+      <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;Apple&quot;</span>
+          <span class="name">cost</span>: <span class="number">2.45</span>
+      }
+      <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;Orange&quot;</span>
+          <span class="name">cost</span>: <span class="number">3.25</span>
+      }
+      <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;Banana&quot;</span>
+          <span class="name">cost</span>: <span class="number">1.95</span>
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">每个元素中的角色（属性）必须以小写字母开头，并且应该对模型中的所有元素通用。该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listelement.html"><font style="vertical-align: inherit;">ListElement</font></a><font style="vertical-align: inherit;">文档提供了元素应该如何定义更多指引。</font></p>
+<p><font style="vertical-align: inherit;">由于示例模型包含一个</font><code>id</code><font style="vertical-align: inherit;">属性，因此可以被视图引用，例如本示例中的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html"><font style="vertical-align: inherit;">ListView</font></a><font style="vertical-align: inherit;">：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type"><a href="qml-qtqml-models-listmodel.html">ListModel</a></span> {
+          <span class="name">id</span>: <span class="name">fruitModel</span>
+          ...
+      }
+
+      <span class="type"><a href="qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">fruitDelegate</span>
+          <span class="type"><a href="../qtquick/qml-qtquick-row.html">Row</a></span> {
+              <span class="name">spacing</span>: <span class="number">10</span>
+              <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">name</span> }
+              <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">'$'</span> <span class="operator">+</span> <span class="name">cost</span> }
+          }
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-listview.html">ListView</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">model</span>: <span class="name">fruitModel</span>
+          <span class="name">delegate</span>: <span class="name">fruitDelegate</span>
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">角色可以包含列表数据。在以下示例中，我们创建了一个水果属性列表：</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtqml-models-listmodel.html">ListModel</a></span> {
+      <span class="name">id</span>: <span class="name">fruitModel</span>
+
+      <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;Apple&quot;</span>
+          <span class="name">cost</span>: <span class="number">2.45</span>
+          <span class="name">attributes</span>: [
+              <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> { <span class="name">description</span>: <span class="string">&quot;Core&quot;</span> },
+              <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> { <span class="name">description</span>: <span class="string">&quot;Deciduous&quot;</span> }
+          ]
+      }
+      <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;Orange&quot;</span>
+          <span class="name">cost</span>: <span class="number">3.25</span>
+          <span class="name">attributes</span>: [
+              <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> { <span class="name">description</span>: <span class="string">&quot;Citrus&quot;</span> }
+          ]
+      }
+      <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;Banana&quot;</span>
+          <span class="name">cost</span>: <span class="number">1.95</span>
+          <span class="name">attributes</span>: [
+              <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> { <span class="name">description</span>: <span class="string">&quot;Tropical&quot;</span> },
+              <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> { <span class="name">description</span>: <span class="string">&quot;Seedless&quot;</span> }
+          ]
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">委托显示所有水果属性：</font></p>
+<div class="float-right"><p><img src="images/listmodel-nested.png" alt="" /></p>
+</div><pre class="qml">
+
+  <span class="type"><a href="qml-qtqml-component.html">Component</a></span> {
+      <span class="name">id</span>: <span class="name">fruitDelegate</span>
+      <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+          <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">50</span>
+          <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">id</span>: <span class="name">nameField</span>; <span class="name">text</span>: <span class="name">name</span> }
+          <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">'$'</span> <span class="operator">+</span> <span class="name">cost</span>; <span class="name">anchors</span>.left: <span class="name">nameField</span>.<span class="name">right</span> }
+          <span class="type"><a href="../qtquick/qml-qtquick-row.html">Row</a></span> {
+              <span class="name">anchors</span>.top: <span class="name">nameField</span>.<span class="name">bottom</span>
+              <span class="name">spacing</span>: <span class="number">5</span>
+              <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">&quot;Attributes:&quot;</span> }
+              <span class="type"><a href="../qtquick/qml-qtquick-repeater.html">Repeater</a></span> {
+                  <span class="name">model</span>: <span class="name">attributes</span>
+                  <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">description</span> }
+              }
+          }
+      }
+  }
+
+</pre>
+<a name="modifying-list-models"></a>
+<h2 id="modifying-list-models"><font style="vertical-align: inherit;">修改列表模型</font></h2>
+<p><font style="vertical-align: inherit;">可以使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#clear-method">clear()</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#append-method">append()</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#set-method">set()</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#insert-method">insert()</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#setProperty-method">setProperty()</a>方法创建和修改</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html"><font style="vertical-align: inherit;">ListModel</font></a><font style="vertical-align: inherit;">的内容。例如：</font></p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">fruitDelegate</span>
+          <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+              <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">50</span>
+              <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">name</span> }
+              <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">'$'</span> <span class="operator">+</span> <span class="name">cost</span>; <span class="name">anchors</span>.right: <span class="name">parent</span>.<span class="name">right</span> }
+
+              <span class="comment">// Double the price when clicked.</span>
+              <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">onClicked</span>: <span class="name">fruitModel</span>.<span class="name">setProperty</span>(<span class="name">index</span>, <span class="string">&quot;cost&quot;</span>, <span class="name">cost</span> <span class="operator">*</span> <span class="number">2</span>)
+              }
+          }
+      }
+
+</pre>
+<p><font style="vertical-align: inherit;">请注意，在动态创建内容时，可用属性集一旦设置就无法更改。首先添加到模型中的任何属性都是模型中唯一允许的属性。</font></p>
+<a name="using-threaded-list-models-with-workerscript"></a>
+<h2 id="using-threaded-list-models-with-workerscript"><font style="vertical-align: inherit;">在 WorkerScript 中使用线程列表模型</font></h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html"><font style="vertical-align: inherit;">ListModel</font></a><font style="vertical-align: inherit;">可以与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-workerscript.html"><font style="vertical-align: inherit;">WorkerScript</font></a><font style="vertical-align: inherit;">一起使用，从多个线程访问列表模型。如果列表修改是同步的并且需要一些时间，这将很有用：列表操作可以移动到不同的线程以避免主 GUI 线程的阻塞。</font></p>
+<p><font style="vertical-align: inherit;">这是一个使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-workerscript.html"><font style="vertical-align: inherit;">WorkerScript</font></a><font style="vertical-align: inherit;">定期将当前时间附加到列表模型的示例：</font></p>
+<pre class="qml">
+
+          <span class="type"><a href="qml-qtqml-timer.html">Timer</a></span> {
+              <span class="name">id</span>: <span class="name">timer</span>
+              <span class="name">interval</span>: <span class="number">2000</span>; <span class="name">repeat</span>: <span class="number">true</span>
+              <span class="name">running</span>: <span class="number">true</span>
+              <span class="name">triggeredOnStart</span>: <span class="number">true</span>
+
+              <span class="name">onTriggered</span>: {
+                  var msg = {'action': <span class="string">'appendCurrentTime'</span>, 'model': <span class="name">listModel</span>};
+                  <span class="name">worker</span>.<span class="name">sendMessage</span>(<span class="name">msg</span>);
+              }
+          }
+
+</pre>
+<p><font style="vertical-align: inherit;">包含的文件 ，</font><code>dataloader.mjs</code><font style="vertical-align: inherit;">看起来像这样：</font></p>
+<pre class="cpp">
+
+  WorkerScript.onMessage = function(msg) {
+      if (msg.action == 'appendCurrentTime') {
+          var data = {'time': new Date().toTimeString()};
+          msg.model.append(data);
+          msg.model.sync();   // updates the changes to the list
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">主要示例中的计时器通过调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-workerscript.html#sendMessage-method"><font style="vertical-align: inherit;">WorkerScript::sendMessage()</font></a><font style="vertical-align: inherit;">向工作脚本发送消息。当收到此消息时，</font><code>WorkerScript.onMessage()</code><font style="vertical-align: inherit;">在 中调用</font><code>dataloader.mjs</code><font style="vertical-align: inherit;">，它将当前时间附加到列表模型中。</font></p>
+<p><font style="vertical-align: inherit;">请注意从外部线程对</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#sync-method"><font style="vertical-align: inherit;">sync()</font></a><font style="vertical-align: inherit;">的调用。您必须调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html#sync-method"><font style="vertical-align: inherit;">sync()</font></a><font style="vertical-align: inherit;">否则从该线程对列表所做的更改将不会反映在主线程的列表模型中。</font></p>
+<p><b>请参考 </b>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-modelviewsdata-modelview.html#qml-data-models">
+<font style="vertical-align: inherit;">数据模型</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-threading-example.html"><font style="vertical-align: inherit;">Qt 
+<span lang="zh-cn">Quick</span>示例 - 线程</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-index.html"><font style="vertical-align: inherit;">Qt QML</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@ListModel -->
+<h2>属性的文档</h2>
+<!-- $$$count -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="count-prop">
+<td class="tblQmlPropNode"><p>
+<a name="count-prop"></a><span class="name">count</span> : <span class="type"><a href="qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">模型中的数据条目数。</font></p>
+</div></div><!-- @@@count -->
+<br/>
+<!-- $$$dynamicRoles -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="dynamicRoles-prop">
+<td class="tblQmlPropNode"><p>
+<a name="dynamicRoles-prop"></a><span class="name">dynamicRoles</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">默认情况下，角色的类型在第一次使用时固定。例如，如果您创建一个名为“data”的角色并为其分配一个数字，则不能再为“data”角色分配字符串。但是，当启用 dynamicRoles 属性时，给定角色的类型不是固定的，元素之间可以不同。</font></p>
+<p><font style="vertical-align: inherit;">dynamicRoles 属性必须在任何数据添加到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html"><font style="vertical-align: inherit;">ListModel</font></a><font style="vertical-align: inherit;">之前设置，并且必须从主线程设置。</font></p>
+<p><font style="vertical-align: inherit;">具有静态定义的数据（通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listelement.html">ListElement</a> QML 语法）的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html"><font style="vertical-align: inherit;">ListModel</font></a><font style="vertical-align: inherit;">不能启用 dynamicRoles 属性。</font></p>
+<p><font style="vertical-align: inherit;">使用启用了动态角色的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html"><font style="vertical-align: inherit;">ListModel</font></a><font style="vertical-align: inherit;">会产生显着的性能成本。成本因平台而异，但通常比使用静态角色类型慢 4-6 倍。</font></p>
+<p><font style="vertical-align: inherit;">由于使用动态角色的性能成本，它们默认被禁用。</font></p>
+</div></div><!-- @@@dynamicRoles -->
+<br/>
+<h2><font style="vertical-align: inherit;">方法文档</font></h2>
+<!-- $$$append -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="append-method">
+<td class="tblQmlFuncNode"><p>
+<a name="append-method"></a><span class="name">append</span>(<span class="type">jsobject</span> <i>dict</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">将一个新项目添加到列表模型的末尾，其值在</font><i><font style="vertical-align: inherit;">dict 中</font></i><font style="vertical-align: inherit;">。</font></p>
+<pre class="cpp">
+
+  fruitModel<span class="operator">.</span>append({<span class="string">&quot;cost&quot;</span>: <span class="number">5.95</span><span class="operator">,</span> <span class="string">&quot;name&quot;</span>:<span class="string">&quot;Pizza&quot;</span>})
+
+</pre>
+<p><b>请参考 </b><a href="qml-qtqml-models-listmodel.html#set-method">set()</a> 
+<span lang="zh-cn">和 </span>
+<a href="qml-qtqml-models-listmodel.html#remove-method">remove()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@append -->
+<br/>
+<!-- $$$clear -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="clear-method">
+<td class="tblQmlFuncNode"><p>
+<a name="clear-method"></a><span class="name">clear</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">从模型中删除所有内容。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-models-listmodel.html#append-method">append()</a> 
+<span lang="zh-cn">和 </span>
+<a href="qml-qtqml-models-listmodel.html#remove-method">remove()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@clear -->
+<br/>
+<!-- $$$get -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="get-method">
+<td class="tblQmlFuncNode"><p>
+<a name="get-method"></a><span class="type">object</span> <span class="name">get</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">返回列表模型中<i>index</i>处的项。这允许从 JavaScript 访问或修改项数据：</font></p>
+<pre class="cpp">
+
+  Component<span class="operator">.</span>onCompleted: {
+      fruitModel<span class="operator">.</span>append({<span class="string">&quot;cost&quot;</span>: <span class="number">5.95</span><span class="operator">,</span> <span class="string">&quot;name&quot;</span>:<span class="string">&quot;Jackfruit&quot;</span>});
+      console<span class="operator">.</span>log(fruitModel<span class="operator">.</span>get(<span class="number">0</span>)<span class="operator">.</span>cost);
+      fruitModel<span class="operator">.</span>get(<span class="number">0</span>)<span class="operator">.</span>cost <span class="operator">=</span> <span class="number">10.95</span>;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">该<i>index</i> 必须<span lang="zh-cn">是</span>在列表中的元素。</font></p>
+<p>请注意，返回对象本身是对象的属性也将是模型，这个get()方法用于访问元素:</p>
+<pre class="cpp">
+
+  fruitModel<span class="operator">.</span>append(<span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">,</span> <span class="string">&quot;attributes&quot;</span>:
+      <span class="operator">[</span>{<span class="string">&quot;name&quot;</span>:<span class="string">&quot;spikes&quot;</span><span class="operator">,</span><span class="string">&quot;value&quot;</span>:<span class="string">&quot;7mm&quot;</span>}<span class="operator">,</span>
+       {<span class="string">&quot;name&quot;</span>:<span class="string">&quot;color&quot;</span><span class="operator">,</span><span class="string">&quot;value&quot;</span>:<span class="string">&quot;green&quot;</span>}<span class="operator">]</span>);
+  fruitModel<span class="operator">.</span>get(<span class="number">0</span>)<span class="operator">.</span>attributes<span class="operator">.</span>get(<span class="number">1</span>)<span class="operator">.</span>value; <span class="comment">// == &quot;green&quot;</span>
+
+</pre>
+<p><b>警告：</b> <font style="vertical-align: inherit;">不保证返回的对象保持有效。它不应用于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-propertybinding.html"><font style="vertical-align: inherit;">属性绑定</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-models-listmodel.html#append-method">append()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@get -->
+<br/>
+<!-- $$$insert -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="insert-method">
+<td class="tblQmlFuncNode"><p>
+<a name="insert-method"></a><span class="name">insert</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>,  <span class="type">jsobject</span> <i>dict</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">将一个新项目添加到位置</font><i><font style="vertical-align: inherit;">index</font></i><font style="vertical-align: inherit;">的列表模型中，值在</font><i><font style="vertical-align: inherit;">dict 中</font></i><font style="vertical-align: inherit;">。</font></p>
+<pre class="cpp">
+
+  fruitModel<span class="operator">.</span>insert(<span class="number">2</span><span class="operator">,</span> {<span class="string">&quot;cost&quot;</span>: <span class="number">5.95</span><span class="operator">,</span> <span class="string">&quot;name&quot;</span>:<span class="string">&quot;Pizza&quot;</span>})
+
+</pre>
+<p><i>index</i> 必须指向列表中已有的项，或者超出列表末尾的位置(相当于append)。</p>
+<p><b>请参考 </b><a href="qml-qtqml-models-listmodel.html#set-method">set()</a> 
+<span lang="zh-cn">和 </span>
+<a href="qml-qtqml-models-listmodel.html#append-method">append()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@insert -->
+<br/>
+<!-- $$$move -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="move-method">
+<td class="tblQmlFuncNode"><p>
+<a name="move-method"></a><span class="name">move</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>from</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>to</i>,  <span class="type"><a href="qml-int.html">int</a></span> <i>n</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>Moves <i>n</i> items <i>from</i> one position <i>to</i> another.<font style="vertical-align: inherit;">将</font><i><font style="vertical-align: inherit;">n </font></i>
+		<font style="vertical-align: inherit;"><span lang="zh-cn">个</span>项<span lang="zh-cn">从</span></font><i><font style="vertical-align: inherit;"><span lang="zh-cn">from</span></font></i><font style="vertical-align: inherit;">位置移动</font><span lang="zh-cn">到<i>to</i></span><font style="vertical-align: inherit;">位置。</font></p>
+<p><font style="vertical-align: inherit;">from 和 to 范围必须存在；例如，将前 3 个项目移动到列表的末尾：</font></p>
+<pre class="cpp">
+
+  fruitModel<span class="operator">.</span>move(<span class="number">0</span><span class="operator">,</span> fruitModel<span class="operator">.</span>count <span class="operator">-</span> <span class="number">3</span><span class="operator">,</span> <span class="number">3</span>)
+
+</pre>
+<p><b>请参考 </b><a href="qml-qtqml-models-listmodel.html#append-method">append()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@move -->
+<br/>
+<!-- $$$remove -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="remove-method">
+<td class="tblQmlFuncNode"><p>
+<a name="remove-method"></a><span class="name">remove</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>, <i> int count = 1</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">从模型中删除<i>index</i> 处的内容。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-models-listmodel.html#clear-method">clear()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@remove -->
+<br/>
+<!-- $$$set -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="set-method">
+<td class="tblQmlFuncNode"><p>
+<a name="set-method"></a><span class="name">set</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>,  <span class="type">jsobject</span> <i>dict</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">使用<i>dict 中</i>的值更改列表模型中</font><i><font style="vertical-align: inherit;">index</font></i><font style="vertical-align: inherit;">处的项。未出现在<i>dict</i>中的属性保持不变。</font></p>
+<pre class="cpp">
+
+  fruitModel<span class="operator">.</span>set(<span class="number">3</span><span class="operator">,</span> {<span class="string">&quot;cost&quot;</span>: <span class="number">5.95</span><span class="operator">,</span> <span class="string">&quot;name&quot;</span>:<span class="string">&quot;Pizza&quot;</span>})
+
+</pre>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">index</font></i><font style="vertical-align: inherit;">等于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/qtquick-debugging.html#count"><font style="vertical-align: inherit;">count() ，</font></a><font style="vertical-align: inherit;">则将新项附加到列表中。否则，<i>index</i>必须是列表中的一个元素。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-models-listmodel.html#append-method">append()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@set -->
+<br/>
+<!-- $$$setProperty -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="setProperty-method">
+<td class="tblQmlFuncNode"><p>
+<a name="setProperty-method"></a><span class="name">setProperty</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>,  <span class="type"><a href="qml-string.html">string</a></span> <i>property</i>,  <span class="type"><a href="qml-variant.html">variant</a></span> <i>value</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">将列表模型中<i>index 处</i>项目的</font><i><font style="vertical-align: inherit;">property</font></i><font style="vertical-align: inherit;">更改为<i>value</i>。</font></p>
+<pre class="cpp">
+
+  fruitModel<span class="operator">.</span>setProperty(<span class="number">3</span><span class="operator">,</span> <span class="string">&quot;cost&quot;</span><span class="operator">,</span> <span class="number">5.95</span>)
+
+</pre>
+<p><font style="vertical-align: inherit;">该<i>index</i> 必须在<span lang="zh-cn">是</span>列表中的元素。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-models-listmodel.html#append-method">append()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@setProperty -->
+<br/>
+<!-- $$$sync -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="sync-method">
+<td class="tblQmlFuncNode"><p>
+<a name="sync-method"></a><span class="name">sync</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">在从工作脚本修改列表模型后，将任何未保存的更改写入列表模型。</font></p>
+</div></div><!-- @@@sync -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmldelegatemodel.cpp -->
+  <title>DelegateModel QML 类型| Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-qmlmodule.html">QML Types</a></td><td >DelegateModel QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#attached-properties"><font style="vertical-align: inherit;">附加属性</font></a></li>
+<li class="level1"><a href="#methods">方法</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">DelegateModel QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$DelegateModel-brief -->
+<p><font style="vertical-align: inherit;">封装了一个模型和委托。</font><a href="#details">更多...</a></p>
+<!-- @@@DelegateModel -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句:</td><td class="memItemRight bottomAlign"> import QtQml.Models 2.12</td></tr></table></div><ul>
+<li><a href="qml-qtqml-models-delegatemodel-members.html"></a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#count-prop">count</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#delegate-prop">delegate</a></b></b> : Component</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#filterOnGroup-prop">filterOnGroup</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#groups-prop">groups</a></b></b> : list&lt;DelegateModelGroup&gt;</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#items-prop">items</a></b></b> : DelegateModelGroup</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#model-prop">model</a></b></b> : model</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#parts-prop">parts</a></b></b> : object</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#persistedItems-prop">persistedItems</a></b></b> : DelegateModelGroup</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#rootIndex-prop">rootIndex</a></b></b> : QModelIndex</li>
+</ul>
+<a name="attached-properties"></a>
+<h2 id="attached-properties"><font style="vertical-align: inherit;">附加属性</font></h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#groups-attached-prop">groups</a></b></b> : stringlist</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#inItems-attached-prop">inItems</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#inPersistedItems-attached-prop">inPersistedItems</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#isUnresolved-attached-prop">isUnresolved</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#itemsIndex-attached-prop">itemsIndex</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#model-attached-prop">model</a></b></b> : model</li>
+<li class="fn"><b><b><a href="qml-qtqml-models-delegatemodel.html#persistedItemsIndex-attached-prop">persistedItemsIndex</a></b></b> : int</li>
+</ul>
+<a name="methods"></a>
+<h2 id="methods">方法</h2>
+<ul>
+<li class="fn">QModelIndex <b><b><a href="qml-qtqml-models-delegatemodel.html#modelIndex-method">modelIndex</a></b></b>(int <i>index</i>)</li>
+<li class="fn">QModelIndex <b><b><a href="qml-qtqml-models-delegatemodel.html#parentModelIndex-method">parentModelIndex</a></b></b>()</li>
+</ul>
+<!-- $$$DelegateModel-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"><font style="vertical-align: inherit;">DelegateModel</font></a><font style="vertical-align: inherit;">类型封装了一个模型，将被实例化在模型项目的委托。</font></p>
+<p><font style="vertical-align: inherit;">通常不需要创建</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"><font style="vertical-align: inherit;">DelegateModel</font></a><font style="vertical-align: inherit;">。但是，当<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractitemmodel.html">QAbstractItemModel</a>子类用作模型时，它对于操作和访问</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#modelIndex-method"><font style="vertical-align: inherit;">modelIndex</font></a><font style="vertical-align: inherit;">很有用。此外，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a>与<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-package.html">Package</a>一起使用以向多个视图提供委托，并与<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html">DelegateModelGroup</a>一起使用以对委托项进行排序和过滤。</font></p>
+<p><font style="vertical-align: inherit;">下面的示例说明了使用带有<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"><font style="vertical-align: inherit;">DelegateModel</font></a><font style="vertical-align: inherit;">。</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+  import QtQml.Models 2.2
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      <span class="type"><a href="qml-qtqml-models-delegatemodel.html">DelegateModel</a></span> {
+          <span class="name">id</span>: <span class="name">visualModel</span>
+          <span class="name">model</span>: <span class="name">ListModel</span> {
+              <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> { <span class="name">name</span>: <span class="string">&quot;Apple&quot;</span> }
+              <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> { <span class="name">name</span>: <span class="string">&quot;Orange&quot;</span> }
+          }
+          <span class="name">delegate</span>: <span class="name">Rectangle</span> {
+              <span class="name">height</span>: <span class="number">25</span>
+              <span class="name">width</span>: <span class="number">100</span>
+              <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">&quot;Name: &quot;</span> <span class="operator">+</span> <span class="name">name</span>}
+          }
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-listview.html">ListView</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">model</span>: <span class="name">visualModel</span>
+      }
+  }
+
+</pre>
+<!-- @@@DelegateModel -->
+<h2>属性的文档</h2>
+<!-- $$$count -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="count-prop">
+<td class="tblQmlPropNode"><p>
+<a name="count-prop"></a><span class="name">count</span> : <span class="type"><a href="qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"></div></div><!-- @@@count -->
+<br/>
+<!-- $$$delegate -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="delegate-prop">
+<td class="tblQmlPropNode"><p>
+<a name="delegate-prop"></a><span class="name">delegate</span> : <span class="type"><a href="qml-qtqml-component.html">Component</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">委托提供了一个模板，定义了由视图实例化的每个项目。索引作为可访问的</font><code>index</code><font style="vertical-align: inherit;">属性公开。根据</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-modelviewsdata-modelview.html#qml-data-models"><font style="vertical-align: inherit;">数据模型</font></a><font style="vertical-align: inherit;">的类型，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-modelviewsdata-modelview.html#qml-data-models">模型的</a>属性也可用。</font></p>
+</div></div><!-- @@@delegate -->
+<br/>
+<!-- $$$filterOnGroup -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="filterOnGroup-prop">
+<td class="tblQmlPropNode"><p>
+<a name="filterOnGroup-prop"></a><span class="name">filterOnGroup</span> : <span class="type"><a href="qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此属性保存用于过滤委托模型的组的名称。</font></p>
+<p><font style="vertical-align: inherit;">只有属于该组的项目对视图可见。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，这是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#items-prop"><font style="vertical-align: inherit;">项目</font></a><font style="vertical-align: inherit;">组。</font></p>
+</div></div><!-- @@@filterOnGroup -->
+<br/>
+<!-- $$$groups -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="groups-prop">
+<td class="tblQmlPropNode"><p>
+<a name="groups-prop"></a><span class="name">groups</span> : <span class="type"><a href="qml-list.html">list</a></span>&lt;<span class="type"><a href="qml-qtqml-models-delegatemodelgroup.html">DelegateModelGroup</a></span>&gt;</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此属性保存委托模型的组定义。</font></p>
+<p><font style="vertical-align: inherit;">组定义了委托模型中项目的子集，可用于过滤模型。</font></p>
+<p><font style="vertical-align: inherit;">对于在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"><font style="vertical-align: inherit;">DelegateModel 中</font></a><font style="vertical-align: inherit;">定义的每个组，两个附加属性被添加到每个委托项。表单</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"><font style="vertical-align: inherit;">DelegateModel</font></a><font style="vertical-align: inherit;"> .in </font><i><font style="vertical-align: inherit;">GroupName</font></i><font style="vertical-align: inherit;">的第一个保存项目是否属于组和第二个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"><font style="vertical-align: inherit;">DelegateModel</font></a><font style="vertical-align: inherit;">。</font><i><font style="vertical-align: inherit;">groupName</font></i><font style="vertical-align: inherit;"> Index 保存该组中项目的索引。</font></p>
+<p><font style="vertical-align: inherit;">以下示例说明使用组选择模型中的项目。</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+  import QtQml.Models 2.2
+
+  <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      <span class="type"><a href="qml-qtqml-models-delegatemodel.html">DelegateModel</a></span> {
+          <span class="name">id</span>: <span class="name">visualModel</span>
+          <span class="name">model</span>: <span class="name">ListModel</span> {
+              <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> { <span class="name">name</span>: <span class="string">&quot;Apple&quot;</span> }
+              <span class="type"><a href="qml-qtqml-models-listelement.html">ListElement</a></span> { <span class="name">name</span>: <span class="string">&quot;Orange&quot;</span> }
+          }
+
+          <span class="name">groups</span>: [
+              <span class="type"><a href="qml-qtqml-models-delegatemodelgroup.html">DelegateModelGroup</a></span> { <span class="name">name</span>: <span class="string">&quot;selected&quot;</span> }
+          ]
+
+          <span class="name">delegate</span>: <span class="name">Rectangle</span> {
+              <span class="name">id</span>: <span class="name">item</span>
+              <span class="name">height</span>: <span class="number">25</span>
+              <span class="name">width</span>: <span class="number">200</span>
+              <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+                  <span class="name">text</span>: {
+                      var text = <span class="string">&quot;Name: &quot;</span> <span class="operator">+</span> <span class="name">name</span>
+                      <span class="keyword">if</span> (<span class="name">item</span>.<span class="name">DelegateModel</span>.<span class="name">inSelected</span>)
+                          <span class="name">text</span> <span class="operator">+=</span> <span class="string">&quot; (&quot;</span> <span class="operator">+</span> <span class="name">item</span>.<span class="name">DelegateModel</span>.<span class="name">selectedIndex</span> <span class="operator">+</span> <span class="string">&quot;)&quot;</span>
+                      <span class="keyword">return</span> <span class="name">text</span>;
+                  }
+              }
+              <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">onClicked</span>: <span class="name">item</span>.<span class="name">DelegateModel</span>.<span class="name">inSelected</span> <span class="operator">=</span> !<span class="name">item</span>.<span class="name">DelegateModel</span>.<span class="name">inSelected</span>
+              }
+          }
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-listview.html">ListView</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">model</span>: <span class="name">visualModel</span>
+      }
+  }
+
+</pre>
+</div></div><!-- @@@groups -->
+<br/>
+<!-- $$$items -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="items-prop">
+<td class="tblQmlPropNode"><p>
+<a name="items-prop"></a><span class="name">items</span> : <span class="type"><a href="qml-qtqml-models-delegatemodelgroup.html">DelegateModelGroup</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此属性保存所有新项目添加到的默认组。</font></p>
+</div></div><!-- @@@items -->
+<br/>
+<!-- $$$model -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="model-prop">
+<td class="tblQmlPropNode"><p>
+<a name="model-prop"></a><span class="name">model</span> : <span class="type">model</span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此属性保存为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"><font style="vertical-align: inherit;">DelegateModel</font></a><font style="vertical-align: inherit;">提供数据的模型。</font></p>
+<p><font style="vertical-align: inherit;">该模型提供了一组用于为视图创建项目的数据。对于大型或动态数据集，模型通常由 C++ 模型对象提供。C++ 模型对象必须是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractitemmodel.html"><font style="vertical-align: inherit;">QAbstractItemModel</font></a><font style="vertical-align: inherit;">子类或简单列表。</font></p>
+<p><font style="vertical-align: inherit;">模型也可以直接在 QML 中创建，使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html"><font style="vertical-align: inherit;">ListModel</font></a><font style="vertical-align: inherit;">或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtxmlpatterns/qml-qtquick-xmllistmodel-xmllistmodel.html"><font style="vertical-align: inherit;">XmlListModel</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-modelviewsdata-modelview.html#qml-data-models">
+<font style="vertical-align: inherit;">参考数据模型</font></a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@model -->
+<br/>
+<!-- $$$parts -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="parts-prop">
+<td class="tblQmlPropNode"><p>
+<a name="parts-prop"></a><span class="name">parts</span> : <span class="type">object</span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><i>parts</i> 属性选择一个<a href="qml-qtqml-models-delegatemodel.html">DelegateModel</a>，它从指定的部件创建委托。这与<a href="qml-package.html">Package</a>类型一起使用。</p>
+<p><font style="vertical-align: inherit;">例如，下面的代码选择一个模型，该模型从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-package.html">Package 中</a>创建名为</font><i><font style="vertical-align: inherit;">list 的</font></i><font style="vertical-align: inherit;">委托：</font></p>
+<pre class="cpp">
+
+  DelegateModel {
+      id: visualModel
+      delegate: Package {
+          Item { Package<span class="operator">.</span>name: <span class="string">&quot;list&quot;</span> }
+      }
+      model: myModel
+  }
+
+  ListView {
+      width: <span class="number">200</span>; height:<span class="number">200</span>
+      model: visualModel<span class="operator">.</span>parts<span class="operator">.</span>list
+  }
+
+</pre>
+<p><b>请参考 </b><a href="qml-package.html">Package</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@parts -->
+<br/>
+<!-- $$$persistedItems -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="persistedItems-prop">
+<td class="tblQmlPropNode"><p>
+<a name="persistedItems-prop"></a><span class="name">persistedItems</span> : <span class="type"><a href="qml-qtqml-models-delegatemodelgroup.html">DelegateModelGroup</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此属性保存委托模型的持久项组。</font></p>
+<p><font style="vertical-align: inherit;">该组中的项目在被视图释放时不会被销毁，而是会一直存在，直到从该组中删除。</font></p>
+<p><font style="vertical-align: inherit;">通过设置</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"><font style="vertical-align: inherit;">DelegateModel</font></a><font style="vertical-align: inherit;">可以从persistedItems 组中删除一个项目。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#inPersistedItems-attached-prop"><font style="vertical-align: inherit;">inPersistedItems</font></a><font style="vertical-align: inherit;">属性设置为 false。如果该项目当时未被视图引用，它将被销毁。向该组添加项目不会创建新实例。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#create-method"><font style="vertical-align: inherit;">QtQml.Models::DelegateModelGroup::create()</font></a><font style="vertical-align: inherit;">函数返回的项目会自动添加到该组中。</font></p>
+</div></div><!-- @@@persistedItems -->
+<br/>
+<!-- $$$rootIndex -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="rootIndex-prop">
+<td class="tblQmlPropNode"><p>
+<a name="rootIndex-prop"></a><span class="name">rootIndex</span> : <span class="type">QModelIndex</span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractitemmodel.html"><font style="vertical-align: inherit;">QAbstractItemModel</font></a><font style="vertical-align: inherit;">提供了一个分层的数据树，而 QML 只对列表数据进行操作。</font><code>rootIndex</code><font style="vertical-align: inherit;">允许此模型提供</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractitemmodel.html"><font style="vertical-align: inherit;">QAbstractItemModel</font></a><font style="vertical-align: inherit;">中任何节点的子节点。</font></p>
+<p><font style="vertical-align: inherit;">此属性仅影响类型为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractitemmodel.html"><font style="vertical-align: inherit;">QAbstractItemModel</font></a><font style="vertical-align: inherit;">的分层模型（例如，树模型）。</font></p>
+<p><font style="vertical-align: inherit;">例如，这里是一个简单的交互式文件系统浏览器。单击目录名称时，视图</font><code>rootIndex</code><font style="vertical-align: inherit;">将设置为单击目录的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmodelindex.html"><font style="vertical-align: inherit;">QModelIndex</font></a><font style="vertical-align: inherit;">节点，从而更新视图以显示新目录的内容。</font></p>
+<p><code>main.cpp</code>:</p>
+<pre class="cpp">
+
+  <span class="type"><a href="qml-int.html">int</a></span> main(<span class="type"><a href="qml-int.html">int</a></span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span><span class="operator">*</span> argv)
+  {
+      <span class="type">QApplication</span> app(argc<span class="operator">,</span> argv);
+
+      <span class="type">QQuickView</span> view;
+
+      <span class="type">QDirModel</span> model;
+      view<span class="operator">.</span>rootContext()<span class="operator">-</span><span class="operator">&gt;</span>setContextProperty(<span class="string">&quot;dirModel&quot;</span><span class="operator">,</span> <span class="operator">&amp;</span>model);
+
+      view<span class="operator">.</span>setSource(<span class="type">QUrl</span><span class="operator">::</span>fromLocalFile(<span class="string">&quot;view.qml&quot;</span>));
+      view<span class="operator">.</span>show();
+
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+</pre>
+<p><code>view.qml</code>:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+  import QtQml.Models 2.2
+
+  <span class="type"><a href="../qtquick/qml-qtquick-listview.html">ListView</a></span> {
+      <span class="name">id</span>: <span class="name">view</span>
+      <span class="name">width</span>: <span class="number">300</span>
+      <span class="name">height</span>: <span class="number">400</span>
+
+      <span class="name">model</span>: <span class="name">DelegateModel</span> {
+          <span class="name">model</span>: <span class="name">dirModel</span>
+
+          <span class="name">delegate</span>: <span class="name">Rectangle</span> {
+              <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">25</span>
+              <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">filePath</span> }
+
+              <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">onClicked</span>: {
+                      <span class="keyword">if</span> (<span class="name">model</span>.<span class="name">hasModelChildren</span>)
+                          <span class="name">view</span>.<span class="name">model</span>.<span class="name">rootIndex</span> <span class="operator">=</span> <span class="name">view</span>.<span class="name">model</span>.<span class="name">modelIndex</span>(<span class="name">index</span>)
+                  }
+              }
+          }
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">如果</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#model-prop"><font style="vertical-align: inherit;">模型</font></a><font style="vertical-align: inherit;">是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractitemmodel.html"><font style="vertical-align: inherit;">QAbstractItemModel</font></a><font style="vertical-align: inherit;">子类，则委托还可以引用一个</font><code>hasModelChildren</code><font style="vertical-align: inherit;">属性（可选地由<i>model</i>. 前缀限定），该属性指示委托的模型项是否具有任何子节点。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-models-delegatemodel.html#modelIndex-method">modelIndex()</a> 
+<span lang="zh-cn">和 </span>
+<a href="qml-qtqml-models-delegatemodel.html#parentModelIndex-method">parentModelIndex()</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@rootIndex -->
+<br/>
+<h2>Attached 属性的文档</h2>
+<!-- $$$groups -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="groups-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="groups-attached-prop"></a><span class="name">DelegateModel.groups</span> : <span class="type">stringlist</span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此附加属性包含项目所属的 DelegateModelGroups 的名称。</font></p>
+<p><font style="vertical-align: inherit;">它附加到委托的每个实例。</font></p>
+</div></div><!-- @@@groups -->
+<br/>
+<!-- $$$inItems -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="inItems-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="inItems-attached-prop"></a><span class="name">DelegateModel.inItems</span> : <span class="type"><a href="qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此附加属性保存该项目是否属于默认</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#items-prop"><font style="vertical-align: inherit;">项目</font></a> <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html"><font style="vertical-align: inherit;">DelegateModelGroup</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">更改此属性将从项目组中添加或删除项目。</font></p>
+<p><font style="vertical-align: inherit;">它附加到委托的每个实例。</font></p>
+</div></div><!-- @@@inItems -->
+<br/>
+<!-- $$$inPersistedItems -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="inPersistedItems-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="inPersistedItems-attached-prop"></a><span class="name">DelegateModel.inPersistedItems</span> : <span class="type"><a href="qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此附加属性保存该项目是否属于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#persistedItems-prop"><font style="vertical-align: inherit;">persistedItems </font></a> <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html"><font style="vertical-align: inherit;">DelegateModelGroup</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">更改此属性将从项目组中添加或删除项目。请谨慎更改，因为如果模型未引用当前实例，则从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#persistedItems-prop"><font style="vertical-align: inherit;">persistedItems</font></a><font style="vertical-align: inherit;">组中删除项目将破坏当前实例。</font></p>
+<p><font style="vertical-align: inherit;">它附加到委托的每个实例。</font></p>
+</div></div><!-- @@@inPersistedItems -->
+<br/>
+<!-- $$$isUnresolved -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="isUnresolved-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="isUnresolved-attached-prop"></a><span class="name">DelegateModel.isUnresolved</span> : <span class="type"><a href="qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此附加属性指示可视项是否绑定到数据模型索引。如果项目未绑定到模型，则返回 true，如果绑定，则返回 false。</font></p>
+<p><font style="vertical-align: inherit;">可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html#resolve-method"><font style="vertical-align: inherit;">DelegateModelGroup::resolve()</font></a><font style="vertical-align: inherit;">函数将未解析的项绑定到数据模型。</font></p>
+<p><font style="vertical-align: inherit;">它附加到委托的每个实例。</font></p>
+</div></div><!-- @@@isUnresolved -->
+<br/>
+<!-- $$$itemsIndex -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="itemsIndex-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="itemsIndex-attached-prop"></a><span class="name">DelegateModel.itemsIndex</span> : <span class="type"><a href="qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此附加属性保存默认</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#items-prop"><font style="vertical-align: inherit;">项目</font></a> <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html"><font style="vertical-align: inherit;">DelegateModelGroup 中</font></a><font style="vertical-align: inherit;">项目的索引。</font></p>
+<p><font style="vertical-align: inherit;">它附加到委托的每个实例。</font></p>
+</div></div><!-- @@@itemsIndex -->
+<br/>
+<!-- $$$model -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="model-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="model-attached-prop"></a><span class="name">DelegateModel.model</span> : <span class="type">model</span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">此附加属性保存此委托实例所属的数据模型。</font></p>
+<p><font style="vertical-align: inherit;">它附加到委托的每个实例。</font></p>
+</div></div><!-- @@@model -->
+<br/>
+<!-- $$$persistedItemsIndex -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="persistedItemsIndex-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="persistedItemsIndex-attached-prop"></a><span class="name">DelegateModel.persistedItemsIndex</span> : <span class="type"><a href="qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><font style="vertical-align: inherit;">这个附加的属性保存了项目在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#persistedItems-prop"><font style="vertical-align: inherit;">persistedItems </font></a> <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodelgroup.html"><font style="vertical-align: inherit;">DelegateModelGroup 中</font></a><font style="vertical-align: inherit;">的索引。</font></p>
+<p><font style="vertical-align: inherit;">它附加到委托的每个实例。</font></p>
+</div></div><!-- @@@persistedItemsIndex -->
+<br/>
+<h2>Method Documentation</h2>
+<!-- $$$modelIndex -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="modelIndex-method">
+<td class="tblQmlFuncNode"><p>
+<a name="modelIndex-method"></a><span class="type">QModelIndex</span> <span class="name">modelIndex</span>(<span class="type"><a href="qml-int.html">int</a></span> <i>index</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractitemmodel.html"><font style="vertical-align: inherit;">QAbstractItemModel</font></a><font style="vertical-align: inherit;">提供了一个分层的数据树，而 QML 只对列表数据进行操作。此函数有助于在 QML 中使用树模型。</font></p>
+<p><font style="vertical-align: inherit;">返回指定索引的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmodelindex.html"><font style="vertical-align: inherit;">QModelIndex</font></a><font style="vertical-align: inherit;">。可以将此值分配给</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#rootIndex-prop"><font style="vertical-align: inherit;">rootIndex</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-models-delegatemodel.html#rootIndex-prop">rootIndex</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@modelIndex -->
+<br/>
+<!-- $$$parentModelIndex -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="parentModelIndex-method">
+<td class="tblQmlFuncNode"><p>
+<a name="parentModelIndex-method"></a><span class="type">QModelIndex</span> <span class="name">parentModelIndex</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractitemmodel.html"><font style="vertical-align: inherit;">QAbstractItemModel</font></a><font style="vertical-align: inherit;">提供了一个分层的数据树，而 QML 只对列表数据进行操作。此函数有助于在 QML 中使用树模型。</font></p>
+<p><font style="vertical-align: inherit;">返回一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmodelindex.html"><font style="vertical-align: inherit;">QModelIndex</font></a><font style="vertical-align: inherit;">当前的父</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#rootIndex-prop"><font style="vertical-align: inherit;">rootIndex</font></a><font style="vertical-align: inherit;">。可以将此值分配给</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#rootIndex-prop"><font style="vertical-align: inherit;">rootIndex</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qml-qtqml-models-delegatemodel.html#rootIndex-prop">rootIndex</a><span lang="zh-cn">。</span></p>
+</div></div><!-- @@@parentModelIndex -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

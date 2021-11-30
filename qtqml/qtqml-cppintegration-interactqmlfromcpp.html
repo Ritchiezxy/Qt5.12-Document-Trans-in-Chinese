@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- interactqmlfromcpp.qdoc -->
+  <title>Interacting with QML Objects from C++ | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >
+			从 C++ 与 QML 对象交互</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-interactqmlfromcpp.html#loading-qml-objects-from-c"><font style="vertical-align: inherit;">从 C++ 加载 QML 对象</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-interactqmlfromcpp.html#accessing-loaded-qml-objects-by-object-name"><font style="vertical-align: inherit;">按对象名称访问加载的 QML 对象</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-interactqmlfromcpp.html#accessing-members-of-a-qml-object-type-from-c"><font style="vertical-align: inherit;">从 C++ 访问 QML 对象类型的成员</font></a></li>
+<li class="level2"><a href="#properties">属性</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-interactqmlfromcpp.html#invoking-qml-methods"><font style="vertical-align: inherit;">调用 QML 方法</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-interactqmlfromcpp.html#connecting-to-qml-signals"><font style="vertical-align: inherit;">连接到 QML 信号</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><font style="vertical-align: inherit;">从 C++ 加载 QML 对象</font></h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-cppintegration-interactqmlfromcpp.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><font style="vertical-align: inherit;">所有 QML 对象类型都是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">派生类型，无论它们是由引擎内部实现的还是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html"><font style="vertical-align: inherit;">由第三方源定义的</font></a><font style="vertical-align: inherit;">。这意味着 QML 引擎可以使用 Qt</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/metaobjects.html"><font style="vertical-align: inherit;">元对象系统</font></a><font style="vertical-align: inherit;">来动态实例化任何 QML 对象类型并检查创建的对象。</font></p>
+<p><font style="vertical-align: inherit;">这对于从 C++ 代码创建 QML 对象非常有用，无论是显示可以可视化渲染的 QML 对象，还是将非可视化 QML 对象数据集成到 C++ 应用程序中。一旦创建了 QML 对象，就可以从 C++ 检查它以读取和写入属性、调用方法和接收信号通知。</font></p>
+<a name="loading-qml-objects-from-c"></a>
+<h2 id="loading-qml-objects-from-c"><font style="vertical-align: inherit;">从 C++ 加载 QML 对象</font></h2>
+<p><font style="vertical-align: inherit;">可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcomponent.html"><font style="vertical-align: inherit;">QQmlComponent</font></a><font style="vertical-align: inherit;">或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html"><font style="vertical-align: inherit;">QQuickView</font></a><font style="vertical-align: inherit;">加载 QML 文档。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcomponent.html"><font style="vertical-align: inherit;">QQmlComponent</font></a><font style="vertical-align: inherit;">将 QML 文档作为 C++ 对象加载，然后可以从 C++ 代码修改该对象。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html"><font style="vertical-align: inherit;">QQuickView</font></a><font style="vertical-align: inherit;">也是这样做的，但是由于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html"><font style="vertical-align: inherit;">QQuickView</font></a><font style="vertical-align: inherit;">是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qwindow.html"><font style="vertical-align: inherit;">QWindow</font></a><font style="vertical-align: inherit;">派生类，所以加载的对象也会被渲染成可视化显示；</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html"><font style="vertical-align: inherit;">QQuickView</font></a><font style="vertical-align: inherit;">通常用于将可显示的 QML 对象集成到应用程序的用户界面中。</font></p>
+<p><font style="vertical-align: inherit;">例如，假设有一个</font><code>MyItem.qml</code><font style="vertical-align: inherit;">看起来像这样的文件：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">这个 QML 文档可以用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcomponent.html"><font style="vertical-align: inherit;">QQmlComponent</font></a><font style="vertical-align: inherit;">或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html"><font style="vertical-align: inherit;">QQuickView</font></a><font style="vertical-align: inherit;">用以下 C++ 代码加载。使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcomponent.html"><font style="vertical-align: inherit;">QQmlComponent</font></a><font style="vertical-align: inherit;">需要调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcomponent.html#create"><font style="vertical-align: inherit;">QQmlComponent::create</font></a><font style="vertical-align: inherit;"> ()来创建组件的新实例，而</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html"><font style="vertical-align: inherit;">QQuickView会</font></a><font style="vertical-align: inherit;">自动创建组件的实例，可以通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html#rootObject"><font style="vertical-align: inherit;">QQuickView::rootObject</font></a><font style="vertical-align: inherit;"> ()访问：</font></p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><pre class="cpp">
+
+  <span class="comment">// Using QQmlComponent</span>
+  <span class="type"><a href="qqmlengine.html">QQmlEngine</a></span> engine;
+  <span class="type"><a href="qqmlcomponent.html">QQmlComponent</a></span> component(<span class="operator">&amp;</span>engine<span class="operator">,</span>
+          <span class="type"><a href="../qtcore/qurl.html">QUrl</a></span><span class="operator">::</span>fromLocalFile(<span class="string">&quot;MyItem.qml&quot;</span>));
+  <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object <span class="operator">=</span> component<span class="operator">.</span>create();
+  ...
+  <span class="keyword">delete</span> object;
+
+</pre>
+</td><td ><pre class="cpp">
+
+  <span class="comment">// Using QQuickView</span>
+  <span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span> view;
+  view<span class="operator">.</span>setSource(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span><span class="operator">::</span>fromLocalFile(<span class="string">&quot;MyItem.qml&quot;</span>));
+  view<span class="operator">.</span>show();
+  <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object <span class="operator">=</span> view<span class="operator">.</span>rootObject();
+
+</pre>
+</td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">这</font><code>object</code><font style="vertical-align: inherit;">是</font><code>MyItem.qml</code><font style="vertical-align: inherit;">已创建的组件的实例。您现在可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#setProperty"><font style="vertical-align: inherit;">QObject::setProperty</font></a><font style="vertical-align: inherit;"> () 或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html#write"><font style="vertical-align: inherit;">QQmlProperty::write</font></a><font style="vertical-align: inherit;"> ()修改项目的属性：</font></p>
+<pre class="cpp">
+
+  object<span class="operator">-</span><span class="operator">&gt;</span>setProperty(<span class="string">&quot;width&quot;</span><span class="operator">,</span> <span class="number">500</span>);
+  <span class="type"><a href="qqmlproperty.html">QQmlProperty</a></span>(object<span class="operator">,</span> <span class="string">&quot;width&quot;</span>)<span class="operator">.</span>write(<span class="number">500</span>);
+
+</pre>
+<p><code>QObject::setProperty()</code> 和<code>QQmlProperty::write()</code> 
+之间的区别在于，后者除了设置属性值外还将删除绑定。例如，假设上面的宽度分配是对高度的绑定:</p>
+<pre class="cpp">
+
+  width: height
+
+</pre>
+<p>如果<code>Item</code> 的高度在<code>object-&gt;setProperty(&quot;width&quot;, 500)</code>调用后改变，那么宽度将再次更新，因为绑定仍然是活动的。但是，如果在<code>QQmlProperty(object, &quot;width&quot;).write(500)</code>调用之后<code>height</code> 
+发生了变化，那么宽度将不会发生变化，因为绑定已经不存在了。</p>
+<p>或者，您可以将对象强制转换为其实际类型，并在编译时安全的情况下调用方法。在这种情况下，<code>MyItem.qml</code>的基对象是一个<a href="../qtquick/qml-qtquick-item.html">Item</a>，它是由<a href="../qtquick/qquickitem.html">QQuickItem</a>类定义的<span lang="zh-cn">：</span></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtquick/qquickitem.html">QQuickItem</a></span> <span class="operator">*</span>item <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span><span class="type"><a href="../qtquick/qquickitem.html">QQuickItem</a></span><span class="operator">*</span><span class="operator">&gt;</span>(object);
+  item<span class="operator">-</span><span class="operator">&gt;</span>setWidth(<span class="number">500</span>);
+
+</pre>
+<p><font style="vertical-align: inherit;">您还可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html#invokeMethod-5"><font style="vertical-align: inherit;">QMetaObject::invokeMethod</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#connect-4"><font style="vertical-align: inherit;">QObject::connect</font></a><font style="vertical-align: inherit;"> ()<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#connect-4">连接</a>到组件中定义的任何信号或调用方法。有关更多详细信息，请参阅下面的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-interactqmlfromcpp.html#invoking-qml-methods"><font style="vertical-align: inherit;">调用 QML 方法</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-interactqmlfromcpp.html#connecting-to-qml-signals"><font style="vertical-align: inherit;">连接到 QML 信号</font></a><font style="vertical-align: inherit;">。</font></p>
+<a name="accessing-loaded-qml-objects-by-object-name"></a>
+<h2 id="accessing-loaded-qml-objects-by-object-name"><font style="vertical-align: inherit;">按对象名称访问加载的 QML 对象</font></h2>
+<p><font style="vertical-align: inherit;">QML 组件本质上是对象树，其子节点有兄弟节点和它们自己的子节点。QML 组件的子对象可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#objectName-prop"><font style="vertical-align: inherit;">QObject::objectName</font></a><font style="vertical-align: inherit;">属性和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#findChild"><font style="vertical-align: inherit;">QObject::findChild</font></a><font style="vertical-align: inherit;"> () 来定位。例如，如果根项中</font><code>MyItem.qml</code><font style="vertical-align: inherit;">有一个子</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-rectangle.html"><font style="vertical-align: inherit;">Rectangle</font></a><font style="vertical-align: inherit;">项：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">objectName</span>: <span class="string">&quot;rect&quot;</span>
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">孩子可以这样定位：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>rect <span class="operator">=</span> object<span class="operator">-</span><span class="operator">&gt;</span>findChild<span class="operator">&lt;</span><span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">*</span><span class="operator">&gt;</span>(<span class="string">&quot;rect&quot;</span>);
+  <span class="keyword">if</span> (rect)
+      rect<span class="operator">-</span><span class="operator">&gt;</span>setProperty(<span class="string">&quot;color&quot;</span><span class="operator">,</span> <span class="string">&quot;red&quot;</span>);
+
+</pre>
+<p><font style="vertical-align: inherit;">请注意，一个对象可能有多个具有相同</font><code>objectName</code><font style="vertical-align: inherit;">. 例如，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html"><font style="vertical-align: inherit;">ListView</font></a><font style="vertical-align: inherit;">创建其委托的多个实例，因此如果使用特定的 objectName 声明其委托，则</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html"><font style="vertical-align: inherit;">ListView</font></a><font style="vertical-align: inherit;">将有多个具有相同</font><code>objectName</code><font style="vertical-align: inherit;">. 在这种情况下，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#findChildren-1"><font style="vertical-align: inherit;">QObject::findChildren</font></a><font style="vertical-align: inherit;"> () 可用于查找具有匹配</font><code>objectName</code><font style="vertical-align: inherit;">.</font></p>
+<p><b><font style="vertical-align: inherit;">警告：</font></b><font style="vertical-align: inherit;">尽管可以从 C++ 访问 QML 对象并对其进行操作，但这不是推荐的方法，除了用于测试和原型设计目的。QML 和 C++ 集成的优势之一是能够在与 C++ 逻辑和数据集后端分离的 QML 中实现 UI，如果 C++ 端开始直接操作 QML，这将失败。这种方法还使得在不影响其 C++ 对应物的情况下更改 QML UI 变得困难。</font></p>
+<a name="accessing-members-of-a-qml-object-type-from-c"></a>
+<h2 id="accessing-members-of-a-qml-object-type-from-c"><font style="vertical-align: inherit;">从 C++ 访问 QML 对象类型的成员</font></h2>
+<a name="properties"></a>
+<h3 >属性</h3>
+<p><font style="vertical-align: inherit;">在 QML 对象中声明的任何属性都可以从 C++ 自动访问。给定一个像这样的 QML 项目：</font></p>
+<pre class="qml">
+
+  <span class="comment">// MyItem.qml</span>
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      property <span class="type"><a href="qml-int.html">int</a></span> <span class="name">someNumber</span>: <span class="number">100</span>
+  }
+
+</pre>
+<p><code>someNumber</code><font style="vertical-align: inherit;">可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html"><font style="vertical-align: inherit;">QQmlProperty</font></a><font style="vertical-align: inherit;">或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#setProperty"><font style="vertical-align: inherit;">QObject::setProperty</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#property"><font style="vertical-align: inherit;">QObject::property</font></a><font style="vertical-align: inherit;"> ()设置和读取属性的值：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="qqmlengine.html">QQmlEngine</a></span> engine;
+  <span class="type"><a href="qqmlcomponent.html">QQmlComponent</a></span> component(<span class="operator">&amp;</span>engine<span class="operator">,</span> <span class="string">&quot;MyItem.qml&quot;</span>);
+  <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object <span class="operator">=</span> component<span class="operator">.</span>create();
+
+  <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;Property value:&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="type"><a href="qqmlproperty.html">QQmlProperty</a></span><span class="operator">::</span>read(object<span class="operator">,</span> <span class="string">&quot;someNumber&quot;</span>)<span class="operator">.</span>toInt();
+  <span class="type"><a href="qqmlproperty.html">QQmlProperty</a></span><span class="operator">::</span>write(object<span class="operator">,</span> <span class="string">&quot;someNumber&quot;</span><span class="operator">,</span> <span class="number">5000</span>);
+
+  <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;Property value:&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> object<span class="operator">-</span><span class="operator">&gt;</span>property(<span class="string">&quot;someNumber&quot;</span>)<span class="operator">.</span>toInt();
+  object<span class="operator">-</span><span class="operator">&gt;</span>setProperty(<span class="string">&quot;someNumber&quot;</span><span class="operator">,</span> <span class="number">100</span>);
+
+</pre>
+<p><font style="vertical-align: inherit;">您应该始终使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#setProperty"><font style="vertical-align: inherit;">QObject::setProperty</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html"><font style="vertical-align: inherit;">QQmlProperty</font></a><font style="vertical-align: inherit;">或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaproperty.html#write"><font style="vertical-align: inherit;">QMetaProperty::write</font></a><font style="vertical-align: inherit;"> () 来更改 QML 属性值，以确保 QML 引擎知道属性更改。例如，假设您有一个自定义类型</font><code>PushButton</code><font style="vertical-align: inherit;">，其</font><code>buttonText</code><font style="vertical-align: inherit;">属性在内部反映</font><code>m_buttonText</code><font style="vertical-align: inherit;">成员变量的值。像这样直接修改成员变量不是一个好主意：</font></p>
+<pre class="cpp">
+
+  <span class="comment">//bad code</span>
+  <span class="type"><a href="qqmlcomponent.html">QQmlComponent</a></span> component(engine<span class="operator">,</span> <span class="string">&quot;MyButton.qml&quot;</span>);
+  PushButton <span class="operator">*</span>button <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>PushButton<span class="operator">*</span><span class="operator">&gt;</span>(component<span class="operator">.</span>create());
+  button<span class="operator">-</span><span class="operator">&gt;</span>m_buttonText <span class="operator">=</span> <span class="string">&quot;Click me&quot;</span>;
+
+</pre>
+<p><font style="vertical-align: inherit;">由于该值是直接更改的，因此绕过了 Qt 的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/metaobjects.html"><font style="vertical-align: inherit;">元对象系统</font></a><font style="vertical-align: inherit;">，并且 QML 引擎不会意识到属性更改。这意味着</font><code>buttonText</code><font style="vertical-align: inherit;">不会更新到的属性绑定，也不会</font><code>onButtonTextChanged</code><font style="vertical-align: inherit;">调用任何处理程序。</font></p>
+<a name="invoking-qml-methods"></a>
+<h3 ><font style="vertical-align: inherit;">调用 QML 方法</font></h3>
+<p><font style="vertical-align: inherit;">所有 QML 方法都暴露给元对象系统，并且可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html#invokeMethod-5"><font style="vertical-align: inherit;">QMetaObject::invokeMethod</font></a><font style="vertical-align: inherit;"> ()从 C++ 调用。从 QML 传递的方法参数和返回值总是在 C++ 中转换为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">值。</font></p>
+<p><font style="vertical-align: inherit;">这是一个使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html#invokeMethod-5"><font style="vertical-align: inherit;">QMetaObject::invokeMethod</font></a><font style="vertical-align: inherit;"> ()调用 QML 方法的 C++ 应用程序：</font></p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td >QML</td><td ><pre class="qml">
+
+  <span class="comment">// MyItem.qml</span>
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="keyword">function</span> <span class="name">myQmlFunction</span>(msg) {
+          <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Got message:&quot;</span>, <span class="name">msg</span>)
+          <span class="keyword">return</span> <span class="string">&quot;some return value&quot;</span>
+      }
+  }
+
+</pre>
+</td></tr>
+<tr valign="top" class="even"><td >C++</td><td ><pre class="cpp">
+
+  <span class="comment">// main.cpp</span>
+  <span class="type"><a href="qqmlengine.html">QQmlEngine</a></span> engine;
+  <span class="type"><a href="qqmlcomponent.html">QQmlComponent</a></span> component(<span class="operator">&amp;</span>engine<span class="operator">,</span> <span class="string">&quot;MyItem.qml&quot;</span>);
+  <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>object <span class="operator">=</span> component<span class="operator">.</span>create();
+
+  <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> returnedValue;
+  <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> msg <span class="operator">=</span> <span class="string">&quot;Hello from C++&quot;</span>;
+  <span class="type"><a href="../qtcore/qmetaobject.html">QMetaObject</a></span><span class="operator">::</span>invokeMethod(object<span class="operator">,</span> <span class="string">&quot;myQmlFunction&quot;</span><span class="operator">,</span>
+          Q_RETURN_ARG(<span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><span class="operator">,</span> returnedValue)<span class="operator">,</span>
+          Q_ARG(<span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><span class="operator">,</span> msg));
+
+  <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;QML function returned:&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> returnedValue<span class="operator">.</span>toString();
+  <span class="keyword">delete</span> object;
+
+</pre>
+</td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">注意<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html#invokeMethod-5">QMetaObject::invokeMethod</a> ()的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html#Q_RETURN_ARG"><font style="vertical-align: inherit;">Q_RETURN_ARG</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html#Q_ARG"><font style="vertical-align: inherit;">Q_ARG</font></a><font style="vertical-align: inherit;"> () 参数必须指定为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html">QVariant</a>类型，因为这是用于 QML 方法参数和返回值的通用数据类型。</font></p>
+<a name="connecting-to-qml-signals"></a>
+<h3 ><font style="vertical-align: inherit;">连接到 QML 信号</font></h3>
+<p><font style="vertical-align: inherit;">所有 QML 信号对 C++ 自动可用，并且可以像任何普通的 Qt C++ 信号一样使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#connect-4"><font style="vertical-align: inherit;">QObject::connect</font></a><font style="vertical-align: inherit;"> ()<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#connect-4">连接</a>。作为回报，QML 对象可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html"><font style="vertical-align: inherit;">信号处理程序</font></a><font style="vertical-align: inherit;">接收任何 C++ 信号。</font></p>
+<p><font style="vertical-align: inherit;">这是一个 QML 组件，带有一个名为的信号，该信号</font><code>qmlSignal</code><font style="vertical-align: inherit;">使用字符串类型参数发出。此信号使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#connect-4"><font style="vertical-align: inherit;">QObject::connect</font></a><font style="vertical-align: inherit;"> ()连接到 C++ 对象的插槽，以便</font><code>cppSlot()</code><font style="vertical-align: inherit;">在</font><code>qmlSignal</code><font style="vertical-align: inherit;">发出时调用该方法：</font></p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><pre class="qml">
+
+  <span class="comment">// MyItem.qml</span>
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">item</span>
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      signal <span class="type">qmlSignal</span>(string msg)
+
+      <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: <span class="name">item</span>.<span class="name">qmlSignal</span>(<span class="string">&quot;Hello from QML&quot;</span>)
+      }
+  }
+
+</pre>
+</td></tr>
+<tr valign="top" class="even"><td ><pre class="cpp">
+
+  <span class="keyword">class</span> MyClass : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
+  {
+      Q_OBJECT
+  <span class="keyword">public</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> cppSlot(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>msg) {
+          <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;Called the C++ slot with message:&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> msg;
+      }
+  };
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span>argv<span class="operator">[</span><span class="operator">]</span>) {
+      <span class="type"><a href="../qtgui/qguiapplication.html">QGuiApplication</a></span> app(argc<span class="operator">,</span> argv);
+
+      <span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span> view(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span><span class="operator">::</span>fromLocalFile(<span class="string">&quot;MyItem.qml&quot;</span>));
+      <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>item <span class="operator">=</span> view<span class="operator">.</span>rootObject();
+
+      MyClass myClass;
+      <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">::</span>connect(item<span class="operator">,</span> SIGNAL(qmlSignal(<span class="type"><a href="../qtcore/qstring.html">QString</a></span>))<span class="operator">,</span>
+                       <span class="operator">&amp;</span>myClass<span class="operator">,</span> SLOT(cppSlot(<span class="type"><a href="../qtcore/qstring.html">QString</a></span>)));
+
+      view<span class="operator">.</span>show();
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+</pre>
+</td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">当 QML 对象类型用作信号参数时，该参数应使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-var.html"><font style="vertical-align: inherit;">var</font></a><font style="vertical-align: inherit;">作为类型，并且应使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">类型在 C++ 中接收值：</font></p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><pre class="qml">
+
+  <span class="comment">// MyItem.qml</span>
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">item</span>
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      signal <span class="type">qmlSignal</span>(var anObject)
+
+      <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: <span class="name">item</span>.<span class="name">qmlSignal</span>(<span class="name">item</span>)
+      }
+  }
+
+</pre>
+</td><td ><pre class="cpp">
+
+  <span class="keyword">class</span> MyClass : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
+  {
+      Q_OBJECT
+  <span class="keyword">public</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> cppSlot(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> <span class="operator">&amp;</span>v) {
+         <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;Called the C++ slot with value:&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> v;
+
+         <span class="type"><a href="../qtquick/qquickitem.html">QQuickItem</a></span> <span class="operator">*</span>item <span class="operator">=</span>
+             qobject_cast<span class="operator">&lt;</span><span class="type"><a href="../qtquick/qquickitem.html">QQuickItem</a></span><span class="operator">*</span><span class="operator">&gt;</span>(v<span class="operator">.</span>value<span class="operator">&lt;</span><span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">*</span><span class="operator">&gt;</span>());
+         <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;Item dimensions:&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> item<span class="operator">-</span><span class="operator">&gt;</span>width()
+                  <span class="operator">&lt;</span><span class="operator">&lt;</span> item<span class="operator">-</span><span class="operator">&gt;</span>height();
+      }
+  };
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span>argv<span class="operator">[</span><span class="operator">]</span>) {
+      <span class="type"><a href="../qtwidgets/qapplication.html">QApplication</a></span> app(argc<span class="operator">,</span> argv);
+
+      <span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span> view(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span><span class="operator">::</span>fromLocalFile(<span class="string">&quot;MyItem.qml&quot;</span>));
+      <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>item <span class="operator">=</span> view<span class="operator">.</span>rootObject();
+
+      MyClass myClass;
+      <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">::</span>connect(item<span class="operator">,</span> SIGNAL(qmlSignal(<span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span>))<span class="operator">,</span>
+                       <span class="operator">&amp;</span>myClass<span class="operator">,</span> SLOT(cppSlot(<span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span>)));
+
+      view<span class="operator">.</span>show();
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+</pre>
+</td></tr>
+</table></div>
+</div>
+<!-- @@@qtqml-cppintegration-interactqmlfromcpp.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
