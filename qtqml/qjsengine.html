@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qjsengine.cpp -->
+  <title>QJSEngine  类 | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-module.html">C++ 类</a></td><td >QJSEngine</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">公用类型</a></li>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#static-public-members">静态公用成员</a></li>
+<li class="level1"><a href="#related-non-members">相关非成员</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#evaluating-scripts"><font style="vertical-align: inherit;">评估脚本</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#engine-configuration"><font style="vertical-align: inherit;">引擎配置</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#script-exceptions"><font style="vertical-align: inherit;">脚本异常</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#script-object-creation"><font style="vertical-align: inherit;">脚本对象创建</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#qobject-integration"><font style="vertical-align: inherit;">QObject集成</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#extensions"><font style="vertical-align: inherit;">扩展</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QJSEngine 类</h1>
+<!-- $$$QJSEngine-brief -->
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html">
+<font style="vertical-align: inherit;">QJSEngine</font></a><font style="vertical-align: inherit;">类提供了评估JavaScript代码的环境。</font> <a href="#details">更多...</a></p>
+<!-- @@@QJSEngine -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 头文件：</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QJSEngine&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.0</td></tr><tr><td class="memItemLeft rightAlign topAlign">继承自：</td><td class="memItemRight bottomAlign"> <a href="../qtcore/qobject.html">QObject</a></td></tr><tr><td class="memItemLeft rightAlign topAlign"> 被继承：</td><td class="memItemRight bottomAlign"> <p><a href="qqmlengine.html">QQmlEngine</a></p>
+</td></tr></table></div><ul>
+<li><a href="qjsengine-members.html"></a></li>
+<li><a href="qjsengine-obsolete.html">废弃的成员</a></li>
+</ul>
+<p><b>注意：</b> <font style="vertical-align: inherit;">该类中的所有函数都是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/threads-reentrancy.html"><font style="vertical-align: inherit;">可重入的</font></a><font style="vertical-align: inherit;">。</font></p>
+<a name="public-types"></a>
+<h2 id="public-types">公用类型</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#Extension-enum">Extension</a></b> { TranslationExtension, ConsoleExtension, GarbageCollectionExtension, AllExtensions }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> flags </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#Extension-enum">Extensions</a></b></td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#QJSEngine">QJSEngine</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#QJSEngine-1">QJSEngine</a></b>(QObject *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#dtor.QJSEngine">~QJSEngine</a></b>() override</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#collectGarbage">collectGarbage</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#evaluate">evaluate</a></b>(const QString &amp;<i>program</i>, const QString &amp;<i>fileName</i> = QString(), int <i>lineNumber</i> = 1)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> T </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#fromScriptValue">fromScriptValue</a></b>(const QJSValue &amp;<i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#globalObject">globalObject</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#importModule">importModule</a></b>(const QString &amp;<i>fileName</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#installExtensions">installExtensions</a></b>(QJSEngine::Extensions <i>extensions</i>, const QJSValue &amp;<i>object</i> = QJSValue())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#newArray">newArray</a></b>(uint <i>length</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#newErrorObject">newErrorObject</a></b>(QJSValue::ErrorType <i>errorType</i>, const QString &amp;<i>message</i> = QString())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#newObject">newObject</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#newQMetaObject">newQMetaObject</a></b>(const QMetaObject *<i>metaObject</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#newQMetaObject-1">newQMetaObject</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#newQObject">newQObject</a></b>(QObject *<i>object</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#throwError">throwError</a></b>(const QString &amp;<i>message</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#throwError-1">throwError</a></b>(QJSValue::ErrorType <i>errorType</i>, const QString &amp;<i>message</i> = QString())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#toScriptValue">toScriptValue</a></b>(const T &amp;<i>value</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn">31 个公用函数继承自<a href="../qtcore/qobject.html#public-functions">QObject</a></li>
+</ul>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">静态公用成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> const QMetaObject </td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#staticMetaObject-var">staticMetaObject</a></b></td></tr>
+</table></div>
+<ul>
+<li class="fn">9 个静态公用成员继承自<a href="../qtcore/qobject.html#static-public-members">QObject</a></li>
+</ul>
+<a name="related-non-members"></a>
+<h2 id="related-non-members">相关非成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> QJSEngine *</td><td class="memItemRight bottomAlign"><b><a href="qjsengine.html#qjsEnginex">qjsEngine</a></b>(const QObject *<i>object</i>)</td></tr>
+</table></div>
+<h3>额外的继承成员</h3>
+<ul>
+<li class="fn">1 个属性继承自<a href="../qtcore/qobject.html#properties">QObject</a></li>
+<li class="fn">1 个公用槽函数继承自<a href="../qtcore/qobject.html#public-slots">QObject</a></li>
+<li class="fn">2 个信号继承自<a href="../qtcore/qobject.html#signals">QObject</a></li>
+<li class="fn">9 个保护函数继承自<a href="../qtcore/qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QJSEngine-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html"><font style="vertical-align: inherit;">QJSEngine</font></a><font style="vertical-align: inherit;">类提供了评估JavaScript代码的环境。</font></p>
+<a name="evaluating-scripts"></a>
+<h3 ><font style="vertical-align: inherit;">评估脚本</font></h3>
+<p><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#evaluate"><font style="vertical-align: inherit;">evaluate</font></a><font style="vertical-align: inherit;"> () 来评估脚本代码。</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="qjsengine.html#QJSEngine">QJSEngine</a></span> myEngine;
+  <span class="type"><a href="qjsvalue.html">QJSValue</a></span> three <span class="operator">=</span> myEngine<span class="operator">.</span>evaluate(<span class="string">&quot;1 + 2&quot;</span>);
+
+</pre>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#evaluate"><font style="vertical-align: inherit;">evaluate</font></a><font style="vertical-align: inherit;"> () 返回一个保存评估结果的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">。所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">类提供的功能的结果转换为各种C ++类型（例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toString"><font style="vertical-align: inherit;">QJSValue ::的toString</font></a><font style="vertical-align: inherit;">（）和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toNumber"><font style="vertical-align: inherit;">QJSValue :: toNumber</font></a><font style="vertical-align: inherit;">（））。</font></p>
+<p><font style="vertical-align: inherit;">以下代码片段显示了如何定义脚本函数，然后使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#call"><font style="vertical-align: inherit;">QJSValue::call</font></a><font style="vertical-align: inherit;"> ()从 C++<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#call">调用</a>：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="qjsvalue.html">QJSValue</a></span> fun <span class="operator">=</span> myEngine<span class="operator">.</span>evaluate(<span class="string">&quot;(function(a, b) { return a + b; })&quot;</span>);
+  <span class="type"><a href="qjsvalue.html#QJSValueList-typedef">QJSValueList</a></span> args;
+  args <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="number">1</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="number">2</span>;
+  <span class="type"><a href="qjsvalue.html">QJSValue</a></span> threeAgain <span class="operator">=</span> fun<span class="operator">.</span>call(args);
+
+</pre>
+<p><font style="vertical-align: inherit;">从上面的片段可以看出，脚本以字符串的形式提供给引擎。加载脚本的一种常见方法是读取文件的内容并将其传递给</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#evaluate"><font style="vertical-align: inherit;">evaluate</font></a><font style="vertical-align: inherit;"> ()：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> fileName <span class="operator">=</span> <span class="string">&quot;helloworld.qs&quot;</span>;
+  <span class="type"><a href="../qtcore/qfile.html">QFile</a></span> scriptFile(fileName);
+  <span class="keyword">if</span> (<span class="operator">!</span>scriptFile<span class="operator">.</span>open(<span class="type"><a href="../qtcore/qiodevice.html">QIODevice</a></span><span class="operator">::</span>ReadOnly))
+      <span class="comment">// handle error</span>
+  <span class="type"><a href="../qtcore/qtextstream.html">QTextStream</a></span> stream(<span class="operator">&amp;</span>scriptFile);
+  <span class="type"><a href="../qtcore/qstring.html">QString</a></span> contents <span class="operator">=</span> stream<span class="operator">.</span>readAll();
+  scriptFile<span class="operator">.</span>close();
+  myEngine<span class="operator">.</span>evaluate(contents<span class="operator">,</span> fileName);
+
+</pre>
+<p><font style="vertical-align: inherit;">这里我们将文件名作为第二个参数传递给</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#evaluate"><font style="vertical-align: inherit;">evaluate</font></a><font style="vertical-align: inherit;"> ()。这不会以任何方式影响评估；第二个参数是存储在</font><code>Error</code><font style="vertical-align: inherit;">对象中用于调试的通用字符串。</font></p>
+<p><font style="vertical-align: inherit;">对于更大的功能块，您可能希望将代码和数据封装到模块中。模块是包含脚本代码、变量等的文件，并使用导出语句来描述其与应用程序其余部分的接口。在导入语句的帮助下，一个模块可以引用其他模块的功能。这允许以安全的方式从较小的连接构建块构建脚本化应用程序。相比之下，使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#evaluate"><font style="vertical-align: inherit;">evaluate</font></a><font style="vertical-align: inherit;"> ()的方法存在风险，即来自一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#evaluate"><font style="vertical-align: inherit;">evaluate</font></a><font style="vertical-align: inherit;"> () 调用的内部变量或函数意外污染全局对象并影响后续评估。</font></p>
+<p><font style="vertical-align: inherit;">以下示例提供了一个可以添加数字的模块：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">export</span> function sum(left<span class="operator">,</span> right)
+  {
+      <span class="keyword">return</span> left <span class="operator">+</span> right
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">如果该模块保存在名称下，则可以使用 QJSEngine::import() 加载它</font><code>math.mjs</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  <span class="type">QJSvalue</span> module <span class="operator">=</span> myEngine<span class="operator">.</span>importModule(<span class="string">&quot;./math.mjs&quot;</span>);
+  <span class="type"><a href="qjsvalue.html">QJSValue</a></span> sumFunction <span class="operator">=</span> module<span class="operator">.</span>property(<span class="string">&quot;sum&quot;</span>);
+  <span class="type"><a href="qjsvalue.html">QJSValue</a></span> result <span class="operator">=</span> sumFunction<span class="operator">.</span>call(args);
+
+</pre>
+<p><font style="vertical-align: inherit;">模块还可以使用 import 语句使用其他模块的功能：</font></p>
+<pre class="cpp">
+
+  import { sum } from <span class="string">&quot;./math.mjs&quot;</span>;
+  <span class="keyword">export</span> function addTwice(left<span class="operator">,</span> right)
+  {
+      <span class="keyword">return</span> sum(left<span class="operator">,</span> right) <span class="operator">*</span> <span class="number">2</span>;
+  }
+
+</pre>
+<a name="engine-configuration"></a>
+<h3 ><font style="vertical-align: inherit;">引擎配置</font></h3>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#globalObject"><font style="vertical-align: inherit;">globalObject</font></a><font style="vertical-align: inherit;">（）函数返回</font><b><font style="vertical-align: inherit;">全局对象</font></b><font style="vertical-align: inherit;">与脚本引擎相关联。全局对象的属性可以从任何脚本代码访问（即它们是全局变量）。通常，在评估“用户”脚本之前，您需要通过向全局对象添加一个或多个属性来配置脚本引擎：</font></p>
+<pre class="cpp">
+
+  myEngine<span class="operator">.</span>globalObject()<span class="operator">.</span>setProperty(<span class="string">&quot;myNumber&quot;</span><span class="operator">,</span> <span class="number">123</span>);
+  <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+  <span class="type"><a href="qjsvalue.html">QJSValue</a></span> myNumberPlusOne <span class="operator">=</span> myEngine<span class="operator">.</span>evaluate(<span class="string">&quot;myNumber + 1&quot;</span>);
+
+</pre>
+<p><font style="vertical-align: inherit;">向脚本环境添加自定义属性是提供特定于您的应用程序的脚本 API 的标准方法之一。通常这些自​​定义属性是由</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newQObject"><font style="vertical-align: inherit;">newQObject</font></a><font style="vertical-align: inherit;"> () 或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newObject"><font style="vertical-align: inherit;">newObject</font></a><font style="vertical-align: inherit;"> () 函数创建的对象。</font></p>
+<a name="script-exceptions"></a>
+<h3 ><font style="vertical-align: inherit;">脚本异常</font></h3>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#evaluate"><font style="vertical-align: inherit;">evaluate</font></a><font style="vertical-align: inherit;"> () 可以抛出脚本异常（例如由于语法错误）。如果是，则</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#evaluate"><font style="vertical-align: inherit;">evaluate</font></a><font style="vertical-align: inherit;"> () 返回抛出的值（通常是一个</font><code>Error</code><font style="vertical-align: inherit;">对象）。使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isError"><font style="vertical-align: inherit;">QJSValue::isError</font></a><font style="vertical-align: inherit;"> () 检查异常。</font></p>
+<p><font style="vertical-align: inherit;">错误的详细信息可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toString"><font style="vertical-align: inherit;">QJSValue::toString</font></a><font style="vertical-align: inherit;"> ()获取错误信息，使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#property"><font style="vertical-align: inherit;">QJSValue::property</font></a><font style="vertical-align: inherit;"> ()查询</font><code>Error</code><font style="vertical-align: inherit;">对象的属性。以下属性可用：</font></p>
+<ul>
+<li><code>name</code></li>
+<li><code>message</code></li>
+<li><code>fileName</code></li>
+<li><code>lineNumber</code></li>
+<li><code>stack</code></li>
+</ul>
+<pre class="cpp">
+
+  <span class="type"><a href="qjsvalue.html">QJSValue</a></span> result <span class="operator">=</span> myEngine<span class="operator">.</span>evaluate(<span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>);
+  <span class="keyword">if</span> (result<span class="operator">.</span>isError())
+      <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>()
+              <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;Uncaught exception at line&quot;</span>
+              <span class="operator">&lt;</span><span class="operator">&lt;</span> result<span class="operator">.</span>property(<span class="string">&quot;lineNumber&quot;</span>)<span class="operator">.</span>toInt()
+              <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;:&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> result<span class="operator">.</span>toString();
+
+</pre>
+<a name="script-object-creation"></a>
+<h3 ><font style="vertical-align: inherit;">脚本对象创建</font></h3>
+<p><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newObject"><font style="vertical-align: inherit;">newObject</font></a><font style="vertical-align: inherit;"> () 创建一个 JavaScript 对象；这是脚本语句的 C++ 等效项</font><code>new Object()</code><font style="vertical-align: inherit;">。您可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue 中</font></a><font style="vertical-align: inherit;">特定于对象的功能来操作脚本对象（例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#setProperty"><font style="vertical-align: inherit;">QJSValue::setProperty</font></a><font style="vertical-align: inherit;"> ()）。同样，使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newArray"><font style="vertical-align: inherit;">newArray</font></a><font style="vertical-align: inherit;"> () 创建一个 JavaScript 数组对象。</font></p>
+<a name="qobject-integration"></a>
+<h3 ><font style="vertical-align: inherit;">QObject集成</font></h3>
+<p><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newQObject"><font style="vertical-align: inherit;">newQObject</font></a><font style="vertical-align: inherit;"> () 包装一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">（或子类）指针。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newQObject"><font style="vertical-align: inherit;">newQObject</font></a><font style="vertical-align: inherit;"> () 返回一个代理脚本对象；</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject 的</font></a><font style="vertical-align: inherit;">属性、子对象以及信号和槽可用作代理对象的属性。不需要绑定代码，因为它是使用 Qt 元对象系统动态完成的。</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtwidgets/qpushbutton.html">QPushButton</a></span> <span class="operator">*</span>button <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="../qtwidgets/qpushbutton.html">QPushButton</a></span>;
+  <span class="type"><a href="qjsvalue.html">QJSValue</a></span> scriptButton <span class="operator">=</span> myEngine<span class="operator">.</span>newQObject(button);
+  myEngine<span class="operator">.</span>globalObject()<span class="operator">.</span>setProperty(<span class="string">&quot;button&quot;</span><span class="operator">,</span> scriptButton);
+
+  myEngine<span class="operator">.</span>evaluate(<span class="string">&quot;button.checkable = true&quot;</span>);
+
+  <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> scriptButton<span class="operator">.</span>property(<span class="string">&quot;checkable&quot;</span>)<span class="operator">.</span>toBool();
+  scriptButton<span class="operator">.</span>property(<span class="string">&quot;show&quot;</span>)<span class="operator">.</span>call(); <span class="comment">// call the show() slot</span>
+
+</pre>
+<p><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newQMetaObject-1"><font style="vertical-align: inherit;">newQMetaObject</font></a><font style="vertical-align: inherit;"> () 包装一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html"><font style="vertical-align: inherit;">QMetaObject</font></a><font style="vertical-align: inherit;">；这为您提供了基于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">的类的“脚本表示” 。</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newQMetaObject-1"><font style="vertical-align: inherit;">newQMetaObject</font></a><font style="vertical-align: inherit;"> () 返回一个代理脚本对象；类的枚举值可用作代理对象的属性。</font></p>
+<p><font style="vertical-align: inherit;">暴露给元对象系统的构造函数（使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE"><font style="vertical-align: inherit;">Q_INVOKABLE</font></a><font style="vertical-align: inherit;">）可以从脚本中调用以创建一个带有 JavaScriptOwnership的新</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">实例。例如，给定以下类定义：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> MyObject : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span>
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      Q_INVOKABLE MyObject() {}
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">在</font><code>staticMetaObject</code><font style="vertical-align: inherit;">为类可以接触到的JavaScript像这样：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="qjsvalue.html">QJSValue</a></span> jsMetaObject <span class="operator">=</span> engine<span class="operator">.</span>newQMetaObject(<span class="operator">&amp;</span>MyObject<span class="operator">::</span>staticMetaObject);
+  engine<span class="operator">.</span>globalObject()<span class="operator">.</span>setProperty(<span class="string">&quot;MyObject&quot;</span><span class="operator">,</span> jsMetaObject);
+
+</pre>
+<p><font style="vertical-align: inherit;">然后可以在 JavaScript 中创建类的实例：</font></p>
+<pre class="cpp">
+
+  engine<span class="operator">.</span>evaluate(<span class="string">&quot;var myObject = new MyObject()&quot;</span>);
+
+</pre>
+<p><b>注意： </b><font style="vertical-align: inherit;">目前只支持使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_OBJECT"><font style="vertical-align: inherit;">Q_OBJECT</font></a><font style="vertical-align: inherit;">宏的类；这是不可能揭露</font><code>staticMetaObject</code><font style="vertical-align: inherit;">一个的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_GADGET"><font style="vertical-align: inherit;">Q_GADGET</font></a><font style="vertical-align: inherit;">类的JavaScript。</font></p><a name="dynamic-qobject-properties"></a>
+<h4 ><font style="vertical-align: inherit;">动态 QObject 属性</font></h4>
+<p><font style="vertical-align: inherit;">不支持动态</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">属性。例如，以下代码将不起作用：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="qjsengine.html#QJSEngine">QJSEngine</a></span> engine;
+
+  <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> <span class="operator">*</span>myQObject <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span>();
+  myQObject<span class="operator">-</span><span class="operator">&gt;</span>setProperty(<span class="string">&quot;dynamicProperty&quot;</span><span class="operator">,</span> <span class="number">3</span>);
+
+  <span class="type"><a href="qjsvalue.html">QJSValue</a></span> myScriptQObject <span class="operator">=</span> engine<span class="operator">.</span>newQObject(myQObject);
+  engine<span class="operator">.</span>globalObject()<span class="operator">.</span>setProperty(<span class="string">&quot;myObject&quot;</span><span class="operator">,</span> myScriptQObject);
+
+  <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> engine<span class="operator">.</span>evaluate(<span class="string">&quot;myObject.dynamicProperty&quot;</span>)<span class="operator">.</span>toInt();
+
+</pre>
+<a name="extensions"></a>
+<h3 ><font style="vertical-align: inherit;">扩展</font></h3>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html"><font style="vertical-align: inherit;">QJSEngine</font></a><font style="vertical-align: inherit;">提供了一个兼容的 ECMAScript 实现。默认情况下，像日志这样熟悉的实用程序不可用，但可以通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#installExtensions"><font style="vertical-align: inherit;">installExtensions</font></a><font style="vertical-align: inherit;"> () 函数安装它们。</font></p>
+</div>
+<p><b>请参考 </b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtjavascript.html"><font style="vertical-align: inherit;">使应用程序可编写脚本</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-functionlist.html"><font style="vertical-align: inherit;">JavaScript 对象和函数列表</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@QJSEngine -->
+<div class="types">
+<h2>成员类型文档</h2>
+<!-- $$$Extension$$$TranslationExtension$$$ConsoleExtension$$$GarbageCollectionExtension$$$AllExtensions -->
+<h3 class="flags" id="Extension-enum"><a name="Extension-enum"></a>enum QJSEngine::<span class="name">Extension</span><br/>flags QJSEngine::<span class="name">Extensions</span></h3>
+<p><font style="vertical-align: inherit;">此枚举用于指定要通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#installExtensions"><font style="vertical-align: inherit;">installExtensions</font></a><font style="vertical-align: inherit;">()安装的扩展。</font></p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">
+	<span lang="zh-cn">常量</span></th><th class="tblval"><span lang="zh-cn">值</span></th><th class="tbldscr">
+	<span lang="zh-cn">描述</span></th></tr>
+<tr><td class="topAlign"><code>QJSEngine::TranslationExtension</code></td><td class="topAlign tblval"><code>0x1</code></td><td class="topAlign"><font style="vertical-align: inherit;">表示</font><code>qsTr()</code><font style="vertical-align: inherit;">应安装翻译功能（例如）。</font></td></tr>
+<tr><td class="topAlign"><code>QJSEngine::ConsoleExtension</code></td><td class="topAlign tblval"><code>0x2</code></td><td class="topAlign"><font style="vertical-align: inherit;">指示</font><code>console.log()</code><font style="vertical-align: inherit;">应安装控制台功能（例如）。</font></td></tr>
+<tr><td class="topAlign"><code>QJSEngine::GarbageCollectionExtension</code></td><td class="topAlign tblval"><code>0x4</code></td><td class="topAlign"><font style="vertical-align: inherit;">指示</font><code>gc()</code><font style="vertical-align: inherit;">应安装垃圾收集功能（例如）。</font></td></tr>
+<tr><td class="topAlign"><code>QJSEngine::AllExtensions</code></td><td class="topAlign tblval"><code>0xffffffff</code></td><td class="topAlign">
+	<font style="vertical-align: inherit;">表示应安装所有扩展。</font></td></tr>
+</table></div>
+<p><b><font style="vertical-align: inherit;">翻译扩展</font></b></p>
+<p><font style="vertical-align: inherit;">脚本翻译函数和C++翻译函数的关系如下表所示：</font></p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th ><font style="vertical-align: inherit;">脚本函数</font></th><th ><font style="vertical-align: inherit;">对应的C++函数</font></th></tr></thead>
+<tr valign="top" class="odd"><td >qsTr()</td><td ><a href="../qtcore/qobject.html#tr">QObject::tr</a>()</td></tr>
+<tr valign="top" class="even"><td ><a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a>()</td><td ><a href="../qtcore/qtglobal.html#QT_TR_NOOP">QT_TR_NOOP</a>()</td></tr>
+<tr valign="top" class="odd"><td >qsTranslate()</td><td >QCoreApplication::translate()</td></tr>
+<tr valign="top" class="even"><td ><a href="../qtcore/qtglobal.html#QT_TRANSLATE_NOOP">QT_TRANSLATE_NOOP</a>()</td><td ><a href="../qtcore/qtglobal.html#QT_TRANSLATE_NOOP">QT_TRANSLATE_NOOP</a>()</td></tr>
+<tr valign="top" class="odd"><td >qsTrId()</td><td ><a href="../qtcore/qtglobal.html#qtTrId">qtTrId</a>()</td></tr>
+<tr valign="top" class="even"><td ><a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP</a>()</td><td ><a href="../qtcore/qtglobal.html#QT_TRID_NOOP">QT_TRID_NOOP</a>()</td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">此标志还</font><code>arg()</code><font style="vertical-align: inherit;">为字符串原型添加了一个函数。</font></p>
+<p><font style="vertical-align: inherit;">有关更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/internationalization.html"><font style="vertical-align: inherit;">Qt 国际化</font></a><font style="vertical-align: inherit;">文档。</font></p>
+<p><b><font style="vertical-align: inherit;">控制台扩展</font></b></p>
+<p><font style="vertical-align: inherit;">所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/qtquick-debugging.html#console-api"><font style="vertical-align: inherit;">控制台</font></a><font style="vertical-align: inherit;">对象实现的一个子集</font><a href="https://developer.mozilla.org/en-US/docs/Web/API/Console"><font style="vertical-align: inherit;">控制台API</font></a><font style="vertical-align: inherit;">，其提供熟悉的记录功能，如</font><code>console.log()</code><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">添加的功能列表如下：</font></p>
+<ul>
+<li><code>console.assert()</code></li>
+<li><code>console.debug()</code></li>
+<li><code>console.exception()</code></li>
+<li><code>console.info()</code></li>
+<li><code>console.log()</code> (equivalent to <code>console.debug()</code>)</li>
+<li><code>console.error()</code></li>
+<li><code>console.time()</code></li>
+<li><code>console.timeEnd()</code></li>
+<li><code>console.trace()</code></li>
+<li><code>console.count()</code></li>
+<li><code>console.warn()</code></li>
+<li><code>print()</code> (equivalent to <code>console.debug()</code>)</li>
+</ul>
+<p><font style="vertical-align: inherit;">有关更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/qtquick-debugging.html#console-api"><font style="vertical-align: inherit;">控制台 API</font></a><font style="vertical-align: inherit;">文档。</font></p>
+<p><b><font style="vertical-align: inherit;">垃圾收集扩展</font></b></p>
+<p><font style="vertical-align: inherit;">该</font><code>gc()</code><font style="vertical-align: inherit;">函数相当于调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#collectGarbage"><font style="vertical-align: inherit;">collectGarbage</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<p><font style="vertical-align: inherit;">Extensions 类型是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qflags.html"><font style="vertical-align: inherit;">QFlags</font></a><font style="vertical-align: inherit;"> &lt;Extension&gt;的 typedef 。它存储扩展值的 OR 组合。</font></p>
+<!-- @@@Extension -->
+</div>
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QJSEngine[overload1]$$$QJSEngine -->
+<h3 class="fn" id="QJSEngine"><a name="QJSEngine"></a>QJSEngine::<span class="name">QJSEngine</span>()</h3>
+<p><font style="vertical-align: inherit;">构造一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html"><font style="vertical-align: inherit;">QJSEngine</font></a><font style="vertical-align: inherit;">对象。</font></p>
+<p><font style="vertical-align: inherit;">所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#globalObject"><font style="vertical-align: inherit;">globalObject</font></a><font style="vertical-align: inherit;">（）初始化为具有特性如上述</font><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm"><font style="vertical-align: inherit;">ECMA-262</font></a><font style="vertical-align: inherit;">，第15.1节。</font></p>
+<!-- @@@QJSEngine -->
+<!-- $$$QJSEngine$$$QJSEngineQObject* -->
+<h3 class="fn" id="QJSEngine-1"><a name="QJSEngine-1"></a>QJSEngine::<span class="name">QJSEngine</span>(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>parent</i>)</h3>
+<p><font style="vertical-align: inherit;">使用给定的<i>parent</i>构造一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html"><font style="vertical-align: inherit;">QJSEngine</font></a><font style="vertical-align: inherit;">对象。</font></p>
+<p><font style="vertical-align: inherit;">所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#globalObject"><font style="vertical-align: inherit;">globalObject</font></a><font style="vertical-align: inherit;">（）初始化为具有特性如上述</font><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm"><font style="vertical-align: inherit;">ECMA-262</font></a><font style="vertical-align: inherit;">，第15.1节。</font></p>
+<!-- @@@QJSEngine -->
+<!-- $$$~QJSEngine[overload1]$$$~QJSEngine -->
+<h3 class="fn" id="dtor.QJSEngine"><a name="dtor.QJSEngine"></a><code>[override virtual] </code>QJSEngine::<span class="name">~QJSEngine</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁这个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html"><font style="vertical-align: inherit;">QJSEngine</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html"><font style="vertical-align: inherit;">QJSEngine</font></a><font style="vertical-align: inherit;">销毁期间，不会从持久性 JS 堆中收集垃圾。如果你需要释放所有的内存，调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#collectGarbage"><font style="vertical-align: inherit;">collectGarbage</font></a><font style="vertical-align: inherit;">权消灭之前手动</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html"><font style="vertical-align: inherit;">QJSEngine</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@~QJSEngine -->
+<!-- $$$collectGarbage[overload1]$$$collectGarbage -->
+<h3 class="fn" id="collectGarbage"><a name="collectGarbage"></a><span class="type">void</span> QJSEngine::<span class="name">collectGarbage</span>()</h3>
+<p><font style="vertical-align: inherit;">运行垃圾收集器。</font></p>
+<p><font style="vertical-align: inherit;">垃圾收集器将尝试通过定位和处理脚本环境中不再可访问的对象来回收内存。</font></p>
+<p><font style="vertical-align: inherit;">通常你不需要调用这个函数；当</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html"><font style="vertical-align: inherit;">QJSEngine</font></a><font style="vertical-align: inherit;">认为这样做是明智的（即当创建了一定数量的新对象时），垃圾收集器将自动被调用。但是，您可以调用此函数来明确请求应尽快执行垃圾收集。</font></p>
+<!-- @@@collectGarbage -->
+<!-- $$$evaluate[overload1]$$$evaluateconstQString&constQString&int -->
+<h3 class="fn" id="evaluate"><a name="evaluate"></a><span class="type"><a href="qjsvalue.html">QJSValue</a></span> QJSEngine::<span class="name">evaluate</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>program</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>fileName</i> = QString(), <span class="type">int</span> <i>lineNumber</i> = 1)</h3>
+<p><font style="vertical-align: inherit;">评估</font><i><font style="vertical-align: inherit;">program</font></i><font style="vertical-align: inherit;">，使用</font><i><font style="vertical-align: inherit;">lineNumber</font></i><font style="vertical-align: inherit;">作为基线编号，并返回评估结果。</font></p>
+<p><font style="vertical-align: inherit;">脚本代码将在全局对象的上下文中进行评估。</font></p>
+<p><i>program</i><font style="vertical-align: inherit;">的评估会导致引擎</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#script-exceptions"><font style="vertical-align: inherit;">异常</font></a><font style="vertical-align: inherit;">；在这种情况下，返回值将是抛出的异常（通常是一个</font><code>Error</code><font style="vertical-align: inherit;">对象；参见</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isError"><font style="vertical-align: inherit;">QJSValue::isError</font></a><font style="vertical-align: inherit;"> ()）。</font></p>
+<p><i>lineNumber</i> <font style="vertical-align: inherit;">被用于指定一个开始行号</font><i><font style="vertical-align: inherit;">程序</font></i><font style="vertical-align: inherit;">; 引擎报告的与此评估有关的行号信息将基于此参数。例如，如果</font><i><font style="vertical-align: inherit;">程序</font></i><font style="vertical-align: inherit;">由两行代码组成，并且第二行的语句导致脚本异常，则异常行号将为</font><i><font style="vertical-align: inherit;">lineNumber</font></i><font style="vertical-align: inherit;">加 1。当未指定起始行号时，行号将从 1 开始。</font></p>
+<p><i><font style="vertical-align: inherit;">fileName</font></i><font style="vertical-align: inherit;">用于错误报告。例如，在错误对象中，如果此函数提供了文件名，则可以通过“fileName”属性访问文件名。</font></p>
+<p><b>注意： </b><font style="vertical-align: inherit;">如果抛出异常且异常值不是Error实例（即</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isError"><font style="vertical-align: inherit;">QJSValue::isError</font></a><font style="vertical-align: inherit;"> ()返回</font><code>false</code><font style="vertical-align: inherit;">），仍会返回异常值，但目前没有检测异常的API这个案例。</font></p><!-- @@@evaluate -->
+<!-- $$$fromScriptValue[overload1]$$$fromScriptValueconstQJSValue& -->
+<h3 class="fn" id="fromScriptValue"><a name="fromScriptValue"></a><span class="type">T</span> QJSEngine::<span class="name">fromScriptValue</span>(const <span class="type"><a href="qjsvalue.html">QJSValue</a></span> &amp;<i>value</i>)</h3>
+<p><font style="vertical-align: inherit;">返回转换为模板类型的给定<i>value<span lang="zh-cn">
+</span></i></font><code>T</code><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qjsengine.html#toScriptValue">toScriptValue</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@fromScriptValue -->
+<!-- $$$globalObject[overload1]$$$globalObject -->
+<h3 class="fn" id="globalObject"><a name="globalObject"></a><span class="type"><a href="qjsvalue.html">QJSValue</a></span> QJSEngine::<span class="name">globalObject</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回此引擎的全局对象。</font></p>
+<p><font style="vertical-align: inherit;">默认情况下，全局对象包含属于</font><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm"><font style="vertical-align: inherit;">ECMA-262</font></a><font style="vertical-align: inherit;">一部分的内置对象，例如 Math、Date 和 String。此外，您可以设置全局对象的属性，使您自己的扩展可用于所有脚本代码。脚本代码中的非局部变量将被创建为全局对象的属性，以及全局代码中的局部变量。</font></p>
+<!-- @@@globalObject -->
+<!-- $$$importModule[overload1]$$$importModuleconstQString& -->
+<h3 class="fn" id="importModule"><a name="importModule"></a><span class="type"><a href="qjsvalue.html">QJSValue</a></span> QJSEngine::<span class="name">importModule</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>fileName</i>)</h3>
+<p><font style="vertical-align: inherit;">导入位于</font><i><font style="vertical-align: inherit;">fileName</font></i><font style="vertical-align: inherit;">的模块并返回一个模块命名空间对象，该对象包含所有导出的变量、常量和函数作为属性。</font></p>
+<p><font style="vertical-align: inherit;">如果这是第一次在引擎中导入模块，则文件将从本地文件系统或 Qt 资源系统中的指定位置加载，并作为 ECMAScript 模块进行评估。该文件应以 UTF-8 文本编码。</font></p>
+<p><font style="vertical-align: inherit;">同一模块的后续导入将返回先前导入的实例。模块是单例的，会一直存在，直到引擎被摧毁。</font></p>
+<p><font style="vertical-align: inherit;">指定的</font><i><font style="vertical-align: inherit;">fileName </font></i>
+<font style="vertical-align: inherit;">将在内部使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qfileinfo.html#canonicalFilePath"><font style="vertical-align: inherit;">QFileInfo::canonicalFilePath</font></a><font style="vertical-align: inherit;"> ()进行规范化。这意味着使用不同的相对路径在磁盘上多次导入同一文件只会加载该文件一次。</font></p>
+<p><b>注意： </b><font style="vertical-align: inherit;">如果在加载模块过程中抛出异常，返回值将是异常（通常是一个</font><code>Error</code><font style="vertical-align: inherit;">对象；参见</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isError"><font style="vertical-align: inherit;">QJSValue::isError</font></a><font style="vertical-align: inherit;"> ()）。</font></p><p>这个函数在Qt 5.12中引入。</p>
+<!-- @@@importModule -->
+<!-- $$$installExtensions[overload1]$$$installExtensionsQJSEngine::ExtensionsconstQJSValue& -->
+<h3 class="fn" id="installExtensions"><a name="installExtensions"></a><span class="type">void</span> QJSEngine::<span class="name">installExtensions</span>(<span class="type"><a href="qjsengine.html#Extension-enum">QJSEngine::Extensions</a></span> <i>extensions</i>, const <span class="type"><a href="qjsvalue.html">QJSValue</a></span> &amp;<i>object</i> = QJSValue())</h3>
+<p><font style="vertical-align: inherit;">安装 JavaScript</font><i><font style="vertical-align: inherit;"><span lang="zh-cn"> extensions（</span>扩展<span lang="zh-cn">）</span></font></i><font style="vertical-align: inherit;">以添加标准 ECMAScript 实现中不可用的功能。</font></p>
+<p><font style="vertical-align: inherit;">扩展安装在给定的<i>object</i> 
+<span lang="zh-cn">（</span></font><i><font style="vertical-align: inherit;">对象<span lang="zh-cn">）</span>上</font></i><font style="vertical-align: inherit;">，如果没有指定<i>object</i> 
+<span lang="zh-cn">（</span><i>对象<span lang="zh-cn">）</span></i>，则安装在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#globalObject"><font style="vertical-align: inherit;">全局对象上</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">可以通过</font><code>OR</code><font style="vertical-align: inherit;">-ing 枚举值一次安装多个扩展：</font></p>
+<pre class="cpp">
+
+  installExtensions(<span class="type"><a href="qjsengine.html#QJSEngine">QJSEngine</a></span><span class="operator">::</span>TranslationExtension <span class="operator">|</span> <span class="type"><a href="qjsengine.html#QJSEngine">QJSEngine</a></span><span class="operator">::</span>ConsoleExtension);
+
+</pre>
+<p>这个函数在Qt 5.6中引入。</p>
+<p><b>请参考 </b><a href="qjsengine.html#Extension-enum">Extension</a><span lang="zh-cn">。</span></p>
+<!-- @@@installExtensions -->
+<!-- $$$newArray[overload1]$$$newArrayuint -->
+<h3 class="fn" id="newArray"><a name="newArray"></a><span class="type"><a href="qjsvalue.html">QJSValue</a></span> QJSEngine::<span class="name">newArray</span>(<span class="type"><a href="../qtcore/qtglobal.html#uint-typedef">uint</a></span> <i>length</i> = 0)</h3>
+<p><font style="vertical-align: inherit;">创建一个具有给定</font><i>length</i> <i>
+<font style="vertical-align: inherit;">的</font></i><font style="vertical-align: inherit;">Array 类的 JavaScript 对象。</font></p>
+<p><b>请参考 </b><a href="qjsengine.html#newObject">newObject</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@newArray -->
+<!-- $$$newErrorObject[overload1]$$$newErrorObjectQJSValue::ErrorTypeconstQString& -->
+<h3 class="fn" id="newErrorObject"><a name="newErrorObject"></a><span class="type"><a href="qjsvalue.html">QJSValue</a></span> QJSEngine::<span class="name">newErrorObject</span>(<span class="type"><a href="qjsvalue.html#ErrorType-enum">QJSValue::ErrorType</a></span> <i>errorType</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>message</i> = QString())</h3>
+<p><font style="vertical-align: inherit;">创建一个 Error 类的 JavaScript 对象。</font></p>
+<p><font style="vertical-align: inherit;">创建的对象的原型将是</font><i><font style="vertical-align: inherit;">errorType</font></i><font style="vertical-align: inherit;">。</font></p>
+<p>这个函数在Qt 5.12中引入。</p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newObject"><font style="vertical-align: inherit;">newObject</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#throwError"><font style="vertical-align: inherit;">throwError</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isError"><font style="vertical-align: inherit;">QJSValue::isError</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@newErrorObject -->
+<!-- $$$newObject[overload1]$$$newObject -->
+<h3 class="fn" id="newObject"><a name="newObject"></a><span class="type"><a href="qjsvalue.html">QJSValue</a></span> QJSEngine::<span class="name">newObject</span>()</h3>
+<p><font style="vertical-align: inherit;">创建一个 Object 类的 JavaScript 对象。</font></p>
+<p><font style="vertical-align: inherit;">创建的对象的原型将是 Object 原型对象。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newArray"><font style="vertical-align: inherit;">newArray</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#setProperty"><font style="vertical-align: inherit;">QJSValue::setProperty</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@newObject -->
+<!-- $$$newQMetaObject[overload1]$$$newQMetaObjectconstQMetaObject* -->
+<h3 class="fn" id="newQMetaObject"><a name="newQMetaObject"></a><span class="type"><a href="qjsvalue.html">QJSValue</a></span> QJSEngine::<span class="name">newQMetaObject</span>(const <span class="type"><a href="../qtcore/qmetaobject.html">QMetaObject</a></span> *<i>metaObject</i>)</h3>
+<p><font style="vertical-align: inherit;">创建一个包含给定</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html"><font style="vertical-align: inherit;">QMetaObject</font></a><font style="vertical-align: inherit;">的JavaScript 对象。</font><i><font style="vertical-align: inherit;">metaObject</font></i><font style="vertical-align: inherit;">必须比脚本引擎<span lang="zh-cn">存活时间更</span>长。建议仅将此方法用于静态元对象。</font></p>
+<p><font style="vertical-align: inherit;">当作为构造函数调用时，将创建该类的一个新实例。只有</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE"><font style="vertical-align: inherit;">Q_INVOKABLE</font></a><font style="vertical-align: inherit;">公开的构造函数才能从脚本引擎中看到。</font></p>
+<p>这个函数在Qt 5.8中引入。</p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newQObject"><font style="vertical-align: inherit;">newQObject</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#qobject-integration"><font style="vertical-align: inherit;">QObject集成</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@newQMetaObject -->
+<!-- $$$newQMetaObject$$$newQMetaObject -->
+<h3 class="fn" id="newQMetaObject-1"><a name="newQMetaObject-1"></a><span class="type"><a href="qjsvalue.html">QJSValue</a></span> QJSEngine::<span class="name">newQMetaObject</span>()</h3>
+<p><font style="vertical-align: inherit;">创建一个 JavaScript 对象，该对象包装与 class 关联的静态</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html"><font style="vertical-align: inherit;">QMetaObject</font></a><code><span lang="zh-cn">
+</span>T</code><font style="vertical-align: inherit;">。</font></p>
+<p>这个函数在Qt 5.8中引入。</p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newQObject"><font style="vertical-align: inherit;">newQObject</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#qobject-integration"><font style="vertical-align: inherit;">QObject集成</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@newQMetaObject -->
+<!-- $$$newQObject[overload1]$$$newQObjectQObject* -->
+<h3 class="fn" id="newQObject"><a name="newQObject"></a><span class="type"><a href="qjsvalue.html">QJSValue</a></span> QJSEngine::<span class="name">newQObject</span>(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>object</i>)</h3>
+<p><font style="vertical-align: inherit;">使用 JavaScriptOwnership 创建一个封装给定</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><span lang="zh-cn"> 
+类型的</span><font style="vertical-align: inherit;">JavaScript 对象<i>object</i>。</font></p>
+<p>信号和槽、属性和<i>object</i>的子元素都可以作为创建的<a href="qjsvalue.html">QJSValue</a>的属性。</p>
+<p><font style="vertical-align: inherit;">如果</font><i><font style="vertical-align: inherit;">object</font></i><font style="vertical-align: inherit;">是空指针，则此函数返回空值。</font></p>
+<p><font style="vertical-align: inherit;">如果已为<i>object</i>的类（或其超类，递归地）注册了默认原型，则新脚本对象的原型将设置为该默认原型。</font></p>
+<p><font style="vertical-align: inherit;">如果给定</font><i><font style="vertical-align: inherit;">对象</font></i><font style="vertical-align: inherit;">在引擎控制之外被删除，任何通过 JavaScript 包装对象（通过脚本代码或 C++）访问已删除</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">成员的尝试都将导致</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#script-exceptions"><font style="vertical-align: inherit;">脚本异常</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qjsvalue.html#toQObject">QJSValue::toQObject</a>().</p>
+<!-- @@@newQObject -->
+<!-- $$$throwError[overload1]$$$throwErrorconstQString& -->
+<h3 class="fn" id="throwError"><a name="throwError"></a><span class="type">void</span> QJSEngine::<span class="name">throwError</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>message</i>)</h3>
+<p><font style="vertical-align: inherit;">使用给定的<i>message</i>抛出运行时错误（异常）。</font></p>
+<p><font style="vertical-align: inherit;">此方法是</font><code>throw()</code><font style="vertical-align: inherit;">JavaScript 中表达式的 C++ 对应物。它使 C++ 代码能够向</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html"><font style="vertical-align: inherit;">QJSEngine</font></a><font style="vertical-align: inherit;">报告运行时错误。因此，它只能从 JavaScript 函数通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html"><font style="vertical-align: inherit;">QJSEngine</font></a><font style="vertical-align: inherit;">调用的 C++ 代码中调用。</font></p>
+<p><font style="vertical-align: inherit;">当从 C++ 返回时，引擎将中断正常的执行流程并使用包含给定<i>message</i>的错误对象调用下一个预先注册的异常处理程序。error 对象将指向 JavaScript 调用者堆栈中最顶层上下文的位置；具体来说，它将具有属性</font><code>lineNumber</code><font style="vertical-align: inherit;">,</font><code>fileName</code><font style="vertical-align: inherit;">和</font><code>stack</code><font style="vertical-align: inherit;">。这些属性在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#script-exceptions"><font style="vertical-align: inherit;">脚本异常中</font></a><font style="vertical-align: inherit;">进行了描述。</font></p>
+<p><font style="vertical-align: inherit;">在以下示例中，</font><i><font style="vertical-align: inherit;">FileAccess.cpp 中</font></i><font style="vertical-align: inherit;">的 C++ 方法在</font><i><font style="vertical-align: inherit;">qmlFile.qml</font></i><font style="vertical-align: inherit;">中</font><code>readFileAsText()</code><font style="vertical-align: inherit;">调用的位置引发错误：</font></p>
+<pre class="cpp">
+
+  <span class="comment">// qmlFile.qml</span>
+  function someFunction() {
+    <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+    var text <span class="operator">=</span> FileAccess<span class="operator">.</span>readFileAsText(<span class="string">&quot;/path/to/file.txt&quot;</span>);
+  }
+
+</pre>
+<pre class="cpp">
+
+  <span class="comment">// FileAccess.cpp</span>
+  <span class="comment">// Assuming that FileAccess is a QObject-derived class that has been</span>
+  <span class="comment">// registered as a singleton type and provides an invokable method</span>
+  <span class="comment">// readFileAsText()</span>
+
+  <span class="type"><a href="qjsvalue.html">QJSValue</a></span> FileAccess<span class="operator">::</span>readFileAsText(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span> filePath) {
+    <span class="type"><a href="../qtcore/qfile.html">QFile</a></span> file(filePath);
+
+    <span class="keyword">if</span> (<span class="operator">!</span>file<span class="operator">.</span>open(<span class="type"><a href="../qtcore/qiodevice.html">QIODevice</a></span><span class="operator">::</span>ReadOnly)) {
+      jsEngine<span class="operator">-</span><span class="operator">&gt;</span>throwError(file<span class="operator">.</span>errorString());
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span>();
+    }
+
+    <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+    <span class="keyword">return</span> content;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">也可以在 JavaScript 中捕获抛出的错误：</font></p>
+<pre class="cpp">
+
+  <span class="comment">// qmlFile.qml</span>
+  function someFunction() {
+    <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+    var text;
+    <span class="keyword">try</span> {
+      text <span class="operator">=</span> FileAccess<span class="operator">.</span>readFileAsText(<span class="string">&quot;/path/to/file.txt&quot;</span>);
+    } <span class="keyword">catch</span> (error) {
+      console<span class="operator">.</span>warn(<span class="string">&quot;In &quot;</span> <span class="operator">+</span> error<span class="operator">.</span>fileName <span class="operator">+</span> <span class="string">&quot;:&quot;</span> <span class="operator">+</span> <span class="string">&quot;error.lineNumber&quot;</span> <span class="operator">+</span>
+                   <span class="string">&quot;: &quot;</span> <span class="operator">+</span> error<span class="operator">.</span>message);
+    }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">如果您需要更具体的运行时错误来描述异常，您可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#throwError-1"><font style="vertical-align: inherit;">throwError(QJSValue::ErrorType errorType, const QString &amp;message)</font></a><font style="vertical-align: inherit;">重载。</font></p>
+<p>这个函数在Qt 5.12中引入。</p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#script-exceptions"><font style="vertical-align: inherit;">脚本异常</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@throwError -->
+<!-- $$$throwError$$$throwErrorQJSValue::ErrorTypeconstQString& -->
+<h3 class="fn" id="throwError-1"><a name="throwError-1"></a><span class="type">void</span> QJSEngine::<span class="name">throwError</span>(<span class="type"><a href="qjsvalue.html#ErrorType-enum">QJSValue::ErrorType</a></span> <i>errorType</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>message</i> = QString())</h3>
+<p><font style="vertical-align: inherit;">这个函数重载了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#throwError"><font style="vertical-align: inherit;">throwError</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<p><font style="vertical-align: inherit;">使用给定的</font><i><font style="vertical-align: inherit;">errorType</font></i><font style="vertical-align: inherit;">和</font><i><font style="vertical-align: inherit;">message</font></i><font style="vertical-align: inherit;">抛出运行时错误（异常）。</font></p>
+<pre class="cpp">
+
+  <span class="comment">// Assuming that DataEntry is a QObject-derived class that has been</span>
+  <span class="comment">// registered as a singleton type and provides an invokable method</span>
+  <span class="comment">// setAge().</span>
+
+  <span class="type">void</span> DataEntry<span class="operator">::</span>setAge(<span class="type">int</span> age) {
+    <span class="keyword">if</span> (age <span class="operator">&lt;</span> <span class="number">0</span> <span class="operator">|</span><span class="operator">|</span> age <span class="operator">&gt;</span> <span class="number">200</span>) {
+      jsEngine<span class="operator">-</span><span class="operator">&gt;</span>throwError(<span class="type"><a href="qjsvalue.html">QJSValue</a></span><span class="operator">::</span>RangeError<span class="operator">,</span>
+                           <span class="string">&quot;Age must be between 0 and 200&quot;</span>);
+    }
+    <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+  }
+
+</pre>
+<p>这个函数在Qt 5.12中引入。</p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#script-exceptions"><font style="vertical-align: inherit;">Script Exceptions</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newErrorObject"><font style="vertical-align: inherit;">newErrorObject</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@throwError -->
+<!-- $$$toScriptValue[overload1]$$$toScriptValueconstT& -->
+<h3 class="fn" id="toScriptValue"><a name="toScriptValue"></a><span class="type"><a href="qjsvalue.html">QJSValue</a></span> QJSEngine::<span class="name">toScriptValue</span>(const <span class="type">T</span> &amp;<i>value</i>)</h3>
+<p><font style="vertical-align: inherit;">使用给定的<i>value</i>创建一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qjsengine.html#fromScriptValue">fromScriptValue</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@toScriptValue -->
+</div>
+<div class="relnonmem">
+<h2>相关非成员</h2>
+<!-- $$$qjsEngine[overload1]$$$qjsEngineconstQObject* -->
+<h3 class="fn" id="qjsEnginex"><a name="qjsEnginex"></a><span class="type"><a href="qjsengine.html#QJSEngine">QJSEngine</a></span> *<span class="name">qjsEngine</span>(const <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>object</i>)</h3>
+<p><font style="vertical-align: inherit;">返回</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html"><font style="vertical-align: inherit;">QJSEngine</font></a><font style="vertical-align: inherit;">关联<i>object</i>，如果有的话。</font></p>
+<p><font style="vertical-align: inherit;">如果您已将</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">暴露给 JavaScript 环境并且稍后在您的程序中想要重新获得访问权限，则此函数很有用。它不需要您保留从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newQObject"><font style="vertical-align: inherit;">QJSEngine::newQObject</font></a><font style="vertical-align: inherit;"> ()返回的包装器。</font></p>
+<p>这个函数在Qt 5.5中引入。</p>
+<!-- @@@qjsEngine -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

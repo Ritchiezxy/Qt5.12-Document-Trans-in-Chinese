@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- data.qdoc -->
+  <title>Data Type Conversion Between QML and C++ | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >
+			QML和C++之间的数据类型转换</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#data-ownership">数据所有权</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#basic-qt-data-types">基本 Qt 数据类型</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#basic-qt-data-types">基本 Qt 数据类型</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#conversion-between-qt-and-javascript-types">Qt 和 JavaScript 类型之间的转换</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#qvariantlist-and-qvariantmap-to-javascript-array-and-object">QVariantList 和 QVariantMap 到 JavaScript 数组和对象</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#qdatetime-to-javascript-date">QDateTime 到 JavaScript 日期</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#qtime-and-javascript-date">QTime 和 JavaScript 日期</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#sequence-type-to-javascript-array">序列类型到 JavaScript 数组</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#qbytearray-to-javascript-arraybuffer">QByteArray 到 JavaScript ArrayBuffer</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#value-types">值类型</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#enumeration-types">枚举类型</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#enumeration-types-as-signal-and-method-parameters">枚举类型作为信号和方法参数</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML和C++之间的数据类型转换</h1>
+<span class="subtitle"></span>
+<!-- $$$qtqml-cppintegration-data.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>当数据值在 QML 和 C++ 之间交换时，它们会被 QML 引擎转换为适合在 QML 或 C++ 中使用的正确数据类型。这要求交换的数据属于引擎可识别的类型。</p>
+<p>QML 引擎为大量 Qt C++ 数据类型提供内置支持。此外，自定义 C++ 类型可以在 QML 类型系统中注册，以使其对引擎可用。</p>
+<p>本页讨论 QML 引擎支持的数据类型以及它们如何在 QML 和 C++ 之间转换。</p>
+<a name="data-ownership"></a>
+<h2 id="data-ownership">数据所有权</h2>
+<p>当数据从C++ 传输到QML时，数据的所有权始终属于C++ 。该规则的例外是，当<a href="../qtcore/qobject.html">QObject</a>从显式C++ 
+方法调用返回时:在这种情况下，QML引擎假定对象的所有权，除非通过调用<a href="qqmlengine.html#setObjectOwnership">QQmlEngine::setObjectOwnership</a>()并指定<a href="qqmlengine.html#ObjectOwnership-enum">QQmlEngine::CppOwnership</a>，将对象的所有权显式设置为保留在C++ 
+中。</p>
+<p>此外，QML 引擎尊重Qt C++ 对象的正常<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>父<span lang="zh-cn">对象</span>所有权语义，并且永远不会删除具有父对象的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>实例。</p>
+<a name="basic-qt-data-types"></a>
+<h2 id="basic-qt-data-types">基本 Qt 数据类型</h2>
+<p>默认情况下，QML 识别以下 Qt 数据类型，当从 C++ 传递到 QML 时，它们会自动转换为相应的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-typesystem-basictypes.html">QML 基本类型</a>，反之亦然：</p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td >Qt Type</td><td >QML基本类型</td></tr>
+<tr valign="top" class="even"><td >bool</td><td ><a href="qml-bool.html">bool</a></td></tr>
+<tr valign="top" class="odd"><td >unsigned int, int</td><td ><a href="qml-int.html">int</a></td></tr>
+<tr valign="top" class="even"><td >double</td><td ><a href="qml-double.html">double</a></td></tr>
+<tr valign="top" class="odd"><td >float, qreal</td><td ><a href="qml-real.html">real</a></td></tr>
+<tr valign="top" class="even"><td ><a href="../qtcore/qstring.html">QString</a></td><td ><a href="qml-string.html">string</a></td></tr>
+<tr valign="top" class="odd"><td ><a href="../qtcore/qurl.html">QUrl</a></td><td ><a href="qml-url.html">url</a></td></tr>
+<tr valign="top" class="even"><td ><a href="../qtgui/qcolor.html">QColor</a></td><td ><a href="../qtquick/qml-color.html">color</a></td></tr>
+<tr valign="top" class="odd"><td ><a href="../qtgui/qfont.html">QFont</a></td><td ><a href="../qtquick/qml-font.html">font</a></td></tr>
+<tr valign="top" class="even"><td ><a href="../qtcore/qdatetime.html">QDateTime</a></td><td ><a href="qml-date.html">date</a></td></tr>
+<tr valign="top" class="odd"><td ><a href="../qtcore/qpoint.html">QPoint</a>, <a href="../qtcore/qpointf.html">QPointF</a></td><td ><a href="qml-point.html">point</a></td></tr>
+<tr valign="top" class="even"><td ><a href="../qtcore/qsize.html">QSize</a>, <a href="../qtcore/qsizef.html">QSizeF</a></td><td ><a href="qml-size.html">size</a></td></tr>
+<tr valign="top" class="odd"><td ><a href="../qtcore/qrect.html">QRect</a>, <a href="../qtcore/qrectf.html">QRectF</a></td><td ><a href="qml-rect.html">rect</a></td></tr>
+<tr valign="top" class="even"><td ><a href="../qtgui/qmatrix4x4.html">QMatrix4x4</a></td><td ><a href="../qtquick/qml-matrix4x4.html">matrix4x4</a></td></tr>
+<tr valign="top" class="odd"><td ><a href="../qtgui/qquaternion.html">QQuaternion</a></td><td ><a href="../qtquick/qml-quaternion.html">quaternion</a></td></tr>
+<tr valign="top" class="even"><td ><a href="../qtgui/qvector2d.html">QVector2D</a>, <a href="../qtgui/qvector3d.html">QVector3D</a>, <a href="../qtgui/qvector4d.html">QVector4D</a></td><td ><a href="../qtquick/qml-vector2d.html">vector2d</a>, <a href="../qtquick/qml-vector3d.html">vector3d</a>, <a href="../qtquick/qml-vector4d.html">vector4d</a></td></tr>
+<tr valign="top" class="odd"><td >用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_ENUM">Q_ENUM</a> () 或 Q_ENUMS()声明的枚举</td><td ><a href="qml-enumeration.html">enumeration</a></td></tr>
+</table></div>
+<p><b>注意： </b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qtgui-index.html">Qt GUI</a>模块提供的类，如<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qcolor.html">QColor</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qfont.html">QFont</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qquaternion.html">QQuaternion</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qmatrix4x4.html">QMatrix4x4</a>，仅当包含<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-index.html">Qt Quick</a>模块时才可从 QML 获得。</p><p>为方便起见，许多这些类型可以在 QML 中通过字符串值或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html">QtQml::Qt</a>对象提供的相关方法指定。例如，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-image.html#sourceSize-prop">Image::sourceSize</a>属性是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-size.html">size</a>类型（它会自动转换为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qsize.html">QSize</a>类型）并且可以由格式化为“width <code>x</code>height”的字符串值指定，或者由 Qt.size() 函数指定：</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> { <span class="name">sourceSize</span>: <span class="string">&quot;100x200&quot;</span> }
+      <span class="type"><a href="../qtquick/qml-qtquick-image.html">Image</a></span> { <span class="name">sourceSize</span>: <span class="name">Qt</span>.<span class="name">size</span>(<span class="number">100</span>, <span class="number">200</span>) }
+  }
+
+</pre>
+<p>有关更多信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-typesystem-basictypes.html">QML 基本类型</a>下每个单独类型的文档。</p>
+<a name="qobject-derived-types"></a>
+<h2 id="qobject-derived-types">QObject 派生类型</h2>
+<p>任何<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>派生类都可以用作 QML 和 C++ 之间数据交换的类型，前提是该类已在 QML 类型系统中注册。</p>
+<p>该引擎允许注册可实例化和不可实例化的类型。一旦一个类被注册为 QML 类型，它就可以用作在 QML 和 C++ 之间交换数据的数据类型。有关类型注册的更多详细信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system">使用 QML 类型系统注册 C++ 类型</a>。</p>
+<a name="conversion-between-qt-and-javascript-types"></a>
+<h2 id="conversion-between-qt-and-javascript-types">Qt 和 JavaScript 类型之间的转换</h2>
+<p>在 QML 和 C++ 之间传输数据时，QML 引擎内置支持将许多 Qt 类型转换为相关的 JavaScript 类型，反之亦然。这使得使用这些类型并在 C++ 或 JavaScript 中接收它们成为可能，而无需实现提供对数据值及其属性的访问的自定义类型。</p>
+<p>（请注意，QML 中的 JavaScript 环境修改了原生 JavaScript 对象原型，包括<code>String</code>、<code>Date</code>和 的原型<code>Number</code>，以提供附加功能。有关更多详细信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-hostenvironment.html">JavaScript 主机环境</a>。）</p>
+<a name="qvariantlist-and-qvariantmap-to-javascript-array-and-object"></a>
+<h3 >QVariantList 和 QVariantMap 到 JavaScript 数组和对象</h3>
+<p>QML 引擎提供<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#QVariantList-typedef">QVariantList</a>和 JavaScript 数组之间以及<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#QVariantMap-typedef">QVariantMap</a>和 JavaScript 对象之间的自动类型转换。</p>
+<p>例如，下面 QML 中定义的函数需要两个参数，一个数组和一个对象，并使用用于数组和对象项访问的标准 JavaScript 语法打印它们的内容。下面的 C++ 代码调用这个函数，传递一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#QVariantList-typedef">QVariantList</a>和一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#QVariantMap-typedef">QVariantMap</a>，它们分别自动转换为 JavaScript 数组和对象值：</p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td >QML</td><td ><pre class="qml">
+
+  <span class="comment">// MyItem.qml</span>
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="keyword">function</span> <span class="name">readValues</span>(anArray, anObject) {
+          <span class="keyword">for</span> (var i=0; <span class="name">i</span><span class="operator">&lt;</span><span class="name">anArray</span>.<span class="name">length</span>; i++)
+              <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Array item:&quot;</span>, <span class="name">anArray</span>[<span class="name">i</span>])
+
+          <span class="keyword">for</span> (var prop in <span class="name">anObject</span>) {
+              <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Object item:&quot;</span>, <span class="name">prop</span>, <span class="string">&quot;=&quot;</span>, <span class="name">anObject</span>[<span class="name">prop</span>])
+          }
+      }
+  }
+
+</pre>
+</td></tr>
+<tr valign="top" class="even"><td >C++</td><td ><pre class="cpp">
+
+  <span class="comment">// C++</span>
+  <span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span> view(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span><span class="operator">::</span>fromLocalFile(<span class="string">&quot;MyItem.qml&quot;</span>));
+
+  <span class="type"><a href="../qtcore/qvariant.html#QVariantList-typedef">QVariantList</a></span> list;
+  list <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="number">10</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="type"><a href="../qtgui/qcolor.html">QColor</a></span>(<span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">::</span>green) <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;bottles&quot;</span>;
+
+  <span class="type"><a href="../qtcore/qvariant.html#QVariantMap-typedef">QVariantMap</a></span> map;
+  map<span class="operator">.</span>insert(<span class="string">&quot;language&quot;</span><span class="operator">,</span> <span class="string">&quot;QML&quot;</span>);
+  map<span class="operator">.</span>insert(<span class="string">&quot;released&quot;</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qdate.html">QDate</a></span>(<span class="number">2010</span><span class="operator">,</span> <span class="number">9</span><span class="operator">,</span> <span class="number">21</span>));
+
+  <span class="type"><a href="../qtcore/qmetaobject.html">QMetaObject</a></span><span class="operator">::</span>invokeMethod(view<span class="operator">.</span>rootObject()<span class="operator">,</span> <span class="string">&quot;readValues&quot;</span><span class="operator">,</span>
+          Q_ARG(<span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><span class="operator">,</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><span class="operator">::</span>fromValue(list))<span class="operator">,</span>
+          Q_ARG(<span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><span class="operator">,</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><span class="operator">::</span>fromValue(map)));
+
+</pre>
+</td></tr>
+</table></div>
+<p>这会产生如下输出：</p>
+<pre class="cpp">
+
+  Array item: <span class="number">10</span>
+  Array item: <span class="preprocessor">#00ff00</span>
+  Array item: bottles
+  Object item: language <span class="operator">=</span> QML
+  Object item: released <span class="operator">=</span> Tue Sep <span class="number">21</span> <span class="number">2010</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> GMT<span class="operator">+</span><span class="number">1000</span> (EST)
+
+</pre>
+<p>同样，如果一个 C++ 类型使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#QVariantList-typedef">QVariantList</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#QVariantMap-typedef">QVariantMap</a>类型作为属性类型或方法参数，则该值可以在 QML 中创建为 JavaScript 数组或对象，并在传递给 C++ 时自动转换为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#QVariantList-typedef">QVariantList</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#QVariantMap-typedef">QVariantMap</a>。</p>
+<a name="qdatetime-to-javascript-date"></a>
+<h3 >QDateTime 到 JavaScript 日期</h3>
+<p>QML 引擎提供<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qdatetime.html">QDateTime</a>值和 JavaScript<code>Date</code>对象之间的自动类型转换。</p>
+<p>例如，下面 QML 中定义的函数需要一个 JavaScript<code>Date</code>对象，并且还返回一个<code>Date</code>具有当前日期和时间的新对象。下面的 C++ 代码调用这个函数，传递一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qdatetime.html">QDateTime</a>值，<code>Date</code>当它传递给<code>readDate()</code>函数时，引擎会自动将其转换为对象。反过来， readDate() 函数返回一个<code>Date</code>对象，该对象在 C++ 中接收时会自动转换为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qdatetime.html">QDateTime</a>值：</p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td >QML</td><td ><pre class="qml">
+
+  <span class="comment">// MyItem.qml</span>
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="keyword">function</span> <span class="name">readDate</span>(dt) {
+          <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;The given date is:&quot;</span>, <span class="name">dt</span>.<span class="name">toUTCString</span>());
+          <span class="keyword">return</span> new <span class="name">Date</span>();
+      }
+  }
+
+</pre>
+</td></tr>
+<tr valign="top" class="even"><td >C++</td><td ><pre class="cpp">
+
+  <span class="comment">// C++</span>
+  <span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span> view(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span><span class="operator">::</span>fromLocalFile(<span class="string">&quot;MyItem.qml&quot;</span>));
+
+  <span class="type"><a href="../qtcore/qdatetime.html">QDateTime</a></span> dateTime <span class="operator">=</span> <span class="type"><a href="../qtcore/qdatetime.html">QDateTime</a></span><span class="operator">::</span>currentDateTime();
+  <span class="type"><a href="../qtcore/qdatetime.html">QDateTime</a></span> retValue;
+
+  <span class="type"><a href="../qtcore/qmetaobject.html">QMetaObject</a></span><span class="operator">::</span>invokeMethod(view<span class="operator">.</span>rootObject()<span class="operator">,</span> <span class="string">&quot;readDate&quot;</span><span class="operator">,</span>
+          Q_RETURN_ARG(<span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><span class="operator">,</span> retValue)<span class="operator">,</span>
+          Q_ARG(<span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><span class="operator">,</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><span class="operator">::</span>fromValue(dateTime)));
+
+  <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;Value returned from readDate():&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> retValue;
+
+</pre>
+</td></tr>
+</table></div>
+<p>同样，如果 C++ 类型使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qdatetime.html">QDateTime</a>作为属性类型或方法参数，则该值可以<code>Date</code>在 QML 中创建为 JavaScript对象，并在传递给 C++ 时自动转换为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qdatetime.html">QDateTime</a>值。</p>
+<a name="qtime-to-javascript-date"></a><a name="qtime-and-javascript-date"></a>
+<h3 >QTime 和 JavaScript 日期</h3>
+<p>QML 引擎提供从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtime.html">QTime</a>值到 JavaScript<code>Date</code>对象的自动类型转换。由于<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtime.html">QTime</a>值不包含日期组件，因此仅为转换创建一个。因此，您不应依赖生成的 Date 对象的日期组件。</p>
+<p>引擎盖下，从一个JavaScript转换<code>Date</code>对象<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtime.html">QTIME</a>通过转换为完成<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qdatetime.html">QDateTime</a>对象并调用它的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qdatetime.html#time"><span lang="zh-cn">time</span>（）</a>方法。</p>
+<a name="sequence-type-to-javascript-array"></a>
+<h3 >序列类型到 JavaScript 数组</h3>
+<p>QML 透明地支持某些 C++ 序列类型，使其表现得像 JavaScript<code>Array</code>类型。</p>
+<p>特别是，QML 目前支持：</p>
+<ul>
+<li><code>QList&lt;int&gt;</code></li>
+<li><code>QList&lt;qreal&gt;</code></li>
+<li><code>QList&lt;bool&gt;</code></li>
+<li><code>QList&lt;QString&gt;</code> and <code>QStringList</code></li>
+<li><code>QVector&lt;QString&gt;</code></li>
+<li><code>std::vector&lt;QString&gt;</code></li>
+<li><code>QList&lt;QUrl&gt;</code></li>
+<li><code>QVector&lt;QUrl&gt;</code></li>
+<li><code>std::vector&lt;QUrl&gt;</code></li>
+<li><code>QVector&lt;int&gt;</code></li>
+<li><code>QVector&lt;qreal&gt;</code></li>
+<li><code>QVector&lt;bool&gt;</code></li>
+<li><code>std::vector&lt;int&gt;</code></li>
+<li><code>std::vector&lt;qreal&gt;</code></li>
+<li><code>std::vector&lt;bool&gt;</code></li>
+</ul>
+<p>这些序列类型是根据底层 C++ 序列直接实现的。有两种方式可以将此类序列暴露给 QML：作为给定序列类型的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a>；或者作为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE">Q_INVOKABLE</a>方法的返回类型。它们的实现方式存在一些差异，需要注意这一点。</p>
+<p>如果序列作为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a>公开，通过索引访问序列中的任何值将导致从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>的属性读取序列数据，然后发生读取。同样，修改序列中的任何值都会导致读取序列数据，然后执行修改并将修改后的序列写回<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>的属性。</p>
+<p>如果序列是从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE">Q_INVOKABLE</a>函数返回的，访问和变异会便宜得多，因为不会发生<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>属性读取或写入；相反，直接访问和修改 C++ 序列数据。</p>
+<p>在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a>和从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE">Q_INVOKABLE</a>返回的情况下，都会复制 std::vector 的元素。这种复制可能是一项昂贵的操作，因此应该明智地使用 std::vector。</p>
+<p>不透明地支持其他序列类型，而是将任何其他序列类型的实例作为不透明的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#QVariantList-typedef">QVariantList</a>在 QML 和 C++ 之间传递。不透明地支持其他序列类型，而是将任何其他序列类型的实例作为不透明的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#QVariantList-typedef">QVariantList</a>在 QML 和 C++ 之间传递。</p>
+<p><b>重要提示：</b> 由于在实现中使用了 C++ 存储类型，因此此类序列数组类型与默认 JavaScript 数组类型的语义存在一些细微差别。特别是，从 Array 中删除元素将导致替换该元素的默认构造值，而不是 Undefined 值。类似地，将 Array 的 length 属性设置为大于其当前值的值将导致 Array 被填充到指定的长度，并使用默认构造的元素而不是未定义的元素。最后，Qt 容器类支持有符号（而不是无符号）整数索引；因此，尝试访问任何大于 INT_MAX 的索引都会失败。</p>
+<p>每个序列类型的默认构造值如下：</p>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td ><a href="../qtcore/qlist.html">QList</a>&lt;int&gt;</td><td >integer value 0</td></tr>
+<tr valign="top" class="even"><td ><a href="../qtcore/qlist.html">QList</a>&lt;qreal&gt;</td><td >real value 0.0</td></tr>
+<tr valign="top" class="odd"><td ><a href="../qtcore/qlist.html">QList</a>&lt;bool&gt;</td><td >boolean value <code>false</code></td></tr>
+<tr valign="top" class="even"><td ><a href="../qtcore/qlist.html">QList</a>&lt;<a href="../qtcore/qstring.html">QString</a>&gt; and <a href="../qtcore/qstringlist.html">QStringList</a></td><td >empty <a href="../qtcore/qstring.html">QString</a></td></tr>
+<tr valign="top" class="odd"><td ><a href="../qtcore/qvector.html">QVector</a>&lt;<a href="../qtcore/qstring.html">QString</a>&gt;</td><td >empty <a href="../qtcore/qstring.html">QString</a></td></tr>
+<tr valign="top" class="even"><td >std::vector&lt;<a href="../qtcore/qstring.html">QString</a>&gt;</td><td >empty <a href="../qtcore/qstring.html">QString</a></td></tr>
+<tr valign="top" class="odd"><td ><a href="../qtcore/qlist.html">QList</a>&lt;<a href="../qtcore/qurl.html">QUrl</a>&gt;</td><td >empty <a href="../qtcore/qurl.html">QUrl</a></td></tr>
+<tr valign="top" class="even"><td ><a href="../qtcore/qvector.html">QVector</a>&lt;<a href="../qtcore/qurl.html">QUrl</a>&gt;</td><td >empty <a href="../qtcore/qurl.html">QUrl</a></td></tr>
+<tr valign="top" class="odd"><td >std::vector&lt;<a href="../qtcore/qurl.html">QUrl</a>&gt;</td><td >empty <a href="../qtcore/qurl.html">QUrl</a></td></tr>
+<tr valign="top" class="even"><td ><a href="../qtcore/qvector.html">QVector</a>&lt;int&gt;</td><td >integer value 0</td></tr>
+<tr valign="top" class="odd"><td ><a href="../qtcore/qvector.html">QVector</a>&lt;qreal&gt;</td><td >real value 0.0</td></tr>
+<tr valign="top" class="even"><td ><a href="../qtcore/qvector.html">QVector</a>&lt;bool&gt;</td><td >boolean value <code>false</code></td></tr>
+<tr valign="top" class="odd"><td >std::vector&lt;int&gt;</td><td >integer value 0</td></tr>
+<tr valign="top" class="even"><td >std::vector&lt;qreal&gt;</td><td >real value 0.0</td></tr>
+<tr valign="top" class="odd"><td >std::vector&lt;bool&gt;</td><td >boolean value <code>false</code></td></tr>
+</table></div>
+<p>如果您希望从序列中删除元素而不是简单地用默认构造值替换它们，请不要使用索引删除运算符 ("delete sequence[i]") 而是使用<code>splice</code>函数 ("sequence.splice(startIndex, deleteCount) ”）。</p>
+<a name="qbytearray-to-javascript-arraybuffer"></a>
+<h3 >QByteArray 到 JavaScript ArrayBuffer</h3>
+<p>QML 引擎提供<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qbytearray.html">QByteArray</a>值和 JavaScript<code>ArrayBuffer</code>对象之间的自动类型转换。</p>
+<a name="value-types"></a>
+<h3 >值类型</h3>
+<p>Qt 中的某些值类型（例如<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qpoint.html">QPoint）</a>在 JavaScript 中表示为具有与 C++ API 中相同的属性和功能的对象。自定义 C++ 值类型可以使用相同的表示形式。要使用 QML 引擎启用自定义值类型，类声明需要使用<code>Q_GADGET</code>. 旨在在 JavaScript 表示中可见的属性需要使用<code>Q_PROPERTY</code>. 类似的功能需要用 标记<code>Q_INVOKABLE</code>。这与基于<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>的 C++ API 相同。例如，<code>Actor</code>下面的类被注释为 gadget 并具有属性：</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> Actor
+  {
+      Q_GADGET
+      Q_PROPERTY(<span class="type"><a href="../qtcore/qstring.html">QString</a></span> name READ name WRITE setName)
+  <span class="keyword">public</span>:
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> name() <span class="keyword">const</span> { <span class="keyword">return</span> m_name; }
+      <span class="type">void</span> setName(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>name) { m_name <span class="operator">=</span> name; }
+
+  <span class="keyword">private</span>:
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> m_name;
+  };
+
+  Q_DECLARE_METATYPE(Actor)
+
+</pre>
+<a name="enumeration-types"></a>
+<h2 id="enumeration-types">枚举类型</h2>
+<p>要将自定义枚举用作数据类型，必须注册其类，并且还必须使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_ENUM">Q_ENUM</a> ()声明枚举以将其注册到 Qt 的元对象系统。例如，<code>Message</code>下面的类有一个<code>Status</code>枚举：</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> Message : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
+  {
+      Q_OBJECT
+      Q_PROPERTY(Status status READ status NOTIFY statusChanged)
+  <span class="keyword">public</span>:
+      <span class="keyword">enum</span> Status {
+          Ready<span class="operator">,</span>
+          Loading<span class="operator">,</span>
+          Error
+      };
+      Q_ENUM(Status)
+      Status status() <span class="keyword">const</span>;
+  <span class="keyword">signals</span>:
+      <span class="type">void</span> statusChanged();
+  };
+
+</pre>
+<p>如果<code>Message</code>该类已在 QML 类型系统中<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system">注册</a>，则<code>Status</code>可以从 QML 使用其枚举：</p>
+<pre class="qml">
+
+  <span class="type">Message</span> {
+       <span class="name">onStatusChanged</span>: {
+           <span class="keyword">if</span> (<span class="name">status</span> <span class="operator">==</span> <span class="name">Message</span>.<span class="name">Ready</span>)
+               <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;Message is loaded!&quot;</span>)
+       }
+   }
+
+</pre>
+<p>要将枚举用作QML 中的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qflags.html">标志</a>类型，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_FLAG">Q_FLAG</a> ()。</p>
+<p><b>注意：</b>枚举值的名称必须以大写字母开头，以便从 QML 访问。</p><pre class="cpp">
+
+  <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+  <span class="keyword">enum</span> <span class="keyword">class</span> Status {
+            Ready<span class="operator">,</span>
+            Loading<span class="operator">,</span>
+            Error
+  }
+  Q_ENUM(Status)
+  <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+
+</pre>
+<p>枚举类在 QML 中注册为作用域和非作用域属性。该<code>Ready</code>值将在<code>Message.Status.Ready</code>和 处注册<code>Message.Ready</code>。</p>
+<p>使用枚举类时，可以有多个使用相同标识符的枚举。无作用域的注册将被最后注册的枚举覆盖。对于包含此类名称冲突的类，可以通过使用特殊的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_CLASSINFO">Q_CLASSINFO</a>宏注释您的类来禁用无作用域注册。使用<code>RegisterEnumClassesUnscoped</code>带有值的名称<code>false</code>来防止作用域枚举被合并到相同的命名空间中。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> Message : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
+      {
+          Q_OBJECT
+          Q_CLASSINFO(<span class="string">&quot;RegisterEnumClassesUnscoped&quot;</span><span class="operator">,</span> <span class="string">&quot;false&quot;</span>)
+          Q_ENUM(ScopedEnum)
+          Q_ENUM(OtherValue)
+
+      <span class="keyword">public</span>:
+          <span class="keyword">enum</span> <span class="keyword">class</span> ScopedEnum {
+                Value1<span class="operator">,</span>
+                Value2<span class="operator">,</span>
+                OtherValue
+          };
+          <span class="keyword">enum</span> <span class="keyword">class</span> OtherValue {
+                Value1<span class="operator">,</span>
+                Value2
+          };
+      };
+
+</pre>
+<a name="enumeration-types-as-signal-and-method-parameters"></a>
+<h3 >枚举类型作为信号和方法参数</h3>
+<p>可以从 QML 使用带有枚举类型参数的 C++ 信号和方法，前提是枚举和信号或方法都在同一个类中声明，或者枚举值是在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html">Qt 命名空间中</a>声明的值之一。</p>
+<p>此外，如果带有枚举参数的 C++ 信号可以使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html#connecting-signals-to-methods-and-signals">connect()</a>函数连接到 QML函数，则必须使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetatype.html#qRegisterMetaType-1">qRegisterMetaType</a> ()注册枚举类型。</p>
+<p>对于 QML 信号，枚举值可以使用以下<code>int</code>类型作为信号参数传递：</p>
+<pre class="qml">
+
+  <span class="type">Message</span> {
+      signal <span class="type">someOtherSignal</span>(int statusValue)
+
+      <span class="name">Component</span>.onCompleted: {
+          <span class="name">someOtherSignal</span>(<span class="name">Message</span>.<span class="name">Loading</span>)
+      }
+  }
+
+</pre>
+</div>
+<!-- @@@qtqml-cppintegration-data.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

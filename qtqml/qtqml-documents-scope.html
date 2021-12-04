@@ -109,7 +109,7 @@ QML的作用域扩展不会干扰JavaScript的自然作用域。当在QML中编�
 </pre>
 <a name="binding-scope-object"></a>
 <h2 id="binding-scope-object">绑定对象范围</h2>
-<p><font style="vertical-align: inherit;">具有</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-propertybinding.html"><font style="vertical-align: inherit;">属性绑定</font></a><font style="vertical-align: inherit;">的对象称为绑定的</font><i><font style="vertical-align: inherit;">作用域对象</font></i><font style="vertical-align: inherit;">。在以下示例中，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-item.html"><font style="vertical-align: inherit;">Item</font></a><font style="vertical-align: inherit;">对象是绑定的作用域对象。</font></p>
+<p>具有<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-propertybinding.html">属性绑定</a>的对象称为绑定的<i>作用域对象</i>。在以下示例中，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-item.html">Item</a>对象是绑定的作用域对象。</p>
 <pre class="cpp">
 
   Item {
@@ -117,10 +117,10 @@ QML的作用域扩展不会干扰JavaScript的自然作用域。当在QML中编�
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">绑定可以无限制地访问范围对象的属性。在前面的示例中，绑定直接访问</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-item.html"><font style="vertical-align: inherit;">Item</font></a><font style="vertical-align: inherit;">的</font><code>parent</code><font style="vertical-align: inherit;">属性，不需要任何形式的对象前缀。QML 为 JavaScript 引入了一种更加结构化、面向对象的方法，因此不需要使用 JavaScript 
-的</font><code>this</code><font style="vertical-align: inherit;">属性。</font></p>
-<p><font style="vertical-align: inherit;">由于它们与范围对象的交互，因此从绑定访问</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-objectattributes.html#attached-properties-and-attached-signal-handlers"><font style="vertical-align: inherit;">附加属性</font></a><font style="vertical-align: inherit;">时必须小心。概念上附加的属性存在于</font><i><font style="vertical-align: inherit;">所有</font></i><font style="vertical-align: inherit;">对象上，即使它们只对<i>这些</i>对象的一个​​子集有影响。因此，未限定的附加属性读取将始终解析为作用域对象上的附加属性，这并不总是程序员所期望的。</font></p>
-<p><font style="vertical-align: inherit;">例如，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-pathview.html"><font style="vertical-align: inherit;">PathView</font></a><font style="vertical-align: inherit;">类型根据其在路径中的位置将内插值属性附加到其委托。由于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-pathview.html"><font style="vertical-align: inherit;">PathView</font></a><font style="vertical-align: inherit;">仅有意义地将这些属性附加到委托中的根对象，因此任何访问它们的子对象都必须明确限定根对象，如下所示。</font></p>
+<p>绑定可以无限制地访问范围对象的属性。在前面的示例中，绑定直接访问<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-item.html">Item</a>的<code>parent</code>属性，不需要任何形式的对象前缀。QML 为 JavaScript 引入了一种更加结构化、面向对象的方法，因此不需要使用 JavaScript 
+的<code>this</code>属性。</p>
+<p>由于它们与范围对象的交互，因此从绑定访问<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-objectattributes.html#attached-properties-and-attached-signal-handlers">附加属性</a>时必须小心。概念上附加的属性存在于<i>所有</i>对象上，即使它们只对<i>这些</i>对象的一个​​子集有影响。因此，未限定的附加属性读取将始终解析为作用域对象上的附加属性，这并不总是程序员所期望的。</p>
+<p>例如，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-pathview.html">PathView</a>类型根据其在路径中的位置将内插值属性附加到其委托。由于<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-pathview.html">PathView</a>仅有意义地将这些属性附加到委托中的根对象，因此任何访问它们的子对象都必须明确限定根对象，如下所示。</p>
 <pre class="cpp">
 
   PathView {
@@ -135,10 +135,10 @@ QML的作用域扩展不会干扰JavaScript的自然作用域。当在QML中编�
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">如果</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-image.html"><font style="vertical-align: inherit;">Image</font></a><font style="vertical-align: inherit;">对象省略了</font><code>root</code><font style="vertical-align: inherit;">前缀，它会无意中访问</font><code>PathView.scale</code><font style="vertical-align: inherit;">自身未设置的附加属性。</font></p>
+<p>如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-image.html">Image</a>对象省略了<code>root</code>前缀，它会无意中访问<code>PathView.scale</code>自身未设置的附加属性。</p>
 <a name="component-scope"></a>
 <h2 id="component-scope">组件范围</h2>
-<p><font style="vertical-align: inherit;">QML 文档中的每个 QML 组件都定义了一个逻辑范围。每个文档至少有一个根组件，但也可以有其他内联子组件。组件范围是组件内的对象 ID 和组件的根对象属性的联合。</font></p>
+<p>QML 文档中的每个 QML 组件都定义了一个逻辑范围。每个文档至少有一个根组件，但也可以有其他内联子组件。组件范围是组件内的对象 ID 和组件的根对象属性的联合。</p>
 <pre class="cpp">
 
   Item {
@@ -159,13 +159,13 @@ QML的作用域扩展不会干扰JavaScript的自然作用域。当在QML中编�
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">上面的示例显示了一个简单的 QML 组件，它在顶部显示富文本标题字符串，在底部显示相同文本的较小副本。第一种</font><code>Text</code><font style="vertical-align: inherit;">类型</font><code>title</code><font style="vertical-align: inherit;">在形成要显示的文本时直接访问组件的属性。根类型的属性可以直接访问，这使得在整个组件中分发数据变得微不足道。</font></p>
-<p><font style="vertical-align: inherit;">第二种</font><code>Text</code><font style="vertical-align: inherit;">类型使用 id 直接访问第一种的文本。ID 由 QML 程序员明确指定，因此它们始终优先于其他属性名称（</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-documents-scope.html#javascript-scope"><font style="vertical-align: inherit;">JavaScript Scope </font></a>
-<span lang="zh-cn">中</span><font style="vertical-align: inherit;"><span lang="zh-cn">的</span>那些除外）。例如，万一绑定的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-documents-scope.html#binding-scope-object"><font style="vertical-align: inherit;">范围对象</font></a><code>titletype</code><font style="vertical-align: inherit;">在前面的示例中具有属性，则</font><code>titletype</code><font style="vertical-align: inherit;">id 仍将优先。</font></p>
+<p>上面的示例显示了一个简单的 QML 组件，它在顶部显示富文本标题字符串，在底部显示相同文本的较小副本。第一种<code>Text</code>类型<code>title</code>在形成要显示的文本时直接访问组件的属性。根类型的属性可以直接访问，这使得在整个组件中分发数据变得微不足道。</p>
+<p>第二种<code>Text</code>类型使用 id 直接访问第一种的文本。ID 由 QML 程序员明确指定，因此它们始终优先于其他属性名称（<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-documents-scope.html#javascript-scope">JavaScript Scope </a>
+<span lang="zh-cn">中</span><span lang="zh-cn">的</span>那些除外）。例如，万一绑定的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-documents-scope.html#binding-scope-object">范围对象</a><code>titletype</code>在前面的示例中具有属性，则<code>titletype</code>id 仍将优先。</p>
 <a name="component-instance-hierarchy"></a>
 <h2 id="component-instance-hierarchy">组件实例层次结构</h2>
-<p><font style="vertical-align: inherit;">在 QML 中，组件实例将它们的组件范围连接在一起以形成范围层次结构。组件实例可以直接访问其祖先的组件范围。</font></p>
-<p><font style="vertical-align: inherit;">证明这一点的最简单方法是使用内联子组件，其组件范围被隐式限定为外部组件的子组件。</font></p>
+<p>在 QML 中，组件实例将它们的组件范围连接在一起以形成范围层次结构。组件实例可以直接访问其祖先的组件范围。</p>
+<p>证明这一点的最简单方法是使用内联子组件，其组件范围被隐式限定为外部组件的子组件。</p>
 <pre class="cpp">
 
   Item {
@@ -213,7 +213,7 @@ QML的作用域扩展不会干扰JavaScript的自然作用域。当在QML中编�
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">动态范围非常强大，但必须谨慎使用，以防止 QML 代码的行为变得难以预测。一般来说，它应该只在两个组件已经以另一种方式紧密耦合的情况下使用。在构建可重用组件时，最好使用属性接口，如下所示：</font></p>
+<p>动态范围非常强大，但必须谨慎使用，以防止 QML 代码的行为变得难以预测。一般来说，它应该只在两个组件已经以另一种方式紧密耦合的情况下使用。在构建可重用组件时，最好使用属性接口，如下所示：</p>
 <pre class="cpp">
 
   <span class="comment">// TitlePage.qml</span>
@@ -247,7 +247,7 @@ QML的作用域扩展不会干扰JavaScript的自然作用域。当在QML中编�
 
 </pre>
 <h2 id="overridden-properties">覆盖的属性</h2>
-<p><font style="vertical-align: inherit;">QML 允许在对象声明中定义的属性名称被另一个对象声明中声明的属性覆盖，该属性扩展了第一个。例如：</font></p>
+<p>QML 允许在对象声明中定义的属性名称被另一个对象声明中声明的属性覆盖，该属性扩展了第一个。例如：</p>
 <pre class="cpp">
 
   <span class="comment">// Displayable.qml</span>
@@ -276,13 +276,13 @@ QML的作用域扩展不会干扰JavaScript的自然作用域。当在QML中编�
 
 </pre>
 <p>在这里，名称<code>title</code> 既用于Displayable的输出文本的标题，也用于Person对象的尊称标题。</p>
-<p><font style="vertical-align: inherit;">覆盖的属性根据引用它的范围进行解析。在 Person 组件的作用域内，或从引用 Person 组件实例的外部作用域，</font><code>title</code><font style="vertical-align: inherit;">解析为在 Person.qml 中声明的属性。该</font><code>fullName</code><font style="vertical-align: inherit;">函数将引用</font><code>title</code><font style="vertical-align: inherit;">在 Person 中声明的属性。</font></p>
-<p><font style="vertical-align: inherit;">但是，在 Displayable 组件内部，</font><code>title</code><font style="vertical-align: inherit;">指的是 Displayable.qml 中声明的属性。getTitle() 和 setTitle() 函数以及</font><code>text</code><font style="vertical-align: inherit;">Text 对象属性的绑定都将引用</font><code>title</code><font style="vertical-align: inherit;">Displayable 组件中声明的属性。</font></p>
-<p><font style="vertical-align: inherit;">尽管名称相同，但这两个属性是完全独立的。其中一个属性的 onChanged 信号处理程序不会因更改另一个同名属性而触发。任一属性的别名将引用一个或另一个，但不能同时引用两者。</font></p>
+<p>覆盖的属性根据引用它的范围进行解析。在 Person 组件的作用域内，或从引用 Person 组件实例的外部作用域，<code>title</code>解析为在 Person.qml 中声明的属性。该<code>fullName</code>函数将引用<code>title</code>在 Person 中声明的属性。</p>
+<p>但是，在 Displayable 组件内部，<code>title</code>指的是 Displayable.qml 中声明的属性。getTitle() 和 setTitle() 函数以及<code>text</code>Text 对象属性的绑定都将引用<code>title</code>Displayable 组件中声明的属性。</p>
+<p>尽管名称相同，但这两个属性是完全独立的。其中一个属性的 onChanged 信号处理程序不会因更改另一个同名属性而触发。任一属性的别名将引用一个或另一个，但不能同时引用两者。</p>
 <a name="javascript-global-object"></a>
 <h2 id="javascript-global-object">JavaScript全局对象</h2>
-<p><font style="vertical-align: inherit;">QML 不允许与全局对象上的属性冲突的类型、id 和属性名称以防止任何混淆。程序员可以确信</font><code>Math.min(10, 9)</code><font style="vertical-align: inherit;">会始终按预期工作！</font></p>
-<p><font style="vertical-align: inherit;">有关更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-hostenvironment.html"><font style="vertical-align: inherit;">JavaScript 主机环境</font></a><font style="vertical-align: inherit;">。</font></p>
+<p>QML 不允许与全局对象上的属性冲突的类型、id 和属性名称以防止任何混淆。程序员可以确信<code>Math.min(10, 9)</code>会始终按预期工作！</p>
+<p>有关更多信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-hostenvironment.html">JavaScript 主机环境</a>。</p>
 </div>
 <!-- @@@qtqml-documents-scope.html -->
         </div>

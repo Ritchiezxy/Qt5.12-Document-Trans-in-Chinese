@@ -47,7 +47,7 @@
 <div class="sidebar-content" id="sidebar-content"></div></div>
 <h1 class="title">QQmlIncubator 类</h1>
 <!-- $$$QQmlIncubator-brief -->
-<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html"><font style="vertical-align: inherit;">QQmlIncubator</font></a><font style="vertical-align: inherit;">类允许QML对象以异步方式创建。</font> <a href="#details">更多...</a></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html">QQmlIncubator</a>类允许QML对象以异步方式创建。 <a href="#details">更多...</a></p>
 <!-- @@@QQmlIncubator -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> 头文件：</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlIncubator&gt;</span>
@@ -85,9 +85,9 @@
 <!-- $$$QQmlIncubator-description -->
 <div class="descr">
 <h2 id="details">详细信息</h2>
-<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html"><font style="vertical-align: inherit;">QQmlIncubator</font></a><font style="vertical-align: inherit;">类允许QML对象以异步方式创建。</font></p>
-<p><font style="vertical-align: inherit;">创建 QML 对象（例如视图中的委托或应用程序中的新页面）可能会花费大量时间，尤其是在资源受限的移动设备上。当应用程序直接使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcomponent.html#create"><font style="vertical-align: inherit;">QQmlComponent::create</font></a><font style="vertical-align: inherit;"> () 时，会同步创建 QML 对象实例，这取决于对象的复杂程度，可能会导致应用程序出现明显的停顿或卡顿。</font></p>
-<p><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html"><font style="vertical-align: inherit;">QQmlIncubator 可以</font></a><font style="vertical-align: inherit;">更好地控制 QML 对象的创建，包括允许使用应用程序空闲时间异步创建它。以下示例展示了</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html"><font style="vertical-align: inherit;">QQmlIncubator</font></a><font style="vertical-align: inherit;">的简单使用。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html">QQmlIncubator</a>类允许QML对象以异步方式创建。</p>
+<p>创建 QML 对象（例如视图中的委托或应用程序中的新页面）可能会花费大量时间，尤其是在资源受限的移动设备上。当应用程序直接使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcomponent.html#create">QQmlComponent::create</a> () 时，会同步创建 QML 对象实例，这取决于对象的复杂程度，可能会导致应用程序出现明显的停顿或卡顿。</p>
+<p>使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html">QQmlIncubator 可以</a>更好地控制 QML 对象的创建，包括允许使用应用程序空闲时间异步创建它。以下示例展示了<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html">QQmlIncubator</a>的简单使用。</p>
 <pre class="cpp">
 
   <span class="type"><a href="qqmlincubator.html#QQmlIncubator">QQmlIncubator</a></span> incubator;
@@ -101,7 +101,7 @@
 
 </pre>
 <p>异步孵化器由设置在QQmlEngine上的<a href="qqmlincubationcontroller.html">QQmlIncubationController</a>控制，它让引擎知道应用程序何时处于空闲状态，应该处理孵化对象。如果没有在<a href="qqmlengine.html">QQmlEngine</a>上设置孵化控制器，那么<a href="qqmlincubator.html">QQmlIncubator</a>将同步创建对象，而不考虑指定的<a href="qqmlincubator.html#IncubationMode-enum">IncubationMode</a>。</p>
-<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html"><font style="vertical-align: inherit;">QQmlIncubator</font></a><font style="vertical-align: inherit;">支持三种孵化模式：</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html">QQmlIncubator</a>支持三种孵化模式：</p>
 <ul>
 <li>Synchronous 创建是同步发生的。也就是说，一旦<a href="qqmlcomponent.html#create">QQmlComponent::create</a>()调用返回，孵化器将已经处于Error或Ready状态。与直接在<a href="qqmlcomponent.html">QQmlComponent</a>上使用同步创建方法相比，同步孵化器并没有真正的优势，但是它可以简化应用程序的实现，为同步和异步创建使用相同的API。</li>
 <li>Asynchronous (<span lang="zh-cn">默认</span>) 
@@ -110,11 +110,11 @@
 <p>应用程序应该使用异步孵化模式来创建不立即需要的对象。例如，<a href="../qtquick/qml-qtquick-listview.html">ListView</a>类型使用异步孵化来创建在列表滚动时稍微远离屏幕的对象。如果在异步创建过程中，立即需要对象，那么可以调用<a href="qqmlincubator.html#forceCompletion">QQmlIncubator::forceCompletion</a>()方法来同步完成创建过程。</p>
 </li>
 <li><a href="qqmlincubator.html#IncubationMode-enum">AsynchronousIfNested</a> 
-如果是嵌套异步创建的一部分，则创建将异步进行;如果不是，则同步进行。<p><font style="vertical-align: inherit;">在 QML 组件希望出现同步实例化的大多数场景中，它应该使用这种模式。</font></p>
-<p><font style="vertical-align: inherit;">最好通过示例来解释此模式。当</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html"><font style="vertical-align: inherit;">ListView中</font></a><font style="vertical-align: inherit;">首次创建类型，它需要一组初始代表展示的填充本身。如果</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html"><font style="vertical-align: inherit;">ListView</font></a><font style="vertical-align: inherit;">高 400 像素，并且每个委托高 100 像素，则需要创建四个初始委托实例。如果</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html"><font style="vertical-align: inherit;">ListView</font></a><font style="vertical-align: inherit;">使用异步孵化模式，则</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html"><font style="vertical-align: inherit;">ListView</font></a><font style="vertical-align: inherit;">将始终创建为空，然后稍后会出现四个初始项。</font></p>
-<p><font style="vertical-align: inherit;">相反，如果</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html"><font style="vertical-align: inherit;">ListView</font></a><font style="vertical-align: inherit;">使用同步孵化模式，它会正确运行，但可能会导致应用程序卡顿。由于 QML 必须同步停止和实例化</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html"><font style="vertical-align: inherit;">ListView</font></a><font style="vertical-align: inherit;">的委托，如果</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html"><font style="vertical-align: inherit;">ListView</font></a><font style="vertical-align: inherit;">是异步实例化的 QML 组件的一部分，这将抵消异步实例化的大部分好处。</font></p>
-<p><font style="vertical-align: inherit;">该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html#IncubationMode-enum"><font style="vertical-align: inherit;">AsynchronousIfNested</font></a><font style="vertical-align: inherit;">模式调和这个问题。通过使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html#IncubationMode-enum"><font style="vertical-align: inherit;">AsynchronousIfNested</font></a><font style="vertical-align: inherit;">，如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>本身已经是异步实例化的一部分，则</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html"><font style="vertical-align: inherit;">ListView</font></a><font style="vertical-align: inherit;">委托被异步实例化，否则同步实例化。在嵌套异步实例化的情况下，直到所有嵌套实例化也完成后，外部异步实例化才会完成。这确保在外部异步实例化完成时，像<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>这样的内部项目已经完成加载它们的初始委托。</font></p>
-<p><font style="vertical-align: inherit;">使用同步孵化模式几乎总是不正确的 - 想要同步实例化的元素或组件，但没有在应用程序中引入冻结或迟钝的缺点，应该使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html#IncubationMode-enum"><font style="vertical-align: inherit;">AsynchronousIfNested</font></a><font style="vertical-align: inherit;">孵化模式。</font></p>
+如果是嵌套异步创建的一部分，则创建将异步进行;如果不是，则同步进行。<p>在 QML 组件希望出现同步实例化的大多数场景中，它应该使用这种模式。</p>
+<p>最好通过示例来解释此模式。当<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView中</a>首次创建类型，它需要一组初始代表展示的填充本身。如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>高 400 像素，并且每个委托高 100 像素，则需要创建四个初始委托实例。如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>使用异步孵化模式，则<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>将始终创建为空，然后稍后会出现四个初始项。</p>
+<p>相反，如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>使用同步孵化模式，它会正确运行，但可能会导致应用程序卡顿。由于 QML 必须同步停止和实例化<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>的委托，如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>是异步实例化的 QML 组件的一部分，这将抵消异步实例化的大部分好处。</p>
+<p>该<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html#IncubationMode-enum">AsynchronousIfNested</a>模式调和这个问题。通过使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html#IncubationMode-enum">AsynchronousIfNested</a>，如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>本身已经是异步实例化的一部分，则<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>委托被异步实例化，否则同步实例化。在嵌套异步实例化的情况下，直到所有嵌套实例化也完成后，外部异步实例化才会完成。这确保在外部异步实例化完成时，像<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>这样的内部项目已经完成加载它们的初始委托。</p>
+<p>使用同步孵化模式几乎总是不正确的 - 想要同步实例化的元素或组件，但没有在应用程序中引入冻结或迟钝的缺点，应该使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html#IncubationMode-enum">AsynchronousIfNested</a>孵化模式。</p>
 </li>
 </ul>
 </div>
@@ -127,9 +127,9 @@
 <div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">
 	<span lang="zh-cn">常量</span></th><th class="tblval"><span lang="zh-cn">值</span></th><th class="tbldscr">
 	<span lang="zh-cn">描述</span></th></tr>
-<tr><td class="topAlign"><code>QQmlIncubator::Asynchronous</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign"><font style="vertical-align: inherit;">该对象将被异步创建。</font></td></tr>
-<tr><td class="topAlign"><code>QQmlIncubator::AsynchronousIfNested</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign"><font style="vertical-align: inherit;">如果对象是在一个已经是异步创建一部分的上下文中创建的，这个孵化器将加入现有的孵化并异步执行。现有的孵化在它和这个孵化完成之前不会变成就绪。否则，孵化将同步执行。</font></td></tr>
-<tr><td class="topAlign"><code>QQmlIncubator::Synchronous</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign"><font style="vertical-align: inherit;">该对象将被同步创建。</font></td></tr>
+<tr><td class="topAlign"><code>QQmlIncubator::Asynchronous</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">该对象将被异步创建。</td></tr>
+<tr><td class="topAlign"><code>QQmlIncubator::AsynchronousIfNested</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">如果对象是在一个已经是异步创建一部分的上下文中创建的，这个孵化器将加入现有的孵化并异步执行。现有的孵化在它和这个孵化完成之前不会变成就绪。否则，孵化将同步执行。</td></tr>
+<tr><td class="topAlign"><code>QQmlIncubator::Synchronous</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">该对象将被同步创建。</td></tr>
 </table></div>
 <!-- @@@IncubationMode -->
 <!-- $$$Status$$$Null$$$Ready$$$Loading$$$Error -->
@@ -138,10 +138,10 @@
 <div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">
 	<span lang="zh-cn">常量</span></th><th class="tblval"><span lang="zh-cn">值</span></th><th class="tbldscr">
 	<span lang="zh-cn">描述</span></th></tr>
-<tr><td class="topAlign"><code>QQmlIncubator::Null</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign"><font style="vertical-align: inherit;">孵化没有进行。调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcomponent.html#create"><font style="vertical-align: inherit;">QQmlComponent::create</font></a><font style="vertical-align: inherit;"> ()开始孵化。</font></td></tr>
-<tr><td class="topAlign"><code>QQmlIncubator::Ready</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign"><font style="vertical-align: inherit;">对象是完全创建的，可以通过调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html#object"><font style="vertical-align: inherit;">object</font></a><font style="vertical-align: inherit;"> ()来访问。</font></td></tr>
-<tr><td class="topAlign"><code>QQmlIncubator::Loading</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign"><font style="vertical-align: inherit;">对象正在创建过程中。</font></td></tr>
-<tr><td class="topAlign"><code>QQmlIncubator::Error</code></td><td class="topAlign tblval"><code>3</code></td><td class="topAlign"><font style="vertical-align: inherit;">发生错误。错误可以通过调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html#errors"><font style="vertical-align: inherit;">errors</font></a><font style="vertical-align: inherit;"> ()来访问。</font></td></tr>
+<tr><td class="topAlign"><code>QQmlIncubator::Null</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">孵化没有进行。调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcomponent.html#create">QQmlComponent::create</a> ()开始孵化。</td></tr>
+<tr><td class="topAlign"><code>QQmlIncubator::Ready</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">对象是完全创建的，可以通过调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html#object">object</a> ()来访问。</td></tr>
+<tr><td class="topAlign"><code>QQmlIncubator::Loading</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">对象正在创建过程中。</td></tr>
+<tr><td class="topAlign"><code>QQmlIncubator::Error</code></td><td class="topAlign tblval"><code>3</code></td><td class="topAlign">发生错误。错误可以通过调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html#errors">errors</a> ()来访问。</td></tr>
 </table></div>
 <!-- @@@Status -->
 </div>
@@ -149,57 +149,57 @@
 <h2>成员函数文档</h2>
 <!-- $$$QQmlIncubator[overload1]$$$QQmlIncubatorQQmlIncubator::IncubationMode -->
 <h3 class="fn" id="QQmlIncubator"><a name="QQmlIncubator"></a>QQmlIncubator::<span class="name">QQmlIncubator</span>(<span class="type"><a href="qqmlincubator.html#IncubationMode-enum">QQmlIncubator::IncubationMode</a></span> <i>mode</i> = Asynchronous)</h3>
-<p><font style="vertical-align: inherit;">新建一个指定<i>mode <span lang="zh-cn">（</span>模式<span lang="zh-cn">）</span>的</i>孵化器<span lang="zh-cn">。</span></font></p>
+<p>新建一个指定<i>mode <span lang="zh-cn">（</span>模式<span lang="zh-cn">）</span>的</i>孵化器<span lang="zh-cn">。</span></p>
 <!-- @@@QQmlIncubator -->
 <!-- $$$clear[overload1]$$$clear -->
 <h3 class="fn" id="clear"><a name="clear"></a><span class="type">void</span> QQmlIncubator::<span class="name">clear</span>()</h3>
-<p><font style="vertical-align: inherit;">清除<span lang="zh-cn">孵化器</span>。任何进行中的孵化都将被中止。如果孵化器处于就绪状态，则</font><b><font style="vertical-align: inherit;">不会</font></b><font style="vertical-align: inherit;">删除创建的对象。</font></p>
+<p>清除<span lang="zh-cn">孵化器</span>。任何进行中的孵化都将被中止。如果孵化器处于就绪状态，则<b>不会</b>删除创建的对象。</p>
 <!-- @@@clear -->
 <!-- $$$errors[overload1]$$$errors -->
 <h3 class="fn" id="errors"><a name="errors"></a><span class="type"><a href="../qtcore/qlist.html">QList</a></span>&lt;<span class="type"><a href="qqmlerror.html">QQmlError</a></span>&gt; QQmlIncubator::<span class="name">errors</span>() const</h3>
-<p><font style="vertical-align: inherit;">返回孵化对象时遇到的错误列表。</font></p>
+<p>返回孵化对象时遇到的错误列表。</p>
 <!-- @@@errors -->
 <!-- $$$forceCompletion[overload1]$$$forceCompletion -->
 <h3 class="fn" id="forceCompletion"><a name="forceCompletion"></a><span class="type">void</span> QQmlIncubator::<span class="name">forceCompletion</span>()</h3>
-<p><font style="vertical-align: inherit;">强制任何正在进行的孵化同步完成。一旦此调用返回，孵化器将不会处于 Loading 状态。</font></p>
+<p>强制任何正在进行的孵化同步完成。一旦此调用返回，孵化器将不会处于 Loading 状态。</p>
 <!-- @@@forceCompletion -->
 <!-- $$$incubationMode[overload1]$$$incubationMode -->
 <h3 class="fn" id="incubationMode"><a name="incubationMode"></a><span class="type"><a href="qqmlincubator.html#IncubationMode-enum">QQmlIncubator::IncubationMode</a></span> QQmlIncubator::<span class="name">incubationMode</span>() const</h3>
-<p><font style="vertical-align: inherit;">返回传递给</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html"><font style="vertical-align: inherit;">QQmlIncubator</font></a><font style="vertical-align: inherit;">构造函数的孵化模式。</font></p>
+<p>返回传递给<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlincubator.html">QQmlIncubator</a>构造函数的孵化模式。</p>
 <!-- @@@incubationMode -->
 <!-- $$$isError[overload1]$$$isError -->
 <h3 class="fn" id="isError"><a name="isError"></a><span class="type">bool</span> QQmlIncubator::<span class="name">isError</span>() const</h3>
-<p><font style="vertical-align: inherit;">如果孵化器的<a href="qqmlincubator.html#status">status</a>() 为错误，则返回 true 。</font></p>
+<p>如果孵化器的<a href="qqmlincubator.html#status">status</a>() 为错误，则返回 true 。</p>
 <!-- @@@isError -->
 <!-- $$$isLoading[overload1]$$$isLoading -->
 <h3 class="fn" id="isLoading"><a name="isLoading"></a><span class="type">bool</span> QQmlIncubator::<span class="name">isLoading</span>() const</h3>
-<p><font style="vertical-align: inherit;">如果孵化器的<a href="qqmlincubator.html#status">status</a>() 为 Loading，则返回 true 。</font></p>
+<p>如果孵化器的<a href="qqmlincubator.html#status">status</a>() 为 Loading，则返回 true 。</p>
 <!-- @@@isLoading -->
 <!-- $$$isNull[overload1]$$$isNull -->
 <h3 class="fn" id="isNull"><a name="isNull"></a><span class="type">bool</span> QQmlIncubator::<span class="name">isNull</span>() const</h3>
-<p><font style="vertical-align: inherit;">如果孵化器的<a href="qqmlincubator.html#status">status</a>() 为 Null，则返回 true 。</font></p>
+<p>如果孵化器的<a href="qqmlincubator.html#status">status</a>() 为 Null，则返回 true 。</p>
 <!-- @@@isNull -->
 <!-- $$$isReady[overload1]$$$isReady -->
 <h3 class="fn" id="isReady"><a name="isReady"></a><span class="type">bool</span> QQmlIncubator::<span class="name">isReady</span>() const</h3>
-<p><font style="vertical-align: inherit;">如果孵化器的<a href="qqmlincubator.html#status">status</a>() 为就绪，则返回 true 。</font></p>
+<p>如果孵化器的<a href="qqmlincubator.html#status">status</a>() 为就绪，则返回 true 。</p>
 <!-- @@@isReady -->
 <!-- $$$object[overload1]$$$object -->
 <h3 class="fn" id="object"><a name="object"></a><span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *QQmlIncubator::<span class="name">object</span>() const</h3>
-<p><font style="vertical-align: inherit;">如果状态为就绪，则返回孵化对象，否则返回 0。</font></p>
+<p>如果状态为就绪，则返回孵化对象，否则返回 0。</p>
 <!-- @@@object -->
 <!-- $$$setInitialState[overload1]$$$setInitialStateQObject* -->
 <h3 class="fn" id="setInitialState"><a name="setInitialState"></a><code>[virtual protected] </code><span class="type">void</span> QQmlIncubator::<span class="name">setInitialState</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>object</i>)</h3>
 <p>在首次创建对象之后调用，但在评估属性绑定之前调用，并且(如果适用的话)会调用<a href="qqmlparserstatus.html#componentComplete">QQmlParserStatus::componentComplete</a>()。这相当于<a href="qqmlcomponent.html#beginCreate">QQmlComponent::beginCreate</a>()和<a href="qqmlcomponent.html#completeCreate">QQmlComponent::completeCreate</a>()之间的点，可以用来为对象的属性赋值。</p>
-<p><font style="vertical-align: inherit;">默认实现什么都不做。</font></p>
+<p>默认实现什么都不做。</p>
 <!-- @@@setInitialState -->
 <!-- $$$status[overload1]$$$status -->
 <h3 class="fn" id="status"><a name="status"></a><span class="type"><a href="qqmlincubator.html#Status-enum">QQmlIncubator::Status</a></span> QQmlIncubator::<span class="name">status</span>() const</h3>
-<p><font style="vertical-align: inherit;">返回孵化器的当前状态。</font></p>
+<p>返回孵化器的当前状态。</p>
 <!-- @@@status -->
 <!-- $$$statusChanged[overload1]$$$statusChangedQQmlIncubator::Status -->
 <h3 class="fn" id="statusChanged"><a name="statusChanged"></a><code>[virtual protected] </code><span class="type">void</span> QQmlIncubator::<span class="name">statusChanged</span>(<span class="type"><a href="qqmlincubator.html#Status-enum">QQmlIncubator::Status</a></span> <i>status</i>)</h3>
-<p><font style="vertical-align: inherit;">当孵化器的状态改变时调用。</font><i><font style="vertical-align: inherit;">status</font></i><font style="vertical-align: inherit;">是新的状态。</font></p>
-<p><font style="vertical-align: inherit;">默认实现什么都不做。</font></p>
+<p>当孵化器的状态改变时调用。<i>status</i>是新的状态。</p>
+<p>默认实现什么都不做。</p>
 <!-- @@@statusChanged -->
 </div>
         </div>

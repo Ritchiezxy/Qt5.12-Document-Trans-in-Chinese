@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qjsvalue.cpp -->
+  <title>QJSValue  类 | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-module.html">C++ 类</a></td><td >QJSValue</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">公用类型</a></li>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#related-non-members">相关非成员</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+<li class="level2"><a href="#working-with-arrays">Working With Arrays</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QJSValue 类</h1>
+<!-- $$$QJSValue-brief -->
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">类作为Q<span lang="zh-cn">t</span> / JavaScript的数据类型的容器。</font><a href="#details">更多...</a></p>
+<!-- @@@QJSValue -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 头文件：</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QJSValue&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.0</td></tr></table></div><ul>
+<li><a href="qjsvalue-members.html"></a></li>
+<li><a href="qjsvalue-obsolete.html">废弃的成员</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">公用类型</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#ErrorType-enum">ErrorType</a></b> { GenericError, RangeError, ReferenceError, SyntaxError, TypeError, URIError }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#SpecialValue-enum">SpecialValue</a></b> { UndefinedValue, NullValue }</td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#QJSValue">QJSValue</a></b>(QJSValue::SpecialValue <i>value</i> = UndefinedValue)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#QJSValue-1">QJSValue</a></b>(const QJSValue &amp;<i>other</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#QJSValue-2">QJSValue</a></b>(QJSValue &amp;&amp;<i>other</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#QJSValue-3">QJSValue</a></b>(bool <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#QJSValue-4">QJSValue</a></b>(int <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#QJSValue-5">QJSValue</a></b>(uint <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#QJSValue-6">QJSValue</a></b>(double <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#QJSValue-7">QJSValue</a></b>(const QString &amp;<i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#QJSValue-8">QJSValue</a></b>(const QLatin1String &amp;<i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#QJSValue-9">QJSValue</a></b>(const char *<i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#dtor.QJSValue">~QJSValue</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#call">call</a></b>(const QJSValueList &amp;<i>args</i> = ...)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#callAsConstructor">callAsConstructor</a></b>(const QJSValueList &amp;<i>args</i> = ...)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#callWithInstance">callWithInstance</a></b>(const QJSValue &amp;<i>instance</i>, const QJSValueList &amp;<i>args</i> = ...)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#deleteProperty">deleteProperty</a></b>(const QString &amp;<i>name</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#equals">equals</a></b>(const QJSValue &amp;<i>other</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue::ErrorType </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#errorType">errorType</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#hasOwnProperty">hasOwnProperty</a></b>(const QString &amp;<i>name</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#hasProperty">hasProperty</a></b>(const QString &amp;<i>name</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isArray">isArray</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isBool">isBool</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isCallable">isCallable</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isDate">isDate</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isError">isError</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isNull">isNull</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isNumber">isNumber</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isObject">isObject</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isQMetaObject">isQMetaObject</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isQObject">isQObject</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isRegExp">isRegExp</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isString">isString</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isUndefined">isUndefined</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#isVariant">isVariant</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#property">property</a></b>(const QString &amp;<i>name</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#property-1">property</a></b>(quint32 <i>arrayIndex</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#prototype">prototype</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#setProperty">setProperty</a></b>(const QString &amp;<i>name</i>, const QJSValue &amp;<i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#setProperty-1">setProperty</a></b>(quint32 <i>arrayIndex</i>, const QJSValue &amp;<i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#setPrototype">setPrototype</a></b>(const QJSValue &amp;<i>prototype</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#strictlyEquals">strictlyEquals</a></b>(const QJSValue &amp;<i>other</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#toBool">toBool</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QDateTime </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#toDateTime">toDateTime</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> qint32 </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#toInt">toInt</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> double </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#toNumber">toNumber</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QMetaObject *</td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#toQMetaObject">toQMetaObject</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QObject *</td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#toQObject">toQObject</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#toString">toString</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> quint32 </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#toUInt">toUInt</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QVariant </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#toVariant">toVariant</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue &amp;</td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#operator-eq">operator=</a></b>(QJSValue &amp;&amp;<i>other</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QJSValue &amp;</td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#operator-eq-1">operator=</a></b>(const QJSValue &amp;<i>other</i>)</td></tr>
+</table></div>
+<a name="related-non-members"></a>
+<h2 id="related-non-members">相关非成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> typedef </td><td class="memItemRight bottomAlign"><b><a href="qjsvalue.html#QJSValueList-typedef">QJSValueList</a></b></td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$QJSValue-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">类作为Q<span lang="zh-cn">t</span> / JavaScript的数据类型的容器。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">支持</font><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm"><font style="vertical-align: inherit;">ECMA-262</font></a><font style="vertical-align: inherit;">标准中定义的类型：原始类型，即 Undefined、Null、Boolean、Number 和 String；以及对象和数组类型。此外，还为 Qt/C++ 类型（例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">）提供了内置支持。</font></p>
+<p>对于基于对象的类型(包括Date和RegExp)，使用<a href="qjsengine.html">QJSEngine</a>中的newT()函数(例如<a href="qjsengine.html#newObject">QJSEngine::newObject</a>())来创建所需类型的<a href="qjsvalue.html">QJSValue</a>。对于基元类型，使用其中一个<a href="qjsvalue.html">QJSValue</a>构造函数重载。对于其他类型，例如已注册的小工具类型，如<a href="../qtcore/qpoint.html">QPoint</a>，您可以使用<a href="qjsengine.html#toScriptValue">QJSEngine::toScriptValue</a>。</p>
+<p><font style="vertical-align: inherit;">名为 isT() 的方法（例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isBool"><font style="vertical-align: inherit;">isBool</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isUndefined"><font style="vertical-align: inherit;">isUndefined</font></a><font style="vertical-align: inherit;"> ()）可用于测试值是否属于某种类型。名为 toT() 的方法（例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toBool"><font style="vertical-align: inherit;">toBool</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toString"><font style="vertical-align: inherit;">toString</font></a><font style="vertical-align: inherit;"> ()）可用于将</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">转换为另一种类型。您还可以使用通用的 qjsvalue_cast() 函数。</font></p>
+<p><font style="vertical-align: inherit;">对象值有零个或多个属性，它们本身就是 QJSValues。使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#setProperty"><font style="vertical-align: inherit;">setProperty</font></a><font style="vertical-align: inherit;"> ()设置对象的属性，调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#property"><font style="vertical-align: inherit;">property</font></a><font style="vertical-align: inherit;"> ()获取属性的值。</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="qjsengine.html">QJSEngine</a></span> myEngine;
+  <span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> myObject <span class="operator">=</span> myEngine<span class="operator">.</span>newObject();
+  <span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> myOtherObject <span class="operator">=</span> myEngine<span class="operator">.</span>newObject();
+  myObject<span class="operator">.</span>setProperty(<span class="string">&quot;myChild&quot;</span><span class="operator">,</span> myOtherObject);
+  myObject<span class="operator">.</span>setProperty(<span class="string">&quot;name&quot;</span><span class="operator">,</span> <span class="string">&quot;John Doe&quot;</span>);
+
+</pre>
+<p><font style="vertical-align: inherit;">如果要遍历脚本对象的属性，请使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalueiterator.html"><font style="vertical-align: inherit;">QJSValueIterator</font></a><font style="vertical-align: inherit;">类。</font></p>
+<p><font style="vertical-align: inherit;">对象值有一个内部</font><code>prototype</code><font style="vertical-align: inherit;">属性，可以通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#prototype"><font style="vertical-align: inherit;">prototype</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#setPrototype"><font style="vertical-align: inherit;">setPrototype</font></a><font style="vertical-align: inherit;"> ()访问。</font></p>
+<p><font style="vertical-align: inherit;">可以通过调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#call">call</a> ()来调用函数对象（</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isCallable"><font style="vertical-align: inherit;">isCallable</font></a><font style="vertical-align: inherit;"> ()<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isCallable">为其</a>返回 true 的对象）。构造函数可以通过调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#callAsConstructor">callAsConstructor</a> ()来构造新的对象。</font></p>
+<p>使用<a href="qjsvalue.html#equals">equals</a>()或<a href="qjsvalue.html#strictlyEquals">strictlyEquals</a>()来比较一个<a href="qjsvalue.html">QJSValue</a>和另一个<a href="qjsvalue.html">QJSValue</a>。</p>
+<p><font style="vertical-align: inherit;">注意，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">为其</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isObject"><font style="vertical-align: inherit;">则IsObject</font></a><font style="vertical-align: inherit;">（）为真仅承载到一个实际的对象的引用; 复制</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">只会复制对象引用，而不是对象本身。如果您想克隆一个对象（即将一个对象的属性复制到另一个对象），您可以借助</font><code>for-in</code><font style="vertical-align: inherit;">脚本代码中的语句或C++ 中的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalueiterator.html"><font style="vertical-align: inherit;">QJSValueIterator</font></a><font style="vertical-align: inherit;">来实现。</font></p>
+<a name="working-with-arrays"></a>
+<h3 ><font style="vertical-align: inherit;">使用数组</font></h3>
+<p><font style="vertical-align: inherit;">要使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">创建数组，请使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newArray"><font style="vertical-align: inherit;">QJSEngine::newArray</font></a><font style="vertical-align: inherit;"> ()：</font></p>
+<pre class="cpp">
+
+  <span class="comment">// Assumes that this class was declared in QML.</span>
+  <span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> jsArray <span class="operator">=</span> engine<span class="operator">-</span><span class="operator">&gt;</span>newArray(<span class="number">3</span>);
+
+</pre>
+<p><font style="vertical-align: inherit;">要设置数组中的单个元素，请使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#setProperty-1"><font style="vertical-align: inherit;">setProperty(quint32 arrayIndex, const QJSValue &amp;value)</font></a><font style="vertical-align: inherit;">重载。例如，用整数填充上面的数组：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">for</span> (<span class="type">int</span> i <span class="operator">=</span> <span class="number">0</span>; i <span class="operator">&lt;</span> <span class="number">3</span>; <span class="operator">+</span><span class="operator">+</span>i) {
+      jsArray<span class="operator">.</span>setProperty(i<span class="operator">,</span> <span class="type"><a href="../qtcore/qrandomgenerator.html">QRandomGenerator</a></span><span class="operator">::</span>global()<span class="operator">.</span>generate());
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">要确定数组的长度，请访问该</font><code>"length"</code><font style="vertical-align: inherit;">属性。要访问数组元素，请使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#property-1"><font style="vertical-align: inherit;">属性</font></a><font style="vertical-align: inherit;">(quint32 arrayIndex) 重载。以下代码将我们上面创建的数组读回列表：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qvector.html">QVector</a></span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span> integers;
+  <span class="keyword">const</span> <span class="type">int</span> length <span class="operator">=</span> jsArray<span class="operator">.</span>property(<span class="string">&quot;length&quot;</span>)<span class="operator">.</span>toInt();
+  <span class="keyword">for</span> (<span class="type">int</span> i <span class="operator">=</span> <span class="number">0</span>; i <span class="operator">&lt;</span> length; <span class="operator">+</span><span class="operator">+</span>i) {
+      integers<span class="operator">.</span>append(jsArray<span class="operator">.</span>property(i)<span class="operator">.</span>toInt());
+  }
+
+</pre>
+</div>
+<p><b>请参考 </b><a href="qjsengine.html">QJSEngine</a> and <a href="qjsvalueiterator.html">QJSValueIterator</a>.</p>
+<!-- @@@QJSValue -->
+<div class="types">
+<h2>成员类型文档</h2>
+<!-- $$$ErrorType$$$NoError$$$GenericError$$$EvalError$$$RangeError$$$ReferenceError$$$SyntaxError$$$TypeError$$$URIError -->
+<h3 class="fn" id="ErrorType-enum"><a name="ErrorType-enum"></a>enum QJSValue::<span class="name">ErrorType</span></h3>
+<p><font style="vertical-align: inherit;">将此枚举用于 JavaScript 语言特定类型的 Error 对象。</font></p>
+<p><font style="vertical-align: inherit;">当在 C++ 中模拟语言特性需要使用专门的异常类型时，它们可能很有用。此外，它们可能有助于更清楚地传达某些典型条件，而不是抛出通用的 JavaScript 异常。例如，处理网络和资源定位器的代码可能会发现使用 URIError 类型传播与格式错误的定位器相关的错误很有用。</font></p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">
+	<span lang="zh-cn">常量</span></th><th class="tblval"><span lang="zh-cn">值</span></th><th class="tbldscr">
+	<span lang="zh-cn">描述</span></th></tr>
+<tr><td class="topAlign"><code>QJSValue::GenericError</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign"><font style="vertical-align: inherit;">一个通用的 Error 对象，但不是特定的子类型。</font></td></tr>
+<tr><td class="topAlign"><code>QJSValue::RangeError</code></td><td class="topAlign tblval"><code>3</code></td><td class="topAlign"><font style="vertical-align: inherit;">值与预期的集合或范围不匹配。</font></td></tr>
+<tr><td class="topAlign"><code>QJSValue::ReferenceError</code></td><td class="topAlign tblval"><code>4</code></td><td class="topAlign"><font style="vertical-align: inherit;">引用了一个不存在的变量。</font></td></tr>
+<tr><td class="topAlign"><code>QJSValue::SyntaxError</code></td><td class="topAlign tblval"><code>5</code></td><td class="topAlign"><font style="vertical-align: inherit;">遇到不符合语言语法的无效标记或标记序列。</font></td></tr>
+<tr><td class="topAlign"><code>QJSValue::TypeError</code></td><td class="topAlign tblval"><code>6</code></td><td class="topAlign"><font style="vertical-align: inherit;">操作数或参数与预期的类型不兼容。</font></td></tr>
+<tr><td class="topAlign"><code>QJSValue::URIError</code></td><td class="topAlign tblval"><code>7</code></td><td class="topAlign"><font style="vertical-align: inherit;">
+	<span lang="zh-cn">U</span>RI 处理函数使用不正确或提供的 URI 格式不正确。</font></td></tr>
+</table></div>
+<p><font style="vertical-align: inherit;">这个枚举是在 Qt 5.12 中引入或修改的。</font></p>
+<!-- @@@ErrorType -->
+<!-- $$$SpecialValue$$$NullValue$$$UndefinedValue -->
+<h3 class="fn" id="SpecialValue-enum"><a name="SpecialValue-enum"></a>enum QJSValue::<span class="name">SpecialValue</span></h3>
+<p>This enum is used to specify a single-valued type.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">
+	<span lang="zh-cn">常量</span></th><th class="tblval" style="width: 32px">
+	<span lang="zh-cn">值</span></th><th class="tbldscr"><span lang="zh-cn">描述</span></th></tr>
+<tr><td class="topAlign"><code>QJSValue::UndefinedValue</code></td>
+	<td class="topAlign tblval" style="width: 32px"><code>1</code></td><td class="topAlign"><font style="vertical-align: inherit;">一个未定义的值。</font></td></tr>
+<tr><td class="topAlign"><code>QJSValue::NullValue</code></td>
+	<td class="topAlign tblval" style="width: 32px"><code>0</code></td><td class="topAlign"><font style="vertical-align: inherit;">一个空值。</font></td></tr>
+</table></div>
+<!-- @@@SpecialValue -->
+</div>
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QJSValue[overload1]$$$QJSValueQJSValue::SpecialValue -->
+<h3 class="fn" id="QJSValue"><a name="QJSValue"></a>QJSValue::<span class="name">QJSValue</span>(<span class="type"><a href="qjsvalue.html#SpecialValue-enum">QJSValue::SpecialValue</a></span> <i>value</i> = UndefinedValue)</h3>
+<p><font style="vertical-align: inherit;">构造一个具有特殊<i>value</i>的新</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@QJSValue -->
+<!-- $$$QJSValue$$$QJSValueconstQJSValue& -->
+<h3 class="fn" id="QJSValue-1"><a name="QJSValue-1"></a>QJSValue::<span class="name">QJSValue</span>(const <span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> &amp;<i>other</i>)</h3>
+<p>Constructs a new <a href="qjsvalue.html">QJSValue</a> that is a copy of <i>other</i>.<font style="vertical-align: inherit;">构造一个<span lang="zh-cn">其他<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html">QJSValue</a>实例<i>other</i></span>的<span lang="zh-cn">新的副本。</span></font></p>
+<p><font style="vertical-align: inherit;">请注意，如果</font><i><font style="vertical-align: inherit;">other</font></i><font style="vertical-align: inherit;">是一个对象（即</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isObject"><font style="vertical-align: inherit;">isObject</font></a><font style="vertical-align: inherit;"> () 将返回 true），那么只有对底层对象的引用会被复制到新的脚本值中（即，不会复制对象本身）。</font></p>
+<!-- @@@QJSValue -->
+<!-- $$$QJSValue$$$QJSValueQJSValue&& -->
+<h3 class="fn" id="QJSValue-2"><a name="QJSValue-2"></a>QJSValue::<span class="name">QJSValue</span>(<span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> &amp;&amp;<i>other</i>)</h3>
+<p><font style="vertical-align: inherit;">移动构造函数。从<i>other</i>移动到这个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">对象。</font></p>
+<!-- @@@QJSValue -->
+<!-- $$$QJSValue$$$QJSValuebool -->
+<h3 class="fn" id="QJSValue-3"><a name="QJSValue-3"></a>QJSValue::<span class="name">QJSValue</span>(<span class="type">bool</span> <i>value</i>)</h3>
+<p><font style="vertical-align: inherit;">用一个布尔<span lang="zh-cn">类型的值<i>value</i></span>构造一个新的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@QJSValue -->
+<!-- $$$QJSValue$$$QJSValueint -->
+<h3 class="fn" id="QJSValue-4"><a name="QJSValue-4"></a>QJSValue::<span class="name">QJSValue</span>(<span class="type">int</span> <i>value</i>)</h3>
+<p><span lang="zh-cn">使用int类型的值<i>value</i>构造一个</span><a href="qjsvalue.html">QJSValue</a>。</p>
+<!-- @@@QJSValue -->
+<!-- $$$QJSValue$$$QJSValueuint -->
+<h3 class="fn" id="QJSValue-5"><a name="QJSValue-5"></a>QJSValue::<span class="name">QJSValue</span>(<span class="type"><a href="../qtcore/qtglobal.html#uint-typedef">uint</a></span> <i>value</i>)</h3>
+<p><span lang="zh-cn">使用uint类型的值<i>value</i>构造一个</span><a href="qjsvalue.html">QJSValue</a>。</p>
+<!-- @@@QJSValue -->
+<!-- $$$QJSValue$$$QJSValuedouble -->
+<h3 class="fn" id="QJSValue-6"><a name="QJSValue-6"></a>QJSValue::<span class="name">QJSValue</span>(<span class="type">double</span> <i>value</i>)</h3>
+<p><span lang="zh-cn">使用double类型的值<i>value</i>构造一个</span><a href="qjsvalue.html">QJSValue</a>。</p>
+<!-- @@@QJSValue -->
+<!-- $$$QJSValue$$$QJSValueconstQString& -->
+<h3 class="fn" id="QJSValue-7"><a name="QJSValue-7"></a>QJSValue::<span class="name">QJSValue</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>value</i>)</h3>
+<p><span lang="zh-cn">使用string类型的值<i>value</i>构造一个</span><a href="qjsvalue.html">QJSValue</a>。</p>
+<!-- @@@QJSValue -->
+<!-- $$$QJSValue$$$QJSValueconstQLatin1String& -->
+<h3 class="fn" id="QJSValue-8"><a name="QJSValue-8"></a>QJSValue::<span class="name">QJSValue</span>(const <span class="type"><a href="../qtcore/qlatin1string.html">QLatin1String</a></span> &amp;<i>value</i>)</h3>
+<p><span lang="zh-cn">使用string类型的值<i>value</i>构造一个</span><a href="qjsvalue.html">QJSValue</a>。</p>
+<!-- @@@QJSValue -->
+<!-- $$$QJSValue$$$QJSValueconstchar* -->
+<h3 class="fn" id="QJSValue-9"><a name="QJSValue-9"></a>QJSValue::<span class="name">QJSValue</span>(const <span class="type">char</span> *<i>value</i>)</h3>
+<p><span lang="zh-cn">使用string类型的值<i>value</i>构造一个</span><a href="qjsvalue.html">QJSValue</a>。</p>
+<!-- @@@QJSValue -->
+<!-- $$$~QJSValue[overload1]$$$~QJSValue -->
+<h3 class="fn" id="dtor.QJSValue"><a name="dtor.QJSValue"></a>QJSValue::<span class="name">~QJSValue</span>()</h3>
+<p><font style="vertical-align: inherit;">销毁这个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@~QJSValue -->
+<!-- $$$call[overload1]$$$callconstQJSValueList& -->
+<h3 class="fn" id="call"><a name="call"></a><span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> QJSValue::<span class="name">call</span>(const <span class="type"><a href="qjsvalue.html#QJSValueList-typedef">QJSValueList</a></span> &amp;<i>args</i> = ...)</h3>
+<p><font style="vertical-align: inherit;">将此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">作为函数调用，将</font><i><font style="vertical-align: inherit;">args</font></i><font style="vertical-align: inherit;">作为参数传递给函数，并使用 globalObject() 作为“this”对象。返回从函数返回的值。</font></p>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">不可调用，则 call() 不执行任何操作并返回未定义的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">调用call()会导致脚本引擎发生异常；在这种情况下， call() 返回抛出的值（通常是一个</font><code>Error</code><font style="vertical-align: inherit;">对象）。可以对返回值调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isError"><font style="vertical-align: inherit;">isError</font></a><font style="vertical-align: inherit;"> ()来判断是否发生异常。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isCallable"><font style="vertical-align: inherit;">isCallable</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#callWithInstance"><font style="vertical-align: inherit;">callWithInstance</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#callAsConstructor"><font style="vertical-align: inherit;">callAsConstructor</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@call -->
+<!-- $$$callAsConstructor[overload1]$$$callAsConstructorconstQJSValueList& -->
+<h3 class="fn" id="callAsConstructor"><a name="callAsConstructor"></a><span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> QJSValue::<span class="name">callAsConstructor</span>(const <span class="type"><a href="qjsvalue.html#QJSValueList-typedef">QJSValueList</a></span> &amp;<i>args</i> = ...)</h3>
+<p><font style="vertical-align: inherit;">创建一个新的</font><code>Object</code><font style="vertical-align: inherit;">并调用这个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">作为构造函数，使用创建的对象作为“this”对象并传递</font><i><font style="vertical-align: inherit;">args</font></i><font style="vertical-align: inherit;">作为参数。如果构造函数调用的返回值是一个对象，则返回该对象；否则返回默认构造的对象。</font></p>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">不是函数，则 callAsConstructor() 不执行任何操作并返回未定义的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">调用该函数会导致脚本引擎发生异常；在这种情况下，将</font><code>Error</code><font style="vertical-align: inherit;">返回抛出的值（通常是一个对象）。可以对返回值调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isError"><font style="vertical-align: inherit;">isError</font></a><font style="vertical-align: inherit;"> ()来判断是否发生异常。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#call"><font style="vertical-align: inherit;">call</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newObject"><font style="vertical-align: inherit;">QJSEngine::newObject</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@callAsConstructor -->
+<!-- $$$callWithInstance[overload1]$$$callWithInstanceconstQJSValue&constQJSValueList& -->
+<h3 class="fn" id="callWithInstance"><a name="callWithInstance"></a><span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> QJSValue::<span class="name">callWithInstance</span>(const <span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> &amp;<i>instance</i>, const <span class="type"><a href="qjsvalue.html#QJSValueList-typedef">QJSValueList</a></span> &amp;<i>args</i> = ...)</h3>
+<p><font style="vertical-align: inherit;">将此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">作为函数调用，在函数调用中使用<i>instance</i> </font><font style="vertical-align: inherit;">作为“this”对象，并将</font><i><font style="vertical-align: inherit;">args</font></i><font style="vertical-align: inherit;">作为参数传递给函数。返回从函数返回的值。</font></p>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">不是函数，则</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#call"><font style="vertical-align: inherit;">call</font></a><font style="vertical-align: inherit;"> () 不执行任何操作并返回未定义的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果</font><i><font style="vertical-align: inherit;">instance</font></i><font style="vertical-align: inherit;">不是对象，则全局对象（请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#globalObject"><font style="vertical-align: inherit;">QJSEngine::globalObject</font></a><font style="vertical-align: inherit;"> ()）将用作“this”对象。</font></p>
+<p><font style="vertical-align: inherit;">调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#call"><font style="vertical-align: inherit;">call</font></a><font style="vertical-align: inherit;"> ()会导致脚本引擎发生异常；在这种情况下，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#call"><font style="vertical-align: inherit;">call</font></a><font style="vertical-align: inherit;"> () 返回抛出的值（通常是一个</font><code>Error</code><font style="vertical-align: inherit;">对象）。可以对返回值调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isError"><font style="vertical-align: inherit;">isError</font></a><font style="vertical-align: inherit;"> ()来判断是否发生异常。</font></p>
+<p><b>请参考 </b><a href="qjsvalue.html#call">call</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@callWithInstance -->
+<!-- $$$deleteProperty[overload1]$$$deletePropertyconstQString& -->
+<h3 class="fn" id="deleteProperty"><a name="deleteProperty"></a><span class="type">bool</span> QJSValue::<span class="name">deleteProperty</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>)</h3>
+<p><font style="vertical-align: inherit;">尝试删除此对象的给定</font><i><font style="vertical-align: inherit;">name</font></i><font style="vertical-align: inherit;">的属性。如果属性被删除，则返回<span lang="zh-cn">true</span>，否则返回<span lang="zh-cn">false</span>。</font></p>
+<p><font style="vertical-align: inherit;">此函数的行为与 JavaScript 的删除操作符一致。特别是：</font></p>
+<ul>
+<li><font style="vertical-align: inherit;">无法删除不可配置的属性。</font></li>
+<li><font style="vertical-align: inherit;">即使此对象没有给定</font><i><font style="vertical-align: inherit;">名称</font></i><font style="vertical-align: inherit;">的属性（即，不存在的属性是“可简单删除的”），此函数也将返回 true 。</font></li>
+<li><font style="vertical-align: inherit;">如果这个对象没有自己的给定</font><i><font style="vertical-align: inherit;">name</font></i><font style="vertical-align: inherit;">的属性，但是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#prototype"><font style="vertical-align: inherit;">prototype</font></a><font style="vertical-align: inherit;"> ()链中的一个对象有，则原型对象的属性不会被删除，这个函数返回true。</font></li>
+</ul>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#setProperty"><font style="vertical-align: inherit;">setProperty</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#hasOwnProperty"><font style="vertical-align: inherit;">hasOwnProperty</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@deleteProperty -->
+<!-- $$$equals[overload1]$$$equalsconstQJSValue& -->
+<h3 class="fn" id="equals"><a name="equals"></a><span class="type">bool</span> QJSValue::<span class="name">equals</span>(const <span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> &amp;<i>other</i>) const</h3>
+<p>如果这个<a href="qjsvalue.html">QJSValue</a>等于<i>other</i>，则返回true，否则返回false。比较遵循<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第11.9.3节“抽象等式比较算法”中描述的行为。</p>
+<p>即使这个<a href="qjsvalue.html">QJSValue</a>的类型与<i>other</i> 
+的类型不同，这个函数也可以返回true;也就是说，比较不严格。例如，比较数字9和字符串“9”返回true;将未定义的值与空值进行比较返回true;比较原始值为6的<code>Number</code> 
+对象和原始值为"6"的<code>String</code> 
+对象返回true;将数字1与布尔值true比较返回true。如果您想在不进行隐式值转换的情况下执行比较，请使用<a href="qjsvalue.html#strictlyEquals">strictlyEquals</a>()。</p>
+<p><font style="vertical-align: inherit;">请注意，如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">或<i>other</i> 值是对象，则调用此函数会对脚本引擎产生副作用，因为引擎将调用对象的 valueOf() 函数（可能还有</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toString"><font style="vertical-align: inherit;">toString</font></a><font style="vertical-align: inherit;"> ()）以尝试将对象转换为原始值（可能导致未捕获的脚本异常）。</font></p>
+<p><b>请参考 </b><a href="qjsvalue.html#strictlyEquals">strictlyEquals</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@equals -->
+<!-- $$$errorType[overload1]$$$errorType -->
+<h3 class="fn" id="errorType"><a name="errorType"></a><span class="type"><a href="qjsvalue.html#ErrorType-enum">QJSValue::ErrorType</a></span> QJSValue::<span class="name">errorType</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果它是一个 Error 对象，则返回此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">表示的错误类型。否则，返回</font><code>NoError."</code></p>
+<p>这个函数在Qt 5.12中引入。</p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isError"><font style="vertical-align: inherit;">isError</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#script-exceptions"><font style="vertical-align: inherit;">QJSEngine-Script Exceptions</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@errorType -->
+<!-- $$$hasOwnProperty[overload1]$$$hasOwnPropertyconstQString& -->
+<h3 class="fn" id="hasOwnProperty"><a name="hasOwnProperty"></a><span class="type">bool</span> QJSValue::<span class="name">hasOwnProperty</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果此对象具有给定</font><i><font style="vertical-align: inherit;">name</font></i><font style="vertical-align: inherit;">的自己的（不是原型继承的）属性，则返回 true，否则返回 false。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#property"><font style="vertical-align: inherit;">property</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#hasProperty"><font style="vertical-align: inherit;">hasProperty</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@hasOwnProperty -->
+<!-- $$$hasProperty[overload1]$$$hasPropertyconstQString& -->
+<h3 class="fn" id="hasProperty"><a name="hasProperty"></a><span class="type">bool</span> QJSValue::<span class="name">hasProperty</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果此对象具有给定</font><i><font style="vertical-align: inherit;">name</font></i><font style="vertical-align: inherit;">的属性，则返回 true，否则返回 false。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#property"><font style="vertical-align: inherit;">property</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#hasOwnProperty"><font style="vertical-align: inherit;">hasOwnProperty</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@hasProperty -->
+<!-- $$$isArray[overload1]$$$isArray -->
+<h3 class="fn" id="isArray"><a name="isArray"></a><span class="type">bool</span> QJSValue::<span class="name">isArray</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是 Array 类的对象，则返回 true ；否则返回假。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newArray"><font style="vertical-align: inherit;">QJSEngine::newArray</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@isArray -->
+<!-- $$$isBool[overload1]$$$isBool -->
+<h3 class="fn" id="isBool"><a name="isBool"></a><span class="type">bool</span> QJSValue::<span class="name">isBool</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是基本类型 Boolean，则返回 true ；否则返回<span lang="zh-cn">false</span>。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toBool"><font style="vertical-align: inherit;">toBool</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@isBool -->
+<!-- $$$isCallable[overload1]$$$isCallable -->
+<h3 class="fn" id="isCallable"><a name="isCallable"></a><span class="type">bool</span> QJSValue::<span class="name">isCallable</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">可以称为函数，则返回 true，否则返回 false。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#call"><font style="vertical-align: inherit;">call</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@isCallable -->
+<!-- $$$isDate[overload1]$$$isDate -->
+<h3 class="fn" id="isDate"><a name="isDate"></a><span class="type">bool</span> QJSValue::<span class="name">isDate</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是 Date 类的对象，则返回 true ；否则返回false。</font></p>
+<!-- @@@isDate -->
+<!-- $$$isError[overload1]$$$isError -->
+<h3 class="fn" id="isError"><a name="isError"></a><span class="type">bool</span> QJSValue::<span class="name">isError</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是 Error 类的对象，则返回 true ；否则返回false。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#errorType"><font style="vertical-align: inherit;">errorType</font></a><font style="vertical-align: inherit;"> () 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#script-exceptions"><font style="vertical-align: inherit;">QJSEngine-<span lang="zh-cn">脚本异常</span></font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@isError -->
+<!-- $$$isNull[overload1]$$$isNull -->
+<h3 class="fn" id="isNull"><a name="isNull"></a><span class="type">bool</span> QJSValue::<span class="name">isNull</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是原始类型 Null，则返回 true ；否则返回<span lang="zh-cn">false</span>。</font></p>
+<!-- @@@isNull -->
+<!-- $$$isNumber[overload1]$$$isNumber -->
+<h3 class="fn" id="isNumber"><a name="isNumber"></a><span class="type">bool</span> QJSValue::<span class="name">isNumber</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是原始类型 Number，则返回 true ；否则返回<span lang="zh-cn">false</span>。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toNumber"><font style="vertical-align: inherit;">toNumber</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@isNumber -->
+<!-- $$$isObject[overload1]$$$isObject -->
+<h3 class="fn" id="isObject"><a name="isObject"></a><span class="type">bool</span> QJSValue::<span class="name">isObject</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是 Object 类型，则返回 true ；否则返回<span lang="zh-cn">false</span>。</font></p>
+<p><font style="vertical-align: inherit;">请注意，函数值、变体值和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">值都是对象，因此该函数对这些值返回 true。</font></p>
+<p><b>请参考 </b><a href="qjsengine.html#newObject">QJSEngine::newObject</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@isObject -->
+<!-- $$$isQMetaObject[overload1]$$$isQMetaObject -->
+<h3 class="fn" id="isQMetaObject"><a name="isQMetaObject"></a><span class="type">bool</span> QJSValue::<span class="name">isQMetaObject</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html"><font style="vertical-align: inherit;">QMetaObject</font></a><font style="vertical-align: inherit;">，则返回 true ；否则返回<span lang="zh-cn">false</span>。</font></p>
+<p>这个函数在Qt 5.8中引入。</p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toQMetaObject"><font style="vertical-align: inherit;">toQMetaObject</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newQMetaObject-1"><font style="vertical-align: inherit;">QJSEngine::newQMetaObject</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@isQMetaObject -->
+<!-- $$$isQObject[overload1]$$$isQObject -->
+<h3 class="fn" id="isQObject"><a name="isQObject"></a><span class="type">bool</span> QJSValue::<span class="name">isQObject</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">，则返回 true ；否则返回<span lang="zh-cn">false</span>。</font></p>
+<p>注意： <font style="vertical-align: inherit;">即使此<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html">QJSValue</a>包装的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">已被删除，此函数也会返回 true 。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toQObject"><font style="vertical-align: inherit;">toQObject</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsengine.html#newQObject"><font style="vertical-align: inherit;">QJSEngine::newQObject</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@isQObject -->
+<!-- $$$isRegExp[overload1]$$$isRegExp -->
+<h3 class="fn" id="isRegExp"><a name="isRegExp"></a><span class="type">bool</span> QJSValue::<span class="name">isRegExp</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是 RegExp 类的对象，则返回 true ；否则返回<span lang="zh-cn">false</span>。</font></p>
+<!-- @@@isRegExp -->
+<!-- $$$isString[overload1]$$$isString -->
+<h3 class="fn" id="isString"><a name="isString"></a><span class="type">bool</span> QJSValue::<span class="name">isString</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是原始类型 String，则返回 true ；否则返回<span lang="zh-cn">false</span>。</font></p>
+<p><b>请参考 </b><a href="qjsvalue.html#toString">toString</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@isString -->
+<!-- $$$isUndefined[overload1]$$$isUndefined -->
+<h3 class="fn" id="isUndefined"><a name="isUndefined"></a><span class="type">bool</span> QJSValue::<span class="name">isUndefined</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是原始类型 Undefined，则返回 true ；否则返回<span lang="zh-cn">false</span>。</font></p>
+<!-- @@@isUndefined -->
+<!-- $$$isVariant[overload1]$$$isVariant -->
+<h3 class="fn" id="isVariant"><a name="isVariant"></a><span class="type">bool</span> QJSValue::<span class="name">isVariant</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是变体值，则返回 true ；否则返回<span lang="zh-cn">false</span>。</font></p>
+<p><b>请参考 </b><a href="qjsvalue.html#toVariant">toVariant</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@isVariant -->
+<!-- $$$property[overload1]$$$propertyconstQString& -->
+<h3 class="fn" id="property"><a name="property"></a><span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> QJSValue::<span class="name">property</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>) const</h3>
+<p><font style="vertical-align: inherit;">返回此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">具有给定<i>name</i>的属性的值。如果不存在这样的属性，则返回未定义的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">如果属性是使用 getter 函数实现的（即设置了 PropertyGetter 标志），调用 property() 会对脚本引擎产生副作用，因为将调用 getter 函数（可能导致未捕获的脚本异常）。如果发生异常，property() 返回抛出的值（通常是一个</font><code>Error</code><font style="vertical-align: inherit;">对象）。</font></p>
+<p><font style="vertical-align: inherit;">要访问数组元素，请改用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#setProperty-1"><font style="vertical-align: inherit;">setProperty(quint32 arrayIndex, const QJSValue &amp;value)</font></a><font style="vertical-align: inherit;">重载。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#setProperty"><font style="vertical-align: inherit;">setProperty</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#hasProperty"><font style="vertical-align: inherit;">hasProperty</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalueiterator.html"><font style="vertical-align: inherit;">QJSValueIterator</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@property -->
+<!-- $$$property$$$propertyquint32 -->
+<h3 class="fn" id="property-1"><a name="property-1"></a><span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> QJSValue::<span class="name">property</span>(<span class="type"><a href="../qtcore/qtglobal.html#quint32-typedef">quint32</a></span> <i>arrayIndex</i>) const</h3>
+<p>这是一个重载函数。</p>
+<p><font style="vertical-align: inherit;">返回给定</font><i><font style="vertical-align: inherit;">arrayIndex</font></i><font style="vertical-align: inherit;">处的属性。</font></p>
+<p><font style="vertical-align: inherit;">可以通过两种方式访问​​数组中的元素。第一种是使用数组索引作为属性名称：</font></p>
+<pre class="cpp">
+
+  <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> jsValueArray<span class="operator">.</span>property(QLatin1String(<span class="string">&quot;4&quot;</span>))<span class="operator">.</span>toString();
+
+</pre>
+<p><font style="vertical-align: inherit;">第二种是使用带索引的重载：</font></p>
+<pre class="cpp">
+
+  <a href="../qtcore/qtglobal.html#qDebug">qDebug</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> jsValueArray<span class="operator">.</span>property(<span class="number">4</span>)<span class="operator">.</span>toString();
+
+</pre>
+<p>这两种方法都达到了相同的结果，<font style="vertical-align: inherit;">只是后者：</font></p>
+<ul>
+<li><font style="vertical-align: inherit;">更容易使用（可以直接使用整数）</font></li>
+<li><font style="vertical-align: inherit;">更快（不转换为整数）</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">不是 Array 对象，则此函数的行为就像使用<i>arrayIndex</i>的字符串表示调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#property"><font style="vertical-align: inherit;">property</font></a><font style="vertical-align: inherit;"> ()</font><i><font style="vertical-align: inherit;">一样</font></i><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@property -->
+<!-- $$$prototype[overload1]$$$prototype -->
+<h3 class="fn" id="prototype"><a name="prototype"></a><span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> QJSValue::<span class="name">prototype</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果这个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是一个对象，则返回</font><code>__proto__</code><font style="vertical-align: inherit;">这个对象的内部原型（属性）；否则返回一个未定义的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#setPrototype"><font style="vertical-align: inherit;">setPrototype</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isObject"><font style="vertical-align: inherit;">isObject</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@prototype -->
+<!-- $$$setProperty[overload1]$$$setPropertyconstQString&constQJSValue& -->
+<h3 class="fn" id="setProperty"><a name="setProperty"></a><span class="type">void</span> QJSValue::<span class="name">setProperty</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>, const <span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> &amp;<i>value</i>)</h3>
+<p><font style="vertical-align: inherit;">使用给定<i>name</i>将此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">属性的值设置为给定<i>value</i>。</font></p>
+<p><font style="vertical-align: inherit;">如果这个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">不是一个对象，这个函数什么都不做。</font></p>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">还没有名称为</font><i><font style="vertical-align: inherit;">name</font></i><font style="vertical-align: inherit;">的属性，则会创建一个新属性。</font></p>
+<p><font style="vertical-align: inherit;">要修改数组元素，请改用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#setProperty-1"><font style="vertical-align: inherit;">setProperty(quint32 arrayIndex, const QJSValue &amp;value)</font></a><font style="vertical-align: inherit;">重载。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#property"><font style="vertical-align: inherit;">property</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#deleteProperty"><font style="vertical-align: inherit;">deleteProperty</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@setProperty -->
+<!-- $$$setProperty$$$setPropertyquint32constQJSValue& -->
+<h3 class="fn" id="setProperty-1"><a name="setProperty-1"></a><span class="type">void</span> QJSValue::<span class="name">setProperty</span>(<span class="type"><a href="../qtcore/qtglobal.html#quint32-typedef">quint32</a></span> <i>arrayIndex</i>, const <span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> &amp;<i>value</i>)</h3>
+<p>这是一个重载函数。</p>
+<p><font style="vertical-align: inherit;">将给定</font><i><font style="vertical-align: inherit;">arrayIndex</font></i><font style="vertical-align: inherit;">处的属性设置为给定<i>value</i>。</font></p>
+<p><font style="vertical-align: inherit;">可以通过两种方式修改数组中的元素。第一种是使用数组索引作为属性名称：</font></p>
+<pre class="cpp">
+
+  jsValueArray<span class="operator">.</span>setProperty(QLatin1String(<span class="string">&quot;4&quot;</span>)<span class="operator">,</span> value);
+
+</pre>
+<p><font style="vertical-align: inherit;">第二种是使用带索引的重载：</font></p>
+<pre class="cpp">
+
+  jsValueArray<span class="operator">.</span>setProperty(<span class="number">4</span><span class="operator">,</span> value);
+
+</pre>
+<p><font style="vertical-align: inherit;">这两种方法都达到了相同的结果，只是后者：</font></p>
+<ul>
+<li><font style="vertical-align: inherit;">更容易使用（可以直接使用整数）</font></li>
+<li><font style="vertical-align: inherit;">更快（不转换为整数）</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">不是 Array 对象，则此函数的行为就像使用<i>arrayIndex</i>的字符串表示调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#setProperty"><font style="vertical-align: inherit;">setProperty</font></a><font style="vertical-align: inherit;"> ()</font><i><font style="vertical-align: inherit;">一样</font></i><font style="vertical-align: inherit;">。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#property-1"><font style="vertical-align: inherit;">property</font></a><font style="vertical-align: inherit;"> (quint32 arrayIndex) 和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#working-with-arrays"><font style="vertical-align: inherit;">使用数组</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@setProperty -->
+<!-- $$$setPrototype[overload1]$$$setPrototypeconstQJSValue& -->
+<h3 class="fn" id="setPrototype"><a name="setPrototype"></a><span class="type">void</span> QJSValue::<span class="name">setPrototype</span>(const <span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> &amp;<i>prototype</i>)</h3>
+<p><font style="vertical-align: inherit;">如果这个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是一个对象，则设置</font><code>__proto__</code><font style="vertical-align: inherit;">这个对象的内部原型（属性）为</font><i><font style="vertical-align: inherit;">原型</font></i><font style="vertical-align: inherit;">；如果</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">为空，则将原型设置为空；否则什么都不做。</font></p>
+<p><font style="vertical-align: inherit;">内部原型不应与名称为“prototype”的公共属性混淆；公共原型通常只设置在充当构造函数的函数上。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#prototype"><font style="vertical-align: inherit;">prototype</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isObject"><font style="vertical-align: inherit;">isObject</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@setPrototype -->
+<!-- $$$strictlyEquals[overload1]$$$strictlyEqualsconstQJSValue& -->
+<h3 class="fn" id="strictlyEquals"><a name="strictlyEquals"></a><span class="type">bool</span> QJSValue::<span class="name">strictlyEquals</span>(const <span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> &amp;<i>other</i>) const</h3>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">等于<i>other</i>使用严格比较（无转换），则返回 true，否则返回 false。比较遵循</font><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm"><font style="vertical-align: inherit;">ECMA-262</font></a><font style="vertical-align: inherit;">第 11.9.6 节“严格相等比较算法”中描述的行为。</font></p>
+<p><font style="vertical-align: inherit;">如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">的类型与<i>other</i>值的类型不同，则此函数返回 false。如果类型相等，则结果取决于类型，如下表所示：</font></p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th ><span lang="zh-cn">类型</span></th><th >
+	 <span lang="zh-cn">结果</span></th></tr></thead>
+<tr valign="top" class="odd"><td >Undefined</td><td >true</td></tr>
+<tr valign="top" class="even"><td >Null</td><td >true</td></tr>
+<tr valign="top" class="odd"><td >Boolean</td><td ><font style="vertical-align: inherit;">如果两个值都为<span lang="zh-cn">true</span>，则为<span lang="zh-cn">true</span>，否则为</font><span lang="zh-cn">false</span></td></tr>
+<tr valign="top" class="even"><td >Number</td><td ><font style="vertical-align: inherit;">如果任一值为 NaN（非数字），则为 false；如果值相等则为<span lang="zh-cn">ture</span>，否则为<span lang="zh-cn">false</span></font></td></tr>
+<tr valign="top" class="odd"><td >String</td><td ><font style="vertical-align: inherit;">如果两个值是完全相同的字符序列，则为 true，否则为 false</font></td></tr>
+<tr valign="top" class="even"><td >Object</td><td ><font style="vertical-align: inherit;">如果两个值都指向同一个对象，则为 true，否则为 false</font></td></tr>
+</table></div>
+<p><b>请参考 </b><a href="qjsvalue.html#equals">equals</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@strictlyEquals -->
+<!-- $$$toBool[overload1]$$$toBool -->
+<h3 class="fn" id="toBool"><a name="toBool"></a><span class="type">bool</span> QJSValue::<span class="name">toBool</span>() const</h3>
+<p><font style="vertical-align: inherit;">使用<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第 9.2 节“ToBoolean”中描述的转换规则返回此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">的布尔值。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是一个对象，则调用此函数对脚本引擎有副作用，因为引擎将调用对象的 valueOf() 函数（可能还有</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toString"><font style="vertical-align: inherit;">toString</font></a><font style="vertical-align: inherit;"> ()）以尝试将对象转换为原始值（可能导致未捕获的脚本异常）。</font></p>
+<p><b>请参考 </b><a href="qjsvalue.html#isBool">isBool</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@toBool -->
+<!-- $$$toDateTime[overload1]$$$toDateTime -->
+<h3 class="fn" id="toDateTime"><a name="toDateTime"></a><span class="type"><a href="../qtcore/qdatetime.html">QDateTime</a></span> QJSValue::<span class="name">toDateTime</span>() const</h3>
+<p><font style="vertical-align: inherit;">以本地时间返回此值的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qdatetime.html"><font style="vertical-align: inherit;">QDateTime</font></a><font style="vertical-align: inherit;">表示形式。如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">不是日期，或者日期的值为 NaN（Not-a-Number），则返回无效的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qdatetime.html"><font style="vertical-align: inherit;">QDateTime</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><b>请参考 </b><a href="qjsvalue.html#isDate">isDate</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@toDateTime -->
+<!-- $$$toInt[overload1]$$$toInt -->
+<h3 class="fn" id="toInt"><a name="toInt"></a><span class="type"><a href="../qtcore/qtglobal.html#qint32-typedef">qint32</a></span> QJSValue::<span class="name">toInt</span>() const</h3>
+<p><font style="vertical-align: inherit;">使用<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第 9.5 节“ToInt32”中描述的转换规则，返回此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">的有符号 32 位整数值。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是一个对象，则调用此函数对脚本引擎有副作用，因为引擎将调用对象的 valueOf() 函数（可能还有</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toString"><font style="vertical-align: inherit;">toString</font></a><font style="vertical-align: inherit;"> ()）以尝试将对象转换为原始值（可能导致未捕获的脚本异常）。</font></p>
+<p><b>请参考 </b><a href="qjsvalue.html#toNumber">toNumber</a>() <span lang="zh-cn">
+和 </span><a href="qjsvalue.html#toUInt">toUInt</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@toInt -->
+<!-- $$$toNumber[overload1]$$$toNumber -->
+<h3 class="fn" id="toNumber"><a name="toNumber"></a><span class="type">double</span> QJSValue::<span class="name">toNumber</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue 的数值</font></a><font style="vertical-align: inherit;">，如</font><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm"><font style="vertical-align: inherit;">ECMA-262</font></a><font style="vertical-align: inherit;">第 9.3 节“ToNumber”中所定义。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是一个对象，则调用此函数对脚本引擎有副作用，因为引擎将调用对象的 valueOf() 函数（可能还有</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toString"><font style="vertical-align: inherit;">toString</font></a><font style="vertical-align: inherit;"> ()）以尝试将对象转换为原始值（可能导致未捕获的脚本异常）。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isNumber"><font style="vertical-align: inherit;">isNumber</font></a><font style="vertical-align: inherit;"> ()、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toInt"><font style="vertical-align: inherit;">toInt</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toUInt"><font style="vertical-align: inherit;">toUInt</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@toNumber -->
+<!-- $$$toQMetaObject[overload1]$$$toQMetaObject -->
+<h3 class="fn" id="toQMetaObject"><a name="toQMetaObject"></a>const <span class="type"><a href="../qtcore/qmetaobject.html">QMetaObject</a></span> *QJSValue::<span class="name">toQMetaObject</span>() const</h3>
+<p><font style="vertical-align: inherit;">* 如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html"><font style="vertical-align: inherit;">QMetaObject</font></a><font style="vertical-align: inherit;">，则返回<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html">QJSValue</a>表示的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html"><font style="vertical-align: inherit;">QMetaObject</font></a><font style="vertical-align: inherit;">指针 * ；否则，返回。* *</font><code>nullptr</code></p>
+<p>这个函数在Qt 5.8中引入。</p>
+<p><b>请参考 </b><a href="qjsvalue.html#isQMetaObject">isQMetaObject</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@toQMetaObject -->
+<!-- $$$toQObject[overload1]$$$toQObject -->
+<h3 class="fn" id="toQObject"><a name="toQObject"></a><span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *QJSValue::<span class="name">toQObject</span>() const</h3>
+<p>如果这个<a href="qjsvalue.html">QJSValue</a>是一个<a href="../qtcore/qobject.html">QObject</a>，返回<a href="qjsvalue.html">QJSValue</a>所代表的<a href="../qtcore/qobject.html">QObject</a>指针;否则,返回<code>nullptr</code>。</p>
+<p>如果这个<a href="qjsvalue.html">QJSValue</a>包装的<a href="../qtcore/qobject.html">QObject</a>已经被删除，这个函数返回<code>nullptr</code> 
+(即toQObject()可能返回nul<code>nullptr</code> lptr，即使isQObject()返回true)。</p>
+<p><b>请参考 </b><a href="qjsvalue.html#isQObject">isQObject</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@toQObject -->
+<!-- $$$toString[overload1]$$$toString -->
+<h3 class="fn" id="toString"><a name="toString"></a><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QJSValue::<span class="name">toString</span>() const</h3>
+<p><font style="vertical-align: inherit;">返回此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">的字符串值，如</font><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm"><font style="vertical-align: inherit;">ECMA-262</font></a><font style="vertical-align: inherit;">第 9.8 节“ToString”中所定义。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是一个对象，则调用此函数会对脚本引擎产生副作用，因为引擎将调用对象的 toString() 函数（可能还有 valueOf()）以尝试将对象转换为原始值（可能导致未捕获的脚本异常）。</font></p>
+<p><b>请参考 </b><a href="qjsvalue.html#isString">isString</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@toString -->
+<!-- $$$toUInt[overload1]$$$toUInt -->
+<h3 class="fn" id="toUInt"><a name="toUInt"></a><span class="type"><a href="../qtcore/qtglobal.html#quint32-typedef">quint32</a></span> QJSValue::<span class="name">toUInt</span>() const</h3>
+<p><font style="vertical-align: inherit;">使用<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a>第 9.6 节“ToUint32”中描述的转换规则，返回此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">的无符号 32 位整数值。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">是一个对象，则调用此函数对脚本引擎有副作用，因为引擎将调用对象的 valueOf() 函数（可能还有</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toString"><font style="vertical-align: inherit;">toString</font></a><font style="vertical-align: inherit;"> ()）以尝试将对象转换为原始值（可能导致未捕获的脚本异常）。</font></p>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toNumber"><font style="vertical-align: inherit;">toNumber</font></a><font style="vertical-align: inherit;"> ()和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toInt"><font style="vertical-align: inherit;">toInt</font></a><font style="vertical-align: inherit;"> ()。</font></p>
+<!-- @@@toUInt -->
+<!-- $$$toVariant[overload1]$$$toVariant -->
+<h3 class="fn" id="toVariant"><a name="toVariant"></a><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> QJSValue::<span class="name">toVariant</span>() const</h3>
+<p><font style="vertical-align: inherit;">如果可以转换为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html">QVariant</a>，则返回此<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html">QJSValue</a>的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">值；否则返回无效的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html">QVariant</a>。转换根据下表进行：</font></p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th ><span lang="zh-cn">输入类型</span></th><th >
+	 <span lang="zh-cn">结果</span></th></tr></thead>
+<tr valign="top" class="odd"><td >Undefined</td><td ><font style="vertical-align: inherit;">无效的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">。</font></td></tr>
+<tr valign="top" class="even"><td >Null</td><td >A <a href="../qtcore/qvariant.html">QVariant</a> containing a null pointer (<a href="../qtcore/qmetatype.html#Type-enum">QMetaType::Nullptr</a>).一个包含空指针的<a href="../qtcore/qvariant.html">QVariant</a>(<a href="../qtcore/qmetatype.html#Type-enum">QMetaType::Nullptr</a>)。</td></tr>
+<tr valign="top" class="odd"><td >Boolean</td><td >包含布尔值的<a href="../qtcore/qvariant.html">QVariant</a>。</td></tr>
+<tr valign="top" class="even"><td >Number</td><td >包含数字值的<a href="../qtcore/qvariant.html">QVariant</a>。</td></tr>
+<tr valign="top" class="odd"><td >String</td><td >包含字符串值的<a href="../qtcore/qvariant.html">QVariant</a>。</td></tr>
+<tr valign="top" class="even"><td ><a href="../qtcore/qvariant.html">QVariant</a> Object</td><td ><font style="vertical-align: inherit;">结果是对象的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">值（无转换）。</font></td></tr>
+<tr valign="top" class="odd"><td ><a href="../qtcore/qobject.html">QObject</a> Object</td><td ><font style="vertical-align: inherit;">包含指向<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>的指针的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">。</font></td></tr>
+<tr valign="top" class="even"><td >Date Object</td><td ><font style="vertical-align: inherit;">一个包含日期值的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;"> ( </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#toDateTime"><font style="vertical-align: inherit;">toDateTime</font></a><font style="vertical-align: inherit;"> () )。</font></td></tr>
+<tr valign="top" class="odd"><td >RegExp Object</td><td >包含正则表达式值的<a href="../qtcore/qvariant.html">QVariant</a>。</td></tr>
+<tr valign="top" class="even"><td >Array Object</td><td ><font style="vertical-align: inherit;">该数组被转换为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#QVariantList-typedef"><font style="vertical-align: inherit;">QVariantList</font></a><font style="vertical-align: inherit;">。每个元素都被递归地转换为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">；不遵循循环引用。</font></td></tr>
+<tr valign="top" class="odd"><td >Object</td><td ><font style="vertical-align: inherit;">该对象被转换为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html#QVariantMap-typedef"><font style="vertical-align: inherit;">QVariantMap</font></a><font style="vertical-align: inherit;">。每个属性都被递归地转换为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">；不遵循循环引用。</font></td></tr>
+</table></div>
+<p><b>请参考 </b><a href="qjsvalue.html#isVariant">isVariant</a>()<span lang="zh-cn">。</span></p>
+<!-- @@@toVariant -->
+<!-- $$$operator=[overload1]$$$operator=QJSValue&& -->
+<h3 class="fn" id="operator-eq"><a name="operator-eq"></a><span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> &amp;QJSValue::<span class="name">operator=</span>(<span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> &amp;&amp;<i>other</i>)</h3>
+<p><font style="vertical-align: inherit;">将<i>other</i> 移动分配给此</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">对象。</font></p>
+<!-- @@@operator= -->
+<!-- $$$operator=$$$operator=constQJSValue& -->
+<h3 class="fn" id="operator-eq-1"><a name="operator-eq-1"></a><span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> &amp;QJSValue::<span class="name">operator=</span>(const <span class="type"><a href="qjsvalue.html#QJSValue">QJSValue</a></span> &amp;<i>other</i>)</h3>
+<p><font style="vertical-align: inherit;"><span lang="zh-cn">将另一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html">QJSValue</a>对象</span><i>other</i> 分配给这个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;">。</font></p>
+<p><font style="vertical-align: inherit;">请注意，如果</font><i><font style="vertical-align: inherit;">other</font></i><font style="vertical-align: inherit;">是一个对象（</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html#isObject"><font style="vertical-align: inherit;">isObject</font></a><font style="vertical-align: inherit;"> () 返回 true），则只会分配对底层对象的引用；对象本身不会被复制。</font></p>
+<!-- @@@operator= -->
+</div>
+<div class="relnonmem">
+<h2>相关非成员</h2>
+<!-- $$$QJSValueList -->
+<h3 class="fn" id="QJSValueList-typedef"><a name="QJSValueList-typedef"></a>typedef <span class="name">QJSValueList</span></h3>
+<p><font style="vertical-align: inherit;">这是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qlist.html"><font style="vertical-align: inherit;">QList</font></a><font style="vertical-align: inherit;"> &lt; </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qjsvalue.html"><font style="vertical-align: inherit;">QJSValue</font></a><font style="vertical-align: inherit;"> &gt;的 typedef 。</font></p>
+<!-- @@@QJSValueList -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

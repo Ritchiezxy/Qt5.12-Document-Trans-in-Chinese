@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- extending-tutorial.qdoc -->
+  <title>Writing QML Extensions with C++ | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><font style="vertical-align: inherit;">用 C++ 编写 QML 扩展</font></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html#running-the-tutorial-examples"><font style="vertical-align: inherit;">运行教程示例</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html#chapter-1-creating-a-new-type"><font style="vertical-align: inherit;">第 1 章：创建新类型</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html#chapter-2-connecting-to-c-methods-and-signals"><font style="vertical-align: inherit;">第 2 章：连接到 C++ 方法和信号</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html#chapter-3-adding-property-bindings"><font style="vertical-align: inherit;">第 3 章：添加属性绑定</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html#chapter-4-using-custom-property-types"><font style="vertical-align: inherit;">第 4 章：使用自定义属性类型</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html#chapter-5-using-list-property-types"><font style="vertical-align: inherit;">第 5 章：使用列表属性类型</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html#chapter-6-writing-an-extension-plugin"><font style="vertical-align: inherit;">第 6 章：编写扩展插件</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html#chapter-7-summary"><font style="vertical-align: inherit;">第 7 章：总结</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title"><font style="vertical-align: inherit;">用 C++ 编写 QML 扩展</font></h1>
+<span class="subtitle"></span>
+<!-- $$$tutorials/extending-qml-brief -->
+<p><font style="vertical-align: inherit;">关于使用 Qt C++ 扩展 QML 的教程。</font></p>
+<!-- @@@tutorials/extending-qml -->
+<!-- $$$tutorials/extending-qml-description -->
+<div class="descr"> <a name="details"></a>
+<p><font style="vertical-align: inherit;">在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-index.html"><font style="vertical-align: inherit;">Qt的QML</font></a><font style="vertical-align: inherit;">模块提供一组API，用于通过C ++扩展延伸QML。您可以编写扩展来添加您自己的 QML 类型、扩展现有的 Qt 类型或调用无法从普通 QML 代码访问的 C/C++ 函数。</font></p>
+<p><font style="vertical-align: inherit;">本教程展示了如何使用 C++ 编写包含核心 QML 功能（包括属性、信号和绑定）的 QML 扩展。它还展示了如何通过插件部署扩展。</font></p>
+<p><font style="vertical-align: inherit;">本教程中涵盖的许多主题在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-topic.html"><font style="vertical-align: inherit;">集成 QML 和 C++</font></a><font style="vertical-align: inherit;">及其文档子主题中有更详细的说明。特别是，您可能对</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html"><font style="vertical-align: inherit;">将 C++ 类的属性暴露给 QML</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html"><font style="vertical-align: inherit;">从 C++ 定义 QML 类型的</font></a><font style="vertical-align: inherit;">子主题感兴趣。</font></p>
+<a name="running-the-tutorial-examples"></a>
+<h2 id="running-the-tutorial-examples"><font style="vertical-align: inherit;">运行教程示例</font></h2>
+<p><font style="vertical-align: inherit;">本教程中的代码可用作示例项目，其中包含与每个教程章节相关的子项目。在</font><a href="http://doc.qt.io/qtcreator/index.html"><font style="vertical-align: inherit;">Qt Creator 中</font></a><font style="vertical-align: inherit;">，打开</font><b><font style="vertical-align: inherit;">欢迎</font></b><font style="vertical-align: inherit;">模式并从</font><b><font style="vertical-align: inherit;">示例中</font></b><font style="vertical-align: inherit;">选择教程。在</font><b><font style="vertical-align: inherit;">Edit</font></b><font style="vertical-align: inherit;">模式下，展开</font><i><font style="vertical-align: inherit;">extends-qml</font></i><font style="vertical-align: inherit;">项目，右键单击要运行的子项目（章节）并选择</font><b><font style="vertical-align: inherit;">Run</font></b><font style="vertical-align: inherit;">。</font></p>
+<a name="chapter-1-creating-a-new-type"></a>
+<h2 id="chapter-1-creating-a-new-type"><font style="vertical-align: inherit;">第 1 章：创建新类型</font></h2>
+<p><code>extending-qml/chapter1-basics</code></p>
+<p><font style="vertical-align: inherit;">扩展 QML 时的一个常见任务是提供一种新的 QML 类型，该类型支持某些自定义功能，超出了内置</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-qmlmodule.html"><font style="vertical-align: inherit;">Qt Quick 类型</font></a><font style="vertical-align: inherit;">所提供的功能。例如，这可以实现特定的数据模型，或提供具有自定义绘画和绘图功能的类型，或访问系统功能，如无法通过内置 QML 功能访问的网络编程。</font></p>
+<p><font style="vertical-align: inherit;">在本教程中，我们将展示如何使用 Qt Quick 模块中的 C++ 类来扩展 QML。最终结果将是一个简单的饼图显示，由多个自定义 QML 类型通过 QML 功能（如绑定和信号）连接在一起实现，并通过插件提供给 QML 运行时。</font></p>
+<p><font style="vertical-align: inherit;">首先，让我们创建一个名为“PieChart”的新 QML 类型，它具有两个属性：名称和颜色。我们将使其在一个名为“Charts”的可导入类型命名空间中可用，版本为 1.0。</font></p>
+<p><font style="vertical-align: inherit;">我们希望这种</font><code>PieChart</code><font style="vertical-align: inherit;">类型可以像这样从 QML 中使用：</font></p>
+<pre class="cpp plain">
+
+  import Charts 1.0
+
+  PieChart {
+      width: 100; height: 100
+      name: &quot;A simple pie chart&quot;
+      color: &quot;red&quot;
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">为此，我们需要一个 C++ 类来封装此</font><code>PieChart</code><font style="vertical-align: inherit;">类型及其两个属性。由于 QML 广泛使用 Qt 的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/metaobjects.html"><font style="vertical-align: inherit;">元对象系统</font></a><font style="vertical-align: inherit;">，这个新类必须：</font></p>
+<ul>
+<li><font style="vertical-align: inherit;">从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>继承</font></li>
+<li><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY"><font style="vertical-align: inherit;">Q_PROPERTY</font></a><font style="vertical-align: inherit;">宏声明其属性</font></li>
+</ul>
+<p><font style="vertical-align: inherit;">这是我们的</font><code>PieChart</code><font style="vertical-align: inherit;">类，定义在</font><code>piechart.h</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &lt;QtQuick/QQuickPaintedItem&gt;</span>
+  <span class="preprocessor">#include &lt;QColor&gt;</span>
+
+  <span class="keyword">class</span> PieChart : <span class="keyword">public</span> <span class="type"><a href="../qtquick/qquickpainteditem.html">QQuickPaintedItem</a></span>
+  {
+      Q_OBJECT
+      Q_PROPERTY(<span class="type"><a href="../qtcore/qstring.html">QString</a></span> name READ name WRITE setName)
+      Q_PROPERTY(<span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> color READ color WRITE setColor)
+
+  <span class="keyword">public</span>:
+      PieChart(<span class="type"><a href="../qtquick/qquickitem.html">QQuickItem</a></span> <span class="operator">*</span>parent <span class="operator">=</span> <span class="number">0</span>);
+
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> name() <span class="keyword">const</span>;
+      <span class="type">void</span> setName(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>name);
+
+      <span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> color() <span class="keyword">const</span>;
+      <span class="type">void</span> setColor(<span class="keyword">const</span> <span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> <span class="operator">&amp;</span>color);
+
+      <span class="type">void</span> paint(<span class="type"><a href="../qtgui/qpainter.html">QPainter</a></span> <span class="operator">*</span>painter);
+
+  <span class="keyword">private</span>:
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> m_name;
+      <span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> m_color;
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">该类继承自</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickpainteditem.html"><font style="vertical-align: inherit;">QQuickPaintedItem，</font></a><font style="vertical-align: inherit;">因为我们希望在使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qpainter.html">QPainter</a> API执行绘图操作时覆盖</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickpainteditem.html#paint"><font style="vertical-align: inherit;">QQuickPaintedItem::paint</font></a><font style="vertical-align: inherit;"> () 。如果该类只是表示某种数据类型而不是实际需要显示的项目，则它可以简单地从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>继承。或者，如果我们想扩展现有的基于<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>的类的功能，它可以从该类继承。或者，如果我们想创建一个不需要使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qpainter.html">QPainter</a> API执行绘图操作的可视项，我们可以只对<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html">QQuickItem 进行</a>子类<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html">化</a>。</font></p>
+<p><code>PieChart</code><font style="vertical-align: inherit;">类定义了两个属性，</font><code>name</code><font style="vertical-align: inherit;">并且</font><code>color</code><font style="vertical-align: inherit;">，与所述</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY"><font style="vertical-align: inherit;">Q_PROPERTY</font></a><font style="vertical-align: inherit;">宏，和覆盖</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickpainteditem.html#paint"><font style="vertical-align: inherit;">QQuickPaintedItem ::涂料</font></a><font style="vertical-align: inherit;">（）。类的实现</font><code>piechart.cpp</code><font style="vertical-align: inherit;">只是简单地设置和返回适当的</font><code>m_name</code><font style="vertical-align: inherit;">和</font><code>m_color</code><font style="vertical-align: inherit;">值，并实现</font><code>paint()</code><font style="vertical-align: inherit;">绘制一个简单的饼图。它还关闭</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtwidgets/qgraphicsitem.html#GraphicsItemFlag-enum"><font style="vertical-align: inherit;">QGraphicsItem::ItemHasNoContents</font></a><font style="vertical-align: inherit;">标志以启用绘画：</font></p>
+<pre class="cpp">
+
+  PieChart<span class="operator">::</span>PieChart(<span class="type"><a href="../qtquick/qquickitem.html">QQuickItem</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="../qtquick/qquickpainteditem.html">QQuickPaintedItem</a></span>(parent)
+  {
+  }
+  ...
+  <span class="type">void</span> PieChart<span class="operator">::</span>paint(<span class="type"><a href="../qtgui/qpainter.html">QPainter</a></span> <span class="operator">*</span>painter)
+  {
+      <span class="type"><a href="../qtgui/qpen.html">QPen</a></span> pen(m_color<span class="operator">,</span> <span class="number">2</span>);
+      painter<span class="operator">-</span><span class="operator">&gt;</span>setPen(pen);
+      painter<span class="operator">-</span><span class="operator">&gt;</span>setRenderHints(<span class="type"><a href="../qtgui/qpainter.html">QPainter</a></span><span class="operator">::</span>Antialiasing<span class="operator">,</span> <span class="keyword">true</span>);
+      painter<span class="operator">-</span><span class="operator">&gt;</span>drawPie(boundingRect()<span class="operator">.</span>adjusted(<span class="number">1</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="operator">-</span><span class="number">1</span><span class="operator">,</span> <span class="operator">-</span><span class="number">1</span>)<span class="operator">,</span> <span class="number">90</span> <span class="operator">*</span> <span class="number">16</span><span class="operator">,</span> <span class="number">290</span> <span class="operator">*</span> <span class="number">16</span>);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">现在我们已经定义了</font><code>PieChart</code><font style="vertical-align: inherit;">类型，我们将从 QML 中使用它。该</font><code>app.qml</code><font style="vertical-align: inherit;">文件创建一个</font><code>PieChart</code><font style="vertical-align: inherit;">项目并使用标准 QML</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-text.html"><font style="vertical-align: inherit;">文本</font></a><font style="vertical-align: inherit;">项目显示饼图的详细信息：</font></p>
+<pre class="qml">
+
+  import Charts 1.0
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">300</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type">PieChart</span> {
+          <span class="name">id</span>: <span class="name">aPieChart</span>
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+          <span class="name">name</span>: <span class="string">&quot;A simple pie chart&quot;</span>
+          <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+          <span class="type">anchors</span> { <span class="name">bottom</span>: <span class="name">parent</span>.<span class="name">bottom</span>; <span class="name">horizontalCenter</span>: <span class="name">parent</span>.<span class="name">horizontalCenter</span>; <span class="name">bottomMargin</span>: <span class="number">20</span> }
+          <span class="name">text</span>: <span class="name">aPieChart</span>.<span class="name">name</span>
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">请注意，虽然颜色在 QML 中指定为字符串，但它会自动转换为 PieChart属性的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qcolor.html"><font style="vertical-align: inherit;">QColor</font></a><font style="vertical-align: inherit;">对象</font><code>color</code><font style="vertical-align: inherit;">。为各种其他</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-typesystem-basictypes.html"><font style="vertical-align: inherit;">基本类型</font></a><font style="vertical-align: inherit;">提供自动转换；例如，像“640x480”这样的字符串可以自动转换为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qsize.html"><font style="vertical-align: inherit;">QSize</font></a><font style="vertical-align: inherit;">值。</font></p>
+<p><font style="vertical-align: inherit;">我们还将创建一个 C++ 应用程序，它使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html"><font style="vertical-align: inherit;">QQuickView</font></a><font style="vertical-align: inherit;">来运行和显示</font><code>app.qml</code><font style="vertical-align: inherit;">. 应用程序必须</font><code>PieChart</code><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType"><font style="vertical-align: inherit;">qmlRegisterType</font></a><font style="vertical-align: inherit;"> () 函数注册类型，以允许从 QML 使用它。如果不注册类型，</font><code>app.qml</code><font style="vertical-align: inherit;">将无法创建</font><code>PieChart</code><font style="vertical-align: inherit;">.</font></p>
+<p><font style="vertical-align: inherit;">这是应用程序</font><code>main.cpp</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &quot;piechart.h&quot;</span>
+  <span class="preprocessor">#include &lt;QtQuick/QQuickView&gt;</span>
+  <span class="preprocessor">#include &lt;QGuiApplication&gt;</span>
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span>argv<span class="operator">[</span><span class="operator">]</span>)
+  {
+      <span class="type"><a href="../qtgui/qguiapplication.html">QGuiApplication</a></span> app(argc<span class="operator">,</span> argv);
+
+      qmlRegisterType<span class="operator">&lt;</span>PieChart<span class="operator">&gt;</span>(<span class="string">&quot;Charts&quot;</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="string">&quot;PieChart&quot;</span>);
+
+      <span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span> view;
+      view<span class="operator">.</span>setResizeMode(<span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span><span class="operator">::</span>SizeRootObjectToView);
+      view<span class="operator">.</span>setSource(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span>(<span class="string">&quot;qrc:///app.qml&quot;</span>));
+      view<span class="operator">.</span>show();
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">这个对</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType"><font style="vertical-align: inherit;">qmlRegisterType</font></a><font style="vertical-align: inherit;"> () 的调用将</font><code>PieChart</code><font style="vertical-align: inherit;">类型注册为一个名为“PieChart”的类型，在一个名为“Charts”的类型命名空间中，版本为 1.0。</font></p>
+<p><font style="vertical-align: inherit;">最后，我们编写一个</font><code>.pro</code><font style="vertical-align: inherit;">包含文件和</font><code>declarative</code><font style="vertical-align: inherit;">库的项目文件：</font></p>
+<pre class="cpp">
+
+  QT += qml quick
+
+  HEADERS += piechart.h
+  SOURCES += piechart.cpp \
+             main.cpp
+
+  RESOURCES += chapter1-basics.qrc
+
+  DESTPATH = $$[QT_INSTALL_EXAMPLES]/qml/tutorials/extending-qml/chapter1-basics
+  target.path = $$DESTPATH
+
+  qml.files = *.qml
+  qml.path = $$DESTPATH
+
+  INSTALLS += target qml
+
+</pre>
+<p><font style="vertical-align: inherit;">现在我们可以构建和运行应用程序：</font></p>
+<p class="centerAlign"><img src="images/extending-tutorial-chapter1.png" alt="" /></p><p><b>注意： </b><font style="vertical-align: inherit;">您可能会看到警告</font><i><font style="vertical-align: inherit;">Expression ... 取决于非 NOTIFYable 属性： PieChart::name</font></i><font style="vertical-align: inherit;">。发生这种情况是因为我们向 writable</font><code>name</code><font style="vertical-align: inherit;">属性添加了一个绑定，但尚未为其定义通知信号。因此，如果</font><code>name</code><font style="vertical-align: inherit;">值发生变化，QML 引擎将无法更新绑定。这将在以下章节中讨论。</font></p><p>The source code from the following files are referred to in this chapter: <p>文件：</p>
+<ul>
+<li><a href="qtqml-tutorials-extending-qml-chapter1-basics-app-qml.html">tutorials/extending-qml/chapter1-basics/app.qml</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter1-basics-chapter1-basics-pro.html">tutorials/extending-qml/chapter1-basics/chapter1-basics.pro</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter1-basics-chapter1-basics-qrc.html">tutorials/extending-qml/chapter1-basics/chapter1-basics.qrc</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter1-basics-main-cpp.html">tutorials/extending-qml/chapter1-basics/main.cpp</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter1-basics-piechart-cpp.html">tutorials/extending-qml/chapter1-basics/piechart.cpp</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter1-basics-piechart-h.html">tutorials/extending-qml/chapter1-basics/piechart.h</a></li>
+</ul>
+<a name="chapter-2-connecting-to-c-methods-and-signals"></a>
+<h2 id="chapter-2-connecting-to-c-methods-and-signals"><font style="vertical-align: inherit;">第 2 章：连接到 C++ 方法和信号</font></h2>
+<p><code>extending-qml/chapter2-methods</code></p>
+<p><font style="vertical-align: inherit;">假设我们想要</font><code>PieChart</code><font style="vertical-align: inherit;">一个“clearChart()”方法来擦除图表然后发出“chartCleared”信号。我们</font><code>app.qml</code><font style="vertical-align: inherit;">将能够像这样调用</font><code>clearChart()</code><font style="vertical-align: inherit;">和接收</font><code>chartCleared()</code><font style="vertical-align: inherit;">信号：</font></p>
+<pre class="qml">
+
+  import Charts 1.0
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">300</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type">PieChart</span> {
+          <span class="name">id</span>: <span class="name">aPieChart</span>
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+          <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+
+          <span class="name">onChartCleared</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;The chart has been cleared&quot;</span>)
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: <span class="name">aPieChart</span>.<span class="name">clearChart</span>()
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+          <span class="type">anchors</span> { <span class="name">bottom</span>: <span class="name">parent</span>.<span class="name">bottom</span>; <span class="name">horizontalCenter</span>: <span class="name">parent</span>.<span class="name">horizontalCenter</span>; <span class="name">bottomMargin</span>: <span class="number">20</span> }
+          <span class="name">text</span>: <span class="string">&quot;Click anywhere to clear the chart&quot;</span>
+      }
+  }
+
+</pre>
+<p class="centerAlign"><img src="images/extending-tutorial-chapter2.png" alt="" /></p><p><font style="vertical-align: inherit;">为此，我们向 C++ 类添加一个</font><code>clearChart()</code><font style="vertical-align: inherit;">方法和一个</font><code>chartCleared()</code><font style="vertical-align: inherit;">信号：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> PieChart : <span class="keyword">public</span> <span class="type"><a href="../qtquick/qquickpainteditem.html">QQuickPaintedItem</a></span>
+  {
+      ...
+  <span class="keyword">public</span>:
+      ...
+      Q_INVOKABLE <span class="type">void</span> clearChart();
+
+  <span class="keyword">signals</span>:
+      <span class="type">void</span> chartCleared();
+      ...
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">为此，我们向 C++ 类添加一个</font><code>clearChart()</code><font style="vertical-align: inherit;">方法和一个</font><code>chartCleared()</code><font style="vertical-align: inherit;">信号：</font></p>
+<p><code>clearChart()</code><font style="vertical-align: inherit;">方法只是将颜色更改为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qt.html#GlobalColor-enum"><font style="vertical-align: inherit;">Qt::transparent</font></a><font style="vertical-align: inherit;">，重新绘制图表，然后发出</font><code>chartCleared()</code><font style="vertical-align: inherit;">信号：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> PieChart<span class="operator">::</span>clearChart()
+  {
+      setColor(<span class="type"><a href="../qtgui/qcolor.html">QColor</a></span>(<span class="type"><a href="qml-qtqml-qt.html">Qt</a></span><span class="operator">::</span>transparent));
+      update();
+
+      <span class="keyword">emit</span> chartCleared();
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">现在，当我们运行应用程序并单击窗口时，饼图消失，应用程序输出：</font></p>
+<pre class="cpp plain">
+
+  qml: The chart has been cleared
+
+</pre>
+<p><font style="vertical-align: inherit;">本章参考了以下文件中的源代码： </font> <p>文件：</p>
+<ul>
+<li><a href="qtqml-tutorials-extending-qml-chapter2-methods-app-qml.html">tutorials/extending-qml/chapter2-methods/app.qml</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter2-methods-chapter2-methods-pro.html">tutorials/extending-qml/chapter2-methods/chapter2-methods.pro</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter2-methods-chapter2-methods-qrc.html">tutorials/extending-qml/chapter2-methods/chapter2-methods.qrc</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter2-methods-piechart-cpp.html">tutorials/extending-qml/chapter2-methods/piechart.cpp</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter2-methods-piechart-h.html">tutorials/extending-qml/chapter2-methods/piechart.h</a></li>
+</ul>
+<a name="chapter-3-adding-property-bindings"></a>
+<h2 id="chapter-3-adding-property-bindings"><font style="vertical-align: inherit;">第 3 章：添加属性绑定</font></h2>
+<p><code>extending-qml/chapter3-bindings</code></p>
+<p><font style="vertical-align: inherit;">属性绑定是 QML 的一个强大功能，它允许自动同步不同类型的值。当属性值更改时，它使用信号来通知和更新其他类型的值。</font></p>
+<p><font style="vertical-align: inherit;">让我们为</font><code>color</code><font style="vertical-align: inherit;">属性启用属性绑定。这意味着如果我们有这样的代码：</font></p>
+<pre class="qml">
+
+  import Charts 1.0
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">300</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type"><a href="../qtquick/qml-qtquick-row.html">Row</a></span> {
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">spacing</span>: <span class="number">20</span>
+
+          <span class="type">PieChart</span> {
+              <span class="name">id</span>: <span class="name">chartA</span>
+              <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+              <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+          }
+
+          <span class="type">PieChart</span> {
+              <span class="name">id</span>: <span class="name">chartB</span>
+              <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+              <span class="name">color</span>: <span class="name">chartA</span>.<span class="name">color</span>
+          }
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: { <span class="name">chartA</span>.<span class="name">color</span> <span class="operator">=</span> <span class="string">&quot;blue&quot;</span> }
+      }
+
+      <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> {
+          <span class="type">anchors</span> { <span class="name">bottom</span>: <span class="name">parent</span>.<span class="name">bottom</span>; <span class="name">horizontalCenter</span>: <span class="name">parent</span>.<span class="name">horizontalCenter</span>; <span class="name">bottomMargin</span>: <span class="number">20</span> }
+          <span class="name">text</span>: <span class="string">&quot;Click anywhere to change the chart color&quot;</span>
+      }
+  }
+
+</pre>
+<p class="centerAlign"><img src="images/extending-tutorial-chapter3.png" alt="" /></p><p>
+	<font style="vertical-align: inherit;">“color：chartA.color”语句绑定</font><code>color</code><font style="vertical-align: inherit;">值</font><code>chartB</code><font style="vertical-align: inherit;">到</font><code>color</code><font style="vertical-align: inherit;">的</font><code>chartA</code><font style="vertical-align: inherit;">。每当</font><code>chartA</code><font style="vertical-align: inherit;">的</font><code>color</code><font style="vertical-align: inherit;">值发生变化时，</font><code>chartB</code><font style="vertical-align: inherit;">的</font><code>color</code><font style="vertical-align: inherit;">值都会更新为相同的值。单击窗口时，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea 中</a>的</font><code>onClicked</code><font style="vertical-align: inherit;">处理程序</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html"><font style="vertical-align: inherit;">会</font></a><font style="vertical-align: inherit;">更改颜色</font><code>chartA</code><font style="vertical-align: inherit;">，从而将两个图表都更改为蓝色。</font></p>
+<p><font style="vertical-align: inherit;">为</font><code>color</code><font style="vertical-align: inherit;">属性启用属性绑定很容易。我们在它的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a> () 声明中添加了一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/properties.html"><font style="vertical-align: inherit;">NOTIFY</font></a><font style="vertical-align: inherit;">特性，以指示每当值发生变化时都会发出“colorChanged”信号。</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> PieChart : <span class="keyword">public</span> <span class="type"><a href="../qtquick/qquickpainteditem.html">QQuickPaintedItem</a></span>
+  {
+      ...
+      Q_PROPERTY(<span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> color READ color WRITE setColor NOTIFY colorChanged)
+  <span class="keyword">public</span>:
+      ...
+  <span class="keyword">signals</span>:
+      <span class="type">void</span> colorChanged();
+      ...
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">然后，我们发出这个信号</font><code>setPieSlice()</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> PieChart<span class="operator">::</span>setColor(<span class="keyword">const</span> <span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> <span class="operator">&amp;</span>color)
+  {
+      <span class="keyword">if</span> (color <span class="operator">!</span><span class="operator">=</span> m_color) {
+          m_color <span class="operator">=</span> color;
+          update();   <span class="comment">// repaint with the new color</span>
+          <span class="keyword">emit</span> colorChanged();
+      }
+  }
+
+</pre>
+<p><code>setColor()</code><font style="vertical-align: inherit;">在发射之前检查颜色值是否实际发生了变化很重要</font><code>colorChanged()</code><font style="vertical-align: inherit;">。这可以确保信号不会被不必要地发出，并且还可以防止在其他类型响应值更改时出现循环。</font></p>
+<p><font style="vertical-align: inherit;">绑定的使用对 QML 至关重要。如果能够实现，您应该始终为属性添加 NOTIFY 信号，以便您的属性可以在绑定中使用。不能绑定的属性不能自动更新，不能像 QML 那样灵活使用。此外，由于绑定经常被调用并依赖于 QML 使用，如果未实现绑定，您的自定义 QML 类型的用户可能会看到意外行为。</font></p>
+<p><font style="vertical-align: inherit;">本章参考了以下文件中的源代码： </font> <p>文件：</p>
+<ul>
+<li><a href="qtqml-tutorials-extending-qml-chapter3-bindings-app-qml.html">tutorials/extending-qml/chapter3-bindings/app.qml</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter3-bindings-chapter3-bindings-pro.html">tutorials/extending-qml/chapter3-bindings/chapter3-bindings.pro</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter3-bindings-chapter3-bindings-qrc.html">tutorials/extending-qml/chapter3-bindings/chapter3-bindings.qrc</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter3-bindings-piechart-cpp.html">tutorials/extending-qml/chapter3-bindings/piechart.cpp</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter3-bindings-piechart-h.html">tutorials/extending-qml/chapter3-bindings/piechart.h</a></li>
+</ul>
+<a name="chapter-4-using-custom-property-types"></a>
+<h2 id="chapter-4-using-custom-property-types"><font style="vertical-align: inherit;">第 4 章：使用自定义属性类型</font></h2>
+<p><code>extending-qml/chapter4-customPropertyTypes</code></p>
+<p><font style="vertical-align: inherit;">该</font><code>PieChart</code><font style="vertical-align: inherit;">类型当前具有字符串类型属性和颜色类型属性。它可以有许多其他类型的属性。例如，它可以有一个 int 类型的属性来存储每个图表的标识符：</font></p>
+<pre class="cpp">
+
+  <span class="comment">// C++</span>
+  <span class="keyword">class</span> PieChart : <span class="keyword">public</span> <span class="type"><a href="../qtquick/qquickpainteditem.html">QQuickPaintedItem</a></span>
+  {
+      Q_PROPERTY(<span class="type">int</span> chartId READ chartId WRITE setChartId NOTIFY chartIdChanged)
+      <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+
+  <span class="keyword">public</span>:
+      <span class="type">void</span> setChartId(<span class="type">int</span> chartId);
+      <span class="type">int</span> chartId() <span class="keyword">const</span>;
+      <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+
+  <span class="keyword">signals</span>:
+      <span class="type">void</span> chartIdChanged();
+  };
+
+  <span class="comment">// QML</span>
+  PieChart {
+      <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+      chartId: <span class="number">100</span>
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">除了</font><code>int</code><font style="vertical-align: inherit;">，我们还可以使用其他各种属性类型。QML 自动支持许多 Qt 数据类型，例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qcolor.html"><font style="vertical-align: inherit;">QColor</font></a><font style="vertical-align: inherit;">、</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qsize.html"><font style="vertical-align: inherit;">QSize</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qrect.html"><font style="vertical-align: inherit;">QRect</font></a><font style="vertical-align: inherit;">。（有关完整列表，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html"><font style="vertical-align: inherit;">QML 和 C++</font></a><font style="vertical-align: inherit;">文档<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html">之间的数据类型转换</a>。）</font></p>
+<p><font style="vertical-align: inherit;">如果我们想创建一个QML默认不支持类型的属性，我们需要向QML引擎注册该类型。</font></p>
+<p><font style="vertical-align: inherit;">例如，让我们将 的使用替换为</font><code>property</code><font style="vertical-align: inherit;">具有</font><code>color</code><font style="vertical-align: inherit;">属性的名为“PieSlice”的类型。我们不分配颜色，而是分配一个</font><code>PieSlice</code><font style="vertical-align: inherit;">值，该值本身包含一个</font><code>color</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="qml">
+
+  import Charts 1.0
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">300</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type">PieChart</span> {
+          <span class="name">id</span>: <span class="name">chart</span>
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+          <span class="name">pieSlice</span>: <span class="name">PieSlice</span> {
+              <span class="name">anchors</span>.fill: <span class="name">parent</span>
+              <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+          }
+      }
+
+      <span class="name">Component</span>.onCompleted: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;The pie is colored &quot;</span> <span class="operator">+</span> <span class="name">chart</span>.<span class="name">pieSlice</span>.<span class="name">color</span>)
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">比如</font><code>PieChart</code><font style="vertical-align: inherit;">，这个新</font><code>PieSlice</code><font style="vertical-align: inherit;">类型继承自</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickpainteditem.html"><font style="vertical-align: inherit;">QQuickPaintedItem</font></a><font style="vertical-align: inherit;">并使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY"><font style="vertical-align: inherit;">Q_PROPERTY</font></a><font style="vertical-align: inherit;"> ()声明其属性：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> PieSlice : <span class="keyword">public</span> <span class="type"><a href="../qtquick/qquickpainteditem.html">QQuickPaintedItem</a></span>
+  {
+      Q_OBJECT
+      Q_PROPERTY(<span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> color READ color WRITE setColor)
+
+  <span class="keyword">public</span>:
+      PieSlice(<span class="type"><a href="../qtquick/qquickitem.html">QQuickItem</a></span> <span class="operator">*</span>parent <span class="operator">=</span> <span class="number">0</span>);
+
+      <span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> color() <span class="keyword">const</span>;
+      <span class="type">void</span> setColor(<span class="keyword">const</span> <span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> <span class="operator">&amp;</span>color);
+
+      <span class="type">void</span> paint(<span class="type"><a href="../qtgui/qpainter.html">QPainter</a></span> <span class="operator">*</span>painter);
+
+  <span class="keyword">private</span>:
+      <span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> m_color;
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">为了在 中使用它</font><code>PieChart</code><font style="vertical-align: inherit;">，我们修改了</font><code>color</code><font style="vertical-align: inherit;">属性声明和相关的方法签名：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> PieChart : <span class="keyword">public</span> <span class="type"><a href="../qtquick/qquickitem.html">QQuickItem</a></span>
+  {
+      Q_OBJECT
+      Q_PROPERTY(PieSlice<span class="operator">*</span> pieSlice READ pieSlice WRITE setPieSlice)
+      ...
+  <span class="keyword">public</span>:
+      ...
+      PieSlice <span class="operator">*</span>pieSlice() <span class="keyword">const</span>;
+      <span class="type">void</span> setPieSlice(PieSlice <span class="operator">*</span>pieSlice);
+      ...
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">实施时需要注意一件事</font><code>setPieSlice()</code><font style="vertical-align: inherit;">。这</font><code>PieSlice</code><font style="vertical-align: inherit;">是一个可视项，因此必须将其设置为</font><code>PieChart</code><font style="vertical-align: inherit;">using </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#parent-prop"><font style="vertical-align: inherit;">QQuickItem::setParentItem</font></a><font style="vertical-align: inherit;"> () 的</font><code>PieChart</code><font style="vertical-align: inherit;">子项，以便在绘制其内容时知道要绘制此子项：</font></p>
+<pre class="cpp">
+
+  <span class="type">void</span> PieChart<span class="operator">::</span>setPieSlice(PieSlice <span class="operator">*</span>pieSlice)
+  {
+      m_pieSlice <span class="operator">=</span> pieSlice;
+      pieSlice<span class="operator">-</span><span class="operator">&gt;</span>setParentItem(<span class="keyword">this</span>);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">与</font><code>PieChart</code><font style="vertical-align: inherit;">类型一样，</font><code>PieSlice</code><font style="vertical-align: inherit;">必须使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType"><font style="vertical-align: inherit;">qmlRegisterType</font></a><font style="vertical-align: inherit;"> ()注册类型才能从 QML 使用。与 一样</font><code>PieChart</code><font style="vertical-align: inherit;">，我们将把类型添加到“Charts”类型命名空间，版本 1.0：</font></p>
+<pre class="cpp">
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span>argv<span class="operator">[</span><span class="operator">]</span>)
+  {
+      ...
+      qmlRegisterType<span class="operator">&lt;</span>PieSlice<span class="operator">&gt;</span>(<span class="string">&quot;Charts&quot;</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="string">&quot;PieSlice&quot;</span>);
+      ...
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">本章参考了以下文件中的源代码： </font> <p>文件：</p>
+<ul>
+<li><a href="qtqml-tutorials-extending-qml-chapter4-custompropertytypes-app-qml.html">tutorials/extending-qml/chapter4-customPropertyTypes/app.qml</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter4-custompropertytypes-chapter4-custompropertytypes-pro.html">tutorials/extending-qml/chapter4-customPropertyTypes/chapter4-customPropertyTypes.pro</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter4-custompropertytypes-chapter4-custompropertytypes-qrc.html">tutorials/extending-qml/chapter4-customPropertyTypes/chapter4-customPropertyTypes.qrc</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter4-custompropertytypes-piechart-cpp.html">tutorials/extending-qml/chapter4-customPropertyTypes/piechart.cpp</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter4-custompropertytypes-piechart-h.html">tutorials/extending-qml/chapter4-customPropertyTypes/piechart.h</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter4-custompropertytypes-pieslice-cpp.html">tutorials/extending-qml/chapter4-customPropertyTypes/pieslice.cpp</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter4-custompropertytypes-pieslice-h.html">tutorials/extending-qml/chapter4-customPropertyTypes/pieslice.h</a></li>
+</ul>
+<a name="chapter-5-using-list-property-types"></a>
+<h2 id="chapter-5-using-list-property-types"><font style="vertical-align: inherit;">第 5 章：使用列表属性类型</font></h2>
+<p><code>extending-qml/chapter5-listproperties</code></p>
+<p><font style="vertical-align: inherit;">现在， a</font><code>PieChart</code><font style="vertical-align: inherit;">只能有一个</font><code>PieSlice</code><font style="vertical-align: inherit;">。理想情况下，图表应具有多个切片，具有不同的颜色和大小。为此，我们可以有一个</font><code>slices</code><font style="vertical-align: inherit;">接受</font><code>PieSlice</code><font style="vertical-align: inherit;">项目列表的属性：</font></p>
+<pre class="qml">
+
+  import Charts 1.0
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">300</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type">PieChart</span> {
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+          <span class="name">slices</span>: [
+              <span class="type">PieSlice</span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+                  <span class="name">fromAngle</span>: <span class="number">0</span>; <span class="name">angleSpan</span>: <span class="number">110</span>
+              },
+              <span class="type">PieSlice</span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">color</span>: <span class="string">&quot;black&quot;</span>
+                  <span class="name">fromAngle</span>: <span class="number">110</span>; <span class="name">angleSpan</span>: <span class="number">50</span>
+              },
+              <span class="type">PieSlice</span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">color</span>: <span class="string">&quot;blue&quot;</span>
+                  <span class="name">fromAngle</span>: <span class="number">160</span>; <span class="name">angleSpan</span>: <span class="number">100</span>
+              }
+          ]
+      }
+  }
+
+</pre>
+<p class="centerAlign"><img src="images/extending-tutorial-chapter5.png" alt="" /></p><p><font style="vertical-align: inherit;">为此，我们将</font><code>pieSlice</code><font style="vertical-align: inherit;">属性替换为</font><code>PieChart</code><font style="vertical-align: inherit;">一个</font><code>slices</code><font style="vertical-align: inherit;">属性，声明为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmllistproperty.html"><font style="vertical-align: inherit;">QQmlListProperty</font></a><font style="vertical-align: inherit;">类型。该</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmllistproperty.html"><font style="vertical-align: inherit;">QQmlListProperty</font></a><font style="vertical-align: inherit;">类允许在QML扩展列表属性的创建。我们</font><code>pieSlice()</code><font style="vertical-align: inherit;">用一个</font><code>slices()</code><font style="vertical-align: inherit;">返回切片列表的函数替换该函数，并添加一个内部</font><code>append_slice()</code><font style="vertical-align: inherit;">函数（在下面讨论）。我们还使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qlist.html"><font style="vertical-align: inherit;">QList</font></a><font style="vertical-align: inherit;">将切片的内部列表存储为</font><code>m_slices</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> PieChart : <span class="keyword">public</span> <span class="type"><a href="../qtquick/qquickitem.html">QQuickItem</a></span>
+  {
+      Q_OBJECT
+      Q_PROPERTY(<span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>PieSlice<span class="operator">&gt;</span> slices READ slices)
+      ...
+  <span class="keyword">public</span>:
+      ...
+      <span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>PieSlice<span class="operator">&gt;</span> slices();
+
+  <span class="keyword">private</span>:
+      <span class="keyword">static</span> <span class="type">void</span> append_slice(<span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>PieSlice<span class="operator">&gt;</span> <span class="operator">*</span>list<span class="operator">,</span> PieSlice <span class="operator">*</span>slice);
+
+      <span class="type"><a href="../qtcore/qstring.html">QString</a></span> m_name;
+      <span class="type"><a href="../qtcore/qlist.html">QList</a></span><span class="operator">&lt;</span>PieSlice <span class="operator">*</span><span class="operator">&gt;</span> m_slices;
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">尽管该</font><code>slices</code><font style="vertical-align: inherit;">属性没有关联的</font><code>WRITE</code><font style="vertical-align: inherit;">功能，但由于</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmllistproperty.html"><font style="vertical-align: inherit;">QQmlListProperty 的</font></a><font style="vertical-align: inherit;">工作方式，它仍然可以修改。在</font><code>PieChart</code><font style="vertical-align: inherit;">实现中，我们实现</font><code>PieChart::slices()</code><font style="vertical-align: inherit;">了返回一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmllistproperty.html"><font style="vertical-align: inherit;">QQmlListProperty</font></a><font style="vertical-align: inherit;">值并指示</font><code>PieChart::append_slice()</code><font style="vertical-align: inherit;">每当从 QML 发出请求以将项目添加到列表时将调用内部函数：</font></p>
+<pre class="cpp">
+
+  <span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>PieSlice<span class="operator">&gt;</span> PieChart<span class="operator">::</span>slices()
+  {
+      <span class="keyword">return</span> <span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>PieSlice<span class="operator">&gt;</span>(<span class="keyword">this</span><span class="operator">,</span> nullptr<span class="operator">,</span> <span class="operator">&amp;</span>PieChart<span class="operator">::</span>append_slice<span class="operator">,</span> nullptr<span class="operator">,</span> nullptr<span class="operator">,</span> nullptr);
+  }
+
+  <span class="type">void</span> PieChart<span class="operator">::</span>append_slice(<span class="type"><a href="qqmllistproperty.html">QQmlListProperty</a></span><span class="operator">&lt;</span>PieSlice<span class="operator">&gt;</span> <span class="operator">*</span>list<span class="operator">,</span> PieSlice <span class="operator">*</span>slice)
+  {
+      PieChart <span class="operator">*</span>chart <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>PieChart <span class="operator">*</span><span class="operator">&gt;</span>(list<span class="operator">-</span><span class="operator">&gt;</span>object);
+      <span class="keyword">if</span> (chart) {
+          slice<span class="operator">-</span><span class="operator">&gt;</span>setParentItem(chart);
+          chart<span class="operator">-</span><span class="operator">&gt;</span>m_slices<span class="operator">.</span>append(slice);
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">该</font><code>append_slice()</code><font style="vertical-align: inherit;">函数只是像以前一样设置父项，并将新项添加到</font><code>m_slices</code><font style="vertical-align: inherit;">列表中。如您所见，使用两个参数调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmllistproperty.html"><font style="vertical-align: inherit;">QQmlListProperty</font></a><font style="vertical-align: inherit;">的 append 函数：列表属性和要附加的项目。</font></p>
+<p><code>PieSlice</code><font style="vertical-align: inherit;">类也被修改，以包括</font><code>fromAngle</code><font style="vertical-align: inherit;">和</font><code>angleSpan</code><font style="vertical-align: inherit;">性质，并根据这些值来绘制切片。如果您已阅读本教程的前几页，这是一个简单的修改，因此此处不显示代码。</font></p>
+<p><font style="vertical-align: inherit;">本章参考了以下文件中的源代码： </font> <p>文件：</p>
+<ul>
+<li><a href="qtqml-tutorials-extending-qml-chapter5-listproperties-app-qml.html">tutorials/extending-qml/chapter5-listproperties/app.qml</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter5-listproperties-chapter5-listproperties-pro.html">tutorials/extending-qml/chapter5-listproperties/chapter5-listproperties.pro</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter5-listproperties-chapter5-listproperties-qrc.html">tutorials/extending-qml/chapter5-listproperties/chapter5-listproperties.qrc</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter5-listproperties-piechart-cpp.html">tutorials/extending-qml/chapter5-listproperties/piechart.cpp</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter5-listproperties-piechart-h.html">tutorials/extending-qml/chapter5-listproperties/piechart.h</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter5-listproperties-pieslice-cpp.html">tutorials/extending-qml/chapter5-listproperties/pieslice.cpp</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter5-listproperties-pieslice-h.html">tutorials/extending-qml/chapter5-listproperties/pieslice.h</a></li>
+</ul>
+<a name="chapter-6-writing-an-extension-plugin"></a>
+<h2 id="chapter-6-writing-an-extension-plugin"><font style="vertical-align: inherit;">第 6 章：编写扩展插件</font></h2>
+<p><code>extending-qml/chapter6-plugins</code></p>
+<p><font style="vertical-align: inherit;">目前</font><code>PieChart</code><font style="vertical-align: inherit;">和</font><code>PieSlice</code><font style="vertical-align: inherit;">类型<span lang="zh-cn">被</span></font><code>app.qml<span lang="zh-cn">使用</span></code><font style="vertical-align: inherit;">，在 C++ 应用程序中使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html"><font style="vertical-align: inherit;">QQuickView</font></a><font style="vertical-align: inherit;">显示。使用我们的 QML 扩展的另一种方法是创建一个插件库，使其作为新的 QML 导入模块可供 QML 引擎使用。这允许将</font><code>PieChart</code><font style="vertical-align: inherit;">和</font><code>PieSlice</code><font style="vertical-align: inherit;">类型注册到可以由任何 QML 应用程序导入的类型命名空间，而不是限制这些类型只能由一个应用程序使用。</font></p>
+<p><font style="vertical-align: inherit;">创建插件的步骤在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-modules-cppplugins.html"><font style="vertical-align: inherit;">为 QML 创建 C++</font></a><font style="vertical-align: inherit;">插件中描述。首先，我们创建一个名为</font><code>ChartsPlugin</code><font style="vertical-align: inherit;">. 它继承</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html"><font style="vertical-align: inherit;">QQmlExtensionPlugin</font></a><font style="vertical-align: inherit;">并在继承的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html#registerTypes"><font style="vertical-align: inherit;">registerTypes()</font></a><font style="vertical-align: inherit;">方法中注册我们的 QML 类型。</font></p>
+<p><font style="vertical-align: inherit;">这是<code>chartsplugin.h</code>中的</font><code>ChartsPlugin</code><font style="vertical-align: inherit;">定义：</font></p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &lt;QQmlExtensionPlugin&gt;</span>
+
+  <span class="keyword">class</span> ChartsPlugin : <span class="keyword">public</span> <span class="type"><a href="qqmlextensionplugin.html">QQmlExtensionPlugin</a></span>
+  {
+      Q_OBJECT
+      Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
+
+  <span class="keyword">public</span>:
+      <span class="type">void</span> registerTypes(<span class="keyword">const</span> <span class="type">char</span> <span class="operator">*</span>uri);
+  };
+
+</pre>
+<p><font style="vertical-align: inherit;">以及它的实现</font><code>chartsplugin.cpp</code><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &quot;piechart.h&quot;</span>
+  <span class="preprocessor">#include &quot;pieslice.h&quot;</span>
+  <span class="preprocessor">#include &lt;qqml.h&gt;</span>
+
+  <span class="type">void</span> ChartsPlugin<span class="operator">::</span>registerTypes(<span class="keyword">const</span> <span class="type">char</span> <span class="operator">*</span>uri)
+  {
+      qmlRegisterType<span class="operator">&lt;</span>PieChart<span class="operator">&gt;</span>(uri<span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="string">&quot;PieChart&quot;</span>);
+      qmlRegisterType<span class="operator">&lt;</span>PieSlice<span class="operator">&gt;</span>(uri<span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="string">&quot;PieSlice&quot;</span>);
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;"><span lang="zh-cn">然</span>后，我们编写一个</font><code>.pro</code><font style="vertical-align: inherit;">项目文件，将项目定义为插件库，并使用 DESTDIR 指定库文件应构建到</font><code>../Charts</code><font style="vertical-align: inherit;">目录中。</font></p>
+<pre class="cpp">
+
+  TEMPLATE = lib
+  CONFIG += plugin
+  QT += qml quick
+
+  DESTDIR = ../Charts
+  TARGET = $$qtLibraryTarget(chartsplugin)
+
+  HEADERS += piechart.h \
+             pieslice.h \
+             chartsplugin.h
+
+  SOURCES += piechart.cpp \
+             pieslice.cpp \
+             chartsplugin.cpp
+
+  DESTPATH=$$[QT_INSTALL_EXAMPLES]/qml/tutorials/extending-qml/chapter6-plugins/Charts
+
+  target.path=$$DESTPATH
+  qmldir.files=$$PWD/qmldir
+  qmldir.path=$$DESTPATH
+  INSTALLS += target qmldir
+
+  CONFIG += install_ok  # Do not cargo-cult this!
+
+  OTHER_FILES += qmldir
+
+  # Copy the qmldir file to the same folder as the plugin binary
+  cpqmldir.files = qmldir
+  cpqmldir.path = $$DESTDIR
+  COPIES += cpqmldir
+
+</pre>
+<p><font style="vertical-align: inherit;">在 Windows 或 Linux 上构建此示例时，该</font><code>Charts</code><font style="vertical-align: inherit;">目录将与使用我们新导入模块的应用程序位于同一级别。这样，QML 引擎将找到我们的模块作为 QML 导入的默认搜索路径，包括应用程序可执行文件的目录。在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/internationalization.html#macos"><font style="vertical-align: inherit;">macOS 上</font></a><font style="vertical-align: inherit;">，插件二进制文件被复制到</font><code>Contents/PlugIns</code><font style="vertical-align: inherit;">应用程序包中；这个路径在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-chapter6-plugins-app-pro.html"><font style="vertical-align: inherit;">chapter6-plugins/app.pro 中设置</font></a><font style="vertical-align: inherit;">：</font></p>
+<pre class="cpp">
+
+  osx {
+      charts.files = $$OUT_PWD/Charts
+      charts.path = Contents/PlugIns
+      QMAKE_BUNDLE_DATA += charts
+  }
+
+</pre>
+<p>为了解决这个问题，我们还需要在<code>main.cpp</code>中添加这个位置作为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-imports.html#qml-import-path"><font style="vertical-align: inherit;">QML导入路径</font></a>:</p>
+<pre class="cpp">
+
+      <span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span> view;
+  <span class="preprocessor">#ifdef Q_OS_OSX</span>
+      view<span class="operator">.</span>engine()<span class="operator">-</span><span class="operator">&gt;</span>addImportPath(app<span class="operator">.</span>applicationDirPath() <span class="operator">+</span> <span class="string">&quot;/../PlugIns&quot;</span>);
+  <span class="preprocessor">#endif</span>
+      ...
+
+</pre>
+<p><font style="vertical-align: inherit;">当多个应用程序使用相同的 QML 导入时，定义自定义导入路径也很有用。</font></p>
+<p><code>.pro</code><font style="vertical-align: inherit;">文件还包含额外的魔法，以确保</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-modules-qmldir.html"><font style="vertical-align: inherit;">模块定义 qmldir 文件</font></a><font style="vertical-align: inherit;">始终复制到与插件二进制<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-modules-qmldir.html">文件</a>相同的位置。</font></p>
+<p><code>qmldir</code><font style="vertical-align: inherit;">文件声明了模块名称和模块可用的插件：</font></p>
+<pre class="cpp">
+
+  module Charts
+  plugin chartsplugin
+
+</pre>
+<p><font style="vertical-align: inherit;">现在我们有了一个可以导入到任何应用程序的 QML 模块，前提是 QML 引擎知道在哪里可以找到它。该示例包含一个加载 的可执行文件</font><code>app.qml</code><font style="vertical-align: inherit;">，它使用该</font><code>import Charts 1.0</code><font style="vertical-align: inherit;">语句。或者，您可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/qtquick-qmlscene.html"><font style="vertical-align: inherit;">qmlscene 工具</font></a><font style="vertical-align: inherit;">加载 QML 文件，将导入路径设置为当前目录，以便它找到该</font><code>qmldir</code><font style="vertical-align: inherit;">文件：</font></p>
+<pre class="cpp">
+
+  qmlscene <span class="operator">-</span>I <span class="operator">.</span> app<span class="operator">.</span>qml
+
+</pre>
+<p><font style="vertical-align: inherit;">模块“<span lang="zh-cn">Charts</span>”将由 QML 引擎加载，并且该模块提供的类型可用于任何导入它的 QML 文档。</font></p>
+<p><font style="vertical-align: inherit;">本章参考了以下文件中的源代码： </font> <p>文件：</p>
+<ul>
+<li><a href="qtqml-tutorials-extending-qml-chapter6-plugins-app-pro.html">tutorials/extending-qml/chapter6-plugins/app.pro</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter6-plugins-app-qml.html">tutorials/extending-qml/chapter6-plugins/app.qml</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter6-plugins-app-qrc.html">tutorials/extending-qml/chapter6-plugins/app.qrc</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter6-plugins-chapter6-plugins-pro.html">tutorials/extending-qml/chapter6-plugins/chapter6-plugins.pro</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter6-plugins-import-chartsplugin-cpp.html">tutorials/extending-qml/chapter6-plugins/import/chartsplugin.cpp</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter6-plugins-import-chartsplugin-h.html">tutorials/extending-qml/chapter6-plugins/import/chartsplugin.h</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter6-plugins-import-import-pro.html">tutorials/extending-qml/chapter6-plugins/import/import.pro</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter6-plugins-import-piechart-cpp.html">tutorials/extending-qml/chapter6-plugins/import/piechart.cpp</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter6-plugins-import-piechart-h.html">tutorials/extending-qml/chapter6-plugins/import/piechart.h</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter6-plugins-import-pieslice-cpp.html">tutorials/extending-qml/chapter6-plugins/import/pieslice.cpp</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter6-plugins-import-pieslice-h.html">tutorials/extending-qml/chapter6-plugins/import/pieslice.h</a></li>
+<li><a href="qtqml-tutorials-extending-qml-chapter6-plugins-import-qmldir.html">tutorials/extending-qml/chapter6-plugins/import/qmldir</a></li>
+</ul>
+<a name="chapter-7-summary"></a>
+<h2 id="chapter-7-summary"><font style="vertical-align: inherit;">第 7 章：总结</font></h2>
+<p><font style="vertical-align: inherit;">在本教程中，我们展示了创建 QML 扩展的基本步骤：</font></p>
+<ul>
+<li><font style="vertical-align: inherit;">通过子类化</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">并使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType"><font style="vertical-align: inherit;">qmlRegisterType</font></a><font style="vertical-align: inherit;"> ()注册它们来定义新的 QML 类型</font></li>
+<li><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE"><font style="vertical-align: inherit;">Q_INVOKABLE</font></a><font style="vertical-align: inherit;">或 Qt 插槽添加可调用方法，并使用</font><code>onSignal</code><font style="vertical-align: inherit;">语法连接到 Qt 信号</font></li>
+<li><font style="vertical-align: inherit;">通过定义</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/properties.html"><font style="vertical-align: inherit;">NOTIFY</font></a><font style="vertical-align: inherit;">信号添加属性绑定</font></li>
+<li><font style="vertical-align: inherit;">如果内置类型不够，请定义自定义属性类型</font></li>
+<li><font style="vertical-align: inherit;">使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmllistproperty.html">QQmlListProperty</a>定义列表属性类型</font></li>
+<li><font style="vertical-align: inherit;">通过定义一个Qt插件并编写一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-modules-qmldir.html"><font style="vertical-align: inherit;">qmldir</font></a><font style="vertical-align: inherit;">文件来创建一个插件库</font></li>
+</ul>
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-topic.html">
+<font style="vertical-align: inherit;">集成QML和C++</font></a>文档展示了可以添加到QML扩展的其他有用特性。例如，我们可以使用<a href="qtqml-syntax-objectattributes.html#default-properties">默认属性</a>来允许在不使用<code>slices</code> 
+属性的情况下添加片:</p>
+<pre class="cpp plain">
+
+  PieChart {
+      PieSlice { ..&#x2e; }
+      PieSlice { ..&#x2e; }
+      PieSlice { ..&#x2e; }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">或者使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#property-value-sources"><font style="vertical-align: inherit;">属性值源</font></a><font style="vertical-align: inherit;">不时随机添加和删除切片：</font></p>
+<pre class="cpp plain">
+
+  PieChart {
+      PieSliceRandomizer on slices {}
+  }
+
+</pre>
+</div>
+<p><b><font style="vertical-align: inherit;">请参考</font></b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-topic.html"><font style="vertical-align: inherit;">集成 QML 和 C++</font></a><font style="vertical-align: inherit;">。</font></p>
+<!-- @@@tutorials/extending-qml -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

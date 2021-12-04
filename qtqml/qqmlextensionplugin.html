@@ -43,15 +43,15 @@
 重新实现的</span>公用函数</a></li>
 <li class="level1"><a href="#static-public-members">静态公用成员</a></li>
 <li class="level1"><a href="#details">详细信息</a></li>
-<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html#timeexample-qml-extension-plugin"><font style="vertical-align: inherit;">TimeExample QML 扩展插件</font></a></li>
-	<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html#project-settings-for-the-plugin"><font style="vertical-align: inherit;">插件的项目设置</font></a></li>
-<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html#plugin-definition-in-the-qmldir"><font style="vertical-align: inherit;">qmldir 中的插件定义</font></a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html#timeexample-qml-extension-plugin">TimeExample QML 扩展插件</a></li>
+	<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html#project-settings-for-the-plugin">插件的项目设置</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html#plugin-definition-in-the-qmldir">qmldir 中的插件定义</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
 <h1 class="title">QQmlExtensionPlugin 类</h1>
 <!-- $$$QQmlExtensionPlugin-brief -->
-<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html"><font style="vertical-align: inherit;">QQmlExtensionPlugin</font></a><font style="vertical-align: inherit;">类提供了自定义的QML扩展插件的抽象基。</font><a href="#details">更多...</a></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html">QQmlExtensionPlugin</a>类提供了自定义的QML扩展插件的抽象基。<a href="#details">更多...</a></p>
 <!-- @@@QQmlExtensionPlugin -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> 头文件：</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlExtensionPlugin&gt;</span>
@@ -96,21 +96,21 @@
 <h2 id="details">详细信息</h2>
 <p>
 <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html">
-<font style="vertical-align: inherit;">QQmlExtensionPlugin</font></a><font style="vertical-align: inherit;">类提供了自定义的QML扩展插件的抽象基。</font></p>
+QQmlExtensionPlugin</a>类提供了自定义的QML扩展插件的抽象基。</p>
 <p><a href="qqmlextensionplugin.html">QQmlExtensionPlugin</a>是一个插件接口，它可以创建可以动态加载到QML应用程序中的QML扩展。这些扩展允许QML引擎可以使用自定义QML类型。</p>
-<p><font style="vertical-align: inherit;">编写 QML 扩展插件：</font></p>
+<p>编写 QML 扩展插件：</p>
 <ol class="1" type="1"><li><span lang="zh-cn">子类化</span> <a href="qqmlextensionplugin.html">QQmlExtensionPlugin</a><ul>
-<li><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA"><font style="vertical-align: inherit;">Q_PLUGIN_METADATA</font></a><font style="vertical-align: inherit;"> ()宏向Qt元对象系统注册插件</font></li>
-<li><font style="vertical-align: inherit;">覆盖</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html#registerTypes"><font style="vertical-align: inherit;">registerTypes()</font></a><font style="vertical-align: inherit;">方法并调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType"><font style="vertical-align: inherit;">qmlRegisterType</font></a><font style="vertical-align: inherit;"> () 注册插件要导出的类型</font></li>
+<li>使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA">Q_PLUGIN_METADATA</a> ()宏向Qt元对象系统注册插件</li>
+<li>覆盖<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlextensionplugin.html#registerTypes">registerTypes()</a>方法并调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType">qmlRegisterType</a> () 注册插件要导出的类型</li>
 </ul>
 </li>
-<li><font style="vertical-align: inherit;">为插件编写项目文件</font></li>
-<li><font style="vertical-align: inherit;">创建一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-modules-qmldir.html"><font style="vertical-align: inherit;">qmldir 文件</font></a><font style="vertical-align: inherit;">来描述插件</font></li>
+<li>为插件编写项目文件</li>
+<li>创建一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-modules-qmldir.html">qmldir 文件</a>来描述插件</li>
 </ol>
-<p><font style="vertical-align: inherit;">QML 扩展插件适用于特定于应用程序或类库的插件。库插件应该限制自己注册类型，因为对引擎根上下文的任何操作都可能导致库用户代码中的冲突或其他问题。</font></p>
+<p>QML 扩展插件适用于特定于应用程序或类库的插件。库插件应该限制自己注册类型，因为对引擎根上下文的任何操作都可能导致库用户代码中的冲突或其他问题。</p>
 <a name="timeexample-qml-extension-plugin"></a>
-<h3 ><font style="vertical-align: inherit;">TimeExample QML 扩展插件</font></h3>
-<p><font style="vertical-align: inherit;">假设有一个新的</font><code>TimeModel</code><font style="vertical-align: inherit;">C++ 类应该作为新的 QML 类型提供。它提供当前时间</font><code>hour</code><font style="vertical-align: inherit;">和</font><code>minute</code><font style="vertical-align: inherit;">属性。</font></p>
+<h3 >TimeExample QML 扩展插件</h3>
+<p>假设有一个新的<code>TimeModel</code>C++ 类应该作为新的 QML 类型提供。它提供当前时间<code>hour</code>和<code>minute</code>属性。</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> TimeModel : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span>
@@ -140,7 +140,7 @@
 </pre>
 <p>这将TimeModel类注册到这个插件库的<code>1.0</code>版本中，作为称为<code>Time</code>的QML类型。宏<a href="../qtcore/qtglobal.html#Q_ASSERT">Q_ASSERT</a>()可以确保使用此插件的任何QML组件都正确导入类型名称空间。<a href="qtqml-cppintegration-definetypes.html">C++的定义QML类型</a>文章提供了更多关于将C++类型注册到运行时的信息。</p>
 <a name="project-settings-for-the-plugin"></a>
-<h3 ><font style="vertical-align: inherit;">插件的项目设置</font></h3>
+<h3 >插件的项目设置</h3>
 <p>此外，项目文件(.pro)将项目定义为一个插件库，指定它应该内建到<code>imports/TimeExample</code>目录中，并注册插件目标名称和其他各种细节:</p>
 <pre class="cpp">
 
@@ -154,7 +154,7 @@
 
 </pre>
 <a name="plugin-definition-in-the-qmldir"></a>
-<h3 ><font style="vertical-align: inherit;">qmldir 中的插件定义</font></h3>
+<h3 >qmldir 中的插件定义</h3>
 <p>最后，在<code>imports/TimeExample</code>目录中需要一个<a href="qtqml-modules-qmldir.html">qmldir文件</a>来描述插件及其导出的类型。该插件包括一个时钟。QML文件以及由项目构建的<code>qmlqtimeexampleplugin</code> 
 (如上所示在.pro文件中)，所以这两个都需要在qmldir文件中指定:</p>
 <pre class="cpp">
@@ -165,8 +165,8 @@
 
 </pre>
 <p>为了让这个例子更简单，我们让TimeExample的源目录在<code>imports/TimeExample</code>中，并且直接从<a href="../qtdoc/configure-options.html#source-build-and-install-directories">源代码构建</a>。源目录的结构并不是那么重要，因为qmldir文件可以指定安装QML文件的路径。</p>
-<p><font style="vertical-align: inherit;">重要的是 qmldir 安装到的目录的名称。当用户导入我们的模块时，QML 引擎使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-modules-qmldir.html#contents-of-a-module-definition-qmldir-file"><font style="vertical-align: inherit;">模块标识符</font></a><font style="vertical-align: inherit;">( </font><code>TimeExample</code><font style="vertical-align: inherit;">) 来查找插件，因此安装它的目录必须与模块标识符匹配。</font></p>
-<p><font style="vertical-align: inherit;">构建并安装项目后<code>Time</code> ，任何导入<code>TimeExample</code> 模块的QML 组件都可以访问新组件</font></p>
+<p>重要的是 qmldir 安装到的目录的名称。当用户导入我们的模块时，QML 引擎使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-modules-qmldir.html#contents-of-a-module-definition-qmldir-file">模块标识符</a>( <code>TimeExample</code>) 来查找插件，因此安装它的目录必须与模块标识符匹配。</p>
+<p>构建并安装项目后<code>Time</code> ，任何导入<code>TimeExample</code> 模块的QML 组件都可以访问新组件</p>
 <pre class="qml">
 
   import TimeExample 1.0 <span class="comment">// import types from the plugin</span>
@@ -183,8 +183,8 @@
   }
 
 </pre>
-<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-qmlextensionplugins-example.html"><font style="vertical-align: inherit;">插件示例中</font></a><font style="vertical-align: inherit;">提供了完整的源代码。</font></p>
-<p><font style="vertical-align: inherit;">在</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html"><font style="vertical-align: inherit;">写作QML扩展与C ++</font></a><font style="vertical-align: inherit;">教程还包含有关创建QML插件的一章。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-qmlextensionplugins-example.html">插件示例中</a>提供了完整的源代码。</p>
+<p>在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html">写作QML扩展与C ++</a>教程还包含有关创建QML插件的一章。</p>
 </div>
 <p><b>请参考 </b><a href="qqmlengine.html#importPlugin">QQmlEngine::importPlugin</a>()
 <span lang="zh-cn">和</span> <a href="../qtdoc/plugins-howto.html">
@@ -194,23 +194,23 @@
 <h2>成员函数文档</h2>
 <!-- $$$QQmlExtensionPlugin[overload1]$$$QQmlExtensionPluginQObject* -->
 <h3 class="fn" id="QQmlExtensionPlugin"><a name="QQmlExtensionPlugin"></a>QQmlExtensionPlugin::<span class="name">QQmlExtensionPlugin</span>(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>parent</i> = nullptr)</h3>
-<p><font style="vertical-align: inherit;">使用给定的</font><i><font style="vertical-align: inherit;">parent</font></i><font style="vertical-align: inherit;">构造 QML 扩展插件。</font></p>
-<p><font style="vertical-align: inherit;">请注意，此构造函数由</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA"><font style="vertical-align: inherit;">Q_PLUGIN_METADATA</font></a><font style="vertical-align: inherit;"> () 宏自动调用，因此无需显式调用它。</font></p>
+<p>使用给定的<i>parent</i>构造 QML 扩展插件。</p>
+<p>请注意，此构造函数由<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qtplugin.html#Q_PLUGIN_METADATA">Q_PLUGIN_METADATA</a> () 宏自动调用，因此无需显式调用它。</p>
 <!-- @@@QQmlExtensionPlugin -->
 <!-- $$$baseUrl[overload1]$$$baseUrl -->
 <h3 class="fn" id="baseUrl"><a name="baseUrl"></a><span class="type"><a href="../qtcore/qurl.html">QUrl</a></span> QQmlExtensionPlugin::<span class="name">baseUrl</span>() const</h3>
-<p><font style="vertical-align: inherit;">返回加载扩展的目录的 URL。</font></p>
-<p><font style="vertical-align: inherit;">当插件还需要从同一目录加载 QML 文件或其他<span lang="zh-cn">资源</span>时，这很有用。</font></p>
+<p>返回加载扩展的目录的 URL。</p>
+<p>当插件还需要从同一目录加载 QML 文件或其他<span lang="zh-cn">资源</span>时，这很有用。</p>
 <p>这个函数在Qt 5.1中引入。</p>
 <!-- @@@baseUrl -->
 <!-- $$$initializeEngine[overload1]$$$initializeEngineQQmlEngine*constchar* -->
 <h3 class="fn" id="initializeEngine"><a name="initializeEngine"></a><code>[override virtual] </code><span class="type">void</span> QQmlExtensionPlugin::<span class="name">initializeEngine</span>(<span class="type"><a href="qqmlengine.html">QQmlEngine</a></span> *<i>engine</i>, const <span class="type">char</span> *<i>uri</i>)</h3>
-<p><font style="vertical-align: inherit;">使用<i>engine</i>从</font><i><font style="vertical-align: inherit;">uri</font></i><font style="vertical-align: inherit;">初始化扩展。例如，应用程序插件可能会向 QML 公开一些数据或对象，作为引擎根上下文的上下文属性。</font></p>
+<p>使用<i>engine</i>从<i>uri</i>初始化扩展。例如，应用程序插件可能会向 QML 公开一些数据或对象，作为引擎根上下文的上下文属性。</p>
 <!-- @@@initializeEngine -->
 <!-- $$$registerTypes[overload1]$$$registerTypesconstchar* -->
 <h3 class="fn" id="registerTypes"><a name="registerTypes"></a><code>[override pure virtual] </code><span class="type">void</span> QQmlExtensionPlugin::<span class="name">registerTypes</span>(const <span class="type">char</span> *<i>uri</i>)</h3>
-<p><font style="vertical-align: inherit;">在给定的</font><i><font style="vertical-align: inherit;">uri 中</font></i><font style="vertical-align: inherit;">注册 QML 类型。子类应该实现这一点，以便为扩展插件提供的所有类型调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType"><font style="vertical-align: inherit;">qmlRegisterType</font></a><font style="vertical-align: inherit;"> ()。</font></p>
-<p><font style="vertical-align: inherit;">该</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">uri</span></font></i><font style="vertical-align: inherit;">是用于通过基于所述名称和扩展的插件库的路径的QML发动机产生的插件的标识符。</font></p>
+<p>在给定的<i>uri 中</i>注册 QML 类型。子类应该实现这一点，以便为扩展插件提供的所有类型调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType">qmlRegisterType</a> ()。</p>
+<p>该<i><span lang="zh-cn">uri</span></i>是用于通过基于所述名称和扩展的插件库的路径的QML发动机产生的插件的标识符。</p>
 <!-- @@@registerTypes -->
 </div>
         </div>

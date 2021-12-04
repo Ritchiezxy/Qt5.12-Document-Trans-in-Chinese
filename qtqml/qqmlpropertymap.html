@@ -50,7 +50,7 @@
 <!-- $$$QQmlPropertyMap-brief -->
 <p>
 <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html">
-<font style="vertical-align: inherit;">QQmlPropertyMap</font></a><font style="vertical-align: inherit;">类允许您设置可以在QML绑定使用的键-值对。</font> <a href="#details">更多...</a></p>
+QQmlPropertyMap</a>类允许您设置可以在QML绑定使用的键-值对。 <a href="#details">更多...</a></p>
 <!-- @@@QQmlPropertyMap -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> 头文件：</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlPropertyMap&gt;</span>
@@ -111,9 +111,9 @@
 <!-- $$$QQmlPropertyMap-description -->
 <div class="descr">
 <h2 id="details">详细信息</h2>
-<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html"><font style="vertical-align: inherit;">QQmlPropertyMap</font></a><font style="vertical-align: inherit;">类让你可以在QML绑定使用设置键-值对。</font></p>
-<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html"><font style="vertical-align: inherit;">QQmlPropertyMap</font></a><font style="vertical-align: inherit;">提供了一种向 UI 层公开域数据的便捷方式。以下示例显示了如何在 C++ 中声明数据，然后在 QML 中访问它。</font></p>
-<p><font style="vertical-align: inherit;">在 C++ 文件中：</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html">QQmlPropertyMap</a>类让你可以在QML绑定使用设置键-值对。</p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html">QQmlPropertyMap</a>提供了一种向 UI 层公开域数据的便捷方式。以下示例显示了如何在 C++ 中声明数据，然后在 QML 中访问它。</p>
+<p>在 C++ 文件中：</p>
 <pre class="cpp">
 
   <span class="comment">// create our data</span>
@@ -130,38 +130,38 @@
   view<span class="operator">.</span>show();
 
 </pre>
-<p><font style="vertical-align: inherit;">然后，在</font><code>main.qml</code><font style="vertical-align: inherit;">：</font></p>
+<p>然后，在<code>main.qml</code>：</p>
 <pre class="cpp">
 
   Text { text: owner<span class="operator">.</span>name <span class="operator">+</span> <span class="string">&quot; &quot;</span> <span class="operator">+</span> owner<span class="operator">.</span>phone }
 
 </pre>
-<p><font style="vertical-align: inherit;">绑定是动态的 - 每当更新键的值时，绑定到该键的任何内容也将更新。</font></p>
-<p><font style="vertical-align: inherit;">要检测 UI 层中所做的值更改，您可以连接到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#valueChanged"><font style="vertical-align: inherit;">valueChanged</font></a><font style="vertical-align: inherit;"> () 信号。但是，请注意，通过调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#insert">insert</a> () 或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#clear">clear</a> ()进行更改时<b>不会</b>发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#valueChanged"><font style="vertical-align: inherit;">valueChanged</font></a><font style="vertical-align: inherit;"> () - 它仅在从 QML 更新值时发出。</font></p>
-<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">无法从<span lang="zh-cn">map</span>中删除<span lang="zh-cn">键</span>；添加键后，您只能修改或清除其关联值。</font></p><p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html"><font style="vertical-align: inherit;">QQmlPropertyMap</font></a><font style="vertical-align: inherit;">派生类时，请使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#QQmlPropertyMap-1"><font style="vertical-align: inherit;">受保护的双参数构造函数</font></a><font style="vertical-align: inherit;">，以确保该类已正确注册到 Qt</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/metaobjects.html"><font style="vertical-align: inherit;">元对象系统</font></a><font style="vertical-align: inherit;">。</font></p></div>
+<p>绑定是动态的 - 每当更新键的值时，绑定到该键的任何内容也将更新。</p>
+<p>要检测 UI 层中所做的值更改，您可以连接到<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#valueChanged">valueChanged</a> () 信号。但是，请注意，通过调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#insert">insert</a> () 或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#clear">clear</a> ()进行更改时<b>不会</b>发出<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#valueChanged">valueChanged</a> () - 它仅在从 QML 更新值时发出。</p>
+<p><b>注意：</b>无法从<span lang="zh-cn">map</span>中删除<span lang="zh-cn">键</span>；添加键后，您只能修改或清除其关联值。</p><p><b>注意：</b>从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html">QQmlPropertyMap</a>派生类时，请使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#QQmlPropertyMap-1">受保护的双参数构造函数</a>，以确保该类已正确注册到 Qt<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/metaobjects.html">元对象系统</a>。</p></div>
 <!-- @@@QQmlPropertyMap -->
 <div class="func">
 <h2>成员函数文档</h2>
 <!-- $$$QQmlPropertyMap[overload1]$$$QQmlPropertyMapQObject* -->
 <h3 class="fn" id="QQmlPropertyMap"><a name="QQmlPropertyMap"></a>QQmlPropertyMap::<span class="name">QQmlPropertyMap</span>(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>parent</i> = nullptr)</h3>
-<p><font style="vertical-align: inherit;">构造一个具有父对象</font><i><font style="vertical-align: inherit;">parent</font></i><font style="vertical-align: inherit;">的可绑定映射。</font></p>
+<p>构造一个具有父对象<i>parent</i>的可绑定映射。</p>
 <!-- @@@QQmlPropertyMap -->
 <!-- $$$QQmlPropertyMap$$$QQmlPropertyMapDerivedType*QObject* -->
 <h3 class="fn" id="QQmlPropertyMap-1"><a name="QQmlPropertyMap-1"></a><code>[protected] </code>QQmlPropertyMap::<span class="name">QQmlPropertyMap</span>(<span class="type">DerivedType</span> *<i>derived</i>, <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i>parent</i>)</h3>
-<p><font style="vertical-align: inherit;">构造一个具有父对象</font><i><font style="vertical-align: inherit;">parent</font></i><font style="vertical-align: inherit;">的可绑定映射。在从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html"><font style="vertical-align: inherit;">QQmlPropertyMap</font></a><font style="vertical-align: inherit;">派生的类中使用此构造<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html">函数</a>。</font></p>
-<p><i><font style="vertical-align: inherit;">派生</font></i><font style="vertical-align: inherit;">的类型用于向</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/metaobjects.html"><font style="vertical-align: inherit;">元对象系统</font></a><font style="vertical-align: inherit;">注册属性映射，这是确保派生类的属性可访问所必需的。此类型必须从</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html"><font style="vertical-align: inherit;">QQmlPropertyMap</font></a><font style="vertical-align: inherit;">派生。</font></p>
+<p>构造一个具有父对象<i>parent</i>的可绑定映射。在从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html">QQmlPropertyMap</a>派生的类中使用此构造<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html">函数</a>。</p>
+<p><i>派生</i>的类型用于向<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/metaobjects.html">元对象系统</a>注册属性映射，这是确保派生类的属性可访问所必需的。此类型必须从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html">QQmlPropertyMap</a>派生。</p>
 <!-- @@@QQmlPropertyMap -->
 <!-- $$$~QQmlPropertyMap[overload1]$$$~QQmlPropertyMap -->
 <h3 class="fn" id="dtor.QQmlPropertyMap"><a name="dtor.QQmlPropertyMap"></a><code>[override virtual] </code>QQmlPropertyMap::<span class="name">~QQmlPropertyMap</span>()</h3>
-<p><font style="vertical-align: inherit;">销毁可绑定的<span lang="zh-cn">map</span>。</font></p>
+<p>销毁可绑定的<span lang="zh-cn">map</span>。</p>
 <!-- @@@~QQmlPropertyMap -->
 <!-- $$$clear[overload1]$$$clearconstQString& -->
 <h3 class="fn" id="clear"><a name="clear"></a><span class="type">void</span> QQmlPropertyMap::<span class="name">clear</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>key</i>)</h3>
-<p><font style="vertical-align: inherit;">清除与</font><i><font style="vertical-align: inherit;">key</font></i><font style="vertical-align: inherit;">关联的值（如果有）。</font></p>
+<p>清除与<i>key</i>关联的值（如果有）。</p>
 <!-- @@@clear -->
 <!-- $$$contains[overload1]$$$containsconstQString& -->
 <h3 class="fn" id="contains"><a name="contains"></a><span class="type">bool</span> QQmlPropertyMap::<span class="name">contains</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>key</i>) const</h3>
-<p><font style="vertical-align: inherit;">如果<span lang="zh-cn">map</span>包含</font><i><font style="vertical-align: inherit;">key ，</font></i><font style="vertical-align: inherit;">则返回 true 。</font></p>
+<p>如果<span lang="zh-cn">map</span>包含<i>key ，</i>则返回 true 。</p>
 <p><b>请参考 </b><a href="qqmlpropertymap.html#size">size</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@contains -->
 <!-- $$$count[overload1]$$$count -->
@@ -171,44 +171,44 @@
 <!-- @@@count -->
 <!-- $$$insert[overload1]$$$insertconstQString&constQVariant& -->
 <h3 class="fn" id="insert"><a name="insert"></a><span class="type">void</span> QQmlPropertyMap::<span class="name">insert</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>key</i>, const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>value</i>)</h3>
-<p><font style="vertical-align: inherit;">将与</font><i><font style="vertical-align: inherit;">key</font></i><font style="vertical-align: inherit;">关联的值设置为</font><i><font style="vertical-align: inherit;">value</font></i><font style="vertical-align: inherit;">。</font></p>
-<p><font style="vertical-align: inherit;">如果密钥不存在，则会自动创建。</font></p>
+<p>将与<i>key</i>关联的值设置为<i>value</i>。</p>
+<p>如果密钥不存在，则会自动创建。</p>
 <!-- @@@insert -->
 <!-- $$$isEmpty[overload1]$$$isEmpty -->
 <h3 class="fn" id="isEmpty"><a name="isEmpty"></a><span class="type">bool</span> QQmlPropertyMap::<span class="name">isEmpty</span>() const</h3>
-<p><font style="vertical-align: inherit;">如果地图不包含键，则返回 true；否则返回假。</font></p>
+<p>如果地图不包含键，则返回 true；否则返回假。</p>
 <p><b>请参考 </b><a href="qqmlpropertymap.html#size">size</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@isEmpty -->
 <!-- $$$keys[overload1]$$$keys -->
 <h3 class="fn" id="keys"><a name="keys"></a><span class="type"><a href="../qtcore/qstringlist.html">QStringList</a></span> QQmlPropertyMap::<span class="name">keys</span>() const</h3>
-<p><font style="vertical-align: inherit;">返回键列表。</font></p>
-<p><font style="vertical-align: inherit;">已清除的键仍将出现在此列表中，即使它们的关联值是无效的 QVariants。</font></p>
-<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">该函数可以通过元对象系统和 QML 调用。见</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE"><font style="vertical-align: inherit;">Q_INVOKABLE</font></a><font style="vertical-align: inherit;">。</font></p>
+<p>返回键列表。</p>
+<p>已清除的键仍将出现在此列表中，即使它们的关联值是无效的 QVariants。</p>
+<p><b>注意：</b>该函数可以通过元对象系统和 QML 调用。见<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE">Q_INVOKABLE</a>。</p>
 <!-- @@@keys -->
 <!-- $$$size[overload1]$$$size -->
 <h3 class="fn" id="size"><a name="size"></a><span class="type">int</span> QQmlPropertyMap::<span class="name">size</span>() const</h3>
-<p><font style="vertical-align: inherit;">返回映射中的键数。</font></p>
+<p>返回映射中的键数。</p>
 <p><b>请参考 </b><a href="qqmlpropertymap.html#isEmpty">isEmpty</a>()
 <span lang="zh-cn">和 </span><a href="qqmlpropertymap.html#count">count</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@size -->
 <!-- $$$updateValue[overload1]$$$updateValueconstQString&constQVariant& -->
 <h3 class="fn" id="updateValue"><a name="updateValue"></a><code>[virtual protected] </code><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> QQmlPropertyMap::<span class="name">updateValue</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>key</i>, const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>input</i>)</h3>
-<p><font style="vertical-align: inherit;">返回要为键</font><i><font style="vertical-align: inherit;">key</font></i><font style="vertical-align: inherit;">存储的新值。提供此函数是为了从 QML 拦截对属性的更新，其中 QML 提供的值为</font><i><font style="vertical-align: inherit;">input</font></i><font style="vertical-align: inherit;">。</font></p>
-<p><font style="vertical-align: inherit;">重写此函数以在更新时操作属性值。请注意，此函数仅在从 QML 更新值时调用。</font></p>
+<p>返回要为键<i>key</i>存储的新值。提供此函数是为了从 QML 拦截对属性的更新，其中 QML 提供的值为<i>input</i>。</p>
+<p>重写此函数以在更新时操作属性值。请注意，此函数仅在从 QML 更新值时调用。</p>
 <!-- @@@updateValue -->
 <!-- $$$value[overload1]$$$valueconstQString& -->
 <h3 class="fn" id="value"><a name="value"></a><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> QQmlPropertyMap::<span class="name">value</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>key</i>) const</h3>
-<p><font style="vertical-align: inherit;">返回与</font><i><font style="vertical-align: inherit;">key</font></i><font style="vertical-align: inherit;">关联的值。</font></p>
-<p><font style="vertical-align: inherit;">如果没有为该键设置值（或者如果该值已被清除），则返回一个无效的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">。</font></p>
+<p>返回与<i>key</i>关联的值。</p>
+<p>如果没有为该键设置值（或者如果该值已被清除），则返回一个无效的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html">QVariant</a>。</p>
 <!-- @@@value -->
 <!-- $$$valueChanged[overload1]$$$valueChangedconstQString&constQVariant& -->
 <h3 class="fn" id="valueChanged"><a name="valueChanged"></a><code>[signal] </code><span class="type">void</span> QQmlPropertyMap::<span class="name">valueChanged</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>key</i>, const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>value</i>)</h3>
-<p><font style="vertical-align: inherit;">每当映射中的一个值发生更改时，就会发出此信号。</font><i><font style="vertical-align: inherit;">key</font></i><font style="vertical-align: inherit;">是与更改的</font><i><font style="vertical-align: inherit;">值</font></i><font style="vertical-align: inherit;">对应的键。</font></p>
-<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;"> valueChanged()在通过调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#insert">insert</a> () 或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#clear">clear</a> ()进行更改时</font><b><font style="vertical-align: inherit;">不会</font></b><font style="vertical-align: inherit;">发出- 只有在从 QML 更新值时才会发出。</font></p><!-- @@@valueChanged -->
+<p>每当映射中的一个值发生更改时，就会发出此信号。<i>key</i>是与更改的<i>值</i>对应的键。</p>
+<p><b>注意：</b> valueChanged()在通过调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#insert">insert</a> () 或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlpropertymap.html#clear">clear</a> ()进行更改时<b>不会</b>发出- 只有在从 QML 更新值时才会发出。</p><!-- @@@valueChanged -->
 <!-- $$$operator[][overload1]$$$operator[]constQString& -->
 <h3 class="fn" id="operator-5b-5d"><a name="operator-5b-5d"></a><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;QQmlPropertyMap::<span class="name">operator[]</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>key</i>)</h3>
-<p><font style="vertical-align: inherit;">返回与该键相关联的</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">key</span></font></i><font style="vertical-align: inherit;">作为可修改的参考。</font></p>
-<p><font style="vertical-align: inherit;">如果映射不包含键为 key 的</font><i><font style="vertical-align: inherit;">项</font></i><font style="vertical-align: inherit;">，则该函数将一个无效的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html"><font style="vertical-align: inherit;">QVariant</font></a><font style="vertical-align: inherit;">插入键为<i>key</i>的映射中，并返回对它的引用。</font></p>
+<p>返回与该键相关联的<i><span lang="zh-cn">key</span></i>作为可修改的参考。</p>
+<p>如果映射不包含键为 key 的<i>项</i>，则该函数将一个无效的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html">QVariant</a>插入键为<i>key</i>的映射中，并返回对它的引用。</p>
 <p><b>请参考 </b><a href="qqmlpropertymap.html#insert">insert</a>()
 <span lang="zh-cn">和 </span><a href="qqmlpropertymap.html#value">value</a>()<span lang="zh-cn">。</span></p>
 <!-- @@@operator[] -->

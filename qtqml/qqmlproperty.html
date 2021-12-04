@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlproperty.cpp -->
+  <title>QQmlProperty  类 | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td ><a href="qtqml-module.html">C++ 类</a></td><td >QQmlProperty</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">公用类型</a></li>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#static-public-members">静态公用成员</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QQmlProperty 类</h1>
+<!-- $$$QQmlProperty-brief -->
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">
+QQmlProperty</a>类抽象访问从QML创建的对象的属性。<a href="#details">更多...</a></p>
+<!-- @@@QQmlProperty -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 头文件：</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QQmlProperty&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += qml</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.0</td></tr></table></div><ul>
+<li><a href="qqmlproperty-members.html"></a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">公用类型</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#PropertyTypeCategory-enum">PropertyTypeCategory</a></b> { InvalidCategory, List, Object, Normal }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#Type-enum">Type</a></b> { Invalid, Property, SignalProperty }</td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#QQmlProperty">QQmlProperty</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#QQmlProperty-1">QQmlProperty</a></b>(QObject *<i>obj</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#QQmlProperty-2">QQmlProperty</a></b>(QObject *<i>obj</i>, QQmlContext *<i>ctxt</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#QQmlProperty-3">QQmlProperty</a></b>(QObject *<i>obj</i>, QQmlEngine *<i>engine</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#QQmlProperty-4">QQmlProperty</a></b>(QObject *<i>obj</i>, const QString &amp;<i>name</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#QQmlProperty-5">QQmlProperty</a></b>(QObject *<i>obj</i>, const QString &amp;<i>name</i>, QQmlContext *<i>ctxt</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#QQmlProperty-6">QQmlProperty</a></b>(QObject *<i>obj</i>, const QString &amp;<i>name</i>, QQmlEngine *<i>engine</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#QQmlProperty-7">QQmlProperty</a></b>(const QQmlProperty &amp;<i>other</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#connectNotifySignal">connectNotifySignal</a></b>(QObject *<i>dest</i>, const char *<i>slot</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#connectNotifySignal-1">connectNotifySignal</a></b>(QObject *<i>dest</i>, int <i>method</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#hasNotifySignal">hasNotifySignal</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#index">index</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#isDesignable">isDesignable</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#isProperty">isProperty</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#isResettable">isResettable</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#isSignalProperty">isSignalProperty</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#isValid">isValid</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#isWritable">isWritable</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QMetaMethod </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#method">method</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#name">name</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#needsNotifySignal">needsNotifySignal</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QObject *</td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#object">object</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QMetaProperty </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#property">property</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#propertyType">propertyType</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QQmlProperty::PropertyTypeCategory </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#propertyTypeCategory">propertyTypeCategory</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const char *</td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#propertyTypeName">propertyTypeName</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QVariant </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#read">read</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#reset">reset</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QQmlProperty::Type </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#type">type</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#write">write</a></b>(const QVariant &amp;<i>value</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QQmlProperty &amp;</td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#operator-eq">operator=</a></b>(const QQmlProperty &amp;<i>other</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#operator-eq-eq">operator==</a></b>(const QQmlProperty &amp;<i>other</i>) const</td></tr>
+</table></div>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">静态公用成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> QVariant </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#read-1">read</a></b>(const QObject *<i>object</i>, const QString &amp;<i>name</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QVariant </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#read-2">read</a></b>(const QObject *<i>object</i>, const QString &amp;<i>name</i>, QQmlContext *<i>ctxt</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QVariant </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#read-3">read</a></b>(const QObject *<i>object</i>, const QString &amp;<i>name</i>, QQmlEngine *<i>engine</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#write-1">write</a></b>(QObject *<i>object</i>, const QString &amp;<i>name</i>, const QVariant &amp;<i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#write-2">write</a></b>(QObject *<i>object</i>, const QString &amp;<i>name</i>, const QVariant &amp;<i>value</i>, QQmlContext *<i>ctxt</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qqmlproperty.html#write-3">write</a></b>(QObject *<i>object</i>, const QString &amp;<i>name</i>, const QVariant &amp;<i>value</i>, QQmlEngine *<i>engine</i>)</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$QQmlProperty-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>类抽象访问来自QML创建的对象的属性。</p>
+<p>由于 QML 使用 Qt 的元类型系统，所有现有的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaobject.html">QMetaObject</a>类都可用于内省 QML 创建的对象并与之交互。然而，QML 提供的一些新特性——例如类型安全和附加属性——最容易通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>类使用，该类简化了它们的一些自然复杂性。</p>
+<p>与表示类类型上的属性的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaproperty.html">QMetaProperty</a>不同，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>封装了特定对象实例上的属性。为了读取属性的值，程序员创建一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>实例并调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html#read">read</a> () 方法。同样，使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html#write">write</a> () 方法写入属性值。</p>
+<p>例如，对于以下 QML 代码：</p>
+<pre class="qml">
+
+  <span class="comment">// MyItem.qml</span>
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtquick/qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">&quot;A bit of text&quot;</span> }
+
+</pre>
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-text.html">
+文本</a>对象的属性可以通过访问<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>，就像这样：</p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &lt;QQmlProperty&gt;</span>
+  <span class="preprocessor">#include &lt;QGraphicsObject&gt;</span>
+
+  <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+
+  <span class="type"><a href="../qtquick/qquickview.html">QQuickView</a></span> view(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span><span class="operator">::</span>fromLocalFile(<span class="string">&quot;MyItem.qml&quot;</span>));
+  <span class="type"><a href="qqmlproperty.html#QQmlProperty">QQmlProperty</a></span> property(view<span class="operator">.</span>rootObject()<span class="operator">,</span> <span class="string">&quot;font.pixelSize&quot;</span>);
+  <a href="../qtcore/qtglobal.html#qWarning">qWarning</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;Current pixel size:&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> property<span class="operator">.</span>read()<span class="operator">.</span>toInt();
+  property<span class="operator">.</span>write(<span class="number">24</span>);
+  <a href="../qtcore/qtglobal.html#qWarning">qWarning</a>() <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;Pixel size should now be 24:&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> property<span class="operator">.</span>read()<span class="operator">.</span>toInt();
+
+</pre>
+</div>
+<!-- @@@QQmlProperty -->
+<div class="types">
+<h2>成员类型文档</h2>
+<!-- $$$PropertyTypeCategory$$$InvalidCategory$$$List$$$Object$$$Normal -->
+<h3 class="fn" id="PropertyTypeCategory-enum"><a name="PropertyTypeCategory-enum"></a>enum QQmlProperty::<span class="name">PropertyTypeCategory</span></h3>
+<p>此枚举指定 QML 属性的类别。</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">
+	<span lang="zh-cn">常量</span></th><th class="tblval"><span lang="zh-cn">值</span></th><th class="tbldscr">描述</th></tr>
+<tr><td class="topAlign"><code>QQmlProperty::InvalidCategory</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">
+	该属性无效，或者是信号属性。</td></tr>
+<tr><td class="topAlign"><code>QQmlProperty::List</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">
+	该属性是一个<a href="qqmllistproperty.html">QQmlListProperty</a>列表属性</td></tr>
+<tr><td class="topAlign"><code>QQmlProperty::Object</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">
+	该属性是一个<a href="../qtcore/qobject.html">QObject</a>派生类型指针</td></tr>
+<tr><td class="topAlign"><code>QQmlProperty::Normal</code></td><td class="topAlign tblval"><code>3</code></td><td class="topAlign">该属性是一个正常值属性。</td></tr>
+</table></div>
+<!-- @@@PropertyTypeCategory -->
+<!-- $$$Type$$$Invalid$$$Property$$$SignalProperty -->
+<h3 class="fn" id="Type-enum"><a name="Type-enum"></a>enum QQmlProperty::<span class="name">Type</span></h3>
+<p>此枚举指定 QML 属性的类型。</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">
+	<span lang="zh-cn">常量</span></th><th class="tblval"><span lang="zh-cn">值</span></th><th class="tbldscr">
+	<span lang="zh-cn">描述</span></th></tr>
+<tr><td class="topAlign"><code>QQmlProperty::Invalid</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">该属性无效。</td></tr>
+<tr><td class="topAlign"><code>QQmlProperty::Property</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">
+	该属性是常规 Qt 属性。</td></tr>
+<tr><td class="topAlign"><code>QQmlProperty::SignalProperty</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">
+	该属性是信号属性。</td></tr>
+</table></div>
+<!-- @@@Type -->
+</div>
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$QQmlProperty[overload1]$$$QQmlProperty -->
+<h3 class="fn" id="QQmlProperty"><a name="QQmlProperty"></a>QQmlProperty::<span class="name">QQmlProperty</span>()</h3>
+<p>创建无效的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>。</p>
+<!-- @@@QQmlProperty -->
+<!-- $$$QQmlProperty$$$QQmlPropertyQObject* -->
+<h3 class="fn" id="QQmlProperty-1"><a name="QQmlProperty-1"></a>QQmlProperty::<span class="name">QQmlProperty</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>obj</i>)</h3>
+<p>为<i>obj</i>的默认属性创建一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>。如果没有默认属性，则会创建一个无效的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>。</p>
+<!-- @@@QQmlProperty -->
+<!-- $$$QQmlProperty$$$QQmlPropertyQObject*QQmlContext* -->
+<h3 class="fn" id="QQmlProperty-2"><a name="QQmlProperty-2"></a>QQmlProperty::<span class="name">QQmlProperty</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>obj</i>, <span class="type"><a href="qqmlcontext.html">QQmlContext</a></span> *<i>ctxt</i>)</h3>
+<p>创建<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>为默认属性<i>obj</i> 使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcontext.html">上下文</a> <i>ctxt</i>。如果没有默认属性，则会创建一个无效的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>。</p>
+<!-- @@@QQmlProperty -->
+<!-- $$$QQmlProperty$$$QQmlPropertyQObject*QQmlEngine* -->
+<h3 class="fn" id="QQmlProperty-3"><a name="QQmlProperty-3"></a>QQmlProperty::<span class="name">QQmlProperty</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>obj</i>, <span class="type"><a href="qqmlengine.html">QQmlEngine</a></span> *<i>engine</i>)</h3>
+<p>创建<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>为默认属性<i>obj</i> 使用实例由提供QML组件的环境<i>engine</i>。如果没有默认属性，则会创建一个无效的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>。</p>
+<!-- @@@QQmlProperty -->
+<!-- $$$QQmlProperty$$$QQmlPropertyQObject*constQString& -->
+<h3 class="fn" id="QQmlProperty-4"><a name="QQmlProperty-4"></a>QQmlProperty::<span class="name">QQmlProperty</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>obj</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>)</h3>
+<p>为<i>obj</i>的属性<i>name</i>创建一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>。</p>
+<!-- @@@QQmlProperty -->
+<!-- $$$QQmlProperty$$$QQmlPropertyQObject*constQString&QQmlContext* -->
+<h3 class="fn" id="QQmlProperty-5"><a name="QQmlProperty-5"></a>QQmlProperty::<span class="name">QQmlProperty</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>obj</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>, <span class="type"><a href="qqmlcontext.html">QQmlContext</a></span> *<i>ctxt</i>)</h3>
+<p>创建<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>的属性<i>名</i>的<i>obj</i>使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcontext.html">上下文</a> <i>ctxt</i>。</p>
+<p>在没有上下文的情况下创建<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>将使某些属性（如附加属性）无法访问。</p>
+<!-- @@@QQmlProperty -->
+<!-- $$$QQmlProperty$$$QQmlPropertyQObject*constQString&QQmlEngine* -->
+<h3 class="fn" id="QQmlProperty-6"><a name="QQmlProperty-6"></a>QQmlProperty::<span class="name">QQmlProperty</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>obj</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>, <span class="type"><a href="qqmlengine.html">QQmlEngine</a></span> *<i>engine</i>)</h3>
+<p>创建<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>的属性<i>name</i>的<i>obj</i>使用实例由提供QML组件的环境<i>engine</i>。</p>
+<!-- @@@QQmlProperty -->
+<!-- $$$QQmlProperty$$$QQmlPropertyconstQQmlProperty& -->
+<h3 class="fn" id="QQmlProperty-7"><a name="QQmlProperty-7"></a>QQmlProperty::<span class="name">QQmlProperty</span>(const <span class="type"><a href="qqmlproperty.html#QQmlProperty">QQmlProperty</a></span> &amp;<i>other</i>)</h3>
+<p>创建<i>other<span lang="zh-cn">。</span></i></p>
+<!-- @@@QQmlProperty -->
+<!-- $$$connectNotifySignal[overload1]$$$connectNotifySignalQObject*constchar* -->
+<h3 class="fn" id="connectNotifySignal"><a name="connectNotifySignal"></a><span class="type">bool</span> QQmlProperty::<span class="name">connectNotifySignal</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>dest</i>, const <span class="type">char</span> *<i>slot</i>) const</h3>
+<p>连接属性的通知信号到指定的变化<i>slot</i>中的<i>dest</i>对象，并返回true。如果此元属性不表示常规 Qt 属性，或者它没有更改通知程序信号，或者<i>dest</i>对象没有指定的<i>slot</i>，则返回 false 。</p>
+<p><b>注意： </b>应该使用SLOT()宏传递<i>slot</i> ，以便正确识别它。</p><!-- @@@connectNotifySignal -->
+<!-- $$$connectNotifySignal$$$connectNotifySignalQObject*int -->
+<h3 class="fn" id="connectNotifySignal-1"><a name="connectNotifySignal-1"></a><span class="type">bool</span> QQmlProperty::<span class="name">connectNotifySignal</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>dest</i>, <span class="type">int</span> <i>method</i>) const</h3>
+<p>连接属性的通知信号到指定的改变<i>method</i> 的<i>dest</i>对象，并返回true。如果此元属性不表示常规 Qt 属性，或者它没有更改通知程序信号，或者<i>dest</i>对象没有指定的<i>method</i>，则返回 false 。</p>
+<!-- @@@connectNotifySignal -->
+<!-- $$$hasNotifySignal[overload1]$$$hasNotifySignal -->
+<h3 class="fn" id="hasNotifySignal"><a name="hasNotifySignal"></a><span class="type">bool</span> QQmlProperty::<span class="name">hasNotifySignal</span>() const</h3>
+<p>如果属性具有更改通知程序信号，则返回 true，否则返回 false。</p>
+<!-- @@@hasNotifySignal -->
+<!-- $$$index[overload1]$$$index -->
+<h3 class="fn" id="index"><a name="index"></a><span class="type">int</span> QQmlProperty::<span class="name">index</span>() const</h3>
+<p>返回属性的 Qt 元对象索引。</p>
+<!-- @@@index -->
+<!-- $$$isDesignable[overload1]$$$isDesignable -->
+<h3 class="fn" id="isDesignable"><a name="isDesignable"></a><span class="type">bool</span> QQmlProperty::<span class="name">isDesignable</span>() const</h3>
+<p>如果属性是可设计的，则返回 true，否则返回 false。</p>
+<!-- @@@isDesignable -->
+<!-- $$$isProperty[overload1]$$$isProperty -->
+<h3 class="fn" id="isProperty"><a name="isProperty"></a><span class="type">bool</span> QQmlProperty::<span class="name">isProperty</span>() const</h3>
+<p>如果此<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>表示常规 Qt 属性，则返回 true 。</p>
+<!-- @@@isProperty -->
+<!-- $$$isResettable[overload1]$$$isResettable -->
+<h3 class="fn" id="isResettable"><a name="isResettable"></a><span class="type">bool</span> QQmlProperty::<span class="name">isResettable</span>() const</h3>
+<p>如果属性可重置，则返回 true，否则返回 false。</p>
+<!-- @@@isResettable -->
+<!-- $$$isSignalProperty[overload1]$$$isSignalProperty -->
+<h3 class="fn" id="isSignalProperty"><a name="isSignalProperty"></a><span class="type">bool</span> QQmlProperty::<span class="name">isSignalProperty</span>() const</h3>
+<p>如果此<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>表示 QML 信号属性，则返回 true 。</p>
+<!-- @@@isSignalProperty -->
+<!-- $$$isValid[overload1]$$$isValid -->
+<h3 class="fn" id="isValid"><a name="isValid"></a><span class="type">bool</span> QQmlProperty::<span class="name">isValid</span>() const</h3>
+<p>如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>引用有效属性，则返回 true ，否则返回 false。</p>
+<!-- @@@isValid -->
+<!-- $$$isWritable[overload1]$$$isWritable -->
+<h3 class="fn" id="isWritable"><a name="isWritable"></a><span class="type">bool</span> QQmlProperty::<span class="name">isWritable</span>() const</h3>
+<p>如果属性可写，则返回 true，否则返回 false。</p>
+<!-- @@@isWritable -->
+<!-- $$$method[overload1]$$$method -->
+<h3 class="fn" id="method"><a name="method"></a><span class="type"><a href="../qtcore/qmetamethod.html">QMetaMethod</a></span> QQmlProperty::<span class="name">method</span>() const</h3>
+<p>如果此属性是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html#Type-enum">SignalProperty</a>，则返回该属性的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetamethod.html">QMetaMethod</a>，否则返回无效的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetamethod.html">QMetaMethod</a>。</p>
+<!-- @@@method -->
+<!-- $$$name[overload1]$$$name -->
+<h3 class="fn" id="name"><a name="name"></a><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QQmlProperty::<span class="name">name</span>() const</h3>
+<p>返回此 QML 属性的名称。</p>
+<!-- @@@name -->
+<!-- $$$needsNotifySignal[overload1]$$$needsNotifySignal -->
+<h3 class="fn" id="needsNotifySignal"><a name="needsNotifySignal"></a><span class="type">bool</span> QQmlProperty::<span class="name">needsNotifySignal</span>() const</h3>
+<p>如果属性需要更改通知程序信号以使绑定保持最新，则返回 true，否则返回 false。</p>
+<p>某些属性（例如附加属性或值永远不会更改的属性）不需要更改通知程序。</p>
+<!-- @@@needsNotifySignal -->
+<!-- $$$object[overload1]$$$object -->
+<h3 class="fn" id="object"><a name="object"></a><span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *QQmlProperty::<span class="name">object</span>() const</h3>
+<p>返回<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>。</p>
+<!-- @@@object -->
+<!-- $$$property[overload1]$$$property -->
+<h3 class="fn" id="property"><a name="property"></a><span class="type"><a href="../qtcore/qmetaproperty.html">QMetaProperty</a></span> QQmlProperty::<span class="name">property</span>() const</h3>
+<p>返回与此 QML 属性关联的<a href="../qtcore/qmetaproperty.html"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmetaproperty.html">Qt</a>属性</a>。</p>
+<!-- @@@property -->
+<!-- $$$propertyType[overload1]$$$propertyType -->
+<h3 class="fn" id="propertyType"><a name="propertyType"></a><span class="type">int</span> QQmlProperty::<span class="name">propertyType</span>() const</h3>
+<p>返回属性的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html">QVariant</a>类型，如果属性没有<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html">QVariant</a>类型，则返回QVariant::Invalid 。</p>
+<!-- @@@propertyType -->
+<!-- $$$propertyTypeCategory[overload1]$$$propertyTypeCategory -->
+<h3 class="fn" id="propertyTypeCategory"><a name="propertyTypeCategory"></a><span class="type"><a href="qqmlproperty.html#PropertyTypeCategory-enum">QQmlProperty::PropertyTypeCategory</a></span> QQmlProperty::<span class="name">propertyTypeCategory</span>() const</h3>
+<p>返回属性类别。</p>
+<!-- @@@propertyTypeCategory -->
+<!-- $$$propertyTypeName[overload1]$$$propertyTypeName -->
+<h3 class="fn" id="propertyTypeName"><a name="propertyTypeName"></a>const <span class="type">char</span> *QQmlProperty::<span class="name">propertyTypeName</span>() const</h3>
+<p>返回属性的类型名称，如果属性没有类型名称，则返回 0。</p>
+<!-- @@@propertyTypeName -->
+<!-- $$$read[overload1]$$$read -->
+<h3 class="fn" id="read"><a name="read"></a><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> QQmlProperty::<span class="name">read</span>() const</h3>
+<p>返回属性值。</p>
+<!-- @@@read -->
+<!-- $$$read$$$readconstQObject*constQString& -->
+<h3 class="fn" id="read-1"><a name="read-1"></a><code>[static] </code><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> QQmlProperty::<span class="name">read</span>(const <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>object</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>)</h3>
+<p>返回<i>object</i>的<i>name</i>属性值。此方法等效于：</p>
+<pre class="cpp">
+
+  <span class="type"><a href="qqmlproperty.html#QQmlProperty">QQmlProperty</a></span> p(object<span class="operator">,</span> name);
+  p<span class="operator">.</span>read();
+
+</pre>
+<!-- @@@read -->
+<!-- $$$read$$$readconstQObject*constQString&QQmlContext* -->
+<h3 class="fn" id="read-2"><a name="read-2"></a><code>[static] </code><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> QQmlProperty::<span class="name">read</span>(const <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>object</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>, <span class="type"><a href="qqmlcontext.html">QQmlContext</a></span> *<i>ctxt</i>)</h3>
+<p>使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcontext.html">上下文</a><i>ctxt</i>返回<i>object</i>的<i>name</i>属性值。此方法等效于： </p>
+<pre class="cpp">
+
+  <span class="type"><a href="qqmlproperty.html#QQmlProperty">QQmlProperty</a></span> p(object<span class="operator">,</span> name<span class="operator">,</span> context);
+  p<span class="operator">.</span>read();
+
+</pre>
+<!-- @@@read -->
+<!-- $$$read$$$readconstQObject*constQString&QQmlEngine* -->
+<h3 class="fn" id="read-3"><a name="read-3"></a><code>[static] </code><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> QQmlProperty::<span class="name">read</span>(const <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>object</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>, <span class="type"><a href="qqmlengine.html">QQmlEngine</a></span> *<i>engine</i>)</h3>
+<p>使用<i>engine</i>提供的实例化 QML 组件的环境返回<i>object</i>的<i>name</i>属性值。. 此方法等效于：</p>
+<pre class="cpp">
+
+  <span class="type"><a href="qqmlproperty.html#QQmlProperty">QQmlProperty</a></span> p(object<span class="operator">,</span> name<span class="operator">,</span> engine);
+  p<span class="operator">.</span>read();
+
+</pre>
+<!-- @@@read -->
+<!-- $$$reset[overload1]$$$reset -->
+<h3 class="fn" id="reset"><a name="reset"></a><span class="type">bool</span> QQmlProperty::<span class="name">reset</span>() const</h3>
+<p>重置属性，如果属性是可重置的，则返回 true。如果该属性不可重置，则不会发生任何事情并返回 false。</p>
+<!-- @@@reset -->
+<!-- $$$type[overload1]$$$type -->
+<h3 class="fn" id="type"><a name="type"></a><span class="type"><a href="qqmlproperty.html#Type-enum">QQmlProperty::Type</a></span> QQmlProperty::<span class="name">type</span>() const</h3>
+<p>返回属性的类型。</p>
+<!-- @@@type -->
+<!-- $$$write[overload1]$$$writeconstQVariant& -->
+<h3 class="fn" id="write"><a name="write"></a><span class="type">bool</span> QQmlProperty::<span class="name">write</span>(const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>value</i>) const</h3>
+<p>将属性值设置为<i>value</i>。例如<code>true</code>，成功时返回，或者<code>false</code>由于<i>值</i>类型错误而无法设置属性。</p>
+<!-- @@@write -->
+<!-- $$$write$$$writeQObject*constQString&constQVariant& -->
+<h3 class="fn" id="write-1"><a name="write-1"></a><code>[static] </code><span class="type">bool</span> QQmlProperty::<span class="name">write</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>object</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>, const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>value</i>)</h3>
+<p>将<i>value</i>写入<i>object</i>的<i>name</i>属性。此方法等效于：</p>
+<pre class="cpp">
+
+  <span class="type"><a href="qqmlproperty.html#QQmlProperty">QQmlProperty</a></span> p(object<span class="operator">,</span> name);
+  p<span class="operator">.</span>write(value);
+
+</pre>
+<p><code>true</code>成功返回，<code>false</code>否则返回。</p>
+<!-- @@@write -->
+<!-- $$$write$$$writeQObject*constQString&constQVariant&QQmlContext* -->
+<h3 class="fn" id="write-2"><a name="write-2"></a><code>[static] </code><span class="type">bool</span> QQmlProperty::<span class="name">write</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>object</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>, const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>value</i>, <span class="type"><a href="qqmlcontext.html">QQmlContext</a></span> *<i>ctxt</i>)</h3>
+<p>使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcontext.html">上下文</a><i>ctxt</i>将<i>值</i>写入<i>object</i>的<i>name</i>属性。此方法等效于： </p>
+<pre class="cpp">
+
+  <span class="type"><a href="qqmlproperty.html#QQmlProperty">QQmlProperty</a></span> p(object<span class="operator">,</span> name<span class="operator">,</span> ctxt);
+  p<span class="operator">.</span>write(value);
+
+</pre>
+<p><code>true</code>成功返回，<code>false</code>否则返回。</p>
+<!-- @@@write -->
+<!-- $$$write$$$writeQObject*constQString&constQVariant&QQmlEngine* -->
+<h3 class="fn" id="write-3"><a name="write-3"></a><code>[static] </code><span class="type">bool</span> QQmlProperty::<span class="name">write</span>(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> *<i>object</i>, const <span class="type"><a href="../qtcore/qstring.html">QString</a></span> &amp;<i>name</i>, const <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> &amp;<i>value</i>, <span class="type"><a href="qqmlengine.html">QQmlEngine</a></span> *<i>engine</i>)</h3>
+<p>使用<i>engine</i>提供的用于实例化 QML 组件的环境将<i>value</i>写入<i>object</i>的<i>name</i>属性。此方法等效于：</p>
+<pre class="cpp">
+
+  <span class="type"><a href="qqmlproperty.html#QQmlProperty">QQmlProperty</a></span> p(object<span class="operator">,</span> name<span class="operator">,</span> engine);
+  p<span class="operator">.</span>write(value);
+
+</pre>
+<p><code>true</code>成功返回，<code>false</code>否则返回。</p>
+<!-- @@@write -->
+<!-- $$$operator=[overload1]$$$operator=constQQmlProperty& -->
+<h3 class="fn" id="operator-eq"><a name="operator-eq"></a><span class="type"><a href="qqmlproperty.html#QQmlProperty">QQmlProperty</a></span> &amp;QQmlProperty::<span class="name">operator=</span>(const <span class="type"><a href="qqmlproperty.html#QQmlProperty">QQmlProperty</a></span> &amp;<i>other</i>)</h3>
+<p>将<i>other</i>分配给这个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>。</p>
+<!-- @@@operator= -->
+<!-- $$$operator==[overload1]$$$operator==constQQmlProperty& -->
+<h3 class="fn" id="operator-eq-eq"><a name="operator-eq-eq"></a><span class="type">bool</span> QQmlProperty::<span class="name">operator==</span>(const <span class="type"><a href="qqmlproperty.html#QQmlProperty">QQmlProperty</a></span> &amp;<i>other</i>) const</h3>
+<p>如果<i>other</i>和此<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlproperty.html">QQmlProperty</a>表示相同的属性，则返回 true 。</p>
+<!-- @@@operator== -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

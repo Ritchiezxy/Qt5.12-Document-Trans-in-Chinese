@@ -39,11 +39,11 @@
 <div class="toc">
 <h3><a name="toc">目录</a></h3>
 <ul>
-<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-dynamicobjectcreation.html#creating-objects-dynamically"><font style="vertical-align: inherit;">动态创建对象</font></a></li>
-<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-dynamicobjectcreation.html#creating-a-component-dynamically"><font style="vertical-align: inherit;">动态创建组件</font></a></li>
-<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-dynamicobjectcreation.html#creating-an-object-from-a-string-of-qml"><font style="vertical-align: inherit;">从 QML 字符串创建对象</font></a></li>
-<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-dynamicobjectcreation.html#maintaining-dynamically-created-objects"><font style="vertical-align: inherit;">维护动态创建的对象</font></a></li>
-<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-dynamicobjectcreation.html#deleting-objects-dynamically"><font style="vertical-align: inherit;">动态删除对象</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-dynamicobjectcreation.html#creating-objects-dynamically">动态创建对象</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-dynamicobjectcreation.html#creating-a-component-dynamically">动态创建组件</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-dynamicobjectcreation.html#creating-an-object-from-a-string-of-qml">从 QML 字符串创建对象</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-dynamicobjectcreation.html#maintaining-dynamically-created-objects">维护动态创建的对象</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-dynamicobjectcreation.html#deleting-objects-dynamically">动态删除对象</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
@@ -51,20 +51,20 @@
 <span class="subtitle"></span>
 <!-- $$$qtqml-javascript-dynamicobjectcreation.html-description -->
 <div class="descr"> <a name="details"></a>
-<p><font style="vertical-align: inherit;">QML 支持从 JavaScript 中动态创建对象。这对于将对象的实例化延迟到必要时很有用，从而缩短应用程序启动时间。它还允许动态创建可视对象并将其添加到场景中以响应用户输入或其他事件。</font></p>
-<p><font style="vertical-align: inherit;">有关此页面上讨论的概念的演示，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-dynamicscene-example.html"><font style="vertical-align: inherit;">动态场景示例</font></a><font style="vertical-align: inherit;">。</font></p>
+<p>QML 支持从 JavaScript 中动态创建对象。这对于将对象的实例化延迟到必要时很有用，从而缩短应用程序启动时间。它还允许动态创建可视对象并将其添加到场景中以响应用户输入或其他事件。</p>
+<p>有关此页面上讨论的概念的演示，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-dynamicscene-example.html">动态场景示例</a>。</p>
 <a name="creating-objects-dynamically"></a>
-<h2 id="creating-objects-dynamically"><font style="vertical-align: inherit;">动态创建对象</font></h2>
-<p><font style="vertical-align: inherit;">有两种方法可以从 JavaScript 动态创建对象。您可以调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createComponent-method"><font style="vertical-align: inherit;">Qt.createComponent()</font></a><font style="vertical-align: inherit;">动态创建</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html"><font style="vertical-align: inherit;">Component</font></a><font style="vertical-align: inherit;">对象，也可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createQmlObject-method"><font style="vertical-align: inherit;">Qt.createQmlObject()</font></a><font style="vertical-align: inherit;">从 QML 字符串创建对象。如果您在 QML 文档中定义了一个现有组件，并且想要动态创建该组件的实例，则创建组件会更好。否则，当对象 QML 本身在运行时生成时，从 QML 字符串创建对象很有用。</font></p>
+<h2 id="creating-objects-dynamically">动态创建对象</h2>
+<p>有两种方法可以从 JavaScript 动态创建对象。您可以调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createComponent-method">Qt.createComponent()</a>动态创建<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html">Component</a>对象，也可以使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createQmlObject-method">Qt.createQmlObject()</a>从 QML 字符串创建对象。如果您在 QML 文档中定义了一个现有组件，并且想要动态创建该组件的实例，则创建组件会更好。否则，当对象 QML 本身在运行时生成时，从 QML 字符串创建对象很有用。</p>
 <a name="creating-a-component-dynamically"></a>
-<h3 ><font style="vertical-align: inherit;">动态创建组件</font></h3>
-<p><font style="vertical-align: inherit;">要动态加载 QML 文件中定义的组件，请调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html">Qt 对象中</a>的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createComponent-method"><font style="vertical-align: inherit;">Qt.createComponent()</font></a><font style="vertical-align: inherit;">函数。此函数将 QML 文件的 URL 作为其唯一参数，并从该 URL创建一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html">Component</a>对象。</font></p>
-<p><font style="vertical-align: inherit;">一旦你有了一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html"><font style="vertical-align: inherit;">Component</font></a><font style="vertical-align: inherit;">，你就可以调用它的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#createObject-method"><font style="vertical-align: inherit;">createObject()</font></a><font style="vertical-align: inherit;">方法来创建一个组件的实例。这个函数可以接受一两个参数：</font></p>
+<h3 >动态创建组件</h3>
+<p>要动态加载 QML 文件中定义的组件，请调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html">Qt 对象中</a>的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createComponent-method">Qt.createComponent()</a>函数。此函数将 QML 文件的 URL 作为其唯一参数，并从该 URL创建一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html">Component</a>对象。</p>
+<p>一旦你有了一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html">Component</a>，你就可以调用它的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#createObject-method">createObject()</a>方法来创建一个组件的实例。这个函数可以接受一两个参数：</p>
 <ul>
-<li><font style="vertical-align: inherit;">第一个是新对象的父对象。父对象可以是图形对象（即</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-item.html"><font style="vertical-align: inherit;">Item</font></a><font style="vertical-align: inherit;">类型）或非图形对象（即</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qtobject.html"><font style="vertical-align: inherit;">QtObject</font></a><font style="vertical-align: inherit;">或 C++ </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">类型）。只有带有图形父对象的图形对象才会被渲染到</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-index.html"><font style="vertical-align: inherit;">Qt Quick</font></a><font style="vertical-align: inherit;">可视画布上。如果您希望稍后设置父级，您可以安全地传递</font><code>null</code><font style="vertical-align: inherit;">给此函数。</font></li>
-<li><font style="vertical-align: inherit;">第二个是可选的，是一个属性值对的映射，它定义了对象的初始任何属性值。此参数指定的属性值在对象创建完成之前应用于对象，避免在必须初始化特定属性以启用其他属性绑定时可能发生的绑定错误。此外，与在创建对象后定义属性值和绑定相比，性能优势很小。</font></li>
+<li>第一个是新对象的父对象。父对象可以是图形对象（即<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-item.html">Item</a>类型）或非图形对象（即<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qtobject.html">QtObject</a>或 C++ <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>类型）。只有带有图形父对象的图形对象才会被渲染到<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-index.html">Qt Quick</a>可视画布上。如果您希望稍后设置父级，您可以安全地传递<code>null</code>给此函数。</li>
+<li>第二个是可选的，是一个属性值对的映射，它定义了对象的初始任何属性值。此参数指定的属性值在对象创建完成之前应用于对象，避免在必须初始化特定属性以启用其他属性绑定时可能发生的绑定错误。此外，与在创建对象后定义属性值和绑定相比，性能优势很小。</li>
 </ul>
-<p><font style="vertical-align: inherit;">这是一个例子。首先是</font><code>Sprite.qml</code><font style="vertical-align: inherit;">，它定义了一个简单的 QML 组件：</font></p>
+<p>这是一个例子。首先是<code>Sprite.qml</code>，它定义了一个简单的 QML 组件：</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -72,7 +72,7 @@
   <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> { <span class="name">width</span>: <span class="number">80</span>; <span class="name">height</span>: <span class="number">50</span>; <span class="name">color</span>: <span class="string">&quot;red&quot;</span> }
 
 </pre>
-<p><font style="vertical-align: inherit;">我们的主应用程序文件</font><code>main.qml</code><font style="vertical-align: inherit;">导入了一个</font><code>componentCreation.js</code><font style="vertical-align: inherit;">将创建</font><code>Sprite</code><font style="vertical-align: inherit;">对象的JavaScript 文件：</font></p>
+<p>我们的主应用程序文件<code>main.qml</code>导入了一个<code>componentCreation.js</code>将创建<code>Sprite</code>对象的JavaScript 文件：</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -114,7 +114,7 @@
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">如果您确定要加载的 QML 文件是本地文件，则可以省略该</font><code>finishCreation()</code><font style="vertical-align: inherit;">函数并立即调用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#createObject-method"><font style="vertical-align: inherit;">createObject()</font></a><font style="vertical-align: inherit;">：</font></p>
+<p>如果您确定要加载的 QML 文件是本地文件，则可以省略该<code>finishCreation()</code>函数并立即调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#createObject-method">createObject()</a>：</p>
 <pre class="js">
 
   <span class="keyword">function</span> <span class="name">createSpriteObjects</span>() {
@@ -131,12 +131,12 @@
 <p>注意，在这两个实例中，调用<a href="qml-qtqml-component.html#createObject-method">createObject()</a>()时将<code>appWindow</code> 
 作为父参数传递，因为动态创建的对象是可视的(Qt Quick)对象。创建的对象将成为<code>main.qml</code>中<code>appWindow</code> 
 对象的子对象，并出现在场景中。</p>
-<p><font style="vertical-align: inherit;">当使用带有相对路径的文件时，路径应该是相对于执行</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createComponent-method"><font style="vertical-align: inherit;">Qt.createComponent()</font></a><font style="vertical-align: inherit;">的文件。</font></p>
-<p><font style="vertical-align: inherit;">要将信号连接到（或从）动态创建的对象接收信号，请使用信号</font><code>connect()</code><font style="vertical-align: inherit;">方法。有关更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html#connecting-signals-to-methods-and-signals"><font style="vertical-align: inherit;">将信号连接到方法和信号</font></a><font style="vertical-align: inherit;">。</font></p>
-<p><font style="vertical-align: inherit;">也可以通过</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#incubateObject-method"><font style="vertical-align: inherit;">incubateObject()</font></a><font style="vertical-align: inherit;">函数在不阻塞的情况<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#incubateObject-method">下</a>实例化组件。</font></p>
+<p>当使用带有相对路径的文件时，路径应该是相对于执行<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createComponent-method">Qt.createComponent()</a>的文件。</p>
+<p>要将信号连接到（或从）动态创建的对象接收信号，请使用信号<code>connect()</code>方法。有关更多信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html#connecting-signals-to-methods-and-signals">将信号连接到方法和信号</a>。</p>
+<p>也可以通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#incubateObject-method">incubateObject()</a>函数在不阻塞的情况<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#incubateObject-method">下</a>实例化组件。</p>
 <a name="creating-an-object-from-a-string-of-qml"></a>
-<h3 ><font style="vertical-align: inherit;">从 QML 字符串创建对象</font></h3>
-<p><font style="vertical-align: inherit;">如果 QML 直到运行时才定义，您可以使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createQmlObject-method"><font style="vertical-align: inherit;">Qt.createQmlObject()</font></a><font style="vertical-align: inherit;">函数从 QML 字符串创建 QML 对象，如下例所示：</font></p>
+<h3 >从 QML 字符串创建对象</h3>
+<p>如果 QML 直到运行时才定义，您可以使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createQmlObject-method">Qt.createQmlObject()</a>函数从 QML 字符串创建 QML 对象，如下例所示：</p>
 <pre class="qml">
 
   var newObject = <span class="name">Qt</span>.<span class="name">createQmlObject</span>(<span class="string">'import QtQuick 2.0; Rectangle {color: &quot;red&quot;; width: 20; height: 20}'</span>,
@@ -144,24 +144,24 @@
                                      <span class="string">&quot;dynamicSnippet1&quot;</span>);
 
 </pre>
-<p><font style="vertical-align: inherit;">第一个参数是要创建的 QML 字符串。就像在新文件中一样，您需要导入任何您想使用的类型。第二个参数是新对象的父对象，适用于组件的父参数语义同样适用于</font><code>createQmlObject()</code><font style="vertical-align: inherit;">。第三个参数是与新对象关联的文件路径；这用于错误报告。</font></p>
-<p><font style="vertical-align: inherit;">如果 QML 字符串使用相对路径导入文件，则路径应该相对于定义父对象（方法的第二个参数）的文件。</font></p>
-<p><b><font style="vertical-align: inherit;">重要提示：</font></b><font style="vertical-align: inherit;">在构建静态 QML 应用程序时，会扫描 QML 文件以检测导入依赖项。这样，所有必要的插件和资源都会在编译时解决。但是，仅考虑显式导入语句（位于 QML 文件顶部的语句），而不考虑包含在字符串文字中的导入语句。因此，为了支持静态构建，您需要确保使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createQmlObject-method"><font style="vertical-align: inherit;">Qt.createQmlObject() 的</font></a><font style="vertical-align: inherit;">QML 文件在文件顶部明确包含所有必要的导入，以及字符串文字内部。</font></p><a name="maintaining-dynamically-created-objects"></a>
-<h2 id="maintaining-dynamically-created-objects"><font style="vertical-align: inherit;">维护动态创建的对象</font></h2>
-<p><font style="vertical-align: inherit;">在管理动态创建的对象时，您必须确保创建上下文比创建的对象寿命更长。否则，如果首先销毁创建上下文，则动态对象中的绑定和信号处理程序将不再起作用。</font></p>
-<p><font style="vertical-align: inherit;">实际的创建上下文取决于对象的创建方式：</font></p>
+<p>第一个参数是要创建的 QML 字符串。就像在新文件中一样，您需要导入任何您想使用的类型。第二个参数是新对象的父对象，适用于组件的父参数语义同样适用于<code>createQmlObject()</code>。第三个参数是与新对象关联的文件路径；这用于错误报告。</p>
+<p>如果 QML 字符串使用相对路径导入文件，则路径应该相对于定义父对象（方法的第二个参数）的文件。</p>
+<p><b>重要提示：</b>在构建静态 QML 应用程序时，会扫描 QML 文件以检测导入依赖项。这样，所有必要的插件和资源都会在编译时解决。但是，仅考虑显式导入语句（位于 QML 文件顶部的语句），而不考虑包含在字符串文字中的导入语句。因此，为了支持静态构建，您需要确保使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createQmlObject-method">Qt.createQmlObject() 的</a>QML 文件在文件顶部明确包含所有必要的导入，以及字符串文字内部。</p><a name="maintaining-dynamically-created-objects"></a>
+<h2 id="maintaining-dynamically-created-objects">维护动态创建的对象</h2>
+<p>在管理动态创建的对象时，您必须确保创建上下文比创建的对象寿命更长。否则，如果首先销毁创建上下文，则动态对象中的绑定和信号处理程序将不再起作用。</p>
+<p>实际的创建上下文取决于对象的创建方式：</p>
 <ul>
-<li><font style="vertical-align: inherit;">如果使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createComponent-method"><font style="vertical-align: inherit;">Qt.createComponent()</font></a><font style="vertical-align: inherit;">，创建上下文就是调用这个方法的</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcontext.html"><font style="vertical-align: inherit;">QQmlContext</font></a></li>
-<li><font style="vertical-align: inherit;">如果</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createQmlObject-method"><font style="vertical-align: inherit;">调用 Qt.createQmlObject()</font></a><font style="vertical-align: inherit;">，则创建上下文是传递给该方法的父对象的上下文</font></li>
-<li><font style="vertical-align: inherit;">如果一个</font><code>Component{}</code><font style="vertical-align: inherit;">对象被定义和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#createObject-method"><font style="vertical-align: inherit;">的CreateObject（）</font></a><font style="vertical-align: inherit;">或</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#incubateObject-method"><font style="vertical-align: inherit;">incubateObject（）</font></a><font style="vertical-align: inherit;">被调用该对象上，创建上下文是在其中的上下文</font><code>Component</code><font style="vertical-align: inherit;">被定义</font></li>
+<li>如果使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createComponent-method">Qt.createComponent()</a>，创建上下文就是调用这个方法的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlcontext.html">QQmlContext</a></li>
+<li>如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createQmlObject-method">调用 Qt.createQmlObject()</a>，则创建上下文是传递给该方法的父对象的上下文</li>
+<li>如果一个<code>Component{}</code>对象被定义和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#createObject-method">的CreateObject（）</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html#incubateObject-method">incubateObject（）</a>被调用该对象上，创建上下文是在其中的上下文<code>Component</code>被定义</li>
 </ul>
-<p><font style="vertical-align: inherit;">另外，请注意，虽然动态创建的对象可以与其他对象一样使用，但它们在 QML 中没有 id。</font></p>
+<p>另外，请注意，虽然动态创建的对象可以与其他对象一样使用，但它们在 QML 中没有 id。</p>
 <a name="deleting-objects-dynamically"></a>
-<h2 id="deleting-objects-dynamically"><font style="vertical-align: inherit;">动态删除对象</font></h2>
-<p><font style="vertical-align: inherit;">在许多用户界面中，将可视对象的不透明度设置为 0 或将可视对象移出屏幕而不是将其删除就足够了。但是，如果您有大量动态创建的对象，则删除未使用的对象可能会获得有价值的性能优势。</font></p>
-<p><font style="vertical-align: inherit;">请注意，您永远不应手动删除由便利 QML 对象工厂（例如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-loader.html"><font style="vertical-align: inherit;">Loader</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-repeater.html"><font style="vertical-align: inherit;">Repeater</font></a><font style="vertical-align: inherit;">）动态创建的对象。此外，您应该避免删除不是您自己动态创建的对象。</font></p>
-<p><font style="vertical-align: inherit;">可以使用该</font><code>destroy()</code><font style="vertical-align: inherit;">方法删除项目。此方法有一个可选参数（默认为 0），用于指定销毁对象之前的近似延迟（以毫秒为单位）。</font></p>
-<p><font style="vertical-align: inherit;">这是一个例子。将</font><code>application.qml</code><font style="vertical-align: inherit;">创建</font><code>SelfDestroyingRect.qml</code><font style="vertical-align: inherit;">组件的五个实例。每个实例运行一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-numberanimation.html"><font style="vertical-align: inherit;">NumberAnimation</font></a><font style="vertical-align: inherit;">，当动画完成时，调用</font><code>destroy()</code><font style="vertical-align: inherit;">它的根对象来销毁自己：</font></p>
+<h2 id="deleting-objects-dynamically">动态删除对象</h2>
+<p>在许多用户界面中，将可视对象的不透明度设置为 0 或将可视对象移出屏幕而不是将其删除就足够了。但是，如果您有大量动态创建的对象，则删除未使用的对象可能会获得有价值的性能优势。</p>
+<p>请注意，您永远不应手动删除由便利 QML 对象工厂（例如<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-loader.html">Loader</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-repeater.html">Repeater</a>）动态创建的对象。此外，您应该避免删除不是您自己动态创建的对象。</p>
+<p>可以使用该<code>destroy()</code>方法删除项目。此方法有一个可选参数（默认为 0），用于指定销毁对象之前的近似延迟（以毫秒为单位）。</p>
+<p>这是一个例子。将<code>application.qml</code>创建<code>SelfDestroyingRect.qml</code>组件的五个实例。每个实例运行一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-numberanimation.html">NumberAnimation</a>，当动画完成时，调用<code>destroy()</code>它的根对象来销毁自己：</p>
 <div class="table"><table class="generic">
  <tr valign="top" class="odd"><td ><code>application.qml</code></td><td ><pre class="qml">
 
@@ -207,9 +207,9 @@
 </pre>
 </td></tr>
 </table></div>
-<p><font style="vertical-align: inherit;">或者，</font><code>application.qml</code><font style="vertical-align: inherit;">可以通过调用 来销毁创建的对象</font><code>object.destroy()</code><font style="vertical-align: inherit;">。</font></p>
-<p><font style="vertical-align: inherit;">请注意，对该对象内的对象调用 destroy() 是安全的。对象不会在调用 destroy() 的瞬间被销毁，而是在该脚本块结束和下一帧之间的某个时间被清除（除非您指定了非零延迟）。</font></p>
-<p><font style="vertical-align: inherit;">还要注意，如果一个</font><code>SelfDestroyingRect</code><font style="vertical-align: inherit;">实例是这样静态创建的：</font></p>
+<p>或者，<code>application.qml</code>可以通过调用 来销毁创建的对象<code>object.destroy()</code>。</p>
+<p>请注意，对该对象内的对象调用 destroy() 是安全的。对象不会在调用 destroy() 的瞬间被销毁，而是在该脚本块结束和下一帧之间的某个时间被清除（除非您指定了非零延迟）。</p>
+<p>还要注意，如果一个<code>SelfDestroyingRect</code>实例是这样静态创建的：</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
@@ -219,8 +219,8 @@
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">这会导致错误，因为对象只有在动态创建时才能动态销毁。</font></p>
-<p><font style="vertical-align: inherit;">使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createQmlObject-method"><font style="vertical-align: inherit;">Qt.createQmlObject()</font></a><font style="vertical-align: inherit;">创建的对象可以类似地使用</font><code>destroy()</code><font style="vertical-align: inherit;">以下方法销毁：</font></p>
+<p>这会导致错误，因为对象只有在动态创建时才能动态销毁。</p>
+<p>使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#createQmlObject-method">Qt.createQmlObject()</a>创建的对象可以类似地使用<code>destroy()</code>以下方法销毁：</p>
 <pre class="qml">
 
   var newObject = <span class="name">Qt</span>.<span class="name">createQmlObject</span>(<span class="string">'import QtQuick 2.0; Rectangle {color: &quot;red&quot;; width: 20; height: 20}'</span>,

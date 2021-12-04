@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- statemachine.qdoc -->
+  <title>The Declarative State Machine Framework | Qt QML 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >
+			声明性状态机框架</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qmlstatemachine.html#using-both-qtquick-and-qtqml-statemachine-imports"><font style="vertical-align: inherit;">同时使用 QtQuick 和 QtQml.StateMachine 导入</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qmlstatemachine.html#a-simple-state-machine"><font style="vertical-align: inherit;">一个简单的状态机</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qmlstatemachine.html#state-machines-that-finish"><font style="vertical-align: inherit;">完成的状态机</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qmlstatemachine.html#sharing-transitions"><font style="vertical-align: inherit;">共享过渡</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qmlstatemachine.html#using-history-states"><font style="vertical-align: inherit;">使用历史状态</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qmlstatemachine.html#using-parallel-states"><font style="vertical-align: inherit;">使用并行状态</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qmlstatemachine.html#exiting-a-composite-state"><font style="vertical-align: inherit;">退出复合状态</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qmlstatemachine.html#targetless-transitions"><font style="vertical-align: inherit;">无目标转换</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qmlstatemachine.html#related-information"><font style="vertical-align: inherit;">相关信息</font></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">声明性状态机框架</h1>
+<span class="subtitle"></span>
+<!-- $$$qmlstatemachine.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><font style="vertical-align: inherit;">声明性状态机框架提供了用于在 QML 中创建和执行状态图的类型。它类似于基于 Harel 的</font><a href="http://www.wisdom.weizmann.ac.il/~dharel/SCANNED.PAPERS/Statecharts.pdf"><font style="vertical-align: inherit;">Statecharts:</font></a><font style="vertical-align: inherit;"> Avisual <a href="http://www.wisdom.weizmann.ac.il/~dharel/SCANNED.PAPERS/Statecharts.pdf">Formism for complex systems</a>的 C++ State Machine 框架，它也是 UML 状态图的基础。与其</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/statemachine-api.html"><font style="vertical-align: inherit;">对应的 C++</font></a><font style="vertical-align: inherit;">框架<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/statemachine-api.html">一样</a>，该框架提供了一个基于</font><a href="http://www.w3.org/TR/scxml/"><font style="vertical-align: inherit;">状态图 XML (SCXML)</font></a><font style="vertical-align: inherit;">的 API 和执行模型，以在 QML 应用程序中嵌入状态图的元素和语义。</font></p>
+<p><font style="vertical-align: inherit;">对于具有多个视觉状态的用户界面，独立于应用程序的逻辑状态，请考虑使用 QML 状态和转换。</font></p>
+<p><font style="vertical-align: inherit;">以下 QML 类型由框架提供以创建事件驱动状态机：</font></p>
+<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-statemachine-finalstate.html">FinalState</a></p></td><td class="tblDescr"><p><font style="vertical-align: inherit;">提供最终状态</font></p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-statemachine-historystate.html">HistoryState</a></p></td><td class="tblDescr"><p><font style="vertical-align: inherit;">类型提供了一种返回到先前活动子状态的方法</font></p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></p></td><td class="tblDescr"><p><font style="vertical-align: inherit;">类型提供基于 Qt 信号的转换</font></p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-statemachine-state.html">State</a></p></td><td class="tblDescr"><p><font style="vertical-align: inherit;">为 StateMachine 提供通用状态</font></p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a></p></td><td class="tblDescr"><p><font style="vertical-align: inherit;">提供分层有限状态机</font></p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtqml-statemachine-timeouttransition.html">TimeoutTransition</a></p></td><td class="tblDescr"><p><font style="vertical-align: inherit;">类型提供基于定时器的转换</font></p></td></tr>
+</table></div>
+<a name="using-both-qtquick-and-qtqml-statemachine-imports"></a>
+<h2 id="using-both-qtquick-and-qtqml-statemachine-imports"><font style="vertical-align: inherit;">同时使用 QtQuick 和 QtQml.StateMachine 导入</font></h2>
+<p><b>警告：</b> 如果您试图在一个QML文件中导入<a href="../qtquick/qtquick-module.html">QtQuick</a>和<i><a href="qtqml-qmlmodule.html">QtQml</a>.<a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a></i>，请确保最后导入<i><a href="qtqml-qmlmodule.html">QtQml</a>.<a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a></i>。这样，状态类型由声明式状态机框架提供，而不是由<a href="../qtquick/qtquick-module.html">QtQuick</a>:</p>
+<pre class="qml">
+
+  import QtQuick 2.12
+  import QtQml.StateMachine 1.12
+
+  <span class="type"><a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a></span> {
+      <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+          <span class="comment">// okay, is of type QtQml.StateMachine.State</span>
+      }
+  }
+
+</pre>
+<p>或者，你可以导入<i><a href="qtqml-qmlmodule.html">QtQml</a>.<a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a></i>到一个单独的命名空间，以避免<a href="../qtquick/qtquick-module.html">QtQuick</a>的<i>State</i> 
+项的任何歧义:</p>
+<pre class="qml">
+
+  import QtQuick 2.12
+  import QtQml.StateMachine 1.12 as DSM
+
+  <span class="type">DSM</span>.StateMachine {
+      <span class="type">DSM</span>.State {
+          <span class="comment">// ...</span>
+      }
+  }
+
+</pre>
+<a name="a-simple-state-machine"></a>
+<h2 id="a-simple-state-machine"><font style="vertical-align: inherit;">一个简单的状态机</font></h2>
+<p><font style="vertical-align: inherit;">为了演示状态机 API 的核心功能，让我们看一个示例：具有三个状态</font><code>s1</code><font style="vertical-align: inherit;">、</font><code>s2</code><font style="vertical-align: inherit;">和 的状态机</font><code>s3</code><font style="vertical-align: inherit;">。状态机由单个 Button 控制；当按钮被点击时，机器转换到另一种状态。最初，状态机处于 state </font><code>s1</code><font style="vertical-align: inherit;">。下面是一个状态图，显示了我们示例中的不同状态。</font></p>
+<p class="centerAlign"><img src="images/statemachine-button.png" alt="" /></p><p><font style="vertical-align: inherit;">以下代码段显示了创建此类状态机所需的代码。</font></p>
+<pre class="qml">
+
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-button.html">Button</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">id</span>: <span class="name">button</span>
+
+          <span class="comment">// change the button label to the active state id</span>
+          <span class="name">text</span>: <span class="name">s1</span>.<span class="name">active</span> ? <span class="string">&quot;s1&quot;</span> : <span class="name">s2</span>.<span class="name">active</span> ? <span class="string">&quot;s2&quot;</span> : <span class="string">&quot;s3&quot;</span>
+      }
+
+      <span class="type"><a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a></span> {
+          <span class="name">id</span>: <span class="name">stateMachine</span>
+          <span class="comment">// set the initial state</span>
+          <span class="name">initialState</span>: <span class="name">s1</span>
+
+          <span class="comment">// start the state machine</span>
+          <span class="name">running</span>: <span class="number">true</span>
+
+          <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+              <span class="name">id</span>: <span class="name">s1</span>
+              <span class="comment">// create a transition from s1 to s2 when the button is clicked</span>
+              <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                  <span class="name">targetState</span>: <span class="name">s2</span>
+                  <span class="name">signal</span>: <span class="name">button</span>.<span class="name">clicked</span>
+              }
+              <span class="comment">// do something when the state enters/exits</span>
+              <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s1 entered&quot;</span>)
+              <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s1 exited&quot;</span>)
+          }
+
+          <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+              <span class="name">id</span>: <span class="name">s2</span>
+              <span class="comment">// create a transition from s2 to s3 when the button is clicked</span>
+              <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                  <span class="name">targetState</span>: <span class="name">s3</span>
+                  <span class="name">signal</span>: <span class="name">button</span>.<span class="name">clicked</span>
+              }
+              <span class="comment">// do something when the state enters/exits</span>
+              <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s2 entered&quot;</span>)
+              <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s2 exited&quot;</span>)
+          }
+          <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+              <span class="name">id</span>: <span class="name">s3</span>
+              <span class="comment">// create a transition from s3 to s1 when the button is clicked</span>
+              <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                  <span class="name">targetState</span>: <span class="name">s1</span>
+                  <span class="name">signal</span>: <span class="name">button</span>.<span class="name">clicked</span>
+              }
+              <span class="comment">// do something when the state enters/exits</span>
+              <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s3 entered&quot;</span>)
+              <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s3 exited&quot;</span>)
+          }
+      }
+
+</pre>
+<p><font style="vertical-align: inherit;">状态机异步运行，成为应用程序事件循环的一部分。</font></p>
+<a name="state-machines-that-finish"></a>
+<h2 id="state-machines-that-finish"><font style="vertical-align: inherit;">完成的状态机</font></h2>
+<p><font style="vertical-align: inherit;">上一节中定义的状态机永远不会完成。为了让状态机能够完成，它需要有一个顶级的</font><i><font style="vertical-align: inherit;">最终</font></i><font style="vertical-align: inherit;">状态（</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-statemachine-finalstate.html"><font style="vertical-align: inherit;">FinalState</font></a><font style="vertical-align: inherit;">对象）。当状态机进入顶层最终状态时，机器发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-statemachine-state.html#finished-signal"><font style="vertical-align: inherit;">完成</font></a><font style="vertical-align: inherit;">信号并暂停。</font></p>
+<p><font style="vertical-align: inherit;">在图中引入最终状态所需要做的就是创建一个</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-statemachine-finalstate.html"><font style="vertical-align: inherit;">FinalState</font></a><font style="vertical-align: inherit;">对象并将其用作一个或多个转换的目标。</font></p>
+<a name="sharing-transitions"></a>
+<h2 id="sharing-transitions"><font style="vertical-align: inherit;">共享过渡</font></h2>
+<p><font style="vertical-align: inherit;">假设我们希望用户能够通过单击退出按钮随时退出应用程序。为了实现这一点，我们需要创建一个最终状态并使其成为与退出按钮的</font><i><font style="vertical-align: inherit;">clicked()</font></i><font style="vertical-align: inherit;">信号关联的转换目标。我们可以为每个状态添加一个转换；然而，这似乎是多余的，人们还必须记住从未来添加的每个新状态添加这样的转换。</font></p>
+<p><font style="vertical-align: inherit;">我们可以通过对状态</font><code>s1</code><font style="vertical-align: inherit;">、</font><code>s2</code><font style="vertical-align: inherit;">和进行分组来实现相同的行为（即单击退出按钮退出状态机，无论状态机处于哪种状态）</font><code>s3</code><font style="vertical-align: inherit;">。这是通过创建一个新的顶级状态并使三个原始状态成为新状态的子状态来完成的。下图显示了新的状态机。</font></p>
+<p class="centerAlign"><img src="images/statemachine-button-nested.png" alt="" /></p><p><font style="vertical-align: inherit;">原来的三个<span lang="zh-cn">状态</span>已重命名</font><code>s11</code><font style="vertical-align: inherit;">，</font><code>s12</code><font style="vertical-align: inherit;">并</font><code>s13</code><font style="vertical-align: inherit;">以反映他们现在是新的顶级状态的儿童，</font><code>s1</code><font style="vertical-align: inherit;">。子状态隐式继承其父状态的转换。这意味着现在添加一个从</font><code>s1</code><font style="vertical-align: inherit;">到最终状态的转换就足够了，</font><code>s2</code><font style="vertical-align: inherit;">。添加到的新状态</font><code>s1</code><font style="vertical-align: inherit;">将自动继承此转换。</font></p>
+<p><font style="vertical-align: inherit;">对状态进行分组所需要的只是在创建状态时指定正确的父级。您还需要指定哪个子状态是初始状态（当父状态是转换的目标时，状态机应该进入的子状态）。</font></p>
+<pre class="qml">
+
+      <span class="type"><a href="../qtquick/qml-qtquick-row.html">Row</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">spacing</span>: <span class="number">2</span>
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-button.html">Button</a></span> {
+              <span class="name">id</span>: <span class="name">button</span>
+              <span class="comment">// change the button label to the active state id</span>
+              <span class="name">text</span>: <span class="name">s11</span>.<span class="name">active</span> ? <span class="string">&quot;s11&quot;</span> : <span class="name">s12</span>.<span class="name">active</span> ? <span class="string">&quot;s12&quot;</span> : <span class="string">&quot;s13&quot;</span>
+          }
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-button.html">Button</a></span> {
+              <span class="name">id</span>: <span class="name">quitButton</span>
+              <span class="name">text</span>: <span class="string">&quot;quit&quot;</span>
+          }
+      }
+
+      <span class="type"><a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a></span> {
+          <span class="name">id</span>: <span class="name">stateMachine</span>
+          <span class="comment">// set the initial state</span>
+          <span class="name">initialState</span>: <span class="name">s1</span>
+
+          <span class="comment">// start the state machine</span>
+          <span class="name">running</span>: <span class="number">true</span>
+
+          <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+              <span class="name">id</span>: <span class="name">s1</span>
+              <span class="comment">// set the initial state</span>
+              <span class="name">initialState</span>: <span class="name">s11</span>
+
+              <span class="comment">// create a transition from s1 to s2 when the button is clicked</span>
+              <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                  <span class="name">targetState</span>: <span class="name">s2</span>
+                  <span class="name">signal</span>: <span class="name">quitButton</span>.<span class="name">clicked</span>
+              }
+              <span class="comment">// do something when the state enters/exits</span>
+              <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s1 entered&quot;</span>)
+              <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s1 exited&quot;</span>)
+              <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+                  <span class="name">id</span>: <span class="name">s11</span>
+                  <span class="comment">// create a transition from s11 to s12 when the button is clicked</span>
+                  <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                      <span class="name">targetState</span>: <span class="name">s12</span>
+                      <span class="name">signal</span>: <span class="name">button</span>.<span class="name">clicked</span>
+                  }
+                  <span class="comment">// do something when the state enters/exits</span>
+                  <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s11 entered&quot;</span>)
+                  <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s11 exited&quot;</span>)
+              }
+
+              <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+                  <span class="name">id</span>: <span class="name">s12</span>
+                  <span class="comment">// create a transition from s12 to s13 when the button is clicked</span>
+                  <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                      <span class="name">targetState</span>: <span class="name">s13</span>
+                      <span class="name">signal</span>: <span class="name">button</span>.<span class="name">clicked</span>
+                  }
+                  <span class="comment">// do something when the state enters/exits</span>
+                  <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s12 entered&quot;</span>)
+                  <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s12 exited&quot;</span>)
+              }
+              <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+                  <span class="name">id</span>: <span class="name">s13</span>
+                  <span class="comment">// create a transition from s13 to s11 when the button is clicked</span>
+                  <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                      <span class="name">targetState</span>: <span class="name">s11</span>
+                      <span class="name">signal</span>: <span class="name">button</span>.<span class="name">clicked</span>
+                  }
+                  <span class="comment">// do something when the state enters/exits</span>
+                  <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s13 entered&quot;</span>)
+                  <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s13 exited&quot;</span>)
+              }
+          }
+          <span class="type"><a href="qml-qtqml-statemachine-finalstate.html">FinalState</a></span> {
+              <span class="name">id</span>: <span class="name">s2</span>
+              <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s2 entered&quot;</span>)
+              <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s2 exited&quot;</span>)
+          }
+          <span class="name">onFinished</span>: <span class="name">Qt</span>.<span class="name">quit</span>()
+      }
+
+</pre>
+<p><font style="vertical-align: inherit;">在这种情况下，我们希望应用程序在状态机完成时退出，因此机器的</font><i>finished<font style="vertical-align: inherit;">（）</font></i><font style="vertical-align: inherit;">信号连接到应用程序的</font><i>quit<font style="vertical-align: inherit;">（）</font></i><font style="vertical-align: inherit;">槽。</font></p>
+<p><font style="vertical-align: inherit;">子状态可以覆盖继承的转换。例如，以下代码添加了一个转换，当状态机处于 状态时，该转换有效地导致 Quit 按钮被忽略</font><code>s12</code><font style="vertical-align: inherit;">。</font></p>
+<pre class="qml">
+
+              <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+                  <span class="name">id</span>: <span class="name">s12</span>
+                  <span class="comment">// create a transition from s12 to s13 when the button is clicked</span>
+                  <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                      <span class="name">targetState</span>: <span class="name">s13</span>
+                      <span class="name">signal</span>: <span class="name">button</span>.<span class="name">clicked</span>
+                  }
+
+                  <span class="comment">// ignore Quit button when we are in state 12</span>
+                  <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                      <span class="name">targetState</span>: <span class="name">s12</span>
+                      <span class="name">signal</span>: <span class="name">quitButton</span>.<span class="name">clicked</span>
+                  }
+
+                  <span class="comment">// do something when the state enters/exits</span>
+                  <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s12 entered&quot;</span>)
+                  <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s12 exited&quot;</span>)
+              }
+
+</pre>
+<p><font style="vertical-align: inherit;">无论目标状态在状态层次结构中的哪个位置，转换都可以将任何状态作为其目标。</font></p>
+<a name="using-history-states"></a>
+<h2 id="using-history-states"><font style="vertical-align: inherit;">使用历史状态</font></h2>
+<p><font style="vertical-align: inherit;">想象一下，我们想在上一节讨论的示例中添加一个“中断”机制；用户应该能够点击一个按钮让状态机执行一些不相关的任务，之后状态机应该恢复它之前所做的一切（即返回到旧状态，这是三个状态之一）案件）。</font></p>
+<p><font style="vertical-align: inherit;">这种行为可以使用</font><i><font style="vertical-align: inherit;"><span lang="zh-cn">history</span>状态</font></i><font style="vertical-align: inherit;">轻松建模。历史状态（</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-statemachine-historystate.html"><font style="vertical-align: inherit;">HistoryState</font></a><font style="vertical-align: inherit;">对象）是一个伪状态，表示父状态最后退出之前所处的子状态。</font></p>
+<p><font style="vertical-align: inherit;">历史状态被创建为我们希望记录当前子状态的状态的子状态；当状态机在运行时检测到这种状态的存在时，它会在父状态退出时自动记录当前（真实）子状态。到历史状态的转换实际上是到状态机之前保存的子状态的转换；状态机自动“转发”到真正的子状态的转换。</font></p>
+<p><font style="vertical-align: inherit;">下图显示了添加中断机制后的状态机。</font></p>
+<p class="centerAlign"><img src="images/statemachine-button-history.png" alt="" /></p><p><font style="vertical-align: inherit;">下面的代码展示了它是如何实现的；在这个例子中，我们只是在</font><code>s3</code><font style="vertical-align: inherit;">进入时显示一个消息框，然后立即返回到</font><code>s1</code><font style="vertical-align: inherit;">通过历史状态的先前子状态。</font></p>
+<pre class="qml">
+
+      <span class="type"><a href="../qtquick/qml-qtquick-row.html">Row</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">spacing</span>: <span class="number">2</span>
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-button.html">Button</a></span> {
+              <span class="name">id</span>: <span class="name">button</span>
+              <span class="comment">// change the button label to the active state id</span>
+              <span class="name">text</span>: <span class="name">s11</span>.<span class="name">active</span> ? <span class="string">&quot;s11&quot;</span> : <span class="name">s12</span>.<span class="name">active</span> ? <span class="string">&quot;s12&quot;</span> :  <span class="name">s13</span>.<span class="name">active</span> ? <span class="string">&quot;s13&quot;</span> : <span class="string">&quot;s3&quot;</span>
+          }
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-button.html">Button</a></span> {
+              <span class="name">id</span>: <span class="name">interruptButton</span>
+              <span class="name">text</span>: <span class="name">s1</span>.<span class="name">active</span> ? <span class="string">&quot;Interrupt&quot;</span> : <span class="string">&quot;Resume&quot;</span>
+          }
+          <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-button.html">Button</a></span> {
+              <span class="name">id</span>: <span class="name">quitButton</span>
+              <span class="name">text</span>: <span class="string">&quot;quit&quot;</span>
+          }
+      }
+
+      <span class="type"><a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a></span> {
+          <span class="name">id</span>: <span class="name">stateMachine</span>
+          <span class="comment">// set the initial state</span>
+          <span class="name">initialState</span>: <span class="name">s1</span>
+
+          <span class="comment">// start the state machine</span>
+          <span class="name">running</span>: <span class="number">true</span>
+
+          <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+              <span class="name">id</span>: <span class="name">s1</span>
+              <span class="comment">// set the initial state</span>
+              <span class="name">initialState</span>: <span class="name">s11</span>
+
+              <span class="comment">// create a transition from s1 to s2 when the button is clicked</span>
+              <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                  <span class="name">targetState</span>: <span class="name">s2</span>
+                  <span class="name">signal</span>: <span class="name">quitButton</span>.<span class="name">clicked</span>
+              }
+              <span class="comment">// do something when the state enters/exits</span>
+              <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s1 entered&quot;</span>)
+              <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s1 exited&quot;</span>)
+              <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+                  <span class="name">id</span>: <span class="name">s11</span>
+                  <span class="comment">// create a transition from s1 to s2 when the button is clicked</span>
+                  <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                      <span class="name">targetState</span>: <span class="name">s12</span>
+                      <span class="name">signal</span>: <span class="name">button</span>.<span class="name">clicked</span>
+                  }
+                  <span class="comment">// do something when the state enters/exits</span>
+                  <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s11 entered&quot;</span>)
+                  <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s11 exited&quot;</span>)
+              }
+
+              <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+                  <span class="name">id</span>: <span class="name">s12</span>
+                  <span class="comment">// create a transition from s2 to s3 when the button is clicked</span>
+                  <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                      <span class="name">targetState</span>: <span class="name">s13</span>
+                      <span class="name">signal</span>: <span class="name">button</span>.<span class="name">clicked</span>
+                  }
+                  <span class="comment">// do something when the state enters/exits</span>
+                  <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s12 entered&quot;</span>)
+                  <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s12 exited&quot;</span>)
+              }
+              <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+                  <span class="name">id</span>: <span class="name">s13</span>
+                  <span class="comment">// create a transition from s3 to s1 when the button is clicked</span>
+                  <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                      <span class="name">targetState</span>: <span class="name">s1</span>
+                      <span class="name">signal</span>: <span class="name">button</span>.<span class="name">clicked</span>
+                  }
+                  <span class="comment">// do something when the state enters/exits</span>
+                  <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s13 entered&quot;</span>)
+                  <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s13 exited&quot;</span>)
+              }
+
+              <span class="comment">// create a transition from s1 to s3 when the button is clicked</span>
+              <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                  <span class="name">targetState</span>: <span class="name">s3</span>
+                  <span class="name">signal</span>: <span class="name">interruptButton</span>.<span class="name">clicked</span>
+              }
+              <span class="type"><a href="qml-qtqml-statemachine-historystate.html">HistoryState</a></span> {
+                  <span class="name">id</span>: <span class="name">s1h</span>
+              }
+          }
+          <span class="type"><a href="qml-qtqml-statemachine-finalstate.html">FinalState</a></span> {
+              <span class="name">id</span>: <span class="name">s2</span>
+              <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s2 entered&quot;</span>)
+              <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s2 exited&quot;</span>)
+          }
+          <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+              <span class="name">id</span>: <span class="name">s3</span>
+              <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                  <span class="name">targetState</span>: <span class="name">s1h</span>
+                  <span class="name">signal</span>: <span class="name">interruptButton</span>.<span class="name">clicked</span>
+              }
+              <span class="comment">// do something when the state enters/exits</span>
+              <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s3 entered&quot;</span>)
+              <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;s3 exited&quot;</span>)
+          }
+          <span class="name">onFinished</span>: <span class="name">Qt</span>.<span class="name">quit</span>()
+      }
+
+</pre>
+<a name="using-parallel-states"></a>
+<h2 id="using-parallel-states"><font style="vertical-align: inherit;">使用并行状态</font></h2>
+<p><font style="vertical-align: inherit;">假设您想在单个状态机中对汽车的一组互斥属性进行建模。假设我们感兴趣的属性是 Clean vs Dirty，Moving vs Not Movement。需要四个互斥的状态和八个转换来表示状态并在所有可能的组合之间自由移动，如下面的状态图所示。</font></p>
+<p class="centerAlign"><img src="images/statemachine-nonparallel.png" alt="" /></p><p><font style="vertical-align: inherit;">如果我们添加第三个属性（例如，红色 vs 蓝色），状态总数将翻倍，达到八个；如果我们添加第四个属性（比如 Enclosed vs Convertible），状态总数将再次翻倍，达到 16。</font></p>
+<p><font style="vertical-align: inherit;">使用并行状态可以减少这种指数增长，随着我们添加更多属性，状态和转换的数量可以线性增长。此外，状态可以添加到并行状态或从并行状态中删除，而不会影响它们的任何同级状态。以下状态图显示了汽车示例的不同并行状态。</font></p>
+<p class="centerAlign"><img src="images/statemachine-parallel.png" alt="" /></p><p><font style="vertical-align: inherit;">要创建并行状态组，请将 childMode 设置为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qstate.html"><font style="vertical-align: inherit;">QState.ParallelStates</font></a><font style="vertical-align: inherit;">。</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+      <span class="name">id</span>: <span class="name">s1</span>
+      <span class="name">childMode</span>: <span class="name">QState</span>.<span class="name">ParallelStates</span>
+      <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+          <span class="name">id</span>: <span class="name">s11</span>
+      }
+      <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+          <span class="name">id</span>: <span class="name">s12</span>
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">当进入一个并行状态组时，它的所有子状态将同时进入。各个子状态内的转换正常运行。但是，任何子状态都可能进行退出父状态的转换。发生这种情况时，父状态及其所有子状态都将退出。</font></p>
+<p><font style="vertical-align: inherit;">状态机框架中的并行性遵循交错语义。所有并行操作都将在事件处理的单个原子步骤中执行，因此没有事件可以中断并行操作。但是，事件仍将按顺序处理，因为机器本身是单线程的。例如，考虑有两个转移退出同一个并行状态组，并且它们的条件同时变为真的情况。在这种情况下，两者中最后处理的事件将不会产生任何影响。</font></p>
+<a name="exiting-a-composite-state"></a>
+<h2 id="exiting-a-composite-state"><font style="vertical-align: inherit;">退出复合状态</font></h2>
+<p><font style="vertical-align: inherit;">子状态可以是最终的（</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-statemachine-finalstate.html"><font style="vertical-align: inherit;">FinalState</font></a><font style="vertical-align: inherit;">对象）；当进入最终子状态时，父状态会发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-statemachine-state.html#finished-signal"><font style="vertical-align: inherit;">State::finished</font></a><font style="vertical-align: inherit;">信号。下图显示了一个复合状态</font><code>s1</code><font style="vertical-align: inherit;">，它在进入最终状态之前进行了一些处理：</font></p>
+<p class="centerAlign"><img src="images/statemachine-finished.png" alt="" /></p><p><font style="vertical-align: inherit;">当</font><code>s1</code><font style="vertical-align: inherit;">进入 的最终状态时，</font><code>s1</code><font style="vertical-align: inherit;">将自动发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-statemachine-state.html#finished-signal"><font style="vertical-align: inherit;">完成</font></a><font style="vertical-align: inherit;">。我们使用信号转换使该事件触发状态更改：</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+      <span class="name">id</span>: <span class="name">s1</span>
+      <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+          <span class="name">targetState</span>: <span class="name">s2</span>
+          <span class="name">signal</span>: <span class="name">s1</span>.<span class="name">finished</span>
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">当您想要隐藏复合状态的内部细节时，在复合状态中使用最终状态非常有用。外部世界应该能够进入状态并在状态完成工作时得到通知，而无需知道内部细节。在构建复杂（深度嵌套）状态机时，这是一种非常强大的抽象和封装机制。（在上面的示例中，您当然可以直接从</font><code>s1</code><font style="vertical-align: inherit;">的</font><code>done</code><font style="vertical-align: inherit;">状态创建转换，而不是依赖于</font><code>s1</code><font style="vertical-align: inherit;">的完成（）信号，但结果是 的实现细节</font><code>s1</code><font style="vertical-align: inherit;">被公开并依赖）。</font></p>
+<p><font style="vertical-align: inherit;">对于并行状态组，当<i>所有</i>子状态都进入最终状态时，会发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-statemachine-state.html#finished-signal"><font style="vertical-align: inherit;">State::finished</font></a><font style="vertical-align: inherit;">信号。</font></p>
+<a name="targetless-transitions"></a>
+<h2 id="targetless-transitions"><font style="vertical-align: inherit;">无目标转换</font></h2>
+<p><font style="vertical-align: inherit;">转换不需要有目标状态。没有目标的转换可以像任何其他转换一样被触发；不同之处在于它不会引起任何状态变化。这使您可以在机器处于某种状态时对信号或事件做出反应，而不必离开该状态。例如：</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-button.html">Button</a></span> {
+      <span class="name">id</span>: <span class="name">button</span>
+      <span class="name">text</span>: <span class="string">&quot;button&quot;</span>
+      <span class="type"><a href="qml-qtqml-statemachine-statemachine.html">StateMachine</a></span> {
+          <span class="name">id</span>: <span class="name">stateMachine</span>
+          <span class="name">initialState</span>: <span class="name">s1</span>
+          <span class="name">running</span>: <span class="number">true</span>
+          <span class="type"><a href="qml-qtqml-statemachine-state.html">State</a></span> {
+              <span class="name">id</span>: <span class="name">s1</span>
+              <span class="type"><a href="qml-qtqml-statemachine-signaltransition.html">SignalTransition</a></span> {
+                  <span class="name">signal</span>: <span class="name">button</span>.<span class="name">clicked</span>
+                  <span class="name">onTriggered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;button pressed&quot;</span>)
+              }
+          }
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">每次单击按钮时都会显示“按钮按下”消息，但状态机将保持其当前状态 (s1)。如果目标状态显式设置为 s1，则每次都会退出并重新进入 s1（将发出</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-statemachine-qabstractstate.html#entered-signal"><font style="vertical-align: inherit;">QAbstractState::entered</font></a><font style="vertical-align: inherit;">和</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-statemachine-qabstractstate.html#exited-signal"><font style="vertical-align: inherit;">QAbstractState::exited</font></a><font style="vertical-align: inherit;">信号）。</font></p>
+<a name="related-information"></a>
+<h2 id="related-information"><font style="vertical-align: inherit;">相关信息</font></h2>
+<ul>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-statemachine-qmlmodule.html"><font style="vertical-align: inherit;">声明性状态机 QML 类型</font></a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/statemachine-api.html"><font style="vertical-align: inherit;">状态机框架</font></a></li>
+</ul>
+</div>
+<!-- @@@qmlstatemachine.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

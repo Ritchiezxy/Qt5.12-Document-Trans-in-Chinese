@@ -39,13 +39,13 @@
 <div class="toc">
 <h3><a name="toc">目录</a></h3>
 <ul>
-<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#data-type-handling-and-ownership"><font style="vertical-align: inherit;">数据类型处理和所有权</font></a></li>
-<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#exposing-properties"><font style="vertical-align: inherit;">公开属性</font></a></li>
-<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#properties-with-object-types"><font style="vertical-align: inherit;">具有对象类型的属性</font></a></li>
-<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#properties-with-object-list-types"><font style="vertical-align: inherit;">具有对象列表类型的属性</font></a></li>
-<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#grouped-properties"><font style="vertical-align: inherit;">分组属性</font></a></li>
-<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#exposing-methods-including-qt-slots"><font style="vertical-align: inherit;">公开方法（包括 Qt 插槽）</font></a></li>
-<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#exposing-signals"><font style="vertical-align: inherit;">暴露信号</font></a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#data-type-handling-and-ownership">数据类型处理和所有权</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#exposing-properties">公开属性</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#properties-with-object-types">具有对象类型的属性</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#properties-with-object-list-types">具有对象列表类型的属性</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#grouped-properties">分组属性</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#exposing-methods-including-qt-slots">公开方法（包括 Qt 插槽）</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#exposing-signals">暴露信号</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
@@ -53,26 +53,26 @@
 <span class="subtitle"></span>
 <!-- $$$qtqml-cppintegration-exposecppattributes.html-description -->
 <div class="descr"> <a name="details"></a>
-<p><font style="vertical-align: inherit;">QML 可以使用 C++ 代码中定义的功能轻松扩展。由于 QML 引擎与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/metaobjects.html"><font style="vertical-align: inherit;">Qt 元对象系统</font></a><font style="vertical-align: inherit;">的紧密集成，可以从 QML 代码访问由</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">派生类适当公开的任何功能。这使得 C++ 数据和函数可以直接从 QML 访问，通常几乎不需要修改。</font></p>
-<p><font style="vertical-align: inherit;">QML 引擎能够通过元对象系统内省</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">实例。这意味着任何 QML 代码都可以访问</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">派生类的实例的以下成员：</font></p>
+<p>QML 可以使用 C++ 代码中定义的功能轻松扩展。由于 QML 引擎与<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/metaobjects.html">Qt 元对象系统</a>的紧密集成，可以从 QML 代码访问由<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>派生类适当公开的任何功能。这使得 C++ 数据和函数可以直接从 QML 访问，通常几乎不需要修改。</p>
+<p>QML 引擎能够通过元对象系统内省<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>实例。这意味着任何 QML 代码都可以访问<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>派生类的实例的以下成员：</p>
 <ul>
 <li>属性</li>
 <li>前提是它们是公共插槽或用<a href="../qtcore/qobject.html#Q_INVOKABLE">Q_INVOKABLE</a>标记）</li>
 <li>信号</li>
 </ul>
-<p><font style="vertical-align: inherit;">（此外，如果使用 Q_ENUMS 声明枚举，则它们可用。有关详细信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html"><font style="vertical-align: inherit;">QML 和 C++ 之间的数据类型转换</font></a><font style="vertical-align: inherit;">。）</font></p>
-<p><font style="vertical-align: inherit;">通常，无论</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">派生类是否已</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system"><font style="vertical-align: inherit;">在 QML 类型系统中注册</font></a><font style="vertical-align: inherit;">，这些都可以从 QML 访问。但是，如果要以需要引擎访问其他类型信息的方式使用类——例如，如果类本身用作方法参数或属性，或者它的枚举类型之一是以这种方式使用 - 那么该类可能需要注册。</font></p>
-<p><font style="vertical-align: inherit;">另请注意，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html"><font style="vertical-align: inherit;">使用 C++ 编写 QML 扩展</font></a><font style="vertical-align: inherit;">教程演示了本文档中涵盖的许多重要概念。</font></p>
+<p>（此外，如果使用 Q_ENUMS 声明枚举，则它们可用。有关详细信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html">QML 和 C++ 之间的数据类型转换</a>。）</p>
+<p>通常，无论<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>派生类是否已<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system">在 QML 类型系统中注册</a>，这些都可以从 QML 访问。但是，如果要以需要引擎访问其他类型信息的方式使用类——例如，如果类本身用作方法参数或属性，或者它的枚举类型之一是以这种方式使用 - 那么该类可能需要注册。</p>
+<p>另请注意，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html">使用 C++ 编写 QML 扩展</a>教程演示了本文档中涵盖的许多重要概念。</p>
 <a name="data-type-handling-and-ownership"></a>
-<h2 id="data-type-handling-and-ownership"><font style="vertical-align: inherit;">数据类型处理和所有权</font></h2>
-<p><font style="vertical-align: inherit;">任何从 C++ 传输到 QML 的数据，无论是作为属性值、方法参数或返回值，还是信号参数值，都必须是 QML 引擎支持的类型。</font></p>
-<p><font style="vertical-align: inherit;">默认情况下，引擎支持许多 Qt C++ 类型，并且可以在从 QML 使用时自动适当地转换它们。此外，在 QML 类型系统中</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system"><font style="vertical-align: inherit;">注册的</font></a><font style="vertical-align: inherit;">C++ 类可以用作数据类型，如果适当注册，它们的枚举也可以用作数据类型。有关更多信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html"><font style="vertical-align: inherit;">QML 和 C++ 之间的数据类型转换</font></a><font style="vertical-align: inherit;">。</font></p>
-<p><font style="vertical-align: inherit;">此外，当数据从 C++ 传输到 QML 时，会考虑数据所有权规则。有关更多详细信息，请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#data-ownership"><font style="vertical-align: inherit;">数据所有权</font></a><font style="vertical-align: inherit;">。</font></p>
+<h2 id="data-type-handling-and-ownership">数据类型处理和所有权</h2>
+<p>任何从 C++ 传输到 QML 的数据，无论是作为属性值、方法参数或返回值，还是信号参数值，都必须是 QML 引擎支持的类型。</p>
+<p>默认情况下，引擎支持许多 Qt C++ 类型，并且可以在从 QML 使用时自动适当地转换它们。此外，在 QML 类型系统中<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system">注册的</a>C++ 类可以用作数据类型，如果适当注册，它们的枚举也可以用作数据类型。有关更多信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html">QML 和 C++ 之间的数据类型转换</a>。</p>
+<p>此外，当数据从 C++ 传输到 QML 时，会考虑数据所有权规则。有关更多详细信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html#data-ownership">数据所有权</a>。</p>
 <a name="exposing-properties"></a>
-<h2 id="exposing-properties"><font style="vertical-align: inherit;">公开属性</font></h2>
+<h2 id="exposing-properties">公开属性</h2>
 <p>可以使用<a href="../qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a>()宏为任何<a href="../qtcore/qobject.html">QObject</a>派生类指定属性。属性是具有关联的读函数和可选的写函数的类数据成员。</p>
-<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">派生类的所有属性都可以从 QML 访问。</font></p>
-<p><font style="vertical-align: inherit;">例如，下面是一个</font><code>Message</code><font style="vertical-align: inherit;">具有</font><code>author</code><font style="vertical-align: inherit;">属性的类。正如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY"><font style="vertical-align: inherit;">Q_PROPERTY</font></a><font style="vertical-align: inherit;">宏调用所指定的，这个属性可以通过</font><code>author()</code><font style="vertical-align: inherit;">方法读取，也可以通过方法写入</font><code>setAuthor()</code><font style="vertical-align: inherit;">：</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>派生类的所有属性都可以从 QML 访问。</p>
+<p>例如，下面是一个<code>Message</code>具有<code>author</code>属性的类。正如<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a>宏调用所指定的，这个属性可以通过<code>author()</code>方法读取，也可以通过方法写入<code>setAuthor()</code>：</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> Message : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
@@ -96,7 +96,7 @@
   };
 
 </pre>
-<p><font style="vertical-align: inherit;">如果在加载从 C++命名的文件时将此类的实例</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-contextproperties.html"><font style="vertical-align: inherit;">设置为上下文属性</font></a><code>MyItem.qml</code><font style="vertical-align: inherit;">：</font></p>
+<p>如果在加载从 C++命名的文件时将此类的实例<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-contextproperties.html">设置为上下文属性</a><code>MyItem.qml</code>：</p>
 <pre class="cpp">
 
   <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span>argv<span class="operator">[</span><span class="operator">]</span>) {
@@ -112,7 +112,7 @@
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">然后，</font><code>author</code><font style="vertical-align: inherit;">可以从</font><code>MyItem.qml</code><font style="vertical-align: inherit;">以下位置读取该属性：</font></p>
+<p>然后，<code>author</code>可以从<code>MyItem.qml</code>以下位置读取该属性：</p>
 <pre class="qml">
 
   <span class="comment">// MyItem.qml</span>
@@ -128,18 +128,18 @@
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">为了与 QML 的最大互操作性，</font><b><font style="vertical-align: inherit;">任何可写的属性都应该有一个关联的 NOTIFY 信号</font></b><font style="vertical-align: inherit;">，该<b>信号</b>在属性值更改时发出。这允许属性与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-propertybinding.html"><font style="vertical-align: inherit;">属性绑定</font></a><font style="vertical-align: inherit;">一起使用，这是 QML 的一个基本特性，它通过在任何依赖项的值发生变化时自动更新属性来强制执行属性之间的关系。</font></p>
-<p><font style="vertical-align: inherit;">在上面的示例中，</font><code>author</code><font style="vertical-align: inherit;">属性的关联 NOTIFY 信号是</font><code>authorChanged</code><font style="vertical-align: inherit;">，如</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY"><font style="vertical-align: inherit;">Q_PROPERTY</font></a><font style="vertical-align: inherit;"> () 宏调用中指定的那样。这意味着无论何时发出信号——就像作者在 Message::setAuthor() 中更改时一样——这会通知 QML 引擎</font><code>author</code><font style="vertical-align: inherit;">必须更新任何涉及该属性的绑定，反过来，引擎将更新该</font><code>text</code><font style="vertical-align: inherit;">属性</font><code>Message::author()</code><font style="vertical-align: inherit;">再次<span lang="zh-cn">调用</span>。</font></p>
-<p><font style="vertical-align: inherit;">如果该</font><code>author</code><font style="vertical-align: inherit;">属性可写但没有关联的 NOTIFY 信号，则该</font><code>text</code><font style="vertical-align: inherit;">值将使用 返回的初始值进行初始化，</font><code>Message::author()</code><font style="vertical-align: inherit;">但不会随此属性的任何后续更改而更新。此外，任何从 QML 绑定到属性的尝试都会从引擎产生运行时警告。</font></p>
-<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">建议将NOTIFY信号命名为</font><i><font style="vertical-align: inherit;">&lt;property&gt;更改</font></i><font style="vertical-align: inherit;">其中</font><code>&lt;property&gt;</code><font style="vertical-align: inherit;">是属性的名称。QML 引擎生成的关联属性更改信号处理程序将始终采用 形式</font><code>on&lt;Property&gt;Changed</code><font style="vertical-align: inherit;">，无论相关 C++ 信号的名称如何，因此建议信号名称遵循此约定以避免任何混淆。</font></p><a name="notes-on-use-of-notify-signals"></a>
-<h4 ><font style="vertical-align: inherit;">使用通知信号的注意事项</font></h4>
-<p><font style="vertical-align: inherit;">为防止循环或过度评估，开发人员应确保仅在属性值实际更改时才发出属性更改信号。此外，如果一个属性或一组属性不经常使用，则允许对多个属性使用相同的 NOTIFY 信号。这应该小心完成以确保性能不会受到影响。</font></p>
-<p><font style="vertical-align: inherit;">NOTIFY 信号的存在确实会产生很小的开销。在某些情况下，属性的值是在对象构造时设置的，随后不会更改。最常见的情况是当一个类型使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-objectattributes.html#grouped-properties"><font style="vertical-align: inherit;">Grouped Properties</font></a><font style="vertical-align: inherit;">，并且分组的属性对象被分配一次，并且只有在对象被删除时才被释放。在这些情况下，可以将 CONSTANT 属性而不是 NOTIFY 信号添加到属性声明中。</font></p>
-<p><font style="vertical-align: inherit;">CONSTANT 属性应仅用于其值仅在类构造函数中设置和最终确定的属性。想要在绑定中使用的所有其他属性都应该有一个 NOTIFY 信号。</font></p>
+<p>为了与 QML 的最大互操作性，<b>任何可写的属性都应该有一个关联的 NOTIFY 信号</b>，该<b>信号</b>在属性值更改时发出。这允许属性与<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-propertybinding.html">属性绑定</a>一起使用，这是 QML 的一个基本特性，它通过在任何依赖项的值发生变化时自动更新属性来强制执行属性之间的关系。</p>
+<p>在上面的示例中，<code>author</code>属性的关联 NOTIFY 信号是<code>authorChanged</code>，如<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a> () 宏调用中指定的那样。这意味着无论何时发出信号——就像作者在 Message::setAuthor() 中更改时一样——这会通知 QML 引擎<code>author</code>必须更新任何涉及该属性的绑定，反过来，引擎将更新该<code>text</code>属性<code>Message::author()</code>再次<span lang="zh-cn">调用</span>。</p>
+<p>如果该<code>author</code>属性可写但没有关联的 NOTIFY 信号，则该<code>text</code>值将使用 返回的初始值进行初始化，<code>Message::author()</code>但不会随此属性的任何后续更改而更新。此外，任何从 QML 绑定到属性的尝试都会从引擎产生运行时警告。</p>
+<p><b>注意：</b>建议将NOTIFY信号命名为<i>&lt;property&gt;更改</i>其中<code>&lt;property&gt;</code>是属性的名称。QML 引擎生成的关联属性更改信号处理程序将始终采用 形式<code>on&lt;Property&gt;Changed</code>，无论相关 C++ 信号的名称如何，因此建议信号名称遵循此约定以避免任何混淆。</p><a name="notes-on-use-of-notify-signals"></a>
+<h4 >使用通知信号的注意事项</h4>
+<p>为防止循环或过度评估，开发人员应确保仅在属性值实际更改时才发出属性更改信号。此外，如果一个属性或一组属性不经常使用，则允许对多个属性使用相同的 NOTIFY 信号。这应该小心完成以确保性能不会受到影响。</p>
+<p>NOTIFY 信号的存在确实会产生很小的开销。在某些情况下，属性的值是在对象构造时设置的，随后不会更改。最常见的情况是当一个类型使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-objectattributes.html#grouped-properties">Grouped Properties</a>，并且分组的属性对象被分配一次，并且只有在对象被删除时才被释放。在这些情况下，可以将 CONSTANT 属性而不是 NOTIFY 信号添加到属性声明中。</p>
+<p>CONSTANT 属性应仅用于其值仅在类构造函数中设置和最终确定的属性。想要在绑定中使用的所有其他属性都应该有一个 NOTIFY 信号。</p>
 <a name="properties-with-object-types"></a>
-<h3 ><font style="vertical-align: inherit;">具有对象类型的属性</font></h3>
-<p><font style="vertical-align: inherit;">对象类型属性可从 QML 访问，前提是对象类型已正确</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system"><font style="vertical-align: inherit;">注册</font></a><font style="vertical-align: inherit;">到 QML 类型系统。</font></p>
-<p><font style="vertical-align: inherit;">例如，该</font><code>Message</code><font style="vertical-align: inherit;">类型可能有一个</font><code>body</code><font style="vertical-align: inherit;">type 属性</font><code>MessageBody*</code><font style="vertical-align: inherit;">：</font></p>
+<h3 >具有对象类型的属性</h3>
+<p>对象类型属性可从 QML 访问，前提是对象类型已正确<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system">注册</a>到 QML 类型系统。</p>
+<p>例如，该<code>Message</code>类型可能有一个<code>body</code>type 属性<code>MessageBody*</code>：</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> Message : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
@@ -159,7 +159,7 @@
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">假设该</font><code>Message</code><font style="vertical-align: inherit;">类型已在 QML 类型系统中</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system"><font style="vertical-align: inherit;">注册</font></a><font style="vertical-align: inherit;">，允许将其用作 QML 代码中的对象类型：</font></p>
+<p>假设该<code>Message</code>类型已在 QML 类型系统中<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system">注册</a>，允许将其用作 QML 代码中的对象类型：</p>
 <pre class="qml">
 
   <span class="type">Message</span> {
@@ -167,7 +167,7 @@
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">如果该</font><code>MessageBody</code><font style="vertical-align: inherit;">类型也已在类型系统中注册，则可以从 QML 代码中分配</font><code>MessageBody</code><font style="vertical-align: inherit;">给 a 的</font><code>body</code><font style="vertical-align: inherit;">属性</font><code>Message</code><font style="vertical-align: inherit;">：</font></p>
+<p>如果该<code>MessageBody</code>类型也已在类型系统中注册，则可以从 QML 代码中分配<code>MessageBody</code>给 a 的<code>body</code>属性<code>Message</code>：</p>
 <pre class="qml">
 
   <span class="type">Message</span> {
@@ -178,8 +178,8 @@
 
 </pre>
 <a name="properties-with-object-list-types"></a>
-<h3 ><font style="vertical-align: inherit;">具有对象列表类型的属性</font></h3>
-<p><font style="vertical-align: inherit;">包含</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">派生类型列表的属性也可以暴露给 QML。但是，为此目的，应该使用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmllistproperty.html"><font style="vertical-align: inherit;">QQmlListProperty</font></a><font style="vertical-align: inherit;">而不是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qlist.html"><font style="vertical-align: inherit;">QList</font></a><font style="vertical-align: inherit;"> &lt;T&gt; 作为属性类型。这是因为</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qlist.html"><font style="vertical-align: inherit;">QList</font></a><font style="vertical-align: inherit;">不是</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html"><font style="vertical-align: inherit;">QObject</font></a><font style="vertical-align: inherit;">派生的类型，因此无法通过 Qt 元对象系统提供必要的 QML 属性特征，例如修改列表时的信号通知。</font></p>
+<h3 >具有对象列表类型的属性</h3>
+<p>包含<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>派生类型列表的属性也可以暴露给 QML。但是，为此目的，应该使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmllistproperty.html">QQmlListProperty</a>而不是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qlist.html">QList</a> &lt;T&gt; 作为属性类型。这是因为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qlist.html">QList</a>不是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>派生的类型，因此无法通过 Qt 元对象系统提供必要的 QML 属性特征，例如修改列表时的信号通知。</p>
 <p>例如，下面的<code>MessageBoard</code> 类有一个<a href="qqmllistproperty.html">QQmlListProperty</a>类型的<code>messages</code> 
 属性，它存储了一个<code>Message</code> 实例列表:</p>
 <pre class="cpp">
@@ -215,11 +215,11 @@
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">请注意，</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmllistproperty.html"><font style="vertical-align: inherit;">QQmlListProperty</font></a><font style="vertical-align: inherit;">的模板类类型——在本例中，</font><code>Message</code><font style="vertical-align: inherit;">——必须在 QML 类型系统中</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system"><font style="vertical-align: inherit;">注册</font></a><font style="vertical-align: inherit;">。</font></p>
+<p>请注意，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmllistproperty.html">QQmlListProperty</a>的模板类类型——在本例中，<code>Message</code>——必须在 QML 类型系统中<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system">注册</a>。</p>
 <a name="grouped-properties"></a>
-<h3 ><font style="vertical-align: inherit;">分组属性</font></h3>
-<p><font style="vertical-align: inherit;">任何只读对象类型属性都可以从 QML 代码中作为</font><i><font style="vertical-align: inherit;">分组属性访问</font></i><font style="vertical-align: inherit;">。这可用于公开一组相关属性，这些属性描述了类型的一组属性。</font></p>
-<p><font style="vertical-align: inherit;">例如，假设该</font><code>Message::author</code><font style="vertical-align: inherit;">属性是类型的</font><code>MessageAuthor</code><font style="vertical-align: inherit;">，而不是一个简单的字符串，与子属性</font><code>name</code><font style="vertical-align: inherit;">和</font><code>email</code><font style="vertical-align: inherit;">：</font></p>
+<h3 >分组属性</h3>
+<p>任何只读对象类型属性都可以从 QML 代码中作为<i>分组属性访问</i>。这可用于公开一组相关属性，这些属性描述了类型的一组属性。</p>
+<p>例如，假设该<code>Message::author</code>属性是类型的<code>MessageAuthor</code>，而不是一个简单的字符串，与子属性<code>name</code>和<code>email</code>：</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> MessageAuthor : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
@@ -247,7 +247,7 @@
   };
 
 </pre>
-<p><code>author</code> 属性可以写成使用QML中的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-objectattributes.html#grouped-properties"><font style="vertical-align: inherit;">分组属性语法</font></a>，像这样:</p>
+<p><code>author</code> 属性可以写成使用QML中的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-objectattributes.html#grouped-properties">分组属性语法</a>，像这样:</p>
 <pre class="qml">
 
   <span class="type">Message</span> {
@@ -256,15 +256,15 @@
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">作为分组属性公开的类型与</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#properties-with-object-types"><font style="vertical-align: inherit;">对象类型</font></a><font style="vertical-align: inherit;">属性的不同之处在于分组属性是只读的，并且在构造时由父对象初始化为有效值。分组属性的子属性可以从 QML 修改，但分组属性对象本身永远不会改变，而对象类型的属性可以随时从 QML 分配一个新的对象值。因此，分组属性对象的生命周期由 C++ 父实现严格控制，而对象类型属性可以通过 QML 代码自由创建和销毁。</font></p>
+<p>作为分组属性公开的类型与<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-exposecppattributes.html#properties-with-object-types">对象类型</a>属性的不同之处在于分组属性是只读的，并且在构造时由父对象初始化为有效值。分组属性的子属性可以从 QML 修改，但分组属性对象本身永远不会改变，而对象类型的属性可以随时从 QML 分配一个新的对象值。因此，分组属性对象的生命周期由 C++ 父实现严格控制，而对象类型属性可以通过 QML 代码自由创建和销毁。</p>
 <a name="exposing-methods-including-qt-slots"></a>
-<h2 id="exposing-methods-including-qt-slots"><font style="vertical-align: inherit;">公开方法（包括 Qt 插槽）</font></h2>
-<p><font style="vertical-align: inherit;">公开方法（包括 Qt 插槽）</font></p>
+<h2 id="exposing-methods-including-qt-slots">公开方法（包括 Qt 插槽）</h2>
+<p>公开方法（包括 Qt 插槽）</p>
 <ul>
-<li><font style="vertical-align: inherit;">用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE"><font style="vertical-align: inherit;">Q_INVOKABLE</font></a><font style="vertical-align: inherit;"> () 宏标记的公共方法</font></li>
-<li><font style="vertical-align: inherit;">作为公共 Qt</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/signalsandslots.html"><font style="vertical-align: inherit;">插槽的方法</font></a></li>
+<li>用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE">Q_INVOKABLE</a> () 宏标记的公共方法</li>
+<li>作为公共 Qt<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/signalsandslots.html">插槽的方法</a></li>
 </ul>
-<p><font style="vertical-align: inherit;">例如，</font><code>MessageBoard</code><font style="vertical-align: inherit;">下面的类有一个</font><code>postMessage()</code><font style="vertical-align: inherit;">用</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE"><font style="vertical-align: inherit;">Q_INVOKABLE</font></a><font style="vertical-align: inherit;">宏标记的</font><code>refresh()</code><font style="vertical-align: inherit;">方法，以及一个公共槽的方法：</font></p>
+<p>例如，<code>MessageBoard</code>下面的类有一个<code>postMessage()</code>用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE">Q_INVOKABLE</a>宏标记的<code>refresh()</code>方法，以及一个公共槽的方法：</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> MessageBoard : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
@@ -283,7 +283,7 @@
   };
 
 </pre>
-<p><font style="vertical-align: inherit;">如果将 的实例</font><code>MessageBoard</code><font style="vertical-align: inherit;">设置为文件的上下文数据</font><code>MyItem.qml</code><font style="vertical-align: inherit;">，则</font><code>MyItem.qml</code><font style="vertical-align: inherit;">可以调用以下示例中所示的两个方法：</font></p>
+<p>如果将 的实例<code>MessageBoard</code>设置为文件的上下文数据<code>MyItem.qml</code>，则<code>MyItem.qml</code>可以调用以下示例中所示的两个方法：</p>
 <div class="table"><table class="generic">
  <tr valign="top" class="odd"><td >C++</td><td ><pre class="cpp">
 
@@ -322,15 +322,15 @@
 </pre>
 </td></tr>
 </table></div>
-<p><font style="vertical-align: inherit;">如果C ++方法具有带一个参数</font><code>QObject*</code><font style="vertical-align: inherit;">类型，该参数值可以从QML使用对象传递</font><code>id</code><font style="vertical-align: inherit;">或一个JavaScript </font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-var.html"><font style="vertical-align: inherit;">VAR</font></a><font style="vertical-align: inherit;">值的引用的对象。</font></p>
-<p><font style="vertical-align: inherit;">QML 支持调用重载的 C++ 函数。如果存在多个同名但参数不同的 C++ 函数，则会根据提供的参数数量和类型调用正确的函数。</font></p>
-<p><font style="vertical-align: inherit;">当从 QML 中的 JavaScript 表达式访问时，从 C++ 方法返回的值将转换为 JavaScript 值。</font></p>
+<p>如果C ++方法具有带一个参数<code>QObject*</code>类型，该参数值可以从QML使用对象传递<code>id</code>或一个JavaScript <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-var.html">VAR</a>值的引用的对象。</p>
+<p>QML 支持调用重载的 C++ 函数。如果存在多个同名但参数不同的 C++ 函数，则会根据提供的参数数量和类型调用正确的函数。</p>
+<p>当从 QML 中的 JavaScript 表达式访问时，从 C++ 方法返回的值将转换为 JavaScript 值。</p>
 <a name="exposing-signals"></a>
-<h2 id="exposing-signals"><font style="vertical-align: inherit;">暴露信号</font></h2>
+<h2 id="exposing-signals">暴露信号</h2>
 <p>任何<a href="../qtcore/qobject.html">QObject</a>派生类型的公共<a href="../qtcore/signalsandslots.html">信号</a>都可以从QML代码中访问。</p>
-<p>QML引擎自动为QML中使用的任何<a href="../qtcore/qobject.html">QObject</a>派生类型的信号创建一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html"><font style="vertical-align: inherit;">信号处理程序</font></a>。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html"><font style="vertical-align: inherit;">信号处理程序</font></a>总是命名为<i>on&lt;Signal&gt;</i>，其中<code>&lt;Signal&gt;</code> 
+<p>QML引擎自动为QML中使用的任何<a href="../qtcore/qobject.html">QObject</a>派生类型的信号创建一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html">信号处理程序</a>。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html">信号处理程序</a>总是命名为<i>on&lt;Signal&gt;</i>，其中<code>&lt;Signal&gt;</code> 
 是信号的名称，第一个字母大写。信号传递的所有参数都可以通过参数名称在信号处理程序中获得。</p>
-<p><font style="vertical-align: inherit;">例如，假设</font><code>MessageBoard</code><font style="vertical-align: inherit;">该类有一个</font><code>newMessagePosted()</code><font style="vertical-align: inherit;">带有单个参数的信号</font><code>subject</code><font style="vertical-align: inherit;">：</font></p>
+<p>例如，假设<code>MessageBoard</code>该类有一个<code>newMessagePosted()</code>带有单个参数的信号<code>subject</code>：</p>
 <pre class="cpp">
 
   <span class="keyword">class</span> MessageBoard : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
@@ -343,7 +343,7 @@
   };
 
 </pre>
-<p><font style="vertical-align: inherit;">如果该</font><code>MessageBoard</code><font style="vertical-align: inherit;">类型已在 QML 类型系统中</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system"><font style="vertical-align: inherit;">注册</font></a><font style="vertical-align: inherit;">，则</font><code>MessageBoard</code><font style="vertical-align: inherit;">在 QML 中声明的对象可以</font><code>newMessagePosted()</code><font style="vertical-align: inherit;">使用名为 的信号处理程序接收信号</font><code>onNewMessagePosted</code><font style="vertical-align: inherit;">，并检查</font><code>subject</code><font style="vertical-align: inherit;">参数值：</font></p>
+<p>如果该<code>MessageBoard</code>类型已在 QML 类型系统中<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-definetypes.html#registering-c-types-with-the-qml-type-system">注册</a>，则<code>MessageBoard</code>在 QML 中声明的对象可以<code>newMessagePosted()</code>使用名为 的信号处理程序接收信号<code>onNewMessagePosted</code>，并检查<code>subject</code>参数值：</p>
 <pre class="qml">
 
   <span class="type">MessageBoard</span> {
@@ -351,7 +351,7 @@
   }
 
 </pre>
-<p><font style="vertical-align: inherit;">与属性值和方法参数一样，信号参数必须具有 QML 引擎支持的类型；请参阅</font><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html"><font style="vertical-align: inherit;">QML 和 C++ 之间的数据类型转换</font></a><font style="vertical-align: inherit;">。（使用未注册的类型不会产生错误，但处理程序将无法访问参数值。）</font></p>
+<p>与属性值和方法参数一样，信号参数必须具有 QML 引擎支持的类型；请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-data.html">QML 和 C++ 之间的数据类型转换</a>。（使用未注册的类型不会产生错误，但处理程序将无法访问参数值。）</p>
 <p>类可以有多个具有相同名称的信号，但只有最后一个信号可以作为QML信号访问。注意，名称相同但参数不同的信号不能相互区分。</p>
 </div>
 <!-- @@@qtqml-cppintegration-exposecppattributes.html -->
