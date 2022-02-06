@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- affectors.qdoc -->
+  <title>Qt Quick Particles Examples - Affectors | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick Particles 示例 - 影响器</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick Particles 示例 - 影响器</h1>
+<span class="subtitle"></span>
+<!-- $$$particles/affectors-brief -->
+<p>这是在 QML 粒子系统中使用影响器Affector的示例集合。</p>
+<!-- @@@particles/affectors -->
+<!-- $$$particles/affectors-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-affectors-example.png" alt="" /></p><p>这是与在粒子系统中使用影响器有关的小型 QML 示例的集合。每个示例都是强调特定类型或功能的小型 QML 文件。</p>
+<p>Age 演示了使用 Age 影响器过早地结束粒子的生命。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-age.html">Age</a></span> {
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      <span class="name">system</span>: <span class="name">particles</span>
+      <span class="name">once</span>: <span class="number">true</span>
+      <span class="name">lifeLeft</span>: <span class="number">1200</span>
+      <span class="name">advancePosition</span>: <span class="number">false</span>
+  }
+
+</pre>
+<p>当您在屏幕上移动影响器时，其中的粒子（尚未受到影响）会跳到接近其生命尽头的一段时间。这给了他们很短的时间来完成淡出，但是将 lifeLeft 更改为 0（默认值）会导致他们立即达到生命的尽头。</p>
+<p>ttractor 演示使用 Attractor 影响器模拟黑洞</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-attractor.html">Attractor</a></span> {
+      <span class="name">id</span>: <span class="name">gs</span>; <span class="name">pointX</span>: <span class="name">root</span>.<span class="name">width</span><span class="operator">/</span><span class="number">2</span>; <span class="name">pointY</span>: <span class="name">root</span>.<span class="name">height</span><span class="operator">/</span><span class="number">2</span>; <span class="name">strength</span>: <span class="number">4000000</span>;
+      <span class="name">affectedParameter</span>: <span class="name">Attractor</span>.<span class="name">Acceleration</span>
+      <span class="name">proportionalToDistance</span>: <span class="name">Attractor</span>.<span class="name">InverseQuadratic</span>
+  }
+
+</pre>
+<p>场景中的所有粒子，包括火箭飞船的废气和颗粒，都被拉向黑洞。这种效应在靠近黑洞的地方更强，所以靠近屏幕顶部的小行星几乎没有受到影响，而靠近中间的小行星有时会急剧弯曲。为了完成这个效果，一个年龄效应器覆盖了黑洞，以破坏与它接触的粒子。</p>
+<p>自定义 Affector 直接在 javascript 中操作粒子的属性。一个 Affector 用于使树叶在落下时前后摇摆，看起来更像树叶，而不仅仅是绕圈旋转：</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-affector.html">Affector</a></span> {
+      property <span class="type"><a href="../qtqml/qml-real.html">real</a></span> <span class="name">coefficient</span>: <span class="number">0.1</span>
+      property <span class="type"><a href="../qtqml/qml-real.html">real</a></span> <span class="name">velocity</span>: <span class="number">1.5</span>
+      <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>
+      <span class="name">height</span>: <span class="name">parent</span>.<span class="name">height</span> <span class="operator">-</span> <span class="number">100</span>
+      <span class="name">onAffectParticles</span>: {
+      <span class="comment">/*  //Linear movement
+          if (particle.r == 0) {
+              particle.r = Math.random() &gt; 0.5 ? -1 : 1;
+          } else if (particle.r == 1) {
+              particle.rotation += velocity * dt;
+              if (particle.rotation &gt;= maxAngle)
+                  particle.r = -1;
+          } else if (particle.r == -1) {
+              particle.rotation -= velocity * dt;
+              if (particle.rotation &lt;= -1 * maxAngle)
+                  particle.r = 1;
+          }
+      */</span>
+          <span class="comment">//Wobbly movement</span>
+          <span class="keyword">for</span> (var i=0; <span class="name">i</span><span class="operator">&lt;</span><span class="name">particles</span>.<span class="name">length</span>; i++) {
+              var particle = <span class="name">particles</span>[<span class="name">i</span>];
+              <span class="keyword">if</span> (<span class="name">particle</span>.<span class="name">r</span> <span class="operator">==</span> <span class="number">0.0</span>) {
+                  <span class="name">particle</span>.<span class="name">r</span> <span class="operator">=</span> <span class="name">Math</span>.<span class="name">random</span>() <span class="operator">+</span> <span class="number">0.01</span>;
+              }
+              <span class="name">particle</span>.<span class="name">rotation</span> <span class="operator">+=</span> <span class="name">velocity</span> <span class="operator">*</span> <span class="name">particle</span>.<span class="name">r</span> <span class="operator">*</span> <span class="name">dt</span>;
+              <span class="name">particle</span>.<span class="name">r</span> <span class="operator">-=</span> <span class="name">particle</span>.<span class="name">rotation</span> <span class="operator">*</span> <span class="name">coefficient</span>;
+              <span class="keyword">if</span> (<span class="name">particle</span>.<span class="name">r</span> <span class="operator">==</span> <span class="number">0.0</span>)
+                  <span class="name">particle</span>.<span class="name">r</span> <span class="operator">-=</span> <span class="name">particle</span>.<span class="name">rotation</span> <span class="operator">*</span> <span class="number">0.000001</span>;
+              <span class="name">particle</span>.<span class="name">update</span> <span class="operator">=</span> <span class="number">1</span>;
+          }
+      }
+  }
+
+</pre>
+<p>另一个用于在叶子“着陆”时为叶子提供略微变化的摩擦力，看起来更自然：</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-affector.html">Affector</a></span> {<span class="comment">//Custom Friction, adds some 'randomness'</span>
+      <span class="name">x</span>: -<span class="number">60</span>
+      <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span> <span class="operator">+</span> <span class="number">120</span>
+      <span class="name">height</span>: <span class="number">100</span>
+      <span class="name">anchors</span>.bottom: <span class="name">parent</span>.<span class="name">bottom</span>
+      <span class="name">onAffectParticles</span>: {
+          <span class="keyword">for</span> (var i=0; <span class="name">i</span><span class="operator">&lt;</span><span class="name">particles</span>.<span class="name">length</span>; i++) {
+              var particle = <span class="name">particles</span>[<span class="name">i</span>];
+              var pseudoRand = (<span class="name">Math</span>.<span class="name">floor</span>(<span class="name">particle</span>.<span class="name">t</span><span class="operator">*</span><span class="number">1327</span>) <span class="operator">%</span> <span class="number">10</span>) <span class="operator">+</span> <span class="number">1</span>;
+              var yslow = <span class="name">dt</span> <span class="operator">*</span> <span class="name">pseudoRand</span> <span class="operator">*</span> <span class="number">0.5</span> <span class="operator">+</span> <span class="number">1</span>;
+              var xslow = <span class="name">dt</span> <span class="operator">*</span> <span class="name">pseudoRand</span> <span class="operator">*</span> <span class="number">0.05</span> <span class="operator">+</span> <span class="number">1</span>;
+              <span class="keyword">if</span> (<span class="name">particle</span>.<span class="name">vy</span> <span class="operator">&lt;</span> <span class="number">1</span>)
+                  <span class="name">particle</span>.<span class="name">vy</span> <span class="operator">=</span> <span class="number">0</span>;
+              <span class="keyword">else</span>
+                  <span class="name">particle</span>.<span class="name">vy</span> <span class="operator">=</span> (<span class="name">particle</span>.<span class="name">vy</span> <span class="operator">/</span> <span class="name">yslow</span>);
+              <span class="keyword">if</span> (<span class="name">particle</span>.<span class="name">vx</span> <span class="operator">&lt;</span> <span class="number">1</span>)
+                  <span class="name">particle</span>.<span class="name">vx</span> <span class="operator">=</span> <span class="number">0</span>;
+              <span class="keyword">else</span>
+                  <span class="name">particle</span>.<span class="name">vx</span> <span class="operator">=</span> (<span class="name">particle</span>.<span class="name">vx</span> <span class="operator">/</span> <span class="name">xslow</span>);
+              <span class="name">particle</span>.<span class="name">update</span> <span class="operator">=</span> <span class="number">true</span>;
+          }
+      }
+  }
+
+</pre>
+<p>摩擦力与自定义影响器中的落叶相似，只是它在整个过程中使用平面摩擦而不是自定义影响器。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-friction.html">Friction</a></span> {
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      <span class="name">anchors</span>.margins: -<span class="number">40</span>
+      <span class="name">factor</span>: <span class="number">0.4</span>
+  }
+
+</pre>
+<p>重力是一种便利的影响器，用于对其中的粒子施加恒定的加速度</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-gravity.html">Gravity</a></span> {
+      <span class="name">system</span>: <span class="name">sys</span>
+      <span class="name">magnitude</span>: <span class="number">32</span>
+      <span class="name">angle</span>: <span class="name">ground</span>.<span class="name">rotation</span> <span class="operator">+</span> <span class="number">90</span>
+  }
+
+</pre>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-groupgoal.html">GroupGoal</a>为燃烧和不燃烧的球设置了两个粒子组，并为您提供了在它们之间转换的各种方式。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-particlegroup.html">ParticleGroup</a></span> {
+      <span class="name">name</span>: <span class="string">&quot;unlit&quot;</span>
+      <span class="name">duration</span>: <span class="number">1000</span>
+      <span class="name">to</span>: {&quot;lighting&quot;:<span class="number">1</span>, &quot;unlit&quot;:<span class="number">99</span>}
+      <span class="type"><a href="qml-qtquick-particles-imageparticle.html">ImageParticle</a></span> {
+          <span class="name">source</span>: <span class="string">&quot;../../images/particleA.png&quot;</span>
+          <span class="name">colorVariation</span>: <span class="number">0.1</span>
+          <span class="name">color</span>: <span class="string">&quot;#2060160f&quot;</span>
+      }
+      <span class="type"><a href="qml-qtquick-particles-groupgoal.html">GroupGoal</a></span> {
+          <span class="name">whenCollidingWith</span>: [<span class="string">&quot;lit&quot;</span>]
+          <span class="name">goalState</span>: <span class="string">&quot;lighting&quot;</span>
+          <span class="name">jump</span>: <span class="number">true</span>
+      }
+  }
+
+</pre>
+<p>不燃烧的球每秒有百分之一的机会自己点亮，但它们也为整个组设置了<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-groupgoal.html">GroupGoal 。</a>当与光照组中的粒子发生碰撞时，此影响器会影响未光照组的所有粒子，并使它们移动到光照组。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-particlegroup.html">ParticleGroup</a></span> {
+      <span class="name">name</span>: <span class="string">&quot;lighting&quot;</span>
+      <span class="name">duration</span>: <span class="number">100</span>
+      <span class="name">to</span>: {&quot;lit&quot;:<span class="number">1</span>}
+  }
+
+</pre>
+<p>照明是一个中间组，因此会产生辉光并且过渡不那么刺耳。所以它会在 100ms 后自动进入点亮组。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-particlegroup.html">ParticleGroup</a></span> {
+      <span class="name">name</span>: <span class="string">&quot;lit&quot;</span>
+      <span class="name">duration</span>: <span class="number">10000</span>
+      <span class="name">onEntered</span>: score++;
+      <span class="type"><a href="qml-qtquick-particles-trailemitter.html">TrailEmitter</a></span> {
+          <span class="name">id</span>: <span class="name">fireballFlame</span>
+          <span class="name">group</span>: <span class="string">&quot;flame&quot;</span>
+
+          <span class="name">emitRatePerParticle</span>: <span class="number">48</span>
+          <span class="name">lifeSpan</span>: <span class="number">200</span>
+          <span class="name">emitWidth</span>: <span class="number">8</span>
+          <span class="name">emitHeight</span>: <span class="number">8</span>
+
+          <span class="name">size</span>: <span class="number">24</span>
+          <span class="name">sizeVariation</span>: <span class="number">8</span>
+          <span class="name">endSize</span>: <span class="number">4</span>
+      }
+
+      <span class="type"><a href="qml-qtquick-particles-trailemitter.html">TrailEmitter</a></span> {
+          <span class="name">id</span>: <span class="name">fireballSmoke</span>
+          <span class="name">group</span>: <span class="string">&quot;smoke&quot;</span>
+
+</pre>
+<p>燃的组也有 TrailEmitters 用于额外的火焰和烟雾，但不会在任何地方过渡。还有两个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-groupgoal.html">GroupGoal</a>对象允许未照明组中的粒子过渡到照明组（然后过渡到照明组）。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-groupgoal.html">GroupGoal</a></span> {
+      <span class="name">groups</span>: [<span class="string">&quot;unlit&quot;</span>]
+      <span class="name">goalState</span>: <span class="string">&quot;lit&quot;</span>
+      <span class="name">jump</span>: <span class="number">true</span>
+      <span class="name">system</span>: <span class="name">particles</span>
+      <span class="name">x</span>: -<span class="number">15</span>
+      <span class="name">y</span>: -<span class="number">55</span>
+      <span class="name">height</span>: <span class="number">75</span>
+      <span class="name">width</span>: <span class="number">30</span>
+      <span class="name">shape</span>: <span class="name">MaskShape</span> {<span class="name">source</span>: <span class="string">&quot;../../images/matchmask.png&quot;</span>}
+  }
+
+</pre>
+<p>第一个只是与引燃火焰图像位置绑定的区域。当未点燃的球穿过火焰时，它们会直接点燃，因为引燃火焰非常热。</p>
+<pre class="qml">
+
+  <span class="comment">//Click to enflame</span>
+  <span class="type"><a href="qml-qtquick-particles-groupgoal.html">GroupGoal</a></span> {
+      <span class="name">groups</span>: [<span class="string">&quot;unlit&quot;</span>]
+      <span class="name">goalState</span>: <span class="string">&quot;lighting&quot;</span>
+      <span class="name">jump</span>: <span class="number">true</span>
+      <span class="name">enabled</span>: <span class="name">ma</span>.<span class="name">pressed</span>
+      <span class="name">width</span>: <span class="number">18</span>
+      <span class="name">height</span>: <span class="number">18</span>
+      <span class="name">x</span>: <span class="name">ma</span>.<span class="name">mouseX</span> <span class="operator">-</span> <span class="name">width</span><span class="operator">/</span><span class="number">2</span>
+      <span class="name">y</span>: <span class="name">ma</span>.<span class="name">mouseY</span> <span class="operator">-</span> <span class="name">height</span><span class="operator">/</span><span class="number">2</span>
+  }
+
+</pre>
+<p>二个绑定到最后一个指针交互的位置，因此触摸或单击未点亮的球（由于它们不断移动而很难）导致它们移动到照明组。</p>
+<p>移动显示了一些简单的效果，你可以通过中途改变轨迹来获得。红色粒子有一个影响其位置的影响器，将它们向前跳跃 120 像素。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-affector.html">Affector</a></span> {
+      <span class="name">groups</span>: [<span class="string">&quot;A&quot;</span>]
+      <span class="name">x</span>: <span class="number">120</span>
+      <span class="name">width</span>: <span class="number">80</span>
+      <span class="name">height</span>: <span class="number">80</span>
+      <span class="name">once</span>: <span class="number">true</span>
+      <span class="name">position</span>: <span class="name">PointDirection</span> { <span class="name">x</span>: <span class="number">120</span>; }
+  }
+
+</pre>
+<p>绿色粒子有一个影响其速度的影响器，但有一些角度变化。通过在它们现有的前进速度上添加一些随机方向速度，它们开始以锥形喷射。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-affector.html">Affector</a></span> {
+      <span class="name">groups</span>: [<span class="string">&quot;B&quot;</span>]
+      <span class="name">x</span>: <span class="number">120</span>
+      <span class="name">y</span>: <span class="number">240</span>
+      <span class="name">width</span>: <span class="number">80</span>
+      <span class="name">height</span>: <span class="number">80</span>
+      <span class="name">once</span>: <span class="number">true</span>
+      <span class="name">velocity</span>: <span class="name">AngleDirection</span> { <span class="name">angleVariation</span>:<span class="number">360</span>; <span class="name">magnitude</span>: <span class="number">72</span> }
+  }
+
+</pre>
+<p>蓝色粒子有一个影响它们的加速度的影响器，并且因为它设置为相对于 false 这会重置加速度而不是增加加速度。一旦蓝色粒子到达影响器，它们的水平速度随着垂直速度的降低而停止增加。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-affector.html">Affector</a></span> {
+      <span class="name">groups</span>: [<span class="string">&quot;C&quot;</span>]
+      <span class="name">x</span>: <span class="number">120</span>
+      <span class="name">y</span>: <span class="number">400</span>
+      <span class="name">width</span>: <span class="number">80</span>
+      <span class="name">height</span>: <span class="number">120</span>
+      <span class="name">once</span>: <span class="number">true</span>
+      <span class="name">relative</span>: <span class="number">false</span>
+      <span class="name">acceleration</span>: <span class="name">PointDirection</span> { <span class="name">y</span>: -<span class="number">80</span>; }
+  }
+
+</pre>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-spritegoal.html">SpriteGoal</a>有一个影响器，它与粒子的精灵引擎交互，如果它们被<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-imageparticle.html">ImageParticle</a>绘制为精灵的话。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-spritegoal.html">SpriteGoal</a></span> {
+      <span class="name">groups</span>: [<span class="string">&quot;meteor&quot;</span>]
+      <span class="name">system</span>: <span class="name">sys</span>
+      <span class="name">goalState</span>: <span class="string">&quot;explode&quot;</span>
+      <span class="name">jump</span>: <span class="number">true</span>
+      <span class="name">anchors</span>.fill: <span class="name">rocketShip</span>
+      <span class="name">width</span>: <span class="number">60</span>
+      <span class="name">height</span>: <span class="number">60</span>
+  }
+
+</pre>
+<p>SpriteGoal跟随屏幕上火箭<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-spritegoal.html">飞船</a>的图像，当它与<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-imageparticle.html">ImageParticle</a>绘制为 sprite 的粒子交互时，它指示它们立即移动到“爆炸”状态，在本例中是小行星分裂成许多的动画件。</p>
+<p>湍流有一个带有烟雾的火焰，并且两组粒子都受到湍流影响器的影响。这会产生微弱的风效果。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-turbulence.html">Turbulence</a></span> {
+      <span class="name">id</span>: <span class="name">turb</span>
+      <span class="name">enabled</span>: <span class="number">true</span>
+      <span class="name">height</span>: (<span class="name">parent</span>.<span class="name">height</span> <span class="operator">/</span> <span class="number">2</span>) <span class="operator">-</span> <span class="number">4</span>
+      <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>
+      <span class="name">x</span>: <span class="name">parent</span>. <span class="name">width</span> <span class="operator">/</span> <span class="number">4</span>
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      <span class="name">strength</span>: <span class="number">32</span>
+      NumberAnimation on <span class="name">strength</span>{<span class="name">from</span>: <span class="number">16</span>; <span class="name">to</span>: <span class="number">64</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutBounce</span>; <span class="name">duration</span>: <span class="number">1800</span>; <span class="name">loops</span>: -<span class="number">1</span>}
+  }
+
+</pre>
+<p>要使风改变方向，请在 noiseSource 参数中替换黑白噪声图像（它当前使用默认噪声源）。</p>
+<p>Wander 使用 Wander 影响器在雪花落下时为它们添加一些水平漂移。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-wander.html">Wander</a></span> {
+      <span class="name">id</span>: <span class="name">wanderer</span>
+      <span class="name">system</span>: <span class="name">particles</span>
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      <span class="name">xVariance</span>: <span class="number">360</span><span class="operator">/</span>(<span class="name">wanderer</span>.<span class="name">affectedParameter</span><span class="operator">+</span><span class="number">1</span>);
+      <span class="name">pace</span>: <span class="number">100</span><span class="operator">*</span>(<span class="name">wanderer</span>.<span class="name">affectedParameter</span><span class="operator">+</span><span class="number">1</span>);
+  }
+
+</pre>
+<p>通过将 Wander 应用到轨迹的不同属性会给出不同的运动，因此该示例可以轻松玩转并查看差异。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-particles-affectors-affectors-pro.html">particles/affectors/affectors.pro</a></li>
+<li><a href="qtquick-particles-affectors-affectors-qml.html">particles/affectors/affectors.qml</a></li>
+<li><a href="qtquick-particles-affectors-affectors-qmlproject.html">particles/affectors/affectors.qmlproject</a></li>
+<li><a href="qtquick-particles-affectors-affectors-qrc.html">particles/affectors/affectors.qrc</a></li>
+<li><a href="qtquick-particles-affectors-content-greybutton-qml.html">particles/affectors/content/GreyButton.qml</a></li>
+<li><a href="qtquick-particles-affectors-content-age-qml.html">particles/affectors/content/age.qml</a></li>
+<li><a href="qtquick-particles-affectors-content-attractor-qml.html">particles/affectors/content/attractor.qml</a></li>
+<li><a href="qtquick-particles-affectors-content-customaffector-qml.html">particles/affectors/content/customaffector.qml</a></li>
+<li><a href="qtquick-particles-affectors-content-friction-qml.html">particles/affectors/content/friction.qml</a></li>
+<li><a href="qtquick-particles-affectors-content-gravity-qml.html">particles/affectors/content/gravity.qml</a></li>
+<li><a href="qtquick-particles-affectors-content-groupgoal-qml.html">particles/affectors/content/groupgoal.qml</a></li>
+<li><a href="qtquick-particles-affectors-content-move-qml.html">particles/affectors/content/move.qml</a></li>
+<li><a href="qtquick-particles-affectors-content-spritegoal-qml.html">particles/affectors/content/spritegoal.qml</a></li>
+<li><a href="qtquick-particles-affectors-content-turbulence-qml.html">particles/affectors/content/turbulence.qml</a></li>
+<li><a href="qtquick-particles-affectors-content-wander-qml.html">particles/affectors/content/wander.qml</a></li>
+<li><a href="qtquick-particles-affectors-main-cpp.html">particles/affectors/main.cpp</a></li>
+</ul>
+</div>
+<!-- @@@particles/affectors -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- basictypes.qdoc -->
-  <title>QML Basic Types | Qt QML 5.12.3</title>
+  <title>QML 基本类型 | Qt QML 5.12.3</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,7 +26,7 @@
     <div class="main-rounded">
       <div class="navigationbar">
         <table><tr>
-<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >QML Basic Types</td></tr></table><table class="buildversion"><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML模块</a></td><td >QML 基本类型</td></tr></table><table class="buildversion"><tr>
 <td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 5.12.3 参考指南</a></td>
         </tr></table>
       </div>
@@ -40,8 +40,8 @@
 <ul>
 <li class="level1"><a href="#supported-basic-types">支持的基本类型</a></li>
 <li class="level2"><a href="#basic-types-provided-by-the-qml-language">QML语言提供的基本类型</a></li>
-<li class="level2"><a href="#basic-types-provided-by-qml-modules">QML模块提供的基本类型</a></li>
-<li class="level1"><a href="#property-change-behavior-for-basic-types">属性更改基本类型的行为</a></li>
+<li class="level2"><a href="#basic-types-provided-by-qml-modules">QML相关模块提供的基本类型</a></li>
+<li class="level1"><a href="#property-change-behavior-for-basic-types">基本类型的属性更改行为</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
@@ -78,8 +78,8 @@
 </table></div>
 </p>
 <a name="basic-types-provided-by-qml-modules"></a>
-<h3 >QML模块提供的基本类型</h3>
-<p>QML模块可以用更基本的类型扩展QML语言。例如，<code>QtQuick</code>模块提供的基本类型如下:   <div class="table"><table class="annotated">
+<h3 >QML相关模块提供的基本类型</h3>
+<p>QML相关的模块可以用更基本的类型扩展QML语言。例如，<code>QtQuick</code>模块提供了以下基本类型:   <div class="table"><table class="annotated">
 <tr class="odd topAlign"><td class="tblName"><p><a href="qml-date.html">date</a></p></td><td class="tblDescr"><p>日期值</p></td></tr>
 <tr class="even topAlign"><td class="tblName"><p><a href="qml-point.html">point</a></p></td><td class="tblDescr"><p>具有x和y属性的值</p></td></tr>
 <tr class="odd topAlign"><td class="tblName"><p><a href="qml-rect.html">rect</a></p></td><td class="tblDescr"><p>值，该值具有x、y、width和height属性</p></td></tr>
@@ -87,9 +87,9 @@
 </table></div>
 </p>
 <p><a href="qml-qtqml-qt.html">Qt</a>全局对象为操作基本类型的值提供了有用的函数。</p>
-<p>目前只有Qt提供的QML模块可以提供它们自己的基本类型，但是这在Qt QML的未来版本中可能会发生变化。为了使用特定QML模块提供的类型，客户端必须在其QML文档中导入该模块。</p>
+<p>目前只有Qt提供的QML相关的模块可以提供它们自己的基本类型，但是这在Qt QML的未来版本中可能会发生变化。为了使用特定QML模块提供的类型，客户必须在其QML文档中导入该模块。</p>
 <a name="property-change-behavior-for-basic-types"></a>
-<h2 id="property-change-behavior-for-basic-types">属性更改基本类型的行为</h2>
+<h2 id="property-change-behavior-for-basic-types">基本类型的属性更改行为</h2>
 <p>一些基本类型具有属性:例如，<a href="../qtquick/qml-font.html">font</a> 类型具有 <code>pixelSize</code>、 <code>family</code> 和 <code>bold</code> 属性。与 <a href="qtqml-typesystem-topic.html#qml-object-types">对象类型</a>的属性不同，基本类型的属性不提供自己的属性更改信号。只能为基本类型属性本身创建属性更改信号处理程序:</p>
 <pre class="cpp">
 

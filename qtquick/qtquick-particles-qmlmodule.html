@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- particles.qdoc -->
+  <title>Qt Quick Particles QML Types | Qt Quick 5.11</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.11</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td >Qt Quick Particles QML Types</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.11.1 参考指南</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick Particles QML Types</h1>
+<span class="subtitle"></span>
+<!-- $$$QtQuick.Particles-description -->
+<div class="descr"> <a name="details"></a>
+<p>这个QML模块包含一个用于Qt Quick的粒子系统。要使用这些类型，请使用以下行导入模块:</p>
+<pre class="cpp">
+
+  import <span class="type">QtQuick</span><span class="operator">.</span>Particles <span class="number">2.11</span>
+
+</pre>
+<p>有关如何使用该系统的简单概述，请参见<a href="qtquick-effects-particles.html">使用Qt Quick Particle系统</a>。</p>
+<p>有关性能特性的详细信息，请参见<a href="qtquick-particles-performance.html">Qt Quick粒子系统性能</a>。</p>
+</div>
+<!-- @@@QtQuick.Particles -->
+<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-age.html">Age</a></p></td><td class="tblDescr"><p>关于改变粒子生命周期</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-angledirection.html">AngleDirection</a></p></td><td class="tblDescr"><p>用于指定角度变化的方向</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-cumulativedirection.html">CumulativeDirection</a></p></td><td class="tblDescr"><p>用于指定由其他方向组成的方向</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-customparticle.html">CustomParticle</a></p></td><td class="tblDescr"><p>用于指定着色器来绘制粒子</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-direction.html">Direction</a></p></td><td class="tblDescr"><p>用于指定向量空间</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-ellipseshape.html">EllipseShape</a></p></td><td class="tblDescr"><p>向其他粒子系统元素表示一个椭圆</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-friction.html">Friction</a></p></td><td class="tblDescr"><p>用于申请摩擦力与粒子的流速成正比</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-gravity.html">Gravity</a></p></td><td class="tblDescr"><p>在一个角度上施加加速度</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-groupgoal.html">GroupGoal</a></p></td><td class="tblDescr"><p>改变一组粒子的状态</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-imageparticle.html">ImageParticle</a></p></td><td class="tblDescr"><p>使用图片使逻辑粒子可视化</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-itemparticle.html">ItemParticle</a></p></td><td class="tblDescr"><p>用于指定绘制粒子的委托</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-lineshape.html">LineShape</a></p></td><td class="tblDescr"><p>表示影响者和排布者的行</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-maskshape.html">MaskShape</a></p></td><td class="tblDescr"><p>用于将图像表示为影响者和排放者的形状</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-affector.html">Affector</a></p></td><td class="tblDescr"><p>在逻辑粒子生命周期的任何时刻对其属性进行更改</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-emitter.html">Emitter</a></p></td><td class="tblDescr"><p>发出逻辑粒子</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-shape.html">Shape</a></p></td><td class="tblDescr"><p>用于指定影响者和排放者的区域</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-particlegroup.html">ParticleGroup</a></p></td><td class="tblDescr"><p>用于设置逻辑粒子组上的属性</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-particlepainter.html">ParticlePainter</a></p></td><td class="tblDescr"><p>用于指定如何绘制粒子</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-particlesystem.html">ParticleSystem</a></p></td><td class="tblDescr"><p>一种包括粒子绘制器、发射器和影响器类型的系统</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-attractor.html">Attractor</a></p></td><td class="tblDescr"><p>将粒子吸引到一个特定的点</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-pointdirection.html">PointDirection</a></p></td><td class="tblDescr"><p>用来指定在x和y分量中变化的方向</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-rectangleshape.html">RectangleShape</a></p></td><td class="tblDescr"><p>用于指定影响器和发射器的区域</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-spritegoal.html">SpriteGoal</a></p></td><td class="tblDescr"><p>用于改变精灵粒子的状态</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-targetdirection.html">TargetDirection</a></p></td><td class="tblDescr"><p>用于指定指向目标点的方向</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-trailemitter.html">TrailEmitter</a></p></td><td class="tblDescr"><p>从其他逻辑粒子发出逻辑粒子</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-turbulence.html">Turbulence</a></p></td><td class="tblDescr"><p>从噪声图像中提供类似流体的力</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-particle.html">Particle</a></p></td><td class="tblDescr"><p>表示由排放者和影响者操纵的粒子</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-particles-wander.html">Wander</a></p></td><td class="tblDescr"><p>应用随机粒子轨道</p></td></tr>
+</table></div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2018 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

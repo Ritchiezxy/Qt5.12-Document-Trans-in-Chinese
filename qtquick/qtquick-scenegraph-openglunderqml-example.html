@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- openglunderqml.qdoc -->
+  <title>Scene Graph - OpenGL Under QML | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >场景图 - QML 下的 OpenGL</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">场景图 - QML 下的 OpenGL</h1>
+<span class="subtitle"></span>
+<!-- $$$scenegraph/openglunderqml-brief -->
+<p>展示如何在 Qt Quick 场景下渲染 OpenGL。</p>
+<!-- @@@scenegraph/openglunderqml -->
+<!-- $$$scenegraph/openglunderqml-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/openglunderqml-example.jpg" alt="" /></p><p>QML 下的 OpenGL 示例展示了应用程序如何利用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickwindow.html#beforeRendering">QQuickWindow::beforeRendering</a> () 信号在 Qt Quick 场景下绘制自定义 OpenGL 内容。该信号在每一帧开始时发出，在场景图开始渲染之前，因此作为对该信号的响应而进行的任何 OpenGL 绘制调用都将堆叠在 Qt Quick 项下。</p>
+<p>作为替代方案，希望在 Qt Quick 场景之上渲染 OpenGL 内容的应用程序可以通过连接到<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickwindow.html#afterRendering">QQuickWindow::afterRendering</a> () 信号来实现。</p>
+<p>在这个例子中，我们还将看到如何让暴露给QML的值影响OpenGL渲染。我们在QML文件中使用<a href="qml-qtquick-numberanimation.html">NumberAnimation</a>动画阈值，这个值被绘制squircles的OpenGL着色程序使用。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> Squircle : <span class="keyword">public</span> <span class="type"><a href="qquickitem.html">QQuickItem</a></span>
+  {
+      Q_OBJECT
+      Q_PROPERTY(<span class="type"><a href="../qtcore/qtglobal.html#qreal-typedef">qreal</a></span> t READ t WRITE setT NOTIFY tChanged)
+
+  <span class="keyword">public</span>:
+      Squircle();
+
+      <span class="type"><a href="../qtcore/qtglobal.html#qreal-typedef">qreal</a></span> t() <span class="keyword">const</span> { <span class="keyword">return</span> m_t; }
+      <span class="type">void</span> setT(<span class="type"><a href="../qtcore/qtglobal.html#qreal-typedef">qreal</a></span> t);
+
+  <span class="keyword">signals</span>:
+      <span class="type">void</span> tChanged();
+
+  <span class="keyword">public</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> sync();
+      <span class="type">void</span> cleanup();
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> handleWindowChanged(<span class="type"><a href="qquickwindow.html">QQuickWindow</a></span> <span class="operator">*</span>win);
+
+  <span class="keyword">private</span>:
+      <span class="type"><a href="../qtcore/qtglobal.html#qreal-typedef">qreal</a></span> m_t;
+      SquircleRenderer <span class="operator">*</span>m_renderer;
+  };
+
+</pre>
+<p>首先，我们需要一个可以暴露给 QML 的对象。这是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html">QQuickItem</a>的子类，因此我们可以轻松访问<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#window">QQuickItem::window</a> ()。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> SquircleRenderer : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">,</span> <span class="keyword">protected</span> <span class="type"><a href="../qtgui/qopenglfunctions.html">QOpenGLFunctions</a></span>
+  {
+      Q_OBJECT
+  <span class="keyword">public</span>:
+      SquircleRenderer() : m_t(<span class="number">0</span>)<span class="operator">,</span> m_program(<span class="number">0</span>) { }
+      <span class="operator">~</span>SquircleRenderer();
+
+      <span class="type">void</span> setT(<span class="type"><a href="../qtcore/qtglobal.html#qreal-typedef">qreal</a></span> t) { m_t <span class="operator">=</span> t; }
+      <span class="type">void</span> setViewportSize(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> <span class="operator">&amp;</span>size) { m_viewportSize <span class="operator">=</span> size; }
+      <span class="type">void</span> setWindow(<span class="type"><a href="qquickwindow.html">QQuickWindow</a></span> <span class="operator">*</span>window) { m_window <span class="operator">=</span> window; }
+
+  <span class="keyword">public</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> paint();
+
+  <span class="keyword">private</span>:
+      <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> m_viewportSize;
+      <span class="type"><a href="../qtcore/qtglobal.html#qreal-typedef">qreal</a></span> m_t;
+      <span class="type"><a href="../qtgui/qopenglshaderprogram.html">QOpenGLShaderProgram</a></span> <span class="operator">*</span>m_program;
+      <span class="type"><a href="qquickwindow.html">QQuickWindow</a></span> <span class="operator">*</span>m_window;
+  };
+
+</pre>
+<p>然后我们需要一个对象来处理渲染。此实例需要与<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html">QQuickItem</a>分开，因为该项目位于 GUI 线程中，并且渲染可能发生在渲染线程上。由于我们要连接到<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickwindow.html#beforeRendering">QQuickWindow::beforeRendering</a> ()，我们将渲染器设为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html">QObject</a>。渲染器包含它需要的所有状态的副本，独立于 GUI 线程。</p>
+<p><b>注意：</b>不要试图将两个对象合并为一个。当渲染线程正在渲染时，QQuickItems 可能会在 GUI 线程上被删除。</p><p>让我们继续执行。</p>
+<pre class="cpp">
+
+  Squircle<span class="operator">::</span>Squircle()
+      : m_t(<span class="number">0</span>)
+      <span class="operator">,</span> m_renderer(nullptr)
+  {
+      connect(<span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qquickitem.html">QQuickItem</a></span><span class="operator">::</span>windowChanged<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Squircle<span class="operator">::</span>handleWindowChanged);
+  }
+
+</pre>
+<p>类的构造函数<code>Squircle</code>简单地初始化值并连接到我们将用来准备渲染器的窗口更改信号。</p>
+<pre class="cpp">
+
+  <span class="type">void</span> Squircle<span class="operator">::</span>handleWindowChanged(<span class="type"><a href="qquickwindow.html">QQuickWindow</a></span> <span class="operator">*</span>win)
+  {
+      <span class="keyword">if</span> (win) {
+          connect(win<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qquickwindow.html">QQuickWindow</a></span><span class="operator">::</span>beforeSynchronizing<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Squircle<span class="operator">::</span>sync<span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>DirectConnection);
+          connect(win<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qquickwindow.html">QQuickWindow</a></span><span class="operator">::</span>sceneGraphInvalidated<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>Squircle<span class="operator">::</span>cleanup<span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>DirectConnection);
+
+</pre>
+<p>一旦我们有了一个窗口，我们将附加到<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickwindow.html#beforeSynchronizing">QQuickWindow::beforeSynchronizing</a> () 信号上，我们将使用它来创建渲染器并将状态安全地复制到其中。我们还连接到<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickwindow.html#sceneGraphInvalidated">QQuickWindow::sceneGraphInvalidated</a> () 信号来处理渲染器的清理。</p>
+<p><b>注意:</b>由于Squircle对象与GUI线程有亲和关系，并且信号是由呈现线程发出的，因此使用<a href="../qtcore/qt.html#ConnectionType-enum">Qt::DirectConnection</a>进行连接是至关重要的。如果做不到这一点，将导致插槽在没有OpenGL上下文的情况下被调用在错误的线程上。</p><pre class="cpp">
+
+          win<span class="operator">-</span><span class="operator">&gt;</span>setClearBeforeRendering(<span class="keyword">false</span>);
+      }
+  }
+
+</pre>
+<p>场景图的默认行为是在渲染之前清除帧缓冲区。由于我们在场景图之前渲染，我们需要关闭这个清除。这意味着我们需要在<code>paint()</code>函数中清除自己。</p>
+<pre class="cpp">
+
+  <span class="type">void</span> Squircle<span class="operator">::</span>sync()
+  {
+      <span class="keyword">if</span> (<span class="operator">!</span>m_renderer) {
+          m_renderer <span class="operator">=</span> <span class="keyword">new</span> SquircleRenderer();
+          connect(window()<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qquickwindow.html">QQuickWindow</a></span><span class="operator">::</span>beforeRendering<span class="operator">,</span> m_renderer<span class="operator">,</span> <span class="operator">&amp;</span>SquircleRenderer<span class="operator">::</span>paint<span class="operator">,</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>DirectConnection);
+      }
+      m_renderer<span class="operator">-</span><span class="operator">&gt;</span>setViewportSize(window()<span class="operator">-</span><span class="operator">&gt;</span>size() <span class="operator">*</span> window()<span class="operator">-</span><span class="operator">&gt;</span>devicePixelRatio());
+      m_renderer<span class="operator">-</span><span class="operator">&gt;</span>setT(m_t);
+      m_renderer<span class="operator">-</span><span class="operator">&gt;</span>setWindow(window());
+  }
+
+</pre>
+<p>我们使用该<code>sync()</code>函数来初始化渲染器并将我们的项目中的状态复制到渲染器中。创建渲染器时，我们还将<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickwindow.html#beforeRendering">QQuickWindow::beforeRendering</a> () 连接到渲染器的<code>paint()</code>插槽。</p>
+<p><b>注意：</b> QQuickWindow <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickwindow.html#beforeSynchronizing">::beforeSynchronizing</a> () 信号是在 GUI 线程被阻塞时在渲染线程上发出的，因此在没有任何额外保护的情况下简单地复制值是安全的。</p><pre class="cpp">
+
+  <span class="type">void</span> Squircle<span class="operator">::</span>cleanup()
+  {
+      <span class="keyword">if</span> (m_renderer) {
+          <span class="keyword">delete</span> m_renderer;
+          m_renderer <span class="operator">=</span> nullptr;
+      }
+  }
+
+  SquircleRenderer<span class="operator">::</span><span class="operator">~</span>SquircleRenderer()
+  {
+      <span class="keyword">delete</span> m_program;
+  }
+
+</pre>
+<p style="width: 70%">在该<code>cleanup()</code>函数中，我们删除了渲染器，该渲染器又清理了自己的资源。</p>
+<pre class="cpp">
+
+  <span class="type">void</span> Squircle<span class="operator">::</span>setT(<span class="type"><a href="../qtcore/qtglobal.html#qreal-typedef">qreal</a></span> t)
+  {
+      <span class="keyword">if</span> (t <span class="operator">=</span><span class="operator">=</span> m_t)
+          <span class="keyword">return</span>;
+      m_t <span class="operator">=</span> t;
+      <span class="keyword">emit</span> tChanged();
+      <span class="keyword">if</span> (window())
+          window()<span class="operator">-</span><span class="operator">&gt;</span>update();
+  }
+
+</pre>
+<p>当值<code>t</code>改变时，我们调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickwindow.html#update">QQuickWindow::update</a> () 而不是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#update">QQuickItem::update</a> () 因为前者会强制重绘整个窗口，即使场景图自上一帧以来没有改变。</p>
+<pre class="cpp">
+
+  <span class="type">void</span> SquircleRenderer<span class="operator">::</span>paint()
+  {
+      <span class="keyword">if</span> (<span class="operator">!</span>m_program) {
+          initializeOpenGLFunctions();
+
+          m_program <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="../qtgui/qopenglshaderprogram.html">QOpenGLShaderProgram</a></span>();
+          m_program<span class="operator">-</span><span class="operator">&gt;</span>addCacheableShaderFromSourceCode(<span class="type"><a href="../qtgui/qopenglshader.html">QOpenGLShader</a></span><span class="operator">::</span>Vertex<span class="operator">,</span>
+                                                      <span class="string">&quot;attribute highp vec4 vertices;&quot;</span>
+                                                      <span class="string">&quot;varying highp vec2 coords;&quot;</span>
+                                                      <span class="string">&quot;void main() {&quot;</span>
+                                                      <span class="string">&quot;    gl_Position = vertices;&quot;</span>
+                                                      <span class="string">&quot;    coords = vertices.xy;&quot;</span>
+                                                      <span class="string">&quot;}&quot;</span>);
+          m_program<span class="operator">-</span><span class="operator">&gt;</span>addCacheableShaderFromSourceCode(<span class="type"><a href="../qtgui/qopenglshader.html">QOpenGLShader</a></span><span class="operator">::</span>Fragment<span class="operator">,</span>
+                                                      <span class="string">&quot;uniform lowp float t;&quot;</span>
+                                                      <span class="string">&quot;varying highp vec2 coords;&quot;</span>
+                                                      <span class="string">&quot;void main() {&quot;</span>
+                                                      <span class="string">&quot;    lowp float i = 1. - (pow(abs(coords.x), 4.) + pow(abs(coords.y), 4.));&quot;</span>
+                                                      <span class="string">&quot;    i = smoothstep(t - 0.8, t + 0.8, i);&quot;</span>
+                                                      <span class="string">&quot;    i = floor(i * 20.) / 20.;&quot;</span>
+                                                      <span class="string">&quot;    gl_FragColor = vec4(coords * .5 + .5, i, i);&quot;</span>
+                                                      <span class="string">&quot;}&quot;</span>);
+
+          m_program<span class="operator">-</span><span class="operator">&gt;</span>bindAttributeLocation(<span class="string">&quot;vertices&quot;</span><span class="operator">,</span> <span class="number">0</span>);
+          m_program<span class="operator">-</span><span class="operator">&gt;</span>link();
+
+      }
+
+</pre>
+<p>在 SquircleRenderer 的<code>paint()</code>函数中，我们首先初始化着色器程序。通过在此处初始化着色器程序，我们确保绑定了 OpenGL 上下文并且我们在正确的线程上。</p>
+<pre class="cpp">
+
+      m_program<span class="operator">-</span><span class="operator">&gt;</span>bind();
+
+      m_program<span class="operator">-</span><span class="operator">&gt;</span>enableAttributeArray(<span class="number">0</span>);
+
+      <span class="type">float</span> values<span class="operator">[</span><span class="operator">]</span> <span class="operator">=</span> {
+          <span class="operator">-</span><span class="number">1</span><span class="operator">,</span> <span class="operator">-</span><span class="number">1</span><span class="operator">,</span>
+          <span class="number">1</span><span class="operator">,</span> <span class="operator">-</span><span class="number">1</span><span class="operator">,</span>
+          <span class="operator">-</span><span class="number">1</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span>
+          <span class="number">1</span><span class="operator">,</span> <span class="number">1</span>
+      };
+      m_program<span class="operator">-</span><span class="operator">&gt;</span>setAttributeArray(<span class="number">0</span><span class="operator">,</span> GL_FLOAT<span class="operator">,</span> values<span class="operator">,</span> <span class="number">2</span>);
+      m_program<span class="operator">-</span><span class="operator">&gt;</span>setUniformValue(<span class="string">&quot;t&quot;</span><span class="operator">,</span> (<span class="type">float</span>) m_t);
+
+      glViewport(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> m_viewportSize<span class="operator">.</span>width()<span class="operator">,</span> m_viewportSize<span class="operator">.</span>height());
+
+      glDisable(GL_DEPTH_TEST);
+
+      glClearColor(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="number">1</span>);
+      glClear(GL_COLOR_BUFFER_BIT);
+
+      glEnable(GL_BLEND);
+      glBlendFunc(GL_SRC_ALPHA<span class="operator">,</span> GL_ONE);
+
+      glDrawArrays(GL_TRIANGLE_STRIP<span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="number">4</span>);
+
+      m_program<span class="operator">-</span><span class="operator">&gt;</span>disableAttributeArray(<span class="number">0</span>);
+      m_program<span class="operator">-</span><span class="operator">&gt;</span>release();
+
+      <span class="comment">// Not strictly needed for this example, but generally useful for when</span>
+      <span class="comment">// mixing with raw OpenGL.</span>
+      m_window<span class="operator">-</span><span class="operator">&gt;</span>resetOpenGLState();
+  }
+
+</pre>
+<p>我们使用着色器程序来绘制松鼠。在<code>paint</code>函数结束时，我们释放程序并禁用我们使用的属性，以便 OpenGL 上下文处于“干净”状态，以便场景图将其拾取。</p>
+<p><b>注意：</b>如果跟踪 OpenGL 上下文状态的变化不可行，可以使用函数<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickwindow.html#resetOpenGLState">QQuickWindow::resetOpenGLState</a> () 重置场景图依赖的所有状态。</p><pre class="cpp">
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span><span class="operator">*</span>argv)
+  {
+      <span class="type"><a href="../qtgui/qguiapplication.html">QGuiApplication</a></span> app(argc<span class="operator">,</span> argv);
+
+      qmlRegisterType<span class="operator">&lt;</span>Squircle<span class="operator">&gt;</span>(<span class="string">&quot;OpenGLUnderQML&quot;</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="string">&quot;Squircle&quot;</span>);
+
+      <span class="type"><a href="qquickview.html">QQuickView</a></span> view;
+      view<span class="operator">.</span>setResizeMode(<span class="type"><a href="qquickview.html">QQuickView</a></span><span class="operator">::</span>SizeRootObjectToView);
+      view<span class="operator">.</span>setSource(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span>(<span class="string">&quot;qrc:///scenegraph/openglunderqml/main.qml&quot;</span>));
+      view<span class="operator">.</span>show();
+
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+</pre>
+<p>应用程序的<code>main()</code>函数实例化一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html">QQuickView</a>并启动<code>main.qml</code>文件。唯一值得注意的是，我们使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType">qmlRegisterType</a> () 宏将<code>Squircle</code>类导出到 QML 。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType"></a></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+  import OpenGLUnderQML 1.0
+
+  <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+
+      <span class="name">width</span>: <span class="number">320</span>
+      <span class="name">height</span>: <span class="number">480</span>
+
+      <span class="type">Squircle</span> {
+          SequentialAnimation on <span class="name">t</span> {
+              <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">to</span>: <span class="number">1</span>; <span class="name">duration</span>: <span class="number">2500</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InQuad</span> }
+              <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">to</span>: <span class="number">0</span>; <span class="name">duration</span>: <span class="number">2500</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutQuad</span> }
+              <span class="name">loops</span>: <span class="name">Animation</span>.<span class="name">Infinite</span>
+              <span class="name">running</span>: <span class="number">true</span>
+          }
+      }
+
+</pre>
+<p>我们用在<code>main()</code>函数中注册的名称导入Squircle QML类型。然后我们实例化它，并在它的<code>t</code>属性上创建一个正在运行的<a href="qml-qtquick-numberanimation.html">NumberAnimation</a>。</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">color</span>: <span class="name">Qt</span>.<span class="name">rgba</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0.7</span>)
+          <span class="name">radius</span>: <span class="number">10</span>
+          <span class="name">border</span>.width: <span class="number">1</span>
+          <span class="name">border</span>.color: <span class="string">&quot;white&quot;</span>
+          <span class="name">anchors</span>.fill: <span class="name">label</span>
+          <span class="name">anchors</span>.margins: -<span class="number">10</span>
+      }
+
+      <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+          <span class="name">id</span>: <span class="name">label</span>
+          <span class="name">color</span>: <span class="string">&quot;black&quot;</span>
+          <span class="name">wrapMode</span>: <span class="name">Text</span>.<span class="name">WordWrap</span>
+          <span class="name">text</span>: <span class="string">&quot;The background here is a squircle rendered with raw OpenGL using the 'beforeRender()' signal in QQuickWindow. This text label and its border is rendered using QML&quot;</span>
+          <span class="name">anchors</span>.right: <span class="name">parent</span>.<span class="name">right</span>
+          <span class="name">anchors</span>.left: <span class="name">parent</span>.<span class="name">left</span>
+          <span class="name">anchors</span>.bottom: <span class="name">parent</span>.<span class="name">bottom</span>
+          <span class="name">anchors</span>.margins: <span class="number">20</span>
+      }
+  }
+
+</pre>
+<p>然后我们覆盖一个简短的描述性文本，以便清楚地看到我们实际上是在 Qt Quick 场景下渲染 OpenGL。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-scenegraph-openglunderqml-main-cpp.html">scenegraph/openglunderqml/main.cpp</a></li>
+<li><a href="qtquick-scenegraph-openglunderqml-main-qml.html">scenegraph/openglunderqml/main.qml</a></li>
+<li><a href="qtquick-scenegraph-openglunderqml-openglunderqml-pro.html">scenegraph/openglunderqml/openglunderqml.pro</a></li>
+<li><a href="qtquick-scenegraph-openglunderqml-openglunderqml-qrc.html">scenegraph/openglunderqml/openglunderqml.qrc</a></li>
+<li><a href="qtquick-scenegraph-openglunderqml-squircle-cpp.html">scenegraph/openglunderqml/squircle.cpp</a></li>
+<li><a href="qtquick-scenegraph-openglunderqml-squircle-h.html">scenegraph/openglunderqml/squircle.h</a></li>
+</ul>
+</div>
+<!-- @@@scenegraph/openglunderqml -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

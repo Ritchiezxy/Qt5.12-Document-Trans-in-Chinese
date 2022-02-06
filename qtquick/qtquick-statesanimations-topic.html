@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- topic.qdoc -->
+  <title>Important Concepts in Qt Quick - States, Transitions and Animations | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick 中的重要概念 - 状态、转换和动画</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-topic.html#states">状态</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-topic.html#transitions">过渡</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-topic.html#animations">动画</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-topic.html#animating-property-assignments">动画属性分配</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-topic.html#animators">动画师</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-topic.html#animated-sprites">动画精灵</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 中的重要概念 - 状态、转换和动画</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-statesanimations-topic.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>在任何现代用户界面中，状态之间的转换和动画用户界面都是非常有益的。这些是 Qt Quick 中的一流概念。</p>
+<p>本页介绍状态、状态转换和属性动画的概念。它详细说明了哪些概念很重要，为什么重要，以及这些概念如何相互关联。它还提供了指向 Qt Quick 提供的用于实现这些概念的 QML 类型的详细信息的链接。</p>
+<a name="states"></a>
+<h2 id="states">状态</h2>
+<p>特定视觉项目的状态是一组信息，描述了视觉项目的各个组成部分在其中的显示方式和位置，以及与该状态相关的所有数据。用户界面中的大多数可视项目将具有有限数量的状态，每个状态都有明确定义的属性。</p>
+<p>例如，列表中的元素可能被选中或未被选中，如果选中，它可能是当前活动的单个选择，也可能是选择组的一部分。</p>
+<p>这些状态中的每一个都可能具有某些相关的视觉外观（中性、突出显示、扩展等）。</p>
+<p>Qt Quick 为<code>State</code>类型提供了定义其语义的属性，并可用于触发行为或动画。有关更多信息，请参阅有关<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-states.html">Qt Quick States</a>的文档。</p>
+<a name="transitions"></a>
+<h2 id="transitions">过渡</h2>
+<p>当视觉项目从一种状态转换到另一种状态时，该项目的外观将发生变化。转换是两个状态之间的“边缘”。它可能触发其他事件发生，因为应用程序的其他部分可能具有在进入或离开某个状态时触发的行为。</p>
+<p>Qt Quick 提供的<code>Transition</code>类型具有定义应用程序从一种状态更改为另一种状态时会发生什么的属性。有关转换的更多信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-animations.html#transitions-during-state-changes">状态更改期间</a>的转换文档。</p>
+<a name="animations"></a>
+<h2 id="animations">动画</h2>
+<p>在状态之间转换时，可以使用流畅的动画在转换期间帮助用户。对视觉画布的突然和意外更改会导致次优的用户体验，应该避免。</p>
+<p>如果列表中的元素被选中，颜色变化（从中性到突出显示）可以设置动画。如果列表中元素的位置发生变化，它可以以流畅的动画方式移动，以便用户的眼睛可以跟踪变化。</p>
+<p>Qt Quick 通过各种动画和过渡类型支持这些类型的动画。有关这些类型以及如何使用它们的信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-animations.html">Qt Quick 中的动画和过渡</a>文档。</p>
+<a name="animating-property-assignments"></a>
+<h2 id="animating-property-assignments">动画属性分配</h2>
+<p>动画不仅与状态和状态之间的转换有关。例如，动画可能由与不同状态无关的其他事件触发。</p>
+<p>无论改变的原因是什么(例如，不透明效果)，总是对视觉项目的某些属性进行动画化的改变通常是有益的。Qt Quick提供了<a href="qml-qtquick-behavior.html">Behavior</a>类型，允许客户端为属性更改指定动画行为。<a href="qml-qtquick-behavior.html">Behavior</a>类型是QML对象<a href="../qtqml/qtqml-cppintegration-definetypes.html">属性修饰符</a>的一个例子。</p>
+<p>有关使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-behavior.html">Behavior</a>类型提供默认属性更改动画的更多信息，请参阅有关<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-animations.html#default-animation-as-behaviors">默认属性动画的文档。</a><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-behavior.html"></a></p>
+<p>需要注意的是，将默认属性动画（通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-behavior.html">Behavior</a>类型）与状态转换动画结合使用有时会导致发生未定义的行为。有关此主题的更多信息，请参阅有关<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-behaviors.html">使用带状态的 Qt Quick Behavior的文档。</a></p>
+<a name="animators"></a>
+<h2 id="animators">动画师</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-animator.html">Animator</a>类型是一种特殊类型的动画，它绕过 QML 对象并直接对<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-scenegraph.html">场景图</a>中的图元进行操作。这样做的好处是，基于 Animator 的动画可以在场景图的渲染线程（如果适用）上运行，并且即使在 UI 被阻塞时也可以继续动画。</p>
+<p>Qt Quick 提供以下 Animator 类型：</p>
+<ul>
+<li><a href="qml-qtquick-xanimator.html">XAnimator</a> - 动画<a href="qml-qtquick-item.html">Item</a>的水平位置。</li>
+<li><a href="qml-qtquick-yanimator.html">YAnimator</a> - 动画<a href="qml-qtquick-item.html">Item</a>的垂直位置。</li>
+<li><a href="qml-qtquick-scaleanimator.html">ScaleAnimator</a> - 动画<a href="qml-qtquick-item.html">Item</a>的比例因子。</li>
+<li><a href="qml-qtquick-rotationanimator.html">RotationAnimator</a> - 动画<a href="qml-qtquick-item.html">Item</a>的旋转。</li>
+<li><a href="qml-qtquick-opacityanimator.html">OpacityAnimator</a> - 动画<a href="qml-qtquick-item.html">Item</a>的不透明度。</li>
+<li><a href="qml-qtquick-uniformanimator.html">UniformAnimator</a> - 在<a href="qml-qtquick-shadereffect.html">ShaderEffect</a>中动画制服。</li>
+</ul>
+<a name="animated-sprites"></a>
+<h2 id="animated-sprites">动画精灵</h2>
+<p>动画精灵的概念与本页其他地方使用的动画概念是分开的。如果您想创建或使用动画图像或精灵，请参阅有关<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-sprites.html">精灵动画</a>的文档。</p>
+</div>
+<!-- @@@qtquick-statesanimations-topic.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

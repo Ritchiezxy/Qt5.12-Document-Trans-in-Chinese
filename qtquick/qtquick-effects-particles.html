@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- particles.qdoc -->
+  <title>Using the Qt Quick Particle System | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >使用 Qt Quick 粒子系统</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-particles.html#the-particlesystem">粒子系统</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-particles.html#logical-particles">逻辑粒子</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-particles.html#particle-groups">粒子群</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-particles.html#emitters">发射器</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-particles.html#particlepainters">粒子画家</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-particles.html#affectors">
+影响器</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-particles.html#stochastic-parameters">随机参数</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-particles.html#directions">方向</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-particles.html#shapes">形状</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">使用 Qt Quick 粒子系统</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-effects-particles.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>所有粒子系统类型的文档都可以在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-particles-qmlmodule.html">QtQuick.Particles</a>模块页面上找到。</p>
+<p>要使用粒子模块中的类型，请使用以下行导入模块：</p>
+<pre class="qml">
+
+  import QtQuick.Particles 2.12
+
+</pre>
+<a name="the-particlesystem"></a>
+<h2 id="the-particlesystem">粒子系统</h2>
+<p>该粒子系统包含四种主要的 QML 类型：<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlesystem.html">ParticleSystem</a>、Painter、Emitter 和 Affector。</p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlesystem.html">ParticleSystem</a>类型将所有其他类型联系在一起，并管理共享时间线。Painters、Emitter 和 Affectors 都必须具有相同的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlesystem.html">ParticleSystem</a>才能相互交互。</p>
+<p>您可能拥有任意数量的 ParticleSystems 受此约束，因此逻辑分离是为您想要交互的所有类型设置一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlesystem.html">ParticleSystem</a>，或者如果类型数量较少且易于控制，则只有一个 ParticleSystem ..</p>
+<a name="logical-particles"></a>
+<h2 id="logical-particles">逻辑粒子</h2>
+<p>所有粒子系统类型都作用于“逻辑粒子”。每个粒子在粒子系统内部都有一个逻辑表示，这就是类型的作用。并非每个逻辑粒子都需要可视化，并且某些逻辑粒子可能会导致在屏幕上绘制多个视觉粒子。</p>
+<a name="particle-groups"></a>
+<h2 id="particle-groups">粒子群</h2>
+<p>每个逻辑粒子都是粒子组的成员，每个组由一个名称标识。如果没有指定其他组，则逻辑粒子属于名称为“”（空字符串）的组，其作用与任何其他组相同。组有两个目的，用于控制粒子和因为它们可以具有随机状态转换。</p>
+<p>组控制粒子，因为您永远无法使用任何粒子系统类型访问单个粒子。所有类型都作为一个整体作用于组，因此任何需要表现得彼此不同（除了通常的随机参数变化之外）的粒子都需要位于不同的组中。</p>
+<p>粒子也可以动态改变组。发生这种情况时，粒子轨迹不会改变，但可以由不同的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-particles.html#particlepainters">ParticlePainter</a>或 Affector 对其进行操作。粒子可以通过 Affector 更改其组，或者可以在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlegroup.html">ParticleGroup</a>类型中定义随机状态转换。</p>
+<p>通常，只有在需要随机状态转换时，才应在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlegroup.html">ParticleGroup中定义组。</a>否则，只需通过类型的粒子/粒子属性中使用的字符串来定义组就足够了。</p>
+<a name="emitters"></a>
+<h2 id="emitters">发射器</h2>
+<p>发射器将逻辑粒子发射到系统中。这些粒子有轨迹和寿命，但没有可视化。这些粒子从发射器的位置发射。</p>
+<p>TrailEmitters 是一种特殊类型的发射器，它从其他逻辑粒子的位置发射粒子。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-trailemitter.html">任何在TrailEmitter</a>范围内的跟随类型的逻辑粒子都会导致粒子从其位置发射，就好像它上面有一个与<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-trailemitter.html">TrailEmitter</a>具有相同属性的发射器。</p>
+<a name="particlepainters"></a>
+<h2 id="particlepainters">粒子画家</h2>
+<p>画家是可视化逻辑粒子的类型。对于分配给它的组中的每个逻辑粒子，它们在其范围内（或外部，如果您没有在类型上设置剪辑属性），它将以取决于<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlepainter.html">ParticlePainter</a>类型的方式进行可视化。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlepainter.html">ParticlePainter</a>的基本类型不绘制任何东西。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-imageparticle.html">ImageParticle</a>在粒子位置渲染图像。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-customparticle.html">CustomParticle</a>允许您编写自己的着色器来渲染粒子，将逻辑粒子状态作为顶点数据传递。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-itemparticle.html">项目粒子</a>允许您使用任意 QML 委托来可视化逻辑粒子。ModelParticle 类似，但在委托之间协调模型数据的方式与视图类类似。</p>
+<p>由于<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlepainter.html">ParticlePainter</a>是在场景中可视化粒子的 QML 类型，因此当试图在视觉上将粒子放置在其他类型的上方或下方时，它的 Z 值很重要。</p>
+<a name="affectors"></a>
+<h2 id="affectors">影响器</h2>
+<p>影响器是粒子系统的可选组件。他们可以对模拟执行各种操作，例如改变粒子的轨迹或在模拟中提前结束它们的生命。出于性能原因，建议不要在大容量粒子系统中使用影响器。</p>
+<a name="stochastic-parameters"></a>
+<h2 id="stochastic-parameters">随机参数</h2>
+<p>由于粒子系统受益于对大量实例的参数的随机控制，因此粒子系统使用了几种随机辅助类型。如果您不希望这些参数有任何随机变化，则不要指定这些类型的任何变化。</p>
+<a name="directions"></a>
+<h3 >方向</h3>
+<p>方向可以通过角度和大小，或 x 和 y 分量来指定。虽然可以使用任何一种方法指定任何方向，但改变 x 和 y 分量与改变角度和幅度之间存在显着差异。改变 x 和 y 分量将导致围绕指定点的矩形区域，而改变角度将导致以指定点为中心的圆弧。</p>
+<a name="shapes"></a>
+<h3 >形状</h3>
+<p>粒子系统包含几种表示形状的类型。这些类型不可视化形状，并用于选择形状内的随机点。如果您想要一个没有随机性的特定点，请使用 0 宽度和 0 高度形状（这是默认值）。否则，您可以使用形状类型来指定区域，以便结果可以使用从该区域中选择的随机点。</p>
+</div>
+<!-- @@@qtquick-effects-particles.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

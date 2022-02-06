@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- system.qdoc -->
+  <title>Qt Quick Particles Examples - System | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >
+			Qt Quick 粒子示例 - 系统</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 粒子示例 - 系统</h1>
+<span class="subtitle"></span>
+<!-- $$$particles/system-brief -->
+<p>这是在 QML 粒子系统中使用 Affector 的示例集合。</p>
+<!-- @@@particles/system -->
+<!-- $$$particles/system-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-system-example.png" alt="" /></p><p>这是与在粒子系统中使用影响器有关的小型 QML 示例的集合。每个示例都是强调特定类型或功能的小型 QML 文件。</p>
+<p>动态比较将使用粒子系统与使用以下动态实例化 Image 类型的代码进行比较来获得类似的效果。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">fakeEmitter</span>
+      <span class="keyword">function</span> <span class="name">burst</span>(number) {
+          <span class="keyword">while</span> (<span class="name">number</span> <span class="operator">&gt;</span> <span class="number">0</span>) {
+              var item = <span class="name">fakeParticle</span>.<span class="name">createObject</span>(<span class="name">root</span>);
+              <span class="name">item</span>.<span class="name">lifeSpan</span> <span class="operator">=</span> <span class="name">Math</span>.<span class="name">random</span>() <span class="operator">*</span> <span class="number">5000</span> <span class="operator">+</span> <span class="number">5000</span>;
+              <span class="name">item</span>.<span class="name">x</span> <span class="operator">=</span> <span class="name">Math</span>.<span class="name">random</span>() <span class="operator">*</span> (<span class="name">root</span>.<span class="name">width</span><span class="operator">/</span><span class="number">2</span>) <span class="operator">+</span> (<span class="name">root</span>.<span class="name">width</span><span class="operator">/</span><span class="number">2</span>);
+              <span class="name">item</span>.<span class="name">y</span> <span class="operator">=</span> <span class="number">0</span>;
+              number--;
+          }
+      }
+
+      <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">fakeParticle</span>
+          <span class="type"><a href="qml-qtquick-image.html">Image</a></span> {
+              <span class="name">id</span>: <span class="name">container</span>
+              property <span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">lifeSpan</span>: <span class="number">10000</span>
+              <span class="name">width</span>: <span class="number">32</span>
+              <span class="name">height</span>: <span class="number">32</span>
+              <span class="name">source</span>: <span class="string">&quot;qrc:///particleresources/glowdot.png&quot;</span>
+              <span class="name">y</span>: <span class="number">0</span>
+              PropertyAnimation on <span class="name">y</span> {<span class="name">from</span>: -<span class="number">16</span>; <span class="name">to</span>: <span class="name">root</span>.<span class="name">height</span><span class="operator">-</span><span class="number">16</span>; <span class="name">duration</span>: <span class="name">container</span>.<span class="name">lifeSpan</span>; <span class="name">running</span>: <span class="number">true</span>}
+              SequentialAnimation on <span class="name">opacity</span> {
+                  <span class="name">running</span>: <span class="number">true</span>
+                  <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">from</span>:<span class="number">0</span>; <span class="name">to</span>: <span class="number">1</span>; <span class="name">duration</span>: <span class="number">500</span>}
+                  <span class="type"><a href="qml-qtquick-pauseanimation.html">PauseAnimation</a></span> { <span class="name">duration</span>: <span class="name">container</span>.<span class="name">lifeSpan</span> <span class="operator">-</span> <span class="number">1000</span>}
+                  <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">from</span>:<span class="number">1</span>; <span class="name">to</span>: <span class="number">0</span>; <span class="name">duration</span>: <span class="number">500</span>}
+                  <span class="type"><a href="qml-qtquick-scriptaction.html">ScriptAction</a></span> { <span class="name">script</span>: <span class="name">container</span>.<span class="name">destroy</span>(); }
+              }
+          }
+      }
+  }
+
+</pre>
+<p>
+<font>
+请注意 Image 对象是如何无法随机着色的。</font></p>
+<p>
+<font>
+Start 和 Stop 只是设置<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlesystem.html">ParticleSystem</a>的运行和暂停状态。虽然系统在停止或暂停时不执行任何模拟，但重新启动会从头开始重新启动模拟，而取消暂停则从原来的位置恢复模拟。</font></p>
+<p>
+<font>
+定时组更改是突出显示<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlegroup.html">ParticleGroup</a>类型的示例。虽然通常引用具有字符串名称的组就足够了，但可以通过设置组的属性来完成其他效果。第一组有一个可变的持续时间，但总是过渡到第二组。</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-particlegroup.html">ParticleGroup</a></span> {
+      <span class="name">name</span>: <span class="string">&quot;fire&quot;</span>
+      <span class="name">duration</span>: <span class="number">2000</span>
+      <span class="name">durationVariation</span>: <span class="number">2000</span>
+      <span class="name">to</span>: {&quot;splode&quot;:<span class="number">1</span>}
+  }
+
+</pre>
+<p>
+<font>
+第二组上面有一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-trailemitter.html">TrailEmitter</a>，以及发射到第三组的固定持续时间。通过将<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-trailemitter.html">TrailEmitter</a>作为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlegroup.html">ParticleGroup</a>的直接子级，它会自动选择要跟随的组。</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-particlegroup.html">ParticleGroup</a></span> {
+      <span class="name">name</span>: <span class="string">&quot;splode&quot;</span>
+      <span class="name">duration</span>: <span class="number">400</span>
+      <span class="name">to</span>: {&quot;dead&quot;:<span class="number">1</span>}
+      <span class="type"><a href="qml-qtquick-particles-trailemitter.html">TrailEmitter</a></span> {
+          <span class="name">group</span>: <span class="string">&quot;works&quot;</span>
+          <span class="name">emitRatePerParticle</span>: <span class="number">100</span>
+          <span class="name">lifeSpan</span>: <span class="number">1000</span>
+          <span class="name">maximumEmitted</span>: <span class="number">1200</span>
+          <span class="name">size</span>: <span class="number">8</span>
+          <span class="name">velocity</span>: <span class="name">AngleDirection</span> {<span class="name">angle</span>: <span class="number">270</span>; <span class="name">angleVariation</span>: <span class="number">45</span>; <span class="name">magnitude</span>: <span class="number">20</span>; <span class="name">magnitudeVariation</span>: <span class="number">20</span>;}
+          <span class="name">acceleration</span>: <span class="name">PointDirection</span> {<span class="name">y</span>:<span class="number">100</span>; <span class="name">yVariation</span>: <span class="number">20</span>}
+      }
+  }
+
+</pre>
+<p>
+<font>
+第三组有一个 Affector 作为直接子代，这使得该影响器自动针对该组。影响器意味着一旦粒子进入该组，就可以使用该粒子的 x,y 位置在另一个发射器上调用突发函数。</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-particlegroup.html">ParticleGroup</a></span> {
+      <span class="name">name</span>: <span class="string">&quot;dead&quot;</span>
+      <span class="name">duration</span>: <span class="number">1000</span>
+      <span class="type"><a href="qml-qtquick-particles-affector.html">Affector</a></span> {
+          <span class="name">once</span>: <span class="number">true</span>
+          <span class="name">onAffected</span>: <span class="name">worksEmitter</span>.<span class="name">burst</span>(<span class="number">400</span>,<span class="name">x</span>,<span class="name">y</span>)
+      }
+  }
+
+</pre>
+<p>
+<font>
+如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-trailemitter.html">TrailEmitter</a>不适合您对多个发射器的需求，您还可以动态创建发射器，同时仍使用相同的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-particlesystem.html">ParticleSystem</a>和图像粒子</font></p>
+<pre class="qml">
+
+  <span class="keyword">for</span> (var i=0; <span class="name">i</span><span class="operator">&lt;</span><span class="number">8</span>; i++) {
+      var obj = <span class="name">emitterComp</span>.<span class="name">createObject</span>(<span class="name">root</span>);
+      <span class="name">obj</span>.<span class="name">x</span> <span class="operator">=</span> <span class="name">x</span>
+      <span class="name">obj</span>.<span class="name">y</span> <span class="operator">=</span> <span class="name">y</span>
+      <span class="name">obj</span>.<span class="name">targetX</span> <span class="operator">=</span> <span class="name">Math</span>.<span class="name">random</span>() <span class="operator">*</span> <span class="number">240</span> <span class="operator">-</span> <span class="number">120</span> <span class="operator">+</span> <span class="name">obj</span>.<span class="name">x</span>
+      <span class="name">obj</span>.<span class="name">targetY</span> <span class="operator">=</span> <span class="name">Math</span>.<span class="name">random</span>() <span class="operator">*</span> <span class="number">240</span> <span class="operator">-</span> <span class="number">120</span> <span class="operator">+</span> <span class="name">obj</span>.<span class="name">y</span>
+      <span class="name">obj</span>.<span class="name">life</span> <span class="operator">=</span> <span class="name">Math</span>.<span class="name">round</span>(<span class="name">Math</span>.<span class="name">random</span>() <span class="operator">*</span> <span class="number">2400</span>) <span class="operator">+</span> <span class="number">200</span>
+      <span class="name">obj</span>.<span class="name">emitRate</span> <span class="operator">=</span> <span class="name">Math</span>.<span class="name">round</span>(<span class="name">Math</span>.<span class="name">random</span>() <span class="operator">*</span> <span class="number">32</span>) <span class="operator">+</span> <span class="number">32</span>
+      <span class="name">obj</span>.<span class="name">go</span>();
+  }
+
+</pre>
+<p>注意这个效果，一团飞舞的彩虹矛，使用<a href="qml-qtquick-particles-trailemitter.html">TrailEmitter</a>会更好。为了更简单地展示这个概念，本例中只使用了动态发射器。</p>
+<p>多个画家展示了如何控制单个粒子的油漆顺序。虽然在一个ImagePainter中粒子的绘制顺序没有严格定义，但<a href="qml-qtquick-particles-imageparticle.html">ImageParticle</a>对象遵循正常的<a href="qtquick-index.html">Qt Quick 模块</a>项z顺序规则。在这个例子中，您可以使用一对<a href="qml-qtquick-particles-imageparticle.html">ImageParticle</a>来绘制黑色边框上方的粒子内部，每个粒子都绘制同一个逻辑粒子的不同部分。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-particles-system-content-dynamiccomparison-qml.html">particles/system/content/dynamiccomparison.qml</a></li>
+<li><a href="qtquick-particles-system-content-dynamicemitters-qml.html">particles/system/content/dynamicemitters.qml</a></li>
+<li><a href="qtquick-particles-system-content-multiplepainters-qml.html">particles/system/content/multiplepainters.qml</a></li>
+<li><a href="qtquick-particles-system-content-startstop-qml.html">particles/system/content/startstop.qml</a></li>
+<li><a href="qtquick-particles-system-content-timedgroupchanges-qml.html">particles/system/content/timedgroupchanges.qml</a></li>
+<li><a href="qtquick-particles-system-main-cpp.html">particles/system/main.cpp</a></li>
+<li><a href="qtquick-particles-system-system-pro.html">particles/system/system.pro</a></li>
+<li><a href="qtquick-particles-system-system-qml.html">particles/system/system.qml</a></li>
+<li><a href="qtquick-particles-system-system-qmlproject.html">particles/system/system.qmlproject</a></li>
+<li><a href="qtquick-particles-system-system-qrc.html">particles/system/system.qrc</a></li>
+</ul>
+</div>
+<!-- @@@particles/system -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

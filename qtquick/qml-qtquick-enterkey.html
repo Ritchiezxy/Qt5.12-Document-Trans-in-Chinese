@@ -46,21 +46,21 @@
 <h1 class="title">EnterKey QML 类型</h1>
 <span class="subtitle"></span>
 <!-- $$$EnterKey-brief -->
-<p><font style="vertical-align: inherit;">提供一个属性来操作屏幕键盘上 Enter 键的外观。</font> <a href="#details">更多...</a></p>
+<p>提供一个属性来操作屏幕键盘上 Enter 键的外观。 <a href="#details">更多...</a></p>
 <!-- @@@EnterKey -->
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> 导入语句：</td><td class="memItemRight bottomAlign"> import QtQuick 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.6</td></tr></table></div><ul>
 <li><a href="qml-qtquick-enterkey-members.html">所有成员的列表，包括继承成员</a></li>
 </ul>
 <a name="attached-properties"></a>
-<h2 id="attached-properties"><font style="vertical-align: inherit;">附加属性</font></h2>
+<h2 id="attached-properties">附加属性</h2>
 <ul>
 <li class="fn"><b><b><a href="qml-qtquick-enterkey.html#type-attached-prop">type</a></b></b> : enumeration</li>
 </ul>
 <!-- $$$EnterKey-description -->
 <a name="details"></a>
 <h2 id="details">详细信息</h2>
-	<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-enterkey.html"><font style="vertical-align: inherit;">EnterKey</font></a><font style="vertical-align: inherit;">附加属性被用来操纵回车键的屏幕键盘上的外观和行为。</font><!-- @@@EnterKey --><h2><font style="vertical-align: inherit;">附加属性<span lang="zh-cn">文档</span></font></h2>
+	<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-enterkey.html">EnterKey</a>附加属性被用来操纵回车键的屏幕键盘上的外观和行为。<!-- @@@EnterKey --><h2>附加属性<span lang="zh-cn">文档</span></h2>
 <!-- $$$type -->
 <div class="qmlitem"><div class="qmlproto">
 <div class="table"><table class="qmlname">
@@ -68,19 +68,19 @@
 <td class="tblQmlPropNode"><p>
 <a name="type-attached-prop"></a><span class="name">EnterKey.type</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
 </table></div>
-</div><div class="qmldoc"><p><font style="vertical-align: inherit;">保存 Enter 键的类型。</font></p>
-<p><b><font style="vertical-align: inherit;">注意：</font></b><font style="vertical-align: inherit;">并非所有平台都支持所有这些值。对于不受支持的值，将使用默认键。</font></p><div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">
+</div><div class="qmldoc"><p>保存 Enter 键的类型。</p>
+<p><b>注意：</b>并非所有平台都支持所有这些值。对于不受支持的值，将使用默认键。</p><div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">
 			<span lang="zh-cn">值</span></th><th class="tbldscr">
 			<span lang="zh-cn">描述</span></th></tr>
-<tr><td class="topAlign"><code>Qt.EnterKeyDefault</code></td><td class="topAlign"><font style="vertical-align: inherit;">默认回车键。这可以是接受输入并关闭键盘的按钮，也可以是在多行输入字段的情况下输入换行符的</font><i><font style="vertical-align: inherit;">返回</font></i><font style="vertical-align: inherit;">按钮。</font></td></tr>
-<tr><td class="topAlign"><code>Qt.EnterKeyReturn</code></td><td class="topAlign"><font style="vertical-align: inherit;">显示插入换行符的</font><i><font style="vertical-align: inherit;">返回</font></i><font style="vertical-align: inherit;">按钮。</font></td></tr>
+<tr><td class="topAlign"><code>Qt.EnterKeyDefault</code></td><td class="topAlign">默认回车键。这可以是接受输入并关闭键盘的按钮，也可以是在多行输入字段的情况下输入换行符的<i>返回</i>按钮。</td></tr>
+<tr><td class="topAlign"><code>Qt.EnterKeyReturn</code></td><td class="topAlign">显示插入换行符的<i>返回</i>按钮。</td></tr>
 <tr><td class="topAlign"><code>Qt.EnterKeyDone</code></td><td class="topAlign">
-	<font style="vertical-align: inherit;">显示</font><i><font style="vertical-align: inherit;">“完成”</font></i><font style="vertical-align: inherit;">按钮。通常，键盘会在按下按钮时关闭。</font></td></tr>
-<tr><td class="topAlign"><code>Qt.EnterKeyGo</code></td><td class="topAlign"><font style="vertical-align: inherit;">显示</font><i><font style="vertical-align: inherit;">“<span lang="zh-cn">前进</span>”</font></i><font style="vertical-align: inherit;">按钮。通常在输入 URL 时在地址栏中使用。</font></td></tr>
-<tr><td class="topAlign"><code>Qt.EnterKeySend</code></td><td class="topAlign"><font style="vertical-align: inherit;">显示</font><i><font style="vertical-align: inherit;">“发送”</font></i><font style="vertical-align: inherit;">按钮。</font></td></tr>
-<tr><td class="topAlign"><code>Qt.EnterKeySearch</code></td><td class="topAlign"><font style="vertical-align: inherit;">显示</font><i><font style="vertical-align: inherit;">“搜索”</font></i><font style="vertical-align: inherit;">按钮。</font></td></tr>
-<tr><td class="topAlign"><code>Qt.EnterKeyNext</code></td><td class="topAlign"><font style="vertical-align: inherit;">显示</font><i><font style="vertical-align: inherit;">“下一步”</font></i><font style="vertical-align: inherit;">按钮。通常用于表单以允许导航到下一个输入字段而无需关闭键盘。</font></td></tr>
-<tr><td class="topAlign"><code>Qt.EnterKeyPrevious</code></td><td class="topAlign"><font style="vertical-align: inherit;">显示</font><i><font style="vertical-align: inherit;">“上一个”</font></i><font style="vertical-align: inherit;">按钮。</font></td></tr>
+	显示<i>“完成”</i>按钮。通常，键盘会在按下按钮时关闭。</td></tr>
+<tr><td class="topAlign"><code>Qt.EnterKeyGo</code></td><td class="topAlign">显示<i>“<span lang="zh-cn">前进</span>”</i>按钮。通常在输入 URL 时在地址栏中使用。</td></tr>
+<tr><td class="topAlign"><code>Qt.EnterKeySend</code></td><td class="topAlign">显示<i>“发送”</i>按钮。</td></tr>
+<tr><td class="topAlign"><code>Qt.EnterKeySearch</code></td><td class="topAlign">显示<i>“搜索”</i>按钮。</td></tr>
+<tr><td class="topAlign"><code>Qt.EnterKeyNext</code></td><td class="topAlign">显示<i>“下一步”</i>按钮。通常用于表单以允许导航到下一个输入字段而无需关闭键盘。</td></tr>
+<tr><td class="topAlign"><code>Qt.EnterKeyPrevious</code></td><td class="topAlign">显示<i>“上一个”</i>按钮。</td></tr>
 </table></div>
 </div></div><!-- @@@type -->
 <br/>

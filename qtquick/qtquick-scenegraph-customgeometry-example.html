@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- customgeometry.qdoc -->
+  <title>Scene Graph - Custom Geometry | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >场景图 - 自定义几何</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-scenegraph-customgeometry-example.html#beziercurve-declaration">贝塞尔曲线声明</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-scenegraph-customgeometry-example.html#beziercurve-implementation">贝塞尔曲线实现</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-scenegraph-customgeometry-example.html#application-entry-point">应用程序入口点</a></li>
+<li class="level1"><a href="#using-the-item">使用项</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">场景图 - 自定义几何</h1>
+<span class="subtitle"></span>
+<!-- $$$scenegraph/customgeometry-brief -->
+<p>展示如何在 Qt Quick 场景图中实现自定义几何图形。</p>
+<!-- @@@scenegraph/customgeometry -->
+<!-- $$$scenegraph/customgeometry-description -->
+<div class="descr"> <a name="details"></a>
+<p>自定义几何示例展示了如何创建一个使用场景图 API 为场景图构建自定义几何的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html">QQuickItem 。</a>它通过创建一个 BezierCurve 项目来做到这一点，该项目是 CustomGeometry 模块的一部分，并在 QML 文件中使用它。</p>
+<p class="centerAlign"><img src="images/custom-geometry-example.png" alt="" /></p><a name="beziercurve-declaration"></a>
+<h2 id="beziercurve-declaration">贝塞尔曲线声明</h2>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &lt;QtQuick/QQuickItem&gt;</span>
+
+  <span class="keyword">class</span> BezierCurve : <span class="keyword">public</span> <span class="type"><a href="qquickitem.html">QQuickItem</a></span>
+  {
+      Q_OBJECT
+
+      Q_PROPERTY(<span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> p1 READ p1 WRITE setP1 NOTIFY p1Changed)
+      Q_PROPERTY(<span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> p2 READ p2 WRITE setP2 NOTIFY p2Changed)
+      Q_PROPERTY(<span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> p3 READ p3 WRITE setP3 NOTIFY p3Changed)
+      Q_PROPERTY(<span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> p4 READ p4 WRITE setP4 NOTIFY p4Changed)
+
+      Q_PROPERTY(<span class="type">int</span> segmentCount READ segmentCount WRITE setSegmentCount NOTIFY segmentCountChanged)
+
+  <span class="keyword">public</span>:
+      BezierCurve(<span class="type"><a href="qquickitem.html">QQuickItem</a></span> <span class="operator">*</span>parent <span class="operator">=</span> <span class="number">0</span>);
+      <span class="operator">~</span>BezierCurve();
+
+      <span class="type"><a href="qsgnode.html">QSGNode</a></span> <span class="operator">*</span>updatePaintNode(<span class="type"><a href="qsgnode.html">QSGNode</a></span> <span class="operator">*</span><span class="operator">,</span> UpdatePaintNodeData <span class="operator">*</span>);
+
+      <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> p1() <span class="keyword">const</span> { <span class="keyword">return</span> m_p1; }
+      <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> p2() <span class="keyword">const</span> { <span class="keyword">return</span> m_p2; }
+      <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> p3() <span class="keyword">const</span> { <span class="keyword">return</span> m_p3; }
+      <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> p4() <span class="keyword">const</span> { <span class="keyword">return</span> m_p4; }
+
+      <span class="type">int</span> segmentCount() <span class="keyword">const</span> { <span class="keyword">return</span> m_segmentCount; }
+
+      <span class="type">void</span> setP1(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> <span class="operator">&amp;</span>p);
+      <span class="type">void</span> setP2(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> <span class="operator">&amp;</span>p);
+      <span class="type">void</span> setP3(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> <span class="operator">&amp;</span>p);
+      <span class="type">void</span> setP4(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> <span class="operator">&amp;</span>p);
+
+      <span class="type">void</span> setSegmentCount(<span class="type">int</span> count);
+
+  <span class="keyword">signals</span>:
+      <span class="type">void</span> p1Changed(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> <span class="operator">&amp;</span>p);
+      <span class="type">void</span> p2Changed(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> <span class="operator">&amp;</span>p);
+      <span class="type">void</span> p3Changed(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> <span class="operator">&amp;</span>p);
+      <span class="type">void</span> p4Changed(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> <span class="operator">&amp;</span>p);
+
+      <span class="type">void</span> segmentCountChanged(<span class="type">int</span> count);
+
+  <span class="keyword">private</span>:
+      <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> m_p1;
+      <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> m_p2;
+      <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> m_p3;
+      <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> m_p4;
+
+      <span class="type">int</span> m_segmentCount;
+  };
+
+</pre>
+<p>项声明是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html">QQuickItem</a>类的子类，并添加了五个属性。一个用于贝塞尔曲线中的四个控制点中的每一个，一个用于控制曲线细分为多少段的参数。对于每个属性，我们都有相应的 getter 和 setter 函数。由于这些属性可以在 QML 中绑定，因此最好为它们中的每一个设置通知信号，这样更改将被 QML 引擎拾取并相应地使用。</p>
+<pre class="cpp">
+
+      <span class="type"><a href="qsgnode.html">QSGNode</a></span> <span class="operator">*</span>updatePaintNode(<span class="type"><a href="qsgnode.html">QSGNode</a></span> <span class="operator">*</span><span class="operator">,</span> UpdatePaintNodeData <span class="operator">*</span>);
+
+</pre>
+<p>QML场景和渲染场景图的同步点是虚函数<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#updatePaintNode">QQuickItem::updatePaintNode</a> ()，所有自定义场景图逻辑的item都必须实现。</p>
+<p><b>注意：</b>场景图将在许多硬件配置上在单独的线程上呈现。因此，与场景图的交互以受控方式发生至关重要，首先是通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#updatePaintNode">QQuickItem::updatePaintNode</a> () 函数。</p><a name="beziercurve-implementation"></a>
+<h2 id="beziercurve-implementation">贝塞尔曲线实现</h2>
+<pre class="cpp">
+
+  BezierCurve<span class="operator">::</span>BezierCurve(<span class="type"><a href="qquickitem.html">QQuickItem</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="qquickitem.html">QQuickItem</a></span>(parent)
+      <span class="operator">,</span> m_p1(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span>)
+      <span class="operator">,</span> m_p2(<span class="number">1</span><span class="operator">,</span> <span class="number">0</span>)
+      <span class="operator">,</span> m_p3(<span class="number">0</span><span class="operator">,</span> <span class="number">1</span>)
+      <span class="operator">,</span> m_p4(<span class="number">1</span><span class="operator">,</span> <span class="number">1</span>)
+      <span class="operator">,</span> m_segmentCount(<span class="number">32</span>)
+  {
+      setFlag(ItemHasContents<span class="operator">,</span> <span class="keyword">true</span>);
+  }
+
+</pre>
+<p>BezierCurve 构造函数设置控制点和段数的默认值。贝塞尔曲线是在相对于项目的边界矩形的标准化坐标中指定的。</p>
+<p>构造函数还设置标志<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#Flag-enum">QQuickItem::ItemHasContents</a>。这个标志告诉画布这个项目提供视觉内容，并在 QML 场景与渲染场景图同步时调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#updatePaintNode">QQuickItem::updatePaintNode ()。</a></p>
+<pre class="cpp">
+
+  BezierCurve<span class="operator">::</span><span class="operator">~</span>BezierCurve()
+  {
+  }
+
+</pre>
+<p>BezierCurve 类没有需要清理的数据成员，因此析构函数什么也不做。值得一提的是，渲染场景图由它自己的场景图管理，可能在不同的线程中，因此不应在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html">QQuickItem类中保留</a><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgnode.html">QSGNode</a>引用，也不应尝试显式清理它们。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html"></a></p>
+<pre class="cpp">
+
+  <span class="type">void</span> BezierCurve<span class="operator">::</span>setP1(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> <span class="operator">&amp;</span>p)
+  {
+      <span class="keyword">if</span> (p <span class="operator">=</span><span class="operator">=</span> m_p1)
+          <span class="keyword">return</span>;
+
+      m_p1 <span class="operator">=</span> p;
+      <span class="keyword">emit</span> p1Changed(p);
+      update();
+  }
+
+</pre>
+<p>p1 属性的 setter 函数检查值是否未更改，如果是这种情况，则提前退出。然后它更新内部值并发出改变的信号。然后它继续调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#update">QQuickItem::update</a> () 函数，该函数将通知渲染场景图，该对象的状态已更改，需要与渲染场景图同步。对 update() 的调用将导致稍后对<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#updatePaintNode">QQuickItem::updatePaintNode</a> () 的调用。</p>
+<p>其他属性设置器是等效的，在本示例中省略。</p>
+<pre class="cpp">
+
+  <span class="type"><a href="qsgnode.html">QSGNode</a></span> <span class="operator">*</span>BezierCurve<span class="operator">::</span>updatePaintNode(<span class="type"><a href="qsgnode.html">QSGNode</a></span> <span class="operator">*</span>oldNode<span class="operator">,</span> UpdatePaintNodeData <span class="operator">*</span>)
+  {
+      <span class="type"><a href="qsggeometrynode.html">QSGGeometryNode</a></span> <span class="operator">*</span>node <span class="operator">=</span> nullptr;
+      <span class="type"><a href="qsggeometry.html">QSGGeometry</a></span> <span class="operator">*</span>geometry <span class="operator">=</span> nullptr;
+
+      <span class="keyword">if</span> (<span class="operator">!</span>oldNode) {
+          node <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qsggeometrynode.html">QSGGeometryNode</a></span>;
+
+</pre>
+<p>updatePaintNode() 函数是将 QML 场景的状态与渲染场景图同步的主要集成点。该函数被传递了一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgnode.html">QSGNode</a>，它是最后一次调用该函数时返回的实例。第一次调用该函数时它将为空，我们创建<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsggeometrynode.html">QSGGeometryNode</a>，我们将填充几何体和材质。</p>
+<pre class="cpp">
+
+          geometry <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qsggeometry.html">QSGGeometry</a></span>(<span class="type"><a href="qsggeometry.html">QSGGeometry</a></span><span class="operator">::</span>defaultAttributes_Point2D()<span class="operator">,</span> m_segmentCount);
+          geometry<span class="operator">-</span><span class="operator">&gt;</span>setLineWidth(<span class="number">2</span>);
+          geometry<span class="operator">-</span><span class="operator">&gt;</span>setDrawingMode(<span class="type"><a href="qsggeometry.html">QSGGeometry</a></span><span class="operator">::</span>DrawLineStrip);
+          node<span class="operator">-</span><span class="operator">&gt;</span>setGeometry(geometry);
+          node<span class="operator">-</span><span class="operator">&gt;</span>setFlag(<span class="type"><a href="qsgnode.html">QSGNode</a></span><span class="operator">::</span>OwnsGeometry);
+
+</pre>
+<p>然后我们创建几何并将其添加到节点。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsggeometry.html">QSGGeometry</a>构造函数的第一个参数是顶点类型的定义，称为“属性集”。由于 QML 中经常使用的图形以一些常见的标准属性集为中心，因此这些是默认提供的。这里我们使用 Point2D 属性集，它有两个浮点数，一个用于 x 坐标，一个用于 y 坐标。第二个参数是顶点数。</p>
+<p>也可以创建自定义属性集，但本示例未涵盖这一点。</p>
+<p>由于我们对管理几何图形的内存没有任何特殊需求，因此我们指定<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsggeometrynode.html">QSGGeometryNode</a>应该拥有几何图形。</p>
+<p>为了最小化分配、减少内存碎片和提高性能，还可以使几何成为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsggeometrynode.html">QSGGeometryNode</a>子类的成员，在这种情况下，我们不会设置<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgnode.html#Flag-enum">QSGGeometryNode::OwnsGeometry</a>标志。</p>
+<pre class="cpp">
+
+          <span class="type"><a href="qsgflatcolormaterial.html">QSGFlatColorMaterial</a></span> <span class="operator">*</span>material <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qsgflatcolormaterial.html">QSGFlatColorMaterial</a></span>;
+          material<span class="operator">-</span><span class="operator">&gt;</span>setColor(<span class="type"><a href="../qtgui/qcolor.html">QColor</a></span>(<span class="number">255</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="number">0</span>));
+          node<span class="operator">-</span><span class="operator">&gt;</span>setMaterial(material);
+          node<span class="operator">-</span><span class="operator">&gt;</span>setFlag(<span class="type"><a href="qsgnode.html">QSGNode</a></span><span class="operator">::</span>OwnsMaterial);
+
+</pre>
+<p>场景图 API 提供了一些常用的材质实现。在此示例中，我们使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgflatcolormaterial.html">QSGFlatColorMaterial</a>将用纯色填充由几何定义的形状。我们再次将材质的所有权传递给节点，因此可以通过场景图对其进行清理。</p>
+<pre class="cpp">
+
+      } <span class="keyword">else</span> {
+          node <span class="operator">=</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type"><a href="qsggeometrynode.html">QSGGeometryNode</a></span> <span class="operator">*</span><span class="operator">&gt;</span>(oldNode);
+          geometry <span class="operator">=</span> node<span class="operator">-</span><span class="operator">&gt;</span>geometry();
+          geometry<span class="operator">-</span><span class="operator">&gt;</span>allocate(m_segmentCount);
+      }
+
+</pre>
+<p>在 QML 项目已更改并且我们只想修改现有节点的几何图形的情况下，我们将其<code>oldNode</code>转换为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsggeometrynode.html">QSGGeometryNode</a>实例并提取它的几何图形。如果段数发生变化，我们调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsggeometry.html#allocate">QSGGeometry::allocate</a> () 以确保它具有正确数量的顶点。</p>
+<pre class="cpp">
+
+      <span class="type"><a href="../qtcore/qsizef.html">QSizeF</a></span> itemSize <span class="operator">=</span> size();
+      <span class="type"><a href="qsggeometry.html">QSGGeometry</a></span><span class="operator">::</span>Point2D <span class="operator">*</span>vertices <span class="operator">=</span> geometry<span class="operator">-</span><span class="operator">&gt;</span>vertexDataAsPoint2D();
+      <span class="keyword">for</span> (<span class="type">int</span> i <span class="operator">=</span> <span class="number">0</span>; i <span class="operator">&lt;</span> m_segmentCount; <span class="operator">+</span><span class="operator">+</span>i) {
+          <span class="type"><a href="../qtcore/qtglobal.html#qreal-typedef">qreal</a></span> t <span class="operator">=</span> i <span class="operator">/</span> <span class="type"><a href="../qtcore/qtglobal.html#qreal-typedef">qreal</a></span>(m_segmentCount <span class="operator">-</span> <span class="number">1</span>);
+          <span class="type"><a href="../qtcore/qtglobal.html#qreal-typedef">qreal</a></span> invt <span class="operator">=</span> <span class="number">1</span> <span class="operator">-</span> t;
+
+          <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> pos <span class="operator">=</span> invt <span class="operator">*</span> invt <span class="operator">*</span> invt <span class="operator">*</span> m_p1
+                      <span class="operator">+</span> <span class="number">3</span> <span class="operator">*</span> invt <span class="operator">*</span> invt <span class="operator">*</span> t <span class="operator">*</span> m_p2
+                      <span class="operator">+</span> <span class="number">3</span> <span class="operator">*</span> invt <span class="operator">*</span> t <span class="operator">*</span> t <span class="operator">*</span> m_p3
+                      <span class="operator">+</span> t <span class="operator">*</span> t <span class="operator">*</span> t <span class="operator">*</span> m_p4;
+
+          <span class="type">float</span> x <span class="operator">=</span> pos<span class="operator">.</span>x() <span class="operator">*</span> itemSize<span class="operator">.</span>width();
+          <span class="type">float</span> y <span class="operator">=</span> pos<span class="operator">.</span>y() <span class="operator">*</span> itemSize<span class="operator">.</span>height();
+
+          vertices<span class="operator">[</span>i<span class="operator">]</span><span class="operator">.</span>set(x<span class="operator">,</span> y);
+      }
+      node<span class="operator">-</span><span class="operator">&gt;</span>markDirty(<span class="type"><a href="qsgnode.html">QSGNode</a></span><span class="operator">::</span>DirtyGeometry);
+
+</pre>
+<p>为了填充几何图形，我们首先从中提取顶点数组。由于我们使用的是默认属性集之一，我们可以使用便捷函数<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsggeometry.html#vertexDataAsPoint2D">QSGGeometry::vertexDataAsPoint2D</a> ()。然后我们遍历每个段并计算其位置并将该值写入顶点。</p>
+<pre class="cpp">
+
+      <span class="keyword">return</span> node;
+  }
+
+</pre>
+<p>在函数的最后，我们返回节点以便场景图可以渲染它。</p>
+<a name="application-entry-point"></a>
+<h2 id="application-entry-point">应用程序入口点</h2>
+<pre class="cpp">
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span><span class="operator">*</span>argv)
+  {
+      <span class="type"><a href="../qtgui/qguiapplication.html">QGuiApplication</a></span> app(argc<span class="operator">,</span> argv);
+
+      qmlRegisterType<span class="operator">&lt;</span>BezierCurve<span class="operator">&gt;</span>(<span class="string">&quot;CustomGeometry&quot;</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="string">&quot;BezierCurve&quot;</span>);
+
+      <span class="type"><a href="qquickview.html">QQuickView</a></span> view;
+      <span class="type"><a href="../qtgui/qsurfaceformat.html">QSurfaceFormat</a></span> format <span class="operator">=</span> view<span class="operator">.</span>format();
+      format<span class="operator">.</span>setSamples(<span class="number">16</span>);
+      view<span class="operator">.</span>setFormat(format);
+      view<span class="operator">.</span>setSource(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span>(<span class="string">&quot;qrc:///scenegraph/customgeometry/main.qml&quot;</span>));
+      view<span class="operator">.</span>show();
+
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+</pre>
+<p>该应用程序是一个简单的 QML 应用程序，带有一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qguiapplication.html">QGuiApplication</a>和一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html">QQuickView</a>，我们传递一个 .qml 文件。要使用 BezierCurve 项，我们需要使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType">qmlRegisterType</a>()函数在 QML 引擎中注册它。我们将其命名为 BezierCurve 并将其作为<code>CustomGeometry 1.0</code>模块的一部分。</p>
+<p>由于贝塞尔曲线是使用 GL_LINE_STRIP 绘制的，我们指定应该对视图进行多重采样以获得抗锯齿。这不是必需的，但它会使项目在支持它的硬件上看起来更好一些。默认情况下不启用多重采样，因为它通常会导致更高的内存使用率。</p>
+<a name="using-the-item"></a>
+<h2 id="using-the-item">使用项</h2>
+<pre class="qml">
+
+  import QtQuick 2.0
+  import CustomGeometry 1.0
+
+</pre>
+<p>我们的.qml文件导入<code>QtQuick 2.0</code>模块以获得标准类型，以及我们自己的<code>CustomGeometry 1.0</code> 
+模块，该模块包含了我们新创建的BezierCurve对象。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">300</span>
+      <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type">BezierCurve</span> {
+          <span class="name">id</span>: <span class="name">line</span>
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">anchors</span>.margins: <span class="number">20</span>
+
+</pre>
+<p>然后我们创建我们的根项和我们锚定以填充根的 BezierCurve 实例。</p>
+<pre class="qml">
+
+          property <span class="type"><a href="../qtqml/qml-real.html">real</a></span> <span class="name">t</span>
+          SequentialAnimation on <span class="name">t</span> {
+              <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">to</span>: <span class="number">1</span>; <span class="name">duration</span>: <span class="number">2000</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutQuad</span> }
+              <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">to</span>: <span class="number">0</span>; <span class="name">duration</span>: <span class="number">2000</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutQuad</span> }
+              <span class="name">loops</span>: <span class="name">Animation</span>.<span class="name">Infinite</span>
+          }
+
+          <span class="name">p2</span>: <span class="name">Qt</span>.<span class="name">point</span>(<span class="name">t</span>, <span class="number">1</span> <span class="operator">-</span> <span class="name">t</span>)
+          <span class="name">p3</span>: <span class="name">Qt</span>.<span class="name">point</span>(<span class="number">1</span> <span class="operator">-</span> <span class="name">t</span>, <span class="name">t</span>)
+      }
+
+</pre>
+<p>为了使示例更有趣，我们添加了一个动画来更改曲线中的两个控制点。端点保持不变。</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+          <span class="name">anchors</span>.bottom: <span class="name">line</span>.<span class="name">bottom</span>
+
+          <span class="name">x</span>: <span class="number">20</span>
+          <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span> <span class="operator">-</span> <span class="number">40</span>
+          <span class="name">wrapMode</span>: <span class="name">Text</span>.<span class="name">WordWrap</span>
+
+          <span class="name">text</span>: <span class="string">&quot;This curve is a custom scene graph item, implemented using GL_LINE_STRIP&quot;</span>
+      }
+  }
+
+</pre>
+<p>最后，我们覆盖了一个简短的文本，概述了示例显示的内容。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-scenegraph-customgeometry-beziercurve-cpp.html">scenegraph/customgeometry/beziercurve.cpp</a></li>
+<li><a href="qtquick-scenegraph-customgeometry-beziercurve-h.html">scenegraph/customgeometry/beziercurve.h</a></li>
+<li><a href="qtquick-scenegraph-customgeometry-customgeometry-pro.html">scenegraph/customgeometry/customgeometry.pro</a></li>
+<li><a href="qtquick-scenegraph-customgeometry-customgeometry-qrc.html">scenegraph/customgeometry/customgeometry.qrc</a></li>
+<li><a href="qtquick-scenegraph-customgeometry-main-cpp.html">scenegraph/customgeometry/main.cpp</a></li>
+<li><a href="qtquick-scenegraph-customgeometry-main-qml.html">scenegraph/customgeometry/main.qml</a></li>
+</ul>
+</div>
+<!-- @@@scenegraph/customgeometry -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

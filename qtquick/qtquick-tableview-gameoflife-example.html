@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- gameoflife.qdoc -->
+  <title>Qt Quick TableView examples - Conway’s Game of Life | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick TableView 示例 - Conway 的生命游戏</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#running-the-example">运行该示例</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tableview-gameoflife-example.html#the-qml-user-interface">QML 用户界面</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tableview-gameoflife-example.html#the-c-model">C++ 模型</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tableview-gameoflife-example.html#updating-the-data">更新数据</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick TableView 示例 - Conway 的生命游戏</h1>
+<span class="subtitle"></span>
+<!-- $$$tableview/gameoflife-brief -->
+<p><i>Conway 的生命游戏</i>示例展示了如何使用 QML <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-tableview.html">TableView</a>类型来显示用户可以平移的 C++ 模型。</p>
+<!-- @@@tableview/gameoflife -->
+<!-- $$$tableview/gameoflife-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/gameoflife.png" alt="" /></p><a name="running-the-example"></a>
+<h2 id="running-the-example">运行该示例</h2>
+<p>要从 <a href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a>运行示例，请打开<b>欢迎</b> 模式并从 <b>示例</b>中选择示例。有关更多信息，请访问<a href="http://doc.qt.io/qtcreator/creator-build-example-application.html">构建和运行示例</a>。</p>
+<a name="the-qml-user-interface"></a>
+<h2 id="the-qml-user-interface">QML 用户界面</h2>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-tableview.html">TableView</a></span> {
+      <span class="name">id</span>: <span class="name">tableView</span>
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+
+      <span class="name">rowSpacing</span>: <span class="number">1</span>
+      <span class="name">columnSpacing</span>: <span class="number">1</span>
+
+      <span class="name">ScrollBar</span>.horizontal: <span class="name">ScrollBar</span> {}
+      <span class="name">ScrollBar</span>.vertical: <span class="name">ScrollBar</span> {}
+
+      <span class="name">delegate</span>: <span class="name">Rectangle</span> {
+          <span class="name">id</span>: <span class="name">cell</span>
+          <span class="name">implicitWidth</span>: <span class="number">15</span>
+          <span class="name">implicitHeight</span>: <span class="number">15</span>
+
+          <span class="name">color</span>: <span class="name">model</span>.<span class="name">value</span> ? <span class="string">&quot;#f3f3f4&quot;</span> : <span class="string">&quot;#b5b7bf&quot;</span>
+
+          <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+              <span class="name">anchors</span>.fill: <span class="name">parent</span>
+              <span class="name">onClicked</span>: <span class="name">model</span>.<span class="name">value</span> <span class="operator">=</span> !<span class="name">model</span>.<span class="name">value</span>
+          }
+      }
+
+</pre>
+<p>该示例使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-tableview.html">TableView</a>组件来显示单元格网格。这些单元格中的每一个都由<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-tableview.html">TableView</a>的委托在屏幕上绘制，这是一个 Rectangle QML 组件。我们读取单元格的值，并<code>model.value</code>在用户单击它时更改它。</p>
+<pre class="qml">
+
+  <span class="name">contentX</span>: (<span class="name">contentWidth</span> <span class="operator">-</span> <span class="name">width</span>) <span class="operator">/</span> <span class="number">2</span>;
+  <span class="name">contentY</span>: (<span class="name">contentHeight</span> <span class="operator">-</span> <span class="name">height</span>) <span class="operator">/</span> <span class="number">2</span>;
+
+</pre>
+<p>当应用程序启动时，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-tableview.html">TableView</a>滚动到它的中心，通过使用它的<code>contentX</code>和<code>contentY</code>属性来更新滚动位置，并<code>contentWidth</code>计算<code>contentHeight</code>视图应该滚动到的位置。</p>
+<pre class="qml">
+
+  <span class="name">model</span>: <span class="name">GameOfLifeModel</span> {
+      <span class="name">id</span>: <span class="name">gameOfLifeModel</span>
+  }
+
+</pre>
+<p>我们使用的模型是我们在 QML 系统中注册的自定义 C++ 类：</p>
+<pre class="cpp">
+
+  qmlRegisterType<span class="operator">&lt;</span>GameOfLifeModel<span class="operator">&gt;</span>(<span class="string">&quot;GameOfLifeModel&quot;</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="string">&quot;GameOfLifeModel&quot;</span>);
+
+</pre>
+<a name="the-c-model"></a>
+<h2 id="the-c-model">C++ 模型</h2>
+<pre class="cpp">
+
+  <span class="keyword">class</span> GameOfLifeModel : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qabstracttablemodel.html">QAbstractTableModel</a></span>
+  {
+      Q_OBJECT
+
+      Q_ENUMS(Roles)
+  <span class="keyword">public</span>:
+      <span class="keyword">enum</span> Roles {
+          CellRole
+      };
+
+      <span class="type"><a href="../qtcore/qhash.html">QHash</a></span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qbytearray.html">QByteArray</a></span><span class="operator">&gt;</span> roleNames() <span class="keyword">const</span> override {
+          <span class="keyword">return</span> {
+              { CellRole<span class="operator">,</span> <span class="string">&quot;value&quot;</span> }
+          };
+      }
+
+      <span class="keyword">explicit</span> GameOfLifeModel(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent <span class="operator">=</span> nullptr);
+
+      <span class="type">int</span> rowCount(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>parent <span class="operator">=</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span>()) <span class="keyword">const</span> override;
+      <span class="type">int</span> columnCount(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>parent <span class="operator">=</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span>()) <span class="keyword">const</span> override;
+
+      <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> data(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>index<span class="operator">,</span> <span class="type">int</span> role <span class="operator">=</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>DisplayRole) <span class="keyword">const</span> override;
+      bool setData(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>index<span class="operator">,</span> <span class="keyword">const</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> <span class="operator">&amp;</span>value<span class="operator">,</span>
+                   <span class="type">int</span> role <span class="operator">=</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>EditRole) override;
+
+      <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>ItemFlags flags(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>index) <span class="keyword">const</span> override;
+
+      Q_INVOKABLE <span class="type">void</span> nextStep();
+      Q_INVOKABLE bool loadFile(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>fileName);
+      Q_INVOKABLE <span class="type">void</span> loadPattern(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>plainText);
+      Q_INVOKABLE <span class="type">void</span> clear();
+
+  <span class="keyword">private</span>:
+      <span class="keyword">static</span> constexpr <span class="type">int</span> width <span class="operator">=</span> <span class="number">256</span>;
+      <span class="keyword">static</span> constexpr <span class="type">int</span> height <span class="operator">=</span> <span class="number">256</span>;
+      <span class="keyword">static</span> constexpr <span class="type">int</span> size <span class="operator">=</span> width <span class="operator">*</span> height;
+
+      <span class="keyword">using</span> StateContainer <span class="operator">=</span> std<span class="operator">::</span>array<span class="operator">&lt;</span>bool<span class="operator">,</span> size<span class="operator">&gt;</span>;
+      StateContainer m_currentState;
+
+      <span class="type">int</span> cellNeighborsCount(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> <span class="operator">&amp;</span>cellCoordinates) <span class="keyword">const</span>;
+      <span class="keyword">static</span> bool areCellCoordinatesValid(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> <span class="operator">&amp;</span>coordinates);
+      <span class="keyword">static</span> <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> cellCoordinatesFromIndex(<span class="type">int</span> cellIndex);
+      <span class="keyword">static</span> std<span class="operator">::</span>size_t cellIndex(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> <span class="operator">&amp;</span>coordinates);
+  };
+
+</pre>
+<p>该类<code>GameOfLifeModel</code>扩展了<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstracttablemodel.html">QAbstractTableModel</a>，因此它可以用作我们的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-tableview.html">TableView</a>组件的模型。因此，它需要实现一些功能，以便<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-tableview.html">TableView</a>组件可以与模型交互。正如您在<code>private</code>类的一部分中看到的那样，模型使用一个固定大小的数组来存储所有单元格的当前状态。</p>
+<pre class="cpp">
+
+  <span class="type">int</span> GameOfLifeModel<span class="operator">::</span>rowCount(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>parent) <span class="keyword">const</span>
+  {
+      <span class="keyword">if</span> (parent<span class="operator">.</span>isValid())
+          <span class="keyword">return</span> <span class="number">0</span>;
+
+      <span class="keyword">return</span> height;
+  }
+
+  <span class="type">int</span> GameOfLifeModel<span class="operator">::</span>columnCount(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>parent) <span class="keyword">const</span>
+  {
+      <span class="keyword">if</span> (parent<span class="operator">.</span>isValid())
+          <span class="keyword">return</span> <span class="number">0</span>;
+
+      <span class="keyword">return</span> width;
+  }
+
+</pre>
+<p>在这里，实现了<code>rowCount</code>and<code>columnCount</code>方法，以便<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-tableview.html">TableView</a>组件可以知道表格的大小。它只是返回<code>width</code>和<code>height</code>常量的值。</p>
+<pre class="cpp">
+
+  <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> GameOfLifeModel<span class="operator">::</span>data(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>index<span class="operator">,</span> <span class="type">int</span> role) <span class="keyword">const</span>
+  {
+      <span class="keyword">if</span> (<span class="operator">!</span>index<span class="operator">.</span>isValid() <span class="operator">|</span><span class="operator">|</span> role <span class="operator">!</span><span class="operator">=</span> CellRole)
+          <span class="keyword">return</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span>();
+
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span>(m_currentState<span class="operator">[</span>cellIndex({index<span class="operator">.</span>column()<span class="operator">,</span> index<span class="operator">.</span>row()})<span class="operator">]</span>);
+  }
+
+</pre>
+<p>当<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-tableview.html">TableView</a>组件向模型请求一些数据时，会调用该方法。在我们的示例中，我们只有一个单元格数据：它是否活着。该信息由我们的 C++ 代码<code>CellRole</code>中的枚举值表示；<code>Roles</code>这对应<code>value</code>于 QML 代码中的属性（这两者之间的链接是由<code>roleNames()</code>我们的 C++ 类的函数建立的）。</p>
+<p>该类<code>GameOfLifeModel</code>可以使用参数识别哪个单元格是从哪个单元格请求的数据，该<code>index</code>参数是一个包含行和列的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qmodelindex.html">QModelIndex 。</a></p>
+<a name="updating-the-data"></a>
+<h2 id="updating-the-data">更新数据</h2>
+<pre class="cpp">
+
+  bool GameOfLifeModel<span class="operator">::</span>setData(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>index<span class="operator">,</span> <span class="keyword">const</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> <span class="operator">&amp;</span>value<span class="operator">,</span> <span class="type">int</span> role)
+  {
+      <span class="keyword">if</span> (role <span class="operator">!</span><span class="operator">=</span> CellRole <span class="operator">|</span><span class="operator">|</span> data(index<span class="operator">,</span> role) <span class="operator">=</span><span class="operator">=</span> value)
+          <span class="keyword">return</span> <span class="keyword">false</span>;
+
+      m_currentState<span class="operator">[</span>cellIndex({index<span class="operator">.</span>column()<span class="operator">,</span> index<span class="operator">.</span>row()})<span class="operator">]</span> <span class="operator">=</span> value<span class="operator">.</span>toBool();
+      <span class="keyword">emit</span> dataChanged(index<span class="operator">,</span> index<span class="operator">,</span> {role});
+
+      <span class="keyword">return</span> <span class="keyword">true</span>;
+  }
+
+</pre>
+<p>当从 QML 接口设置属性值时调用该<code>setData</code>方法：在我们的示例中，它会在单击单元格时切换单元格的状态。与<code>data()</code>函数一样，此方法接收一个<code>index</code>和一个<code>role</code>参数。此外，新值作为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qvariant.html">QVariant</a><code>toBool</code>传递，我们使用该函数将其转换为布尔值。</p>
+<p>当我们更新模型对象的内部状态时，我们需要发出一个<code>dataChanged</code>信号来告诉<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-tableview.html">TableView</a>组件它需要更新显示的数据。在这种情况下，只有被单击的单元格受到影响，因此必须更新的表格范围从单元格的索引开始和结束。</p>
+<pre class="cpp">
+
+  <span class="type">void</span> GameOfLifeModel<span class="operator">::</span>nextStep()
+  {
+      StateContainer newValues;
+
+      <span class="keyword">for</span> (std<span class="operator">::</span>size_t i <span class="operator">=</span> <span class="number">0</span>; i <span class="operator">&lt;</span> size; <span class="operator">+</span><span class="operator">+</span>i) {
+          bool currentState <span class="operator">=</span> m_currentState<span class="operator">[</span>i<span class="operator">]</span>;
+
+          <span class="type">int</span> cellNeighborsCount <span class="operator">=</span> <span class="keyword">this</span><span class="operator">-</span><span class="operator">&gt;</span>cellNeighborsCount(cellCoordinatesFromIndex(<span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(i)));
+
+          newValues<span class="operator">[</span>i<span class="operator">]</span> <span class="operator">=</span> currentState <span class="operator">=</span><span class="operator">=</span> <span class="keyword">true</span>
+                  <span class="operator">?</span> cellNeighborsCount <span class="operator">=</span><span class="operator">=</span> <span class="number">2</span> <span class="operator">|</span><span class="operator">|</span> cellNeighborsCount <span class="operator">=</span><span class="operator">=</span> <span class="number">3</span>
+                  : cellNeighborsCount <span class="operator">=</span><span class="operator">=</span> <span class="number">3</span>;
+      }
+
+      m_currentState <span class="operator">=</span> std<span class="operator">::</span>move(newValues);
+
+      <span class="keyword">emit</span> dataChanged(index(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span>)<span class="operator">,</span> index(height <span class="operator">-</span> <span class="number">1</span><span class="operator">,</span> width <span class="operator">-</span> <span class="number">1</span>)<span class="operator">,</span> {CellRole});
+  }
+
+</pre>
+<p>该函数可以直接从 QML 代码调用，因为它的定义中包含<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qobject.html#Q_INVOKABLE">Q_INVOKABLE</a>宏。<i>它会在用户单击Next</i>按钮或 Timer 发出<code>triggered()</code>信号时播放游戏的迭代。</p>
+<p>遵循<i>Conway生命游戏</i>规则，根据其邻居的当前状态为每个单元计算一个新状态。当为整个网格计算出新状态时，它会替换当前状态，并为整个表发出一个<i>dataChanged信号。</i></p>
+<pre class="cpp">
+
+  bool GameOfLifeModel<span class="operator">::</span>loadFile(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>fileName)
+  {
+      <span class="type"><a href="../qtcore/qfile.html">QFile</a></span> file(fileName);
+      <span class="keyword">if</span> (<span class="operator">!</span>file<span class="operator">.</span>open(<span class="type"><a href="../qtcore/qiodevice.html">QIODevice</a></span><span class="operator">::</span>ReadOnly))
+          <span class="keyword">return</span> <span class="keyword">false</span>;
+
+      <span class="type"><a href="../qtcore/qtextstream.html">QTextStream</a></span> in(<span class="operator">&amp;</span>file);
+      loadPattern(in<span class="operator">.</span>readAll());
+
+      <span class="keyword">return</span> <span class="keyword">true</span>;
+  }
+
+  <span class="type">void</span> GameOfLifeModel<span class="operator">::</span>loadPattern(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>plainText)
+  {
+      clear();
+
+      <span class="type"><a href="../qtcore/qstringlist.html">QStringList</a></span> rows <span class="operator">=</span> plainText<span class="operator">.</span>split(<span class="string">&quot;\n&quot;</span>);
+      <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> patternSize(<span class="number">0</span><span class="operator">,</span> rows<span class="operator">.</span>count());
+      <span class="keyword">for</span> (<span class="type"><a href="../qtcore/qstring.html">QString</a></span> row : rows) {
+          <span class="keyword">if</span> (row<span class="operator">.</span>size() <span class="operator">&gt;</span> patternSize<span class="operator">.</span>width())
+              patternSize<span class="operator">.</span>setWidth(row<span class="operator">.</span>size());
+      }
+
+      <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> patternLocation((width <span class="operator">-</span> patternSize<span class="operator">.</span>width()) <span class="operator">/</span> <span class="number">2</span><span class="operator">,</span> (height <span class="operator">-</span> patternSize<span class="operator">.</span>height()) <span class="operator">/</span> <span class="number">2</span>);
+
+      <span class="keyword">for</span> (<span class="type">int</span> y <span class="operator">=</span> <span class="number">0</span>; y <span class="operator">&lt;</span> patternSize<span class="operator">.</span>height(); <span class="operator">+</span><span class="operator">+</span>y) {
+          <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> line <span class="operator">=</span> rows<span class="operator">[</span>y<span class="operator">]</span>;
+
+          <span class="keyword">for</span> (<span class="type">int</span> x <span class="operator">=</span> <span class="number">0</span>; x <span class="operator">&lt;</span> line<span class="operator">.</span>length(); <span class="operator">+</span><span class="operator">+</span>x) {
+              <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> cellPosition(x <span class="operator">+</span> patternLocation<span class="operator">.</span>x()<span class="operator">,</span> y <span class="operator">+</span> patternLocation<span class="operator">.</span>y());
+              m_currentState<span class="operator">[</span>cellIndex(cellPosition)<span class="operator">]</span> <span class="operator">=</span> line<span class="operator">[</span>x<span class="operator">]</span> <span class="operator">=</span><span class="operator">=</span> <span class="char">'O'</span>;
+          }
+      }
+
+      <span class="keyword">emit</span> dataChanged(index(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span>)<span class="operator">,</span> index(height <span class="operator">-</span> <span class="number">1</span><span class="operator">,</span> width <span class="operator">-</span> <span class="number">1</span>)<span class="operator">,</span> {CellRole});
+  }
+
+</pre>
+<p>当应用程序打开时，会加载一个模式来演示<i>Conway 的生命游戏是</i>如何工作的。这两个函数加载存储模式的文件并解析它。与<code>nextStep</code>函数中一样，<code>dataChanged</code>一旦模式完全加载，就会为整个表发出信号。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-tableview-gameoflife-gameoflife-pro.html">tableview/gameoflife/gameoflife.pro</a></li>
+<li><a href="qtquick-tableview-gameoflife-gameoflifemodel-cpp.html">tableview/gameoflife/gameoflifemodel.cpp</a></li>
+<li><a href="qtquick-tableview-gameoflife-gameoflifemodel-h.html">tableview/gameoflife/gameoflifemodel.h</a></li>
+<li><a href="qtquick-tableview-gameoflife-main-cpp.html">tableview/gameoflife/main.cpp</a></li>
+<li><a href="qtquick-tableview-gameoflife-main-qml.html">tableview/gameoflife/main.qml</a></li>
+</ul>
+</div>
+<!-- @@@tableview/gameoflife -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

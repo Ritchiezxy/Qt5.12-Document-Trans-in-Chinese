@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- advtutorial.qdoc -->
+  <title>QML Advanced Tutorial 3 - Implementing the Game Logic | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >QML 高级教程 3 - 实现游戏逻辑</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="qtquick-tutorials-samegame-samegame2-example.html" />
+  <link rel="next" href="qtquick-tutorials-samegame-samegame4-example.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="qtquick-tutorials-samegame-samegame2-example.html">
+QML高级教程2 -填充游戏画布</a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="qtquick-tutorials-samegame-samegame4-example.html">
+QML高级教程4 -最后润色</a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-samegame-samegame3-example.html#making-a-playable-game">制作可玩游戏</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-samegame-samegame3-example.html#a-working-game">一个工作游戏</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML 高级教程 3 - 实现游戏逻辑</h1>
+<span class="subtitle"></span>
+<!-- $$$tutorials/samegame/samegame3-description -->
+<div class="descr"> <a name="details"></a>
+<a name="making-a-playable-game"></a>
+<h3 >制作可玩游戏</h3>
+<p>现在我们已经拥有了所有游戏组件，我们可以添加游戏逻辑来指示玩家如何与积木交互并玩游戏直到赢或输。</p>
+<p>为此，我们添加了以下功能<code>samegame.js</code>：</p>
+<ul>
+<li><code>handleClick(x,y)</code></li>
+<li><code>floodFill(xIdx,yIdx,type)</code></li>
+<li><code>shuffleDown()</code></li>
+<li><code>victoryCheck()</code></li>
+<li><code>floodMoveCheck(xIdx, yIdx, type)</code></li>
+</ul>
+<p>由于这是一个关于 QML 的教程，而不是游戏设计，我们将只在下面讨论<code>handleClick()</code>，<code>victoryCheck()</code>因为它们直接与 QML 类型交互。请注意，虽然这里的游戏逻辑是用 JavaScript 编写的，但它也可以用 C++ 编写，然后暴露给 QML。</p>
+<a name="enabling-mouse-click-interaction"></a>
+<h4 >启用鼠标点击交互</h4>
+<p>为了让JavaScript代码更容易与QML类型进行交互，我们在<code>samegame.qml</code>中添加了一个名为<code>gameCanvas</code> 
+的Item。它将背景替换为包含块的项目。它还接受来自用户的鼠标输入。以下是代码条目:</p>
+<pre class="qml">
+
+          <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+              <span class="name">id</span>: <span class="name">gameCanvas</span>
+
+              property <span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">score</span>: <span class="number">0</span>
+              property <span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">blockSize</span>: <span class="number">40</span>
+
+              <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span> <span class="operator">-</span> (<span class="name">parent</span>.<span class="name">width</span> <span class="operator">%</span> <span class="name">blockSize</span>)
+              <span class="name">height</span>: <span class="name">parent</span>.<span class="name">height</span> <span class="operator">-</span> (<span class="name">parent</span>.<span class="name">height</span> <span class="operator">%</span> <span class="name">blockSize</span>)
+              <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+
+              <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">onClicked</span>: <span class="name">SameGame</span>.<span class="name">handleClick</span>(<span class="name">mouse</span>.<span class="name">x</span>, <span class="name">mouse</span>.<span class="name">y</span>)
+              }
+          }
+
+</pre>
+<p><code>gameCanvas</code> 项是与棋盘大小一致的，并且有一个分数属性和一个处理鼠标点击的<a href="qml-qtquick-mousearea.html">MouseArea</a>。这些块现在被创建为它的子块，并且它的维被用来确定板的大小，以便应用程序可以扩展到可用的屏幕大小。因为它的大小被绑定到<code>blockSize</code>的倍数上，所以<code>blockSize</code> 
+作为QML属性从<code>samegame.js</code>中移到了<code>samegame.qml</code>中。注意，仍然可以从脚本访问它。</p>
+<p>当点击时，<a href="qml-qtquick-mousearea.html">MouseArea</a>调用<code>samegame.js</code>中的<code>handleClick()</code>，它决定玩家的点击是否应该导致任何方块被移除，并更新游戏画布。如有必要，以当前分数计分。下面是<code>handleClick()</code> 
+函数:</p>
+<pre class="js">
+
+  <span class="keyword">function</span> <span class="name">handleClick</span>(xPos, yPos) {
+      var column = <span class="name">Math</span>.<span class="name">floor</span>(<span class="name">xPos</span> <span class="operator">/</span> <span class="name">gameCanvas</span>.<span class="name">blockSize</span>);
+      var row = <span class="name">Math</span>.<span class="name">floor</span>(<span class="name">yPos</span> <span class="operator">/</span> <span class="name">gameCanvas</span>.<span class="name">blockSize</span>);
+      <span class="keyword">if</span> (<span class="name">column</span> <span class="operator">&gt;=</span> <span class="name">maxColumn</span> <span class="operator">||</span> <span class="name">column</span> <span class="operator">&lt;</span> <span class="number">0</span> <span class="operator">||</span> <span class="name">row</span> <span class="operator">&gt;=</span> <span class="name">maxRow</span> <span class="operator">||</span> <span class="name">row</span> <span class="operator">&lt;</span> <span class="number">0</span>)
+          <span class="keyword">return</span>;
+      <span class="keyword">if</span> (<span class="name">board</span>[<span class="name">index</span>(<span class="name">column</span>, <span class="name">row</span>)] <span class="operator">==</span> <span class="number">null</span>)
+          <span class="keyword">return</span>;
+      <span class="comment">//If it's a valid block, remove it and all connected (does nothing if it's not connected)</span>
+      <span class="name">floodFill</span>(<span class="name">column</span>, <span class="name">row</span>, -<span class="number">1</span>);
+      <span class="keyword">if</span> (<span class="name">fillFound</span> <span class="operator">&lt;=</span> <span class="number">0</span>)
+          <span class="keyword">return</span>;
+      <span class="name">gameCanvas</span>.<span class="name">score</span> <span class="operator">+=</span> (<span class="name">fillFound</span> <span class="operator">-</span> <span class="number">1</span>) <span class="operator">*</span> (<span class="name">fillFound</span> <span class="operator">-</span> <span class="number">1</span>);
+      <span class="name">shuffleDown</span>();
+      <span class="name">victoryCheck</span>();
+  }
+
+</pre>
+<p>
+<font>
+请注意，如果<code>score</code>是<code>samegame.js</code>文件中的全局变量，您将无法绑定到它。您只能绑定到 QML 属性。</font></p>
+<a name="updating-the-score"></a>
+<h4 >
+<font>
+更新分数</font></h4>
+<p>
+<font>
+当玩家点击一个方块并触发<code>handleClick()</code>时，<code>handleClick()</code>也会调用<code>victoryCheck()</code>更新分数并检查玩家是否完成游戏。这是<code>victoryCheck()</code>代码：</font></p>
+<pre class="js">
+
+  <span class="keyword">function</span> <span class="name">victoryCheck</span>() {
+      <span class="comment">//Award bonus points if no blocks left</span>
+      var deservesBonus = <span class="number">true</span>;
+      <span class="keyword">for</span> (var column = maxColumn - 1; <span class="name">column</span> <span class="operator">&gt;=</span> <span class="number">0</span>; column--)
+          <span class="keyword">if</span> (<span class="name">board</span>[<span class="name">index</span>(<span class="name">column</span>, <span class="name">maxRow</span> <span class="operator">-</span> <span class="number">1</span>)] <span class="operator">!=</span> <span class="number">null</span>)
+          <span class="name">deservesBonus</span> <span class="operator">=</span> <span class="number">false</span>;
+      <span class="keyword">if</span> (<span class="name">deservesBonus</span>)
+          <span class="name">gameCanvas</span>.<span class="name">score</span> <span class="operator">+=</span> <span class="number">500</span>;
+
+      <span class="comment">//Check whether game has finished</span>
+      <span class="keyword">if</span> (<span class="name">deservesBonus</span> <span class="operator">||</span> !(<span class="name">floodMoveCheck</span>(<span class="number">0</span>, <span class="name">maxRow</span> <span class="operator">-</span> <span class="number">1</span>, -<span class="number">1</span>)))
+          <span class="name">dialog</span>.<span class="name">show</span>(<span class="string">&quot;Game Over. Your score is &quot;</span> <span class="operator">+</span> <span class="name">gameCanvas</span>.<span class="name">score</span>);
+  }
+
+</pre>
+<p>
+<font>
+如果游戏结束，这将更新<code>gameCanvas.score</code>值并显示“游戏结束”对话框。</font></p>
+<p>
+<font>
+Game Over 对话框是使用<code>Dialog</code>定义在<code>Dialog.qml</code>. 这是<code>Dialog.qml</code>代码。请注意它是如何设计为通过函数和信号从脚本文件中强制使用的：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">container</span>
+
+      <span class="keyword">function</span> <span class="name">show</span>(text) {
+          <span class="name">dialogText</span>.<span class="name">text</span> <span class="operator">=</span> <span class="name">text</span>;
+          <span class="name">container</span>.<span class="name">opacity</span> <span class="operator">=</span> <span class="number">1</span>;
+      }
+
+      <span class="keyword">function</span> <span class="name">hide</span>() {
+          <span class="name">container</span>.<span class="name">opacity</span> <span class="operator">=</span> <span class="number">0</span>;
+      }
+
+      <span class="name">width</span>: <span class="name">dialogText</span>.<span class="name">width</span> <span class="operator">+</span> <span class="number">20</span>
+      <span class="name">height</span>: <span class="name">dialogText</span>.<span class="name">height</span> <span class="operator">+</span> <span class="number">20</span>
+      <span class="name">opacity</span>: <span class="number">0</span>
+
+      <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+          <span class="name">id</span>: <span class="name">dialogText</span>
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">text</span>: <span class="string">&quot;&quot;</span>
+      }
+
+      <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: <span class="name">hide</span>();
+      }
+  }
+
+</pre>
+<p>
+<font>
+这就是它在主<code>samegame.qml</code>文件中的使用方式：</font></p>
+<pre class="qml">
+
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-dialog.html">Dialog</a></span> {
+          <span class="name">id</span>: <span class="name">dialog</span>
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">z</span>: <span class="number">100</span>
+      }
+
+</pre>
+<p><font>
+我们将对话框的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-item.html#z-prop">z</a>值设置为 100，以确保它显示在我们的其他组件之上。项目的默认<code>z</code>值为 0。</font></p>
+<a name="a-dash-of-color"></a>
+<h4 >
+<font>
+一点颜色</font></h4>
+<p>如果所有的方块都是相同的颜色，玩相同的游戏就不太有趣了，所以我们修改了<code>samegame.js</code>中的<code>createBlock()</code>函数，每次调用时随机创建不同类型的方块(红色，绿色或蓝色)。<code>Block.qml</code>也改变了，每个块根据其类型包含不同的图像:</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">block</span>
+
+      property <span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">type</span>: <span class="number">0</span>
+
+      <span class="type"><a href="qml-qtquick-image.html">Image</a></span> {
+          <span class="name">id</span>: <span class="name">img</span>
+
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">source</span>: {
+              <span class="keyword">if</span> (<span class="name">type</span> <span class="operator">==</span> <span class="number">0</span>)
+                  <span class="keyword">return</span> <span class="string">&quot;../shared/pics/redStone.png&quot;</span>;
+              <span class="keyword">else</span> <span class="keyword">if</span> (<span class="name">type</span> <span class="operator">==</span> <span class="number">1</span>)
+                  <span class="keyword">return</span> <span class="string">&quot;../shared/pics/blueStone.png&quot;</span>;
+              <span class="keyword">else</span>
+                  <span class="keyword">return</span> <span class="string">&quot;../shared/pics/greenStone.png&quot;</span>;
+          }
+      }
+  }
+
+</pre>
+<a name="a-working-game"></a>
+<h3 >
+<font>
+一个工作游戏</font></h3>
+<p>
+<font>
+现在我们有了一个工作游戏！可以点击积木，玩家可以得分，游戏可以结束（然后您可以开始新的游戏）。这是到目前为止已完成的屏幕截图：</font></p>
+<p class="centerAlign"><img src="images/declarative-adv-tutorial3.png" alt="" /></p><p>
+<font>
+	这是现在的<code>samegame.qml</code>样子：</font></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+  import &quot;samegame.js&quot; as SameGame
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">screen</span>
+
+      <span class="name">width</span>: <span class="number">490</span>; <span class="name">height</span>: <span class="number">720</span>
+
+      <span class="type"><a href="qml-qtquick-systempalette.html">SystemPalette</a></span> { <span class="name">id</span>: <span class="name">activePalette</span> }
+
+      <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+          <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>
+          <span class="type">anchors</span> { <span class="name">top</span>: <span class="name">parent</span>.<span class="name">top</span>; <span class="name">bottom</span>: <span class="name">toolBar</span>.<span class="name">top</span> }
+
+          <span class="type"><a href="qml-qtquick-image.html">Image</a></span> {
+              <span class="name">id</span>: <span class="name">background</span>
+              <span class="name">anchors</span>.fill: <span class="name">parent</span>
+              <span class="name">source</span>: <span class="string">&quot;../shared/pics/background.jpg&quot;</span>
+              <span class="name">fillMode</span>: <span class="name">Image</span>.<span class="name">PreserveAspectCrop</span>
+          }
+
+          <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+              <span class="name">id</span>: <span class="name">gameCanvas</span>
+
+              property <span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">score</span>: <span class="number">0</span>
+              property <span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">blockSize</span>: <span class="number">40</span>
+
+              <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span> <span class="operator">-</span> (<span class="name">parent</span>.<span class="name">width</span> <span class="operator">%</span> <span class="name">blockSize</span>)
+              <span class="name">height</span>: <span class="name">parent</span>.<span class="name">height</span> <span class="operator">-</span> (<span class="name">parent</span>.<span class="name">height</span> <span class="operator">%</span> <span class="name">blockSize</span>)
+              <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+
+              <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">onClicked</span>: <span class="name">SameGame</span>.<span class="name">handleClick</span>(<span class="name">mouse</span>.<span class="name">x</span>, <span class="name">mouse</span>.<span class="name">y</span>)
+              }
+          }
+      }
+
+      <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-dialog.html">Dialog</a></span> {
+          <span class="name">id</span>: <span class="name">dialog</span>
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">z</span>: <span class="number">100</span>
+      }
+
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">toolBar</span>
+          <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>; <span class="name">height</span>: <span class="number">30</span>
+          <span class="name">color</span>: <span class="name">activePalette</span>.<span class="name">window</span>
+          <span class="name">anchors</span>.bottom: <span class="name">screen</span>.<span class="name">bottom</span>
+
+          <span class="type"><a href="../qtquickcontrols1/qml-qtquick-controls-button.html">Button</a></span> {
+              <span class="type">anchors</span> { <span class="name">left</span>: <span class="name">parent</span>.<span class="name">left</span>; <span class="name">verticalCenter</span>: <span class="name">parent</span>.<span class="name">verticalCenter</span> }
+              <span class="name">text</span>: <span class="string">&quot;New Game&quot;</span>
+              <span class="name">onClicked</span>: <span class="name">SameGame</span>.<span class="name">startNewGame</span>()
+          }
+
+          <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+              <span class="name">id</span>: <span class="name">score</span>
+              <span class="type">anchors</span> { <span class="name">right</span>: <span class="name">parent</span>.<span class="name">right</span>; <span class="name">verticalCenter</span>: <span class="name">parent</span>.<span class="name">verticalCenter</span> }
+              <span class="name">text</span>: <span class="string">&quot;Score: Who knows?&quot;</span>
+          }
+      }
+  }
+
+</pre>
+<p>
+这个游戏很管用，但现在有点无聊。流畅的动画过渡在哪里?高分在哪里?如果您是一个QML专家，您可以在第一次迭代中编写这些代码，但是在本教程中，它们被保存到下一章——那时您的应用程序才会活跃起来!</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-tutorials-samegame-samegame3-block-qml.html">tutorials/samegame/samegame3/Block.qml</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame3-button-qml.html">tutorials/samegame/samegame3/Button.qml</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame3-dialog-qml.html">tutorials/samegame/samegame3/Dialog.qml</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame3-samegame-js.html">tutorials/samegame/samegame3/samegame.js</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame3-samegame-qml.html">tutorials/samegame/samegame3/samegame.qml</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame3-samegame3-qmlproject.html">tutorials/samegame/samegame3/samegame3.qmlproject</a></li>
+</ul>
+</div>
+<!-- @@@tutorials/samegame/samegame3 -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="qtquick-tutorials-samegame-samegame2-example.html">
+QML高级教程2 -填充游戏画布</a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="qtquick-tutorials-samegame-samegame4-example.html">
+QML高级教程4 -最后润色</a>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

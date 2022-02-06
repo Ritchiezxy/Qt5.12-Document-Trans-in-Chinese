@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- tutorial.qdoc -->
+  <title>QML Tutorial 2 - QML Components | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >QML 教程 2 - QML 组件</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="qml-tutorial1.html" />
+  <link rel="next" href="qml-tutorial3.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="qml-tutorial1.html">QML Tutorial 1 - Basic Types</a>
+<span class="naviSeparator">  &#9702;  </span>
+<a class="nextPage" href="qml-tutorial3.html">QML Tutorial 3 - States and Transitions</a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-tutorial2.html#walkthrough">演练</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-tutorial2.html#the-cell-component">单元组件</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-tutorial2.html#the-main-qml-file">主 QML 文件</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML 教程 2 - QML 组件</h1>
+<span class="subtitle"></span>
+<!-- $$$qml-tutorial2.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>本章添加了一个颜色选择器来更改文本的颜色。</p>
+<p class="centerAlign"><img src="images/declarative-tutorial2.png" alt="" /></p><p>我们的颜色选择器由六个不同颜色的单元格组成。为了避免为每个单元多次编写相同的代码，我们创建了一个新<code>Cell</code>组件。组件提供了一种定义新类型的方法，我们可以在其他 QML 文件中重用它。QML 组件就像一个黑匣子，通过属性、信号和函数与外界交互，通常在自己的 QML 文件中定义。（有关更多详细信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-component.html">组件</a>文档）。组件的文件名必须始终以大写字母开头。</p>
+<p>这是 QML 代码<code>Cell.qml</code>：</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">container</span>
+      property <span class="type">alias</span> <span class="name">cellColor</span>: <span class="name">rectangle</span>.<span class="name">color</span>
+      signal <span class="type">clicked</span>(color cellColor)
+
+      <span class="name">width</span>: <span class="number">40</span>; <span class="name">height</span>: <span class="number">25</span>
+
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">rectangle</span>
+          <span class="name">border</span>.color: <span class="string">&quot;white&quot;</span>
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      }
+
+      <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: <span class="name">container</span>.<span class="name">clicked</span>(<span class="name">container</span>.<span class="name">cellColor</span>)
+      }
+  }
+
+</pre>
+<a name="walkthrough"></a>
+<h2 id="walkthrough">演练</h2>
+<a name="the-cell-component"></a>
+<h3 >单元组件</h3>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">container</span>
+      property <span class="type">alias</span> <span class="name">cellColor</span>: <span class="name">rectangle</span>.<span class="name">color</span>
+      signal <span class="type">clicked</span>(color cellColor)
+
+      <span class="name">width</span>: <span class="number">40</span>; <span class="name">height</span>: <span class="number">25</span>
+
+</pre>
+<p>我们组件的根类型是一个带有<code>id</code> <i>container</i>的<a href="qml-qtquick-item.html">Item</a>。<a href="qml-qtquick-item.html">Item</a>是QML中最基本的可视类型，通常用作其他类型的容器。</p>
+<pre class="qml">
+
+      property <span class="type">alias</span> <span class="name">cellColor</span>: <span class="name">rectangle</span>.<span class="name">color</span>
+
+</pre>
+<p>我们声明一个<code>cellColor</code>属性。这个属性可以从我们的组件<i>外部</i>访问，这允许我们用不同的颜色实例化单元格。此属性只是现有属性的别名 - 组成单元格的矩形的颜色（请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-propertybinding.html">属性绑定</a>）。</p>
+<pre class="qml">
+
+      signal <span class="type">clicked</span>(color cellColor)
+
+</pre>
+<p>我们希望我们的组件也有一个我们称之为<i>clicked</i>的信号，带有<i>color类型的cellColor</i>参数。稍后我们将使用此信号更改主 QML 文件中文本的颜色。</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">rectangle</span>
+          <span class="name">border</span>.color: <span class="string">&quot;white&quot;</span>
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      }
+
+</pre>
+<p>我们的单元格组件基本上是一个带有矩形的彩色<code>id</code> <i>矩形</i>。</p>
+<p><code>anchors.fill</code>属性是设置视觉类型大小的便捷方式。在这种情况下，矩形将具有与其父级相同的大小（请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioning-anchors.html">基于锚的布局</a>）。</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: <span class="name">container</span>.<span class="name">clicked</span>(<span class="name">container</span>.<span class="name">cellColor</span>)
+      }
+
+</pre>
+<p>为了在单击单元格时更改文本的颜色，我们创建了一个与其父级大小相同的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea类型。</a></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea</a>定义了一个称为<i>clicked</i>的信号。当这个信号被触发时，我们希望以颜色作为参数发出我们自己的<i>clicked信号。</i></p>
+<a name="the-main-qml-file"></a>
+<h3 >主 QML 文件</h3>
+<p>在我们的主 QML 文件中，我们使用我们的<code>Cell</code>组件来创建颜色选择器：</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">page</span>
+      <span class="name">width</span>: <span class="number">320</span>; <span class="name">height</span>: <span class="number">480</span>
+      <span class="name">color</span>: <span class="string">&quot;lightgray&quot;</span>
+
+      <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+          <span class="name">id</span>: <span class="name">helloText</span>
+          <span class="name">text</span>: <span class="string">&quot;Hello world!&quot;</span>
+          <span class="name">y</span>: <span class="number">30</span>
+          <span class="name">anchors</span>.horizontalCenter: <span class="name">page</span>.<span class="name">horizontalCenter</span>
+          <span class="name">font</span>.pointSize: <span class="number">24</span>; <span class="name">font</span>.bold: <span class="number">true</span>
+      }
+
+      <span class="type"><a href="qml-qtquick-grid.html">Grid</a></span> {
+          <span class="name">id</span>: <span class="name">colorPicker</span>
+          <span class="name">x</span>: <span class="number">4</span>; <span class="name">anchors</span>.bottom: <span class="name">page</span>.<span class="name">bottom</span>; <span class="name">anchors</span>.bottomMargin: <span class="number">4</span>
+          <span class="name">rows</span>: <span class="number">2</span>; <span class="name">columns</span>: <span class="number">3</span>; <span class="name">spacing</span>: <span class="number">3</span>
+
+          <span class="type">Cell</span> { <span class="name">cellColor</span>: <span class="string">&quot;red&quot;</span>; <span class="name">onClicked</span>: <span class="name">helloText</span>.<span class="name">color</span> <span class="operator">=</span> <span class="name">cellColor</span> }
+          <span class="type">Cell</span> { <span class="name">cellColor</span>: <span class="string">&quot;green&quot;</span>; <span class="name">onClicked</span>: <span class="name">helloText</span>.<span class="name">color</span> <span class="operator">=</span> <span class="name">cellColor</span> }
+          <span class="type">Cell</span> { <span class="name">cellColor</span>: <span class="string">&quot;blue&quot;</span>; <span class="name">onClicked</span>: <span class="name">helloText</span>.<span class="name">color</span> <span class="operator">=</span> <span class="name">cellColor</span> }
+          <span class="type">Cell</span> { <span class="name">cellColor</span>: <span class="string">&quot;yellow&quot;</span>; <span class="name">onClicked</span>: <span class="name">helloText</span>.<span class="name">color</span> <span class="operator">=</span> <span class="name">cellColor</span> }
+          <span class="type">Cell</span> { <span class="name">cellColor</span>: <span class="string">&quot;steelblue&quot;</span>; <span class="name">onClicked</span>: <span class="name">helloText</span>.<span class="name">color</span> <span class="operator">=</span> <span class="name">cellColor</span> }
+          <span class="type">Cell</span> { <span class="name">cellColor</span>: <span class="string">&quot;black&quot;</span>; <span class="name">onClicked</span>: <span class="name">helloText</span>.<span class="name">color</span> <span class="operator">=</span> <span class="name">cellColor</span> }
+      }
+  }
+
+</pre>
+<p>我们通过将 6 个不同颜色的单元格放在一个网格中来创建颜色选择器。</p>
+<pre class="qml">
+
+          <span class="type">Cell</span> { <span class="name">cellColor</span>: <span class="string">&quot;red&quot;</span>; <span class="name">onClicked</span>: <span class="name">helloText</span>.<span class="name">color</span> <span class="operator">=</span> <span class="name">cellColor</span> }
+
+</pre>
+<p>当我们的单元格的<i>clicked</i>信号被触发时，我们希望将文本的颜色设置为作为参数传递的<i>cellColor 。我们可以通过名称为“onSignalName”</i>的属性对组件的任何信号做出反应（请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-objectattributes.html#signal-attributes">信号属性</a>）。</p>
+</div>
+<!-- @@@qml-tutorial2.html -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-tutorial1.html">QML 教程 1 - 基本类型</a>
+<span class="naviSeparator">  &#9702;  
+<a class="nextPage" href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-tutorial3.html">QML 教程 3 - 状态和转换</a></span>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

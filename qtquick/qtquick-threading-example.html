@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- threading.qdoc -->
+  <title>Qt Quick 示例 - Threading | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick 示例 - 线程</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#running-the-example">运行该示例</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-threading-example.html#threaded-listmodel">线程列表模型</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-threading-example.html#workerscript">工人脚本</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 示例 - 线程</h1>
+<span class="subtitle"></span>
+<!-- $$$threading-brief -->
+<p>这是 QML 多线程示例的集合。</p>
+<!-- @@@threading -->
+<!-- $$$threading-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-threading-example.png" alt="" /></p><p><i>Threading</i>是 QML 多线程示例的集合。</p>
+<a name="running-the-example"></a>
+<h2 id="running-the-example">运行该示例</h2>
+<p>要从 <a href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a>运行示例，请打开<b>欢迎</b> 模式并从 <b>示例</b>中选择示例。有关更多信息，请访问<a href="http://doc.qt.io/qtcreator/creator-build-example-application.html">构建和运行示例</a>。</p>
+<a name="threaded-listmodel"></a>
+<h2 id="threaded-listmodel">线程列表模型</h2>
+<p><i>线程<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html">化 ListModel</a></i>包含一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>和一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html">ListModel</a>。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html">ListModel</a>对象在另一个线程中异步更新，结果传播回主线程​​。计时器定期从工作线程请求更新：</p>
+<pre class="qml">
+
+          <span class="type"><a href="../qtqml/qml-qtqml-timer.html">Timer</a></span> {
+              <span class="name">id</span>: <span class="name">timer</span>
+              <span class="name">interval</span>: <span class="number">2000</span>; <span class="name">repeat</span>: <span class="number">true</span>
+              <span class="name">running</span>: <span class="number">true</span>
+              <span class="name">triggeredOnStart</span>: <span class="number">true</span>
+
+              <span class="name">onTriggered</span>: {
+                  var msg = {'action': <span class="string">'appendCurrentTime'</span>, 'model': <span class="name">listModel</span>};
+                  <span class="name">worker</span>.<span class="name">sendMessage</span>(<span class="name">msg</span>);
+              }
+          }
+
+</pre>
+<p style="width: 70%">在工作线程中，一旦数据加载完成，<a href="../qtqml/qml-qtqml-models-listmodel.html">ListModel</a>就会被同步:</p>
+<pre class="cpp">
+
+  WorkerScript.onMessage = function(msg) {
+      if (msg.action == 'appendCurrentTime') {
+          var data = {'time': new Date().toTimeString()};
+          msg.model.append(data);
+          msg.model.sync();   // updates the changes to the list
+      }
+  }
+
+</pre>
+<a name="workerscript"></a>
+<h2 id="workerscript">工人脚本</h2>
+<p><i>WorkerScript</i>包含一个使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-threading-example.html#workerscript">WorkerScript</a>将昂贵的计算卸载到另一个线程的示例。这可以防止 UI 被阻止。此示例计算帕斯卡三角中的数字，并且不是以非常优化的方式，因此通常需要几秒钟才能完成计算。通过在另一个线程的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-threading-example.html#workerscript">WorkerScript</a>中执行此操作，UI 在此期间不会被阻塞。</p>
+<p>当 UI 需要另一个值时，会向<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-threading-example.html#workerscript">WorkerScript</a>发送一个请求：</p>
+<pre class="qml">
+
+          <span class="type">Spinner</span> {
+              <span class="name">id</span>: <span class="name">rowSpinner</span>
+              <span class="name">label</span>: <span class="string">&quot;Row&quot;</span>
+              <span class="name">onValueChanged</span>: {
+                  <span class="name">resultText</span>.<span class="name">text</span> <span class="operator">=</span> <span class="string">&quot;Loading...&quot;</span>;
+                  <span class="name">myWorker</span>.<span class="name">sendMessage</span>( { row: <span class="name">rowSpinner</span>.<span class="name">value</span>, column: <span class="name">columnSpinner</span>.<span class="name">value</span> } );
+              }
+          }
+
+</pre>
+<p>然后，workerscript 可以自由地花费很长时间来计算它：</p>
+<pre class="cpp">
+
+  WorkerScript.onMessage = function(message) {
+      //Calculate result (may take a while, using a naive algorithm)
+      var calculatedResult = triangle(message.row, message.column);
+      //Send result back to main thread
+      WorkerScript.sendMessage( { row: message.row,
+                                  column: message.column,
+                                  result: calculatedResult} );
+  }
+
+</pre>
+<p>完成后，结果通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-threading-example.html#workerscript">WorkerScript</a>类型返回到主场景：</p>
+<pre class="qml">
+
+      <span class="type"><a href="../qtqml/qml-workerscript.html">WorkerScript</a></span> {
+          <span class="name">id</span>: <span class="name">myWorker</span>
+          <span class="name">source</span>: <span class="string">&quot;workerscript.mjs&quot;</span>
+
+          <span class="name">onMessage</span>: {
+              <span class="keyword">if</span> (<span class="name">messageObject</span>.<span class="name">row</span> <span class="operator">==</span> <span class="name">rowSpinner</span>.<span class="name">value</span> <span class="operator">&amp;&amp;</span> <span class="name">messageObject</span>.<span class="name">column</span> <span class="operator">==</span> <span class="name">columnSpinner</span>.<span class="name">value</span>){ <span class="comment">//Not an old result</span>
+                  <span class="keyword">if</span> (<span class="name">messageObject</span>.<span class="name">result</span> <span class="operator">==</span> -<span class="number">1</span>)
+                      <span class="name">resultText</span>.<span class="name">text</span> <span class="operator">=</span> <span class="string">&quot;Column must be &lt;= Row&quot;</span>;
+                  <span class="keyword">else</span>
+                      <span class="name">resultText</span>.<span class="name">text</span> <span class="operator">=</span> <span class="name">messageObject</span>.<span class="name">result</span>;
+              }
+          }
+      }
+
+</pre>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-threading-main-cpp.html">threading/main.cpp</a></li>
+<li><a href="qtquick-threading-threadedlistmodel-threadedlistmodel-qmlproject.html">threading/threadedlistmodel/threadedlistmodel.qmlproject</a></li>
+<li><a href="qtquick-threading-threadedlistmodel-timedisplay-qml.html">threading/threadedlistmodel/timedisplay.qml</a></li>
+<li><a href="qtquick-threading-threading-pro.html">threading/threading.pro</a></li>
+<li><a href="qtquick-threading-threading-qml.html">threading/threading.qml</a></li>
+<li><a href="qtquick-threading-threading-qmlproject.html">threading/threading.qmlproject</a></li>
+<li><a href="qtquick-threading-threading-qrc.html">threading/threading.qrc</a></li>
+<li><a href="qtquick-threading-workerscript-spinner-qml.html">threading/workerscript/Spinner.qml</a></li>
+<li><a href="qtquick-threading-workerscript-workerscript-qml.html">threading/workerscript/workerscript.qml</a></li>
+<li><a href="qtquick-threading-workerscript-workerscript-qmlproject.html">threading/workerscript/workerscript.qmlproject</a></li>
+</ul>
+</div>
+<!-- @@@threading -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

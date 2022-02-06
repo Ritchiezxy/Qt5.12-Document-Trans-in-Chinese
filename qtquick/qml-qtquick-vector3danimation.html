@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qquickanimation.cpp -->
+  <title>Vector3dAnimation QML 类型 | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td ><a href="qtquick-qmlmodule.html">QML类型</a></td><td >Vector3dAnimation QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Vector3dAnimation QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Vector3dAnimation-brief -->
+<p>动画 QVector3d 值的变化。 <a href="#details">更多...</a></p>
+<!-- @@@Vector3dAnimation -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句：</td><td class="memItemRight bottomAlign"> import QtQuick 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign">继承自：</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtquick-propertyanimation.html">PropertyAnimation</a></p>
+</td></tr></table></div><ul>
+<li><a href="qml-qtquick-vector3danimation-members.html">所有成员的列表，包括继承成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-vector3danimation.html#from-prop">from</a></b></b> : vector3d</li>
+<li class="fn"><b><b><a href="qml-qtquick-vector3danimation.html#to-prop">to</a></b></b> : vector3d</li>
+</ul>
+<!-- $$$Vector3dAnimation-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-vector3danimation.html">Vector3dAnimation</a>是一个专门的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#propertyanimation">PropertyAnimation</a>，它定义了在 Vector3d 值更改时要应用的动画。</p>
+<p>与任何其他动画类型一样，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-vector3danimation.html">Vector3dAnimation</a>可以通过多种方式应用，包括过渡、行为和属性值源。<a href="qtquick-statesanimations-animations.html">Qt 
+Quick动画和过渡章节</a>展示了各种创建动画的方法。</p>
+<p><b>请参考 </b><a href="qtquick-statesanimations-animations.html">Qt 
+Quick中的动画和过渡章节</a> 和 <a href="qtquick-animation-example.html">Qt Quick 示例 -
+<span lang="zh-cn">动画</span></a>。</p>
+<!-- @@@Vector3dAnimation -->
+<h2>属性文档</h2>
+<!-- $$$from -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="from-prop">
+<td class="tblQmlPropNode"><p>
+<a name="from-prop"></a><span class="name">from</span> : <span class="type"><a href="qml-vector3d.html">vector3d</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存动画的起始值。</p>
+<p>如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-vector3danimation.html">Vector3dAnimation</a>在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qmlexampletoggleswitch.html#transition">Transition</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-behavior.html">Behavior</a>中定义，则此值默认为在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qmlexampletoggleswitch.html#transition">Transition</a>的起始状态中定义的值，或触发<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-behavior.html">Behavior</a>时属性的当前值。</p>
+<p><b>请参考 </b><a href="qtquick-statesanimations-animations.html">Qt 
+Quick中的动画和过渡章节</a>。</p>
+</div></div><!-- @@@from -->
+<br/>
+<!-- $$$to -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="to-prop">
+<td class="tblQmlPropNode"><p>
+<a name="to-prop"></a><span class="name">to</span> : <span class="type"><a href="qml-vector3d.html">vector3d</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存动画的结束值。</p>
+<p>如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-vector3danimation.html">Vector3dAnimation</a>在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qmlexampletoggleswitch.html#transition">Transition</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-behavior.html">Behavior</a>中定义，则此值默认为在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qmlexampletoggleswitch.html#transition">Transition</a>的结束状态中定义的值，或触发<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-behavior.html">Behavior</a>的属性更改的值。</p>
+<p><b>请参考 </b><a href="qtquick-statesanimations-animations.html">Qt 
+Quick中的动画和过渡章节</a>。</p>
+</div></div><!-- @@@to -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

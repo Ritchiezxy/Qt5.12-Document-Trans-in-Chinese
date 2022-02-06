@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- shadereffects.qdoc -->
+  <title>Qt Quick 示例 - Shader Effects | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >
+			Qt Quick示例 - 着色器效果</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#running-the-example">运行该示例</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-shadereffects-example.html#using-shadereffect">使用 ShaderEffect</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick示例 - 着色器效果</h1>
+<span class="subtitle"></span>
+<!-- $$$shadereffects-brief -->
+<p>一个 Qt Quick 示例，演示了着色器效果的使用。</p>
+<!-- @@@shadereffects -->
+<!-- $$$shadereffects-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-shadereffects-example.png" alt="" /></p><p>此示例演示了您可以在 Qt Quick 中使用着色器执行的几个视觉效果。它对文本和几个图像应用五种不同的效果。有关更多信息，请访问<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-topic.html">Qt Quick 中的重要概念 - 图形效果</a></p>
+<a name="running-the-example"></a>
+<h2 id="running-the-example">运行该示例</h2>
+<p>要从 <a href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a>运行示例，请打开<b>欢迎</b> 模式并从 <b>示例</b>中选择示例。有关更多信息，请访问<a href="http://doc.qt.io/qtcreator/creator-build-example-application.html">构建和运行示例</a>。</p>
+<a name="using-shadereffect"></a>
+<h2 id="using-shadereffect">使用 ShaderEffect</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-shadereffect.html">ShaderEffect</a>类型通常使用 ShaderEffectSource 对其他类型进行<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-shadereffectsource.html">操作</a>：</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-shadereffectsource.html">ShaderEffectSource</a></span> {
+      <span class="name">id</span>: <span class="name">theSource</span>
+      <span class="name">sourceItem</span>: <span class="name">theItem</span>
+  }
+
+</pre>
+<p>在上面的代码片段中，<code>theItem</code>是文件中复杂 QML 对象的 ID。</p>
+<p>ShaderEffects 可以将此<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-shadereffectsource.html">ShaderEffectSource</a>用作其片段着色器中的纹理：</p>
+<pre class="qml">
+
+  <span class="name">fragmentShader</span>: <span class="string">&quot;qrc:shadereffects/content/shaders/wobble.frag&quot;</span>
+
+</pre>
+<p>为了支持多个图形API，而不仅仅是OpenGL，着色器源代码没有嵌入到QML中。相反，文件选择器用于在运行时选择正确的变体。基于Qt 
+Quick后台的使用，Qt会自动选择<code>shaders/wobble.frag</code>(带有GLSL源代码)或<code>shaders/+hlsl/wobble.frag</code> 
+(带有HLSL源代码)。</p>
+<p><b>注意:</b>为了简单起见，着色器源代码被用于文件的所有变体。然而，与Direct3D后端Qt Quick预编译着色器也被支持。例如，尝试在<code>content/shaders/+hlsl</code>目录下执行以下命令:<code>move wobble.frag wobble.frag.src</code>，后面跟着<code>fxc /E main /T ps_5_0 /Fo wobble.frag wobble.frag.src</code>。现在，<code>wobble.frag</code>包含Direct3D字节码，这是应用程序附带的，而不是shader源代码。不需要进行进一步的更改，应用程序将像以前一样运行。</p><p>您可以在着色器中使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-shadereffect.html">ShaderEffect上的任何自定义属性。</a>这使得动画着色器代码非常简单：</p>
+<pre class="qml">
+
+  property <span class="type"><a href="../qtqml/qml-variant.html">variant</a></span> <span class="name">source</span>: <span class="name">theSource</span>
+  property <span class="type"><a href="../qtqml/qml-real.html">real</a></span> <span class="name">bend</span>: <span class="number">0</span>
+  property <span class="type"><a href="../qtqml/qml-real.html">real</a></span> <span class="name">minimize</span>: <span class="number">0</span>
+  property <span class="type"><a href="../qtqml/qml-real.html">real</a></span> <span class="name">side</span>: <span class="name">genieSlider</span>.<span class="name">value</span>
+  SequentialAnimation on <span class="name">bend</span> {
+      <span class="name">loops</span>: <span class="name">Animation</span>.<span class="name">Infinite</span>
+      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">to</span>: <span class="number">1</span>; <span class="name">duration</span>: <span class="number">700</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutSine</span> }
+      <span class="type"><a href="qml-qtquick-pauseanimation.html">PauseAnimation</a></span> { <span class="name">duration</span>: <span class="number">1600</span> }
+      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">to</span>: <span class="number">0</span>; <span class="name">duration</span>: <span class="number">700</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutSine</span> }
+      <span class="type"><a href="qml-qtquick-pauseanimation.html">PauseAnimation</a></span> { <span class="name">duration</span>: <span class="number">1000</span> }
+  }
+  SequentialAnimation on <span class="name">minimize</span> {
+      <span class="name">loops</span>: <span class="name">Animation</span>.<span class="name">Infinite</span>
+      <span class="type"><a href="qml-qtquick-pauseanimation.html">PauseAnimation</a></span> { <span class="name">duration</span>: <span class="number">300</span> }
+      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">to</span>: <span class="number">1</span>; <span class="name">duration</span>: <span class="number">700</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutSine</span> }
+      <span class="type"><a href="qml-qtquick-pauseanimation.html">PauseAnimation</a></span> { <span class="name">duration</span>: <span class="number">1000</span> }
+      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">to</span>: <span class="number">0</span>; <span class="name">duration</span>: <span class="number">700</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutSine</span> }
+      <span class="type"><a href="qml-qtquick-pauseanimation.html">PauseAnimation</a></span> { <span class="name">duration</span>: <span class="number">1300</span> }
+  }
+
+</pre>
+<p>ShaderEffects 也可以有一个自定义的顶点着色器。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-shadereffect.html">在ShaderEffect</a>上设置网格属性可以提供更多顶点供您操作，从而启用更多效果。</p>
+<pre class="qml">
+
+  <span class="name">mesh</span>: <span class="name">Qt</span>.<span class="name">size</span>(<span class="number">10</span>, <span class="number">10</span>)
+  <span class="name">vertexShader</span>: <span class="string">&quot;qrc:shadereffects/content/shaders/genie.vert&quot;</span>
+
+</pre>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-shadereffects-content-slider-qml.html">shadereffects/content/Slider.qml</a></li>
+<li><a href="qtquick-shadereffects-main-cpp.html">shadereffects/main.cpp</a></li>
+<li><a href="qtquick-shadereffects-shadereffects-pro.html">shadereffects/shadereffects.pro</a></li>
+<li><a href="qtquick-shadereffects-shadereffects-qml.html">shadereffects/shadereffects.qml</a></li>
+<li><a href="qtquick-shadereffects-shadereffects-qmlproject.html">shadereffects/shadereffects.qmlproject</a></li>
+<li><a href="qtquick-shadereffects-shadereffects-qrc.html">shadereffects/shadereffects.qrc</a></li>
+</ul>
+<p>图片：</p>
+<ul>
+<li><a href="images/used-in-examples/shadereffects/content/face-smile.png">shadereffects/content/face-smile.png</a></li>
+<li><a href="images/used-in-examples/shadereffects/content/qt-logo.png">shadereffects/content/qt-logo.png</a></li>
+</ul>
+</div>
+<!-- @@@shadereffects -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

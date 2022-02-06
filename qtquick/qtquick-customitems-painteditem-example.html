@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- textballoons.qdoc -->
+  <title>Scene Graph - Painted Item | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >场景图 - 绘制的项目</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-customitems-painteditem-example.html#textballoon-class-declaration">TextBalloon 类声明</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-customitems-painteditem-example.html#textballoon-class-definition">TextBalloon 类定义</a></li>
+<li class="level1"><a href="#textballoons-qml-file">Textballoons.qml 文件</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-customitems-painteditem-example.html#balloonview">气球视图</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-customitems-painteditem-example.html#controls">控件</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">场景图 - 绘制的项目</h1>
+<span class="subtitle"></span>
+<!-- $$$customitems/painteditem-brief -->
+<p>展示如何实现基于<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qpainter.html">QPainter</a>的自定义场景图项。</p>
+<!-- @@@customitems/painteditem -->
+<!-- $$$customitems/painteditem-description -->
+<div class="descr"> <a name="details"></a>
+<p>Painted Item 示例展示了如何使用 QML 场景图框架使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qpainter.html">QPainter</a>实现自定义场景图项。</p>
+<p class="centerAlign"><img src="images/declarative-textballoons_example.png" alt="" /></p><p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickpainteditem.html">QQuickPaintedItem</a>类是从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html">QQuickItem</a>派生的类，用于使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qpainter.html">QPainter</a>接口实现自定义 QML 场景图项。</p>
+<p>这个例子由一个item类、一个插件类和一个使用这个插件的QML文件组成。<code>TextBalloon</code> 类表示扩展<a href="qquickpainteditem.html">QQuickPaintedItem</a>的单独的文本气球，<code>TextBalloonPlugin</code> 
+类表示<a href="qtquick-index.html">Qt Quick 模块</a>插件的框架代码，<code>textballoons.qml</code>文件用于加载插件和显示文本气球。</p>
+<p>我们将首先关注<code>TextBalloon</code>课程并继续处理<code>textballoons.qml</code>文件。有关如何实现<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-index.html">Qt Quick 模块</a>插件的示例，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-tutorials-extending-qml-example.html#chapter-6-writing-an-extension-plugin">编写扩展插件</a></p>
+<a name="textballoon-class-declaration"></a>
+<h2 id="textballoon-class-declaration">TextBalloon 类声明</h2>
+<p>该类<code>TextBalloon</code>继承自<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickpainteditem.html">QQuickPaintedItem</a>。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickpainteditem.html">QQuickPaintedItem</a>是QML 场景图框架中所有基于<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qpainter.html">QPainter</a>的项目的基类。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> TextBalloon : <span class="keyword">public</span> <span class="type"><a href="qquickpainteditem.html">QQuickPaintedItem</a></span>
+  {
+      Q_OBJECT
+      Q_PROPERTY(bool rightAligned READ isRightAligned WRITE setRightAligned NOTIFY rightAlignedChanged)
+
+      <span class="keyword">public</span>:
+          TextBalloon(<span class="type"><a href="qquickitem.html">QQuickItem</a></span> <span class="operator">*</span>parent <span class="operator">=</span> <span class="number">0</span>);
+          <span class="type">void</span> paint(<span class="type"><a href="../qtgui/qpainter.html">QPainter</a></span> <span class="operator">*</span>painter);
+
+          bool isRightAligned();
+          <span class="type">void</span> setRightAligned(bool rightAligned);
+
+      <span class="keyword">private</span>:
+          bool rightAligned;
+
+      <span class="keyword">signals</span>:
+          <span class="type">void</span> rightAlignedChanged();
+  };
+
+</pre>
+<p>要实现一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickpainteditem.html">QQuickPaintedItem</a>，你必须实现QQuickPaintedIem 的纯虚函数<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickpainteditem.html#paint">paint()</a>，它实现了类型的绘制。</p>
+<a name="textballoon-class-definition"></a>
+<h2 id="textballoon-class-definition">TextBalloon 类定义</h2>
+<p>我们必须确保为 TextBalloon 项初始化 rightAligned 属性。</p>
+<pre class="cpp">
+
+  TextBalloon<span class="operator">::</span>TextBalloon(<span class="type"><a href="qquickitem.html">QQuickItem</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="qquickpainteditem.html">QQuickPaintedItem</a></span>(parent)
+      <span class="operator">,</span> rightAligned(<span class="keyword">false</span>)
+  {
+  }
+
+</pre>
+<p>然后我们实现<code>paint()</code>由场景图框架自动调用的函数来绘制项目的内容。该函数在本地坐标中绘制项目。</p>
+<pre class="cpp">
+
+  <span class="type">void</span> TextBalloon<span class="operator">::</span>paint(<span class="type"><a href="../qtgui/qpainter.html">QPainter</a></span> <span class="operator">*</span>painter)
+  {
+      <span class="type"><a href="../qtgui/qbrush.html">QBrush</a></span> brush(<span class="type"><a href="../qtgui/qcolor.html">QColor</a></span>(<span class="string">&quot;#007430&quot;</span>));
+
+      painter<span class="operator">-</span><span class="operator">&gt;</span>setBrush(brush);
+      painter<span class="operator">-</span><span class="operator">&gt;</span>setPen(<span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>NoPen);
+      painter<span class="operator">-</span><span class="operator">&gt;</span>setRenderHint(<span class="type"><a href="../qtgui/qpainter.html">QPainter</a></span><span class="operator">::</span>Antialiasing);
+
+      <span class="type"><a href="../qtcore/qsizef.html">QSizeF</a></span> itemSize <span class="operator">=</span> size();
+      painter<span class="operator">-</span><span class="operator">&gt;</span>drawRoundedRect(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> itemSize<span class="operator">.</span>width()<span class="operator">,</span> itemSize<span class="operator">.</span>height() <span class="operator">-</span> <span class="number">10</span><span class="operator">,</span> <span class="number">10</span><span class="operator">,</span> <span class="number">10</span>);
+
+      <span class="keyword">if</span> (rightAligned)
+      {
+          <span class="keyword">const</span> <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> points<span class="operator">[</span><span class="number">3</span><span class="operator">]</span> <span class="operator">=</span> {
+              <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span>(itemSize<span class="operator">.</span>width() <span class="operator">-</span> <span class="number">10.0</span><span class="operator">,</span> itemSize<span class="operator">.</span>height() <span class="operator">-</span> <span class="number">10.0</span>)<span class="operator">,</span>
+              <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span>(itemSize<span class="operator">.</span>width() <span class="operator">-</span> <span class="number">20.0</span><span class="operator">,</span> itemSize<span class="operator">.</span>height())<span class="operator">,</span>
+              <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span>(itemSize<span class="operator">.</span>width() <span class="operator">-</span> <span class="number">30.0</span><span class="operator">,</span> itemSize<span class="operator">.</span>height() <span class="operator">-</span> <span class="number">10.0</span>)<span class="operator">,</span>
+          };
+          painter<span class="operator">-</span><span class="operator">&gt;</span>drawConvexPolygon(points<span class="operator">,</span> <span class="number">3</span>);
+      }
+      <span class="keyword">else</span>
+      {
+          <span class="keyword">const</span> <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span> points<span class="operator">[</span><span class="number">3</span><span class="operator">]</span> <span class="operator">=</span> {
+              <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span>(<span class="number">10.0</span><span class="operator">,</span> itemSize<span class="operator">.</span>height() <span class="operator">-</span> <span class="number">10.0</span>)<span class="operator">,</span>
+              <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span>(<span class="number">20.0</span><span class="operator">,</span> itemSize<span class="operator">.</span>height())<span class="operator">,</span>
+              <span class="type"><a href="../qtcore/qpointf.html">QPointF</a></span>(<span class="number">30.0</span><span class="operator">,</span> itemSize<span class="operator">.</span>height() <span class="operator">-</span> <span class="number">10.0</span>)<span class="operator">,</span>
+          };
+          painter<span class="operator">-</span><span class="operator">&gt;</span>drawConvexPolygon(points<span class="operator">,</span> <span class="number">3</span>);
+      }
+  }
+
+</pre>
+<p>们首先在项目上设置钢笔和画笔以定义项目的外观。之后我们开始绘制。请注意，根据项目的大小调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickpainteditem-obsolete.html#contentsBoundingRect">contentsBoundingRect()</a>项目进行绘制。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickpainteditem-obsolete.html#contentsBoundingRect">contentsBoundingRect()</a>函数返回的矩形是 QML 文件中定义的项目的大小。</p>
+<a name="textballoons-qml-file"></a>
+<h2 id="textballoons-qml-file">Textballoons.qml 文件</h2>
+<p>界面由两个主要部分组成。带有文本气球的可滚动区域和用于添加新气球的控制按钮。</p>
+<a name="balloonview"></a>
+<h3 >气球视图</h3>
+<pre class="qml">
+
+  <span class="type"><a href="../qtqml/qml-qtqml-models-listmodel.html">ListModel</a></span> {
+      <span class="name">id</span>: <span class="name">balloonModel</span>
+      <span class="type"><a href="../qtqml/qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">balloonWidth</span>: <span class="number">200</span>
+      }
+      <span class="type"><a href="../qtqml/qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">balloonWidth</span>: <span class="number">120</span>
+      }
+  }
+
+  <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+      <span class="name">anchors</span>.bottom: <span class="name">controls</span>.<span class="name">top</span>
+      <span class="name">anchors</span>.bottomMargin: <span class="number">2</span>
+      <span class="name">anchors</span>.top: <span class="name">parent</span>.<span class="name">top</span>
+      <span class="name">id</span>: <span class="name">balloonView</span>
+      <span class="name">delegate</span>: <span class="name">TextBalloon</span> {
+          <span class="name">anchors</span>.right: <span class="name">index</span> <span class="operator">%</span> <span class="number">2</span> <span class="operator">==</span> <span class="number">0</span> ? <span class="name">undefined</span> : <span class="name">parent</span>.<span class="name">right</span>
+          <span class="name">height</span>: <span class="number">60</span>
+          <span class="name">rightAligned</span>: <span class="name">index</span> <span class="operator">%</span> <span class="number">2</span> <span class="operator">==</span> <span class="number">0</span> ? <span class="number">false</span> : <span class="number">true</span>
+          <span class="name">width</span>: <span class="name">balloonWidth</span>
+      }
+      <span class="name">model</span>: <span class="name">balloonModel</span>
+      <span class="name">spacing</span>: <span class="number">5</span>
+      <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>
+  }
+
+</pre>
+<p>balloonModel 在应用程序启动时包含两种类型，将由<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-customitems-painteditem-example.html#balloonview">balloonView</a>显示。balloonView在左对齐和右对齐之间<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-customitems-painteditem-example.html#balloonview">交替</a>显示 TextBalloon 委托项。</p>
+<a name="controls"></a>
+<h3 >控件</h3>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">controls</span>
+
+      <span class="name">anchors</span>.bottom: <span class="name">parent</span>.<span class="name">bottom</span>
+      <span class="name">anchors</span>.left: <span class="name">parent</span>.<span class="name">left</span>
+      <span class="name">anchors</span>.margins: <span class="number">1</span>
+      <span class="name">anchors</span>.right: <span class="name">parent</span>.<span class="name">right</span>
+      <span class="name">border</span>.width: <span class="number">2</span>
+      <span class="name">color</span>: <span class="string">&quot;white&quot;</span>
+      <span class="name">height</span>: <span class="name">parent</span>.<span class="name">height</span> <span class="operator">*</span> <span class="number">0.15</span>
+
+      <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">text</span>: <span class="string">&quot;Add another balloon&quot;</span>
+      }
+
+      <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">hoverEnabled</span>: <span class="number">true</span>
+          <span class="name">onClicked</span>: {
+              <span class="name">balloonModel</span>.<span class="name">append</span>({&quot;balloonWidth&quot;: <span class="name">Math</span>.<span class="name">floor</span>(<span class="name">Math</span>.<span class="name">random</span>() <span class="operator">*</span> <span class="number">200</span> <span class="operator">+</span> <span class="number">100</span>)})
+              <span class="name">balloonView</span>.<span class="name">positionViewAtIndex</span>(<span class="name">balloonView</span>.<span class="name">count</span> <span class="operator">-</span><span class="number">1</span>, <span class="name">ListView</span>.<span class="name">End</span>)
+          }
+          <span class="name">onEntered</span>: {
+              <span class="name">parent</span>.<span class="name">color</span> <span class="operator">=</span> <span class="string">&quot;#8ac953&quot;</span>
+          }
+          <span class="name">onExited</span>: {
+              <span class="name">parent</span>.<span class="name">color</span> <span class="operator">=</span> <span class="string">&quot;white&quot;</span>
+          }
+      }
+  }
+
+</pre>
+<p>UI 的控件部分包含一个带有<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea</a>的矩形，当鼠标悬停在它上面时，它会改变颜色。此控件“按钮”将一个新对象添加到模型的末尾，具有随机宽度。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-customitems-painteditem-textballoonplugin-plugin-h.html">customitems/painteditem/TextBalloonPlugin/plugin.h</a></li>
+<li><a href="qtquick-customitems-painteditem-textballoonplugin-qmldir.html">customitems/painteditem/TextBalloonPlugin/qmldir</a></li>
+<li><a href="qtquick-customitems-painteditem-painteditem-pro.html">customitems/painteditem/painteditem.pro</a></li>
+<li><a href="qtquick-customitems-painteditem-painteditem-qrc.html">customitems/painteditem/painteditem.qrc</a></li>
+<li><a href="qtquick-customitems-painteditem-textballoon-cpp.html">customitems/painteditem/textballoon.cpp</a></li>
+<li><a href="qtquick-customitems-painteditem-textballoon-h.html">customitems/painteditem/textballoon.h</a></li>
+<li><a href="qtquick-customitems-painteditem-textballoons-qml.html">customitems/painteditem/textballoons.qml</a></li>
+</ul>
+</div>
+<!-- @@@customitems/painteditem -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

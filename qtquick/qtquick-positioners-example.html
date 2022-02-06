@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- positioners.qdoc -->
+  <title>Qt Quick 示例 - Positioners | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick 示例 - 定位器</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#running-the-example">运行该示例</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioners-example.html#transitions">过渡</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioners-example.html#attached-properties">附加属性</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 示例 - 定位器</h1>
+<span class="subtitle"></span>
+<!-- $$$positioners-brief -->
+<p>这是 QML 定位器示例的集合。</p>
+<!-- @@@positioners -->
+<!-- $$$positioners-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-positioners-example.png" alt="" /></p><p><i>Positioners</i>是与定位器相关的小型 QML 示例的集合。每个示例都是强调特定类型或功能的小型 QML 文件。有关更多信息，请访问<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioning-topic.html">Qt 
+	Quick定位中的重要概念</a>。</p>
+<a name="running-the-example"></a>
+<h2 id="running-the-example">运行该示例</h2>
+<p>要从 <a href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a>运行示例，请打开<b>欢迎</b> 模式并从 <b>示例</b>中选择示例。有关更多信息，请访问<a href="http://doc.qt.io/qtcreator/creator-build-example-application.html">构建和运行示例</a>。</p>
+<a name="transitions"></a>
+<h2 id="transitions">过渡</h2>
+<p>当在定位器中显示或隐藏项目时，转换显示动画转换。它包含了一个场景，其中包含了各种定位器中的道具:<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-column.html">Column</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-row.html">Row</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-grid.html">Grid</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flow.html">Flow</a>。每个定位器都有动画描述为过渡。</p>
+<pre class="qml">
+
+  <span class="name">move</span>: <span class="name">Transition</span> {
+      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">properties</span>: <span class="string">&quot;x,y&quot;</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutBounce</span> }
+  }
+
+</pre>
+<p>移动过渡指定定位器内的项目在因其他项目的出现或消失而被移动时如何设置动画。</p>
+<pre class="qml">
+
+  <span class="name">add</span>: <span class="name">Transition</span> {
+      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">properties</span>: <span class="string">&quot;x,y&quot;</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutBounce</span> }
+  }
+
+</pre>
+<p>添加转换指定项目在添加到定位器时的显示方式。</p>
+<pre class="qml">
+
+  <span class="name">populate</span>: <span class="name">Transition</span> {
+      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">properties</span>: <span class="string">&quot;x,y&quot;</span>; <span class="name">from</span>: <span class="number">200</span>; <span class="name">duration</span>: <span class="number">100</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutBounce</span> }
+  }
+
+</pre>
+<p>填充转换指定当它们的父定位器第一次创建时项目将如何出现。</p>
+<a name="attached-properties"></a>
+<h2 id="attached-properties">附加属性</h2>
+<p><i>Attached Properties</i>展示了如何使用定位器附加属性来确定项目在定位器中的位置。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">green</span>
+      <span class="name">color</span>: <span class="string">&quot;#80c342&quot;</span>
+      <span class="name">width</span>: <span class="number">100</span> <span class="operator">*</span> <span class="name">page</span>.<span class="name">ratio</span>
+      <span class="name">height</span>: <span class="number">100</span> <span class="operator">*</span> <span class="name">page</span>.<span class="name">ratio</span>
+
+      <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+        <span class="name">anchors</span>.left: <span class="name">parent</span>.<span class="name">right</span>
+        <span class="name">anchors</span>.leftMargin: <span class="number">20</span>
+        <span class="name">anchors</span>.verticalCenter: <span class="name">parent</span>.<span class="name">verticalCenter</span>
+        <span class="name">text</span>: <span class="string">&quot;Index: &quot;</span> <span class="operator">+</span> <span class="name">parent</span>.<span class="name">Positioner</span>.<span class="name">index</span>
+        <span class="operator">+</span> (<span class="name">parent</span>.<span class="name">Positioner</span>.<span class="name">isFirstItem</span> ? <span class="string">&quot; (First)&quot;</span> : <span class="string">&quot;&quot;</span>)
+        <span class="operator">+</span> (<span class="name">parent</span>.<span class="name">Positioner</span>.<span class="name">isLastItem</span> ? <span class="string">&quot; (Last)&quot;</span> : <span class="string">&quot;&quot;</span>)
+      }
+
+      <span class="comment">// When mouse is clicked, display the values of the positioner</span>
+      <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      <span class="name">onClicked</span>: <span class="name">column</span>.<span class="name">showInfo</span>(<span class="name">green</span>.<span class="name">Positioner</span>)
+      }
+  }
+
+</pre>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-positioners-main-cpp.html">positioners/main.cpp</a></li>
+<li><a href="qtquick-positioners-positioners-attachedproperties-qml.html">positioners/positioners-attachedproperties.qml</a></li>
+<li><a href="qtquick-positioners-positioners-transitions-qml.html">positioners/positioners-transitions.qml</a></li>
+<li><a href="qtquick-positioners-positioners-pro.html">positioners/positioners.pro</a></li>
+<li><a href="qtquick-positioners-positioners-qml.html">positioners/positioners.qml</a></li>
+<li><a href="qtquick-positioners-positioners-qmlproject.html">positioners/positioners.qmlproject</a></li>
+<li><a href="qtquick-positioners-positioners-qrc.html">positioners/positioners.qrc</a></li>
+</ul>
+</div>
+<!-- @@@positioners -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

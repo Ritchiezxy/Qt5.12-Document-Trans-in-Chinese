@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qquickangledirection.cpp -->
+  <title>AngleDirection QML 类型 | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-qmlmodule.html">QML类型</a></td><td >AngleDirection QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">AngleDirection QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$AngleDirection-brief -->
+<p>用于指定角度变化的方向。 <a href="#details">更多...</a></p>
+<!-- @@@AngleDirection -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句：</td><td class="memItemRight bottomAlign"> import QtQuick.Particles 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign">继承自：</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtquick-particles-direction.html">Direction</a></p>
+</td></tr></table></div><ul>
+<li><a href="qml-qtquick-particles-angledirection-members.html">所有成员的列表，包括继承成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-particles-angledirection.html#angle-prop">angle</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-particles-angledirection.html#angleVariation-prop">angleVariation</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-particles-angledirection.html#magnitude-prop">magnitude</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-particles-angledirection.html#magnitudeVariation-prop">magnitudeVariation</a></b></b> : real</li>
+</ul>
+<!-- $$$AngleDirection-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p>AngledDirection 元素允许按角度和幅度指定方向，以及按角度或幅度改变参数。</p>
+<!-- @@@AngleDirection -->
+<h2>属性文档</h2>
+<!-- $$$angle -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="angle-prop">
+<td class="tblQmlPropNode"><p>
+<a name="angle-prop"></a><span class="name">angle</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性指定方向的基角。这个方向的角度变化不会超过这个角度的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-angledirection.html#angleVariation-prop">angleVariation</a>。</p>
+<p>角度由从直线向右顺时针方向指定的度数指定。</p>
+<p>默认值为零。</p>
+</div></div><!-- @@@angle -->
+<br/>
+<!-- $$$angleVariation -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="angleVariation-prop">
+<td class="tblQmlPropNode"><p>
+<a name="angleVariation-prop"></a><span class="name">angleVariation</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性指定方向的最大角度变化。方向的角度将从角度中指定的值顺时针和逆时针变化最多angleVariation。</p>
+<p>角度由从直线向右顺时针方向指定的度数指定。</p>
+<p>默认值为零。</p>
+</div></div><!-- @@@angleVariation -->
+<br/>
+<!-- $$$magnitude -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="magnitude-prop">
+<td class="tblQmlPropNode"><p>
+<a name="magnitude-prop"></a><span class="name">magnitude</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性指定方向的基本大小。这个方向的幅度将与这个幅度的变化不超过<a href="qml-qtquick-particles-angledirection.html#magnitudeVariation-prop">magnitudeVariation</a>变化。</p>
+<p>幅度以每秒像素为单位指定。</p>
+<p>默认值为零。</p>
+</div></div><!-- @@@magnitude -->
+<br/>
+<!-- $$$magnitudeVariation -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="magnitudeVariation-prop">
+<td class="tblQmlPropNode"><p>
+<a name="magnitudeVariation-prop"></a><span class="name">magnitudeVariation</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性指定方向的基本大小。这个方向的幅度与基础幅度的变化不会超过magnitudeVariation 
+		。</p>
+<p>幅度以每秒像素为单位指定。</p>
+<p>默认值为零。</p>
+</div></div><!-- @@@magnitudeVariation -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

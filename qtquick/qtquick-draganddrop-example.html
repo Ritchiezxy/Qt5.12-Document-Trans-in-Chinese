@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- draganddrop.qdoc -->
+  <title>Qt Quick 示例 - Drag and Drop | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick 示例 - 拖放</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#running-the-example">运行该示例</a></li>
+<li class="level1"><a href="#tiles">瓦片</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-draganddrop-example.html#gridview-example">网格视图示例</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 示例 - 拖放</h1>
+<span class="subtitle"></span>
+<!-- $$$draganddrop-brief -->
+<p>这是 QML 拖放示例的集合。</p>
+<!-- @@@draganddrop -->
+<!-- $$$draganddrop-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-draganddrop-example.png" alt="" /></p><p><i>拖放</i>是与拖放功能相关的小型 QML 示例的集合。有关更多信息，请访问<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qtgui-index.html#drag-and-drop">拖放</a>页面。</p>
+<a name="running-the-example"></a>
+<h2 id="running-the-example">运行该示例</h2>
+<p>要从 <a href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a>运行示例，请打开<b>欢迎</b> 模式并从 <b>示例</b>中选择示例。有关更多信息，请访问<a href="http://doc.qt.io/qtcreator/creator-build-example-application.html">构建和运行示例</a>。</p>
+<a name="tiles"></a>
+<h2 id="tiles">瓦片</h2>
+<p><i>Tiles</i>将拖放功能添加到简单的矩形中，您可以将其拖放到特定的网格中。</p>
+<p>它有一个 DragTile 组件，该组件在拖动时使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea</a>来移动项：</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+      <span class="name">id</span>: <span class="name">root</span>
+      property <span class="type"><a href="../qtqml/qml-string.html">string</a></span> <span class="name">colorKey</span>
+
+      <span class="name">width</span>: <span class="number">64</span>; <span class="name">height</span>: <span class="number">64</span>
+
+      <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">id</span>: <span class="name">mouseArea</span>
+
+          <span class="name">width</span>: <span class="number">64</span>; <span class="name">height</span>: <span class="number">64</span>
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+
+          <span class="name">drag</span>.target: <span class="name">tile</span>
+
+          <span class="name">onReleased</span>: <span class="name">parent</span> <span class="operator">=</span> <span class="name">tile</span>.<span class="name">Drag</span>.<span class="name">target</span> <span class="operator">!==</span> <span class="number">null</span> ? <span class="name">tile</span>.<span class="name">Drag</span>.<span class="name">target</span> : <span class="name">root</span>
+
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">id</span>: <span class="name">tile</span>
+
+              <span class="name">width</span>: <span class="number">64</span>; <span class="name">height</span>: <span class="number">64</span>
+              <span class="name">anchors</span>.verticalCenter: <span class="name">parent</span>.<span class="name">verticalCenter</span>
+              <span class="name">anchors</span>.horizontalCenter: <span class="name">parent</span>.<span class="name">horizontalCenter</span>
+
+              <span class="name">color</span>: <span class="name">colorKey</span>
+
+              <span class="name">Drag</span>.keys: [ <span class="name">colorKey</span> ]
+              <span class="name">Drag</span>.active: <span class="name">mouseArea</span>.<span class="name">drag</span>.<span class="name">active</span>
+              <span class="name">Drag</span>.hotSpot.x: <span class="number">32</span>
+              <span class="name">Drag</span>.hotSpot.y: <span class="number">32</span>
+              <span class="name">states</span>: <span class="name">State</span> {
+                  <span class="name">when</span>: <span class="name">mouseArea</span>.<span class="name">drag</span>.<span class="name">active</span>
+                  <span class="type"><a href="qml-qtquick-parentchange.html">ParentChange</a></span> { <span class="name">target</span>: <span class="name">tile</span>; <span class="name">parent</span>: <span class="name">root</span> }
+                  <span class="type"><a href="qml-qtquick-anchorchanges.html">AnchorChanges</a></span> { <span class="name">target</span>: <span class="name">tile</span>; <span class="name">anchors</span>.verticalCenter: <span class="name">undefined</span>; <span class="name">anchors</span>.horizontalCenter: <span class="name">undefined</span> }
+              }
+
+          }
+      }
+  }
+
+</pre>
+<p>还有一个 DropTile 组件，可以在其上放置拖动的图块：</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-droparea.html">DropArea</a></span> {
+      <span class="name">id</span>: <span class="name">dragTarget</span>
+
+      property <span class="type"><a href="../qtqml/qml-string.html">string</a></span> <span class="name">colorKey</span>
+      property <span class="type">alias</span> <span class="name">dropProxy</span>: <span class="name">dragTarget</span>
+
+      <span class="name">width</span>: <span class="number">64</span>; <span class="name">height</span>: <span class="number">64</span>
+      <span class="name">keys</span>: [ <span class="name">colorKey</span> ]
+
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">dropRectangle</span>
+
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">color</span>: <span class="name">colorKey</span>
+
+          <span class="name">states</span>: [
+              <span class="type"><a href="qml-qtquick-state.html">State</a></span> {
+                  <span class="name">when</span>: <span class="name">dragTarget</span>.<span class="name">containsDrag</span>
+                  <span class="type"><a href="qml-qtquick-propertychanges.html">PropertyChanges</a></span> {
+                      <span class="name">target</span>: <span class="name">dropRectangle</span>
+                      <span class="name">color</span>: <span class="string">&quot;grey&quot;</span>
+                  }
+              }
+          ]
+      }
+  }
+
+</pre>
+<p><a href="qml-qtquick-droparea.html">DropArea</a>的keys属性只允许在Drag.keys属性中有匹配的键的项目被拖放到上面。</p>
+<a name="gridview-example"></a>
+<h2 id="gridview-example">网格视图示例</h2>
+<p><i><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-gridview.html">GridView</a>示例</i>将拖放功能添加到<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-gridview.html">GridView</a>中，允许您在不更改底层<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html">ListModel</a>的情况下直观地重新排序委托。它使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a>将委托项移动到它被拖过的另一个项的位置。</p>
+<pre class="qml">
+
+      <span class="name">model</span>: <span class="name">DelegateModel</span> {
+          <span class="name">delegate</span>: <span class="name">DropArea</span> {
+              <span class="name">id</span>: <span class="name">delegateRoot</span>
+
+              <span class="name">width</span>: <span class="number">80</span>; <span class="name">height</span>: <span class="number">80</span>
+
+              <span class="name">onEntered</span>: <span class="name">visualModel</span>.<span class="name">items</span>.<span class="name">move</span>(<span class="name">drag</span>.<span class="name">source</span>.<span class="name">visualIndex</span>, <span class="name">icon</span>.<span class="name">visualIndex</span>)
+              property <span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">visualIndex</span>: <span class="name">DelegateModel</span>.<span class="name">itemsIndex</span>
+              <span class="type"><a href="../qtqml/qml-qtqml-binding.html">Binding</a></span> { <span class="name">target</span>: <span class="name">icon</span>; <span class="name">property</span>: <span class="string">&quot;visualIndex&quot;</span>; <span class="name">value</span>: <span class="name">visualIndex</span> }
+
+              <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+                  <span class="name">id</span>: <span class="name">icon</span>
+                  property <span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">visualIndex</span>: <span class="number">0</span>
+                  <span class="name">width</span>: <span class="number">72</span>; <span class="name">height</span>: <span class="number">72</span>
+                  <span class="type">anchors</span> {
+                      <span class="name">horizontalCenter</span>: <span class="name">parent</span>.<span class="name">horizontalCenter</span>;
+                      <span class="name">verticalCenter</span>: <span class="name">parent</span>.<span class="name">verticalCenter</span>
+                  }
+                  <span class="name">radius</span>: <span class="number">3</span>
+                  <span class="name">color</span>: <span class="name">model</span>.<span class="name">color</span>
+
+                  <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+                      <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+                      <span class="name">color</span>: <span class="string">&quot;white&quot;</span>
+                      <span class="name">text</span>: <span class="name">parent</span>.<span class="name">visualIndex</span>
+                  }
+
+                  <span class="type"><a href="qml-qtquick-draghandler.html">DragHandler</a></span> {
+                      <span class="name">id</span>: <span class="name">dragHandler</span>
+                  }
+
+                  <span class="name">Drag</span>.active: <span class="name">dragHandler</span>.<span class="name">active</span>
+                  <span class="name">Drag</span>.source: <span class="name">icon</span>
+                  <span class="name">Drag</span>.hotSpot.x: <span class="number">36</span>
+                  <span class="name">Drag</span>.hotSpot.y: <span class="number">36</span>
+
+                  <span class="name">states</span>: [
+                      <span class="type"><a href="qml-qtquick-state.html">State</a></span> {
+                          <span class="name">when</span>: <span class="name">icon</span>.<span class="name">Drag</span>.<span class="name">active</span>
+                          <span class="type"><a href="qml-qtquick-parentchange.html">ParentChange</a></span> {
+                              <span class="name">target</span>: <span class="name">icon</span>
+                              <span class="name">parent</span>: <span class="name">root</span>
+                          }
+
+                          <span class="type"><a href="qml-qtquick-anchorchanges.html">AnchorChanges</a></span> {
+                              <span class="name">target</span>: <span class="name">icon</span>
+                              <span class="name">anchors</span>.horizontalCenter: <span class="name">undefined</span>
+                              <span class="name">anchors</span>.verticalCenter: <span class="name">undefined</span>
+                          }
+                      }
+                  ]
+              }
+          }
+
+</pre>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-draganddrop-draganddrop-pro.html">draganddrop/draganddrop.pro</a></li>
+<li><a href="qtquick-draganddrop-draganddrop-qml.html">draganddrop/draganddrop.qml</a></li>
+<li><a href="qtquick-draganddrop-draganddrop-qmlproject.html">draganddrop/draganddrop.qmlproject</a></li>
+<li><a href="qtquick-draganddrop-draganddrop-qrc.html">draganddrop/draganddrop.qrc</a></li>
+<li><a href="qtquick-draganddrop-main-cpp.html">draganddrop/main.cpp</a></li>
+<li><a href="qtquick-draganddrop-tiles-dragtile-qml.html">draganddrop/tiles/DragTile.qml</a></li>
+<li><a href="qtquick-draganddrop-tiles-droptile-qml.html">draganddrop/tiles/DropTile.qml</a></li>
+<li><a href="qtquick-draganddrop-tiles-tiles-qml.html">draganddrop/tiles/tiles.qml</a></li>
+<li><a href="qtquick-draganddrop-views-gridview-qml.html">draganddrop/views/gridview.qml</a></li>
+</ul>
+</div>
+<!-- @@@draganddrop -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

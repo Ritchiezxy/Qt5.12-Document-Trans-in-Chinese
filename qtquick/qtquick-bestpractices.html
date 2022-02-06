@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qtquick-bestpractices.qdoc -->
+  <title>Best Practices for QML and Qt Quick | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quic<span lang="zh-cn">k 
+			模块</span></a></td><td ><span lang="zh-cn">QML 和 Qt Quick 最佳实践</span></td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#custom-ui-controls"><span lang="zh-cn">自定义UI控件</span></a></li>
+<li class="level2"><a href="#related-information"><span lang="zh-cn">相关信息</span></a></li>
+<li class="level1"><a href="#coding-conventions">代码编写约定</a></li>
+<li class="level1"><a href="#bundle-application-resources">包应用程序资源</a></li>
+<li class="level2"><a href="#related-information">相关信息</a></li>
+<li class="level1"><a href="#separate-ui-from-logic">将UI与逻辑分离</a></li>
+<li class="level2"><a href="#interacting-with-qml-from-c">Interacting with QML from C++</a></li>
+<li class="level2"><a href="#related-information">相关信息</a></li>
+<li class="level1"><a href="#using-qt-quick-layouts">与C++中的QML交互</a></li>
+<li class="level2"><a href="#dos"><span lang="zh-cn">最好做</span></a></li>
+<li class="level2"><a href="#don-ts"><span lang="zh-cn">不要做</span></a></li>
+<li class="level2"><a href="#related-information">相关信息</a></li>
+<li class="level1"><a href="#type-safety">类型安全</a></li>
+<li class="level1"><a href="#performance">性能</a></li>
+<li class="level1"><a href="#tools-and-utilities">工具和实用程序</a></li>
+<li class="level1"><a href="#scene-graph">场景视图</a></li>
+<li class="level1"><a href="#scalable-user-interfaces">可扩展的用户界面</a></li>
+<li class="level2"><a href="#related-information">相关信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML 和 Qt Quick 最佳实践</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-bestpractices.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>尽管QML和Qt 
+Quick提供了所有的好处，但在某些情况下，它们可能具有挑战性。下面的部分将详细介绍一些最佳实践，这些实践将帮助您在开发应用程序时获得更好的结果。</p>
+<a name="custom-ui-controls"></a>
+<h2 id="custom-ui-controls">自定义UI控件</h2>
+<p>
+在当今世界，流畅和现代的UI是任何应用程序成功的关键，这也是QML对于设计人员或开发人员意义重大的地方。Qt提供了最基本的UI控件，这是创建一个流畅和现代外观的UI所必需的。在创建您自己的自定义UI控件之前，建议浏览此UI控件列表。</p>
+<p>除了Qt Quick本身提供的这些基本UI控件外，Qt Quick 控件
+2还提供了一组丰富的UI控件。它们无需任何更改就能满足最常见的用例，并通过其定制选项提供了更多的可能性。特别是，Qt Quick Controls 
+2提供了符合最新UI设计趋势的样式选项。如果这些UI控件不能满足您的应用程序的需求，只有这样，才建议创建一个自定义控件。</p>
+<a name="related-information"></a>
+<h3 >相关信息</h3>
+<ul>
+<li><a href="../qtquickcontrols/qtquickcontrols-index.html">Qt Quick 控件 2</a></li>
+<li><a href="qtquick-index.html">Qt Quick</a></li>
+</ul>
+<a name="coding-conventions"></a>
+<h2 id="coding-conventions">代码编写约定</h2>
+<p>请参考 <a href="../qtdoc/qml-codingconventions.html">代码编写约定。</a></p>
+<a name="bundle-application-resources"></a>
+<h2 id="bundle-application-resources">包应用程序资源</h2>
+<p>
+大多数应用程序依赖图像和图标等资源来提供丰富的用户体验。无论目标操作系统是什么，要使这些资源对应用程序可用通常是一个挑战。大多数流行的操作系统采用更严格的安全策略来限制对文件系统的访问，这使得加载这些资源更加困难。作为一种替代方法，Qt提供了内置在应用程序二进制文件中的自己的<a href="../qtcore/resources.html">资源系统</a>，允许无论目标操作系统是什么都可以访问应用程序的资源。</p>
+<p>例如，考虑以下项目目录结构:</p>
+<pre class="cpp plain">
+
+  project
+  ├── images
+  │   ├── image1.png
+  │   └── image2.png
+  ├── project.pro
+  └── qml
+      └── main.qml
+
+</pre>
+<p><code>project.pro</code>中的以下条目确保了资源被内置到应用程序二进制文件中，使它们在需要时可用:</p>
+<pre class="cpp plain">
+
+  RESOURCES += \
+      qml/main.qml \
+      images/image1.png \
+      images/image2.png
+
+</pre>
+<p>一个更方便的方法是使用<a href="../qmake/qmake-function-reference.html#files-pattern-recursive-false">通配符语法</a>一次选择几个文件:</p>
+<pre class="cpp plain">
+
+  RESOURCES += \
+      $$files(qml/*.qml) \
+      $$files(images/*.png)
+
+</pre>
+<p>对于依赖有限资源的应用程序来说，这种方法很方便。但是，每当使用这种方法将新文件添加到<code>RESOURCES</code>中时，就会导致<code>RESOURCES</code>中的所有其他文件也被重新编译。这可能会导致效率低下，特别是对于大型文件集。在这种情况下，更好的方法是将每种类型的资源分离到它自己的<a href="../qtcore/resources.html#resource-collection-files">.qrc</a>文件中。例如，上面的代码片段可以更改为以下内容:</p>
+<pre class="cpp plain">
+
+  qml.files = $$files(*.qml)
+  qml.prefix = /qml
+  RESOURCES += qml
+
+  images.files = $$files(*.png)
+  images.prefix = /images
+  RESOURCES += images
+
+</pre>
+<p>现在，无论何时更改QML文件，都只需要重新编译QML文件。</p>
+<p>有时，可能需要对资源系统管理的特定文件的路径有更多的控制。例如，如果我们想给<code>image2.png</code>一个别名，我们需要切换到显式的<code>.qrc</code>文件。<a href="https://doc.qt.io/qtcreator/creator-project-creating.html#creating-resource-files">创建资源文件章节</a>详细说明了如何做到这一点。</p>
+<a name="related-information"></a>
+<h3 >相关信息</h3>
+<ul>
+<li><a href="../qtcore/resources.html">Qt资源系统</a></li>
+</ul>
+<a name="separate-ui-from-logic"></a>
+<h2 id="separate-ui-from-logic">将UI与逻辑分离</h2>
+<p>大多数应用程序开发人员希望实现的关键目标之一是创建一个可维护的应用程序。实现这一目标的方法之一是将用户界面与业务逻辑分离开来。下面是一些为什么应用程序的UI应该用QML编写的原因:</p>
+<ul>
+<li>声明性语言非常适合定义UI。</li>
+<li>QML代码编写起来更简单，因为它没有c++那么冗长，而且没有强类型。这也导致它成为一种优秀的原型语言，这是与设计师合作时至关重要的品质。</li>
+<li>在QML中可以很容易地使用JavaScript来响应事件。</li>
+</ul>
+<p>作为一种强类型语言，C++最适合应用程序的逻辑。通常，这类代码执行复杂计算或数据处理等任务，这些任务在C++中要比QML快。</p>
+<p>Qt提供了多种方法来在应用程序中集成QML和c++代码。一个典型的用例是在用户界面中显示一个数据列表。如果数据集是静态的、简单的和/或小的，那么用QML编写的模型就足够了。</p>
+<p>下面的代码片段演示了用QML编写的模型示例:</p>
+<pre class="qml">
+
+  model: ListModel {
+      ListElement { name: &quot;Item 1&quot; }
+      ListElement { name: &quot;Item 2&quot; }
+      ListElement { name: &quot;Item 3&quot; }
+  }
+
+  model: [ &quot;Item 1&quot;, &quot;Item 2&quot;, &quot;Item 3&quot; ]
+
+  model: 10
+
+</pre>
+<p>将<a href="qtquick-modelviewsdata-cppmodels.html#qabstractitemmodel-subclass">C++</a>用于大型或频繁修改的动态数据集。</p>
+<a name="interacting-with-qml-from-c"></a>
+<h3 >与C++中的QML交互</h3>
+<p>尽管Qt允许您从C++操作QML，但不建议这样做。为了解释原因，让我们看一个简化的例子。</p>
+<a name="pulling-references-from-qml"></a>
+<h4 >从QML中提取引用</h4>
+<p>假设我们正在为一个设置页面编写UI:</p>
+<pre class="qml">
+
+  import QtQuick 2.12
+  import QtQuick.Controls 2.12
+
+  <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-page.html">Page</a></span> {
+      <span class="type"><a href="../qtquickcontrols1/qml-qtquick-controls-button.html">Button</a></span> {
+          <span class="name">text</span>: <span class="name">qsTr</span>(<span class="string">&quot;Restore default settings&quot;</span>)
+      }
+  }
+
+</pre>
+<p>当按钮被点击时，我们想让它在C++中做一些事情。我们知道QML中的对象可以像C++中一样发出改变信号，所以我们给按钮一个<a href="../qtqml/qml-qtqml-qtobject.html#objectName-prop">objectName</a>，这样我们就可以从C++中找到它:</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquickcontrols1/qml-qtquick-controls-button.html">Button</a></span> {
+      <span class="name">objectName</span>: <span class="string">&quot;restoreDefaultsButton&quot;</span>
+      <span class="name">text</span>: <span class="name">qsTr</span>(<span class="string">&quot;Restore default settings&quot;</span>)
+  }
+
+</pre>
+<p>然后，在C++中，我们找到那个对象并连接到它的变化信号:</p>
+<pre class="cpp">
+
+  <span class="preprocessor">#include &lt;QGuiApplication&gt;</span>
+  <span class="preprocessor">#include &lt;QQmlApplicationEngine&gt;</span>
+  <span class="preprocessor">#include &lt;QSettings&gt;</span>
+
+  <span class="keyword">class</span> Backend : <span class="keyword">public</span> <span class="type"><a href="../qtcore/qobject.html">QObject</a></span>
+  {
+      Q_OBJECT
+
+  <span class="keyword">public</span>:
+      Backend() {}
+
+  <span class="keyword">public</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> restoreDefaults() {
+          settings<span class="operator">.</span>setValue(<span class="string">&quot;loadLastProject&quot;</span><span class="operator">,</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span>(<span class="keyword">false</span>));
+      }
+
+  <span class="keyword">private</span>:
+      <span class="type"><a href="../qtcore/qsettings.html">QSettings</a></span> settings;
+  };
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span>argv<span class="operator">[</span><span class="operator">]</span>)
+  {
+      <span class="type"><a href="../qtgui/qguiapplication.html">QGuiApplication</a></span> app(argc<span class="operator">,</span> argv);
+
+      <span class="type"><a href="../qtqml/qqmlapplicationengine.html">QQmlApplicationEngine</a></span> engine;
+      engine<span class="operator">.</span>load(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span>(<span class="type"><a href="../qtcore/qstring.html#QStringLiteral">QStringLiteral</a></span>(<span class="string">&quot;qrc:/main.qml&quot;</span>)));
+      <span class="keyword">if</span> (engine<span class="operator">.</span>rootObjects()<span class="operator">.</span>isEmpty())
+          <span class="keyword">return</span> <span class="operator">-</span><span class="number">1</span>;
+
+      Backend backend;
+
+      <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>rootObject <span class="operator">=</span> engine<span class="operator">.</span>rootObjects()<span class="operator">.</span>first();
+      <span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>restoreDefaultsButton <span class="operator">=</span> rootObject<span class="operator">-</span><span class="operator">&gt;</span>findChild<span class="operator">&lt;</span><span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">*</span><span class="operator">&gt;</span>(<span class="string">&quot;restoreDefaultsButton&quot;</span>);
+      <span class="type"><a href="../qtcore/qobject.html">QObject</a></span><span class="operator">::</span>connect(restoreDefaultsButton<span class="operator">,</span> SIGNAL(clicked())<span class="operator">,</span>
+          <span class="operator">&amp;</span>backend<span class="operator">,</span> SLOT(restoreDefaults()));
+
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+  <span class="preprocessor">#include &quot;main.moc&quot;</span>
+
+</pre>
+<p>使用这种方法，可以从QML中“提取”对对象的引用。问题在于C++逻辑层依赖于QML表示层。如果我们以<code>objectName</code> 
+更改的方式重构QML，或者其他一些更改破坏了C++查找QML对象的能力，那么我们的工作流程就会变得更加复杂和乏味。</p>
+<a name="pushing-references-to-qml"></a>
+<h4 >将引用推送到QML</h4>
+<p>重构QML要比重构C++容易得多，所以为了避免维护的痛苦，我们应该尽量让C++类型不知道QML。这可以通过将C++类型的引用“推”到QML中来实现:</p>
+<pre class="cpp">
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span>argv<span class="operator">[</span><span class="operator">]</span>)
+  {
+      <span class="type"><a href="../qtgui/qguiapplication.html">QGuiApplication</a></span> app(argc<span class="operator">,</span> argv);
+
+      Backend backend;
+
+      <span class="type"><a href="../qtqml/qqmlapplicationengine.html">QQmlApplicationEngine</a></span> engine;
+      engine<span class="operator">.</span>rootContext()<span class="operator">-</span><span class="operator">&gt;</span>setContextProperty(<span class="string">&quot;backend&quot;</span><span class="operator">,</span> <span class="operator">&amp;</span>backend);
+      engine<span class="operator">.</span>load(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span>(<span class="type"><a href="../qtcore/qstring.html#QStringLiteral">QStringLiteral</a></span>(<span class="string">&quot;qrc:/main.qml&quot;</span>)));
+      <span class="keyword">if</span> (engine<span class="operator">.</span>rootObjects()<span class="operator">.</span>isEmpty())
+          <span class="keyword">return</span> <span class="operator">-</span><span class="number">1</span>;
+
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+</pre>
+<p>然后QML直接调用C++槽:</p>
+<pre class="qml">
+
+  import QtQuick 2.12
+  import QtQuick.Controls 2.12
+
+  <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-page.html">Page</a></span> {
+      <span class="type"><a href="../qtquickcontrols1/qml-qtquick-controls-button.html">Button</a></span> {
+          <span class="name">text</span>: <span class="name">qsTr</span>(<span class="string">&quot;Restore default settings&quot;</span>)
+          <span class="name">onClicked</span>: <span class="name">backend</span>.<span class="name">restoreDefaults</span>()
+      }
+  }
+
+</pre>
+<p>使用这种方法，C++在将来需要重构QML时保持不变。</p>
+<p>在上面的例子中，我们在根上下文上设置了一个context属性，以便将C++对象暴露给QML。这意味着该属性对引擎加载的每个组件都可用。上下文属性对于那些在QML加载后必须立即可用且不能在QML中实例化的对象非常有用。</p>
+<p>有关如何选择将C++类型公开给QML的正确方法的快速指南，请参考<a href="../qtqml/qtqml-cppintegration-overview.html#choosing-the-correct-integration-method-between-c-and-qml">在C++和QML之间选择正确的集成方法章节</a>。</p>
+<a name="related-information"></a>
+<h3 >相关信息</h3>
+<ul>
+<li><a href="../qtqml/qtqml-cppintegration-topic.html">集成QML和C++</a></li>
+<li><a href="../qtquickcontrols/qtquickcontrols-chattutorial-example.html">
+聊天应用教程</a></li>
+</ul>
+<a name="using-qt-quick-layouts"></a>
+<h2 id="using-qt-quick-layouts">使用Qt快速布局</h2>
+<p>
+Qt提供Qt快速布局，以在布局中直观地安排Qt快速项目。不像它的替代选项，项目定位器，Qt快速布局也可以调整其子窗口大小。尽管Qt快速布局通常是大多数用例的理想选择，但在使用时必须考虑以下几点:</p>
+<a name="dos"></a>
+<h3 ><span lang="zh-cn">最好做</span></h3>
+<ul>
+<li>使用<a href="qml-qtquick-item.html#anchors-prop">锚点</a>或<a href="qml-qtquick-item.html#width-prop">宽度</a>和<a href="qml-qtquick-item.html#height-prop">高度</a>属性来指定布局对其非布局父项的大小。</li>
+<li>使用<a href="qml-qtquick-layouts-layout.html">布局</a>附加属性设置布局直接子元素的大小和对齐方式属性。</li>
+</ul>
+<a name="don-ts"></a>
+<h3 ><span lang="zh-cn">不要做</span></h3>
+<ul>
+<li>不要为提供implicitWidth和impliciheight的项定义首选大小，除非它们的隐式大小不令人满意。</li>
+<li>不要在布局的直接子元素上使用锚。相反，使用<code>Layout.preferredWidt</code>和<code>Layout.preferredHeight</code>:<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-layouts-rowlayout.html">RowLayout</a></span> {
+      <span class="name">id</span>: <span class="name">layout</span>
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      <span class="name">spacing</span>: <span class="number">6</span>
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">color</span>: <span class="string">'azure'</span>
+          <span class="name">Layout</span>.fillWidth: <span class="number">true</span>
+          <span class="name">Layout</span>.minimumWidth: <span class="number">50</span>
+          <span class="name">Layout</span>.preferredWidth: <span class="number">100</span>
+          <span class="name">Layout</span>.maximumWidth: <span class="number">300</span>
+          <span class="name">Layout</span>.minimumHeight: <span class="number">150</span>
+          <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+              <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+              <span class="name">text</span>: <span class="name">parent</span>.<span class="name">width</span> <span class="operator">+</span> <span class="string">'x'</span> <span class="operator">+</span> <span class="name">parent</span>.<span class="name">height</span>
+          }
+      }
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">color</span>: <span class="string">'plum'</span>
+          <span class="name">Layout</span>.fillWidth: <span class="number">true</span>
+          <span class="name">Layout</span>.minimumWidth: <span class="number">100</span>
+          <span class="name">Layout</span>.preferredWidth: <span class="number">200</span>
+          <span class="name">Layout</span>.preferredHeight: <span class="number">100</span>
+          <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+              <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+              <span class="name">text</span>: <span class="name">parent</span>.<span class="name">width</span> <span class="operator">+</span> <span class="string">'x'</span> <span class="operator">+</span> <span class="name">parent</span>.<span class="name">height</span>
+          }
+      }
+  }
+
+</pre>
+</li>
+</ul>
+<p>
+注意:布局和锚都是需要更多内存和实例化时间的对象类型。当简单绑定到x、y、width和height属性就足够时，避免使用它们(特别是在列表和表委托以及控件样式中)。</p><a name="related-information"></a>
+<h3 >相关信息</h3>
+<ul>
+<li><a href="qtquick-positioning-layouts.html">项定位器</a></li>
+<li><a href="qtquicklayouts-overview.html">Qt Quick布局概述</a></li>
+</ul>
+<a name="type-safety"></a>
+<h2 id="type-safety">类型安全</h2>
+<p>当在QML中声明属性时，使用"var"类型是很简单和方便的:</p>
+<pre class="cpp">
+
+  property var name
+  property var size
+  property var optionsMenu
+
+</pre>
+<p>然而，这种方法有几个缺点:</p>
+<ul>
+<li>如果赋值的类型错误，则报告的错误将指向属性声明的位置，而不是属性赋值的位置。这使得跟踪错误变得更加困难，从而减缓了开发过程。</li>
+<li>用静态分析来捕获上面提到的错误是不可能的。</li>
+<li>对于读取器来说，属性的实际基础类型并不总是立即清楚的。</li>
+</ul>
+<p>相反，在可能的情况下，总是使用实际类型:</p>
+<pre class="cpp">
+
+  property string name
+  property <span class="type">int</span> size
+  property MyMenu optionsMenu
+
+</pre>
+<a name="performance"></a>
+<h2 id="performance">性能</h2>
+<p>有关QML和Qt Quick的性能信息，请参见<a href="../qtdoc/qtquick-performance.html">性能考虑事项和建议章节</a>。</p>
+<a name="tools-and-utilities"></a>
+<h2 id="tools-and-utilities">工具和实用程序</h2>
+<p>有关使QML和Qt Quick更容易使用的有用工具和实用程序的信息，请参考<a href="qtquick-tools-and-utilities.html">Qt 
+Quick工具和实用程序章节</a>。</p>
+<a name="scene-graph"></a>
+<h2 id="scene-graph">场景<span lang="zh-cn">视</span>图</h2>
+<p>有关Qt Quick场景图的信息，请参见<a href="qtquick-visualcanvas-scenegraph.html">Qt 
+Quick场景视图章节</a>。</p>
+<a name="scalable-user-interfaces"></a>
+<h2 id="scalable-user-interfaces">可扩展的用户界面</h2>
+<p>
+随着显示分辨率的提高，可伸缩的应用程序UI变得越来越重要。实现这一目标的方法之一是为不同的屏幕分辨率维护多个UI副本，并根据可用的分辨率加载适当的UI副本。虽然这工作得很好，但它增加了维护开销。</p>
+<p>Qt为这个问题提供了一个更好的解决方案，并建议应用程序开发者遵循以下提示:</p>
+<ul>
+<li>使用锚或Qt Quick布局模块的布局器布局可视项。</li>
+<li>不要为可视项目指定显式的宽度和高度。</li>
+<li>为应用程序支持的每个显示分辨率提供图像和图标等UI资源。Qt Quick 控件 2图库的例子很好地说明了这一点，它为<code>@2x</code>， <code>@3x</code>和<code>@4x</code>分辨率提供了<code>qt-logo.png</code>，使应用程序能够满足高分辨率的显示。如果显式启用高DPI缩放特性，Qt自动选择适合给定显示的适当图像。</li>
+<li>对小图标使用SVG图像。虽然较大的svg渲染速度较慢，但较小的效果很好。矢量图像不需要提供图像的多个版本，而位图图像则需要提供多个版本。</li>
+<li>使用基于字体的图标，如fontawesome。这些可缩放到任何显示分辨率，并允许着色。Qt Quick 控件 2文本编辑器的例子很好地说明了这一点。</li>
+</ul>
+<p>有了这个功能，应用程序的UI应该根据所提供的显示分辨率进行伸缩。</p>
+<p class="centerAlign"><img src="images/qtquickcontrols2-gallery-welcome.png" alt="" /></p><a name="related-information"></a>
+<h3 >相关信息</h3>
+<ul>
+<li><a href="../qtquickcontrols/qtquickcontrols-gallery-example.html">画廊示例</a></li>
+<li><a href="../qtquickcontrols/qtquickcontrols-texteditor-example.html">文本编辑器示例</a></li>
+<li><a href="https://fontawesome.com/">字体太棒了</a></li>
+<li><a href="../qtdoc/scalability.html">可伸缩性</a></li>
+<li><a href="../qtdoc/highdpi.html#high-dpi-displays">高DPI显示</a></li>
+</ul>
+</div>
+<!-- @@@qtquick-bestpractices.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qtquickhandlers-index.qdoc -->
+  <title>Qt Quick Input Handlers | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >
+			Qt Quick输入处理程序</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquickhandlers-index.html#input-handlers">输入处理程序</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquickhandlers-index.html#key-features">主要特点</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquickhandlers-index.html#related-information">相关信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick输入处理程序</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquickhandlers-index.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>Qt Quick Input Handlers 是一组 QML 类型，用于在 UI 中处理来自键盘、触摸、鼠标和触控笔设备的事件。与事件处理项（例如<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html">Flickable</a> ）相比，输入处理程序是显式非可视的，需要更少的内存并且旨在用于更多数量：每个交互方面一个处理程序实例。每个输入处理程序实例代表其<code>parent</code>Item 处理某些事件。因此，视觉和行为问题可以更好地分离，并且行为是通过更细粒度的组合建立起来的。</p>
+<p>在 Qt 5.10 中，这些处理程序是在单独的 Qt.labs.handlers 模块中引入的。现在它们自 5.12 起包含在 Qt Quick 中。预先存在的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-keys.html">Keys</a>附加属性在概念上是相似的，因此我们将面向指针设备的处理程序加<code>Keys</code>在一起称为输入处理程序集。我们希望在未来的 Qt 版本中提供更多的附加属性用例。</p>
+<a name="input-handlers"></a>
+<h2 id="input-handlers">输入处理程序</h2>
+<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-draghandler.html">DragHandler</a></p></td><td class="tblDescr"><p>拖拽处理程序</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-hoverhandler.html">HoverHandler</a></p></td><td class="tblDescr"><p>鼠标和平板电脑悬停处理程序</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-keynavigation.html">KeyNavigation</a></p></td><td class="tblDescr"><p>支持方向键导航</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-keys.html">Keys</a></p></td><td class="tblDescr"><p>
+	为项提供键盘处理程序</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-pinchhandler.html">PinchHandler</a></p></td><td class="tblDescr"><p>捏手势处理程序</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="qml-qtquick-pointhandler.html">PointHandler</a></p></td><td class="tblDescr"><p>用于对单个接触点做出反应的处理程序</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="qml-qtquick-taphandler.html">TapHandler</a></p></td><td class="tblDescr"><p>点和点击的处理程序</p></td></tr>
+</table></div>
+<a name="key-features"></a>
+<h2 id="key-features">主要特点</h2>
+<p>一些主要特点是：</p>
+<ul>
+<li>处理焦点项内的击键</li>
+<li>处理手势，例如点击或拖动，无论它来自哪个设备</li>
+<li>以不同方式处理来自不同类别设备的手势</li>
+<li>每个项目可以有无限的处理程序</li>
+</ul>
+<a name="related-information"></a>
+<h2 id="related-information">相关信息</h2>
+<ul>
+<li><a href="qtquick-index.html">Qt Quick 模块</a></li>
+</ul>
+</div>
+<!-- @@@qtquickhandlers-index.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

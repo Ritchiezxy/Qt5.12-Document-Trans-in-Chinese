@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- topic.qdoc -->
+  <title>Important Concepts In Qt Quick - The Visual Canvas | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td >
+			Qt Quick中的重要的概念 - 可视画布</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#coordinate-system"><span lang="zh-cn">坐标系统</span></a></li>
+<li class="level1"><a href="#visual-parent"><span lang="zh-cn">可视父</span></a></li>
+<li class="level1"><a href="#scene-graph"><span lang="zh-cn">场景图</span></a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick中的重要的概念 - 可视画布</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-visualcanvas-topic.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>Qt Quick提供的可视化画布是一个具有z顺序的二维画布。</p>
+<a name="coordinate-system"></a>
+<h2 id="coordinate-system"><span lang="zh-cn">坐标系统</span></h2>
+<p>在Qt Quick坐标系中，左上角像素为[0,0]像素。子项目的坐标系统是相对于它的可视父项目的。有关Qt Quick使用的坐标系统的详细信息，请参阅有关<a href="qtquick-visualcanvas-coordinates.html">坐标系统</a>的文档。</p>
+<a name="visual-parent"></a>
+<h2 id="visual-parent"><span lang="zh-cn">可视父类</span></h2>
+<p>在使用Qt Quick的QML应用程序中，有两种不同的父类方式。第一类是所有权父类(也称为<a href="../qtcore/qobject.html">QObject</a>父类)，它确定对象生命周期语义。第二种是可视父类，它决定了项目在画布上的绘制位置，以及某些属性(例如，不透明度应用于可视子类)。</p>
+<p>在几乎所有情况下，可视父类都与所有权父类相同。有关该主题的更深入信息，请参阅有关<a href="qtquick-visualcanvas-visualparent.html"><span lang="zh-cn">可视父类</span></a>的文档。</p>
+<a name="scene-graph"></a>
+<h2 id="scene-graph"><span lang="zh-cn">场景图</span></h2>
+<p>现代计算机系统和设备使用图形处理单元或图形处理器来渲染图形。Qt Quick可以通过使用OpenGL之类的图形api来利用这些图形硬件。Qt 
+Quick的默认图形适配需要OpenGL，它用于在QML中显示使用Qt Quick开发的应用程序。特别地，Qt 
+Quick定义了一个场景图，然后进行渲染。有关场景图的概念、场景图的好处以及Qt Quick提供的<a href="qtquick-visualcanvas-scenegraph.html">场景图</a>适应性的深入信息，请参阅有关场景图的文档。</p>
+</div>
+<!-- @@@qtquick-visualcanvas-topic.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

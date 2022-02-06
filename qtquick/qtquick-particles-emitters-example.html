@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- emitters.qdoc -->
+  <title>Qt Quick Particles Examples - Emitters | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >
+			Qt Quick 粒子示例 - 发射器</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 粒子示例 - 发射器</h1>
+<span class="subtitle"></span>
+<!-- $$$particles/emitters-brief -->
+<p><font style="vertical-align: inherit;">这是在 QML 粒子系统中使用发射器的示例集合。</font></p>
+<!-- @@@particles/emitters -->
+<!-- $$$particles/emitters-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-emitters-example.png" alt="" /></p><p><font style="vertical-align: inherit;">这是与在粒子系统中使用发射器有关的小型 QML 示例的集合。每个示例都是强调特定类型或功能的小型 QML 文件。</font></p>
+<p><font style="vertical-align: inherit;">来自运动的速度通过主要移动发射器来产生强粒子运动的效果：</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-emitter.html">Emitter</a></span> {
+      <span class="name">id</span>: <span class="name">trailsNormal</span>
+      <span class="name">system</span>: <span class="name">sys1</span>
+
+      <span class="name">emitRate</span>: <span class="number">500</span>
+      <span class="name">lifeSpan</span>: <span class="number">2000</span>
+
+      <span class="name">y</span>: <span class="name">mouseArea</span>.<span class="name">pressed</span> ? <span class="name">mouseArea</span>.<span class="name">mouseY</span> : <span class="name">circle</span>.<span class="name">cy</span>
+      <span class="name">x</span>: <span class="name">mouseArea</span>.<span class="name">pressed</span> ? <span class="name">mouseArea</span>.<span class="name">mouseX</span> : <span class="name">circle</span>.<span class="name">cx</span>
+
+      <span class="name">velocity</span>: <span class="name">PointDirection</span> {<span class="name">xVariation</span>: <span class="number">4</span>; <span class="name">yVariation</span>: <span class="number">4</span>;}
+      <span class="name">acceleration</span>: <span class="name">PointDirection</span> {<span class="name">xVariation</span>: <span class="number">10</span>; <span class="name">yVariation</span>: <span class="number">10</span>;}
+      <span class="name">velocityFromMovement</span>: <span class="number">8</span>
+
+      <span class="name">size</span>: <span class="number">8</span>
+      <span class="name">sizeVariation</span>: <span class="number">4</span>
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">突发和脉冲在两个相同的发射器上调用突发和脉冲方法。</font></p>
+<pre class="qml">
+
+      <span class="keyword">if</span> (<span class="name">lastWasPulse</span>) {
+          <span class="name">burstEmitter</span>.<span class="name">burst</span>(<span class="number">500</span>);
+          <span class="name">lastWasPulse</span> <span class="operator">=</span> <span class="number">false</span>;
+      } <span class="keyword">else</span> {
+          <span class="name">pulseEmitter</span>.<span class="name">pulse</span>(<span class="number">500</span>);
+          <span class="name">lastWasPulse</span> <span class="operator">=</span> <span class="number">true</span>;
+      }
+
+</pre>
+<p>注意burst如何以要发射的粒子数作为参数，而pulse如何以要发射的毫秒数作为参数。这就给出了稍微不同的行为，这在本例中很容易看到。</p>
+<p><font style="vertical-align: inherit;">自定义发射器连接到 emitParticles 信号以在发射粒子数据时设置任意值；</font></p>
+<pre class="qml">
+
+  <span class="name">onEmitParticles</span>: {
+      <span class="keyword">for</span> (var i=0; <span class="name">i</span><span class="operator">&lt;</span><span class="name">particles</span>.<span class="name">length</span>; i++) {
+          var particle = <span class="name">particles</span>[<span class="name">i</span>];
+          <span class="name">particle</span>.<span class="name">startSize</span> <span class="operator">=</span> <span class="name">Math</span>.<span class="name">max</span>(<span class="number">02</span>,<span class="name">Math</span>.<span class="name">min</span>(<span class="number">492</span>,<span class="name">Math</span>.<span class="name">tan</span>(<span class="name">particle</span>.<span class="name">t</span><span class="operator">/</span><span class="number">2</span>)<span class="operator">*</span><span class="number">24</span>));
+          var theta = <span class="name">Math</span>.<span class="name">floor</span>(<span class="name">Math</span>.<span class="name">random</span>() <span class="operator">*</span> <span class="number">6.0</span>);
+          <span class="name">particle</span>.<span class="name">red</span> <span class="operator">=</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">0</span> <span class="operator">||</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">1</span> <span class="operator">||</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">2</span> ? <span class="number">0.2</span> : <span class="number">1</span>;
+          <span class="name">particle</span>.<span class="name">green</span> <span class="operator">=</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">2</span> <span class="operator">||</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">3</span> <span class="operator">||</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">4</span> ? <span class="number">0.2</span> : <span class="number">1</span>;
+          <span class="name">particle</span>.<span class="name">blue</span> <span class="operator">=</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">4</span> <span class="operator">||</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">5</span> <span class="operator">||</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">0</span> ? <span class="number">0.2</span> : <span class="number">1</span>;
+          <span class="name">theta</span> <span class="operator">/=</span> <span class="number">6.0</span>;
+          <span class="name">theta</span> <span class="operator">*=</span> <span class="number">2.0</span><span class="operator">*</span><span class="name">Math</span>.<span class="name">PI</span>;
+          <span class="name">theta</span> <span class="operator">+=</span> <span class="name">sys</span>.<span class="name">convert</span>(<span class="name">sys</span>.<span class="name">petalRotation</span>);<span class="comment">//Convert from degrees to radians</span>
+          <span class="name">particle</span>.<span class="name">initialVX</span> <span class="operator">=</span> <span class="name">petalLength</span> <span class="operator">*</span> <span class="name">Math</span>.<span class="name">cos</span>(<span class="name">theta</span>);
+          <span class="name">particle</span>.<span class="name">initialVY</span> <span class="operator">=</span> <span class="name">petalLength</span> <span class="operator">*</span> <span class="name">Math</span>.<span class="name">sin</span>(<span class="name">theta</span>);
+          <span class="name">particle</span>.<span class="name">initialAX</span> <span class="operator">=</span> <span class="name">particle</span>.<span class="name">initialVX</span> <span class="operator">*</span> -<span class="number">0.5</span>;
+          <span class="name">particle</span>.<span class="name">initialAY</span> <span class="operator">=</span> <span class="name">particle</span>.<span class="name">initialVY</span> <span class="operator">*</span> -<span class="number">0.5</span>;
+      }
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">这用于在六个旋转辐条中发射弯曲粒子。</font></p>
+<p>发射遮罩在发射器上设置图像遮罩，以发射出任意形状。</p>
+<pre class="qml">
+
+  <span class="name">shape</span>: <span class="name">MaskShape</span> {
+      <span class="name">source</span>: <span class="string">&quot;../../images/starfish_mask.png&quot;</span>
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">最大发射一次发射不超过一定数量的粒子。这个例子可以很容易地看到达到限制时会发生什么。</font></p>
+<p>Shape和Direction使用<a href="qml-qtquick-particles-targetdirection.html">TargetDirection</a>将粒子发射到未填充的椭圆形状外 </p>
+<pre class="qml">
+
+  <span class="name">shape</span>: <span class="name">EllipseShape</span> {<span class="name">fill</span>: <span class="number">false</span>}
+  <span class="name">velocity</span>: <span class="name">TargetDirection</span> {
+      <span class="name">targetX</span>: <span class="name">root</span>.<span class="name">width</span><span class="operator">/</span><span class="number">2</span>
+      <span class="name">targetY</span>: <span class="name">root</span>.<span class="name">height</span><span class="operator">/</span><span class="number">2</span>
+      <span class="name">proportionalMagnitude</span>: <span class="number">true</span>
+      <span class="name">magnitude</span>: <span class="number">0.5</span>
+  }
+
+</pre>
+<p><font style="vertical-align: inherit;">这会将粒子以成比例的速度发送到椭圆的中心，在它们移动到中心时保持椭圆的轮廓。</font></p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-trailemitter.html"><font style="vertical-align: inherit;">TrailEmitter</font></a><font style="vertical-align: inherit;">使用该类型添加烟雾粒子以跟踪场景中的火粒子。</font></p>
+<pre class="qml">
+
+  <span class="name">onEmitParticles</span>: {
+      <span class="keyword">for</span> (var i=0; <span class="name">i</span><span class="operator">&lt;</span><span class="name">particles</span>.<span class="name">length</span>; i++) {
+          var particle = <span class="name">particles</span>[<span class="name">i</span>];
+          <span class="name">particle</span>.<span class="name">startSize</span> <span class="operator">=</span> <span class="name">Math</span>.<span class="name">max</span>(<span class="number">02</span>,<span class="name">Math</span>.<span class="name">min</span>(<span class="number">492</span>,<span class="name">Math</span>.<span class="name">tan</span>(<span class="name">particle</span>.<span class="name">t</span><span class="operator">/</span><span class="number">2</span>)<span class="operator">*</span><span class="number">24</span>));
+          var theta = <span class="name">Math</span>.<span class="name">floor</span>(<span class="name">Math</span>.<span class="name">random</span>() <span class="operator">*</span> <span class="number">6.0</span>);
+          <span class="name">particle</span>.<span class="name">red</span> <span class="operator">=</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">0</span> <span class="operator">||</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">1</span> <span class="operator">||</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">2</span> ? <span class="number">0.2</span> : <span class="number">1</span>;
+          <span class="name">particle</span>.<span class="name">green</span> <span class="operator">=</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">2</span> <span class="operator">||</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">3</span> <span class="operator">||</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">4</span> ? <span class="number">0.2</span> : <span class="number">1</span>;
+          <span class="name">particle</span>.<span class="name">blue</span> <span class="operator">=</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">4</span> <span class="operator">||</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">5</span> <span class="operator">||</span> <span class="name">theta</span> <span class="operator">==</span> <span class="number">0</span> ? <span class="number">0.2</span> : <span class="number">1</span>;
+          <span class="name">theta</span> <span class="operator">/=</span> <span class="number">6.0</span>;
+          <span class="name">theta</span> <span class="operator">*=</span> <span class="number">2.0</span><span class="operator">*</span><span class="name">Math</span>.<span class="name">PI</span>;
+          <span class="name">theta</span> <span class="operator">+=</span> <span class="name">sys</span>.<span class="name">convert</span>(<span class="name">sys</span>.<span class="name">petalRotation</span>);<span class="comment">//Convert from degrees to radians</span>
+          <span class="name">particle</span>.<span class="name">initialVX</span> <span class="operator">=</span> <span class="name">petalLength</span> <span class="operator">*</span> <span class="name">Math</span>.<span class="name">cos</span>(<span class="name">theta</span>);
+          <span class="name">particle</span>.<span class="name">initialVY</span> <span class="operator">=</span> <span class="name">petalLength</span> <span class="operator">*</span> <span class="name">Math</span>.<span class="name">sin</span>(<span class="name">theta</span>);
+          <span class="name">particle</span>.<span class="name">initialAX</span> <span class="operator">=</span> <span class="name">particle</span>.<span class="name">initialVX</span> <span class="operator">*</span> -<span class="number">0.5</span>;
+          <span class="name">particle</span>.<span class="name">initialAY</span> <span class="operator">=</span> <span class="name">particle</span>.<span class="name">initialVY</span> <span class="operator">*</span> -<span class="number">0.5</span>;
+      }
+  }
+
+</pre>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-particles-emitters-content-burstandpulse-qml.html">particles/emitters/content/burstandpulse.qml</a></li>
+<li><a href="qtquick-particles-emitters-content-customemitter-qml.html">particles/emitters/content/customemitter.qml</a></li>
+<li><a href="qtquick-particles-emitters-content-emitmask-qml.html">particles/emitters/content/emitmask.qml</a></li>
+<li><a href="qtquick-particles-emitters-content-maximumemitted-qml.html">particles/emitters/content/maximumemitted.qml</a></li>
+<li><a href="qtquick-particles-emitters-content-shapeanddirection-qml.html">particles/emitters/content/shapeanddirection.qml</a></li>
+<li><a href="qtquick-particles-emitters-content-trailemitter-qml.html">particles/emitters/content/trailemitter.qml</a></li>
+<li><a href="qtquick-particles-emitters-content-velocityfrommotion-qml.html">particles/emitters/content/velocityfrommotion.qml</a></li>
+<li><a href="qtquick-particles-emitters-emitters-pro.html">particles/emitters/emitters.pro</a></li>
+<li><a href="qtquick-particles-emitters-emitters-qml.html">particles/emitters/emitters.qml</a></li>
+<li><a href="qtquick-particles-emitters-emitters-qmlproject.html">particles/emitters/emitters.qmlproject</a></li>
+<li><a href="qtquick-particles-emitters-emitters-qrc.html">particles/emitters/emitters.qrc</a></li>
+<li><a href="qtquick-particles-emitters-main-cpp.html">particles/emitters/main.cpp</a></li>
+</ul>
+</div>
+<!-- @@@particles/emitters -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

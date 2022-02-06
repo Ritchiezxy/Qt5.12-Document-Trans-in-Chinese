@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- transformations.qdoc -->
+  <title>Qt Quick Transformation Types | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td >
+			Qt<span lang="zh-cn"> Quick 的</span>Transformation 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#item-properties">Item Properties</a></li>
+<li class="level1"><a href="#transform-list">Transform List</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt<span lang="zh-cn"> Quick的</span>Transformation 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-effects-transformations.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><span lang="zh-cn">旋转</span>应用于子层次结构，也将转换鼠标和触摸输入，使事件处理程序中的坐标按照预期的行为。</p>
+<a name="item-properties"></a>
+<h2 id="item-properties">项属性</h2>
+<p><a href="qml-qtquick-item.html">Item</a>包含许多方便的属性，涵盖了最常见的转换类型。</p>
+<ul>
+<li><code>x</code> <span lang="zh-cn">和</span><code><span lang="zh-cn"> </span>y</code>; 
+<span lang="zh-cn">旋转该项。</span></li>
+<li><code>scale</code>; 对项目应用统一比例因子。</li>
+<li><code>rotation</code>; 以逆时针方向旋转物品。</li>
+<li><code>transformOrigin</code>; 与缩放和旋转结合使用，以改变<span lang="zh-cn">旋转</span>的原点。</li>
+</ul>
+<a name="transform-list"></a>
+<h2 id="transform-list">Transform <span lang="zh-cn">列表</span></h2>
+<p>除了方便的类型，还可以使用<a href="qml-qtquick-scale.html">Scale</a>、<a href="qml-qtquick-rotation.html">Rotation</a>和<a href="qml-qtquick-translate.html">Translate</a>对象列表来定义更全面的<span lang="zh-cn">旋转</span>，将其转换为<a href="qml-qtquick-item.html">Item</a>的<code>transform</code> 
+属性。</p>
+</div>
+<!-- @@@qtquick-effects-transformations.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

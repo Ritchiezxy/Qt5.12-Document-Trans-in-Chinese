@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- canvas.qdoc -->
+  <title>Qt Quick 示例 - Canvas | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick 示例 - 画布</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#running-the-example">运行该示例</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-canvas-example.html#red-heart">红心</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-canvas-example.html#talk-bubble">谈话泡泡</a></li>
+<li class="level1">
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-canvas-example.html#squircle">
+方圆形</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-canvas-example.html#rounded-rectangle">圆角矩形</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-canvas-example.html#smile-face">笑脸</a></li>
+<li class="level1"><a href="#clip">裁剪</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-canvas-example.html#tiger">老虎</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 示例 - 画布</h1>
+<span class="subtitle"></span>
+<!-- $$$canvas-brief -->
+<p>这是 QML Canvas 示例的集合。</p>
+<!-- @@@canvas -->
+<!-- $$$canvas-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-canvas-example.png" alt="" /></p><p><i>Canvas是与</i><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-canvas.html">Canvas</a>类型相关的小型 QML 示例的集合。每个示例都是强调特定类型或功能的小型 QML 文件。</p>
+<a name="running-the-example"></a>
+<h2 id="running-the-example">运行该示例</h2>
+<p>要从 <a href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a>运行示例，请打开<b>欢迎</b> 模式并从 <b>示例</b>中选择示例。有关更多信息，请访问<a href="http://doc.qt.io/qtcreator/creator-build-example-application.html">构建和运行示例</a>。</p>
+<a name="red-heart"></a>
+<h2 id="red-heart">红心</h2>
+<p><i>红心</i>使用贝塞尔曲线 API 来描边和填充红心。</p>
+<pre class="qml">
+
+  <span class="name">ctx</span>.<span class="name">beginPath</span>();
+  <span class="name">ctx</span>.<span class="name">moveTo</span>(<span class="number">75</span>,<span class="number">40</span>);
+  <span class="name">ctx</span>.<span class="name">bezierCurveTo</span>(<span class="number">75</span>,<span class="number">37</span>,<span class="number">70</span>,<span class="number">25</span>,<span class="number">50</span>,<span class="number">25</span>);
+  <span class="name">ctx</span>.<span class="name">bezierCurveTo</span>(<span class="number">20</span>,<span class="number">25</span>,<span class="number">20</span>,<span class="number">62.5</span>,<span class="number">20</span>,<span class="number">62.5</span>);
+  <span class="name">ctx</span>.<span class="name">bezierCurveTo</span>(<span class="number">20</span>,<span class="number">80</span>,<span class="number">40</span>,<span class="number">102</span>,<span class="number">75</span>,<span class="number">120</span>);
+  <span class="name">ctx</span>.<span class="name">bezierCurveTo</span>(<span class="number">110</span>,<span class="number">102</span>,<span class="number">130</span>,<span class="number">80</span>,<span class="number">130</span>,<span class="number">62.5</span>);
+  <span class="name">ctx</span>.<span class="name">bezierCurveTo</span>(<span class="number">130</span>,<span class="number">62.5</span>,<span class="number">130</span>,<span class="number">25</span>,<span class="number">100</span>,<span class="number">25</span>);
+  <span class="name">ctx</span>.<span class="name">bezierCurveTo</span>(<span class="number">85</span>,<span class="number">25</span>,<span class="number">75</span>,<span class="number">37</span>,<span class="number">75</span>,<span class="number">40</span>);
+  <span class="name">ctx</span>.<span class="name">closePath</span>();
+
+</pre>
+<a name="talk-bubble"></a>
+<h2 id="talk-bubble">谈话泡泡</h2>
+<p><i>对话泡泡</i>使用 quadraticCurveTo() API 来描边和填充自定义对话泡泡：</p>
+<pre class="qml">
+
+  <span class="name">ctx</span>.<span class="name">beginPath</span>();
+  <span class="name">ctx</span>.<span class="name">moveTo</span>(<span class="number">75</span>,<span class="number">25</span>);
+  <span class="name">ctx</span>.<span class="name">quadraticCurveTo</span>(<span class="number">25</span>,<span class="number">25</span>,<span class="number">25</span>,<span class="number">62.5</span>);
+  <span class="name">ctx</span>.<span class="name">quadraticCurveTo</span>(<span class="number">25</span>,<span class="number">100</span>,<span class="number">50</span>,<span class="number">100</span>);
+  <span class="name">ctx</span>.<span class="name">quadraticCurveTo</span>(<span class="number">50</span>,<span class="number">120</span>,<span class="number">30</span>,<span class="number">125</span>);
+  <span class="name">ctx</span>.<span class="name">quadraticCurveTo</span>(<span class="number">60</span>,<span class="number">120</span>,<span class="number">65</span>,<span class="number">100</span>);
+  <span class="name">ctx</span>.<span class="name">quadraticCurveTo</span>(<span class="number">125</span>,<span class="number">100</span>,<span class="number">125</span>,<span class="number">62.5</span>);
+  <span class="name">ctx</span>.<span class="name">quadraticCurveTo</span>(<span class="number">125</span>,<span class="number">25</span>,<span class="number">75</span>,<span class="number">25</span>);
+  <span class="name">ctx</span>.<span class="name">closePath</span>();
+
+</pre>
+<p>此示例还演示了 fillText() API：</p>
+<pre class="qml">
+
+  <span class="name">ctx</span>.<span class="name">fillStyle</span> <span class="operator">=</span> <span class="string">&quot;white&quot;</span>;
+  <span class="name">ctx</span>.<span class="name">font</span> <span class="operator">=</span> <span class="string">&quot;bold 17px sans-serif&quot;</span>;
+  <span class="name">ctx</span>.<span class="name">fillText</span>(<span class="string">&quot;Qt Quick&quot;</span>, <span class="number">40</span>, <span class="number">70</span>);
+
+</pre>
+<a name="squircle"></a>
+<h2 id="squircle">方圆形</h2>
+<p><i>Squircle</i>使用一组简单的 moveTo() 和 lineTo() 路径 API 来绘制平滑的 squircle。</p>
+<a name="rounded-rectangle"></a>
+<h2 id="rounded-rectangle">圆角矩形</h2>
+<p><i>圆角矩形</i>使用 lineTo() 和 arcTo() 路径 API 的集合来绘制圆角矩形。</p>
+<a name="smile-face"></a>
+<h2 id="smile-face">笑脸</h2>
+<p><i>笑脸</i>使用多种路径来绘制和填充笑脸。</p>
+<a name="clip"></a>
+<h2 id="clip">裁剪</h2>
+<p><i>Clip</i>使用剪辑 API 来剪辑给定的图像。</p>
+<pre class="qml">
+
+  <span class="name">ctx</span>.<span class="name">clip</span>();
+  <span class="name">ctx</span>.<span class="name">drawImage</span>(<span class="name">canvas</span>.<span class="name">imagefile</span>, <span class="number">0</span>, <span class="number">0</span>);
+
+</pre>
+<a name="tiger"></a>
+<h2 id="tiger">老虎</h2>
+<p><i>Tiger</i>使用 SVG 路径 API 来绘制带有 SVG 路径字符串集合的老虎。</p>
+<pre class="qml">
+
+  <span class="keyword">for</span> (var i = 0; <span class="name">i</span> <span class="operator">&lt;</span> <span class="name">Tiger</span>.<span class="name">tiger</span>.<span class="name">length</span>; i++) {
+      <span class="keyword">if</span> (<span class="name">Tiger</span>.<span class="name">tiger</span>[<span class="name">i</span>].<span class="name">width</span> <span class="operator">!=</span> <span class="name">undefined</span>)
+          <span class="name">ctx</span>.<span class="name">lineWidth</span> <span class="operator">=</span> <span class="name">Tiger</span>.<span class="name">tiger</span>[<span class="name">i</span>].<span class="name">width</span>;
+
+      <span class="keyword">if</span> (<span class="name">Tiger</span>.<span class="name">tiger</span>[<span class="name">i</span>].<span class="name">path</span> <span class="operator">!=</span> <span class="name">undefined</span>)
+          <span class="name">ctx</span>.<span class="name">path</span> <span class="operator">=</span> <span class="name">Tiger</span>.<span class="name">tiger</span>[<span class="name">i</span>].<span class="name">path</span>;
+
+      <span class="keyword">if</span> (<span class="name">Tiger</span>.<span class="name">tiger</span>[<span class="name">i</span>].<span class="name">fill</span> <span class="operator">!=</span> <span class="name">undefined</span>) {
+          <span class="name">ctx</span>.<span class="name">fillStyle</span> <span class="operator">=</span> <span class="name">Tiger</span>.<span class="name">tiger</span>[<span class="name">i</span>].<span class="name">fill</span>;
+          <span class="name">ctx</span>.<span class="name">fill</span>();
+      }
+
+      <span class="keyword">if</span> (<span class="name">Tiger</span>.<span class="name">tiger</span>[<span class="name">i</span>].<span class="name">stroke</span> <span class="operator">!=</span> <span class="name">undefined</span>) {
+          <span class="name">ctx</span>.<span class="name">strokeStyle</span> <span class="operator">=</span> <span class="name">Tiger</span>.<span class="name">tiger</span>[<span class="name">i</span>].<span class="name">stroke</span>;
+          <span class="name">ctx</span>.<span class="name">stroke</span>();
+      }
+  }
+
+</pre>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-canvas-beziercurve-beziercurve-qml.html">canvas/bezierCurve/bezierCurve.qml</a></li>
+<li><a href="qtquick-canvas-canvas-pro.html">canvas/canvas.pro</a></li>
+<li><a href="qtquick-canvas-canvas-qml.html">canvas/canvas.qml</a></li>
+<li><a href="qtquick-canvas-canvas-qrc.html">canvas/canvas.qrc</a></li>
+<li><a href="qtquick-canvas-clip-clip-qml.html">canvas/clip/clip.qml</a></li>
+<li><a href="qtquick-canvas-main-cpp.html">canvas/main.cpp</a></li>
+<li><a href="qtquick-canvas-quadraticcurveto-quadraticcurveto-qml.html">canvas/quadraticCurveTo/quadraticCurveTo.qml</a></li>
+<li><a href="qtquick-canvas-roundedrect-roundedrect-qml.html">canvas/roundedrect/roundedrect.qml</a></li>
+<li><a href="qtquick-canvas-smile-smile-qml.html">canvas/smile/smile.qml</a></li>
+<li><a href="qtquick-canvas-squircle-squircle-qml.html">canvas/squircle/squircle.qml</a></li>
+<li><a href="qtquick-canvas-tiger-tiger-js.html">canvas/tiger/tiger.js</a></li>
+<li><a href="qtquick-canvas-tiger-tiger-qml.html">canvas/tiger/tiger.qml</a></li>
+</ul>
+<p>图片：</p>
+<ul>
+<li><a href="images/used-in-examples/canvas/contents/qt-logo.png">canvas/contents/qt-logo.png</a></li>
+<li><a href="images/used-in-examples/canvas/squircle/squircle.png">canvas/squircle/squircle.png</a></li>
+</ul>
+</div>
+<!-- @@@canvas -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- mouse.qdoc -->
+  <title>Mouse Events | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >鼠标事件</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-mouseevents.html#mouse-types">鼠标类型</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-mouseevents.html#mouse-event-handling">鼠标事件处理</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-mouseevents.html#defining-a-mouse-area">定义鼠标区域</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-mouseevents.html#receiving-events">接收事件</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-mouseevents.html#enabling-gestures">启用手势</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-mouseevents.html#mouseevent-object">鼠标事件对象</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-mouseevents.html#accepting-further-signals">接受进一步的信号</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">鼠标事件</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-input-mouseevents.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>处理来自所有指点设备（包括鼠标和触摸屏）的事件的一种更现代的方法是通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquickhandlers-index.html">Input Handlers</a>。本页描述了最初的 Qt Quick <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea</a>类型，它最初设计用于处理鼠标输入，后来开始在简单的面向触摸的用户界面中处理单点触摸事件（以合成鼠标事件的形式）。</p>
+<a name="mouse-types"></a>
+<h2 id="mouse-types">鼠标类型</h2>
+<ul>
+<li><a href="qml-qtquick-mousearea.html">MouseArea</a> 类型</li>
+<li><a href="qml-qtquick-mouseevent.html">MouseEvent</a> 对象</li>
+</ul>
+<a name="mouse-event-handling"></a>
+<h2 id="mouse-event-handling">鼠标事件处理</h2>
+<p>QML 使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html">信号和处理程序</a>来提供鼠标交互。具体来说，Qt Quick 提供了<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mouseevent.html">MouseEvent</a>类型，允许开发人员定义 JavaScript 回调（也称为信号处理程序），它们在定义的区域内接受鼠标事件。</p>
+<a name="defining-a-mouse-area"></a>
+<h2 id="defining-a-mouse-area">定义鼠标区域</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea</a>类型接收定义区域内的事件。定义此区域的一种快速方法是使用该属性将 锚定<code>MouseArea</code>到其父区域。<code>anchors.fill</code>如果父级是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-rectangle.html">Rectangle</a>（或任何<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-item.html">Item</a>组件），则<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea</a>将填充由父级尺寸定义的区域。或者，可以定义小于或大于父对象的区域。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">button</span>
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+      <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;button clicked&quot;</span>)
+      }
+      <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">width</span>:<span class="number">150</span>; <span class="name">height</span>: <span class="number">75</span>
+          <span class="name">onClicked</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;irregular area clicked&quot;</span>)
+      }
+  }
+
+</pre>
+<a name="receiving-events"></a>
+<h2 id="receiving-events">接收事件</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea</a>类型发出<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html">信号</a>以响应不同的鼠标事件。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea</a>类型文档更详细地描述了这些手势：</p>
+<ul>
+<li>取消</li>
+<li>点击</li>
+<li>双击</li>
+<li>进入</li>
+<li>退出</li>
+<li>位置改变</li>
+<li>按下并按住不动</li>
+<li>按下</li>
+<li>释放</li>
+</ul>
+<p>这些信号可以具有在发出信号时调用的回调。</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">onClicked</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;area clicked&quot;</span>)
+          <span class="name">onDoubleClicked</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;area double clicked&quot;</span>)
+          <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;mouse entered the area&quot;</span>)
+          <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;mouse left the area&quot;</span>)
+      }
+
+</pre>
+<a name="enabling-gestures"></a>
+<h2 id="enabling-gestures">启用手势</h2>
+<p>某些鼠标手势和按钮单击需要在发送或接收事件之前启用。某些<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mouseevent.html">MouseEvent</a>属性启用这些手势。</p>
+<p>要监听（或显式忽略）某个鼠标按钮，请将相应的鼠标按钮设置为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html#acceptedButtons-prop">acceptedButtons</a>属性。</p>
+<p>自然，鼠标事件（例如按钮按下和鼠标位置）在鼠标单击期间发送。例如，该<code>containsMouse</code>属性只会在鼠标按下期间检索其正确值。即使没有按下鼠标按钮，hoverEnabled 也会启用鼠标事件和定位<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html#hoverEnabled-prop">。</a>将<code>hoverEnabled</code>属性设置为<code>true</code>, 反过来将启用<code>entered</code>、<code>exited</code>和<code>positionChanged</code>信号及其各自的信号处理程序。</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+          <span class="name">hoverEnabled</span>: <span class="number">true</span>
+          <span class="name">acceptedButtons</span>: <span class="name">Qt</span>.<span class="name">LeftButton</span> <span class="operator">|</span> <span class="name">Qt</span>.<span class="name">RightButton</span>
+          <span class="name">onEntered</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;mouse entered the area&quot;</span>)
+          <span class="name">onExited</span>: <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;mouse left the area&quot;</span>)
+      }
+
+</pre>
+<p>此外，要禁用整个鼠标区域，请将<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mousearea.html">MouseArea</a> <code>enabled</code>属性设置为<code>false</code>。</p>
+<a name="mouseevent-object"></a>
+<h2 id="mouseevent-object">鼠标事件对象</h2>
+<p>信号及其回调接收<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mouseevent.html">MouseEvent</a>对象作为参数。该<code>mouse</code>对象包含有关鼠标事件的信息。例如，通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mouseevent.html#button-prop">mouse.button</a>属性查询启动事件的鼠标按钮。</p>
+<p><code>MouseEvent</code> 对象也可以使用它的<code>accepted</code> 属性忽略鼠标事件。</p>
+<a name="accepting-further-signals"></a>
+<h3 >接受进一步的信号</h3>
+<p>许多信号被多次发送以反映各种鼠标事件，例如双击。为了便于对鼠标点击进行分类，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-mouseevent.html">MouseEvent</a>对象具有<code>accepted</code>禁用事件传播的属性。</p>
+<p>要了解有关 QML 事件系统的更多信息，请阅读<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-signals.html">信号和处理程序以及事件系统</a>文档。</p>
+</div>
+<!-- @@@qtquick-input-mouseevents.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

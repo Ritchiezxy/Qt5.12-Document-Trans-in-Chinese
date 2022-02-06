@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qquickanimation.cpp -->
+  <title>ParallelAnimation QML 类型 | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-qmlmodule.html">QML类型</a></td><td >ParallelAnimation QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">ParallelAnimation QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$ParallelAnimation-brief -->
+<p>使动画能够并行运行。 <a href="#details">更多...</a></p>
+<!-- @@@ParallelAnimation -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句：</td><td class="memItemRight bottomAlign"> import QtQuick 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign">继承自：</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtquick-animation.html">Animation</a></p>
+</td></tr></table></div><ul>
+<li><a href="qml-qtquick-parallelanimation-members.html">所有成员的列表，包括继承成员</a></li>
+</ul>
+<!-- $$$ParallelAnimation-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-sequentialanimation.html">
+SequentialAnimation</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-parallelanimation.html">ParallelAnimation</a>类型允许多个动画一起运行。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-sequentialanimation.html">SequentialAnimation</a>中定义的动画一个接一个运行，而<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-parallelanimation.html">ParallelAnimation</a>中定义的动画同时运行。</p>
+<p>以下动画并行运行两个数字动画。该<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-rectangle.html">矩形</a>由动画其前进到（50,50）<code>x</code>和<code>y</code>在同一时间属性。</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">rect</span>
+      <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+      <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+
+      <span class="type"><a href="qml-qtquick-parallelanimation.html">ParallelAnimation</a></span> {
+          <span class="name">running</span>: <span class="number">true</span>
+          <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">target</span>: <span class="name">rect</span>; <span class="name">property</span>: <span class="string">&quot;x&quot;</span>; <span class="name">to</span>: <span class="number">50</span>; <span class="name">duration</span>: <span class="number">1000</span> }
+          <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">target</span>: <span class="name">rect</span>; <span class="name">property</span>: <span class="string">&quot;y&quot;</span>; <span class="name">to</span>: <span class="number">50</span>; <span class="name">duration</span>: <span class="number">1000</span> }
+      }
+  }
+
+</pre>
+<p>与任何其他动画类型一样，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-parallelanimation.html">ParallelAnimation</a>可以通过多种方式应用，包括过渡、行为和属性值源。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-animations.html">Qt Quick</a>文档中的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-animations.html">动画和转换</a>展示了多种创建动画的方法。</p>
+<p><b>注意：</b>一旦动画被分组为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-sequentialanimation.html">SequentialAnimation</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-parallelanimation.html">ParallelAnimation</a>，就不能单独启动和停止；在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-sequentialanimation.html">SequentialAnimation</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-parallelanimation.html">ParallelAnimation</a>必须启动并停止为一组。</p><p><b>请参考</b> <a href="qml-qtquick-sequentialanimation.html">SequentialAnimation</a>，<a href="qtquick-statesanimations-animations.html"><span lang="zh-cn">Qt中的动画和过渡</span></a> 和 <a href="qtquick-animation-example.html">
+	Qt Quick 示例 - <span lang="zh-cn">动画</span></a>。</p>
+<!-- @@@ParallelAnimation -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

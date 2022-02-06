@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- animation.qdoc -->
+  <title>Qt Quick 示例 - Animation | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick 示例 - 动画</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#running-the-example">运行该示例</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#coloranimation">颜色动画</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#propertyanimation">属性动画</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#animators">动画师</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#behaviors">行为</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#wiggly-text">摇摆不定的文字</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#tv-tennis">电视网球</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#easing-curves">缓动曲线</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#states">状态</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#transitions">过渡</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#pathanimation">路径动画</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#pathinterpolator">路径插值器</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 示例 - 动画</h1>
+<span class="subtitle"></span>
+<!-- $$$animation-brief -->
+<p>这是 QML 动画示例的集合。</p>
+<!-- @@@animation -->
+<!-- $$$animation-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-animations-example.png" alt="" /></p><p><i>动画</i>是与动画相关的小型 QML 示例的集合。每个示例都是强调特定类型或功能的小型 QML 文件。</p>
+<p>有关动画的更多信息，请访问<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-topic.html">Qt Quick-States、Transitions 和 Animations 中的重要概念</a>。</p>
+<a name="running-the-example"></a>
+<h2 id="running-the-example">运行该示例</h2>
+<p>要从 <a href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a>运行示例，请打开<b>欢迎</b> 模式并从 <b>示例</b>中选择示例。有关更多信息，请访问<a href="http://doc.qt.io/qtcreator/creator-build-example-application.html">构建和运行示例</a>。</p>
+<a name="coloranimation"></a>
+<h2 id="coloranimation">颜色动画</h2>
+<p><i>ColorAnimation</i>使用彩色动画从白天到夜晚淡化天空。</p>
+<pre class="qml">
+
+  <span class="name">gradient</span>: <span class="name">Gradient</span> {
+      <span class="type"><a href="qml-qtquick-gradientstop.html">GradientStop</a></span> {
+          <span class="name">position</span>: <span class="number">0.0</span>
+          SequentialAnimation on <span class="name">color</span> {
+              <span class="name">loops</span>: <span class="name">Animation</span>.<span class="name">Infinite</span>
+              <span class="type"><a href="qml-qtquick-coloranimation.html">ColorAnimation</a></span> { <span class="name">from</span>: <span class="string">&quot;#14148c&quot;</span>; <span class="name">to</span>: <span class="string">&quot;#0E1533&quot;</span>; <span class="name">duration</span>: <span class="number">5000</span> }
+              <span class="type"><a href="qml-qtquick-coloranimation.html">ColorAnimation</a></span> { <span class="name">from</span>: <span class="string">&quot;#0E1533&quot;</span>; <span class="name">to</span>: <span class="string">&quot;#14148c&quot;</span>; <span class="name">duration</span>: <span class="number">5000</span> }
+          }
+      }
+      <span class="type"><a href="qml-qtquick-gradientstop.html">GradientStop</a></span> {
+          <span class="name">position</span>: <span class="number">1.0</span>
+          SequentialAnimation on <span class="name">color</span> {
+              <span class="name">loops</span>: <span class="name">Animation</span>.<span class="name">Infinite</span>
+              <span class="type"><a href="qml-qtquick-coloranimation.html">ColorAnimation</a></span> { <span class="name">from</span>: <span class="string">&quot;#14aaff&quot;</span>; <span class="name">to</span>: <span class="string">&quot;#437284&quot;</span>; <span class="name">duration</span>: <span class="number">5000</span> }
+              <span class="type"><a href="qml-qtquick-coloranimation.html">ColorAnimation</a></span> { <span class="name">from</span>: <span class="string">&quot;#437284&quot;</span>; <span class="name">to</span>: <span class="string">&quot;#14aaff&quot;</span>; <span class="name">duration</span>: <span class="number">5000</span> }
+          }
+      }
+  }
+
+</pre>
+<a name="propertyanimation"></a>
+<h2 id="propertyanimation">属性动画</h2>
+<p><i>PropertyAnimation</i>使用数字动画来上下反弹一个圆圈。</p>
+<pre class="qml">
+
+  <span class="comment">// 为 y 属性设置动画。将循环设置为 Animation.Infinite 会使</span>
+  <span class="comment">// 动画无限重复，否则只会运行一次。</span>
+  SequentialAnimation on <span class="name">y</span> {
+      <span class="name">loops</span>: <span class="name">Animation</span>.<span class="name">Infinite</span>
+
+      <span class="comment">// 在 300 毫秒内从 minHeight 移动到 maxHeight，使用 OutExpo 缓动函数</span>
+      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> {
+          <span class="name">from</span>: <span class="name">smiley</span>.<span class="name">minHeight</span>; <span class="name">to</span>: <span class="name">smiley</span>.<span class="name">maxHeight</span>
+          <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutExpo</span>; <span class="name">duration</span>: <span class="number">300</span>
+      }
+
+      <span class="comment">// 然后在 1 秒后移回 minHeight，使用 OutBounce 缓动函数</span>
+      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> {
+          <span class="name">from</span>: <span class="name">smiley</span>.<span class="name">maxHeight</span>; <span class="name">to</span>: <span class="name">smiley</span>.<span class="name">minHeight</span>
+          <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutBounce</span>; <span class="name">duration</span>: <span class="number">1000</span>
+      }
+
+      <span class="comment">// 然后暂停 500 毫秒</span>
+      <span class="type"><a href="qml-qtquick-pauseanimation.html">PauseAnimation</a></span> { <span class="name">duration</span>: <span class="number">500</span> }
+  }
+
+</pre>
+<a name="animators"></a>
+<h2 id="animators">动画师</h2>
+<p><i>动画师</i>使用动画师来上下反弹图标。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-sequentialanimation.html">SequentialAnimation</a></span> {
+      <span class="type"><a href="qml-qtquick-sequentialanimation.html">SequentialAnimation</a></span> {
+          <span class="type"><a href="qml-qtquick-parallelanimation.html">ParallelAnimation</a></span> {
+              <span class="type"><a href="qml-qtquick-yanimator.html">YAnimator</a></span> {
+                  <span class="name">target</span>: <span class="name">smiley</span>;
+                  <span class="name">from</span>: <span class="name">smiley</span>.<span class="name">minHeight</span>;
+                  <span class="name">to</span>: <span class="name">smiley</span>.<span class="name">maxHeight</span>
+                  <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutExpo</span>;
+                  <span class="name">duration</span>: <span class="number">300</span>
+              }
+              <span class="type"><a href="qml-qtquick-scaleanimator.html">ScaleAnimator</a></span> {
+                  <span class="name">target</span>: <span class="name">shadow</span>
+                  <span class="name">from</span>: <span class="number">1</span>
+                  <span class="name">to</span>: <span class="number">0.5</span>
+                  <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutExpo</span>;
+                  <span class="name">duration</span>: <span class="number">300</span>
+              }
+          }
+          <span class="type"><a href="qml-qtquick-parallelanimation.html">ParallelAnimation</a></span> {
+              <span class="type"><a href="qml-qtquick-yanimator.html">YAnimator</a></span> {
+                  <span class="name">target</span>: <span class="name">smiley</span>;
+                  <span class="name">from</span>: <span class="name">smiley</span>.<span class="name">maxHeight</span>;
+                  <span class="name">to</span>: <span class="name">smiley</span>.<span class="name">minHeight</span>
+                  <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutBounce</span>;
+                  <span class="name">duration</span>: <span class="number">1000</span>
+              }
+              <span class="type"><a href="qml-qtquick-scaleanimator.html">ScaleAnimator</a></span> {
+                  <span class="name">target</span>: <span class="name">shadow</span>
+                  <span class="name">from</span>: <span class="number">0.5</span>
+                  <span class="name">to</span>: <span class="number">1</span>
+                  <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutBounce</span>;
+                  <span class="name">duration</span>: <span class="number">1000</span>
+              }
+          }
+      }
+      <span class="type"><a href="qml-qtquick-pauseanimation.html">PauseAnimation</a></span> { <span class="name">duration</span>: <span class="number">500</span> }
+      <span class="name">running</span>: <span class="number">true</span>
+      <span class="name">loops</span>: <span class="name">Animation</span>.<span class="name">Infinite</span>
+  }
+
+</pre>
+<a name="behaviors"></a>
+<h2 id="behaviors">行为</h2>
+<p><i>行为</i>使用行为将矩形移动到您单击的位置。</p>
+<pre class="qml">
+
+  <span class="comment">// Set an 'elastic' behavior on the focusRect's y property.</span>
+  Behavior on <span class="name">y</span> {
+      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutElastic</span>; <span class="name">easing</span>.amplitude: <span class="number">3.0</span>; <span class="name">easing</span>.period: <span class="number">2.0</span>; <span class="name">duration</span>: <span class="number">300</span> }
+  }
+
+</pre>
+<a name="wiggly-text"></a>
+<h2 id="wiggly-text">摇摆不定的文字</h2>
+<p><i>Wiggly Text</i>演示了如何使用更复杂的行为来为一些文本设置动画并在拖动时对其进行摆动。它通过为每个字母分配一个复杂的绑定来做到这一点：</p>
+<pre class="qml">
+
+              <span class="name">x</span>: <span class="name">follow</span> ? <span class="name">follow</span>.<span class="name">x</span> <span class="operator">+</span> <span class="name">follow</span>.<span class="name">width</span> : <span class="name">container</span>.<span class="name">width</span> <span class="operator">/</span> <span class="number">6</span>
+              <span class="name">y</span>: <span class="name">follow</span> ? <span class="name">follow</span>.<span class="name">y</span> : <span class="name">container</span>.<span class="name">height</span> <span class="operator">/</span> <span class="number">2</span>
+
+</pre>
+<p>然后，它使用行为来动画每个字母的运动：</p>
+<pre class="qml">
+
+              Behavior on <span class="name">x</span> { <span class="name">enabled</span>: <span class="name">container</span>.<span class="name">animated</span>; <span class="type"><a href="qml-qtquick-springanimation.html">SpringAnimation</a></span> { <span class="name">spring</span>: <span class="number">3</span>; <span class="name">damping</span>: <span class="number">0.3</span>; <span class="name">mass</span>: <span class="number">1.0</span> } }
+              Behavior on <span class="name">y</span> { <span class="name">enabled</span>: <span class="name">container</span>.<span class="name">animated</span>; <span class="type"><a href="qml-qtquick-springanimation.html">SpringAnimation</a></span> { <span class="name">spring</span>: <span class="number">3</span>; <span class="name">damping</span>: <span class="number">0.3</span>; <span class="name">mass</span>: <span class="number">1.0</span> } }
+
+</pre>
+<a name="tv-tennis"></a>
+<h2 id="tv-tennis">电视网球</h2>
+<p><i>电视网球</i>使用复杂的行为使球拍跟随球来模拟无限的网球比赛。同样，依赖于其他值的绑定被应用到位置和提供动画的行为。</p>
+<pre class="qml">
+
+  <span class="name">y</span>: <span class="name">ball</span>.<span class="name">direction</span> <span class="operator">==</span> <span class="string">'left'</span> ? <span class="name">ball</span>.<span class="name">y</span> <span class="operator">-</span> <span class="number">45</span> : <span class="name">page</span>.<span class="name">height</span><span class="operator">/</span><span class="number">2</span> <span class="operator">-</span><span class="number">45</span>;
+  Behavior on <span class="name">y</span> { <span class="type"><a href="qml-qtquick-springanimation.html">SpringAnimation</a></span>{ <span class="name">velocity</span>: <span class="number">300</span> } }
+
+</pre>
+<a name="easing-curves"></a>
+<h2 id="easing-curves">缓动曲线</h2>
+<p><i>缓动曲线</i>展示了 Qt Quick 动画中所有可用的缓动曲线。</p>
+<a name="states"></a>
+<h2 id="states">状态</h2>
+<p><i>状态</i>演示了项目的属性如何在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-states.html">状态</a>之间变化。</p>
+<p>它定义了几个状态：</p>
+<pre class="qml">
+
+  <span class="comment">// In state 'middleRight', move the image to middleRightRect</span>
+  <span class="type"><a href="qml-qtquick-state.html">State</a></span> {
+      <span class="name">name</span>: <span class="string">&quot;middleRight&quot;</span>
+      <span class="type"><a href="qml-qtquick-propertychanges.html">PropertyChanges</a></span> { <span class="name">target</span>: <span class="name">userIcon</span>; <span class="name">x</span>: <span class="name">middleRightRect</span>.<span class="name">x</span>; <span class="name">y</span>: <span class="name">middleRightRect</span>.<span class="name">y</span> }
+  },
+
+  <span class="comment">// In state 'bottomLeft', move the image to bottomLeftRect</span>
+  <span class="type"><a href="qml-qtquick-state.html">State</a></span> {
+      <span class="name">name</span>: <span class="string">&quot;bottomLeft&quot;</span>
+      <span class="type"><a href="qml-qtquick-propertychanges.html">PropertyChanges</a></span> { <span class="name">target</span>: <span class="name">userIcon</span>; <span class="name">x</span>: <span class="name">bottomLeftRect</span>.<span class="name">x</span>; <span class="name">y</span>: <span class="name">bottomLeftRect</span>.<span class="name">y</span>  }
+  }
+
+</pre>
+<a name="transitions"></a>
+<h2 id="transitions">过渡</h2>
+<p><i>Transitions</i>采用 States 示例，并通过设置转换为属性更改设置动画：</p>
+<pre class="qml">
+
+  <span class="comment">// Transitions define how the properties change when the item moves between each state</span>
+  <span class="name">transitions</span>: [
+
+      <span class="comment">// When transitioning to 'middleRight' move x,y over a duration of 1 second,</span>
+      <span class="comment">// with OutBounce easing function.</span>
+      <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span> {
+          <span class="name">from</span>: <span class="string">&quot;*&quot;</span>; <span class="name">to</span>: <span class="string">&quot;middleRight&quot;</span>
+          <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">properties</span>: <span class="string">&quot;x,y&quot;</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">OutBounce</span>; <span class="name">duration</span>: <span class="number">1000</span> }
+      },
+
+      <span class="comment">// When transitioning to 'bottomLeft' move x,y over a duration of 2 seconds,</span>
+      <span class="comment">// with InOutQuad easing function.</span>
+      <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span> {
+          <span class="name">from</span>: <span class="string">&quot;*&quot;</span>; <span class="name">to</span>: <span class="string">&quot;bottomLeft&quot;</span>
+          <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">properties</span>: <span class="string">&quot;x,y&quot;</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutQuad</span>; <span class="name">duration</span>: <span class="number">2000</span> }
+      },
+
+      <span class="comment">// For any other state changes move x,y linearly over duration of 200ms.</span>
+      <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span> {
+          <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">properties</span>: <span class="string">&quot;x,y&quot;</span>; <span class="name">duration</span>: <span class="number">200</span> }
+      }
+
+</pre>
+<a name="pathanimation"></a>
+<h2 id="pathanimation">路径动画</h2>
+<p><i>PathAnimation使用</i><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#pathanimation">PathAnimation</a>沿贝塞尔曲线对图像进行动画处理。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-pathanimation.html">PathAnimation</a></span> {
+      <span class="name">id</span>: <span class="name">pathAnim</span>
+
+      <span class="name">duration</span>: <span class="number">2000</span>
+      <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InQuad</span>
+
+      <span class="name">target</span>: <span class="name">box</span>
+      <span class="name">orientation</span>: <span class="name">PathAnimation</span>.<span class="name">RightFirst</span>
+      <span class="name">anchorPoint</span>: <span class="name">Qt</span>.<span class="name">point</span>(<span class="name">box</span>.<span class="name">width</span><span class="operator">/</span><span class="number">2</span>, <span class="name">box</span>.<span class="name">height</span><span class="operator">/</span><span class="number">2</span>)
+      <span class="name">path</span>: <span class="name">Path</span> {
+          <span class="name">startX</span>: <span class="number">50</span>; <span class="name">startY</span>: <span class="number">50</span>
+
+          <span class="type"><a href="qml-qtquick-pathcubic.html">PathCubic</a></span> {
+              <span class="name">x</span>: <span class="name">window</span>.<span class="name">width</span> <span class="operator">-</span> <span class="number">50</span>
+              <span class="name">y</span>: <span class="name">window</span>.<span class="name">height</span> <span class="operator">-</span> <span class="number">50</span>
+
+              <span class="name">control1X</span>: <span class="name">x</span>; <span class="name">control1Y</span>: <span class="number">50</span>
+              <span class="name">control2X</span>: <span class="number">50</span>; <span class="name">control2Y</span>: <span class="name">y</span>
+          }
+
+          <span class="name">onChanged</span>: <span class="name">canvas</span>.<span class="name">requestPaint</span>()
+      }
+  }
+
+</pre>
+<a name="pathinterpolator"></a>
+<h2 id="pathinterpolator">路径插值器</h2>
+<p><i>PathInterpolator使用</i><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-animation-example.html#pathinterpolator">PathInterpolator</a>沿相同的贝塞尔曲线对图像进行动画处理。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-pathinterpolator.html">PathInterpolator</a></span> {
+      <span class="name">id</span>: <span class="name">motionPath</span>
+
+      <span class="name">path</span>: <span class="name">Path</span> {
+          <span class="name">startX</span>: <span class="number">50</span>; <span class="name">startY</span>: <span class="number">50</span>
+
+          <span class="type"><a href="qml-qtquick-pathcubic.html">PathCubic</a></span> {
+              <span class="name">x</span>: <span class="name">window</span>.<span class="name">width</span> <span class="operator">-</span> <span class="number">50</span>
+              <span class="name">y</span>: <span class="name">window</span>.<span class="name">height</span> <span class="operator">-</span> <span class="number">50</span>
+
+              <span class="name">control1X</span>: <span class="name">x</span>; <span class="name">control1Y</span>: <span class="number">50</span>
+              <span class="name">control2X</span>: <span class="number">50</span>; <span class="name">control2Y</span>: <span class="name">y</span>
+          }
+
+          <span class="name">onChanged</span>: <span class="name">canvas</span>.<span class="name">requestPaint</span>()
+      }
+
+      SequentialAnimation on <span class="name">progress</span> {
+          <span class="name">running</span>: <span class="number">true</span>
+          <span class="name">loops</span>: -<span class="number">1</span>
+          <span class="type"><a href="qml-qtquick-pauseanimation.html">PauseAnimation</a></span> { <span class="name">duration</span>: <span class="number">1000</span> }
+          <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> {
+              <span class="name">id</span>: <span class="name">progressAnim</span>
+              <span class="name">running</span>: <span class="number">false</span>
+              <span class="name">from</span>: <span class="number">0</span>; <span class="name">to</span>: <span class="number">1</span>
+              <span class="name">duration</span>: <span class="number">2000</span>
+              <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InQuad</span>
+          }
+      }
+  }
+
+</pre>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-animation-animation-pro.html">animation/animation.pro</a></li>
+<li><a href="qtquick-animation-animation-qml.html">animation/animation.qml</a></li>
+<li><a href="qtquick-animation-animation-qmlproject.html">animation/animation.qmlproject</a></li>
+<li><a href="qtquick-animation-animation-qrc.html">animation/animation.qrc</a></li>
+<li><a href="qtquick-animation-basics-animators-qml.html">animation/basics/animators.qml</a></li>
+<li><a href="qtquick-animation-basics-color-animation-qml.html">animation/basics/color-animation.qml</a></li>
+<li><a href="qtquick-animation-basics-property-animation-qml.html">animation/basics/property-animation.qml</a></li>
+<li><a href="qtquick-animation-behaviors-siderect-qml.html">animation/behaviors/SideRect.qml</a></li>
+<li><a href="qtquick-animation-behaviors-behavior-example-qml.html">animation/behaviors/behavior-example.qml</a></li>
+<li><a href="qtquick-animation-behaviors-tvtennis-qml.html">animation/behaviors/tvtennis.qml</a></li>
+<li><a href="qtquick-animation-behaviors-wigglytext-qml.html">animation/behaviors/wigglytext.qml</a></li>
+<li><a href="qtquick-animation-easing-easing-qml.html">animation/easing/easing.qml</a></li>
+<li><a href="qtquick-animation-main-cpp.html">animation/main.cpp</a></li>
+<li><a href="qtquick-animation-pathanimation-pathanimation-qml.html">animation/pathanimation/pathanimation.qml</a></li>
+<li><a href="qtquick-animation-pathinterpolator-pathinterpolator-qml.html">animation/pathinterpolator/pathinterpolator.qml</a></li>
+<li><a href="qtquick-animation-states-states-qml.html">animation/states/states.qml</a></li>
+<li><a href="qtquick-animation-states-transitions-qml.html">animation/states/transitions.qml</a></li>
+</ul>
+<p>图片：</p>
+<ul>
+<li><a href="images/used-in-examples/animation/basics/images/face-smile.png">animation/basics/images/face-smile.png</a></li>
+<li><a href="images/used-in-examples/animation/basics/images/moon.png">animation/basics/images/moon.png</a></li>
+<li><a href="images/used-in-examples/animation/basics/images/shadow.png">animation/basics/images/shadow.png</a></li>
+<li><a href="images/used-in-examples/animation/basics/images/star.png">animation/basics/images/star.png</a></li>
+<li><a href="images/used-in-examples/animation/basics/images/sun.png">animation/basics/images/sun.png</a></li>
+<li><a href="images/used-in-examples/animation/states/qt-logo.png">animation/states/qt-logo.png</a></li>
+</ul>
+</div>
+<!-- @@@animation -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

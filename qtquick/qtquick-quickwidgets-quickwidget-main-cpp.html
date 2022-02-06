@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>main.cpp 示例文件 | Qt Quick 5.11</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.11</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-quickwidgets-quickwidget-example.html">Qt Quick Widgets Example</a></td><td >main.cpp 示例文件</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.11.1 参考指南</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">main.cpp 示例文件</h1>
+<span class="subtitle">quickwidgets/quickwidget/main.cpp</span>
+<!-- $$$quickwidgets/quickwidget/main.cpp-description -->
+<div class="descr"> <a name="details"></a>
+<pre class="cpp">
+
+  <span class="comment">/****************************************************************************
+  **
+  ** Copyright (C) 2017 The Qt Company Ltd.
+  ** Contact: https://www.qt.io/licensing/
+  **
+  ** This file is part of the examples of the Qt Toolkit.
+  **
+  ** $QT_BEGIN_LICENSE:BSD$
+  ** Commercial License Usage
+  ** Licensees holding valid commercial Qt licenses may use this file in
+  ** accordance with the commercial license agreement provided with the
+  ** Software or, alternatively, in accordance with the terms contained in
+  ** a written agreement between you and The Qt Company. For licensing terms
+  ** and conditions see https://www.qt.io/terms-conditions. For further
+  ** information use the contact form at https://www.qt.io/contact-us.
+  **
+  ** BSD License Usage
+  ** Alternatively, you may use this file under the terms of the BSD license
+  ** as follows:
+  **
+  ** &quot;Redistribution and use in source and binary forms, with or without
+  ** modification, are permitted provided that the following conditions are
+  ** met:
+  **   * Redistributions of source code must retain the above copyright
+  **     notice, this list of conditions and the following disclaimer.
+  **   * Redistributions in binary form must reproduce the above copyright
+  **     notice, this list of conditions and the following disclaimer in
+  **     the documentation and/or other materials provided with the
+  **     distribution.
+  **   * Neither the name of The Qt Company Ltd nor the names of its
+  **     contributors may be used to endorse or promote products derived
+  **     from this software without specific prior written permission.
+  **
+  **
+  ** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  ** &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  ** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  ** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  ** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  ** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  ** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  ** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  ** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  ** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&quot;
+  **
+  ** $QT_END_LICENSE$
+  **
+  ****************************************************************************/</span>
+
+  <span class="preprocessor">#include &lt;QQuickWidget&gt;</span>
+  <span class="preprocessor">#include &lt;QQuickItem&gt;</span>
+  <span class="preprocessor">#include &lt;QQmlError&gt;</span>
+  <span class="preprocessor">#include &lt;QtWidgets&gt;</span>
+  <span class="preprocessor">#include &quot;fbitem.h&quot;</span>
+
+  <span class="keyword">static</span> bool optMultipleSample <span class="operator">=</span> <span class="keyword">false</span>;
+  <span class="keyword">static</span> bool optCoreProfile <span class="operator">=</span> <span class="keyword">false</span>;
+
+  <span class="keyword">class</span> MainWindow : <span class="keyword">public</span> <span class="type"><a href="../qtwidgets/qmainwindow.html">QMainWindow</a></span> {
+      Q_OBJECT
+  <span class="keyword">public</span>:
+      MainWindow();
+
+  <span class="keyword">private</span> <span class="keyword">slots</span>:
+      <span class="type">void</span> quickWidgetStatusChanged(<span class="type"><a href="qquickwidget.html">QQuickWidget</a></span><span class="operator">::</span>Status);
+      <span class="type">void</span> sceneGraphError(<span class="type"><a href="qquickwindow.html">QQuickWindow</a></span><span class="operator">::</span>SceneGraphError error<span class="operator">,</span> <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>message);
+      <span class="type">void</span> grabFramebuffer();
+      <span class="type">void</span> renderToPixmap();
+      <span class="type">void</span> grabToImage();
+      <span class="type">void</span> createQuickWidgetsInTabs(<span class="type"><a href="../qtwidgets/qmdiarea.html">QMdiArea</a></span> <span class="operator">*</span>mdiArea);
+
+  <span class="keyword">private</span>:
+      <span class="type"><a href="qquickwidget.html">QQuickWidget</a></span> <span class="operator">*</span>m_quickWidget;
+  };
+
+  MainWindow<span class="operator">::</span>MainWindow()
+     : m_quickWidget(<span class="keyword">new</span> <span class="type"><a href="qquickwidget.html">QQuickWidget</a></span>)
+  {
+      <span class="type"><a href="../qtgui/qsurfaceformat.html">QSurfaceFormat</a></span> format;
+      <span class="keyword">if</span> (optCoreProfile) {
+          format<span class="operator">.</span>setVersion(<span class="number">4</span><span class="operator">,</span> <span class="number">4</span>);
+          format<span class="operator">.</span>setProfile(<span class="type"><a href="../qtgui/qsurfaceformat.html">QSurfaceFormat</a></span><span class="operator">::</span>CoreProfile);
+      }
+      <span class="keyword">if</span> (optMultipleSample)
+          format<span class="operator">.</span>setSamples(<span class="number">4</span>);
+      m_quickWidget<span class="operator">-</span><span class="operator">&gt;</span>setFormat(format);
+
+      <span class="type"><a href="../qtwidgets/qmdiarea.html">QMdiArea</a></span> <span class="operator">*</span>centralWidget <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="../qtwidgets/qmdiarea.html">QMdiArea</a></span>;
+
+      <span class="type"><a href="../qtwidgets/qlcdnumber.html">QLCDNumber</a></span> <span class="operator">*</span>lcd <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="../qtwidgets/qlcdnumber.html">QLCDNumber</a></span>;
+      lcd<span class="operator">-</span><span class="operator">&gt;</span>display(<span class="number">1337</span>);
+      lcd<span class="operator">-</span><span class="operator">&gt;</span>setMinimumSize(<span class="number">250</span><span class="operator">,</span><span class="number">100</span>);
+      centralWidget<span class="operator">-</span><span class="operator">&gt;</span>addSubWindow(lcd);
+
+      <span class="type"><a href="../qtcore/qurl.html">QUrl</a></span> source(<span class="string">&quot;qrc:quickwidget/rotatingsquare.qml&quot;</span>);
+
+      connect(m_quickWidget<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qquickwidget.html">QQuickWidget</a></span><span class="operator">::</span>statusChanged<span class="operator">,</span>
+              <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>MainWindow<span class="operator">::</span>quickWidgetStatusChanged);
+      connect(m_quickWidget<span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="qquickwidget.html">QQuickWidget</a></span><span class="operator">::</span>sceneGraphError<span class="operator">,</span>
+              <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>MainWindow<span class="operator">::</span>sceneGraphError);
+      m_quickWidget<span class="operator">-</span><span class="operator">&gt;</span>resize(<span class="number">300</span><span class="operator">,</span><span class="number">300</span>);
+      m_quickWidget<span class="operator">-</span><span class="operator">&gt;</span>setResizeMode(<span class="type"><a href="qquickwidget.html">QQuickWidget</a></span><span class="operator">::</span>SizeRootObjectToView );
+      m_quickWidget<span class="operator">-</span><span class="operator">&gt;</span>setSource(source);
+
+      centralWidget<span class="operator">-</span><span class="operator">&gt;</span>addSubWindow(m_quickWidget);
+
+      setCentralWidget(centralWidget);
+
+      <span class="type"><a href="../qtwidgets/qmenu.html">QMenu</a></span> <span class="operator">*</span>fileMenu <span class="operator">=</span> menuBar()<span class="operator">-</span><span class="operator">&gt;</span>addMenu(tr(<span class="string">&quot;&amp;File&quot;</span>));
+      fileMenu<span class="operator">-</span><span class="operator">&gt;</span>addAction(tr(<span class="string">&quot;Grab framebuffer&quot;</span>)<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>MainWindow<span class="operator">::</span>grabFramebuffer);
+      fileMenu<span class="operator">-</span><span class="operator">&gt;</span>addAction(tr(<span class="string">&quot;Render to pixmap&quot;</span>)<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>MainWindow<span class="operator">::</span>renderToPixmap);
+      fileMenu<span class="operator">-</span><span class="operator">&gt;</span>addAction(tr(<span class="string">&quot;Grab via grabToImage&quot;</span>)<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>MainWindow<span class="operator">::</span>grabToImage);
+      fileMenu<span class="operator">-</span><span class="operator">&gt;</span>addAction(tr(<span class="string">&quot;Quit&quot;</span>)<span class="operator">,</span> <a href="../qtwidgets/qapplication.html#qApp">qApp</a><span class="operator">,</span> <span class="operator">&amp;</span><span class="type"><a href="../qtcore/qcoreapplication.html">QCoreApplication</a></span><span class="operator">::</span>quit);
+
+      <span class="type"><a href="../qtwidgets/qmenu.html">QMenu</a></span> <span class="operator">*</span>windowMenu <span class="operator">=</span> menuBar()<span class="operator">-</span><span class="operator">&gt;</span>addMenu(tr(<span class="string">&quot;&amp;Window&quot;</span>));
+      windowMenu<span class="operator">-</span><span class="operator">&gt;</span>addAction(tr(<span class="string">&quot;Add tab widget&quot;</span>)<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span>
+                            <span class="operator">[</span><span class="keyword">this</span><span class="operator">,</span> centralWidget<span class="operator">]</span> { createQuickWidgetsInTabs(centralWidget); });
+  }
+
+  <span class="type">void</span> MainWindow<span class="operator">::</span>createQuickWidgetsInTabs(<span class="type"><a href="../qtwidgets/qmdiarea.html">QMdiArea</a></span> <span class="operator">*</span>mdiArea)
+  {
+      <span class="type"><a href="../qtwidgets/qtabwidget.html">QTabWidget</a></span> <span class="operator">*</span>tabWidget <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="../qtwidgets/qtabwidget.html">QTabWidget</a></span>;
+
+      <span class="keyword">const</span> <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> size(<span class="number">400</span><span class="operator">,</span> <span class="number">400</span>);
+
+      <span class="type"><a href="qquickwidget.html">QQuickWidget</a></span> <span class="operator">*</span>w <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qquickwidget.html">QQuickWidget</a></span>;
+      w<span class="operator">-</span><span class="operator">&gt;</span>resize(size);
+      w<span class="operator">-</span><span class="operator">&gt;</span>setResizeMode(<span class="type"><a href="qquickwidget.html">QQuickWidget</a></span><span class="operator">::</span>SizeRootObjectToView);
+      w<span class="operator">-</span><span class="operator">&gt;</span>setSource(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span>(<span class="string">&quot;qrc:quickwidget/rotatingsquaretab.qml&quot;</span>));
+
+      tabWidget<span class="operator">-</span><span class="operator">&gt;</span>addTab(w<span class="operator">,</span> tr(<span class="string">&quot;Plain Quick content&quot;</span>));
+
+      w <span class="operator">=</span> <span class="keyword">new</span> <span class="type"><a href="qquickwidget.html">QQuickWidget</a></span>;
+      w<span class="operator">-</span><span class="operator">&gt;</span>resize(size);
+      w<span class="operator">-</span><span class="operator">&gt;</span>setResizeMode(<span class="type"><a href="qquickwidget.html">QQuickWidget</a></span><span class="operator">::</span>SizeRootObjectToView);
+      w<span class="operator">-</span><span class="operator">&gt;</span>setSource(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span>(<span class="string">&quot;qrc:quickwidget/customgl.qml&quot;</span>));
+
+      tabWidget<span class="operator">-</span><span class="operator">&gt;</span>addTab(w<span class="operator">,</span> tr(<span class="string">&quot;Custom OpenGL drawing&quot;</span>));
+
+      mdiArea<span class="operator">-</span><span class="operator">&gt;</span>addSubWindow(tabWidget);
+      tabWidget<span class="operator">-</span><span class="operator">&gt;</span>show();
+  }
+
+  <span class="type">void</span> MainWindow<span class="operator">::</span>quickWidgetStatusChanged(<span class="type"><a href="qquickwidget.html">QQuickWidget</a></span><span class="operator">::</span>Status status)
+  {
+      <span class="keyword">if</span> (status <span class="operator">=</span><span class="operator">=</span> <span class="type"><a href="qquickwidget.html">QQuickWidget</a></span><span class="operator">::</span>Error) {
+          <span class="type"><a href="../qtcore/qstringlist.html">QStringList</a></span> errors;
+          <span class="keyword">const</span> <span class="keyword">auto</span> widgetErrors <span class="operator">=</span> m_quickWidget<span class="operator">-</span><span class="operator">&gt;</span>errors();
+          <span class="keyword">for</span> (<span class="keyword">const</span> <span class="type"><a href="../qtqml/qqmlerror.html">QQmlError</a></span> <span class="operator">&amp;</span>error : widgetErrors)
+              errors<span class="operator">.</span>append(error<span class="operator">.</span>toString());
+          statusBar()<span class="operator">-</span><span class="operator">&gt;</span>showMessage(errors<span class="operator">.</span>join(<span class="type"><a href="../qtcore/qstring.html#QStringLiteral">QStringLiteral</a></span>(<span class="string">&quot;, &quot;</span>)));
+      }
+  }
+
+  <span class="type">void</span> MainWindow<span class="operator">::</span>sceneGraphError(<span class="type"><a href="qquickwindow.html">QQuickWindow</a></span><span class="operator">::</span>SceneGraphError<span class="operator">,</span> <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>message)
+  {
+       statusBar()<span class="operator">-</span><span class="operator">&gt;</span>showMessage(message);
+  }
+
+  <span class="keyword">template</span><span class="operator">&lt;</span><span class="keyword">class</span> T<span class="operator">&gt;</span> <span class="type">void</span> saveToFile(<span class="type"><a href="../qtwidgets/qwidget.html">QWidget</a></span> <span class="operator">*</span>parent<span class="operator">,</span> T <span class="operator">*</span>saveable)
+  {
+      <span class="type"><a href="../qtwidgets/qfiledialog.html">QFileDialog</a></span> fd(parent);
+      fd<span class="operator">.</span>setAcceptMode(<span class="type"><a href="../qtwidgets/qfiledialog.html">QFileDialog</a></span><span class="operator">::</span>AcceptSave);
+      fd<span class="operator">.</span>setDefaultSuffix(<span class="string">&quot;png&quot;</span>);
+      fd<span class="operator">.</span>selectFile(<span class="string">&quot;test.png&quot;</span>);
+      <span class="keyword">if</span> (fd<span class="operator">.</span>exec() <span class="operator">=</span><span class="operator">=</span> <span class="type"><a href="../qtwidgets/qdialog.html">QDialog</a></span><span class="operator">::</span>Accepted)
+          saveable<span class="operator">-</span><span class="operator">&gt;</span>save(fd<span class="operator">.</span>selectedFiles()<span class="operator">.</span>first());
+  }
+
+  <span class="type">void</span> MainWindow<span class="operator">::</span>grabFramebuffer()
+  {
+      <span class="type"><a href="../qtgui/qimage.html">QImage</a></span> image <span class="operator">=</span> m_quickWidget<span class="operator">-</span><span class="operator">&gt;</span>grabFramebuffer();
+      saveToFile(<span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>image);
+  }
+
+  <span class="type">void</span> MainWindow<span class="operator">::</span>renderToPixmap()
+  {
+      <span class="type"><a href="../qtgui/qpixmap.html">QPixmap</a></span> pixmap(m_quickWidget<span class="operator">-</span><span class="operator">&gt;</span>size());
+      m_quickWidget<span class="operator">-</span><span class="operator">&gt;</span>render(<span class="operator">&amp;</span>pixmap);
+      saveToFile(<span class="keyword">this</span><span class="operator">,</span> <span class="operator">&amp;</span>pixmap);
+  }
+
+  <span class="type">void</span> MainWindow<span class="operator">::</span>grabToImage()
+  {
+      <span class="type"><a href="../qtwidgets/qfiledialog.html">QFileDialog</a></span> fd(<span class="keyword">this</span>);
+      fd<span class="operator">.</span>setAcceptMode(<span class="type"><a href="../qtwidgets/qfiledialog.html">QFileDialog</a></span><span class="operator">::</span>AcceptSave);
+      fd<span class="operator">.</span>setDefaultSuffix(<span class="string">&quot;png&quot;</span>);
+      fd<span class="operator">.</span>selectFile(<span class="string">&quot;test_grabToImage.png&quot;</span>);
+      <span class="keyword">if</span> (fd<span class="operator">.</span>exec() <span class="operator">=</span><span class="operator">=</span> <span class="type"><a href="../qtwidgets/qdialog.html">QDialog</a></span><span class="operator">::</span>Accepted) {
+          <span class="type"><a href="../qtcore/qmetaobject.html">QMetaObject</a></span><span class="operator">::</span>invokeMethod(m_quickWidget<span class="operator">-</span><span class="operator">&gt;</span>rootObject()<span class="operator">,</span> <span class="string">&quot;performLayerBasedGrab&quot;</span><span class="operator">,</span>
+                                    Q_ARG(<span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><span class="operator">,</span> fd<span class="operator">.</span>selectedFiles()<span class="operator">.</span>first()));
+      }
+  }
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span><span class="operator">*</span>argv)
+  {
+      <span class="type"><a href="../qtwidgets/qapplication.html">QApplication</a></span> app(argc<span class="operator">,</span> argv);
+
+      <span class="type"><a href="../qtcore/qcoreapplication.html">QCoreApplication</a></span><span class="operator">::</span>setApplicationName(<span class="string">&quot;Qt QQuickWidget Example&quot;</span>);
+      <span class="type"><a href="../qtcore/qcoreapplication.html">QCoreApplication</a></span><span class="operator">::</span>setOrganizationName(<span class="string">&quot;QtProject&quot;</span>);
+      <span class="type"><a href="../qtcore/qcoreapplication.html">QCoreApplication</a></span><span class="operator">::</span>setApplicationVersion(QT_VERSION_STR);
+      <span class="type"><a href="../qtcore/qcommandlineparser.html">QCommandLineParser</a></span> parser;
+      parser<span class="operator">.</span>setApplicationDescription(<span class="type"><a href="../qtcore/qcoreapplication.html">QCoreApplication</a></span><span class="operator">::</span>applicationName());
+      parser<span class="operator">.</span>addHelpOption();
+      parser<span class="operator">.</span>addVersionOption();
+      <span class="type"><a href="../qtcore/qcommandlineoption.html">QCommandLineOption</a></span> multipleSampleOption(<span class="string">&quot;multisample&quot;</span><span class="operator">,</span> <span class="string">&quot;Multisampling&quot;</span>);
+      parser<span class="operator">.</span>addOption(multipleSampleOption);
+      <span class="type"><a href="../qtcore/qcommandlineoption.html">QCommandLineOption</a></span> coreProfileOption(<span class="string">&quot;coreprofile&quot;</span><span class="operator">,</span> <span class="string">&quot;Use core profile&quot;</span>);
+      parser<span class="operator">.</span>addOption(coreProfileOption);
+
+      parser<span class="operator">.</span>process(app);
+
+      optMultipleSample <span class="operator">=</span> parser<span class="operator">.</span>isSet(multipleSampleOption);
+      optCoreProfile <span class="operator">=</span> parser<span class="operator">.</span>isSet(coreProfileOption);
+
+      qmlRegisterType<span class="operator">&lt;</span>FbItem<span class="operator">&gt;</span>(<span class="string">&quot;QuickWidgetExample&quot;</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="string">&quot;FbItem&quot;</span>);
+
+      MainWindow mainWindow;
+      mainWindow<span class="operator">.</span>show();
+
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+  <span class="preprocessor">#include &quot;main.moc&quot;</span>
+
+</pre>
+</div>
+<!-- @@@quickwidgets/quickwidget/main.cpp -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2018 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

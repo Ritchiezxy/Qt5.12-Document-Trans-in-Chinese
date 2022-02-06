@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- objectattributes.qdoc -->
-  <title>QML Object Attributes | Qt QML 5.12.3</title>
+  <title>QML 对象特性 | Qt QML 5.12.3</title>
   <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
   <script type="text/javascript">
     document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
@@ -26,7 +26,7 @@
     <div class="main-rounded">
       <div class="navigationbar">
         <table><tr>
-<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML</a></td><td >QML Object Attributes</td></tr></table><table class="buildversion"><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtqml-index.html">Qt QML 模块</a></td><td >QML 对象特性</td></tr></table><table class="buildversion"><tr>
 <td id="buildversion" width="100%" align="right"><a href="qtqml-index.html">Qt 
 5.12.3 <span lang="zh-cn">参考指南</span></a></td>
         </tr></table>
@@ -39,44 +39,44 @@
 <div class="toc">
 <h3><a name="toc"><span lang="zh-cn">目录</span></a></h3>
 <ul>
-<li class="level1"><a href="#attributes-in-object-declarations">对象声明中的<span lang="zh-cn">属性</span></a></li>
-<li class="level2"><a href="#the-id-attribute"><i>id</i> <span lang="zh-cn">属性</span></a></li>
-<li class="level2"><a href="#property-attributes"><span lang="zh-cn">property属性</span></a></li>
-<li class="level2"><a href="#signal-attributes"><span lang="zh-cn">信号属性</span></a></li>
+<li class="level1"><a href="#attributes-in-object-declarations">对象声明中的<span lang="zh-cn">特性</span></a></li>
+<li class="level2"><a href="#the-id-attribute"><i>id</i> <span lang="zh-cn">特性</span></a></li>
+<li class="level2"><a href="#property-attributes"><span lang="zh-cn">属性特性</span></a></li>
+<li class="level2"><a href="#signal-attributes"><span lang="zh-cn">信号特性</span></a></li>
 <li class="level2"><a href="#signal-handler-attributes"><span lang="zh-cn">
-信号处理属性</span></a></li>
-<li class="level2"><a href="#method-attributes"><span lang="zh-cn">方法属性</span></a></li>
+信号处理特性</span></a></li>
+<li class="level2"><a href="#method-attributes"><span lang="zh-cn">方法特性</span></a></li>
 <li class="level2"><a href="#attached-properties-and-attached-signal-handlers">
-附加属性和附加信号处理程序</a></li>
-<li class="level2"><a href="#enumeration-attributes">枚举属性</a></li>
+附加特性和附加信号处理程序</a></li>
+<li class="level2"><a href="#enumeration-attributes">枚举特性</a></li>
 </ul>
 </div>
 <div class="sidebar-content" id="sidebar-content"></div></div>
-<h1 class="title">QML对象属性</h1>
+<h1 class="title">QML对象特性</h1>
 <span class="subtitle"></span>
 <!-- $$$qtqml-syntax-objectattributes.html-description -->
 <div class="descr"> <a name="details"></a>
-<p>每个QML对象类型都有一组定义好的属性。对象类型的每个实例都是用为该对象类型定义的属性集创建的。可以指定几种不同类型的属性，如下所述。</p>
+<p>每个QML对象类型都有一组定义好的特性。对象类型的每个实例都是用为该对象类型定义的特性集创建的。可以指定几种不同类型的特性，如下所述。</p>
 <a name="attributes-in-object-declarations"></a>
-<h2 id="attributes-in-object-declarations">对象声明中的属性</h2>
+<h2 id="attributes-in-object-declarations">对象声明中的特性</h2>
 <p>QML文档中的<a href="qtqml-syntax-basics.html#object-declarations">对象声明</a>定义了一个新类型。它还声明了一个对象层次结构，当创建新定义类型的实例时，该对象层次结构将被实例化。</p>
-<p>QML对象类型属性类型集合如下:</p>
+<p>QML对象类型特性类型集合如下:</p>
 <ul>
-<li><i>id</i> <span lang="zh-cn">属性</span></li>
-<li>property<span lang="zh-cn">属性</span></li>
-<li>signal<span lang="zh-cn">属性</span></li>
-<li><span lang="zh-cn">信号处理属性</span></li>
-<li><span lang="zh-cn">方法属性</span></li>
-<li><span lang="zh-cn">附加属性和附加信号处理器</span></li>
-<li><span lang="zh-cn">枚举属性</span></li>
+<li><i>id</i> <span lang="zh-cn">特性</span></li>
+<li>属性<span lang="zh-cn">特性</span></li>
+<li>信号<span lang="zh-cn">特性</span></li>
+<li><span lang="zh-cn">信号处理特性</span></li>
+<li><span lang="zh-cn">方法特性</span></li>
+<li><span lang="zh-cn">附加特性和附加信号处理器</span></li>
+<li><span lang="zh-cn">枚举特性</span></li>
 </ul>
-<p>下面将详细讨论这些属性。</p>
+<p>下面将详细讨论这些特性。</p>
 <a name="the-id-attribute"></a>
-<h3 ><i>id</i> <span lang="zh-cn">属性</span></h3>
-<p>每个QML对象类型都有一个<i>id</i> 属性。该属性由语言本身提供，不能由任何QML对象类型重新定义或重写。</p>
-<p>可以为对象实例的<i>id</i> 属性赋值，以允许其他对象识别并引用该对象。id必须以小写字母或下划线开头，不能包含字母、数字和下划线以外的字符。</p>
+<h3 ><i>id</i> <span lang="zh-cn">特性</span></h3>
+<p>每个QML对象类型都有一个<i>id</i> 特性。该特性由语言本身提供，不能由任何QML对象类型重新定义或重写。</p>
+<p>可以为对象实例的<i>id</i> 特性赋值，以允许其他对象识别并引用该对象。id必须以小写字母或下划线开头，不能包含字母、数字和下划线以外的字符。</p>
 <p><a href="../qtquick/qml-qtquick-textinput.html">TextInput</a>对象的id值被设置为“<code>myTextInput.text</code>”。<a href="../qtquick/qml-qtquick-text.html">Text</a>对象通过引用myTextInput.text将其<code>text</code> 
-属性设置为与<a href="../qtquick/qml-qtquick-textinput.html">TextInput</a>的文本属性相同的值。现在，两个项目将显示相同的文本:</p>
+特性设置为与<a href="../qtquick/qml-qtquick-textinput.html">TextInput</a>的文本特性相同的值。现在，两个项目将显示相同的文本:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -91,22 +91,22 @@
 
 </pre>
 <p>一个对象可以通过它的id从声明它的<i>组件<span lang="zh-cn">作用域</span></i>内的任何地方引用。因此，id值在其组件范围内必须始终是唯一的。有关更多信息，请参阅<a href="qtqml-documents-scope.html">作用域和命名解析</a>。</p>
-<p>一旦创建了一个对象实例，它的id属性的值就不能被更改。虽然它看起来像一个普通属性，但id属性并<b>不是</b>普通属性属性，它具有特殊的语义;例如，在上面的例子中，无法访问<code>myTextInput.id</code>。</p>
+<p>一旦创建了一个对象实例，它的id特性的值就不能被更改。虽然它看起来像一个普通特性，但id特性并<b>不是</b>普通特性特性，它具有特殊的语义;例如，在上面的例子中，无法访问<code>myTextInput.id</code>。</p>
 <a name="property-attributes"></a>
-<h3 >Property <span lang="zh-cn">属性</span></h3>
-<p>属性是对象的属性，可以分配静态值或绑定到动态表达式。属性的值可以被其他对象读取。<br>
+<h3 >属性特性</h3>
+<p>属性是对象的特性，可以分配静态值或绑定到动态表达式。属性的值可以被其他对象读取。<br>
 通常，它也可以由另一个对象修改，除非特定的QML类型明确地禁止对特定属性进行修改。</p>
 <a name="defining-property-attributes"></a>
-<h4 ><span lang="zh-cn">定义</span>Property<span lang="zh-cn">属性</span></h4>
-<p>在C++中，可以通过注册类的<a href="../qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a>来为类型定义属性，然后该QML类型系统会注册该类的<a href="../qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a>。或者，对象类型的自定义属性可以用以下语法在QML文档的对象声明中定义:</p>
+<h4 ><span lang="zh-cn">定义</span>属性<span lang="zh-cn">特性</span></h4>
+<p>在C++中，可以通过注册类的<a href="../qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a>来为类型定义特性，然后该QML类型系统会注册该类的<a href="../qtcore/qobject.html#Q_PROPERTY">Q_PROPERTY</a>。或者，对象类型的自定义特性可以用以下语法在QML文档的对象声明中定义:</p>
 <pre class="cpp">
 
   <span class="operator">[</span><span class="keyword">default</span><span class="operator">]</span> property <span class="operator">&lt;</span>propertyType<span class="operator">&gt;</span> <span class="operator">&lt;</span>propertyName<span class="operator">&gt;</span>
 
 </pre>
 <p>通过这种方式，对象声明可以将<a href="qtqml-typesystem-objecttypes.html#defining-object-types-from-qml">特定值公开给外部对象</a>，或更容易地维护某些内部状态。</p>
-<p>属性名必须以小写字母开头，且只能包含字母、数字和下划线。<a href="https://developer.mozilla.org/en/JavaScript/Reference/Reserved_Words">JavaScript保留字</a>不是有效的属性名。default关键字是可选的，它修改所声明属性的语义。有关默认属性修饰符的更多信息，请参阅后面关于<a href="qtqml-syntax-objectattributes.html#default-properties">默认属性</a>的部分。</p>
-<p>声明一个自定义属性会隐式地为该属性创建一个值<a href="qtqml-syntax-objectattributes.html#signal-attributes">变化信号</a>，以及一个调用<i>on&lt;PropertyName&gt;Changed</i>的相关<a href="qtqml-syntax-objectattributes.html#signal-handler-attributes">信号处理程序</a>，其中<i>&lt;PropertyName&gt;</i>是属性的名称，第一个字母大写。</p>
+<p>属性名必须以小写字母开头，且只能包含字母、数字和下划线。<a href="https://developer.mozilla.org/en/JavaScript/Reference/Reserved_Words">JavaScript保留字</a>不是有效的特性名。default关键字是可选的，它修改所声明特性的语义。有关默认特性修饰符的更多信息，请参阅后面关于<a href="qtqml-syntax-objectattributes.html#default-properties">默认特性</a>的部分。</p>
+<p>声明一个自定义特性会隐式地为该特性创建一个值<a href="qtqml-syntax-objectattributes.html#signal-attributes">变化信号</a>，以及一个调用<i>on&lt;PropertyName&gt;Changed</i>的相关<a href="qtqml-syntax-objectattributes.html#signal-handler-attributes">信号处理程序</a>，其中<i>&lt;PropertyName&gt;</i>是特性的名称，第一个字母大写。</p>
 <p>例如，下面的对象声明定义了一个派生自Rectangle基类型的新类型。它有两个新属性，为其中一个新属性实现了一个<a href="qtqml-syntax-objectattributes.html#signal-handler-attributes">信号处理程序</a>:</p>
 <pre class="qml">
 
@@ -118,8 +118,8 @@
 
 </pre>
 <a name="valid-types-in-custom-property-definitions"></a>
-<h5 >自定义属性定义中的有效类型</h5>
-<p>&nbsp;除了<a href="qml-enumeration.html">枚举类型</a>外，任何<a href="qtqml-typesystem-basictypes.html">QML基本类型</a>都可以用作自定义属性类型。例如，这些都是有效的属性声明:</p>
+<h5 >自定义特性定义中的有效类型</h5>
+<p>&nbsp;除了<a href="qml-enumeration.html">枚举类型</a>外，任何<a href="qtqml-typesystem-basictypes.html">QML基本类型</a>都可以用作自定义特性类型。例如，这些都是有效的特性声明:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-item.html">Item</a></span> {
@@ -130,7 +130,7 @@
 
 </pre>
 <p>(枚举值是简单的整数值，可以用int类型引用。)</p>
-<p>一些基本类型是由QtQuick模块提供的，因此不能用作属性类型，除非导入模块。有关更多细节，请参阅<a href="qtqml-typesystem-basictypes.html">QML基本类型文档</a>。</p>
+<p>一些基本类型是由QtQuick模块提供的，因此不能用作特性类型，除非导入模块。有关更多细节，请参阅<a href="qtqml-typesystem-basictypes.html">QML基本类型文档</a>。</p>
 <p>注意<a href="qml-var.html">var</a>基本类型是一个泛型占位符类型，可以保存任何类型的值，包括列表和对象:</p>
 <pre class="cpp">
 
@@ -141,7 +141,7 @@
   property var someObject: Rectangle { width: <span class="number">100</span>; height: <span class="number">100</span>; color: <span class="string">&quot;red&quot;</span> }
 
 </pre>
-<p>此外，任何<a href="qtqml-typesystem-objecttypes.html">QML对象类型</a>都可以用作属性类型。<br>例如:</p>
+<p>此外，任何<a href="qtqml-typesystem-objecttypes.html">QML对象类型</a>都可以用作特性类型。<br>例如:</p>
 <pre class="cpp">
 
   property Item someItem
@@ -149,10 +149,10 @@
 
 </pre>
 <p>这也适用于<a href="qtqml-typesystem-objecttypes.html#defining-object-types-from-qml">自定义QML类型</a>。如果QML类型在一个名为<code>ColorfulButton<span lang="zh-cn">.qml</span></code> 
-的文件中定义(在一个随后由客户端导入的目录中)，那么<code>ColorfulButton</code>类型的属性也将是有效的。</p>
+的文件中定义(在一个随后由客户端导入的目录中)，那么<code>ColorfulButton</code>类型的特性也将是有效的。</p>
 <a name="assigning-values-to-property-attributes"></a>
-<h4 >属性值</h4>
-<p>对象实例的属性值可以用两种不同的方式指定:</p>
+<h4 >特性值</h4>
+<p>对象实例的特性值可以用两种不同的方式指定:</p>
 <ul>
 <li>初始化时的赋值</li>
 <li>命令式值赋值</li>
@@ -160,19 +160,19 @@
 <p>在这两种情况下，值可以是静态值，也可以是绑定表达式值<span lang="zh-cn">。</span></p>
 <a name="value-assignment-on-initialization"></a>
 <h5 >初始化时赋值</h5>
-<p>在初始化时给属性赋值的语法是:</p>
+<p>在初始化时给特性赋值的语法是:</p>
 <pre class="cpp">
 
   <span class="operator">&lt;</span>propertyName<span class="operator">&gt;</span> : <span class="operator">&lt;</span>value<span class="operator">&gt;</span>
 
 </pre>
-<p>如果需要，可以将初始化值赋值与对象声明中的属性定义结合使用。<br>在这种情况下，属性定义的语法变成:</p>
+<p>如果需要，可以将初始化值赋值与对象声明中的特性定义结合使用。<br>在这种情况下，特性定义的语法变成:</p>
 <pre class="cpp">
 
   <span class="operator">[</span><span class="keyword">default</span><span class="operator">]</span> property <span class="operator">&lt;</span>propertyType<span class="operator">&gt;</span> <span class="operator">&lt;</span>propertyName<span class="operator">&gt;</span> : <span class="operator">&lt;</span>value<span class="operator">&gt;</span>
 
 </pre>
-<p>属性值初始化的例子如下:</p>
+<p>特性值初始化的例子如下:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -185,7 +185,7 @@
 </pre>
 <a name="imperative-value-assignment"></a>
 <h5 >必须赋值</h5>
-<p>命令式值赋值是将属性值(静态值或绑定表达式)赋给来自命令式JavaScript代码的属性。<br>
+<p>命令式值赋值是将特性值(静态值或绑定表达式)赋给来自命令式JavaScript代码的特性。<br>
 命令赋值的语法就是JavaScript赋值操作符，如下所示:</p>
 <pre class="cpp">
 
@@ -207,15 +207,15 @@
 </pre>
 <a name="static-values-and-binding-expression-values"></a>
 <h4 >静态值和绑定表达式值</h4>
-<p>如前所述，有两种值可以被赋给属性:静态值和绑定表达式值。后者也称为<a href="qtqml-syntax-propertybinding.html">属性绑定</a>。</p>
+<p>如前所述，有两种值可以被赋给特性:静态值和绑定表达式值。后者也称为<a href="qtqml-syntax-propertybinding.html">特性绑定</a>。</p>
 <div class="table"><table class="generic">
  <thead><tr class="qt-style"><th ><span lang="zh-cn">类型</span></th><th >语义</th></tr></thead>
-<tr valign="top" class="odd"><td >静态值</td><td >不依赖于其他属性的常数值。</td></tr>
-<tr valign="top" class="even"><td >绑定表达式</td><td ><p>描述属性与其他属性关系的JavaScript表达式。<br>
-	这个表达式中的变量称为属性的依赖项。QML引擎强制属性与其依赖项之间的关系。当任何依赖项的值发生变化时，QML引擎自动重新计算绑定表达式，并将新结果分配给属性。</p>
+<tr valign="top" class="odd"><td >静态值</td><td >不依赖于其他特性的常数值。</td></tr>
+<tr valign="top" class="even"><td >绑定表达式</td><td ><p>描述特性与其他特性关系的JavaScript表达式。<br>
+	这个表达式中的变量称为特性的依赖项。QML引擎强制特性与其依赖项之间的关系。当任何依赖项的值发生变化时，QML引擎自动重新计算绑定表达式，并将新结果分配给特性。</p>
 </td></tr>
 </table></div>
-<p>下面是一个例子，展示了这两种值被赋给属性:</p>
+<p>下面是一个例子，展示了这两种值被赋给特性:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -233,8 +233,8 @@
   }
 
 </pre>
-<p><b>注意:</b>要强制赋值绑定表达式，绑定表达式必须包含在传递给Qt.binding()的函数中，然后必须将Qt.binding()返回的值赋给属性。<br>
-相反，在初始化时分配绑定表达式时，不能使用Qt.binding()。<br>有关更多信息，请参见属性绑定。</p><a name="type-safety"></a>
+<p><b>注意:</b>要强制赋值绑定表达式，绑定表达式必须包含在传递给Qt.binding()的函数中，然后必须将Qt.binding()返回的值赋给特性。<br>
+相反，在初始化时分配绑定表达式时，不能使用Qt.binding()。<br>有关更多信息，请参见特性绑定。</p><a name="type-safety"></a>
 <h4 ><span lang="zh-cn">类型安全</span></h4>
 <p>Properties are type safe. A property can only be assigned a value that matches the property type.</p>
 <p>For example, if a property is a real, and if you try to assign a string to it, you will get an error:</p>
@@ -243,22 +243,22 @@
   property <span class="type">int</span> volume: <span class="string">&quot;four&quot;</span>  <span class="comment">// generates an error; the property's object will not be loaded</span>
 
 </pre>
-<p>同样，如果在运行时为属性分配了错误类型的值，则不会分配新值，并将生成一个错误。</p>
-<p>有些属性类型没有自然值表示，对于这些属性类型，QML引擎会自动执行字符串到类型值的转换。<br>
-例如，即使颜色类型的属性存储的是颜色而不是字符串，您也可以将字符串“<code>red</code>”分配给颜色属性，而不会报告错误。</p>
-<p>有关默认支持的属性类型的列表，请参阅<a href="qtqml-typesystem-basictypes.html">QML基本类型</a>。此外，任何可用的<a href="qtqml-typesystem-objecttypes.html">QML对象类型</a>也可以用作属性类型。</p>
+<p>同样，如果在运行时为特性分配了错误类型的值，则不会分配新值，并将生成一个错误。</p>
+<p>有些特性类型没有自然值表示，对于这些特性类型，QML引擎会自动执行字符串到类型值的转换。<br>
+例如，即使颜色类型的特性存储的是颜色而不是字符串，您也可以将字符串“<code>red</code>”分配给颜色特性，而不会报告错误。</p>
+<p>有关默认支持的特性类型的列表，请参阅<a href="qtqml-typesystem-basictypes.html">QML基本类型</a>。此外，任何可用的<a href="qtqml-typesystem-objecttypes.html">QML对象类型</a>也可以用作特性类型。</p>
 <a name="special-property-types"></a>
-<h4 >特殊的属性类型</h4>
+<h4 >特殊的特性类型</h4>
 <a name="object-list-property-attributes"></a>
-<h5 >对象列表属性</h5>
-<p>可以为<a href="qml-list.html">l列表</a>类型属性分配一个QML对象类型值列表。定义对象列表值的语法是用方括号括起来的逗号分隔的列表:</p>
+<h5 >对象列表特性</h5>
+<p>可以为<a href="qml-list.html">l列表</a>类型特性分配一个QML对象类型值列表。定义对象列表值的语法是用方括号括起来的逗号分隔的列表:</p>
 <pre class="cpp">
 
   <span class="operator">[</span> <span class="operator">&lt;</span>item <span class="number">1</span><span class="operator">&gt;</span><span class="operator">,</span> <span class="operator">&lt;</span>item <span class="number">2</span><span class="operator">&gt;</span><span class="operator">,</span> <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span> <span class="operator">]</span>
 
 </pre>
-<p>例如，<a href="../qtquick/qml-qtquick-item.html">Item</a>类型有一个<a href="qml-qtqml-statemachine-state.html">State</a>属性，用于保存<a href="qml-qtqml-statemachine-state.html">State</a>类型对象的列表。<br>
-下面的代码将这个属性的值初始化为一个包含三个<a href="qml-qtqml-statemachine-state.html">State</a>对象的列表:</p>
+<p>例如，<a href="../qtquick/qml-qtquick-item.html">Item</a>类型有一个<a href="qml-qtqml-statemachine-state.html">State</a>特性，用于保存<a href="qml-qtqml-statemachine-state.html">State</a>类型对象的列表。<br>
+下面的代码将这个特性的值初始化为一个包含三个<a href="qml-qtqml-statemachine-state.html">State</a>对象的列表:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -282,19 +282,19 @@
   }
 
 </pre>
-<p><a href="qml-list.html">列表</a>类型属性可以用以下语法在对象声明中指定:</p>
+<p><a href="qml-list.html">列表</a>类型特性可以用以下语法在对象声明中指定:</p>
 <pre class="cpp">
 
   <span class="operator">[</span><span class="keyword">default</span><span class="operator">]</span> property list<span class="operator">&lt;</span><span class="operator">&lt;</span>objectType<span class="operator">&gt;</span><span class="operator">&gt;</span> propertyName
 
 </pre>
-<p>并且，像其他属性声明一样，属性初始化可以与属性声明结合使用如下语法:</p>
+<p>并且，像其他特性声明一样，特性初始化可以与特性声明结合使用如下语法:</p>
 <pre class="cpp">
 
   <span class="operator">[</span><span class="keyword">default</span><span class="operator">]</span> property list<span class="operator">&lt;</span><span class="operator">&lt;</span>objectType<span class="operator">&gt;</span><span class="operator">&gt;</span> propertyName: <span class="operator">&lt;</span>value<span class="operator">&gt;</span>
 
 </pre>
-<p>下面是一个列表属性声明的例子:</p>
+<p>下面是一个列表特性声明的例子:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -311,11 +311,11 @@
   }
 
 </pre>
-<p>如果希望声明一个属性来存储不一定是QML对象类型值的值列表，则应该声明一个<a href="qml-var.html">var</a>属性。</p>
+<p>如果希望声明一个特性来存储不一定是QML对象类型值的值列表，则应该声明一个<a href="qml-var.html">var</a>特性。</p>
 <a name="grouped-properties"></a>
-<h5 >分组属性</h5>
-<p>在某些情况下，属性包含一组子属性属性。可以使用点表示法或组表示法给这些子属性赋值。</p>
-<p>例如，<a href="../qtquick/qml-qtquick-text.html">Text</a>类型有一个<a href="../qtquick/qml-qtquick-text.html#font.family-prop">font</a>组属性。下面，第一个<a href="../qtquick/qml-qtquick-text.html">Text</a>对象使用点符号初始化它的<code>font</code> 
+<h5 >分组特性</h5>
+<p>在某些情况下，特性包含一组子特性特性。可以使用点表示法或组表示法给这些子特性赋值。</p>
+<p>例如，<a href="../qtquick/qml-qtquick-text.html">Text</a>类型有一个<a href="../qtquick/qml-qtquick-text.html#font.family-prop">font</a>组特性。下面，第一个<a href="../qtquick/qml-qtquick-text.html">Text</a>对象使用点符号初始化它的<code>font</code> 
 值，而第二个使用组符号:</p>
 <pre class="cpp">
 
@@ -331,25 +331,25 @@
   }
 
 </pre>
-<p>分组属性类型是具有子属性的基本类型。其中一些基本类型是由QML语言提供的，而其他类型只有在导入Qt Quick模块时才能使用。有关更多信息，请参阅有关<a href="qtqml-typesystem-basictypes.html">QML基本类型</a>的文档。</p>
+<p>分组特性类型是具有子特性的基本类型。其中一些基本类型是由QML语言提供的，而其他类型只有在导入Qt Quick模块时才能使用。有关更多信息，请参阅有关<a href="qtqml-typesystem-basictypes.html">QML基本类型</a>的文档。</p>
 <a name="property-aliases"></a>
-<h4 >属性别名</h4>
+<h4 >特性别名</h4>
 <p>
-属性别名是持有对另一个属性的引用的属性。与普通的属性定义(为属性分配新的、唯一的存储空间)不同，属性别名将新声明的属性(称为别名属性)连接为对现有属性(别名属性)的直接引用。</p>
-<p>属性别名声明看起来像普通的属性定义，除了它需要<code>alias</code> 关键字而不是属性类型，并且属性声明的右侧必须是有效的别名引用:</p>
+特性别名是持有对另一个特性的引用的特性。与普通的特性定义(为特性分配新的、唯一的存储空间)不同，特性别名将新声明的特性(称为别名特性)连接为对现有特性(别名特性)的直接引用。</p>
+<p>特性别名声明看起来像普通的特性定义，除了它需要<code>alias</code> 关键字而不是特性类型，并且特性声明的右侧必须是有效的别名引用:</p>
 <pre class="cpp">
 
   <span class="operator">[</span><span class="keyword">default</span><span class="operator">]</span> property alias <span class="operator">&lt;</span>name<span class="operator">&gt;</span>: <span class="operator">&lt;</span>alias reference<span class="operator">&gt;</span>
 
 </pre>
-<p>与普通属性不同，别名有以下限制:</p>
+<p>与普通特性不同，别名有以下限制:</p>
 <ul>
-<li>它只能引用在声明别名的类型范围内的对象或对象的属性.</li>
+<li>它只能引用在声明别名的类型范围内的对象或对象的特性.</li>
 <li>它不能包含任意的JavaScript表达式</li>
 <li>它不能引用在其类型作用域之外声明的对象。</li>
-<li>别名引用不是可选的，不像普通属性的可选默认值;<br>必须在首次声明别名时提供别名引用。</li>
-<li>它不能引用<a href="qtqml-syntax-objectattributes.html#attached-properties-and-attached-signal-handlers">附加的属性</a>。</li>
-<li>它不能引用分组属性;<br>以下代码不能工作:<pre class="cpp">
+<li>别名引用不是可选的，不像普通特性的可选默认值;<br>必须在首次声明别名时提供别名引用。</li>
+<li>它不能引用<a href="qtqml-syntax-objectattributes.html#attached-properties-and-attached-signal-handlers">附加的特性</a>。</li>
+<li>它不能引用分组特性;<br>以下代码不能工作:<pre class="cpp">
 
   property alias color: rectangle<span class="operator">.</span>border<span class="operator">.</span>color
 
@@ -358,7 +358,7 @@
   }
 
 </pre>
-<p>但是，<a href="qtqml-typesystem-basictypes.html">值类型</a>属性的别名可以工作:</p>
+<p>但是，<a href="qtqml-typesystem-basictypes.html">值类型</a>特性的别名可以工作:</p>
 <pre class="cpp">
 
   property alias rectX: object<span class="operator">.</span>rectProperty<span class="operator">.</span>x
@@ -371,7 +371,7 @@
 </pre>
 </li>
 </ul>
-<p>例如，下面是一个带有<code>buttonText</code> 别名属性的<code>Button</code> 类型，该属性连接到text子对象的<a href="../qtquick/qml-qtquick-text.html">Text</a>对象:</p>
+<p>例如，下面是一个带有<code>buttonText</code> 别名特性的<code>Button</code> 类型，该特性连接到text子对象的<a href="../qtquick/qml-qtquick-text.html">Text</a>对象:</p>
 <pre class="qml">
 
   <span class="comment">// Button.qml</span>
@@ -394,11 +394,11 @@
 
 </pre>
 <p>在这里，修改<code>buttonText</code> 直接修改textItem.text值;它不会改变其他值，然后更新textItem.text。<br>
-如果buttonText不是别名，那么改变它的值实际上根本不会改变显示的文本，因为属性绑定不是双向的:如果texttitemtext被改变，<code>buttonText</code> 
+如果buttonText不是别名，那么改变它的值实际上根本不会改变显示的文本，因为特性绑定不是双向的:如果texttitemtext被改变，<code>buttonText</code> 
 的值就会改变，反之则不会。</p>
 <a name="considerations-for-property-aliases"></a>
-<h5 >属性别名的注意事项</h5>
-<p>别名只有在组件完全初始化后才会被激活。当引用未初始化的别名时，将产生错误。同样，混叠—混叠属性也会导致错误。</p>
+<h5 >特性别名的注意事项</h5>
+<p>别名只有在组件完全初始化后才会被激活。当引用未初始化的别名时，将产生错误。同样，混叠—混叠特性也会导致错误。</p>
 <pre class="qml">
 
   property <span class="type">alias</span> <span class="name">widgetLabel</span>: <span class="name">label</span>
@@ -412,8 +412,8 @@
   <span class="name">Component</span>.onCompleted: <span class="name">widgetLabel</span>.<span class="name">text</span> <span class="operator">=</span> <span class="string">&quot;Alias completed Initialization&quot;</span>
 
 </pre>
-<p>然而，当在根对象中导入带有属性别名的<a href="qtqml-typesystem-objecttypes.html">QML对象类型</a>时，该属性将作为常规Qt属性出现，因此可以在别名引用中使用。</p>
-<p>别名属性可以与现有属性具有相同的名称，从而有效地覆盖现有属性。例如，下面的QML类型有一个<code>color</code> 别名属性，其名称与内置的<a href="../qtquick/qml-qtquick-rectangle.html#color-prop">Rectangle::color</a>属性相同:</p>
+<p>然而，当在根对象中导入带有特性别名的<a href="qtqml-typesystem-objecttypes.html">QML对象类型</a>时，该特性将作为常规Qt特性出现，因此可以在别名引用中使用。</p>
+<p>别名特性可以与现有特性具有相同的名称，从而有效地覆盖现有特性。例如，下面的QML类型有一个<code>color</code> 别名特性，其名称与内置的<a href="../qtquick/qml-qtquick-rectangle.html#color-prop">Rectangle::color</a>特性相同:</p>
 <pre class="qml">
 
   <span class="type"><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a></span> {
@@ -441,11 +441,11 @@
   }
 
 </pre>
-<p>任何使用此类型并引用其<code>color</code> 属性的对象将引用别名而不是普通的<a href="../qtquick/qml-qtquick-rectangle.html#color-prop">Rectangle::color</a>属性。<br>
-但是，在内部，矩形可以正确地设置它的<code>color</code> 属性，并引用实际定义的属性，而不是别名。</p>
-	默认属性<h4 >默认属性</h4>
-<p>一个对象定义可以有一个默认属性。默认属性是指如果在另一个对象的定义中声明了一个对象，而没有将其声明为特定属性的值，则为其赋值的属性。</p>
-<p>使用可选的default关键字声明属性会将其标记为默认属性。例如，假设有一个文件MyLabel。带有默认属性<code>someText</code>的qml:</p>
+<p>任何使用此类型并引用其<code>color</code> 特性的对象将引用别名而不是普通的<a href="../qtquick/qml-qtquick-rectangle.html#color-prop">Rectangle::color</a>特性。<br>
+但是，在内部，矩形可以正确地设置它的<code>color</code> 特性，并引用实际定义的特性，而不是别名。</p>
+	默认特性<h4 >默认特性</h4>
+<p>一个对象定义可以有一个默认特性。默认特性是指如果在另一个对象的定义中声明了一个对象，而没有将其声明为特定特性的值，则为其赋值的特性。</p>
+<p>使用可选的default关键字声明特性会将其标记为默认特性。例如，假设有一个文件MyLabel。带有默认特性<code>someText</code>的qml:</p>
 <pre class="qml">
 
   <span class="comment">// MyLabel.qml</span>
@@ -474,18 +474,18 @@
   }
 
 </pre>
-<p>然而，由于<code>someText</code> 属性已被标记为默认属性，因此没有必要显式地将<a href="../qtquick/qml-qtquick-text.html">Text</a>对象赋给该属性。</p>
-<p>您会注意到，子对象可以添加到任何基于<a href="../qtquick/qml-qtquick-item.html">Item</a>的类型，而无需显式地将它们添加到<a href="../qtquick/qml-qtquick-item.html#children-prop"><span lang="zh-cn">子</span></a>属性。这是因为<a href="../qtquick/qml-qtquick-item.html">Item</a>的默认属性是它的数据属性，为<a href="../qtquick/qml-qtquick-item.html">Item</a>添加到这个列表中的任何项都会自动添加到它的<a href="../qtquick/qml-qtquick-item.html#children-prop"><span lang="zh-cn">子</span></a>列表中。</p>
-<p>默认属性在重新分配项的子项时很有用。<br>参见<a href="../qtquick/qtquick-customitems-tabwidget-example.html">TabWidget示例</a>，该示例使用默认属性自动将TabWidget的子节点重新分配为内部<a href="../qtquick/qml-qtquick-listview.html">ListView</a>的子节点。请<a href="../qtquick/qtquick-codesamples.html#extending-qml">参见扩展QML</a>。</p>
+<p>然而，由于<code>someText</code> 特性已被标记为默认特性，因此没有必要显式地将<a href="../qtquick/qml-qtquick-text.html">Text</a>对象赋给该特性。</p>
+<p>您会注意到，子对象可以添加到任何基于<a href="../qtquick/qml-qtquick-item.html">Item</a>的类型，而无需显式地将它们添加到<a href="../qtquick/qml-qtquick-item.html#children-prop"><span lang="zh-cn">子</span></a>特性。这是因为<a href="../qtquick/qml-qtquick-item.html">Item</a>的默认特性是它的数据特性，为<a href="../qtquick/qml-qtquick-item.html">Item</a>添加到这个列表中的任何项都会自动添加到它的<a href="../qtquick/qml-qtquick-item.html#children-prop"><span lang="zh-cn">子</span></a>列表中。</p>
+<p>默认特性在重新分配项的子项时很有用。<br>参见<a href="../qtquick/qtquick-customitems-tabwidget-example.html">TabWidget示例</a>，该示例使用默认特性自动将TabWidget的子节点重新分配为内部<a href="../qtquick/qml-qtquick-listview.html">ListView</a>的子节点。请<a href="../qtquick/qtquick-codesamples.html#extending-qml">参见扩展QML</a>。</p>
 <a name="read-only-properties"></a>
-<h4 ><span lang="zh-cn">只读属性</span></h4>
-<p>对象声明可以使用<code>readonly</code> 关键字定义只读属性，语法如下:</p>
+<h4 ><span lang="zh-cn">只读特性</span></h4>
+<p>对象声明可以使用<code>readonly</code> 关键字定义只读特性，语法如下:</p>
 <pre class="cpp">
 
   readonly property <span class="operator">&lt;</span>propertyType<span class="operator">&gt;</span> <span class="operator">&lt;</span>propertyName<span class="operator">&gt;</span> : <span class="operator">&lt;</span>initialValue<span class="operator">&gt;</span>
 
 </pre>
-<p>只读属性必须在初始化时赋值。初始化只读属性后，无论从命令式代码还是其他方式，都不可能给它赋值。</p>
+<p>只读特性必须在初始化时赋值。初始化只读特性后，无论从命令式代码还是其他方式，都不可能给它赋值。</p>
 <p>例如，下面<code>Component.onCompleted</code>块中的代码是无效的:</p>
 <pre class="qml">
 
@@ -496,9 +496,9 @@
   }
 
 </pre>
-<p><b>注意:</b>只读属性也不能是<a href="qtqml-syntax-objectattributes.html#default-properties">默认</a>属性。.</p><a name="property-modifier-objects"></a>
-<h4 >属性修改器对象</h4>
-<p>属性可以具有与它们关联的<a href="qtqml-cppintegration-definetypes.html#property-modifier-types">属性值修饰符对象</a>。声明与特定属性关联的属性修饰符类型的实例的语法如下:</p>
+<p><b>注意:</b>只读特性也不能是<a href="qtqml-syntax-objectattributes.html#default-properties">默认</a>特性。.</p><a name="property-modifier-objects"></a>
+<h4 >特性修改器对象</h4>
+<p>特性可以具有与它们关联的<a href="qtqml-cppintegration-definetypes.html#property-modifier-types">特性值修饰符对象</a>。声明与特定特性关联的特性修饰符类型的实例的语法如下:</p>
 <pre class="cpp">
 
   <span class="operator">&lt;</span>PropertyModifierTypeName<span class="operator">&gt;</span> on <span class="operator">&lt;</span>propertyName<span class="operator">&gt;</span> {
@@ -506,13 +506,13 @@
   }
 
 </pre>
-<p>需要注意的是，上面的语法实际上是一个<a href="qtqml-syntax-basics.html#object-declarations">对象声明</a>，它将实例化一个作用于预先存在的属性的对象。</p>
-<p>某些属性修饰符类型可能只适用于特定的属性类型，但是语言并没有强制执行这一点。例如，<code>QtQuick</code> 提供的<code>NumberAnimation</code> 
-类型只会动画数字类型(如<code>int</code> 或<code>real</code>)属性。尝试使用带有非数字属性的<code>NumberAnimation</code> 
-不会导致错误，但是非数字属性不会被动画。属性修饰符类型与特定属性类型关联时的行为由其实现定义。</p>
+<p>需要注意的是，上面的语法实际上是一个<a href="qtqml-syntax-basics.html#object-declarations">对象声明</a>，它将实例化一个作用于预先存在的特性的对象。</p>
+<p>某些特性修饰符类型可能只适用于特定的特性类型，但是语言并没有强制执行这一点。例如，<code>QtQuick</code> 提供的<code>NumberAnimation</code> 
+类型只会动画数字类型(如<code>int</code> 或<code>real</code>)特性。尝试使用带有非数字特性的<code>NumberAnimation</code> 
+不会导致错误，但是非数字特性不会被动画。特性修饰符类型与特定特性类型关联时的行为由其实现定义。</p>
 <a name="signal-attributes"></a>
-<h3 >信号的属性</h3>
-<p>信号是来自对象的某个事件发生的通知:例如，属性发生了变化，动画已经开始或停止，或者图像已经下载。例如，<a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a>类型有一个<a href="../qtquick/qml-qtquick-mousearea.html#clicked-signal">单击</a>信号，当用户在鼠标区域内单击时发出该信号。</p>
+<h3 >信号的特性</h3>
+<p>信号是来自对象的某个事件发生的通知:例如，特性发生了变化，动画已经开始或停止，或者图像已经下载。例如，<a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a>类型有一个<a href="../qtquick/qml-qtquick-mousearea.html#clicked-signal">单击</a>信号，当用户在鼠标区域内单击时发出该信号。</p>
 <p>无论何时发出特定的信号，都可以通过<a href="qtqml-syntax-objectattributes.html#signal-handler-attributes">信号处理程序</a>通知对象。信号处理程序的语法是<i>on&lt;Signal&gt;</i>
 <span lang="zh-cn">，</span> <i>&lt;Signal&gt;</i>是信号的名称，第一个字母大写。信号处理程序必须在发出信号的对象的定义中声明，处理程序应该包含在调用信号处理程序时要执行的JavaScript代码块。</p>
 <p>例如，下面的<i>onClicked</i> 信号处理程序在<a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a>对象定义中声明，并在<a href="../qtquick/qml-qtquick-mousearea.html">MouseArea</a>被单击时调用，导致打印一条控制台消息:</p>
@@ -533,7 +533,7 @@
 
 </pre>
 <a name="defining-signal-attributes"></a>
-<h4 >定义信号属性</h4>
+<h4 >定义信号特性</h4>
 <p>&nbsp;在C++中，可以通过注册类的<a href="../qtcore/qobject.html#Q_SIGNAL">Q_SIGNAL</a>来为类型定义信号，然后注册到QML类型系统。或者，对象类型的自定义信号可以用以下语法在QML文档的对象声明中定义:</p>
 <pre class="cpp">
 
@@ -555,14 +555,14 @@
 
 </pre>
 <p>如果信号没有参数，"()"是可选的。如果使用参数，则必须声明参数类型，就像上面<code>actionPerformed</code> 
-信号的字符串和var参数一样。允许的参数类型与本页<a href="qtqml-syntax-objectattributes.html#defining-property-attributes">定义<span lang="zh-cn">Property</span>属性</a>中列出的参数类型相同。</p>
+信号的字符串和var参数一样。允许的参数类型与本页<a href="qtqml-syntax-objectattributes.html#defining-property-attributes">定义<span lang="zh-cn">Property</span>特性</a>中列出的参数类型相同。</p>
 <p>要发出信号，请将其作为方法调用。当发出信号时，任何相关的<a href="qtqml-syntax-objectattributes.html#signal-handler-attributes">信号处理程序</a>都将被调用，处理程序可以使用定义的信号参数名称来访问各自的参数。</p>
 <a name="property-change-signals"></a>
-<h4 >属性改变的信号</h4>
-<p>QML类型还提供了内置的属性更改信号，每当属性值更改时就会发出该信号，如前面关于<span lang="zh-cn">property</span><a href="qtqml-syntax-objectattributes.html#property-attributes">属性</a>一节所述。有关这些信号为什么有用以及如何使用它们的更多信息，请参阅下一节的<a href="qtqml-syntax-signals.html#property-change-signal-handlers">属性更改信号处理程序</a>。</p>
+<h4 >特性改变的信号</h4>
+<p>QML类型还提供了内置的特性更改信号，每当特性值更改时就会发出该信号，如前面关于<span lang="zh-cn">property</span><a href="qtqml-syntax-objectattributes.html#property-attributes">特性</a>一节所述。有关这些信号为什么有用以及如何使用它们的更多信息，请参阅下一节的<a href="qtqml-syntax-signals.html#property-change-signal-handlers">特性更改信号处理程序</a>。</p>
 <a name="signal-handler-attributes"></a>
-<h3 >信号处理程序属性</h3>
-<p>信号处理程序是一种特殊的<a href="qtqml-syntax-objectattributes.html#method-attributes">方法属性</a>，每当发出相关的信号时，QML引擎就会调用方法实现。在QML中向对象定义添加信号将自动向对象定义添加相关的信号处理程序，该对象定义在默认情况下有一个空实现。客户端可以提供实现，实现程序逻辑。</p>
+<h3 >信号处理程序特性</h3>
+<p>信号处理程序是一种特殊的<a href="qtqml-syntax-objectattributes.html#method-attributes">方法特性</a>，每当发出相关的信号时，QML引擎就会调用方法实现。在QML中向对象定义添加信号将自动向对象定义添加相关的信号处理程序，该对象定义在默认情况下有一个空实现。客户端可以提供实现，实现程序逻辑。</p>
 <p>考虑下面的<code>SquareButton</code> 类型，它的定义在SquareButton中提供。QML文件如下所示，带有<code>activated</code> 
 和<code>deactivated</code>信号:</p>
 <pre class="qml">
@@ -597,9 +597,9 @@
 </pre>
 <p>有关信号使用的更多细节，请参阅<a href="qtqml-syntax-signals.html">信号和处理程序事件系统</a>。</p>
 <a name="property-change-signal-handlers"></a>
-<h4 >属性更改信号处理程序</h4>
-<p>属性更改信号的信号处理程序采用<i>on&lt;Property&gt;Changed</i>语法形式，其中<i>&lt;Property&gt;</i>是属性的名称，第一个字母大写。例如，虽然<a href="../qtquick/qml-qtquick-textinput.html">TextInput</a>类型文档没有记录一个textChanged信号，但这个信号是隐式可用的，因为<a href="../qtquick/qml-qtquick-textinput.html">TextInput</a>有一个<a href="../qtquick/qml-qtquick-textinput.html#text-prop">text</a>属性，所以可以编写一个<code>onTextChanged</code> 
-信号处理程序，当这个属性改变时调用:</p>
+<h4 >特性更改信号处理程序</h4>
+<p>特性更改信号的信号处理程序采用<i>on&lt;Property&gt;Changed</i>语法形式，其中<i>&lt;Property&gt;</i>是特性的名称，第一个字母大写。例如，虽然<a href="../qtquick/qml-qtquick-textinput.html">TextInput</a>类型文档没有记录一个textChanged信号，但这个信号是隐式可用的，因为<a href="../qtquick/qml-qtquick-textinput.html">TextInput</a>有一个<a href="../qtquick/qml-qtquick-textinput.html#text-prop">text</a>特性，所以可以编写一个<code>onTextChanged</code> 
+信号处理程序，当这个特性改变时调用:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -612,10 +612,10 @@
 
 </pre>
 <a name="method-attributes"></a>
-<h3 >方法属性</h3>
+<h3 >方法特性</h3>
 <p>对象类型的方法是一个函数，可以调用它来执行某些处理或触发进一步的事件。可以将方法连接到信号，以便在信号发出时自动调用方法。有关更多细节，请参阅<a href="qtqml-syntax-signals.html">信号和处理程序事件系统</a>。</p>
 <a name="defining-method-attributes"></a>
-<h4 >定义方法的属性</h4>
+<h4 >定义方法的特性</h4>
 <p>在C++中，可以通过标记类的函数来为类型定义方法，然后用<a href="../qtcore/qobject.html#Q_INVOKABLE">Q_INVOKABLE</a>将该函数注册到QML类型系统中，或者通过将其注册为类的<a href="../qtcore/qobject.html#Q_SLOT">Q_SLOT</a>。或者，可以使用以下语法将自定义方法添加到QML文档中的对象声明中:</p>
 <pre class="cpp">
 
@@ -670,17 +670,17 @@
   }
 
 </pre>
-<h3 >附加属性和附加信号处理程序</h3>
-<p>附加属性和附加信号处理程序是一种机制，可以用对象无法使用的额外属性或信号处理程序对对象进行注释。特别是，它们允许对象访问与单个对象特别相关的属性或信号。</p>
-<p>QML类型实现可以选择用C++创建<a href="qtqml-cppintegration-definetypes.html#providing-attached-properties">带有特定属性和信号的附加类型</a>。然后可以在运行时创建该类型的实例并将其附加到特定对象，从而允许这些对象访问附加类型的属性和信号。可以通过在属性和各自的信号处理程序前加上附加类型的名称来访问这些属性。</p>
-<p>对附加属性和处理程序的引用采用以下语法形式:</p>
+<h3 >附加特性和附加信号处理程序</h3>
+<p>附加特性和附加信号处理程序是一种机制，可以用对象无法使用的额外特性或信号处理程序对对象进行注释。特别是，它们允许对象访问与单个对象特别相关的特性或信号。</p>
+<p>QML类型实现可以选择用C++创建<a href="qtqml-cppintegration-definetypes.html#providing-attached-properties">带有特定特性和信号的附加类型</a>。然后可以在运行时创建该类型的实例并将其附加到特定对象，从而允许这些对象访问附加类型的特性和信号。可以通过在特性和各自的信号处理程序前加上附加类型的名称来访问这些特性。</p>
+<p>对附加特性和处理程序的引用采用以下语法形式:</p>
 <pre class="cpp">
 
   <span class="operator">&lt;</span>AttachingType<span class="operator">&gt;</span><span class="operator">.</span><span class="operator">&lt;</span>propertyName<span class="operator">&gt;</span>
   <span class="operator">&lt;</span>AttachingType<span class="operator">&gt;</span><span class="operator">.</span>on<span class="operator">&lt;</span>SignalName<span class="operator">&gt;</span>
 
 </pre>
-<p>例如，<a href="../qtquick/qml-qtquick-listview.html">ListView</a>类型有一个附加属性<a href="../qtquick/qml-qtquick-listview.html#isCurrentItem-attached-prop">ListView.isCurrentItem</a>，该属性可用于<a href="../qtquick/qml-qtquick-listview.html">ListView</a>中的每个委托对象。这可以被每个单独的委托对象用来确定它是否是视图中当前选中的项:</p>
+<p>例如，<a href="../qtquick/qml-qtquick-listview.html">ListView</a>类型有一个附加特性<a href="../qtquick/qml-qtquick-listview.html#isCurrentItem-attached-prop">ListView.isCurrentItem</a>，该特性可用于<a href="../qtquick/qml-qtquick-listview.html">ListView</a>中的每个委托对象。这可以被每个单独的委托对象用来确定它是否是视图中当前选中的项:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -695,7 +695,7 @@
   }
 
 </pre>
-<p>在本例中，附加类型的名称是<code>ListView</code> ，而相关的属性是<code>isCurrentItem</code>，因此附加的属性被称为<code>ListView.isCurrentItem</code>。</p>
+<p>在本例中，附加类型的名称是<code>ListView</code> ，而相关的特性是<code>isCurrentItem</code>，因此附加的特性被称为<code>ListView.isCurrentItem</code>。</p>
 <p>以同样的方式引用附加的信号处理程序。例如，附加<a href="qml-qtqml-component.html#completed-signal">Component.onCompleted</a>信号处理程序通常用于在组件创建过程完成时执行一些JavaScript代码。在下面的例子中，一旦<a href="qml-qtqml-models-listmodel.html">ListModel</a>被完全创建，它的<code>Component.onCompleted</code>信号处理程序将被自动调用来填充模型:</p>
 <pre class="qml">
 
@@ -716,11 +716,11 @@
 </pre>
 <p>因为附加类型的名称是<code>Component</code> ，并且该类型有一个<a href="qml-qtqml-component.html#completed-signal">completed</a>信号，所以附加的信号处理程序被称为<code>Component.onCompleted</code>。</p>
 <a name="a-note-about-accessing-attached-properties-and-signal-handlers"></a>
-<h4 >关于访问附加属性和信号处理程序的注意事项</h4>
-<p>一个常见的错误是假设附加的属性和信号处理程序可以直接从附加这些属性的对象的子对象访问。<br>事实并非如此。<br>
+<h4 >关于访问附加特性和信号处理程序的注意事项</h4>
+<p>一个常见的错误是假设附加的特性和信号处理程序可以直接从附加这些特性的对象的子对象访问。<br>事实并非如此。<br>
 附加类型的实例仅附加到特定对象，而不是附加到对象及其所有子对象。</p>
 <p><a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a> 
-例如，下面是先前示例的修改版本，其中包含附加的属性。这次，委托是一个<a href="../qtquick/qml-qtquick-item.html">Item</a>，有色<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>是这个Item的子元素:</p>
+例如，下面是先前示例的修改版本，其中包含附加的特性。这次，委托是一个<a href="../qtquick/qml-qtquick-item.html">Item</a>，有色<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>是这个Item的子元素:</p>
 <pre class="qml">
 
   import QtQuick 2.0
@@ -739,7 +739,7 @@
   }
 
 </pre>
-<p>这并不像预期的那样工作，因为ListViewisCurrentItem只附加到根委托对象，而不是它的子对象。<br>因为<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>是委托的子对象，而不是委托本身，所以它不能访问作为<code>ListView.isCurrentItem</code>附加属性的<code>isCurrentItem</code> 
+<p>这并不像预期的那样工作，因为ListViewisCurrentItem只附加到根委托对象，而不是它的子对象。<br>因为<a href="../qtquick/qml-qtquick-rectangle.html">Rectangle</a>是委托的子对象，而不是委托本身，所以它不能访问作为<code>ListView.isCurrentItem</code>附加特性的<code>isCurrentItem</code> 
 。因此，矩形应该通过根委托访问<code>isCurrentItem</code> :</p>
 <pre class="qml">
 
@@ -758,9 +758,9 @@
 
 </pre>
 <p>现在，<code>delegateItem.ListView.isCurrentItem</code>正确地引用了委托的<code>isCurrentItem</code> 
-附加属性。</p>
+附加特性。</p>
 <a name="enumeration-attributes"></a>
-<h3 >枚举属性</h3>
+<h3 >枚举特性</h3>
 <p>枚举提供一组固定的命名选项。它们可以在QML中使用<code>enum</code> 关键字声明:</p>
 <pre class="qml">
 

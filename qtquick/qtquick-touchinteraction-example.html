@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- touchinteraction.qdoc -->
+  <title>Qt Quick 示例 - Touch Interaction | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick 示例 - 触摸交互</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#running-the-example">运行该示例</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-touchinteraction-example.html#multipoint-flames-example">多点火焰示例</a></li>
+<li class="level1"><a href="#bear-whack-example">Bear-Whack 示例</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-touchinteraction-example.html#flick-resize-example">轻弹调整大小示例</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-touchinteraction-example.html#flickable-example">轻弹示例</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-touchinteraction-example.html#corkboards-example">软木板示例</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 示例 - 触摸交互</h1>
+<span class="subtitle"></span>
+<!-- $$$touchinteraction-brief -->
+<p>QML 触摸交互示例的集合。</p>
+<!-- @@@touchinteraction -->
+<!-- $$$touchinteraction-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-touchinteraction-example.png" alt="" /></p><p><i>触摸交互</i>是与触摸交互方法相关的小型 QML 示例的集合。有关更多信息，请访问<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-input-topic.html">Qt Quick 中的重要概念 - 用户输入</a>。</p>
+<a name="running-the-example"></a>
+<h2 id="running-the-example">运行该示例</h2>
+<p>要从 <a href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a>运行示例，请打开<b>欢迎</b> 模式并从 <b>示例</b>中选择示例。有关更多信息，请访问<a href="http://doc.qt.io/qtcreator/creator-build-example-application.html">构建和运行示例</a>。</p>
+<a name="multipoint-flames-example"></a>
+<h2 id="multipoint-flames-example">多点火焰示例</h2>
+<p><i>多点火焰</i>演示了在<a href="qml-qtquick-multipointtoucharea.html">MultiPointTouchArea</a>区分不同的手指，通过分配不同颜色的火焰到每个触摸点。</p>
+<p>MultipointTouchArea 设置多个触摸点：</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-multipointtoucharea.html">MultiPointTouchArea</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">minimumTouchPoints</span>: <span class="number">1</span>
+          <span class="name">maximumTouchPoints</span>: <span class="number">5</span>
+          <span class="name">touchPoints</span>: [
+              <span class="type"><a href="qml-qtquick-touchpoint.html">TouchPoint</a></span> { <span class="name">id</span>: <span class="name">touch1</span> },
+              <span class="type"><a href="qml-qtquick-touchpoint.html">TouchPoint</a></span> { <span class="name">id</span>: <span class="name">touch2</span> },
+              <span class="type"><a href="qml-qtquick-touchpoint.html">TouchPoint</a></span> { <span class="name">id</span>: <span class="name">touch11</span> },
+              <span class="type"><a href="qml-qtquick-touchpoint.html">TouchPoint</a></span> { <span class="name">id</span>: <span class="name">touch21</span> },
+              <span class="type"><a href="qml-qtquick-touchpoint.html">TouchPoint</a></span> { <span class="name">id</span>: <span class="name">touch31</span> }
+          ]
+      }
+
+</pre>
+<p>
+<font>
+然后将火焰简单地绑定到触摸点的坐标，以及当前是否被按下，如下所示：</font></p>
+<pre class="qml">
+
+      <span class="type">ParticleFlame</span> {
+          <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+          <span class="name">emitterX</span>: <span class="name">touch1</span>.<span class="name">x</span>
+          <span class="name">emitterY</span>: <span class="name">touch1</span>.<span class="name">y</span>
+          <span class="name">emitting</span>: <span class="name">touch1</span>.<span class="name">pressed</span>
+      }
+
+</pre>
+<a name="bear-whack-example"></a>
+<h2 id="bear-whack-example">Bear-Whack 示例</h2>
+<p>Bear-Whack演示了使用<a href="qml-qtquick-multipointtoucharea.html">MultiPointTouchArea</a>添加多个手指支持到一个简单的游戏。与游戏的互动是通过遵循触点的<a href="qml-qtquick-particles-spritegoal.html">SpriteGoal</a>完成的。添加到<a href="qml-qtquick-multipointtoucharea.html">MultiPointTouchArea</a>的<a href="qml-qtquick-touchpoint.html">TouchPoint</a>是一个嵌入相关逻辑的组件:</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-touchpoint.html">TouchPoint</a></span> {
+      <span class="name">id</span>: <span class="name">container</span>
+      property <span class="type"><a href="qml-qtquick-particles-particlesystem.html">ParticleSystem</a></span> <span class="name">system</span>
+      <span class="name">onPressedChanged</span>: {
+          <span class="keyword">if</span> (<span class="name">pressed</span>) {
+              <span class="name">timer</span>.<span class="name">restart</span>();
+              <span class="name">child</span>.<span class="name">enabled</span> <span class="operator">=</span> <span class="number">true</span>;
+              <span class="name">system</span>.<span class="name">explode</span>(<span class="name">x</span>,<span class="name">y</span>);
+          }
+      }
+      property <span class="type"><a href="../qtqml/qml-qtqml-qtobject.html">QtObject</a></span> <span class="name">obj</span>: <span class="name">Timer</span> {
+          <span class="name">id</span>: <span class="name">timer</span>
+          <span class="name">interval</span>: <span class="number">100</span>
+          <span class="name">running</span>: <span class="number">false</span>
+          <span class="name">repeat</span>: <span class="number">false</span>
+          <span class="name">onTriggered</span>: <span class="name">child</span>.<span class="name">enabled</span> <span class="operator">=</span> <span class="number">false</span>
+      }
+      property <span class="type"><a href="qml-qtquick-item.html">Item</a></span> <span class="name">child</span>: <span class="name">SpriteGoal</span> {
+          <span class="name">enabled</span>: <span class="number">false</span>
+          <span class="name">x</span>: <span class="name">container</span>.<span class="name">area</span>.<span class="name">x</span> <span class="operator">-</span> <span class="number">16</span>
+          <span class="name">y</span>: <span class="name">container</span>.<span class="name">area</span>.<span class="name">y</span> <span class="operator">-</span> <span class="number">16</span>
+          <span class="name">width</span>: <span class="name">container</span>.<span class="name">area</span>.<span class="name">width</span> <span class="operator">+</span> <span class="number">32</span>
+          <span class="name">height</span>: <span class="name">container</span>.<span class="name">area</span>.<span class="name">height</span> <span class="operator">+</span> <span class="number">32</span> <span class="comment">//+32 so it doesn't have to hit the exact center</span>
+          <span class="name">system</span>: <span class="name">container</span>.<span class="name">system</span>
+          <span class="name">parent</span>: <span class="name">container</span>.<span class="name">system</span>
+          <span class="name">goalState</span>: <span class="string">&quot;falling&quot;</span>
+      }
+  }
+
+</pre>
+<a name="flick-resize-example"></a>
+<h2 id="flick-resize-example">
+<font>
+轻弹调整大小示例</font></h2>
+<p>
+<font>
+<i>Flick Resize</i>使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-pincharea.html">PinchArea</a>来实现<i>捏合调整大小的</i>行为。这很容易通过收听<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-pincharea.html">PinchArea</a>信号并响应用户输入来实现。</font></p>
+<pre class="qml">
+
+  <span class="name">onPinchStarted</span>: {
+      <span class="name">initialWidth</span> <span class="operator">=</span> <span class="name">flick</span>.<span class="name">contentWidth</span>
+      <span class="name">initialHeight</span> <span class="operator">=</span> <span class="name">flick</span>.<span class="name">contentHeight</span>
+  }
+
+  <span class="name">onPinchUpdated</span>: {
+      <span class="comment">// adjust content pos due to drag</span>
+      <span class="name">flick</span>.<span class="name">contentX</span> <span class="operator">+=</span> <span class="name">pinch</span>.<span class="name">previousCenter</span>.<span class="name">x</span> <span class="operator">-</span> <span class="name">pinch</span>.<span class="name">center</span>.<span class="name">x</span>
+      <span class="name">flick</span>.<span class="name">contentY</span> <span class="operator">+=</span> <span class="name">pinch</span>.<span class="name">previousCenter</span>.<span class="name">y</span> <span class="operator">-</span> <span class="name">pinch</span>.<span class="name">center</span>.<span class="name">y</span>
+
+      <span class="comment">// resize content</span>
+      <span class="name">flick</span>.<span class="name">resizeContent</span>(<span class="name">initialWidth</span> <span class="operator">*</span> <span class="name">pinch</span>.<span class="name">scale</span>, <span class="name">initialHeight</span> <span class="operator">*</span> <span class="name">pinch</span>.<span class="name">scale</span>, <span class="name">pinch</span>.<span class="name">center</span>)
+  }
+
+  <span class="name">onPinchFinished</span>: {
+      <span class="comment">// Move its content within bounds.</span>
+      <span class="name">flick</span>.<span class="name">returnToBounds</span>()
+  }
+
+</pre>
+<a name="flickable-example"></a>
+<h2 id="flickable-example">
+<font>
+轻弹示例</font></h2>
+<p>
+<font>
+<i>Flickable</i>是一个演示<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html">Flickable</a>类型的简单示例。</font></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+  <span class="name">width</span>: <span class="number">320</span>
+  <span class="name">height</span>: <span class="number">480</span>
+  <span class="type"><a href="qml-qtquick-flickable.html">Flickable</a></span> {
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      <span class="name">contentWidth</span>: <span class="number">1200</span>
+      <span class="name">contentHeight</span>: <span class="number">1200</span>
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">width</span>: <span class="number">1000</span>
+          <span class="name">height</span>: <span class="number">1000</span>
+
+</pre>
+<a name="corkboards-example"></a>
+<h2 id="corkboards-example">
+<font>
+软木板示例</font></h2>
+<p>
+<font>
+<i>Corkboards展示了</i><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html">Flickable</a>的另一种用途，在 flickable 对象中使用 QML 类型来响应鼠标和键盘交互。此行为不需要特殊代码，因为 Qt Quick 类型已经与 Flickable 类型协作以接受触摸事件。</font></p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-touchinteraction-flickable-basic-flickable-qml.html">touchinteraction/flickable/basic-flickable.qml</a></li>
+<li><a href="qtquick-touchinteraction-flickable-content-panel-qml.html">touchinteraction/flickable/content/Panel.qml</a></li>
+<li><a href="qtquick-touchinteraction-flickable-corkboards-qml.html">touchinteraction/flickable/corkboards.qml</a></li>
+<li><a href="qtquick-touchinteraction-main-cpp.html">touchinteraction/main.cpp</a></li>
+<li><a href="qtquick-touchinteraction-multipointtouch-bearwhack-qml.html">touchinteraction/multipointtouch/bearwhack.qml</a></li>
+<li><a href="qtquick-touchinteraction-multipointtouch-content-augmentedtouchpoint-qml.html">touchinteraction/multipointtouch/content/AugmentedTouchPoint.qml</a></li>
+<li><a href="qtquick-touchinteraction-multipointtouch-content-bearwhackparticlesystem-qml.html">touchinteraction/multipointtouch/content/BearWhackParticleSystem.qml</a></li>
+<li><a href="qtquick-touchinteraction-multipointtouch-content-particleflame-qml.html">touchinteraction/multipointtouch/content/ParticleFlame.qml</a></li>
+<li><a href="qtquick-touchinteraction-multipointtouch-multiflame-qml.html">touchinteraction/multipointtouch/multiflame.qml</a></li>
+<li><a href="qtquick-touchinteraction-pincharea-flickresize-qml.html">touchinteraction/pincharea/flickresize.qml</a></li>
+<li><a href="qtquick-touchinteraction-touchinteraction-pro.html">touchinteraction/touchinteraction.pro</a></li>
+<li><a href="qtquick-touchinteraction-touchinteraction-qml.html">touchinteraction/touchinteraction.qml</a></li>
+<li><a href="qtquick-touchinteraction-touchinteraction-qmlproject.html">touchinteraction/touchinteraction.qmlproject</a></li>
+<li><a href="qtquick-touchinteraction-touchinteraction-qrc.html">touchinteraction/touchinteraction.qrc</a></li>
+</ul>
+<p>图片：</p>
+<ul>
+<li><a href="images/used-in-examples/touchinteraction/flickable/content/cork.jpg">touchinteraction/flickable/content/cork.jpg</a></li>
+<li><a href="images/used-in-examples/touchinteraction/flickable/content/note-yellow.png">touchinteraction/flickable/content/note-yellow.png</a></li>
+<li><a href="images/used-in-examples/touchinteraction/flickable/content/tack.png">touchinteraction/flickable/content/tack.png</a></li>
+<li><a href="images/used-in-examples/touchinteraction/multipointtouch/content/Bear0.png">touchinteraction/multipointtouch/content/Bear0.png</a></li>
+<li><a href="images/used-in-examples/touchinteraction/multipointtouch/content/Bear1.png">touchinteraction/multipointtouch/content/Bear1.png</a></li>
+<li><a href="images/used-in-examples/touchinteraction/multipointtouch/content/Bear2.png">touchinteraction/multipointtouch/content/Bear2.png</a></li>
+<li><a href="images/used-in-examples/touchinteraction/multipointtouch/content/Bear3.png">touchinteraction/multipointtouch/content/Bear3.png</a></li>
+<li><a href="images/used-in-examples/touchinteraction/multipointtouch/content/BearB.png">touchinteraction/multipointtouch/content/BearB.png</a></li>
+<li><a href="images/used-in-examples/touchinteraction/multipointtouch/content/blur-circle.png">touchinteraction/multipointtouch/content/blur-circle.png</a></li>
+<li><a href="images/used-in-examples/touchinteraction/multipointtouch/content/blur-circle3.png">touchinteraction/multipointtouch/content/blur-circle3.png</a></li>
+<li><a href="images/used-in-examples/touchinteraction/multipointtouch/content/heart-blur.png">touchinteraction/multipointtouch/content/heart-blur.png</a></li>
+<li><a href="images/used-in-examples/touchinteraction/multipointtouch/content/title.png">touchinteraction/multipointtouch/content/title.png</a></li>
+<li><a href="images/used-in-examples/touchinteraction/pincharea/qt-logo.jpg">touchinteraction/pincharea/qt-logo.jpg</a></li>
+</ul>
+</div>
+<!-- @@@touchinteraction -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

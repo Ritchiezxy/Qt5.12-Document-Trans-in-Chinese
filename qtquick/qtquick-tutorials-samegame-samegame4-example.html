@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- advtutorial.qdoc -->
+  <title>QML Advanced Tutorial 4 - Finishing Touches | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >QML 高级教程 4 - 收尾</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="qtquick-tutorials-samegame-samegame3-example.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="qtquick-tutorials-samegame-samegame3-example.html">
+QML高级教程3 -实现游戏逻辑</a>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-samegame-samegame4-example.html#adding-some-flair">添加一些天赋</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-samegame-samegame4-example.html#keeping-a-high-scores-table">保持高分表</a></li>
+<li class="level2"><a href="#that-s-it">就是这样!</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML 高级教程 4 - 收尾</h1>
+<span class="subtitle"></span>
+<!-- $$$tutorials/samegame/samegame4-description -->
+<div class="descr"> <a name="details"></a>
+<a name="adding-some-flair"></a>
+<h3 >添加一些天赋</h3>
+<p>现在我们要做两件事来让游戏活跃起来：动画块和添加高分系统。</p>
+<p>我们还清理了应用程序文件的目录结构。我们现在有很多文件，所以外面的所有 JavaScript 和 QML 文件<code>samegame.qml</code>都被移到了一个名为“content”的新子目录中。</p>
+<p>由于期待新的块动画，<code>Block.qml</code>文件现在重命名为<code>BoomBlock.qml</code>.</p>
+<a name="animating-block-movement"></a>
+<h4 >动画块运动</h4>
+<p>首先，我们将为块设置动画，使它们以流畅的方式移动。QML 有许多添加流体运动的方法，在这种情况下，我们将使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-behavior.html">Behavior</a>类型来添加<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-springanimation.html">SpringAnimation</a>。在<code>BoomBlock.qml</code>中，我们将<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-springanimation.html">SpringAnimation</a>行为应用于<code>x</code>和<code>y</code>属性，以便块将跟随并以类似弹簧的方式向指定位置（其值将由设置<code>samegame.js</code>）设置动画。这是添加到的代码<code>BoomBlock.qml</code>：</p>
+<pre class="qml">
+
+  property <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span> <span class="name">spawned</span>: <span class="number">false</span>
+
+  Behavior on <span class="name">x</span> {
+      <span class="name">enabled</span>: <span class="name">spawned</span>;
+      <span class="type"><a href="qml-qtquick-springanimation.html">SpringAnimation</a></span>{ <span class="name">spring</span>: <span class="number">2</span>; <span class="name">damping</span>: <span class="number">0.2</span> }
+  }
+  Behavior on <span class="name">y</span> {
+      <span class="type"><a href="qml-qtquick-springanimation.html">SpringAnimation</a></span>{ <span class="name">spring</span>: <span class="number">2</span>; <span class="name">damping</span>: <span class="number">0.2</span> }
+  }
+
+</pre>
+<p>弹簧<code>spring</code> 和阻力值<code>spring</code> 可以改变，以修改动画的弹簧效果。</p>
+<p><code>enabled: spawned</code>设置是指在<code>samegame.js</code>中从<code>createBlock()</code> 
+中设置的衍生值。这确保了只有在<code>createBlock()</code>将块设置到正确的位置后，<code>x</code>上的<a href="qml-qtquick-springanimation.html">SpringAnimation</a>才会被启用。否则，当游戏开始时，方块将滑出角落(0,0)，而不是从顶部排成一行掉下来。(试着把<code>enabled: spawned</code>注释掉，自己看看。)</p>
+<a name="animating-block-opacity-changes"></a>
+<h4 >动画块不透明度更改</h4>
+<p>接下来，我们将添加一个平滑的退出动画。为此，我们将使用一个<a href="qml-qtquick-behavior.html">Behavior</a>类型，它允许我们在属性发生变化时指定一个默认的动画。在这种情况下，当Block的不透明度<code>opacity</code> 
+发生变化时，我们将动画的不透明度值，使其逐渐淡入淡出，而不是在完全可见和不可见之间突然改变。为此，我们将在<code>BoomBlock.qml</code>中的图像类型的不透明度属性上应用一个行为:</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-image.html">Image</a></span> {
+      <span class="name">id</span>: <span class="name">img</span>
+
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      <span class="name">source</span>: {
+          <span class="keyword">if</span> (<span class="name">type</span> <span class="operator">==</span> <span class="number">0</span>)
+              <span class="keyword">return</span> <span class="string">&quot;../../shared/pics/redStone.png&quot;</span>;
+          <span class="keyword">else</span> <span class="keyword">if</span> (<span class="name">type</span> <span class="operator">==</span> <span class="number">1</span>)
+              <span class="keyword">return</span> <span class="string">&quot;../../shared/pics/blueStone.png&quot;</span>;
+          <span class="keyword">else</span>
+              <span class="keyword">return</span> <span class="string">&quot;../../shared/pics/greenStone.png&quot;</span>;
+      }
+      <span class="name">opacity</span>: <span class="number">0</span>
+
+      Behavior on <span class="name">opacity</span> {
+          <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">properties</span>:<span class="string">&quot;opacity&quot;</span>; <span class="name">duration</span>: <span class="number">200</span> }
+      }
+  }
+
+</pre>
+<p>请注意，<code>opacity: 0</code>这意味着块在首次创建时是透明的。我们可以在创建和销毁块时设置不透明度<code>samegame.js</code>，但我们将使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-statesanimations-states.html">states</a>，因为这对于我们要添加的下一个动画很有用。最初，我们将这些状态添加到 的根类型中<code>BoomBlock.qml</code>：</p>
+<pre class="cpp">
+
+  property bool dying: <span class="keyword">false</span>
+  states: <span class="operator">[</span>
+      State{ name: <span class="string">&quot;AliveState&quot;</span>; when: spawned <span class="operator">=</span><span class="operator">=</span> <span class="keyword">true</span> <span class="operator">&amp;</span><span class="operator">&amp;</span> dying <span class="operator">=</span><span class="operator">=</span> <span class="keyword">false</span>
+          PropertyChanges { target: img; opacity: <span class="number">1</span> }
+      }<span class="operator">,</span>
+      State{ name: <span class="string">&quot;DeathState&quot;</span>; when: dying <span class="operator">=</span><span class="operator">=</span> <span class="keyword">true</span>
+          PropertyChanges { target: img; opacity: <span class="number">0</span> }
+      }
+  <span class="operator">]</span>
+
+</pre>
+<p>现在块将自动淡入，因为我们<code>spawned</code>在实现块动画时已经设置为 true。为了淡出，我们设置<code>dying</code>为 true，而不是在块被销毁时（在<code>floodFill()</code>函数中）将 opacity 设置为 0。</p>
+<a name="adding-particle-effects"></a>
+<h4 >添加粒子效果</h4>
+<p>最后，我们将添加一个看起来很酷的粒子效果到块，当他们被摧毁。为了做到这一点，我们首先在<code>BoomBlock.qml</code>中添加一个<a href="qml-qtquick-particles-particlesystem.html">ParticleSystem</a>，像这样:</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-particlesystem.html">ParticleSystem</a></span> {
+      <span class="name">id</span>: <span class="name">sys</span>
+      <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+      <span class="type"><a href="qml-qtquick-particles-imageparticle.html">ImageParticle</a></span> {
+          <span class="comment">// ![0]</span>
+          <span class="name">source</span>: {
+              <span class="keyword">if</span> (<span class="name">type</span> <span class="operator">==</span> <span class="number">0</span>)
+                  <span class="keyword">return</span> <span class="string">&quot;../../shared/pics/redStar.png&quot;</span>;
+              <span class="keyword">else</span> <span class="keyword">if</span> (<span class="name">type</span> <span class="operator">==</span> <span class="number">1</span>)
+                  <span class="keyword">return</span> <span class="string">&quot;../../shared/pics/blueStar.png&quot;</span>;
+              <span class="keyword">else</span>
+                  <span class="keyword">return</span> <span class="string">&quot;../../shared/pics/greenStar.png&quot;</span>;
+          }
+          <span class="name">rotationVelocityVariation</span>: <span class="number">360</span>
+          <span class="comment">// ![0]</span>
+      }
+
+      <span class="type"><a href="qml-qtquick-particles-emitter.html">Emitter</a></span> {
+          <span class="name">id</span>: <span class="name">particles</span>
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">emitRate</span>: <span class="number">0</span>
+          <span class="name">lifeSpan</span>: <span class="number">700</span>
+          <span class="name">velocity</span>: <span class="name">AngleDirection</span> {<span class="name">angleVariation</span>: <span class="number">360</span>; <span class="name">magnitude</span>: <span class="number">80</span>; <span class="name">magnitudeVariation</span>: <span class="number">40</span>}
+          <span class="name">size</span>: <span class="number">16</span>
+      }
+  }
+
+</pre>
+<p>要完全理解这一点，您应该阅读<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-effects-particles.html">使用Qt 
+Quick粒子系统章节</a>，但重要的是要注意将<code>emitRate</code>其设置为零，这样粒子就不会正常发射。此外，我们扩展了State，它通过调用粒子类型上<code>dying</code>的方法来创建粒子爆发。<code>burst()</code>状态的代码现在如下所示：</p>
+<pre class="qml">
+
+  <span class="name">states</span>: [
+      <span class="type"><a href="qml-qtquick-state.html">State</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;AliveState&quot;</span>
+          <span class="name">when</span>: <span class="name">spawned</span> <span class="operator">==</span> <span class="number">true</span> <span class="operator">&amp;&amp;</span> <span class="name">dying</span> <span class="operator">==</span> <span class="number">false</span>
+          <span class="type"><a href="qml-qtquick-propertychanges.html">PropertyChanges</a></span> { <span class="name">target</span>: <span class="name">img</span>; <span class="name">opacity</span>: <span class="number">1</span> }
+      },
+
+      <span class="type"><a href="qml-qtquick-state.html">State</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;DeathState&quot;</span>
+          <span class="name">when</span>: <span class="name">dying</span> <span class="operator">==</span> <span class="number">true</span>
+          <span class="type"><a href="qml-qtquick-statechangescript.html">StateChangeScript</a></span> { <span class="name">script</span>: <span class="name">particles</span>.<span class="name">burst</span>(<span class="number">50</span>); }
+          <span class="type"><a href="qml-qtquick-propertychanges.html">PropertyChanges</a></span> { <span class="name">target</span>: <span class="name">img</span>; <span class="name">opacity</span>: <span class="number">0</span> }
+          <span class="type"><a href="qml-qtquick-statechangescript.html">StateChangeScript</a></span> { <span class="name">script</span>: <span class="name">block</span>.<span class="name">destroy</span>(<span class="number">1000</span>); }
+      }
+  ]
+
+</pre>
+<p>现在游戏的动画非常精美，为玩家的所有动作添加了微妙（或不那么微妙）的动画。最终结果如下所示，使用一组不同的图像来演示基本主题：</p>
+<p class="centerAlign"><img src="images/declarative-adv-tutorial4.gif" alt="" /></p><p>此处的主题更改仅通过替换块图像来产生。这可以在运行时通过更改<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-image.html">Image</a> <code>source</code>属性来完成，因此对于进一步的挑战，您可以添加一个在具有不同图像的主题之间切换的按钮。</p>
+<a name="keeping-a-high-scores-table"></a>
+<h3 >保存高分表</h3>
+<p>我们可能想要添加到游戏中的另一个功能是存储和检索高分的方法。</p>
+<p>为此，我们将在游戏结束时显示一个对话框，请求玩家姓名并将其添加到高分表中。这需要对<code>Dialog.qml</code>. 除了<code>Text</code>类型之外，它现在还有一个<code>TextInput</code>用于接收键盘文本输入的子项：</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">container</span>
+      ...
+      <span class="type"><a href="qml-qtquick-textinput.html">TextInput</a></span> {
+          <span class="name">id</span>: <span class="name">textInput</span>
+          <span class="type">anchors</span> { <span class="name">verticalCenter</span>: <span class="name">parent</span>.<span class="name">verticalCenter</span>; <span class="name">left</span>: <span class="name">dialogText</span>.<span class="name">right</span> }
+          <span class="name">width</span>: <span class="number">80</span>
+          <span class="name">text</span>: <span class="string">&quot;&quot;</span>
+
+          <span class="name">onAccepted</span>: <span class="name">container</span>.<span class="name">hide</span>()    <span class="comment">// close dialog when Enter is pressed</span>
+      }
+      ...
+  }
+
+</pre>
+<p>我们还将添加一个<code>showWithInput()</code>函数。仅当调用此函数而不是<code>show()</code>. 当对话框关闭时，它会发出一个<code>closed()</code>信号，其他类型可以通过<code>inputText</code>属性检索用户输入的文本：</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">container</span>
+      property <span class="type"><a href="../qtqml/qml-string.html">string</a></span> <span class="name">inputText</span>: <span class="name">textInput</span>.<span class="name">text</span>
+      signal <span class="type">closed</span>
+
+      <span class="keyword">function</span> <span class="name">show</span>(text) {
+          <span class="name">dialogText</span>.<span class="name">text</span> <span class="operator">=</span> <span class="name">text</span>;
+          <span class="name">container</span>.<span class="name">opacity</span> <span class="operator">=</span> <span class="number">1</span>;
+          <span class="name">textInput</span>.<span class="name">opacity</span> <span class="operator">=</span> <span class="number">0</span>;
+      }
+
+      <span class="keyword">function</span> <span class="name">showWithInput</span>(text) {
+          <span class="name">show</span>(<span class="name">text</span>);
+          <span class="name">textInput</span>.<span class="name">opacity</span> <span class="operator">=</span> <span class="number">1</span>;
+          <span class="name">textInput</span>.<span class="name">focus</span> <span class="operator">=</span> <span class="number">true</span>;
+          <span class="name">textInput</span>.<span class="name">text</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>
+      }
+
+      <span class="keyword">function</span> <span class="name">hide</span>() {
+          <span class="name">textInput</span>.<span class="name">focus</span> <span class="operator">=</span> <span class="number">false</span>;
+          <span class="name">container</span>.<span class="name">opacity</span> <span class="operator">=</span> <span class="number">0</span>;
+          <span class="name">container</span>.<span class="name">closed</span>();
+      }
+      ...
+  }
+
+</pre>
+<p>现在该对话框可用于<code>samegame.qml</code>：</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtquickcontrols/qml-qtquick-controls2-dialog.html">Dialog</a></span> {
+      <span class="name">id</span>: <span class="name">nameInputDialog</span>
+      <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+      <span class="name">z</span>: <span class="number">100</span>
+
+      <span class="name">onClosed</span>: {
+          <span class="keyword">if</span> (<span class="name">nameInputDialog</span>.<span class="name">inputText</span> <span class="operator">!=</span> <span class="string">&quot;&quot;</span>)
+              <span class="name">SameGame</span>.<span class="name">saveHighScore</span>(<span class="name">nameInputDialog</span>.<span class="name">inputText</span>);
+      }
+  }
+
+</pre>
+<p>当对话框发出<code>closed</code>信号时，我们调用 in 中的新<code>saveHighScore()</code>函数<code>samegame.js</code>，它将高分本地存储在 SQL 数据库中，如果可能，还将分数发送到在线数据库。</p>
+<p><code>nameInputDialog</code> 在<code>samegame.js</code>的<code>victoryCheck()</code>函数中被激活:</p>
+<pre class="js">
+
+  <span class="keyword">function</span> <span class="name">victoryCheck</span>() {
+      ...
+      <span class="comment">//Check whether game has finished</span>
+      <span class="keyword">if</span> (<span class="name">deservesBonus</span> <span class="operator">||</span> !(<span class="name">floodMoveCheck</span>(<span class="number">0</span>, <span class="name">maxRow</span> <span class="operator">-</span> <span class="number">1</span>, -<span class="number">1</span>))) {
+          <span class="name">gameDuration</span> <span class="operator">=</span> new <span class="name">Date</span>() <span class="operator">-</span> <span class="name">gameDuration</span>;
+          <span class="name">nameInputDialog</span>.<span class="name">showWithInput</span>(<span class="string">&quot;You won! Please enter your name: &quot;</span>);
+      }
+  }
+
+</pre>
+<a name="storing-high-scores-offline"></a>
+<h4 >离线存储高分</h4>
+<p>现在我们需要实现实际保存高分表的功能。</p>
+<p>下面是<code>samegame.js</code>中的<code>saveHighScore()</code>函数:</p>
+<pre class="js">
+
+  <span class="keyword">function</span> <span class="name">saveHighScore</span>(name) {
+      <span class="keyword">if</span> (<span class="name">scoresURL</span> <span class="operator">!=</span> <span class="string">&quot;&quot;</span>)
+          <span class="name">sendHighScore</span>(<span class="name">name</span>);
+
+      var db = <span class="name">Sql</span>.<span class="name">LocalStorage</span>.<span class="name">openDatabaseSync</span>(<span class="string">&quot;SameGameScores&quot;</span>, <span class="string">&quot;1.0&quot;</span>, <span class="string">&quot;Local SameGame High Scores&quot;</span>, <span class="number">100</span>);
+      var dataStr = <span class="string">&quot;INSERT INTO Scores VALUES(?, ?, ?, ?)&quot;</span>;
+      var data = [<span class="name">name</span>, <span class="name">gameCanvas</span>.<span class="name">score</span>, <span class="name">maxColumn</span> <span class="operator">+</span> <span class="string">&quot;x&quot;</span> <span class="operator">+</span> <span class="name">maxRow</span>, <span class="name">Math</span>.<span class="name">floor</span>(<span class="name">gameDuration</span> <span class="operator">/</span> <span class="number">1000</span>)];
+      <span class="name">db</span>.<span class="name">transaction</span>(<span class="keyword">function</span>(tx) {
+          <span class="name">tx</span>.<span class="name">executeSql</span>(<span class="string">'CREATE TABLE IF NOT EXISTS Scores(name TEXT, score NUMBER, gridSize TEXT, time NUMBER)'</span>);
+          <span class="name">tx</span>.<span class="name">executeSql</span>(<span class="name">dataStr</span>, <span class="name">data</span>);
+
+          var rs = <span class="name">tx</span>.<span class="name">executeSql</span>(<span class="string">'SELECT * FROM Scores WHERE gridSize = &quot;12x17&quot; ORDER BY score desc LIMIT 10'</span>);
+          var r = <span class="string">&quot;\nHIGH SCORES for a standard sized grid\n\n&quot;</span>
+          <span class="keyword">for</span> (var i = 0; <span class="name">i</span> <span class="operator">&lt;</span> <span class="name">rs</span>.<span class="name">rows</span>.<span class="name">length</span>; i++) {
+              <span class="name">r</span> <span class="operator">+=</span> (<span class="name">i</span> <span class="operator">+</span> <span class="number">1</span>) <span class="operator">+</span> <span class="string">&quot;. &quot;</span> <span class="operator">+</span> <span class="name">rs</span>.<span class="name">rows</span>.<span class="name">item</span>(<span class="name">i</span>).<span class="name">name</span> <span class="operator">+</span> <span class="string">' got '</span> <span class="operator">+</span> <span class="name">rs</span>.<span class="name">rows</span>.<span class="name">item</span>(<span class="name">i</span>).<span class="name">score</span> <span class="operator">+</span> <span class="string">' points in '</span> <span class="operator">+</span> <span class="name">rs</span>.<span class="name">rows</span>.<span class="name">item</span>(<span class="name">i</span>).<span class="name">time</span> <span class="operator">+</span> <span class="string">' seconds.\n'</span>;
+          }
+          <span class="name">dialog</span>.<span class="name">show</span>(<span class="name">r</span>);
+      });
+  }
+
+</pre>
+<p>首先，如果有可能将高分发送到在线数据库，我们将调用<code>sendHighScore()</code>(在下面的小节中解释)。</p>
+<p>然后，我们使用<a href="qtquick-localstorage-qmlmodule.html">本地存储API</a>来维护这个应用程序特有的持久SQL数据库。我们使用<code>openDatabaseSync()</code>为高分创建一个离线存储数据库，并准备用于保存高分的数据和SQL查询。离线存储API使用SQL查询进行数据操作和检索，在<code>db.transaction()</code>调用中，我们使用三个SQL查询初始化数据库(如果需要)，然后添加和检索高分。为了使用返回的数据，我们将其转换为每行返回一行的字符串，并显示包含该字符串的对话框。</p>
+<p>这是在本地存储和显示高分的一种方式，但肯定不是唯一的方式。一个更复杂的替代方法是创建一个高分对话框组件，并将结果传递给它以进行处理和显示（而不是重用<code>Dialog</code>）。这将允许更主题化的对话，可以更好地呈现高分。如果您的 QML 是 C++ 应用程序的 UI，您还可以将分数传递给 C++ 函数，以便以各种方式在本地存储它，包括没有 SQL 的简单格式或另一个 SQL 数据库中。</p>
+<a name="storing-high-scores-online"></a>
+<h4 >在线存储高分</h4>
+<p>您已经了解了如何在本地存储高分，但也很容易将支持 Web 的高分存储集成到您的 QML 应用程序中。我们为她完成的实现非常简单：将高分数据发布到在某处服务器上运行的 php 脚本，然后该服务器将其存储并显示给访问者。您还可以从同一服务器请求 XML 或 QML 文件，其中包含并显示分数，但这超出了本教程的范围。我们在这里使用的 php 脚本在<code>examples</code>目录中可用。</p>
+<p>如果玩家输入了他们的名字，我们可以将数据发送到我们的网络服务</p>
+<p>如果玩家输入一个名字，我们将使用<code>samegame.js</code>中的代码将数据发送给服务:</p>
+<pre class="js">
+
+  <span class="keyword">function</span> <span class="name">sendHighScore</span>(name) {
+      var postman = new <span class="name">XMLHttpRequest</span>()
+          var postData = <span class="string">&quot;name=&quot;</span> <span class="operator">+</span> <span class="name">name</span> <span class="operator">+</span> <span class="string">&quot;&amp;score=&quot;</span> <span class="operator">+</span> <span class="name">gameCanvas</span>.<span class="name">score</span> <span class="operator">+</span> <span class="string">&quot;&amp;gridSize=&quot;</span> <span class="operator">+</span> <span class="name">maxColumn</span> <span class="operator">+</span> <span class="string">&quot;x&quot;</span> <span class="operator">+</span> <span class="name">maxRow</span> <span class="operator">+</span> <span class="string">&quot;&amp;time=&quot;</span> <span class="operator">+</span> <span class="name">Math</span>.<span class="name">floor</span>(<span class="name">gameDuration</span> <span class="operator">/</span> <span class="number">1000</span>);
+      <span class="name">postman</span>.<span class="name">open</span>(<span class="string">&quot;POST&quot;</span>, <span class="name">scoresURL</span>, <span class="number">true</span>);
+      <span class="name">postman</span>.<span class="name">setRequestHeader</span>(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/x-www-form-urlencoded&quot;</span>);
+      <span class="name">postman</span>.<span class="name">onreadystatechange</span> <span class="operator">=</span> <span class="keyword">function</span>() {
+          <span class="keyword">if</span> (<span class="name">postman</span>.<span class="name">readyState</span> <span class="operator">==</span> <span class="name">postman</span>.<span class="name">DONE</span>) {
+              <span class="name">dialog</span>.<span class="name">show</span>(<span class="string">&quot;Your score has been uploaded.&quot;</span>);
+          }
+      }
+      <span class="name">postman</span>.<span class="name">send</span>(<span class="name">postData</span>);
+  }
+
+</pre>
+<p>此代码中的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a><code>XMLHttpRequest()</code>与标准浏览器 JavaScript 中的 XMLHttpRequest 相同，并且可以以相同的方式用于从 Web 服务动态获取 XML 或 QML 以显示高分。在这种情况下，我们不担心响应 - 我们只是将高分数据发布到 Web 服务器。如果它返回了一个 QML 文件（或一个 QML 文件的 URL），您可以用与处理块相同的方式实例化它。</p>
+<p>访问和提交基于 Web 的数据的另一种方法是使用为此目的设计的 QML 类型。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtxmlpatterns/qml-qtquick-xmllistmodel-xmllistmodel.html">XmlListModel</a>使得在 QML 应用程序中获取和显示基于 XML 的数据（例如 RSS）变得非常容易（请参阅 Flickr 演示以获取示例）。</p>
+<a name="that-s-it"></a>
+<h3 >就是这样!</h3>
+<p>通过学习本教程，您已经了解了如何在 QML 中编写功能齐全的应用程序：</p>
+<ul>
+<li>使用<a href="qtquick-qmlmodule.html">QML 类型</a>构建您的应用程序</li>
+<li>
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-expressions.html">使用 JavaScript 代码</a>添加应用程序逻辑<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-expressions.html"></a></li>
+<li>添加带有<a href="qml-qtquick-behavior.html">行为</a>和<a href="qtquick-statesanimations-states.html">状态</a>的动画</li>
+<li>使用<a href="qtquick-localstorage-qmlmodule.html">QtQuick.LocalStorage</a>或<a href="../qtqml/qtqml-javascript-qmlglobalobject.html#xmlhttprequest">XMLHttpRequest</a>存储持久应用程序数据</li>
+</ul>
+<p>关于 QML 的知识还有很多，我们无法在本教程中介绍。查看所有示例和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-index.html">文档</a>，了解您可以使用 QML 做的所有事情！</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-tutorials-samegame-samegame4-content-boomblock-qml.html">tutorials/samegame/samegame4/content/BoomBlock.qml</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame4-content-button-qml.html">tutorials/samegame/samegame4/content/Button.qml</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame4-content-dialog-qml.html">tutorials/samegame/samegame4/content/Dialog.qml</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame4-content-samegame-js.html">tutorials/samegame/samegame4/content/samegame.js</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame4-highscores-score-data-xml.html">tutorials/samegame/samegame4/highscores/score_data.xml</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame4-samegame-qml.html">tutorials/samegame/samegame4/samegame.qml</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame4-samegame4-qmlproject.html">tutorials/samegame/samegame4/samegame4.qmlproject</a></li>
+</ul>
+</div>
+<!-- @@@tutorials/samegame/samegame4 -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-samegame-samegame3-example.html">QML 高级教程 3 - 实现游戏逻辑</a>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

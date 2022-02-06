@@ -1,0 +1,1378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qquicklistview.cpp -->
+  <title>ListView QML 类型 | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td ><a href="qtquick-qmlmodule.html">QML类型</a></td><td >ListView QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#properties">属性</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#attached-properties">附加属性</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#attached-signals">附加信号</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#methods">方法</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+<li class="level2"><a href="#example-usage">示例用法</a></li>
+<li class="level2">
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#listview-layouts">
+ListView布局</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#flickable-direction">可滑动的方向</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#stacking-order-in-listview">ListView 中的堆叠顺序</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">ListView QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$ListView-brief -->
+<p>提供模型提供的项的列表视图。<a href="#details">更多...</a></p>
+<!-- @@@ListView -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句：</td><td class="memItemRight bottomAlign"> import QtQuick 2.12</td></tr><tr><td class="memItemLeft rightAlign topAlign">继承自：</td><td class="memItemRight bottomAlign"> <p><a href="qml-qtquick-flickable.html">Flickable</a></p>
+</td></tr></table></div><ul>
+<li><a href="qml-qtquick-listview-members.html">所有成员的列表，包括继承成员</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#add-prop">add</a></b></b> : Transition</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#addDisplaced-prop">addDisplaced</a></b></b> : Transition</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#cacheBuffer-prop">cacheBuffer</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#count-prop">count</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#currentIndex-prop">currentIndex</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#currentItem-prop">currentItem</a></b></b> : Item</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#currentSection-prop">currentSection</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#delegate-prop">delegate</a></b></b> : Component</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#displaced-prop">displaced</a></b></b> : Transition</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#displayMarginBeginning-prop">displayMarginBeginning</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#displayMarginEnd-prop">displayMarginEnd</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#effectiveLayoutDirection-prop">effectiveLayoutDirection</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#footer-prop">footer</a></b></b> : Component</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#footerItem-prop">footerItem</a></b></b> : Item</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#footerPositioning-prop">footerPositioning</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#header-prop">header</a></b></b> : Component</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#headerItem-prop">headerItem</a></b></b> : Item</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#headerPositioning-prop">headerPositioning</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#highlight-prop">highlight</a></b></b> : Component</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#highlightItem-prop">highlightItem</a></b></b> : Item</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#highlightMoveDuration-prop">highlightMoveDuration</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#highlightMoveVelocity-prop">highlightMoveVelocity</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#highlightRangeMode-prop">highlightRangeMode</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#highlightResizeDuration-prop">highlightResizeDuration</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#highlightResizeVelocity-prop">highlightResizeVelocity</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#keyNavigationEnabled-prop">keyNavigationEnabled</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#keyNavigationWraps-prop">keyNavigationWraps</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#layoutDirection-prop">layoutDirection</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#model-prop">model</a></b></b> : model</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#move-prop">move</a></b></b> : Transition</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#moveDisplaced-prop">moveDisplaced</a></b></b> : Transition</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#orientation-prop">orientation</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#populate-prop">populate</a></b></b> : Transition</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#preferredHighlightBegin-prop">preferredHighlightBegin</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#preferredHighlightEnd-prop">preferredHighlightEnd</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#remove-prop">remove</a></b></b> : Transition</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#removeDisplaced-prop">removeDisplaced</a></b></b> : Transition</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#section-prop">section</a></b></b><ul>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#section.property-prop">section.property</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#section.criteria-prop">section.criteria</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#section.delegate-prop">section.delegate</a></b></b> : Component</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#section.labelPositioning-prop">section.labelPositioning</a></b></b> : enumeration</li>
+</ul>
+</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#snapMode-prop">snapMode</a></b></b> : enumeration</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#spacing-prop">spacing</a></b></b> : real</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#verticalLayoutDirection-prop">verticalLayoutDirection</a></b></b> : enumeration</li>
+</ul>
+<a name="attached-properties"></a>
+<h2 id="attached-properties">附加属性</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#delayRemove-attached-prop">delayRemove</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#isCurrentItem-attached-prop">isCurrentItem</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#nextSection-attached-prop">nextSection</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#previousSection-attached-prop">previousSection</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#section-attached-prop">section</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#view-attached-prop">view</a></b></b> : ListView</li>
+</ul>
+<a name="attached-signals"></a>
+<h2 id="attached-signals">附加信号</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#add-signal">add</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#remove-signal">remove</a></b></b>()</li>
+</ul>
+<a name="methods"></a>
+<h2 id="methods">方法</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#decrementCurrentIndex-method">decrementCurrentIndex</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#forceLayout-method">forceLayout</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#incrementCurrentIndex-method">incrementCurrentIndex</a></b></b>()</li>
+<li class="fn">int <b><b><a href="qml-qtquick-listview.html#indexAt-method">indexAt</a></b></b>(real <i>x</i>,  real <i>y</i>)</li>
+<li class="fn">Item <b><b><a href="qml-qtquick-listview.html#itemAt-method">itemAt</a></b></b>(real <i>x</i>,  real <i>y</i>)</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#positionViewAtBeginning-method">positionViewAtBeginning</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#positionViewAtEnd-method">positionViewAtEnd</a></b></b>()</li>
+<li class="fn"><b><b><a href="qml-qtquick-listview.html#positionViewAtIndex-method">positionViewAtIndex</a></b></b>(int <i>index</i>,  PositionMode <i>mode</i>)</li>
+</ul>
+<!-- $$$ListView-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>显示来自内置 QML 类型（如<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html">ListModel</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtxmlpatterns/qml-qtquick-xmllistmodel-xmllistmodel.html">XmlListModel</a> ）创建的模型的数据，或在 C++ 中定义的从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractitemmodel.html">QAbstractItemModel</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractlistmodel.html">QAbstractListModel</a>继承的自定义模型类。</p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>有一个model <a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#model-prop">，</a>它定义了要显示的数据，还有一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#delegate-prop">delegate</a>，它定义了数据的显示方式。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>中的项水平或垂直布局。列表视图本质上是可滑动的，因为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>继承自<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html">Flickable</a>。</p>
+<a name="example-usage"></a>
+<h2 id="example-usage">示例用法</h2>
+<p>以下示例显示了在名为 的文件中定义的简单列表模型的定义<code>ContactModel.qml</code>：</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="../qtqml/qml-qtqml-models-listmodel.html">ListModel</a></span> {
+      <span class="type"><a href="../qtqml/qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;Bill Smith&quot;</span>
+          <span class="name">number</span>: <span class="string">&quot;555 3264&quot;</span>
+      }
+      <span class="type"><a href="../qtqml/qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;John Brown&quot;</span>
+          <span class="name">number</span>: <span class="string">&quot;555 8426&quot;</span>
+      }
+      <span class="type"><a href="../qtqml/qml-qtqml-models-listelement.html">ListElement</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;Sam Wise&quot;</span>
+          <span class="name">number</span>: <span class="string">&quot;555 0473&quot;</span>
+      }
+  }
+
+</pre>
+<p>另一个组件可以在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>中显示此模型数据，如下所示：</p>
+<pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+      <span class="name">width</span>: <span class="number">180</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="name">model</span>: <span class="name">ContactModel</span> {}
+      <span class="name">delegate</span>: <span class="name">Text</span> {
+          <span class="name">text</span>: <span class="name">name</span> <span class="operator">+</span> <span class="string">&quot;: &quot;</span> <span class="operator">+</span> <span class="name">number</span>
+      }
+  }
+
+</pre>
+<p class="centerAlign"><img src="images/listview-simple.png" alt="" /></p><p>这里，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a><code>ContactModel</code>为其模型创建一个组件，并为其委托创建一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-text.html">Text。</a>该视图将为模型中的每个项创建一个新的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-text.html">Text</a>组件。请注意，委托能够直接访问模型<code>name</code>和<code>number</code>数据。</p>
+<p>改进的列表视图如下所示。委托在视觉上得到了改进，并被移动到一个单独的<code>contactDelegate</code>组件中。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">180</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">contactDelegate</span>
+          <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+              <span class="name">width</span>: <span class="number">180</span>; <span class="name">height</span>: <span class="number">40</span>
+              <span class="type"><a href="qml-qtquick-column.html">Column</a></span> {
+                  <span class="type"><a href="qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">'&lt;b&gt;Name:&lt;/b&gt; '</span> <span class="operator">+</span> <span class="name">name</span> }
+                  <span class="type"><a href="qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">'&lt;b&gt;Number:&lt;/b&gt; '</span> <span class="operator">+</span> <span class="name">number</span> }
+              }
+          }
+      }
+
+      <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">model</span>: <span class="name">ContactModel</span> {}
+          <span class="name">delegate</span>: <span class="name">contactDelegate</span>
+          <span class="name">highlight</span>: <span class="name">Rectangle</span> { <span class="name">color</span>: <span class="string">&quot;lightsteelblue&quot;</span>; <span class="name">radius</span>: <span class="number">5</span> }
+          <span class="name">focus</span>: <span class="number">true</span>
+      }
+  }
+
+</pre>
+<p class="centerAlign"><img src="images/listview-highlight.png" alt="" /></p><p>
+	当前选中的项使用<a href="qtquick-views-example.html#highlight">highlight</a>属性用蓝色<a href="qml-qtquick-rectangle.html">Rectangle</a>突出显示，<code>focus</code> 
+	设置为true，以启用列表视图的键盘导航。列表视图本身就是一个焦点范围(更多细节请参阅<a href="qtquick-input-focus.html">Qt 
+	Quick中的键盘焦点章节</a>)。</p>
+<p>托会根据需要进行实例化，并且可能随时被销毁。它们是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html#contentItem-prop">contentItem</a>的父级，而不是视图本身。状态<i>永远不</i>应该存储在委托中。</p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>将许多属性附加到委托的根项，例如<code>ListView.isCurrentItem</code>. 在下面的示例中，根委托项可以直接访问此附加属性作为<code>ListView.isCurrentItem</code>，而子<code>contactInfo</code>对象必须将此属性引用为<code>wrapper.ListView.isCurrentItem</code>。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+      <span class="name">width</span>: <span class="number">180</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">contactsDelegate</span>
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">id</span>: <span class="name">wrapper</span>
+              <span class="name">width</span>: <span class="number">180</span>
+              <span class="name">height</span>: <span class="name">contactInfo</span>.<span class="name">height</span>
+              <span class="name">color</span>: <span class="name">ListView</span>.<span class="name">isCurrentItem</span> ? <span class="string">&quot;black&quot;</span> : <span class="string">&quot;red&quot;</span>
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+                  <span class="name">id</span>: <span class="name">contactInfo</span>
+                  <span class="name">text</span>: <span class="name">name</span> <span class="operator">+</span> <span class="string">&quot;: &quot;</span> <span class="operator">+</span> <span class="name">number</span>
+                  <span class="name">color</span>: <span class="name">wrapper</span>.<span class="name">ListView</span>.<span class="name">isCurrentItem</span> ? <span class="string">&quot;red&quot;</span> : <span class="string">&quot;black&quot;</span>
+              }
+          }
+      }
+
+      <span class="name">model</span>: <span class="name">ContactModel</span> {}
+      <span class="name">delegate</span>: <span class="name">contactsDelegate</span>
+      <span class="name">focus</span>: <span class="number">true</span>
+  }
+
+</pre>
+<p><b>注意：</b>视图不会自动启用<i>剪辑</i>。如果视图没有被其他项或屏幕剪辑，则需要设置<i>clip: true</i>以便很好地剪辑视图外的项。</p><a name="listview-layouts"></a>
+<h2 id="listview-layouts">ListView布局</h2>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>中项的布局可以由以下属性控制：</p>
+<ul>
+<li><a href="qml-qtquick-listview.html#orientation-prop">orientation</a> - 
+控制项是水平流动还是垂直流动。该值可以是 Qt.Horizo​​ntal 或 Qt.Vertical。</li>
+<li><a href="qml-qtquick-listview.html#layoutDirection-prop">layoutDirection</a> 
+- 控制水平方向视图的水平布局方向：即项是否从视图的左侧布局到右侧，反之亦然。该值可以是 Qt.LeftToRight 或 Qt.RightToLeft。</li>
+<li><a href="qml-qtquick-listview.html#verticalLayoutDirection-prop">verticalLayoutDirection</a> 
+- 控制垂直方向视图的垂直布局方向：即项是否从视图顶部向下朝向视图底部布局，反之亦然。此值可以是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a> .TopToBottom 或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a> .BottomToTop。</li>
+</ul>
+<p>默认情况下，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>具有垂直方向，并且项从上到下排列。下表显示了<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>可以具有的不同布局，具体取决于上面列出的属性的值。</p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th  colspan="2" rowspan=" 1">具有 Qt.Vertical 方向的<b>ListView</b></th></tr></thead>
+<tr valign="top" class="odd"><td >从上到下<p class="centerAlign"><img src="images/listview-layout-toptobottom.png" alt="" /></p></td><td >从下到上<p class="centerAlign"><img src="images/listview-layout-bottomtotop.png" alt="" /></p></td></tr>
+<thead><tr class="qt-style"><th  colspan="2" rowspan=" 1">具有 Qt.Horizo​​ntal 方向的<b>ListViews</b></th></tr></thead>
+<tr valign="top" class="even"><td >左到右<p class="centerAlign"><img src="images/listview-layout-lefttoright.png" alt="" /></p></td><td >右到左<p class="centerAlign"><img src="images/listview-layout-righttoleft.png" alt="" /></p></td></tr>
+</table></div>
+<a name="flickable-direction"></a>
+<h2 id="flickable-direction">可滑动的方向</h2>
+<p>默认情况下，垂直<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>将<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html#flickableDirection-prop">flickableDirection</a>设置为<i>Flickable.Vertical</i>，而水平<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>将其设置为<i>Flickable.Horizo​​ntal</i>。此外，垂直<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>仅计算（估计）<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html#contentHeight-prop">contentHeight</a>，水平<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>仅计算<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html#contentWidth-prop">contentWidth</a>。另一个维度设置为<i>-1</i>。</p>
+<p>从 Qt 5.9 (Qt Quick 2.9) 开始，可以制作一个可以双向滑动的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView 。</a>为此，可以将<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html#flickableDirection-prop">flickableDirection</a>设置为<i>Flickable.AutoFlickDirection</i>或<i>Flickable.AutoFlickIfNeeded</i> ，并且必须提供所需的<i>contentWidth</i>或<i>contentHeight 。</i></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+      <span class="name">width</span>: <span class="number">180</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="name">contentWidth</span>: <span class="number">320</span>
+      <span class="name">flickableDirection</span>: <span class="name">Flickable</span>.<span class="name">AutoFlickDirection</span>
+
+      <span class="name">model</span>: <span class="name">ContactModel</span> {}
+      <span class="name">delegate</span>: <span class="name">Row</span> {
+          <span class="type"><a href="qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">'&lt;b&gt;Name:&lt;/b&gt; '</span> <span class="operator">+</span> <span class="name">name</span>; <span class="name">width</span>: <span class="number">160</span> }
+          <span class="type"><a href="qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">'&lt;b&gt;Number:&lt;/b&gt; '</span> <span class="operator">+</span> <span class="name">number</span>; <span class="name">width</span>: <span class="number">160</span> }
+      }
+  }
+
+</pre>
+<a name="stacking-order-in-listview"></a>
+<h2 id="stacking-order-in-listview">ListView 中的堆叠顺序</h2>
+<p>项的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#z-prop">Z 值</a>决定了它们是渲染在其他项之上还是之下。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>使用几个不同的默认 Z 值，具体取决于正在创建的项类型：</p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th >属性</th><th >默认Z值</th></tr></thead>
+<tr valign="top" class="odd"><td ><a href="qml-qtquick-listview.html#delegate-prop">delegate</a></td><td >1</td></tr>
+<tr valign="top" class="even"><td ><a href="qml-qtquick-listview.html#footer-prop">footer</a></td><td >1</td></tr>
+<tr valign="top" class="odd"><td ><a href="qml-qtquick-listview.html#header-prop">header</a></td><td >1</td></tr>
+<tr valign="top" class="even"><td ><a href="qtquick-views-example.html#highlight">highlight</a></td><td >0</td></tr>
+<tr valign="top" class="odd"><td ><a href="qml-qtquick-listview.html#section.delegate-prop">section.delegate</a></td><td >2</td></tr>
+</table></div>
+<p>如果项的 Z 值为 ，则设置这些默认值<code>0</code>，因此将这些项的 Z 值设置为<code>0</code>无效。请注意，Z 值的类型为<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-real.html">real</a>，因此可以设置小数值，例如<code>0.1</code>.</p>
+<p><b>请参考</b> <a href="qtquick-modelviewsdata-modelview.html#qml-data-models">QML Data Models</a>，<a href="qml-qtquick-gridview.html">GridView</a>，<a href="qml-qtquick-pathview.html">PathView</a> 和 <a href="qtquick-views-example.html">
+Qt Quick 示例 - 视图</a>。</p>
+<!-- @@@ListView -->
+<h2>属性文档</h2>
+<!-- $$$add -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="add-prop">
+<td class="tblQmlPropNode"><p>
+<a name="add-prop"></a><span class="name">add</span> : <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存要应用于添加到视图中的项的转换。</p>
+<p>例如，下面是一个指定这种转换的视图：</p>
+<pre class="cpp">
+
+  ListView {
+      <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+      add: Transition {
+          NumberAnimation { properties: <span class="string">&quot;x,y&quot;</span>; from: <span class="number">100</span>; duration: <span class="number">1000</span> }
+      }
+  }
+
+</pre>
+<p>每当将一个项添加到上述视图中时，该项将从位置 (100,100) 动画到其在视图中的最终 x,y 位置，超过一秒。过渡只适用于添加到视图中的新项；它不适用于以下因添加新项而被取代的项。要为置换的项设置动画，请设置<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#displaced-prop">置换</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#addDisplaced-prop">addDisplaced</a>属性。</p>
+<p>有关如何使用视图转换的更多详细信息和示例，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-viewtransition.html">ViewTransition</a>文档。</p>
+<p><b>注意：</b>此过渡不适用于最初填充视图或视图<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#model-prop">模型</a>更改时创建的项。（在这些情况下，将应用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#populate-prop">填充</a>过渡。）此外，此过渡不应<i>为</i>新项的高度设置动画；这样做会导致新项下方的任何项被布置在错误的位置。相反，高度可以在委托的 onAdd 处理程序中进行动画处理。</p><p><b>请参考</b> <a href="qml-qtquick-listview.html#addDisplaced-prop">addDisplaced</a>，<a href="qml-qtquick-listview.html#populate-prop">populate</a> 和 <a href="qml-qtquick-viewtransition.html">ViewTransition</a>。</p>
+</div></div><!-- @@@add -->
+<br/>
+<!-- $$$addDisplaced -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="addDisplaced-prop">
+<td class="tblQmlPropNode"><p>
+<a name="addDisplaced-prop"></a><span class="name">addDisplaced</span> : <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存要应用于视图中的项的转换，这些项因向视图中添加其他项而移位。</p>
+<p>例如，下面是一个指定这种转换的视图：</p>
+<pre class="cpp">
+
+  ListView {
+      <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+      addDisplaced: Transition {
+          NumberAnimation { properties: <span class="string">&quot;x,y&quot;</span>; duration: <span class="number">1000</span> }
+      }
+  }
+
+</pre>
+<p>每当将项添加到上述视图时，新项下方的所有项都会移位，导致它们在视图中向下移动（或横向移动，如果水平方向）。当发生这种位移时，项在视图中向其新 x,y 位置的移动将由<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-numberanimation.html">NumberAnimation</a>在一秒钟内按照指定的方式进行动画处理。此过渡不适用于已添加到视图中的新项；要为添加的项设置动画，请设置<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#add-prop">add</a>属性。</p>
+<p>如果一个项同时被多种类型的操作移位，则没有定义是否将应用 addDisplaced、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#moveDisplaced-prop">moveDisplaced</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#removeDisplaced-prop">removeDisplaced</a>转换。此外，如果不需要根据项是否被添加、移动或删除操作移位来指定不同的转换，请考虑改为设置<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#displaced-prop">置换</a>属性。</p>
+<p>有关如何使用视图转换的更多详细信息和示例，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-viewtransition.html">ViewTransition</a>文档。</p>
+<p><b>注意：</b>此过渡不适用于最初填充视图或视图<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#model-prop">模型</a>更改时创建的项。在这些情况下，将改为应用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#populate-prop">填充转换。</a></p><p><b>请参考</b> <a href="qml-qtquick-listview.html#displaced-prop">displaced</a>，<a href="qml-qtquick-listview.html#add-prop">add</a>，<a href="qml-qtquick-listview.html#populate-prop">populate</a> 和 <a href="qml-qtquick-viewtransition.html">ViewTransition</a>。</p>
+</div></div><!-- @@@addDisplaced -->
+<br/>
+<!-- $$$cacheBuffer -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="cacheBuffer-prop">
+<td class="tblQmlPropNode"><p>
+<a name="cacheBuffer-prop"></a><span class="name">cacheBuffer</span> : <span class="type"><a href="../qtqml/qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性确定代理是否保留在视图的可见区域之外。</p>
+<p>如果此值大于零，则视图可能会保留尽可能多的委托实例化，因为它可以容纳在指定的缓冲区中。例如，如果在垂直视图中，代理的高度为 20 像素并<code>cacheBuffer</code>设置为 40，则最多可以创建/保留可见区域上方的 2 个代理和下方的 2 个代理。缓冲的委托是异步创建的，允许跨多个帧进行创建并减少跳帧的可能性。为了提高绘制性能，可见区域之外的代表不会被绘制。</p>
+<p>此属性的默认值取决于平台，但通常是大于零的值。负值被忽略。</p>
+<p>请注意，cacheBuffer 不是像素缓冲区——它只维护额外的实例化委托。</p>
+<p><b>注意：</b>设置此属性不能替代创建高效的委托。它可以以额外的内存使用为代价来提高滚动行为的平滑度。委托中的对象和绑定越少，滚动视图的速度就越快。重要的是要意识到设置 cacheBuffer 只会推迟由缓慢加载代理引起的问题，它不是这种情况的解决方案。</p><p>cacheBuffer 在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#displayMarginBeginning-prop">displayMarginBeginning</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#displayMarginEnd-prop">displayMarginEnd</a>指定的任何显示边距之外运行。</p>
+</div></div><!-- @@@cacheBuffer -->
+<br/>
+<!-- $$$count -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="count-prop">
+<td class="tblQmlPropNode"><p>
+<a name="count-prop"></a><span class="name">count</span> : <span class="type"><a href="../qtqml/qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存视图中的项数。</p>
+</div></div><!-- @@@count -->
+<br/>
+<!-- $$$currentIndex -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="currentIndex-prop">
+<td class="tblQmlPropNode"><p>
+<a name="currentIndex-prop"></a><span class="name">currentIndex</span> : <span class="type"><a href="../qtqml/qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>该<code>currentIndex</code>属性保存当前项的索引，并<code>currentItem</code>保存当前项。将 currentIndex 设置为 -1 将清除突出显示并将<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#currentItem-prop">currentItem</a>设置为 null。</p>
+<p>如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>是<code>true</code>，设置这些属性中的任何一个都会平滑滚动<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>以使当前项变得可见。</p>
+<p>请注意，当前项的位置可能只是近似的，直到它在视图中可见。</p>
+</div></div><!-- @@@currentIndex -->
+<br/>
+<!-- $$$currentItem -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="currentItem-prop">
+<td class="tblQmlPropNode"><p>
+<a name="currentItem-prop"></a><span class="name">currentItem</span> : <span class="type"><a href="qml-qtquick-item.html">Item</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>该<code>currentIndex</code>属性保存当前项的索引，并<code>currentItem</code>保存当前项。将<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#currentIndex-prop">currentIndex</a>设置为 -1 将清除突出显示并将 currentItem 设置为 null。</p>
+<p>如果<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>是<code>true</code>，设置这些属性中的任何一个都会平滑滚动<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>以使当前项变得可见。</p>
+<p>请注意，当前项的位置可能只是近似的，直到它在视图中可见。</p>
+</div></div><!-- @@@currentItem -->
+<br/>
+<!-- $$$currentSection -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="currentSection-prop">
+<td class="tblQmlPropNode"><p>
+<a name="currentSection-prop"></a><span class="name">currentSection</span> : <span class="type"><a href="../qtqml/qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>该属性保存当前位于视图开头的部分。</p>
+</div></div><!-- @@@currentSection -->
+<br/>
+<!-- $$$delegate -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="delegate-prop">
+<td class="tblQmlPropNode"><p>
+<a name="delegate-prop"></a><span class="name">delegate</span> : <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>委托提供了一个模板，定义了视图实例化的每个项。索引作为可访问<code>index</code>属性公开。根据<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-modelviewsdata-modelview.html#qml-data-models">数据模型</a>的类型，模型的属性也可用。</p>
+<p>委托中的对象和绑定的数量对视图的闪烁性能有直接影响。如果可能，将正常显示委托不需要的功能放在<a href="qml-qtquick-loader.html">Loader</a>中，<a href="qml-qtquick-loader.html">Loader</a>可以在需要时加载其他组件。</p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>将根据委托中根项的大小对项进行布局。</p>
+<p>建议代理的大小为整数，以避免项的亚像素对齐。</p>
+<p>委托实例的默认<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#z-prop">堆叠顺序</a>是<code>1</code>.</p>
+<p><b>注意：</b>委托会根据需要进行实例化，并且可以随时销毁。它们是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html#contentItem-prop">contentItem</a>的父级，而不是视图本身。状态<i>永远不</i>应该存储在委托中。</p><p>
+		<b>请参考</b><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#stacking-order-in-listview">ListView 中的堆叠顺序章节</a>。</p>
+</div></div><!-- @@@delegate -->
+<br/>
+<!-- $$$displaced -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="displaced-prop">
+<td class="tblQmlPropNode"><p>
+<a name="displaced-prop"></a><span class="name">displaced</span> : <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存通用转换以应用于已被影响视图的任何模型操作置换的项。</p>
+<p>这可以方便地指定要应用于由添加、移动或删除操作替换的任何项的通用转换，而无需指定单独的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#addDisplaced-prop">addDisplaced</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#moveDisplaced-prop">moveDisplaced</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#removeDisplaced-prop">removeDisplaced</a>属性。例如，这是一个指定置换转换的视图：</p>
+<pre class="cpp">
+
+  ListView {
+      <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+      displaced: Transition {
+          NumberAnimation { properties: <span class="string">&quot;x,y&quot;</span>; duration: <span class="number">1000</span> }
+      }
+  }
+
+</pre>
+<p>当在上面的视图中添加、移动或删除任何项时，它下面的项会被移位，导致它们在视图中向下移动（或横向移动，如果水平方向）。当发生这种位移时，项在视图中向其新 x,y 位置的移动将由<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-numberanimation.html">NumberAnimation</a>在一秒钟内按照指定的方式进行动画处理。</p>
+<p>如果视图指定了此通用置换过渡以及特定的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#addDisplaced-prop">addDisplaced</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#moveDisplaced-prop">moveDisplaced</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#removeDisplaced-prop">removeDisplaced</a>过渡，则在发生相关操作时，将使用更具体的过渡而不是通用的置换过渡，前提是尚未禁用更具体的过渡（通过将<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-transition.html#enabled-prop">启用</a>设置为假）。如果它确实已被禁用，则改为应用通用置换过渡。</p>
+<p>有关如何使用视图转换的更多详细信息和示例，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-viewtransition.html">ViewTransition</a>文档。</p>
+<p><b>请参考</b> <a href="qml-qtquick-listview.html#addDisplaced-prop">addDisplaced</a>，<a href="qml-qtquick-listview.html#moveDisplaced-prop">moveDisplaced</a>，<a href="qml-qtquick-listview.html#removeDisplaced-prop">removeDisplaced</a> 和 <a href="qml-qtquick-viewtransition.html">ViewTransition</a>。</p>
+</div></div><!-- @@@displaced -->
+<br/>
+<!-- $$$displayMarginBeginning -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="displayMarginBeginning-prop">
+<td class="tblQmlPropNode"><p>
+<a name="displayMarginBeginning-prop"></a><span class="name">displayMarginBeginning</span> : <span class="type"><a href="../qtqml/qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性允许代理在视图几何图形之外显示。</p>
+<p>如果此值不为零，则视图将在视图开始之前或结束之后创建额外的委托。视图将创建尽可能多的委托，因为它可以适应指定的像素大小。</p>
+<p>例如，如果在垂直视图中，代理的高度为 20 像素，<code>displayMarginBeginning</code>并且<code>displayMarginEnd</code>都设置为 40，则将创建并显示上方的 2 个代理和下方的 2 个代理。</p>
+<p>默认值为 0。</p>
+<p>此属性旨在允许某些 UI 配置，而不是作为性能优化。如果您出于性能原因希望在视图几何之外创建委托，您可能希望使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#cacheBuffer-prop">cacheBuffer</a>属性。</p>
+<p>这个属性是在 QtQuick 2.3 中引入的。</p>
+</div></div><!-- @@@displayMarginBeginning -->
+<br/>
+<!-- $$$displayMarginEnd -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="displayMarginEnd-prop">
+<td class="tblQmlPropNode"><p>
+<a name="displayMarginEnd-prop"></a><span class="name">displayMarginEnd</span> : <span class="type"><a href="../qtqml/qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性允许代理在视图几何图形之外显示。</p>
+<p>如果此值不为零，则视图将在视图开始之前或结束之后创建额外的委托。视图将创建尽可能多的委托，因为它可以适应指定的像素大小。</p>
+<p>例如，如果在垂直视图中，代理的高度为 20 像素，<code>displayMarginBeginning</code>并且<code>displayMarginEnd</code>都设置为 40，则将创建并显示上方的 2 个代理和下方的 2 个代理。</p>
+<p>默认值为 0。</p>
+<p>此属性旨在允许某些 UI 配置，而不是作为性能优化。如果您出于性能原因希望在视图几何之外创建委托，您可能希望使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#cacheBuffer-prop">cacheBuffer</a>属性。</p>
+<p>这个属性是在 QtQuick 2.3 中引入的。</p>
+</div></div><!-- @@@displayMarginEnd -->
+<br/>
+<!-- $$$effectiveLayoutDirection -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="effectiveLayoutDirection-prop">
+<td class="tblQmlPropNode"><p>
+<a name="effectiveLayoutDirection-prop"></a><span class="name">effectiveLayoutDirection</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>该属性保存水平方向列表的有效布局方向。</p>
+<p>当为区域布局使用附加属性<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-layoutmirroring.html#enabled-prop">LayoutMirroring::enabled</a>时，水平列表的视觉布局方向将被镜像。但是，属性<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#layoutDirection-prop">layoutDirection</a>将保持不变。</p>
+<p><b>请参考 </b><a href="qml-qtquick-listview.html#layoutDirection-prop">ListView::layoutDirection</a> 和 <a href="qml-qtquick-layoutmirroring.html">LayoutMirroring</a>。</p>
+</div></div><!-- @@@effectiveLayoutDirection -->
+<br/>
+<!-- $$$footer -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="footer-prop">
+<td class="tblQmlPropNode"><p>
+<a name="footer-prop"></a><span class="name">footer</span> : <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存要用作页脚的组件。</p>
+<p>为每个视图创建一个页脚组件的实例。页脚位于视图的末尾，位于任何项之后。页脚的默认<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#z-prop">堆叠顺序</a>是<code>1。</code></p>
+<p><b>请参考</b> <a href="qml-qtquick-listview.html#header-prop">header</a>，<a href="qml-qtquick-listview.html#footerItem-prop">footerItem</a> 和 <a href="qml-qtquick-listview.html#stacking-order-in-listview">在ListView 中堆叠顺序</a>。</p>
+</div></div><!-- @@@footer -->
+<br/>
+<!-- $$$footerItem -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="footerItem-prop">
+<td class="tblQmlPropNode"><p>
+<a name="footerItem-prop"></a><span class="name">footerItem</span> : <span class="type"><a href="qml-qtquick-item.html">Item</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这包含从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#footer-prop">页脚</a>组件创建的页脚项。</p>
+<p>为每个视图创建一个页脚组件的实例。页脚位于视图的末尾，位于任何项之后。页脚的默认<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#z-prop">堆叠顺序</a>是<code>1</code>.</p>
+<p><b>请参考</b> <a href="qml-qtquick-listview.html#footer-prop">footer</a>，<a href="qml-qtquick-listview.html#headerItem-prop">headerItem</a> 和  
+<a href="qml-qtquick-listview.html#stacking-order-in-listview">在ListView&nbsp;中堆叠顺序</a>。</p>
+</div></div><!-- @@@footerItem -->
+<br/>
+<!-- $$$footerPositioning -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="footerPositioning-prop">
+<td class="tblQmlPropNode"><p>
+<a name="footerPositioning-prop"></a><span class="name">footerPositioning</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性确定<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#footerItem-prop">页脚项</a>的定位。</p>
+<p>可能的值是：</p>
+<ul>
+<li><a href="qml-qtquick-listview.html">ListView</a>.InlineFooter （默认） - 
+页脚位于内容的末尾，并像普通项一样与内容一起移动。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.OverlayFooter - 页脚位于视图的末尾。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.PullBackFooter - 
+页脚位于视图的末尾。可以通过向后移动内容来推开页脚，并通过向前移动内容来拉回页脚。</li>
+</ul>
+<p><b>注意：</b>此属性对页脚的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#z-prop">堆叠顺序</a>没有影响。例如，如果在使用时，页脚应显示在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#delegate-prop">委托</a>项上方<code>ListView.OverlayFooter</code>，则其 Z 值应设置为高于委托的值。有关详细信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#stacking-order-in-listview">ListView 中的堆叠顺序</a>。</p><p>
+		这个属性是在 Qt 5.4 中引入的。</p>
+</div></div><!-- @@@footerPositioning -->
+<br/>
+<!-- $$$header -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="header-prop">
+<td class="tblQmlPropNode"><p>
+<a name="header-prop"></a><span class="name">header</span> : <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存要用作标题的组件。</p>
+<p>为每个视图创建一个标题组件的实例。标头位于视图的开头，在任何项之前。页眉的默认<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#z-prop">堆叠顺序</a>是<code>1</code>.</p>
+<p><b>请参考</b> <a href="qml-qtquick-listview.html#footer-prop">footer</a>，<a href="qml-qtquick-listview.html#headerItem-prop">headerItem</a> 和   
+<a href="qml-qtquick-listview.html#stacking-order-in-listview">在ListView&nbsp;中堆叠顺序</a>。</p>
+</div></div><!-- @@@header -->
+<br/>
+<!-- $$$headerItem -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="headerItem-prop">
+<td class="tblQmlPropNode"><p>
+<a name="headerItem-prop"></a><span class="name">headerItem</span> : <span class="type"><a href="qml-qtquick-item.html">Item</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这包含从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#header-prop">标题</a>组件创建的标题项。</p>
+<p>为每个视图创建一个标题组件的实例。标头位于视图的开头，在任何项之前。页眉的默认<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#z-prop">堆叠顺序</a>是<code>1</code>.</p>
+<p><b>请参考</b> <a href="qml-qtquick-listview.html#header-prop">header</a>，<a href="qml-qtquick-listview.html#footerItem-prop">footerItem</a> 和   
+<a href="qml-qtquick-listview.html#stacking-order-in-listview">在ListView&nbsp;中堆叠顺序</a>。</p>
+</div></div><!-- @@@headerItem -->
+<br/>
+<!-- $$$headerPositioning -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="headerPositioning-prop">
+<td class="tblQmlPropNode"><p>
+<a name="headerPositioning-prop"></a><span class="name">headerPositioning</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性确定<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#headerItem-prop">标题项</a>的定位。</p>
+<p>可能的值是：</p>
+<ul>
+<li><a href="qml-qtquick-listview.html">ListView</a>.InlineHeader （默认） - 
+标题位于内容的开头，并像普通项一样与内容一起移动。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.OverlayHeader - 标题位于视图的开头。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.PullBackHeader - 
+标题位于视图的开头。标题可以通过向前移动内容来推开，并通过向后移动内容来拉回。</li>
+</ul>
+<p><b>注意：</b>此属性对页眉的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#z-prop">堆叠顺序</a>没有影响。例如，使用 时，如果标题应显示在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#delegate-prop">委托</a>项上方<code>ListView.OverlayHeader</code>，则其 Z 值应设置为高于委托的值。有关详细信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#stacking-order-in-listview">ListView 中的堆叠顺序</a>。</p><p>
+		这个属性是在 Qt 5.4 中引入的。</p>
+</div></div><!-- @@@headerPositioning -->
+<br/>
+<!-- $$$highlight -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="highlight-prop">
+<td class="tblQmlPropNode"><p>
+<a name="highlight-prop"></a><span class="name">highlight</span> : <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存要用作突出显示的组件。</p>
+<p>为每个列表创建一个突出显示组件的实例。生成的组件实例的几何图形由列表管理，以便与当前项保持一致，除非<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>属性为 false。高亮项的默认<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#z-prop">堆叠顺序</a>是<code>0</code>.</p>
+<p><b>请参考</b> <a href="qml-qtquick-listview.html#highlightItem-prop">highlightItem</a>，<a href="qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>，<a href="qtquick-views-example.html#highlight">ListView高亮的例子</a> 和 <a href="qml-qtquick-listview.html#stacking-order-in-listview">在ListView 中堆叠顺序</a>。</p>
+</div></div><!-- @@@highlight -->
+<br/>
+<!-- $$$highlightFollowsCurrentItem -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="highlightFollowsCurrentItem-prop">
+<td class="tblQmlPropNode"><p>
+<a name="highlightFollowsCurrentItem-prop"></a><span class="name">highlightFollowsCurrentItem</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>该属性保存高亮是否由视图管理。</p>
+<p>如果此属性为 true（默认值），则突出显示平滑移动以跟随当前项。否则，高亮不会被视图移动，任何移动都必须由高亮执行。</p>
+<p>这是一个亮点，其运动由<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-springanimation.html">SpringAnimation</a>项定义：</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span> {
+      <span class="name">id</span>: <span class="name">highlight</span>
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">width</span>: <span class="number">180</span>; <span class="name">height</span>: <span class="number">40</span>
+          <span class="name">color</span>: <span class="string">&quot;lightsteelblue&quot;</span>; <span class="name">radius</span>: <span class="number">5</span>
+          <span class="name">y</span>: <span class="name">list</span>.<span class="name">currentItem</span>.<span class="name">y</span>
+          Behavior on <span class="name">y</span> {
+              <span class="type"><a href="qml-qtquick-springanimation.html">SpringAnimation</a></span> {
+                  <span class="name">spring</span>: <span class="number">3</span>
+                  <span class="name">damping</span>: <span class="number">0.2</span>
+              }
+          }
+      }
+  }
+
+  <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+      <span class="name">id</span>: <span class="name">list</span>
+      <span class="name">width</span>: <span class="number">180</span>; <span class="name">height</span>: <span class="number">200</span>
+      <span class="name">model</span>: <span class="name">ContactModel</span> {}
+      <span class="name">delegate</span>: <span class="name">Text</span> { <span class="name">text</span>: <span class="name">name</span> }
+
+      <span class="name">highlight</span>: <span class="name">highlight</span>
+      <span class="name">highlightFollowsCurrentItem</span>: <span class="number">false</span>
+      <span class="name">focus</span>: <span class="number">true</span>
+  }
+
+</pre>
+<p>请注意，突出显示动画也会影响视图滚动的方式。这是因为视图移动以将高亮保持在首选高亮范围（或可见视口）内。</p>
+<p><b>请参考 </b><a href="qtquick-views-example.html#highlight">highlight</a> 和 <a href="qml-qtquick-listview.html#highlightMoveVelocity-prop">highlightMoveVelocity</a>。</p>
+</div></div><!-- @@@highlightFollowsCurrentItem -->
+<br/>
+<!-- $$$highlightItem -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="highlightItem-prop">
+<td class="tblQmlPropNode"><p>
+<a name="highlightItem-prop"></a><span class="name">highlightItem</span> : <span class="type"><a href="qml-qtquick-item.html">Item</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这包含从<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-views-example.html#highlight">突出显示</a>组件创建的突出显示项。</p>
+<p><code>highlightItem</code>由视图管理，除非<a href="qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>被设置为false。突出显示项的默认<a href="qquickitem.html#z-prop">堆叠顺序</a>为0。</p>
+<p><b>请参考</b> <a href="qtquick-views-example.html#highlight">highlight</a>，<a href="qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a> 和 <a href="qml-qtquick-listview.html#stacking-order-in-listview">在ListView 中堆叠顺序</a>。</p>
+</div></div><!-- @@@highlightItem -->
+<br/>
+<!-- $$$highlightMoveDuration -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="highlightMoveDuration-prop">
+<td class="tblQmlPropNode"><p>
+<a name="highlightMoveDuration-prop"></a><span class="name">highlightMoveDuration</span> : <span class="type"><a href="../qtqml/qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性控制突出显示代理的移动速度和调整动画大小。</p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>必须为 true 才能使这些属性生效。</p>
+<p>速度属性的默认值为 400 像素/秒。持续时间属性的默认值为 -1，即高光将花费尽可能多的时间以设定的速度移动。</p>
+<p>这些属性与<a href="qml-qtquick-smoothedanimation.html">SmoothedAnimation</a>具有相同的特征:如果速度和持续时间都被设置了，动画将使用哪个给出较短的持续时间。</p>
+<p>移动速度和持续时间属性用于控制由于索引变化引起的移动；例如，当调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#incrementCurrentIndex-method">incrementCurrentIndex()</a>时。当用户轻弹<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>时，轻弹的速度用于控制移动。</p>
+<p>要仅设置一个属性，可以将另一个设置为<code>-1</code>。例如，如果您只想为持续时间而不是速度设置动画，请使用以下代码：</p>
+<pre class="cpp">
+
+  highlightMoveDuration: <span class="number">1000</span>
+  highlightMoveVelocity: <span class="operator">-</span><span class="number">1</span>
+
+</pre>
+<p><b>请参考 </b><a href="qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>。</p>
+</div></div><!-- @@@highlightMoveDuration -->
+<br/>
+<!-- $$$highlightMoveVelocity -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="highlightMoveVelocity-prop">
+<td class="tblQmlPropNode"><p>
+<a name="highlightMoveVelocity-prop"></a><span class="name">highlightMoveVelocity</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性控制突出显示代理的移动速度和调整动画大小。</p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>必须为 true 才能使这些属性生效。</p>
+<p>速度属性的默认值为 400 像素/秒。持续时间属性的默认值为 -1，即高光将花费尽可能多的时间以设定的速度移动。</p>
+<p>这些属性与<a href="qml-qtquick-smoothedanimation.html">SmoothedAnimation</a>具有相同的特征:如果速度和持续时间都被设置了，动画将使用哪个给出较短的持续时间。</p>
+<p>移动速度和持续时间属性用于控制由于索引变化引起的移动；例如，当调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#incrementCurrentIndex-method">incrementCurrentIndex()</a>时。当用户轻弹<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>时，轻弹的速度用于控制移动。</p>
+<p>要仅设置一个属性，可以将另一个设置为<code>-1</code>。例如，如果您只想为持续时间而不是速度设置动画，请使用以下代码：</p>
+<pre class="cpp">
+
+  highlightMoveDuration: <span class="number">1000</span>
+  highlightMoveVelocity: <span class="operator">-</span><span class="number">1</span>
+
+</pre>
+<p><b>请参考 </b><a href="qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>。</p>
+</div></div><!-- @@@highlightMoveVelocity -->
+<br/>
+<!-- $$$highlightRangeMode -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="highlightRangeMode-prop">
+<td class="tblQmlPropNode"><p>
+<a name="highlightRangeMode-prop"></a><span class="name">highlightRangeMode</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性定义视图中突出显示的首选范围（针对当前项）。该<code>preferredHighlightBegin</code>值必须小于该<code>preferredHighlightEnd</code>值。</p>
+<p>当列表滚动时，这些属性会影响当前项的位置。例如，如果当前选定的项在视图滚动时应保持在列表的中间，则将<code>preferredHighlightBegin</code>和<code>preferredHighlightEnd</code>值设置为中间项所在位置的顶部和底部坐标。如果以<code>currentItem</code>编程方式更改，列表将自动滚动，以便当前项位于视图的中间。此外，无论高亮是否存在，当前项索引的行为都会发生。</p>
+<p><code>highlightRangeMode</code> 的有效值如下:</p>
+<ul>
+<li><a href="qml-qtquick-listview.html">ListView</a>.ApplyRange - 
+视图试图在范围内保持高亮。但是，突出显示可能会移出列表末尾的范围或由于鼠标交互。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.StrictlyEnforceRange - 
+突出显示永远不会超出范围。如果键盘或鼠标操作会导致突出显示移动到范围之外，则当前项会更改。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.NoHighlightRange - 这是默认值。</li>
+</ul>
+</div></div><!-- @@@highlightRangeMode -->
+<br/>
+<!-- $$$highlightResizeDuration -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="highlightResizeDuration-prop">
+<td class="tblQmlPropNode"><p>
+<a name="highlightResizeDuration-prop"></a><span class="name">highlightResizeDuration</span> : <span class="type"><a href="../qtqml/qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性控制突出显示代理的移动速度和调整动画大小。</p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>必须为 true 才能使这些属性生效。</p>
+<p>速度属性的默认值为 400 像素/秒。持续时间属性的默认值为 -1，即高光将花费尽可能多的时间以设定的速度移动。</p>
+<p>这些属性与<a href="qml-qtquick-smoothedanimation.html">SmoothedAnimation</a>具有相同的特性：如果同时设置了速度和持续时间，则动画将使用持续时间较短的那个。</p>
+<p>移动速度和持续时间属性用于控制由于索引变化引起的移动；例如，当调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#incrementCurrentIndex-method">incrementCurrentIndex()</a>时。当用户轻弹<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>时，轻弹的速度用于控制移动。</p>
+<p>要仅设置一个属性，可以将另一个设置为<code>-1</code>。例如，如果您只想为持续时间而不是速度设置动画，请使用以下代码：</p>
+<pre class="cpp">
+
+  highlightMoveDuration: <span class="number">1000</span>
+  highlightMoveVelocity: <span class="operator">-</span><span class="number">1</span>
+
+</pre>
+<p><b>请参考 </b><a href="qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>。</p>
+</div></div><!-- @@@highlightResizeDuration -->
+<br/>
+<!-- $$$highlightResizeVelocity -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="highlightResizeVelocity-prop">
+<td class="tblQmlPropNode"><p>
+<a name="highlightResizeVelocity-prop"></a><span class="name">highlightResizeVelocity</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性控制突出显示代理的移动速度和调整动画大小。</p>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>必须为 true 才能使这些属性生效。</p>
+<p>速度属性的默认值为 400 像素/秒。持续时间属性的默认值为 -1，即高光将花费尽可能多的时间以设定的速度移动。</p>
+<p>这些属性与<a href="qml-qtquick-smoothedanimation.html">SmoothedAnimation</a>具有相同的特性：如果同时设置了速度和持续时间，则动画将使用持续时间较短的那个。</p>
+<p>移动速度和持续时间属性用于控制由于索引变化引起的移动；例如，当调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#incrementCurrentIndex-method">incrementCurrentIndex()</a>时。当用户轻弹<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>时，轻弹的速度用于控制移动。</p>
+<p>要仅设置一个属性，可以将另一个设置为<code>-1</code>。例如，如果您只想为持续时间而不是速度设置动画，请使用以下代码：</p>
+<pre class="cpp">
+
+  highlightMoveDuration: <span class="number">1000</span>
+  highlightMoveVelocity: <span class="operator">-</span><span class="number">1</span>
+
+</pre>
+<p><b>请参考 </b><a href="qml-qtquick-listview.html#highlightFollowsCurrentItem-prop">highlightFollowsCurrentItem</a>。</p>
+</div></div><!-- @@@highlightResizeVelocity -->
+<br/>
+<!-- $$$keyNavigationEnabled -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="keyNavigationEnabled-prop">
+<td class="tblQmlPropNode"><p>
+<a name="keyNavigationEnabled-prop"></a><span class="name">keyNavigationEnabled</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>该属性保存是否启用列表的键导航。</p>
+<p>如果是<code>true</code>，用户可以使用键盘导航视图。它对于需要选择性地启用或禁用鼠标和键盘交互的应用程序很有用。</p>
+<p>默认情况下，该属性的值绑定到<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html#interactive-prop">interactive</a>以确保现有应用程序的行为兼容性。显式设置后，它将不再绑定到交互属性。</p>
+<p>这个属性是在 Qt 5.7 中引入的。</p>
+<p><b>请参考 </b><a href="qml-qtquick-flickable.html#interactive-prop">interactive</a>。</p>
+</div></div><!-- @@@keyNavigationEnabled -->
+<br/>
+<!-- $$$keyNavigationWraps -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="keyNavigationWraps-prop">
+<td class="tblQmlPropNode"><p>
+<a name="keyNavigationWraps-prop"></a><span class="name">keyNavigationWraps</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存列表是否包含键导航。</p>
+<p>如果是<code>true</code>，键导航会将当前项的选择移动到列表的末尾，而不是环绕并将选择移动到列表的开头，反之亦然。</p>
+<p>默认情况下，键导航未包装。</p>
+</div></div><!-- @@@keyNavigationWraps -->
+<br/>
+<!-- $$$layoutDirection -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="layoutDirection-prop">
+<td class="tblQmlPropNode"><p>
+<a name="layoutDirection-prop"></a><span class="name">layoutDirection</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存水平方向列表的布局方向。</p>
+<p>可能的值：</p>
+<ul>
+<li>Qt.LeftToRight (默认) - 项将从左到右排列。</li>
+<li>Qt.RightToLeft - 项将从右边开始布局。</li>
+</ul>
+<p>Setting this property has no effect if the <a href="qml-qtquick-listview.html#orientation-prop">orientation</a> is Qt.Vertical.如果<a href="qml-qtquick-listview.html#orientation-prop">方向</a>为Qt.Vertical，则设置此属性无效。</p>
+<p><b>请参考 </b><a href="qml-qtquick-listview.html#effectiveLayoutDirection-prop">ListView::effectiveLayoutDirection</a> 和 <a href="qml-qtquick-listview.html#verticalLayoutDirection-prop">ListView::verticalLayoutDirection</a>。</p>
+</div></div><!-- @@@layoutDirection -->
+<br/>
+<!-- $$$model -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="model-prop">
+<td class="tblQmlPropNode"><p>
+<a name="model-prop"></a><span class="name">model</span> : <span class="type">model</span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存为列表提供数据的模型。</p>
+<p>该模型提供了用于在视图中创建项的数据集。模型可以使用<a href="../qtqml/qml-qtqml-models-listmodel.html">ListModel</a>、<a href="../qtxmlpatterns/qml-qtquick-xmllistmodel-xmllistmodel.html">XmlListModel</a>或<a href="qtquick-views-example.html#objectmodel">ObjectModel</a>在 
+QML 中直接创建，也可以由 C++ 模型类提供。如果使用 C++ 模型类，它必须是<a href="../qtcore/qabstractitemmodel.html">QAbstractItemModel</a>的子类或简单列表。</p>
+<p><b>请参考 </b><a href="qtquick-modelviewsdata-modelview.html#qml-data-models">
+数据模型</a>。</p>
+</div></div><!-- @@@model -->
+<br/>
+<!-- $$$move -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="move-prop">
+<td class="tblQmlPropNode"><p>
+<a name="move-prop"></a><span class="name">move</span> : <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存要应用于视图中由于视图<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#model-prop">模型</a>中的移动操作而被移动的项的转换。</p>
+<p>例如，下面是一个指定这种转换的视图：</p>
+<pre class="cpp">
+
+  ListView {
+      <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+      move: Transition {
+          NumberAnimation { properties: <span class="string">&quot;x,y&quot;</span>; duration: <span class="number">1000</span> }
+      }
+  }
+
+</pre>
+<p>每当<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#model-prop">模型</a>执行移动操作以移动一组特定的索引时，视图中的各个项将在一秒钟内动画到它们在视图中的新位置。过渡仅适用于模型中作为移动操作对象的项；它不适用于它们下面的被移动操作移位的项。要为置换的项设置动画，请设置<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#displaced-prop">置换</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#moveDisplaced-prop">moveDisplaced</a>属性。</p>
+<p>有关如何使用视图转换的更多详细信息和示例，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-viewtransition.html">ViewTransition</a>文档。</p>
+<p><b>请参考 </b><a href="qml-qtquick-listview.html#moveDisplaced-prop">moveDisplaced</a> 和 <a href="qml-qtquick-viewtransition.html">ViewTransition</a>。</p>
+</div></div><!-- @@@move -->
+<br/>
+<!-- $$$moveDisplaced -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="moveDisplaced-prop">
+<td class="tblQmlPropNode"><p>
+<a name="moveDisplaced-prop"></a><span class="name">moveDisplaced</span> : <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存要应用于视图<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#model-prop">模型</a>中的移动操作移动的项的转换。</p>
+<p>例如，下面是一个指定这种转换的视图：</p>
+<pre class="cpp">
+
+  ListView {
+      <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+      moveDisplaced: Transition {
+          NumberAnimation { properties: <span class="string">&quot;x,y&quot;</span>; duration: <span class="number">1000</span> }
+      }
+  }
+
+</pre>
+<p>每当<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#model-prop">模型</a>执行移动操作以移动一组特定的索引时，移动操作的源索引和目标索引之间的项都会发生位移，导致它们在视图中向上或向下移动（或横向移动，如果水平方向）。当发生这种位移时，项在视图中向其新 x,y 位置的移动将由<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-numberanimation.html">NumberAnimation</a>在一秒钟内按照指定的方式进行动画处理。此过渡不适用于作为移动操作的实际对象的项；要为移动的项设置动画，请设置<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#move-prop">move</a>属性。</p>
+<p>如果一个项同时被多种类型的操作移位，则没有定义是否将应用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#addDisplaced-prop">addDisplaced</a>、 moveDisplaced 或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#removeDisplaced-prop">removeDisplaced</a>转换。此外，如果不需要根据项是否被添加、移动或删除操作移位来指定不同的转换，请考虑改为设置<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#displaced-prop">置换</a>属性。</p>
+<p>有关如何使用视图转换的更多详细信息和示例，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-viewtransition.html">ViewTransition</a>文档。</p>
+<p><b>请参考</b> <a href="qml-qtquick-listview.html#displaced-prop">
+转移</a>，<a href="qml-qtquick-listview.html#move-prop">移动</a> 和 <a href="qml-qtquick-viewtransition.html">ViewTransition</a>。</p>
+</div></div><!-- @@@moveDisplaced -->
+<br/>
+<!-- $$$orientation -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="orientation-prop">
+<td class="tblQmlPropNode"><p>
+<a name="orientation-prop"></a><span class="name">orientation</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存列表的方向。</p>
+		<p>此属性保存列表的方向。</p>
+<p>可能的值：</p>
+<p>&nbsp;</p>
+<ul>
+<li><a href="qml-qtquick-listview.html">ListView</a>.Horizontal - 项水平布局</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.Vertical （默认）- 项垂直布局</li>
+</ul>
+<div class="table"><table class="generic">
+ <tr valign="top" class="odd"><td >Horizontal orientation:<p class="centerAlign"><img src="images/ListViewHorizontal.png" alt="" /></p></td></tr>
+<tr valign="top" class="even"><td >Vertical orientation:<p class="centerAlign"><img src="images/listview-highlight.png" alt="" /></p></td></tr>
+</table></div>
+<p><b>请参考 </b><a href="qml-qtquick-listview.html#flickable-direction">Flickable Direction</a>。</p>
+</div></div><!-- @@@orientation -->
+<br/>
+<!-- $$$populate -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="populate-prop">
+<td class="tblQmlPropNode"><p>
+<a name="populate-prop"></a><span class="name">populate</span> : <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存要应用于最初为视图创建的项的转换。</p>
+<p>它适用于在以下情况下创建的所有项：</p>
+<ul>
+<li>首先创建视图</li>
+<li>视图的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#model-prop">模型</a>发生变化</li>
+<li>如果模型是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractitemmodel.html">QAbstractItemModel</a>子类，则视图的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#model-prop">模型</a>被<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractitemmodel-obsolete.html#reset">重置</a><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtcore/qabstractitemmodel.html"></a></li>
+</ul>
+<p>例如，下面是一个指定这种转换的视图：</p>
+<pre class="cpp">
+
+  ListView {
+      <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+      populate: Transition {
+          NumberAnimation { properties: <span class="string">&quot;x,y&quot;</span>; duration: <span class="number">1000</span> }
+      }
+  }
+
+</pre>
+<p>当视图初始化时，视图将为视图创建所有必要的项，然后在一秒钟内将它们动画到视图中的正确位置。</p>
+<p>有关如何使用视图转换的更多详细信息和示例，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-viewtransition.html">ViewTransition</a>文档。</p>
+<p><b>请参考 </b><a href="qml-qtquick-listview.html#add-prop">add</a> 和 <a href="qml-qtquick-viewtransition.html">ViewTransition</a>。</p>
+</div></div><!-- @@@populate -->
+<br/>
+<!-- $$$preferredHighlightBegin -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="preferredHighlightBegin-prop">
+<td class="tblQmlPropNode"><p>
+<a name="preferredHighlightBegin-prop"></a><span class="name">preferredHighlightBegin</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性定义视图中突出显示的首选范围（针对当前项）。该<code>preferredHighlightBegin</code>值必须小于该<code>preferredHighlightEnd</code>值。</p>
+<p>当列表滚动时，这些属性会影响当前项的位置。例如，如果当前选定的项在视图滚动时应保持在列表的中间，则将<code>preferredHighlightBegin</code>和<code>preferredHighlightEnd</code>值设置为中间项所在位置的顶部和底部坐标。如果以<code>currentItem</code>编程方式更改，列表将自动滚动，以便当前项位于视图的中间。此外，无论高亮是否存在，当前项索引的行为都会发生。</p>
+<p><code>highlightRangeMode</code> 的有效值如下:</p>
+<ul>
+<li><a href="qml-qtquick-listview.html">ListView</a>.ApplyRange - 
+视图试图在范围内保持高亮。但是，突出显示可能会移出列表末尾的范围或由于鼠标交互。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.StrictlyEnforceRange - 
+突出显示永远不会超出范围。如果键盘或鼠标操作会导致突出显示移动到范围之外，则当前项会更改。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.NoHighlightRange - 这是默认值。</li>
+</ul>
+</div></div><!-- @@@preferredHighlightBegin -->
+<br/>
+<!-- $$$preferredHighlightEnd -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="preferredHighlightEnd-prop">
+<td class="tblQmlPropNode"><p>
+<a name="preferredHighlightEnd-prop"></a><span class="name">preferredHighlightEnd</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性定义视图中突出显示的首选范围（针对当前项）。该<code>preferredHighlightBegin</code>值必须小于该<code>preferredHighlightEnd</code>值。</p>
+<p>当列表滚动时，这些属性会影响当前项的位置。例如，如果当前选定的项在视图滚动时应保持在列表的中间，则将<code>preferredHighlightBegin</code>和<code>preferredHighlightEnd</code>值设置为中间项所在位置的顶部和底部坐标。如果以<code>currentItem</code>编程方式更改，列表将自动滚动，以便当前项位于视图的中间。此外，无论高亮是否存在，当前项索引的行为都会发生。</p>
+<p><code>highlightRangeMode</code> 的有效值如下:</p>
+<ul>
+<li><a href="qml-qtquick-listview.html">ListView</a>.ApplyRange - 
+视图试图在范围内保持高亮。但是，突出显示可能会移出列表末尾的范围或由于鼠标交互。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.StrictlyEnforceRange - 
+突出显示永远不会超出范围。如果键盘或鼠标操作会导致突出显示移动到范围之外，则当前项会更改。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.NoHighlightRange - 这是默认值。</li>
+</ul>
+</div></div><!-- @@@preferredHighlightEnd -->
+<br/>
+<!-- $$$remove -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="remove-prop">
+<td class="tblQmlPropNode"><p>
+<a name="remove-prop"></a><span class="name">remove</span> : <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存要应用于从视图中删除的项的转换。</p>
+<p>例如，下面是一个指定这种转换的视图：</p>
+<pre class="cpp">
+
+  ListView {
+      <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+      remove: Transition {
+          ParallelAnimation {
+              NumberAnimation { property: <span class="string">&quot;opacity&quot;</span>; to: <span class="number">0</span>; duration: <span class="number">1000</span> }
+              NumberAnimation { properties: <span class="string">&quot;x,y&quot;</span>; to: <span class="number">100</span>; duration: <span class="number">1000</span> }
+          }
+      }
+  }
+
+</pre>
+<p>每当从上面的视图中移除一个项时，该项将在一秒钟内被动画到位置 (100,100)，并且同时将其不透明度更改为 0。过渡仅适用于从视图中移除的项；它不适用于因移除项而移位的项。要为置换的项设置动画，请设置<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#displaced-prop">置换</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#removeDisplaced-prop">removeDisplaced</a>属性。</p>
+<p>请注意，在应用过渡时，该项已从模型中删除；对已删除索引的模型数据的任何引用都将无效。</p>
+<p>此外，如果已为委托项设置了<a href="qml-qtquick-listview.html#delayRemove-attached-prop">delayRemove</a>附加属性，则在<a href="qml-qtquick-listview.html#delayRemove-attached-prop">delayRemove</a>再次变为 
+false之前，将不会应用删除转换。</p>
+<p>有关如何使用视图转换的更多详细信息和示例，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-viewtransition.html">ViewTransition</a>文档。</p>
+<p><b>请参考 </b><a href="qml-qtquick-listview.html#removeDisplaced-prop">removeDisplaced</a> 和 <a href="qml-qtquick-viewtransition.html">ViewTransition</a>。</p>
+</div></div><!-- @@@remove -->
+<br/>
+<!-- $$$removeDisplaced -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="removeDisplaced-prop">
+<td class="tblQmlPropNode"><p>
+<a name="removeDisplaced-prop"></a><span class="name">removeDisplaced</span> : <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存要应用于视图中的项的转换，这些项因删除视图中的其他项而移位。</p>
+<p>例如，下面是一个指定这种转换的视图：</p>
+<pre class="cpp">
+
+  ListView {
+      <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+      removeDisplaced: Transition {
+          NumberAnimation { properties: <span class="string">&quot;x,y&quot;</span>; duration: <span class="number">1000</span> }
+      }
+  }
+
+</pre>
+<p>每当从上面的视图中删除一个项时，它下面的所有项都会移位，导致它们在视图内向上移动（或横向移动，如果水平方向）。当发生这种位移时，项在视图中向其新 x,y 位置的移动将由<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-numberanimation.html">NumberAnimation</a>在一秒钟内按照指定的方式进行动画处理。此过渡不适用于实际已从视图中移除的项；要为已删除的项设置动画，请设置<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#remove-prop">remove</a>属性。</p>
+<p>如果一个项同时被多种类型的操作移位，则没有定义是否将应用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#addDisplaced-prop">addDisplaced</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#moveDisplaced-prop">moveDisplaced</a>或 removeDisplaced 转换。此外，如果不需要根据项是否被添加、移动或删除操作移位来指定不同的转换，请考虑改为设置<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#displaced-prop">移位</a>属性。</p>
+<p>有关如何使用视图转换的更多详细信息和示例，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-viewtransition.html">ViewTransition</a>文档。</p>
+<p><b>请参考</b> <a href="qml-qtquick-listview.html#displaced-prop">
+移位</a>，<a href="qml-qtquick-listview.html#remove-prop">移除</a> 和 <a href="qml-qtquick-viewtransition.html">ViewTransition</a>。</p>
+</div></div><!-- @@@removeDisplaced -->
+<br/>
+<!-- $$$section -->
+<div class="qmlitem"><div class="qmlproto"><div class="table"><table class="qmlname"><tr valign="top" class="even" id="section-prop"><th class="centerAlign"><p><a name="section-prop"></a><b>section group</b></p></th></tr><tr valign="top" class="odd" id="section.property-prop"><td class="tblQmlPropNode"><p><a name="section.property-prop"></a><span class="name">section.property</span> : <span class="type"><a href="../qtqml/qml-string.html">string</a></span></p></td></tr><tr valign="top" class="odd" id="section.criteria-prop"><td class="tblQmlPropNode"><p><a name="section.criteria-prop"></a><span class="name">section.criteria</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr><tr valign="top" class="odd" id="section.delegate-prop"><td class="tblQmlPropNode"><p><a name="section.delegate-prop"></a><span class="name">section.delegate</span> : <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span></p></td></tr><tr valign="top" class="odd" id="section.labelPositioning-prop"><td class="tblQmlPropNode"><p><a name="section.labelPositioning-prop"></a><span class="name">section.labelPositioning</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr></table></div></div><div class="qmldoc"><p>这些属性确定要评估的表达式和部分标签的外观。</p>
+<p><code>section.property</code>包含作为每个部分基础的属性的名称。</p>
+<p><code>section.criteria</code>持有基于 形成每个部分的标准<code>section.property</code>。该值可以是以下之一：</p>
+<ul>
+<li>ViewSection.FullString (default) - 根据<code>section.property</code>值创建部分。</li>
+<li>ViewSection.FirstCharacter - 根据<code>section.property</code>值的第一个字符创建部分（例如，地址簿的“A”、“B”、“C”部分等）</li>
+</ul>
+<p>确定部分边界时使用不区分大小写的比较。</p>
+<p><code>section.delegate</code> 保存每个部分的委托组件。节委托实例的默认<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#z-prop">堆叠顺序</a>是<code>2</code>.</p>
+<p><code>section.labelPositioning</code> 确定当前和/或下一部分标签是否贴在视图的开始/结束处，以及标签是否内联显示。该值可以是以下组合：</p>
+<ul>
+<li>ViewSection.InlineLabels - 部分标签在项代表分隔部分之间内联显示（默认）。</li>
+<li>ViewSection.CurrentLabelAtStart - 当前部分标签在移动时粘在视图的开头。</li>
+<li>ViewSection.NextLabelAtEnd -&nbsp; 下一个部分标签（在所有可见部分之外）在视图移动时粘在视图的末尾。<p><b>注意：</b>启用<code>ViewSection.NextLabelAtEnd</code>需要视图提前扫描下一部分，这会影响性能，尤其是对于较慢的模型。</p></li>
+</ul>
+<p>列表中的每个项都有名为<code>ListView.section</code>和<code>ListView.previousSection</code>的附加属性<code>ListView.nextSection</code>。</p>
+<p>例如，这里是一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>，它显示了一个动物列表，分成几个部分。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>中的每个项根据模型项的“大小”属性放置在不同的部分中。委托组件提供了标记每个部分开始的<code>sectionHeading</code>浅蓝色条。</p>
+<pre class="qml">
+
+      <span class="comment">// The delegate for each section header</span>
+      <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">sectionHeading</span>
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">width</span>: <span class="name">container</span>.<span class="name">width</span>
+              <span class="name">height</span>: <span class="name">childrenRect</span>.<span class="name">height</span>
+              <span class="name">color</span>: <span class="string">&quot;lightsteelblue&quot;</span>
+
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+                  <span class="name">text</span>: <span class="name">section</span>
+                  <span class="name">font</span>.bold: <span class="number">true</span>
+                  <span class="name">font</span>.pixelSize: <span class="number">20</span>
+              }
+          }
+      }
+
+      <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+          <span class="name">id</span>: <span class="name">view</span>
+          <span class="name">anchors</span>.top: <span class="name">parent</span>.<span class="name">top</span>
+          <span class="name">anchors</span>.bottom: <span class="name">buttonBar</span>.<span class="name">top</span>
+          <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>
+          <span class="name">model</span>: <span class="name">animalsModel</span>
+          <span class="name">delegate</span>: <span class="name">Text</span> { <span class="name">text</span>: <span class="name">name</span>; <span class="name">font</span>.pixelSize: <span class="number">18</span> }
+
+          <span class="name">section</span>.property: <span class="string">&quot;size&quot;</span>
+          <span class="name">section</span>.criteria: <span class="name">ViewSection</span>.<span class="name">FullString</span>
+          <span class="name">section</span>.delegate: <span class="name">sectionHeading</span>
+      }
+
+</pre>
+<p class="centerAlign"><img src="images/qml-listview-sections-example.png" alt="" /></p><p><b>注意：</b>将部分添加到<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>不会自动按部分条件重新排序列表项。如果模型不是按部分排序的，那么创建的部分可能不是唯一的；不同部分之间的每个边界都将导致创建一个部分标题，即使该部分存在于其他地方也是如此。</p><p>
+	<b>请参考 </b><a href="qtquick-views-example.html">ListView
+	示例</a> and <a href="qml-qtquick-listview.html#stacking-order-in-listview">在ListView 中堆叠顺序。</a></p>
+</div></div><!-- @@@section -->
+<br/>
+<!-- $$$snapMode -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="snapMode-prop">
+<td class="tblQmlPropNode"><p>
+<a name="snapMode-prop"></a><span class="name">snapMode</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性确定视图滚动将如何在拖动或轻拂后稳定下来。可能的值是：</p>
+<ul>
+<li><a href="qml-qtquick-listview.html">ListView</a>.NoSnap （默认） - 
+视图在可见区域内的任何位置停止。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.SnapToItem - 
+视图以与视图开始对齐的项来解决。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.SnapOneItem -&nbsp; 
+释放鼠标按钮时视图与第一个可见项的距离不超过一个项。此模式对于一次移动一页特别有用。启用 SnapOneItem 后，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>将在发生移动时显示对相邻项的更强亲和力。例如，使用 SnapToItem 捕捉回当前项的短拖可能会使用 SnapOneItem 捕捉到相邻项。</li>
+</ul>
+<p><code>snapMode</code>不影响<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#currentIndex-prop">currentIndex</a>。要在移动列表时更新<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#currentIndex-prop">currentIndex ，请将</a><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#highlightRangeMode-prop">highlightRangeMode</a>设置为<code>ListView.StrictlyEnforceRange</code>。</p>
+<p><b>请参考 </b><a href="qml-qtquick-listview.html#highlightRangeMode-prop">highlightRangeMode</a>。</p>
+</div></div><!-- @@@snapMode -->
+<br/>
+<!-- $$$spacing -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="spacing-prop">
+<td class="tblQmlPropNode"><p>
+<a name="spacing-prop"></a><span class="name">spacing</span> : <span class="type"><a href="../qtqml/qml-real.html">real</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存项之间的间距。</p>
+<p>默认值为 0。</p>
+</div></div><!-- @@@spacing -->
+<br/>
+<!-- $$$verticalLayoutDirection -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="verticalLayoutDirection-prop">
+<td class="tblQmlPropNode"><p>
+<a name="verticalLayoutDirection-prop"></a><span class="name">verticalLayoutDirection</span> : <span class="type"><a href="../qtqml/qml-enumeration.html">enumeration</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性保存垂直方向列表的布局方向。</p>
+<p>可能的值：</p>
+<ul>
+<li><a href="qml-qtquick-listview.html">ListView</a>.TopToBottom （默认）- 
+项从视图顶部向下排列到视图底部。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.BottomToTop -&nbsp; 
+项从视图底部到视图顶部布置。</li>
+</ul>
+<p>如果<a href="qml-qtquick-listview.html#orientation-prop">方向</a>是 
+Qt.Horizo​​ntal，则设置此属性无效。</p>
+<p><b>请参考 </b><a href="qml-qtquick-listview.html#layoutDirection-prop">ListView::layoutDirection</a>。</p>
+</div></div><!-- @@@verticalLayoutDirection -->
+<br/>
+<h2>附加属性文档</h2>
+<!-- $$$delayRemove -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="delayRemove-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="delayRemove-attached-prop"></a><span class="name">ListView.delayRemove</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此附加属性保存委托是否可以被销毁。它附加到委托的每个实例。默认值为假。</p>
+<p>有时需要延迟项的销毁，直到动画完成。下面的示例委托确保动画在项从列表中删除之前完成。</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span> {
+      <span class="name">id</span>: <span class="name">delegate</span>
+      <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+          <span class="name">ListView</span>.onRemove: <span class="name">SequentialAnimation</span> {
+              <span class="type"><a href="qml-qtquick-propertyaction.html">PropertyAction</a></span> { <span class="name">target</span>: <span class="name">wrapper</span>; <span class="name">property</span>: <span class="string">&quot;ListView.delayRemove&quot;</span>; <span class="name">value</span>: <span class="number">true</span> }
+              <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">target</span>: <span class="name">wrapper</span>; <span class="name">property</span>: <span class="string">&quot;scale&quot;</span>; <span class="name">to</span>: <span class="number">0</span>; <span class="name">duration</span>: <span class="number">250</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutQuad</span> }
+              <span class="type"><a href="qml-qtquick-propertyaction.html">PropertyAction</a></span> { <span class="name">target</span>: <span class="name">wrapper</span>; <span class="name">property</span>: <span class="string">&quot;ListView.delayRemove&quot;</span>; <span class="name">value</span>: <span class="number">false</span> }
+          }
+      }
+  }
+
+</pre>
+<p>如果已指定<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#remove-prop">删除</a>转换，则在 delayRemove 返回到 之前不会应用它<code>false</code>。</p>
+</div></div><!-- @@@delayRemove -->
+<br/>
+<!-- $$$isCurrentItem -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="isCurrentItem-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="isCurrentItem-attached-prop"></a><span class="name">ListView.isCurrentItem</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>如果此委托是当前项，则此附加属性为 true；否则为false。</p>
+<p>它附加到委托的每个实例。</p>
+<p>此属性可用于调整当前项的外观，例如：</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+      <span class="name">width</span>: <span class="number">180</span>; <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">contactsDelegate</span>
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">id</span>: <span class="name">wrapper</span>
+              <span class="name">width</span>: <span class="number">180</span>
+              <span class="name">height</span>: <span class="name">contactInfo</span>.<span class="name">height</span>
+              <span class="name">color</span>: <span class="name">ListView</span>.<span class="name">isCurrentItem</span> ? <span class="string">&quot;black&quot;</span> : <span class="string">&quot;red&quot;</span>
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+                  <span class="name">id</span>: <span class="name">contactInfo</span>
+                  <span class="name">text</span>: <span class="name">name</span> <span class="operator">+</span> <span class="string">&quot;: &quot;</span> <span class="operator">+</span> <span class="name">number</span>
+                  <span class="name">color</span>: <span class="name">wrapper</span>.<span class="name">ListView</span>.<span class="name">isCurrentItem</span> ? <span class="string">&quot;red&quot;</span> : <span class="string">&quot;black&quot;</span>
+              }
+          }
+      }
+
+      <span class="name">model</span>: <span class="name">ContactModel</span> {}
+      <span class="name">delegate</span>: <span class="name">contactsDelegate</span>
+      <span class="name">focus</span>: <span class="number">true</span>
+  }
+
+</pre>
+</div></div><!-- @@@isCurrentItem -->
+<br/>
+<!-- $$$nextSection -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="nextSection-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="nextSection-attached-prop"></a><span class="name">ListView.nextSection</span> : <span class="type"><a href="../qtqml/qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此附加属性包含下一个元素的部分。</p>
+<p>它附加到委托的每个实例。</p>
+<p>使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#section.property-prop">section</a>属性评估区段。</p>
+</div></div><!-- @@@nextSection -->
+<br/>
+<!-- $$$previousSection -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="previousSection-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="previousSection-attached-prop"></a><span class="name">ListView.previousSection</span> : <span class="type"><a href="../qtqml/qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此附加属性包含前一个元素的部分。</p>
+<p>它附加到委托的每个实例。</p>
+<p>使用<a href="qml-qtquick-listview.html#section.property-prop">section</a>属性评估区段。</p>
+</div></div><!-- @@@previousSection -->
+<br/>
+<!-- $$$section -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="section-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="section-attached-prop"></a><span class="name">ListView.section</span> : <span class="type"><a href="../qtqml/qml-string.html">string</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此附加属性包含此元素的部分。</p>
+<p>它附加到委托的每个实例。</p>
+<p>使用<a href="qml-qtquick-listview.html#section.property-prop">section</a>属性评估区段。</p>
+</div></div><!-- @@@section -->
+<br/>
+<!-- $$$view -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="view-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="view-attached-prop"></a><span class="name">ListView.view</span> : <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此附加属性包含管理此委托实例的视图。</p>
+<p>它附加到委托的每个实例以及页眉、页脚、部分和高亮代表。</p>
+</div></div><!-- @@@view -->
+<br/>
+<h2>附加信号文档</h2>
+<!-- $$$add -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="add-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="add-signal"></a><span class="name">add</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>在将项添加到视图后立即发出此附加信号。</p>
+<p>如果指定了<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#add-prop">添加</a>转换，则在处理此信号后立即应用它。</p>
+<p>对应的处理程序是<code>onAdd</code>.</p>
+</div></div><!-- @@@add -->
+<br/>
+<!-- $$$remove -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="remove-signal">
+<td class="tblQmlFuncNode"><p>
+<a name="remove-signal"></a><span class="name">remove</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>在从视图中删除项之前立即发出此附加信号。</p>
+<p style="height: 40px">如果已指定<a href="qml-qtquick-listview.html#remove-prop">remove</a>转换，则在处理此信号后应用它，前提是<a href="qml-qtquick-listview.html#delayRemove-attached-prop">delayRemove</a>为假。</p>
+<p>对应的处理程序是<code>onRemove</code>.</p>
+</div></div><!-- @@@remove -->
+<br/>
+<h2>方法文档</h2>
+<!-- $$$ -->
+<div class="qmlitem"><div class="fngroup">
+<div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="">
+<td class="tblQmlFuncNode"><p>
+<a name="positionViewAtBeginning-method"></a><span class="name">positionViewAtBeginning</span>()</p></td></tr>
+<tr valign="top" class="odd" id="">
+<td class="tblQmlFuncNode"><p>
+<a name="positionViewAtEnd-method"></a><span class="name">positionViewAtEnd</span>()</p></td></tr>
+</table></div>
+</div></div><div class="qmldoc"><p>将视图定位在开头或结尾，同时考虑任何页眉或页脚。</p>
+<p>不建议使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html#contentX-prop">contentX</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html#contentY-prop">contentY</a>将视图定位在特定索引处。这是不可靠的，因为从列表的开头删除项不会导致所有其他项重新定位，并且视图的实际开始可能会根据代表的大小而变化。</p>
+<p><b>注意</b>：方法只能在组件完成后调用。要在启动时定位视图，应由 Component.onCompleted 调用此方法。例如，要在启动时将视图定位在末尾：</p>
+<pre class="cpp">
+
+  Component<span class="operator">.</span>onCompleted: positionViewAtEnd()
+
+</pre>
+</div></div><!-- @@@ -->
+<br/>
+<!-- $$$decrementCurrentIndex -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="decrementCurrentIndex-method">
+<td class="tblQmlFuncNode"><p>
+<a name="decrementCurrentIndex-method"></a><span class="name">decrementCurrentIndex</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>递减当前索引。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#keyNavigationWraps-prop">如果keyNavigationWraps</a>为 true 并且当前位于开头，则当前索引将换行。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#count-prop">如果计数</a>为零，则此方法无效。</p>
+<p><b>注意</b>：方法只能在组件完成后调用。</p>
+</div></div><!-- @@@decrementCurrentIndex -->
+<br/>
+<!-- $$$forceLayout -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="forceLayout-method">
+<td class="tblQmlFuncNode"><p>
+<a name="forceLayout-method"></a><span class="name">forceLayout</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>响应模型中的变化通常是批处理的，每帧只发生一次。这意味着在脚本块内部，底层模型可能已经改变，但<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>还没有跟上。</p>
+<p>此方法强制<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>立即响应模型中的任何未完成的更改。</p>
+<p><b>注意</b>：方法只能在组件完成后调用。</p>
+<p>这种方法是在 Qt 5.1 中引入的。</p>
+</div></div><!-- @@@forceLayout -->
+<br/>
+<!-- $$$incrementCurrentIndex -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="incrementCurrentIndex-method">
+<td class="tblQmlFuncNode"><p>
+<a name="incrementCurrentIndex-method"></a><span class="name">incrementCurrentIndex</span>()</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>增加当前索引。如果<a href="qml-qtquick-listview.html#keyNavigationWraps-prop">keyNavigationWraps</a>为 
+		true 并且当前位于末尾，则当前索引将换行。如果<a href="qml-qtquick-listview.html#count-prop">count</a>为零，则此方法无效。</p>
+<p><b>Note</b>: methods should only be called after the Component has completed.</p>
+</div></div><!-- @@@incrementCurrentIndex -->
+<br/>
+<!-- $$$indexAt -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="indexAt-method">
+<td class="tblQmlFuncNode"><p>
+<a name="indexAt-method"></a><span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">indexAt</span>(<span class="type"><a href="../qtqml/qml-real.html">real</a></span> <i>x</i>,  <span class="type"><a href="../qtqml/qml-real.html">real</a></span> <i>y</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>返回内容坐标中包含点<i>x</i>、<i>y</i>的可见项的索引。如果在指定的点没有项，或者项不可见，则返回 -1。</p>
+<p>如果项在可见区域之外，则返回 -1，而不管项在滚动到视图中时是否存在。</p>
+<p><b>注意</b>：方法只能在组件完成后调用。</p>
+</div></div><!-- @@@indexAt -->
+<br/>
+<!-- $$$itemAt -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="itemAt-method">
+<td class="tblQmlFuncNode"><p>
+<a name="itemAt-method"></a><span class="type"><a href="qml-qtquick-item.html">Item</a></span> <span class="name">itemAt</span>(<span class="type"><a href="../qtqml/qml-real.html">real</a></span> <i>x</i>,  <span class="type"><a href="../qtqml/qml-real.html">real</a></span> <i>y</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>返回内容坐标中包含点<i>x</i>、<i>y</i>的可见项。如果在指定的点没有项，或者项不可见，则返回 null。</p>
+<p>如果项在可见区域之外，则返回 null，而不管项在滚动到视图时是否存在。</p>
+<p><b>注意</b>：方法只能在组件完成后调用。</p>
+</div></div><!-- @@@itemAt -->
+<br/>
+<!-- $$$positionViewAtIndex -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="positionViewAtIndex-method">
+<td class="tblQmlFuncNode"><p>
+<a name="positionViewAtIndex-method"></a><span class="name">positionViewAtIndex</span>(<span class="type"><a href="../qtqml/qml-int.html">int</a></span> <i>index</i>,  <span class="type">PositionMode</span> <i>mode</i>)</p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>定位视图，使<i>index</i>位于<i>mode</i>指定的位置：</p>
+<ul>
+<li><a href="qml-qtquick-listview.html">ListView</a>.Beginning - 
+将项定位在视图的顶部（或水平方向的左侧）。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.Center - 在视图中心定位项。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.End - 
+将项定位在视图的底部（或水平方向的右侧）。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.Visible -&nbsp; 
+如果项的任何部分可见，则不采取任何行动，否则将项带入视野。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.Contain - 
+确保整个项可见。如果项大于视图，则项位于视图的顶部（或水平方向的左侧）。</li>
+<li><a href="qml-qtquick-listview.html">ListView</a>.SnapPosition -&nbsp; 将项定位在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#preferredHighlightBegin-prop">preferredHighlightBegin</a>处。此模式仅在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#highlightRangeMode-prop">highlightRangeMode</a>为 StrictlyEnforceRange 或通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#snapMode-prop">snapMode</a>启用捕捉时有效。</li>
+</ul>
+<p>如果将视图定位在<i>index</i> 处会导致在视图的开头或结尾显示空白空间，则视图将定位在边界处。</p>
+<p>不建议使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html#contentX-prop">contentX</a>或<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-flickable.html#contentY-prop">contentY</a>将视图定位在特定索引处。这是不可靠的，因为从列表的开头删除项不会导致所有其他项重新定位，并且视图的实际开始可能会根据代表的大小而变化。将项带入视野的正确方法是使用<code>positionViewAtIndex</code>.</p>
+<p><b>注意</b>：方法只能在组件完成后调用。要在启动时定位视图，应由 Component.onCompleted 调用此方法。例如，要将视图定位在末尾：</p>
+<pre class="cpp">
+
+  Component<span class="operator">.</span>onCompleted: positionViewAtIndex(count <span class="operator">-</span> <span class="number">1</span><span class="operator">,</span> ListView<span class="operator">.</span>Beginning)
+
+</pre>
+</div></div><!-- @@@positionViewAtIndex -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

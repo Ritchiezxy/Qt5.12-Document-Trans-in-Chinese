@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qquickpositioners.cpp -->
+  <title>Positioner QML 类型 | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-qmlmodule.html">QML类型</a></td><td >Positioner QML 类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-positioner.html#attached-properties">附加属性</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Positioner QML 类型</h1>
+<span class="subtitle"></span>
+<!-- $$$Positioner-brief -->
+<p>提供附加属性，其中包含有关项目在定位器中的位置的详细信息。<a href="#details">更多...</a></p>
+<!-- @@@Positioner -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> 导入语句：</td><td class="memItemRight bottomAlign"> import QtQuick 2.12</td></tr></table></div><ul>
+<li><a href="qml-qtquick-positioner-members.html">所有成员的列表，包括继承成员</a></li>
+</ul>
+<a name="attached-properties"></a>
+<h2 id="attached-properties">Attached Properties</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtquick-positioner.html#index-attached-prop">index</a></b></b> : int</li>
+<li class="fn"><b><b><a href="qml-qtquick-positioner.html#isFirstItem-attached-prop">isFirstItem</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtquick-positioner.html#isLastItem-attached-prop">isLastItem</a></b></b> : bool</li>
+</ul>
+<!-- $$$Positioner-description -->
+<a name="details"></a>
+<h2 id="details">详细信息</h2>
+<p>定位器类型的对象附加到Column, Row<span lang="zh-cn">、</span> 
+Flow<span lang="zh-cn"> 或</span>Grid中的顶级子项。它提供的属性允许子项确定它在其父Column, Row<span lang="zh-cn">、</span> 
+Flow<span lang="zh-cn"> 或</span>Grid的布局中的位置。</p>
+<p>例如，下面是通过<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-repeater.html">Repeater</a>创建的具有 16 个子矩形的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-grid.html">Grid</a>。每个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-rectangle.html">矩形</a>使用显示在网格中的指数<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-positioner.html#index-attached-prop">Positioner.index</a>，并且第一个项目是通过采取了不同的色彩<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-positioner.html#isFirstItem-attached-prop">Positioner.isFirstItem</a>考虑：</p>
+<pre class="cpp">
+
+  Grid {
+      Repeater {
+          model: <span class="number">16</span>
+
+          Rectangle {
+              id: rect
+              width: <span class="number">30</span>; height: <span class="number">30</span>
+              border<span class="operator">.</span>width: <span class="number">1</span>
+              color: Positioner<span class="operator">.</span>isFirstItem <span class="operator">?</span> <span class="string">&quot;yellow&quot;</span> : <span class="string">&quot;lightsteelblue&quot;</span>
+
+              Text { text: rect<span class="operator">.</span>Positioner<span class="operator">.</span>index }
+          }
+      }
+  }
+
+</pre>
+<p class="centerAlign"><img src="images/positioner-example.png" alt="" /></p><!-- @@@Positioner -->
+<h2><span lang="zh-cn">附加属性文档</span></h2>
+<!-- $$$index -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="index-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="index-attached-prop"></a><span class="name">Positioner.index</span> : <span class="type"><a href="../qtqml/qml-int.html">int</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>此属性允许项目在定位器中确定其索引。</p>
+</div></div><!-- @@@index -->
+<br/>
+<!-- $$$isFirstItem -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="isFirstItem-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="isFirstItem-attached-prop"></a><span class="name">Positioner.isFirstItem</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性允许项目分别确定它是定位器中的第一个项目还是最后一个项目。</p>
+</div></div><!-- @@@isFirstItem -->
+<br/>
+<!-- $$$isLastItem -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="isLastItem-attached-prop">
+<td class="tblQmlPropNode"><p>
+<a name="isLastItem-attached-prop"></a><span class="name">Positioner.isLastItem</span> : <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>这些属性允许项目分别确定它是定位器中的第一个项目还是最后一个项目。</p>
+</div></div><!-- @@@isLastItem -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

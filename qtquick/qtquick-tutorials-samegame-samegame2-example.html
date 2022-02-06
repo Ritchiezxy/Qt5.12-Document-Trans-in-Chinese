@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- advtutorial.qdoc -->
+  <title>QML Advanced Tutorial 2 - Populating the Game Canvas | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >QML 高级教程 2 - 填充游戏画布</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="qtquick-tutorials-samegame-samegame1-example.html" />
+  <link rel="next" href="qtquick-tutorials-samegame-samegame3-example.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-samegame-samegame1-example.html">QML 高级教程 1 - 创建游戏画布和块</a>
+<span class="naviSeparator">  &#9702;  
+<a class="nextPage" href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-samegame-samegame3-example.html">QML 高级教程 3 - 实现游戏逻辑</a></span>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-samegame-samegame2-example.html#generating-the-blocks-in-javascript">在 JavaScript 中生成块</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-samegame-samegame2-example.html#connecting-javascript-components-to-qml">将 JavaScript 组件连接到 QML</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML 高级教程 2 - 填充游戏画布</h1>
+<span class="subtitle"></span>
+<!-- $$$tutorials/samegame/samegame2-description -->
+<div class="descr"> <a name="details"></a>
+<a name="generating-the-blocks-in-javascript"></a>
+<h3 >在 JavaScript 中生成块</h3>
+<p>现在我们已经编写了一些类型，让我们开始编写游戏。</p>
+<p>第一个任务是生成游戏块。每次单击 New Game 按钮时，游戏画布上都会填充一组新的随机块。由于我们需要为每个新游戏动态生成新块，因此我们不能使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-repeater.html">Repeater</a>来定义块。相反，我们将在 JavaScript 中创建块。</p>
+<p>这是用于生成块的 JavaScript 代码，包含在一个新文件中，<code>samegame.js</code>. 代码解释如下。</p>
+<pre class="js">
+
+  var blockSize = <span class="number">40</span>;
+  var maxColumn = <span class="number">10</span>;
+  var maxRow = <span class="number">15</span>;
+  var maxIndex = <span class="name">maxColumn</span> <span class="operator">*</span> <span class="name">maxRow</span>;
+  var board = new <span class="name">Array</span>(<span class="name">maxIndex</span>);
+  var component;
+
+  <span class="comment">//Index function used instead of a 2D array</span>
+  <span class="keyword">function</span> <span class="name">index</span>(column, row) {
+      <span class="keyword">return</span> <span class="name">column</span> <span class="operator">+</span> (<span class="name">row</span> <span class="operator">*</span> <span class="name">maxColumn</span>);
+  }
+
+  <span class="keyword">function</span> <span class="name">startNewGame</span>() {
+      <span class="comment">//Delete blocks from previous game</span>
+      <span class="keyword">for</span> (var i = 0; <span class="name">i</span> <span class="operator">&lt;</span> <span class="name">maxIndex</span>; i++) {
+          <span class="keyword">if</span> (<span class="name">board</span>[<span class="name">i</span>] <span class="operator">!=</span> <span class="number">null</span>)
+              <span class="name">board</span>[<span class="name">i</span>].<span class="name">destroy</span>();
+      }
+
+      <span class="comment">//Calculate board size</span>
+      <span class="name">maxColumn</span> <span class="operator">=</span> <span class="name">Math</span>.<span class="name">floor</span>(<span class="name">background</span>.<span class="name">width</span> <span class="operator">/</span> <span class="name">blockSize</span>);
+      <span class="name">maxRow</span> <span class="operator">=</span> <span class="name">Math</span>.<span class="name">floor</span>(<span class="name">background</span>.<span class="name">height</span> <span class="operator">/</span> <span class="name">blockSize</span>);
+      <span class="name">maxIndex</span> <span class="operator">=</span> <span class="name">maxRow</span> <span class="operator">*</span> <span class="name">maxColumn</span>;
+
+      <span class="comment">//Initialize Board</span>
+      <span class="name">board</span> <span class="operator">=</span> new <span class="name">Array</span>(<span class="name">maxIndex</span>);
+      <span class="keyword">for</span> (var column = 0; <span class="name">column</span> <span class="operator">&lt;</span> <span class="name">maxColumn</span>; column++) {
+          <span class="keyword">for</span> (var row = 0; <span class="name">row</span> <span class="operator">&lt;</span> <span class="name">maxRow</span>; row++) {
+              <span class="name">board</span>[<span class="name">index</span>(<span class="name">column</span>, <span class="name">row</span>)] <span class="operator">=</span> <span class="number">null</span>;
+              <span class="name">createBlock</span>(<span class="name">column</span>, <span class="name">row</span>);
+          }
+      }
+  }
+
+  <span class="keyword">function</span> <span class="name">createBlock</span>(column, row) {
+      <span class="keyword">if</span> (<span class="name">component</span> <span class="operator">==</span> <span class="number">null</span>)
+          <span class="name">component</span> <span class="operator">=</span> <span class="name">Qt</span>.<span class="name">createComponent</span>(<span class="string">&quot;Block.qml&quot;</span>);
+
+      <span class="comment">// Note that if Block.qml was not a local file, component.status would be</span>
+      <span class="comment">// Loading and we should wait for the component's statusChanged() signal to</span>
+      <span class="comment">// know when the file is downloaded and ready before calling createObject().</span>
+      <span class="keyword">if</span> (<span class="name">component</span>.<span class="name">status</span> <span class="operator">==</span> <span class="name">Component</span>.<span class="name">Ready</span>) {
+          var dynamicObject = <span class="name">component</span>.<span class="name">createObject</span>(<span class="name">background</span>);
+          <span class="keyword">if</span> (<span class="name">dynamicObject</span> <span class="operator">==</span> <span class="number">null</span>) {
+              <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;error creating block&quot;</span>);
+              <span class="name">console</span>.<span class="name">log</span>(<span class="name">component</span>.<span class="name">errorString</span>());
+              <span class="keyword">return</span> <span class="number">false</span>;
+          }
+          <span class="name">dynamicObject</span>.<span class="name">x</span> <span class="operator">=</span> <span class="name">column</span> <span class="operator">*</span> <span class="name">blockSize</span>;
+          <span class="name">dynamicObject</span>.<span class="name">y</span> <span class="operator">=</span> <span class="name">row</span> <span class="operator">*</span> <span class="name">blockSize</span>;
+          <span class="name">dynamicObject</span>.<span class="name">width</span> <span class="operator">=</span> <span class="name">blockSize</span>;
+          <span class="name">dynamicObject</span>.<span class="name">height</span> <span class="operator">=</span> <span class="name">blockSize</span>;
+          <span class="name">board</span>[<span class="name">index</span>(<span class="name">column</span>, <span class="name">row</span>)] <span class="operator">=</span> <span class="name">dynamicObject</span>;
+      } <span class="keyword">else</span> {
+          <span class="name">console</span>.<span class="name">log</span>(<span class="string">&quot;error loading block component&quot;</span>);
+          <span class="name">console</span>.<span class="name">log</span>(<span class="name">component</span>.<span class="name">errorString</span>());
+          <span class="keyword">return</span> <span class="number">false</span>;
+      }
+      <span class="keyword">return</span> <span class="number">true</span>;
+  }
+
+</pre>
+<p><code>startNewGame()</code>函数删除在前一个游戏中创建的块，并计算填充新游戏的游戏窗口所需的块的行数和列数。然后，它创建一个数组来存储所有游戏块，并调用<code>createBlock()</code>创建足够的块来填充游戏窗口。</p>
+<p><code>createBlock()</code>函数从<code>Block.qml</code>文件中创建一个块，并将新块移动到其在游戏画布上的位置。这包括以下几个步骤:</p>
+<ul>
+<li>调用<a href="../qtqml/qml-qtqml-qt.html#createComponent-method">Qt.createComponent()</a>从<code>Block.qml</code>生成一个类型。如果组件准备好了，我们可以调用<code>createObject()</code>来创建Block项的实例。</li>
+<li>如果<code>createObject()</code>返回null（即加载对象时出错），打印错误信息。</li>
+<li>将块放在板上的位置并设置其宽度和高度。此外，将其存储在 blocks 数组中以供将来参考。</li>
+<li>最后，如果由于某种原因（例如，如果文件丢失）无法加载组件，则将错误信息打印到控制台。</li>
+</ul>
+<a name="connecting-javascript-components-to-qml"></a>
+<h3 >C将 JavaScript 组件连接到 QML</h3>
+<p>现在我们需要从QML文件中调用<code>samegame.js</code>中的JavaScript代码。为此，我们将这一行添加到<code>samegame.qml</code>中，<code>samegame.qml</code>将JavaScript文件作为<a href="../qtqml/qtqml-modules-topic.html">模块</a>导入:</p>
+<pre class="qml">
+
+  import &quot;samegame.js&quot; as SameGame
+
+</pre>
+<p>这允许我们使用“SameGame”作为前缀来引用任何函数<code>samegame.js</code>：例如，<code>SameGame.startNewGame()</code>或<code>SameGame.createBlock()</code>。这意味着我们现在可以将 New Game 按钮的<code>onClicked</code>处理程序连接到该<code>startNewGame()</code>函数，如下所示：</p>
+<pre class="qml">
+
+          <span class="type"><a href="../qtquickcontrols1/qml-qtquick-controls-button.html">Button</a></span> {
+              <span class="type">anchors</span> { <span class="name">left</span>: <span class="name">parent</span>.<span class="name">left</span>; <span class="name">verticalCenter</span>: <span class="name">parent</span>.<span class="name">verticalCenter</span> }
+              <span class="name">text</span>: <span class="string">&quot;New Game&quot;</span>
+              <span class="name">onClicked</span>: <span class="name">SameGame</span>.<span class="name">startNewGame</span>()
+          }
+
+</pre>
+<p>因此，当您单击 New Game 按钮时，<code>startNewGame()</code>会调用并生成一个块字段，如下所示：</p>
+<p class="centerAlign"><img src="images/declarative-adv-tutorial2.png" alt="" /></p><p>现在，我们有一个块屏幕，我们可以开始添加游戏机制。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-tutorials-samegame-samegame2-block-qml.html">tutorials/samegame/samegame2/Block.qml</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame2-button-qml.html">tutorials/samegame/samegame2/Button.qml</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame2-samegame-js.html">tutorials/samegame/samegame2/samegame.js</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame2-samegame-qml.html">tutorials/samegame/samegame2/samegame.qml</a></li>
+<li><a href="qtquick-tutorials-samegame-samegame2-samegame2-qmlproject.html">tutorials/samegame/samegame2/samegame2.qmlproject</a></li>
+</ul>
+</div>
+<!-- @@@tutorials/samegame/samegame2 -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-samegame-samegame1-example.html">QML 高级教程 1 - 创建游戏画布和块</a>
+<span class="naviSeparator">  &#9702;  
+<a class="nextPage" href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-samegame-samegame3-example.html">QML 高级教程 3 - 实现游戏逻辑</a></span>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

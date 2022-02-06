@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- topic.qdoc -->
+  <title>Important Concepts In Qt Quick - Convenience Types | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td >
+			Qt Quick 中的重要概念 - 便利类型</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-convenience-topic.html#dynamic-object-instantiation">动态对象实例化</a></li>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-convenience-topic.html#dynamic-bindings">动态绑定</a></li>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-convenience-topic.html#dynamic-signal-connections">动态信号连接</a></li>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-convenience-topic.html#timer-based-events">基于定时器的事件</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 中的重要概念 - 便利类型</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-convenience-topic.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>在高度动态的用户界面中，应用程序开发人员通常希望对事件做出反应并触发各种响应逻辑。QML 通过绑定、信号和信号处理程序以及动态对象实例化对这些概念提供了内置支持，但 Qt Quick 扩展了该语言提供的各种便利类型的支持。</p>
+<a name="dynamic-object-instantiation"></a>
+<h2 id="dynamic-object-instantiation">动态对象实例化</h2>
+<p>QML 提供了多种动态创建和管理 QML 对象的方法。</p>
+<p>可以通过各种方式从命令式 JavaScript 代码中动态创建对象。有关更多详细信息，请参阅<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-javascript-dynamicobjectcreation.html">从 JavaScript 创建动态 QML 对象</a>。</p>
+<p>Qt Quick 提供了<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-loader.html">Loader</a>、<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-repeater.html">Repeater</a>、<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>、<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-gridview.html">GridView</a>和<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-pathview.html">PathView</a>类型，它们也支持动态对象管理，并提供声明式 API。</p>
+<p>有关使用动态实例化和延迟初始化来提高应用程序性能的更多信息，请参阅<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtdoc/qtquick-performance.html">性能指南</a>。</p>
+<a name="dynamic-bindings"></a>
+<h2 id="dynamic-bindings">动态绑定</h2>
+<p><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-syntax-propertybinding.html">属性绑定</a>是 QML 的一个基本特性。通常，属性使用其绑定进行初始化。然而，<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-binding.html">Binding</a>类型和<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html#binding-method">Qt.binding()</a>函数允许客户端在运行时从任何对象动态绑定属性，并在需要时（或当它变得可用时）修改绑定目标。</p>
+<a name="dynamic-signal-connections"></a>
+<h2 id="dynamic-signal-connections">动态信号连接</h2>
+<p>QML 通过信号的<code>connect()</code>方法支持动态信号连接。在<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-index.html">Qt Quick</a>模块提供方便<a href="../qtqml/qml-qtqml-connections.html">Connection<span lang="zh-cn">（连接）</span></a>类型，它允许设置涉及一个对象，它是不是静态对象分层结构的一部分的信号连接。它还允许在运行时动态重定向连接，这允许应用程序根据程序状态处理具有不同功能的不同信号通知。</p>
+<p>通过声明<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-connections.html">Connection</a>实例，客户端可以动态地使一个对象发出的信号触发另一个对象的方法，并且可以在需要时（或当它可用时）修改连接目标。</p>
+<a name="timer-based-events"></a>
+<h2 id="timer-based-events">基于定时器的事件</h2>
+<p>另一个常见用例是在特定事件发生后的某个指定时间段触发功能。Qt Quick 通过<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-timer.html">Timer</a>类型支持这些基于定时器的触发器。支持单次定时器和循环定时器。</p>
+</div>
+<!-- @@@qtquick-convenience-topic.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

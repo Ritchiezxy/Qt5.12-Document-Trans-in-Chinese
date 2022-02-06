@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- topic.qdoc -->
+  <title>Important Concepts In Qt Quick - Positioning | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >
+			Qt Quick 中的重要概念 - 定位</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioning-topic.html#manual-positioning">手动定位</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioning-topic.html#positioning-with-bindings">绑定定位</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioning-topic.html#anchors">锚点</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioning-topic.html#positioners">定位器</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioning-topic.html#layouts">布局</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioning-topic.html#right-to-left-support">从右到左的支持</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 中的重要概念 - 定位</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-positioning-topic.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QML 中的视觉项目可以以多种方式定位。最重要的与定位相关的概念是锚定，一种相对定位的形式，其中项目可以在某些边界处彼此锚定（或连接）。其他定位概念包括绝对定位、坐标绑定定位、定位器和布局。</p>
+<a name="manual-positioning"></a>
+<h2 id="manual-positioning">手动定位</h2>
+<p>物品可以手动定位。如果用户界面是静态的，手动定位提供了最有效的定位形式。</p>
+<p>在任何用户界面中，视觉类型在任何时刻都存在于屏幕坐标中的特定位置。虽然流畅的动画和动态用户界面是 Qt Quick 的主要焦点，但静态定位的用户界面仍然是一个可行的选择。更重要的是，如果这些类型的位置没有改变，手动指定位置通常比使用前面章节中记录的更动态的定位方法更有效。</p>
+<p>在 Qt Quick 中，每个可视对象都位于Qt Quick 可视画布提供的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-coordinates.html">坐标系内。</a>如该文档中所述，视觉对象的 x 和 y 坐标相对于其视觉父对象的坐标，左上角的坐标为 (0, 0)。</p>
+<p>因此，以下示例将显示两个手动定位的矩形：</p>
+<div class="table"><table class="generic">
+ <thead><tr class="qt-style"><th >示例代码</th><th >结果布局</th></tr></thead>
+<tr valign="top" class="odd"><td ><pre class="qml">
+
+  import QtQuick 2.0
+
+  <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+      <span class="name">width</span>: <span class="number">200</span>
+      <span class="name">height</span>: <span class="number">200</span>
+
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">x</span>: <span class="number">50</span>
+          <span class="name">y</span>: <span class="number">50</span>
+          <span class="name">width</span>: <span class="number">100</span>
+          <span class="name">height</span>: <span class="number">100</span>
+          <span class="name">color</span>: <span class="string">&quot;green&quot;</span>
+       }
+
+       <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">x</span>: <span class="number">100</span>
+          <span class="name">y</span>: <span class="number">100</span>
+          <span class="name">width</span>: <span class="number">50</span>
+          <span class="name">height</span>: <span class="number">50</span>
+          <span class="name">color</span>: <span class="string">&quot;yellow&quot;</span>
+       }
+  }
+
+</pre>
+</td><td ><p class="centerAlign"><img src="images/manual-layout.png" alt="" /></p></td></tr>
+</table></div>
+<a name="positioning-with-bindings"></a>
+<h2 id="positioning-with-bindings">绑定定位</h2>
+<p>也可以通过将绑定表达式分配给与它们在可视画布中的位置相关联的属性来定位项目。这种类型的定位是最动态的，但是一些性能成本与以这种方式定位项目相关联。</p>
+<p>视觉对象的位置和尺寸也可以通过属性绑定来设置。这样做的好处是值会随着绑定的依赖关系的变化而自动更新。例如，一个 Rectangle 的宽度可能取决于它旁边的 Rectangle 的宽度。</p>
+<p>虽然绑定提供了一种非常灵活和直观的方式来创建动态布局，但应该注意的是，它们会带来一些性能成本，并且在可能的情况下，应该首选原始 Anchor 布局。</p>
+<a name="anchors"></a>
+<h2 id="anchors">锚点</h2>
+<p>通过将一个或多个项目的锚点（边界）附加到另一个的锚点，锚点允许将项目放置在另一个项目的附近或内部。即使其中一项的尺寸或位置发生变化，这些锚点仍将保留，从而允许高度动态的用户界面。</p>
+<p>可以将视觉对象视为具有各种锚点（或更准确地说，锚线）。其他项目可以锚定到这些点，这意味着当任何对象发生变化时，锚定到它的其他对象将自动调整以保持锚定。</p>
+<p>Qt Quick 将锚点作为顶级概念提供。有关该主题的深入信息，请参阅有关<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioning-anchors.html">使用锚点定位的文档。</a></p>
+<p>重要的是要注意，基于锚的布局通常比基于绑定的布局性能要好得多，如果原始的话。“原始”锚布局是仅使用锚（具有对象嵌套）来确定定位的布局，而“污染”锚布局是同时使用锚定和绑定（在与位置相关的 [x,y] 属性或在与尺寸相关的 [width,height] 属性上）来确定位置。</p>
+<a name="positioners"></a>
+<h2 id="positioners">定位器</h2>
+<p>Qt Quick 还提供了一些内置的定位器项目。对于许多用例，最好使用的定位器是简单的网格、行或列，Qt Quick 提供的项将以最有效的方式将子项定位在这些格式中。有关使用预定义定位器的更多信息，请参阅有关<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioning-layouts.html">项目定位器类型的文档。</a></p>
+<a name="layouts"></a>
+<h2 id="layouts">布局</h2>
+<p>从 Qt 5.1 开始，模块<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquicklayouts-index.html">Qt Quick Layouts</a>也可用于在用户界面中排列 Qt Quick 项目。与定位器不同，Qt Quick Layouts 中的类型在声明性界面中管理项目的位置和大小。它们非常适合可调整大小的用户界面。</p>
+<a name="right-to-left-support"></a>
+<h2 id="right-to-left-support">从右到左的支持</h2>
+<p>语言书面形式的方向性通常对如何定位用户界面的视觉类型有很大影响。Qt Quick 支持通过预定义布局和从右到左的文本布局从右到左定位类型。</p>
+<p>有关该主题的深入信息，请参阅<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-positioning-righttoleft.html">Qt Quick 中有关从右到左支持的文档。</a></p>
+</div>
+<!-- @@@qtquick-positioning-topic.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

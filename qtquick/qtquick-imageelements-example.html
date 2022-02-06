@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- imageelements.qdoc -->
+  <title>Qt Quick 示例 - Image Elements | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >
+			Qt Quick 示例 - Image元素</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#running-the-example">运行该示例</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-imageelements-example.html#scaling-with-borderimage">使用 BorderImage 缩放</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-imageelements-example.html#image-fill">图像填充</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-imageelements-example.html#shadow-effects">阴影效果</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-imageelements-example.html#sprite-animations-with-animatedsprite">使用 AnimatedSprite 的 Sprite 动画</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-imageelements-example.html#sprite-animations-with-spritesequence">Sprite 动画与 SpriteSequence</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 示例 - Image元素</h1>
+<span class="subtitle"></span>
+<!-- $$$imageelements-brief -->
+<p>这是与图像类型相关的 QML 示例集合。</p>
+<!-- @@@imageelements -->
+<!-- $$$imageelements-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-imageelements-example.png" alt="" /></p><p><i>Image Elements</i>是与图像类型相关的小型 QML 示例的集合。有关更多信息，请访问<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtdoc/qtquick-usecase-visual.html">用例 - QML 中的视觉元素</a>。</p>
+<a name="running-the-example"></a>
+<h2 id="running-the-example">运行该示例</h2>
+<p>要从 <a href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a>运行示例，请打开<b>欢迎</b> 模式并从 <b>示例</b>中选择示例。有关更多信息，请访问<a href="http://doc.qt.io/qtcreator/creator-build-example-application.html">构建和运行示例</a>。</p>
+<a name="scaling-with-borderimage"></a>
+<h2 id="scaling-with-borderimage">使用 BorderImage 缩放</h2>
+<p><i>BorderImage</i>通过设置其horizo​​ntalTileMode 和verticalTileMode 属性来<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-borderimage.html">展示BorderImage</a>类型的各种缩放模式。</p>
+<a name="image-fill"></a>
+<h2 id="image-fill">图像填充</h2>
+<p><i>Image</i>展示了<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-image.html">Image</a>类型的各种填充模式。</p>
+<a name="shadow-effects"></a>
+<h2 id="shadow-effects">阴影效果</h2>
+<p><i>Shadows</i>展示了如何使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-borderimage.html">BorderImage</a>为矩形项目创建阴影效果：</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-borderimage.html">BorderImage</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">rectangle</span>
+          <span class="type">anchors</span> { <span class="name">leftMargin</span>: -<span class="number">6</span>; <span class="name">topMargin</span>: -<span class="number">6</span>; <span class="name">rightMargin</span>: -<span class="number">8</span>; <span class="name">bottomMargin</span>: -<span class="number">8</span> }
+          <span class="type">border</span> { <span class="name">left</span>: <span class="number">10</span>; <span class="name">top</span>: <span class="number">10</span>; <span class="name">right</span>: <span class="number">10</span>; <span class="name">bottom</span>: <span class="number">10</span> }
+          <span class="name">source</span>: <span class="string">&quot;shadow.png&quot;</span>
+      }
+
+</pre>
+<a name="sprite-animations-with-animatedsprite"></a>
+<h2 id="sprite-animations-with-animatedsprite">使用 AnimatedSprite 的 Sprite 动画</h2>
+<p><i>AnimatedSprite</i>展示了如何使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-animatedsprite.html">AnimatedSprite</a>对象显示一个简单的动画：</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-animatedsprite.html">AnimatedSprite</a></span> {
+          <span class="name">id</span>: <span class="name">sprite</span>
+          <span class="name">anchors</span>.centerIn: <span class="name">parent</span>
+          <span class="name">source</span>: <span class="string">&quot;content/speaker.png&quot;</span>
+          <span class="name">frameCount</span>: <span class="number">60</span>
+          <span class="name">frameSync</span>: <span class="number">true</span>
+          <span class="name">frameWidth</span>: <span class="number">170</span>
+          <span class="name">frameHeight</span>: <span class="number">170</span>
+          <span class="name">loops</span>: <span class="number">3</span>
+      }
+
+</pre>
+<p>精灵动画将循环 3 次。</p>
+<a name="sprite-animations-with-spritesequence"></a>
+<h2 id="sprite-animations-with-spritesequence">Sprite 动画与 SpriteSequence</h2>
+<p><i>SpriteSequence</i>演示了使用精灵序列来绘制动画和交互式熊。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-spritesequence.html">SpriteSequence</a>对象定义了五个不同的精灵。熊最初处于<i>静止</i>状态：</p>
+<pre class="qml">
+
+          <span class="type"><a href="qml-qtquick-sprite.html">Sprite</a></span>{
+              <span class="name">name</span>: <span class="string">&quot;still&quot;</span>
+              <span class="name">source</span>: <span class="string">&quot;content/BearSheet.png&quot;</span>
+              <span class="name">frameCount</span>: <span class="number">1</span>
+              <span class="name">frameWidth</span>: <span class="number">256</span>
+              <span class="name">frameHeight</span>: <span class="number">256</span>
+              <span class="name">frameDuration</span>: <span class="number">100</span>
+              <span class="name">to</span>: {&quot;still&quot;:<span class="number">1</span>, &quot;blink&quot;:<span class="number">0.1</span>, &quot;floating&quot;:<span class="number">0</span>}
+          }
+
+</pre>
+<p>单击场景时，动画将精灵序列设置为<i>下降</i>状态并为熊的 y 属性设置动画。</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-sequentialanimation.html">SequentialAnimation</a></span> {
+          <span class="name">id</span>: <span class="name">anim</span>
+          <span class="type"><a href="qml-qtquick-scriptaction.html">ScriptAction</a></span> { <span class="name">script</span>: <span class="name">image</span>.<span class="name">goalSprite</span> <span class="operator">=</span> <span class="string">&quot;falling&quot;</span>; }
+          <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">target</span>: <span class="name">image</span>; <span class="name">property</span>: <span class="string">&quot;y&quot;</span>; <span class="name">to</span>: <span class="number">480</span>; <span class="name">duration</span>: <span class="number">12000</span>; }
+          <span class="type"><a href="qml-qtquick-scriptaction.html">ScriptAction</a></span> { <span class="name">script</span>: {<span class="name">image</span>.<span class="name">goalSprite</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>; <span class="name">image</span>.<span class="name">jumpTo</span>(<span class="string">&quot;still&quot;</span>);} }
+          <span class="type"><a href="qml-qtquick-propertyaction.html">PropertyAction</a></span> { <span class="name">target</span>: <span class="name">image</span>; <span class="name">property</span>: <span class="string">&quot;y&quot;</span>; <span class="name">value</span>: <span class="number">0</span> }
+      }
+
+</pre>
+<p>在动画结束时，熊被设置回其初始状态。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-imageelements-animatedimage-qml.html">imageelements/animatedimage.qml</a></li>
+<li><a href="qtquick-imageelements-animatedsprite-qml.html">imageelements/animatedsprite.qml</a></li>
+<li><a href="qtquick-imageelements-borderimage-qml.html">imageelements/borderimage.qml</a></li>
+<li><a href="qtquick-imageelements-content-borderimageselector-qml.html">imageelements/content/BorderImageSelector.qml</a></li>
+<li><a href="qtquick-imageelements-content-imagecell-qml.html">imageelements/content/ImageCell.qml</a></li>
+<li><a href="qtquick-imageelements-content-myborderimage-qml.html">imageelements/content/MyBorderImage.qml</a></li>
+<li><a href="qtquick-imageelements-content-shadowrectangle-qml.html">imageelements/content/ShadowRectangle.qml</a></li>
+<li><a href="qtquick-imageelements-image-qml.html">imageelements/image.qml</a></li>
+<li><a href="qtquick-imageelements-imageelements-pro.html">imageelements/imageelements.pro</a></li>
+<li><a href="qtquick-imageelements-imageelements-qml.html">imageelements/imageelements.qml</a></li>
+<li><a href="qtquick-imageelements-imageelements-qmlproject.html">imageelements/imageelements.qmlproject</a></li>
+<li><a href="qtquick-imageelements-imageelements-qrc.html">imageelements/imageelements.qrc</a></li>
+<li><a href="qtquick-imageelements-main-cpp.html">imageelements/main.cpp</a></li>
+<li><a href="qtquick-imageelements-shadows-qml.html">imageelements/shadows.qml</a></li>
+<li><a href="qtquick-imageelements-spritesequence-qml.html">imageelements/spritesequence.qml</a></li>
+</ul>
+<p>图片：</p>
+<ul>
+<li><a href="images/used-in-examples/imageelements/content/BearSheet.png">imageelements/content/BearSheet.png</a></li>
+<li><a href="images/used-in-examples/imageelements/content/Uniflow_steam_engine.gif">imageelements/content/Uniflow_steam_engine.gif</a></li>
+<li><a href="images/used-in-examples/imageelements/content/arrow.png">imageelements/content/arrow.png</a></li>
+<li><a href="images/used-in-examples/imageelements/content/bw.png">imageelements/content/bw.png</a></li>
+<li><a href="images/used-in-examples/imageelements/content/colors.png">imageelements/content/colors.png</a></li>
+<li><a href="images/used-in-examples/imageelements/content/qt-logo.png">imageelements/content/qt-logo.png</a></li>
+<li><a href="images/used-in-examples/imageelements/content/shadow.png">imageelements/content/shadow.png</a></li>
+<li><a href="images/used-in-examples/imageelements/content/speaker.png">imageelements/content/speaker.png</a></li>
+</ul>
+</div>
+<!-- @@@imageelements -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

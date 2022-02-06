@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qtquick-toolsnutilities.qdoc -->
+  <title>Qt Quick Tools and Utilities | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick 工具和实用程序</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#qt-quick-designer">Qt Quick设计器</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tools-and-utilities.html#qml-debugger-and-profiler">QML 调试器和分析器</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tools-and-utilities.html#related-information">相关信息</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tools-and-utilities.html#qmllive-gammaray-and-squish">QmlLive、GammaRay 和 Squish</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tools-and-utilities.html#related-information">相关信息</a></li>
+<li class="level1"><a href="#qt-creator">Qt Creator</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tools-and-utilities.html#related-information">相关信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 工具和实用程序</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-tools-and-utilities.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>Qt 提供了多种工具和实用程序来实现丰富的开发人员体验，尤其是对于 Qt Quick 开发人员。以下部分简要介绍了这些工具和实用程序，并提供了指向有关它们的更多信息的链接。</p>
+<a name="qt-quick-designer"></a>
+<h2 id="qt-quick-designer">Qt Quick Designer</h2>
+<p>Qt Quick Designer 可以使用大多数设计师熟悉的简单拖放手势来设计基于 Qt Quick 的 UI。它提供来自 Qt Quick 和 Qt Quick Controls 2 模块的 UI 元素，以及自定义 UI 元素的集成。</p>
+<p>以下是使用 Qt Quick Designer 创建的 UI 的示例应用程序列表：</p>
+<ul>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquickcontrols/qtquickcontrols-contactlist-example.html">Qt Quick Controls 2 - 联系人列表</a></li>
+<li><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquickcontrols/qtquickcontrols-flatstyle-example.html">Qt Quick Controls 2 - 扁平风格</a></li>
+</ul>
+<a name="qml-debugger-and-profiler"></a>
+<h3 >QML 调试器和分析器</h3>
+<p>作为一种声明性语言，一段 QML 代码提供了关于所定义实体的最少细节。在这种情况下，QML 调试器是一个非常有用的实用程序，它支持：</p>
+<ul>
+<li>调试 JavaScript 函数，</li>
+<li>执行 JavaScript 表达式，</li>
+<li>并检查 QML 属性。</li>
+</ul>
+<p>除此之外，QML 分析器使您能够获得必要的诊断信息，允许您分析应用程序代码的性能问题。例如，每帧中的 JavaScript 过多、长时间运行的 C++ 函数等等。</p>
+<a name="related-information"></a>
+<h3 >相关信息</h3>
+<ul>
+<li><a href="http://doc.qt.io/qtcreator/creator-debugging-qml.html">QML 调试器</a></li>
+<li><a href="http://doc.qt.io/qtcreator/creator-qml-performance-monitor.html">QML 分析器</a></li>
+</ul>
+<a name="qmllive-gammaray-and-squish"></a>
+<h3 >QmlLive、GammaRay 和 Squish</h3>
+<p><a href="http://doc.qt.io/QtQmlLive">QmlLive</a>是一个第三方工具，它提供了一个 QML 运行时，能够实时呈现对代码的更改。它避免了在每次代码更改后重新构建应用程序并将其安装在目标设备上的需要。您还可以扩展它以构建适合您需求的自定义运行时。</p>
+<p><a href="http://doc.qt.io/GammaRay">GammaRay</a>是一个有用的实用程序，可提供有关您的应用程序的诊断信息。它类似于前面部分中描述的 QML Profiler，但提供了更多功能。例如，创建的项目或 QObjects 的数量、进行的函数调用、每个函数调用所花费的时间、运行时的属性值自省等等。这些信息非常方便，尤其是在调试 QML 应用程序时。</p>
+<p>Squish 是一个著名的测试工具，它通过记录您的操作或运行脚本来自动化 UI 测试。一旦设置了测试，UI 测试就更容易运行了。</p>
+<a name="related-information"></a>
+<h3 >相关信息</h3>
+<ul>
+<li><a href="http://doc.qt.io/QtQmlLive">QmlLive</a></li>
+<li><a href="http://doc.qt.io/GammaRay">GammaRay</a></li>
+<li><a href="hhttps://www.froglogic.com/squish/gui-testing">Squish</a></li>
+</ul>
+<a name="qt-creator"></a>
+<h2 id="qt-creator">Qt Creator</h2>
+<p>Qt Creator IDE 是增强使用 Qt Quick 的整体开发人员体验的关键工具。它的自动完成和调试功能使使用 Qt Quick 更加容易。除此之外，前面部分提到的大多数工具和实用程序都集成到其中，并且可以集成第三方工具，例如<a href="http://doc.qt.io/QtQmlLive">QmlLive</a>和<a href="http://doc.qt.io/GammaRay">GammaRay</a>。</p>
+<a name="related-information"></a>
+<h3 >相关信息</h3>
+<ul>
+<li><a href="http://doc.qt.io/qtcreator/index.html">Qt Creator 手册</a></li>
+</ul>
+</div>
+<!-- @@@qtquick-tools-and-utilities.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

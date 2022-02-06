@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- simplematerial.qdoc -->
+  <title>Scene Graph - Simple Material | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >场景图 - 简单材质</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">场景图 - 简单材质</h1>
+<span class="subtitle"></span>
+<!-- $$$scenegraph/simplematerial-brief -->
+<p>演示如何定义场景图材质以填充形状。</p>
+<!-- @@@scenegraph/simplematerial -->
+<!-- $$$scenegraph/simplematerial-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/simplematerial-example.jpg" alt="" /></p><p>在此示例中，我们将使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgsimplematerialshader.html">QSGSimpleMaterialShader</a>类来填充场景图中的形状。这是一个便利类，旨在避免直接使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgmaterial.html">QSGMaterial</a>、<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgmaterialshader.html">QSGMaterialShader</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgmaterialtype.html">QSGMaterialType</a>类创建材质时所需的大量样板代码。</p>
+<p>一个简单的材质由两部分组成：材质状态和材质着色器。材质着色器每个场景图都有一个实例，并包含实际的 OpenGL 着色器程序以及有关它使用的属性和制服的信息。物质状态是我们分配给每个单独节点的状态；在这种情况下给他们不同的颜色。</p>
+<pre class="cpp">
+
+  <span class="keyword">struct</span> State
+  {
+      <span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> color;
+
+      <span class="type">int</span> compare(<span class="keyword">const</span> State <span class="operator">*</span>other) <span class="keyword">const</span> {
+          <span class="type"><a href="../qtcore/qtglobal.html#uint-typedef">uint</a></span> rgb <span class="operator">=</span> color<span class="operator">.</span>rgba();
+          <span class="type"><a href="../qtcore/qtglobal.html#uint-typedef">uint</a></span> otherRgb <span class="operator">=</span> other<span class="operator">-</span><span class="operator">&gt;</span>color<span class="operator">.</span>rgba();
+
+          <span class="keyword">if</span> (rgb <span class="operator">=</span><span class="operator">=</span> otherRgb) {
+              <span class="keyword">return</span> <span class="number">0</span>;
+          } <span class="keyword">else</span> <span class="keyword">if</span> (rgb <span class="operator">&lt;</span> otherRgb) {
+              <span class="keyword">return</span> <span class="operator">-</span><span class="number">1</span>;
+          } <span class="keyword">else</span> {
+              <span class="keyword">return</span> <span class="number">1</span>;
+          }
+      }
+  };
+
+</pre>
+<p>使用简化方案创建自定义材质时，我们要做的第一件事是创建一个状态类。在这种情况下，状态类只包含一个成员，一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qcolor.html">QColor</a>。它还定义了一个比较函数，场景图可以使用该函数对节点渲染进行重新排序。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> Shader : <span class="keyword">public</span> <span class="type"><a href="qsgsimplematerialshader.html">QSGSimpleMaterialShader</a></span><span class="operator">&lt;</span>State<span class="operator">&gt;</span>
+  {
+      QSG_DECLARE_SIMPLE_COMPARABLE_SHADER(Shader<span class="operator">,</span> State);
+
+</pre>
+<p>接下来，我们定义材质着色器，用我们的<code>State</code>子类化<a href="qsgsimplematerialshader.html">QSGSimpleMaterialShader</a>的模板实例。</p>
+<p>然后我们使用宏<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgsimplematerialshader.html#QSG_DECLARE_SIMPLE_COMPARABLE_SHADER">QSG_DECLARE_SIMPLE_COMPARABLE_SHADER</a> () 它将为我们生成一些样板代码。由于我们的<code>State</code>类有一个比较函数，我们声明可以比较状态。本来可以删除该<code>State::compare()</code>函数并使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgsimplematerialshader.html#QSG_DECLARE_SIMPLE_SHADER">QSG_DECLARE_SIMPLE_SHADER</a> () 声明着色器，但这可能会在某些用例中降低性能。</p>
+<p>tate struct 被用作模板参数来自动为我们生成一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgmaterialtype.html">QSGMaterialType</a>，因此着色器和 state 对由唯一的类组成是至关重要的。在多个着色器中使用相同的<code>State</code>类将导致未定义的行为。</p>
+<pre class="cpp">
+
+  <span class="keyword">public</span>:
+
+      <span class="keyword">const</span> <span class="type">char</span> <span class="operator">*</span>vertexShader() <span class="keyword">const</span> override {
+          <span class="keyword">return</span>
+                  <span class="string">&quot;attribute highp vec4 aVertex;                              \n&quot;</span>
+                  <span class="string">&quot;attribute highp vec2 aTexCoord;                            \n&quot;</span>
+                  <span class="string">&quot;uniform highp mat4 qt_Matrix;                              \n&quot;</span>
+                  <span class="string">&quot;varying highp vec2 texCoord;                               \n&quot;</span>
+                  <span class="string">&quot;void main() {                                              \n&quot;</span>
+                  <span class="string">&quot;    gl_Position = qt_Matrix * aVertex;                     \n&quot;</span>
+                  <span class="string">&quot;    texCoord = aTexCoord;                                  \n&quot;</span>
+                  <span class="string">&quot;}&quot;</span>;
+      }
+
+      <span class="keyword">const</span> <span class="type">char</span> <span class="operator">*</span>fragmentShader() <span class="keyword">const</span> override {
+          <span class="keyword">return</span>
+                  <span class="string">&quot;uniform lowp float qt_Opacity;                             \n&quot;</span>
+                  <span class="string">&quot;uniform lowp vec4 color;                                   \n&quot;</span>
+                  <span class="string">&quot;varying highp vec2 texCoord;                               \n&quot;</span>
+                  <span class="string">&quot;void main ()                                               \n&quot;</span>
+                  <span class="string">&quot;{                                                          \n&quot;</span>
+                  <span class="string">&quot;    gl_FragColor = texCoord.y * texCoord.x * color * qt_Opacity;  \n&quot;</span>
+                  <span class="string">&quot;}&quot;</span>;
+      }
+
+</pre>
+<p>接下来是着色器源代码的声明，我们在其中定义了一个顶点和片段着色器。简单材质假定存在<code>qt_Matrix</code>于顶点着色器和<code>qt_Opacity</code>片段着色器中。</p>
+<pre class="cpp">
+
+      <span class="type"><a href="../qtcore/qlist.html">QList</a></span><span class="operator">&lt;</span><span class="type"><a href="../qtcore/qbytearray.html">QByteArray</a></span><span class="operator">&gt;</span> attributes() <span class="keyword">const</span> override
+      {
+          <span class="keyword">return</span> <span class="type"><a href="../qtcore/qlist.html">QList</a></span><span class="operator">&lt;</span><span class="type"><a href="../qtcore/qbytearray.html">QByteArray</a></span><span class="operator">&gt;</span>() <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;aVertex&quot;</span> <span class="operator">&lt;</span><span class="operator">&lt;</span> <span class="string">&quot;aTexCoord&quot;</span>;
+      }
+
+</pre>
+<p>我们重新实现该<code>attributes</code>函数以返回<code>aVertex</code>和<code>aTexCoord</code>属性的名称。这些属性将映射到节点几何中的属性索引 0 和 1。</p>
+<pre class="cpp">
+
+      <span class="type">void</span> resolveUniforms() override
+      {
+          id_color <span class="operator">=</span> program()<span class="operator">-</span><span class="operator">&gt;</span>uniformLocation(<span class="string">&quot;color&quot;</span>);
+      }
+
+  <span class="keyword">private</span>:
+      <span class="type">int</span> id_color;
+
+</pre>
+<p>Uniforms 可以通过名称或索引访问，其中索引比名称快。我们重新实现了查找制服<code>resolveUniforms()</code>索引的函数。<code>color</code>我们不必担心解析<code>qt_Opacity</code>或<code>qt_Matrix</code>这些由基类处理。</p>
+<pre class="cpp">
+
+      <span class="type">void</span> updateState(<span class="keyword">const</span> State <span class="operator">*</span>state<span class="operator">,</span> <span class="keyword">const</span> State <span class="operator">*</span>) override
+      {
+          program()<span class="operator">-</span><span class="operator">&gt;</span>setUniformValue(id_color<span class="operator">,</span> state<span class="operator">-</span><span class="operator">&gt;</span>color);
+      }
+
+</pre>
+<p>该<code>updateState()</code>函数为每个唯一状态调用一次，我们使用它来使用当前颜色更新着色器程序。先前的状态作为第二个参数传入，以便用户只能更新已更改的状态。在我们的用例中，所有颜色都不同，updateState() 函数将为每个节点调用一次。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> ColorNode : <span class="keyword">public</span> <span class="type"><a href="qsggeometrynode.html">QSGGeometryNode</a></span>
+  {
+  <span class="keyword">public</span>:
+      ColorNode()
+          : m_geometry(<span class="type"><a href="qsggeometry.html">QSGGeometry</a></span><span class="operator">::</span>defaultAttributes_TexturedPoint2D()<span class="operator">,</span> <span class="number">4</span>)
+      {
+          setGeometry(<span class="operator">&amp;</span>m_geometry);
+
+          <span class="type"><a href="qsgsimplematerial.html">QSGSimpleMaterial</a></span><span class="operator">&lt;</span>State<span class="operator">&gt;</span> <span class="operator">*</span>material <span class="operator">=</span> Shader<span class="operator">::</span>createMaterial();
+          material<span class="operator">-</span><span class="operator">&gt;</span>setFlag(<span class="type"><a href="qsgmaterial.html">QSGMaterial</a></span><span class="operator">::</span>Blending);
+          setMaterial(material);
+          setFlag(OwnsMaterial);
+      }
+
+      <span class="type"><a href="qsggeometry.html">QSGGeometry</a></span> m_geometry;
+  };
+
+</pre>
+<p>该类<code>ColorNode</code>应该绘制一些东西，所以它需要是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsggeometrynode.html">QSGGeometryNode</a>的子类。</p>
+<p>由于我们的着色器需要位置和纹理坐标，我们使用默认属性集<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsggeometry.html#defaultAttributes_TexturedPoint2D">QSGGeometry::defaultAttributes_TexturedPoint2D</a> () 并声明几何图形总共包含四个顶点。为了避免分配，我们使<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsggeometry.html">QSGGeometry成为</a><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsggeometrynode.html">QSGGeometryNode</a>的成员。</p>
+<p>当我们使用上面的宏<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgsimplematerialshader.html#QSG_DECLARE_SIMPLE_COMPARABLE_SHADER">QSG_DECLARE_SIMPLE_COMPARABLE_SHADER</a> () 时，它定义了<code>createMaterial()</code>我们用来为我们的<code>State</code>结构实例化材质的函数。</p>
+<p>由于我们将在自定义材质中使用不透明度，因此我们需要设置<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgmaterial.html#Flag-enum">QSGMaterial::Blending</a>标志。场景图可以使用此标志在绘制节点时禁用或启用<code>GL_BLEND</code>，或重新排序节点的绘制。</p>
+<p>最后，我们告诉节点获取材料的所有权，因此我们不必显式地对其进行内存管理。</p>
+<pre class="cpp">
+
+  <span class="keyword">class</span> Item : <span class="keyword">public</span> <span class="type"><a href="qquickitem.html">QQuickItem</a></span>
+  {
+      Q_OBJECT
+
+      Q_PROPERTY(<span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> color READ color WRITE setColor NOTIFY colorChanged)
+
+  <span class="keyword">public</span>:
+
+      Item()
+      {
+          setFlag(ItemHasContents<span class="operator">,</span> <span class="keyword">true</span>);
+      }
+
+      <span class="type">void</span> setColor(<span class="keyword">const</span> <span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> <span class="operator">&amp;</span>color) {
+          <span class="keyword">if</span> (m_color <span class="operator">!</span><span class="operator">=</span> color) {
+              m_color <span class="operator">=</span> color;
+              <span class="keyword">emit</span> colorChanged();
+              update();
+          }
+      }
+      <span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> color() <span class="keyword">const</span> {
+          <span class="keyword">return</span> m_color;
+      }
+
+  <span class="keyword">signals</span>:
+      <span class="type">void</span> colorChanged();
+
+  <span class="keyword">private</span>:
+    <span class="type"><a href="../qtgui/qcolor.html">QColor</a></span> m_color;
+
+</pre>
+<p>由于 Item 为场景图提供了自己的图形，我们设置了标志<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#Flag-enum">QQuickItem::ItemHasContents</a>。</p>
+<pre class="cpp">
+
+  <span class="keyword">public</span>:
+      <span class="type"><a href="qsgnode.html">QSGNode</a></span> <span class="operator">*</span>updatePaintNode(<span class="type"><a href="qsgnode.html">QSGNode</a></span> <span class="operator">*</span>node<span class="operator">,</span> UpdatePaintNodeData <span class="operator">*</span>) override
+      {
+          ColorNode <span class="operator">*</span>n <span class="operator">=</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span>ColorNode <span class="operator">*</span><span class="operator">&gt;</span>(node);
+          <span class="keyword">if</span> (<span class="operator">!</span>node)
+              n <span class="operator">=</span> <span class="keyword">new</span> ColorNode();
+
+          <span class="type"><a href="qsggeometry.html">QSGGeometry</a></span><span class="operator">::</span>updateTexturedRectGeometry(n<span class="operator">-</span><span class="operator">&gt;</span>geometry()<span class="operator">,</span> boundingRect()<span class="operator">,</span> <span class="type"><a href="../qtcore/qrectf.html">QRectF</a></span>(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">1</span>));
+          <span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type"><a href="qsgsimplematerial.html">QSGSimpleMaterial</a></span><span class="operator">&lt;</span>State<span class="operator">&gt;</span><span class="operator">*</span><span class="operator">&gt;</span>(n<span class="operator">-</span><span class="operator">&gt;</span>material())<span class="operator">-</span><span class="operator">&gt;</span>state()<span class="operator">-</span><span class="operator">&gt;</span>color <span class="operator">=</span> m_color;
+
+          n<span class="operator">-</span><span class="operator">&gt;</span>markDirty(<span class="type"><a href="qsgnode.html">QSGNode</a></span><span class="operator">::</span>DirtyGeometry <span class="operator">|</span> <span class="type"><a href="qsgnode.html">QSGNode</a></span><span class="operator">::</span>DirtyMaterial);
+
+          <span class="keyword">return</span> n;
+      }
+  };
+
+</pre>
+<p>每当 Item 以图形方式更改时，就会调用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#updatePaintNode">QQuickItem::updatePaintNode</a> () 函数。</p>
+<p><b>注意：</b>场景图可能在不同于 GUI 线程的线程中渲染，并且<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html#updatePaintNode">QQuickItem::updatePaintNode</a> () 是少数几个可以安全访问 QML 对象属性的地方之一。自定义<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html">QQuickItem</a>与场景图的任何交互都应包含在此函数中。当 GUI 线程被阻塞时，该函数在渲染线程上被调用。</p><p>第一次为<code>Item</code>实例调用此函数时，节点将为 0，因此我们创建一个新节点。对于每个连续的调用，节点将是我们之前返回的。但是，在某些情况下，场景图将被删除并从头开始重建，因此应始终检查节点并在需要时重新创建它。</p>
+<p>一旦我们有了<code>ColorNode</code>，我们就更新它的几何和材质状态。最后，我们通知场景图该节点的几何形状和材质发生了变化。</p>
+<pre class="cpp">
+
+  <span class="type">int</span> main(<span class="type">int</span> argc<span class="operator">,</span> <span class="type">char</span> <span class="operator">*</span><span class="operator">*</span>argv)
+  {
+      <span class="type"><a href="../qtgui/qguiapplication.html">QGuiApplication</a></span> app(argc<span class="operator">,</span> argv);
+
+      qmlRegisterType<span class="operator">&lt;</span>Item<span class="operator">&gt;</span>(<span class="string">&quot;SimpleMaterial&quot;</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> <span class="string">&quot;SimpleMaterialItem&quot;</span>);
+
+      <span class="type"><a href="qquickview.html">QQuickView</a></span> view;
+      view<span class="operator">.</span>setResizeMode(<span class="type"><a href="qquickview.html">QQuickView</a></span><span class="operator">::</span>SizeRootObjectToView);
+      view<span class="operator">.</span>setSource(<span class="type"><a href="../qtcore/qurl.html">QUrl</a></span>(<span class="string">&quot;qrc:///scenegraph/simplematerial/main.qml&quot;</span>));
+      view<span class="operator">.</span>show();
+
+      <span class="keyword">return</span> app<span class="operator">.</span>exec();
+  }
+
+  <span class="preprocessor">#include &quot;simplematerial.moc&quot;</span>
+
+</pre>
+<p>应用程序的<code>main()</code>函数使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qqmlengine.html#qmlRegisterType">qmlRegisterType</a> () 添加自定义 QML 类型，并使用我们的 QML 文件打开一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickview.html">QQuickView 。</a></p>
+<pre class="qml">
+
+  import QtQuick 2.0
+  import SimpleMaterial 1.0
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">width</span>: <span class="number">320</span>
+      <span class="name">height</span>: <span class="number">480</span>
+      <span class="name">color</span>: <span class="string">&quot;black&quot;</span>
+
+</pre>
+<p>在 QML 文件中，我们导入我们的自定义类型，以便我们可以实例化它。</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-column.html">Column</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+
+          <span class="type">SimpleMaterialItem</span> {
+              <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>;
+              <span class="name">height</span>: <span class="name">parent</span>.<span class="name">height</span> <span class="operator">/</span> <span class="number">3</span>;
+              <span class="name">color</span>: <span class="string">&quot;steelblue&quot;</span>
+          }
+
+          <span class="type">SimpleMaterialItem</span> {
+              <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>;
+              <span class="name">height</span>: <span class="name">parent</span>.<span class="name">height</span> <span class="operator">/</span> <span class="number">3</span>;
+              <span class="name">color</span>: <span class="string">&quot;darkorchid&quot;</span>
+          }
+
+           <span class="type">SimpleMaterialItem</span> {
+              <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>;
+              <span class="name">height</span>: <span class="name">parent</span>.<span class="name">height</span> <span class="operator">/</span> <span class="number">3</span>;
+              <span class="name">color</span>: <span class="string">&quot;springgreen&quot;</span>
+          }
+      }
+
+</pre>
+<p>然后我们创建一个包含三个自定义项目实例的列，每个实例都有不同的颜色。</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">color</span>: <span class="name">Qt</span>.<span class="name">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.8</span>)
+          <span class="name">radius</span>: <span class="number">10</span>
+          <span class="name">antialiasing</span>: <span class="number">true</span>
+          <span class="name">border</span>.width: <span class="number">1</span>
+          <span class="name">border</span>.color: <span class="string">&quot;black&quot;</span>
+          <span class="name">anchors</span>.fill: <span class="name">label</span>
+          <span class="name">anchors</span>.margins: -<span class="number">10</span>
+      }
+
+      <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+          <span class="name">id</span>: <span class="name">label</span>
+          <span class="name">color</span>: <span class="string">&quot;white&quot;</span>
+          <span class="name">wrapMode</span>: <span class="name">Text</span>.<span class="name">WordWrap</span>
+          <span class="name">text</span>: <span class="string">&quot;These three gradient boxes are colorized using a custom material.&quot;</span>
+          <span class="name">anchors</span>.right: <span class="name">parent</span>.<span class="name">right</span>
+          <span class="name">anchors</span>.left: <span class="name">parent</span>.<span class="name">left</span>
+          <span class="name">anchors</span>.bottom: <span class="name">parent</span>.<span class="name">bottom</span>
+          <span class="name">anchors</span>.margins: <span class="number">20</span>
+      }
+  }
+
+</pre>
+<p>最后我们覆盖一个简短的描述性文本。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-scenegraph-simplematerial-main-qml.html">scenegraph/simplematerial/main.qml</a></li>
+<li><a href="qtquick-scenegraph-simplematerial-simplematerial-cpp.html">scenegraph/simplematerial/simplematerial.cpp</a></li>
+<li><a href="qtquick-scenegraph-simplematerial-simplematerial-pro.html">scenegraph/simplematerial/simplematerial.pro</a></li>
+<li><a href="qtquick-scenegraph-simplematerial-simplematerial-qrc.html">scenegraph/simplematerial/simplematerial.qrc</a></li>
+</ul>
+</div>
+<!-- @@@scenegraph/simplematerial -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

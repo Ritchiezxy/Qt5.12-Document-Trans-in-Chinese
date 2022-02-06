@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- imageparticle.qdoc -->
+  <title>Qt Quick Particles Examples - Image Particles | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >
+			Qt Quick 粒子示例 - 图像粒子</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 粒子示例 - 图像粒子</h1>
+<span class="subtitle"></span>
+<!-- $$$particles/imageparticle-brief -->
+<p>这是在 QML 粒子系统中使用 Affector 的示例集合。</p>
+<!-- @@@particles/imageparticle -->
+<!-- $$$particles/imageparticle-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-imageparticle-example.png" alt="" /></p><p>这是与在粒子系统中使用影响器有关的小型 QML 示例的集合。每个示例都是强调特定类型或功能的小型 QML 文件。</p>
+<p>所有这些都同时展示了<a href="qml-qtquick-particles-imageparticle.html">ImageParticle</a>的几个特性。</p>
+<pre class="qml">
+
+  <span class="name">sprites</span>: [
+      <span class="type"><a href="qml-qtquick-sprite.html">Sprite</a></span> {
+          <span class="name">name</span>: <span class="string">&quot;bear&quot;</span>
+          <span class="name">source</span>: <span class="string">&quot;../../images/bear_tiles.png&quot;</span>
+          <span class="name">frameCount</span>: <span class="number">13</span>
+          <span class="name">frameDuration</span>: <span class="number">120</span>
+      }
+  ]
+  <span class="name">colorVariation</span>: <span class="number">0.5</span>
+  <span class="name">rotationVelocityVariation</span>: <span class="number">360</span>
+  <span class="name">colorTable</span>: <span class="string">&quot;../../images/colortable.png&quot;</span>
+
+</pre>
+<p>Colored 显示一个带有一些颜色变化的简单<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-imageparticle.html">ImageParticle 。</a></p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-imageparticle.html">ImageParticle</a></span> {
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      <span class="name">source</span>: <span class="string">&quot;qrc:///particleresources/star.png&quot;</span>
+      <span class="name">alpha</span>: <span class="number">0</span>
+      <span class="name">alphaVariation</span>: <span class="number">0.2</span>
+      <span class="name">colorVariation</span>: <span class="number">1.0</span>
+  }
+
+</pre>
+<p>颜色表设置粒子生命周期的颜色以提供固定的彩虹效果。</p>
+<pre class="qml">
+
+  <span class="name">source</span>: <span class="string">&quot;qrc:///particleresources/glowdot.png&quot;</span>
+  <span class="name">colorTable</span>: <span class="string">&quot;../../images/colortable.png&quot;</span>
+  <span class="name">sizeTable</span>: <span class="string">&quot;../../images/colortable.png&quot;</span>
+
+</pre>
+<p>变形旋转并挤压海星粒子。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-imageparticle.html">ImageParticle</a></span> {
+      <span class="name">system</span>: <span class="name">sys</span>
+      <span class="name">groups</span>: [<span class="string">&quot;goingLeft&quot;</span>, <span class="string">&quot;goingRight&quot;</span>]
+      <span class="name">source</span>: <span class="string">&quot;../../images/starfish_4.png&quot;</span>
+      <span class="name">rotation</span>: <span class="number">90</span>
+      <span class="name">rotationVelocity</span>: <span class="number">90</span>
+      <span class="name">autoRotation</span>: <span class="number">true</span>
+  }
+  <span class="type"><a href="qml-qtquick-particles-imageparticle.html">ImageParticle</a></span> {
+      <span class="name">system</span>: <span class="name">sys</span>
+      <span class="name">groups</span>: [<span class="string">&quot;goingDown&quot;</span>]
+      <span class="name">source</span>: <span class="string">&quot;../../images/starfish_0.png&quot;</span>
+      <span class="name">rotation</span>: <span class="number">180</span>
+      <span class="name">yVector</span>: <span class="name">PointDirection</span> { <span class="name">y</span>: <span class="number">0.5</span>; <span class="name">yVariation</span>: <span class="number">0.25</span>; <span class="name">xVariation</span>: <span class="number">0.25</span>; }
+  }
+
+</pre>
+<p>Rotation 演示了 autoRotate 属性，以便粒子沿它们行进的方向旋转。</p>
+<p>共享演示了当多个ImageParticles尝试渲染同一个粒子时会发生什么。下面的<a href="qml-qtquick-particles-imageparticle.html">ImageParticle</a>在<a href="qml-qtquick-listview.html">ListView</a>中渲染粒子:</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-imageparticle.html">ImageParticle</a></span> {
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      <span class="name">system</span>: <span class="name">particles</span>
+      <span class="name">source</span>: <span class="string">&quot;../../images/flower.png&quot;</span>
+      <span class="name">alpha</span>: <span class="number">0.1</span>
+      <span class="name">color</span>: <span class="string">&quot;white&quot;</span>
+      <span class="name">rotationVariation</span>: <span class="number">180</span>
+      <span class="name">z</span>: -<span class="number">1</span>
+  }
+
+</pre>
+<p>下面的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-imageparticle.html">ImageParticle</a>放置在列表高亮中，并将粒子呈现在另一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-imageparticle.html">ImageParticle 之上</a>。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-particles-imageparticle.html">ImageParticle</a></span> {
+      <span class="name">anchors</span>.fill: <span class="name">parent</span>
+      <span class="name">system</span>: <span class="name">particles</span>
+      <span class="name">source</span>: <span class="string">&quot;../../images/flower.png&quot;</span>
+      <span class="name">color</span>: <span class="string">&quot;red&quot;</span>
+      <span class="name">clip</span>: <span class="number">true</span>
+      <span class="name">alpha</span>: <span class="number">1.0</span>
+  }
+
+</pre>
+<p>请注意，因为它在此<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-imageparticle.html">ImageParticle</a>中设置了颜色和 alpha ，所以它以不同的颜色渲染粒子。由于它没有指定任何关于旋转的内容，因此它与另一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-imageparticle.html">ImageParticle</a>共享旋转，以便花朵在两者中以相同的方式旋转。请注意，您可以在另一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-imageparticle.html">ImageParticle</a>中撤消旋转，您只需将 rotationVariation 显式设置为 0。</p>
+<p>Sprites 演示了使用图像粒子来渲染动画精灵而不是每个粒子的静态图像。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-particles-imageparticle-content-allatonce-qml.html">particles/imageparticle/content/allatonce.qml</a></li>
+<li><a href="qtquick-particles-imageparticle-content-colored-qml.html">particles/imageparticle/content/colored.qml</a></li>
+<li><a href="qtquick-particles-imageparticle-content-colortable-qml.html">particles/imageparticle/content/colortable.qml</a></li>
+<li><a href="qtquick-particles-imageparticle-content-deformation-qml.html">particles/imageparticle/content/deformation.qml</a></li>
+<li><a href="qtquick-particles-imageparticle-content-rotation-qml.html">particles/imageparticle/content/rotation.qml</a></li>
+<li><a href="qtquick-particles-imageparticle-content-sharing-qml.html">particles/imageparticle/content/sharing.qml</a></li>
+<li><a href="qtquick-particles-imageparticle-content-sprites-qml.html">particles/imageparticle/content/sprites.qml</a></li>
+<li><a href="qtquick-particles-imageparticle-imageparticle-pro.html">particles/imageparticle/imageparticle.pro</a></li>
+<li><a href="qtquick-particles-imageparticle-imageparticle-qml.html">particles/imageparticle/imageparticle.qml</a></li>
+<li><a href="qtquick-particles-imageparticle-imageparticle-qmlproject.html">particles/imageparticle/imageparticle.qmlproject</a></li>
+<li><a href="qtquick-particles-imageparticle-imageparticle-qrc.html">particles/imageparticle/imageparticle.qrc</a></li>
+<li><a href="qtquick-particles-imageparticle-main-cpp.html">particles/imageparticle/main.cpp</a></li>
+</ul>
+</div>
+<!-- @@@particles/imageparticle -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

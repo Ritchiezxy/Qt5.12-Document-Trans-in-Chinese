@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- adaptations.qdoc -->
+  <title>Qt Quick OpenVG Adaptation | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick OpenVG 适配</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations-openvg.html#egl-requirement">EGL 要求</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations-openvg.html#renderer">渲染器</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations-openvg.html#render-loop">渲染循环</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations-openvg.html#shader-effects">着色器效果</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations-openvg.html#qt-graphical-effects-module">Qt 图形效果模块</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations-openvg.html#particle-effects">粒子效果</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations-openvg.html#rendering-text">渲染文本</a></li>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations-openvg.html#perspective-transforms">透视变换</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick OpenVG 适配</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-visualcanvas-adaptations-openvg.html-description -->
+<div class="descr"> <a name="details"></a>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>适配是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-index.html">Qt Quick 模块</a>2的替代渲染器，它将使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>命令渲染场景图的内容，以提供硬件加速的 2D 矢量和光栅图形。与软件改编非常相似，某些功能和优化不再可用。大多数 Qt Quick 2 应用程序无需修改即可运行，尽管任何使用不受支持的功能的尝试都将被忽略。</p>
+<a name="egl-requirement"></a>
+<h3 >EGL 要求</h3>
+<p>与默认的 OpenGL 渲染器不同，没有内置支持获取<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>上下文。这意味着渲染器有责任请求和管理当前上下文。为此，必须在<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>渲染器中直接使用 EGL。这意味着<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>渲染器只能与支持创建 QWindows 并支持<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgui/qsurfaceformat.html#RenderableType-enum">QSurfaceFormat::OpenVG</a>的平台插件一起使用。从这个窗口，渲染器可以获得一个 EGLSurface，它可以与 EGLContext 一起使用来渲染<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>内容。</p>
+<a name="renderer"></a>
+<h3 >渲染器</h3>
+<p><a href="qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a> 渲染器通过使用<a href="qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>API向矢量GPU发送命令和数据，矢量GPU将以加速的方式渲染场景，将图形渲染从CPU上卸载。许多操作，如矩形和字体符号的呈现，都是<a href="qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>的理想选择，因为这些操作可以表示为描边和填充的路径。渲染场景项目通常会涉及到纹理，在<a href="qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>渲染器中使用VGImage来处理。此外，当渲染到屏幕外的表面时(比如使用图层时)，场景子树被渲染到一个可以在场景中重用的VGImage中。</p>
+<a name="render-loop"></a>
+<h3 >渲染循环</h3>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>渲染器反映基本渲染循环的行为，并将在单个线程中执行所有OpenVG命令<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations.html#openvg">。</a></p>
+<p>有关渲染循环的更多信息，请参见<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-scenegraph.html">场景图页面</a></p>
+<a name="shader-effects"></a>
+<h3 >着色器效果</h3>
+<p><a href="qtquick-module.html">QtQuick </a> 2中的<a href="qml-qtquick-shadereffect.html">ShaderEffect</a>组件不能被<a href="qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>渲染。虽然用户<a href="qml-qtquick-shadereffectsource.html">ShaderEffectSource</a>和QML项目层(这都是屏幕外的表面)是可能的，但实际上不可能通过<a href="qml-qtquick-shadereffect.html">ShaderEffect</a>项目对它们应用着色效果。这是因为OpenVG缺乏应用每个顶点和每个片段着色器操作的API。然而，可以利用<a href="qtquick-visualcanvas-adaptations.html#openvg">OpenVG </a> 
+API中的Image Filter操作来获得类似于<a href="qml-qtquick-shadereffect.html">ShaderEffect</a>在定制项中提供的效果。要集成自定义<a href="qtquick-visualcanvas-adaptations.html#openvg">OpenVG </a> 
+渲染，可以结合使用<a href="qsgrendernode.html">QSGRenderNode</a>和<a href="qsgrendererinterface.html">QSGRendererInterface</a>。</p>
+<a name="qt-graphical-effects-module"></a>
+<h3 >Qt 图形效果模块</h3>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtgraphicaleffects/qtgraphicaleffects-index.html">Qt Graphical Effects</a>使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-shadereffect.html">ShaderEffect</a>项来渲染效果。如果您使用此模块中的图形效果，则不应隐藏源项目，以便仍然可以呈现原始项目。</p>
+<a name="particle-effects"></a>
+<h3 >粒子效果</h3>
+<p>无法使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>适配来渲染粒子效果。尽可能从场景中完全移除粒子。否则它们仍然需要一些处理，即使它们不可见。</p>
+<a name="rendering-text"></a>
+<h3 >渲染文本</h3>
+<p>具有<a href="qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>适应性的文本呈现基于呈现glpyh路径，并且不使用OpenGL后端使用的距离字段技术。</p>
+<a name="perspective-transforms"></a>
+<h3 >透视变换</h3>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a> API 不允许使用非仿射变换来转换路径，而使用 Qt Quick 则可以。这意味着使用 Rectangles 和 Text 之类的路径渲染组件时，在应用透视变换时，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-adaptations.html#openvg">OpenVG</a>后端将首先渲染到 VGImage，然后再应用变换。这在运行时会使用更多内存，并且路径较慢，因此如有必要，请避免这样做。</p>
+</div>
+<!-- @@@qtquick-visualcanvas-adaptations-openvg.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Database.js 示例文件 | Qt Quick 5.11</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.11</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-localstorage-example.html">Qt Quick 示例 - Local Storage</a></td><td >Database.js 示例文件</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right">Qt 5.11.1 参考指南</td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Database.js 示例文件</h1>
+<span class="subtitle">localstorage/localstorage/Database.js</span>
+<!-- $$$localstorage/localstorage/Database.js-description -->
+<div class="descr"> <a name="details"></a>
+<pre class="js">
+
+  <span class="comment">/****************************************************************************
+  **
+  ** Copyright (C) 2017 The Qt Company Ltd.
+  ** Contact: https://www.qt.io/licensing/
+  **
+  ** This file is part of the documentation of the Qt Toolkit.
+  **
+  ** $QT_BEGIN_LICENSE:BSD$
+  ** Commercial License Usage
+  ** Licensees holding valid commercial Qt licenses may use this file in
+  ** accordance with the commercial license agreement provided with the
+  ** Software or, alternatively, in accordance with the terms contained in
+  ** a written agreement between you and The Qt Company. For licensing terms
+  ** and conditions see https://www.qt.io/terms-conditions. For further
+  ** information use the contact form at https://www.qt.io/contact-us.
+  **
+  ** BSD License Usage
+  ** Alternatively, you may use this file under the terms of the BSD license
+  ** as follows:
+  **
+  ** &quot;Redistribution and use in source and binary forms, with or without
+  ** modification, are permitted provided that the following conditions are
+  ** met:
+  **   * Redistributions of source code must retain the above copyright
+  **     notice, this list of conditions and the following disclaimer.
+  **   * Redistributions in binary form must reproduce the above copyright
+  **     notice, this list of conditions and the following disclaimer in
+  **     the documentation and/or other materials provided with the
+  **     distribution.
+  **   * Neither the name of The Qt Company Ltd nor the names of its
+  **     contributors may be used to endorse or promote products derived
+  **     from this software without specific prior written permission.
+  **
+  **
+  ** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  ** &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  ** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  ** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  ** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  ** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  ** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  ** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  ** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  ** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&quot;
+  **
+  ** $QT_END_LICENSE$
+  **
+  ****************************************************************************/</span>
+
+  <span class="keyword">function</span> <span class="name">dbInit</span>()
+  {
+      var <span class="name">db</span> = <span class="name">LocalStorage</span>.<span class="name">openDatabaseSync</span>(<span class="string">&quot;Activity_Tracker_DB&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;Track exercise&quot;</span>, <span class="number">1000000</span>)
+      <span class="keyword">try</span> {
+          <span class="name">db</span>.<span class="name">transaction</span>(<span class="keyword">function</span> (<span class="name">tx</span>) {
+              <span class="name">tx</span>.<span class="name">executeSql</span>(<span class="string">'CREATE TABLE IF NOT EXISTS trip_log (date text,trip_desc text,distance numeric)'</span>)
+          })
+      } <span class="keyword">catch</span> (<span class="name">err</span>) {
+          console.log(&quot;Error creating table in database: &quot; + err)
+      };
+  }
+
+  <span class="keyword">function</span> <span class="name">dbGetHandle</span>()
+  {
+      <span class="keyword">try</span> {
+          var <span class="name">db</span> = <span class="name">LocalStorage</span>.<span class="name">openDatabaseSync</span>(<span class="string">&quot;Activity_Tracker_DB&quot;</span>, <span class="string">&quot;&quot;</span>,
+                                                 <span class="string">&quot;Track exercise&quot;</span>, <span class="number">1000000</span>)
+      } <span class="keyword">catch</span> (<span class="name">err</span>) {
+          console.log(&quot;Error opening database: &quot; + err)
+      }
+      <span class="keyword">return</span> <span class="name">db</span>
+  }
+
+  <span class="keyword">function</span> <span class="name">dbInsert</span>(<span class="name">Pdate</span>, Pdesc, Pdistance)
+  {
+      var <span class="name">db</span> = <span class="name">dbGetHandle</span>()
+      var <span class="name">rowid</span> = <span class="number">0</span>;
+      <span class="name">db</span>.<span class="name">transaction</span>(<span class="keyword">function</span> (<span class="name">tx</span>) {
+          <span class="name">tx</span>.<span class="name">executeSql</span>(<span class="string">'INSERT INTO trip_log VALUES(?, ?, ?)'</span>,
+                        [<span class="name">Pdate</span>, <span class="name">Pdesc</span>, <span class="name">Pdistance</span>])
+          var <span class="name">result</span> = <span class="name">tx</span>.<span class="name">executeSql</span>(<span class="string">'SELECT last_insert_rowid()'</span>)
+          <span class="name">rowid</span> <span class="operator">=</span> <span class="name">result</span>.<span class="name">insertId</span>
+      })
+      <span class="keyword">return</span> <span class="name">rowid</span>;
+  }
+
+  <span class="keyword">function</span> <span class="name">dbReadAll</span>()
+  {
+      var <span class="name">db</span> = <span class="name">dbGetHandle</span>()
+      <span class="name">db</span>.<span class="name">transaction</span>(<span class="keyword">function</span> (<span class="name">tx</span>) {
+          var <span class="name">results</span> = <span class="name">tx</span>.<span class="name">executeSql</span>(
+                      <span class="string">'SELECT rowid,date,trip_desc,distance FROM trip_log order by rowid desc'</span>)
+          <span class="keyword">for</span> (<span class="keyword">var</span> <span class="name">i</span> = <span class="number">0</span>; <span class="name">i</span> <span class="operator">&lt;</span> <span class="name">results</span>.<span class="name">rows</span>.<span class="name">length</span>; i++) {
+              <span class="name">listModel</span>.<span class="name">append</span>({
+                                   id: <span class="name">results</span>.<span class="name">rows</span>.<span class="name">item</span>(<span class="name">i</span>).<span class="name">rowid</span>,
+                                   checked: <span class="string">&quot; &quot;</span>,
+                                   date: <span class="name">results</span>.<span class="name">rows</span>.<span class="name">item</span>(<span class="name">i</span>).<span class="name">date</span>,
+                                   trip_desc: <span class="name">results</span>.<span class="name">rows</span>.<span class="name">item</span>(<span class="name">i</span>).<span class="name">trip_desc</span>,
+                                   distance: <span class="name">results</span>.<span class="name">rows</span>.<span class="name">item</span>(<span class="name">i</span>).<span class="name">distance</span>
+                               })
+          }
+      })
+  }
+
+  <span class="keyword">function</span> <span class="name">dbUpdate</span>(<span class="name">Pdate</span>, Pdesc, Pdistance, Prowid)
+  {
+      var <span class="name">db</span> = <span class="name">dbGetHandle</span>()
+      <span class="name">db</span>.<span class="name">transaction</span>(<span class="keyword">function</span> (<span class="name">tx</span>) {
+          <span class="name">tx</span>.<span class="name">executeSql</span>(
+                      <span class="string">'update trip_log set date=?, trip_desc=?, distance=? where rowid = ?'</span>, [<span class="name">Pdate</span>, <span class="name">Pdesc</span>, <span class="name">Pdistance</span>, <span class="name">Prowid</span>])
+      })
+  }
+
+  <span class="keyword">function</span> <span class="name">dbDeleteRow</span>(<span class="name">Prowid</span>)
+  {
+      var <span class="name">db</span> = <span class="name">dbGetHandle</span>()
+      <span class="name">db</span>.<span class="name">transaction</span>(<span class="keyword">function</span> (<span class="name">tx</span>) {
+          <span class="name">tx</span>.<span class="name">executeSql</span>(<span class="string">'delete from trip_log where rowid = ?'</span>, [<span class="name">Prowid</span>])
+      })
+  }
+
+</pre>
+</div>
+<!-- @@@localstorage/localstorage/Database.js -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2018 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

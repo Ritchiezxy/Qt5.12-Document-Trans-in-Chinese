@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- cppextensionpoints.qdoc -->
+  <title>C++ Extension Points Provided By Qt Quick | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td >
+			Qt Quick 提供的 C++ 扩展点</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-cppextensionpoints.html#user-defined-qquickitem-derived-types">用户定义的 QQuickItem 派生类型</a></li>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-cppextensionpoints.html#scene-graph-related-classes">场景图相关类</a></li>
+<li class="level1"><a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-cppextensionpoints.html#pixmap-and-threaded-image-support">像素图和线程图像支持</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 提供的 C++ 扩展点</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-cppextensionpoints.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>所有 QML 应用程序都可以从 C++ 扩展，以便使用在 C++ 代码中实现的附加功能或提供基于 C++ 的 QML 插件。<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtqml/qtqml-cppintegration-topic.html">集成 QML 和 C++</a>文档中介绍了从 C++ 扩展 QML 的主题。</p>
+<p>此外，Qt Quick 模块为 C++ 开发人员提供了几个特定于该模块的扩展和集成点。特别是，它允许 C++ 开发人员创建和注册可由 Qt Quick 呈现的自定义<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html">QQuickItem</a>派生类型。它还提供了几个与场景图相关的类，允许开发人员定义自己的渲染原语。</p>
+<a name="user-defined-qquickitem-derived-types"></a><a name="user-defined-qquickitem-derived-types"></a>
+<h2 id="user-defined-qquickitem-derived-types">用户定义的 QQuickItem 派生类型</h2>
+<p>虽然 Qt Quick 模块已经提供了丰富的可视项类型库供 QML 应用程序使用，但一些开发人员可能希望在 C++ 中定义他们自己的项派生类型并将它们公开给 QML 类型系统。最简单的方法是<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html">继承 QQuickItem</a>，它是 Qt Quick 模块中所有视觉类型的基本类型。有关更多详细信息，请参阅<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickitem.html">QQuickItem</a>文档。</p>
+<a name="scene-graph-related-classes"></a><a name="scene-graph-related-classes"></a>
+<h2 id="scene-graph-related-classes">场景图相关类</h2>
+<p>Qt Quick 2 使用基于 OpenGL ES 2.0 或 OpenGL 2.0 的专用场景图进行渲染。为图形使用场景图而不是传统的命令式绘画系统（<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtgui/qpainter.html">QPainter</a>和类似系统）意味着要渲染的场景可以保留在帧之间，并且要渲染的完整图元集在渲染开始之前是已知的。这为许多优化打开了大门，例如批处理 OpenGL 绘制调用以最小化状态更改或丢弃被遮挡的图元。</p>
+<p><a href="qtquick-module.html">Qt Quick C++ API</a>提供了各种类来支持在C++中创建自定义节点。</p>
+<p>有关详细信息，请参阅<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-visualcanvas-scenegraph.html">Qt Quick 
+<span lang="zh-cn">场景图</span></a>文档。</p>
+<a name="pixmap-and-threaded-image-support"></a><a name="pixmap-and-threaded-image-support"></a>
+<h2 id="pixmap-and-threaded-image-support">像素图和线程图像支持</h2>
+<p>虽然 QML 引擎允许 QML 应用程序从文件系统或网络资源加载图像，但某些应用程序可能需要从基于 C++ 的进程加载图像的附加选项。这可以通过<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickimageprovider.html">QQuickImageProvider</a>类来实现，该类为 QML 应用程序提供对像素图加载和线程图像请求的支持。任何通过特殊的“image:”URL 方案请求图像的 QML 应用程序都将被定向到适当的图像提供者以加载图像。</p>
+<p>有关更多信息，请参阅<a href="file:///E:/_Personal/Qt5.12-Document-Trans-in-Chinese/qtquick/qquickimageprovider.html">QQuickImageProvider</a>文档。</p>
+</div>
+<!-- @@@qtquick-cppextensionpoints.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

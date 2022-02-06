@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- views.qdoc -->
+  <title>Qt Quick 示例 - Views | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick 示例 - Views</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#running-the-example">运行该示例</a></li>
+<li class="level1"><a href="#gridview-and-pathview">GridView 和 PathView</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-views-example.html#dynamic-list">动态列表</a></li>
+<li class="level2"><a href="#expanding-delegates">扩展代理</a></li>
+<li class="level1">
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-views-example.html#highlight">
+高亮</a></li>
+<li class="level1">
+<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-views-example.html#highlight-ranges">
+高亮显示范围</a></li>
+<li class="level1"><a href="#sections">段落</a></li>
+<li class="level1"><a href="#packages">包</a></li>
+<li class="level1"><a href="#objectmodel">ObjectModel</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-views-example.html#display-margins">显示边距</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 示例 - Views</h1>
+<span class="subtitle"></span>
+<!-- $$$views-brief -->
+<p>是 QML 模型视图示例的集合。</p>
+<!-- @@@views -->
+<!-- $$$views-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-modelviews-example.png" alt="" /></p><p><i>Views</i>是与模型和视图功能相关的小型 QML 示例的集合。他们演示了如何使用 Qt Quick 视图类型显示来自模型的数据。有关更多信息，请访问<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-modelviewsdata-modelview.html">Qt Quick</a>页面中的模型和视图。</p>
+<a name="running-the-example"></a>
+<h2 id="running-the-example">运行该示例</h2>
+<p>要从 <a href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a>运行示例，请打开<b>欢迎</b> 模式并从 <b>示例</b>中选择示例。有关更多信息，请访问<a href="http://doc.qt.io/qtcreator/creator-build-example-application.html">构建和运行示例</a>。</p>
+<a name="gridview-and-pathview"></a>
+<h2 id="gridview-and-pathview">GridView 和 PathView</h2>
+<p><i>GridView</i>和<i>PathView</i>演示了使用这些类型来显示视图。</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-gridview.html">GridView</a></span> {
+          <span class="name">anchors</span>.fill: <span class="name">parent</span>
+          <span class="name">cellWidth</span>: <span class="number">100</span>; <span class="name">cellHeight</span>: <span class="number">100</span>
+          <span class="name">focus</span>: <span class="number">true</span>
+          <span class="name">model</span>: <span class="name">appModel</span>
+
+          <span class="name">highlight</span>: <span class="name">Rectangle</span> { <span class="name">width</span>: <span class="number">80</span>; <span class="name">height</span>: <span class="number">80</span>; <span class="name">color</span>: <span class="string">&quot;lightsteelblue&quot;</span> }
+
+          <span class="name">delegate</span>: <span class="name">Item</span> {
+              <span class="name">width</span>: <span class="number">100</span>; <span class="name">height</span>: <span class="number">100</span>
+
+              <span class="type"><a href="qml-qtquick-image.html">Image</a></span> {
+                  <span class="name">id</span>: <span class="name">myIcon</span>
+                  <span class="name">y</span>: <span class="number">20</span>; <span class="name">anchors</span>.horizontalCenter: <span class="name">parent</span>.<span class="name">horizontalCenter</span>
+                  <span class="name">source</span>: <span class="name">icon</span>
+              }
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+                  <span class="type">anchors</span> { <span class="name">top</span>: <span class="name">myIcon</span>.<span class="name">bottom</span>; <span class="name">horizontalCenter</span>: <span class="name">parent</span>.<span class="name">horizontalCenter</span> }
+                  <span class="name">text</span>: <span class="name">name</span>
+              }
+              <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">onClicked</span>: <span class="name">parent</span>.<span class="name">GridView</span>.<span class="name">view</span>.<span class="name">currentIndex</span> <span class="operator">=</span> <span class="name">index</span>
+              }
+          }
+      }
+
+</pre>
+<a name="dynamic-list"></a>
+<h2 id="dynamic-list">动态列表</h2>
+<p><i>动态列表</i>演示了对<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>的运行时添加和删除动画。</p>
+<p>当新项目被添加到视图中时，<a href="qml-qtquick-listview.html">ListView</a>.onAdd信号处理程序运行一个动画，当它们被删除时，<a href="qml-qtquick-listview.html">ListView</a>信号处理程序运行另一个动画。</p>
+<pre class="qml">
+
+          <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+              <span class="name">ListView</span>.onAdd: <span class="name">SequentialAnimation</span> {
+                  <span class="type"><a href="qml-qtquick-propertyaction.html">PropertyAction</a></span> { <span class="name">target</span>: <span class="name">delegateItem</span>; <span class="name">property</span>: <span class="string">&quot;height&quot;</span>; <span class="name">value</span>: <span class="number">0</span> }
+                  <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">target</span>: <span class="name">delegateItem</span>; <span class="name">property</span>: <span class="string">&quot;height&quot;</span>; <span class="name">to</span>: <span class="number">80</span>; <span class="name">duration</span>: <span class="number">250</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutQuad</span> }
+              }
+
+              <span class="name">ListView</span>.onRemove: <span class="name">SequentialAnimation</span> {
+                  <span class="type"><a href="qml-qtquick-propertyaction.html">PropertyAction</a></span> { <span class="name">target</span>: <span class="name">delegateItem</span>; <span class="name">property</span>: <span class="string">&quot;ListView.delayRemove&quot;</span>; <span class="name">value</span>: <span class="number">true</span> }
+                  <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">target</span>: <span class="name">delegateItem</span>; <span class="name">property</span>: <span class="string">&quot;height&quot;</span>; <span class="name">to</span>: <span class="number">0</span>; <span class="name">duration</span>: <span class="number">250</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InOutQuad</span> }
+
+                  <span class="comment">// Make sure delayRemove is set back to false so that the item can be destroyed</span>
+                  <span class="type"><a href="qml-qtquick-propertyaction.html">PropertyAction</a></span> { <span class="name">target</span>: <span class="name">delegateItem</span>; <span class="name">property</span>: <span class="string">&quot;ListView.delayRemove&quot;</span>; <span class="name">value</span>: <span class="number">false</span> }
+              }
+          }
+
+</pre>
+<h3 >扩展代理</h3>
+<p><i>扩展代理</i>演示了在激活时展开的委托。</p>
+<p>它有一个复杂的委托，它的大小和外观可以改变，取代视图中的其他项目。</p>
+<pre class="qml">
+
+          <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+              <span class="name">id</span>: <span class="name">recipe</span>
+
+              <span class="comment">// Create a property to contain the visibility of the details.</span>
+              <span class="comment">// We can bind multiple element's opacity to this one property,</span>
+              <span class="comment">// rather than having a &quot;PropertyChanges&quot; line for each element we</span>
+              <span class="comment">// want to fade.</span>
+              property <span class="type"><a href="../qtqml/qml-real.html">real</a></span> <span class="name">detailsOpacity</span> : <span class="number">0</span>
+              <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+                  <span class="name">anchors</span>.fill: <span class="name">parent</span>
+                  <span class="name">onClicked</span>: <span class="name">recipe</span>.<span class="name">state</span> <span class="operator">=</span> <span class="string">'Details'</span>;
+              }
+
+              <span class="comment">// Lay out the page: picture, title and ingredients at the top, and method at the</span>
+              <span class="comment">// bottom.  Note that elements that should not be visible in the list</span>
+              <span class="comment">// mode have their opacity set to recipe.detailsOpacity.</span>
+
+              <span class="type"><a href="qml-qtquick-row.html">Row</a></span> {
+                  <span class="name">id</span>: <span class="name">topLayout</span>
+                  <span class="name">x</span>: <span class="number">10</span>; <span class="name">y</span>: <span class="number">10</span>; <span class="name">height</span>: <span class="name">recipeImage</span>.<span class="name">height</span>; <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>
+                  <span class="name">spacing</span>: <span class="number">10</span>
+
+                  <span class="type"><a href="qml-qtquick-image.html">Image</a></span> {
+                      <span class="name">id</span>: <span class="name">recipeImage</span>
+                      <span class="name">width</span>: <span class="number">50</span>; <span class="name">height</span>: <span class="number">50</span>
+                      <span class="name">source</span>: <span class="name">picture</span>
+                  }
+              <span class="type"><a href="qml-qtquick-item.html">Item</a></span> {
+                  <span class="name">id</span>: <span class="name">details</span>
+                  <span class="name">x</span>: <span class="number">10</span>; <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span> <span class="operator">-</span> <span class="number">20</span>
+
+                  <span class="type">anchors</span> { <span class="name">top</span>: <span class="name">topLayout</span>.<span class="name">bottom</span>; <span class="name">topMargin</span>: <span class="number">10</span>; <span class="name">bottom</span>: <span class="name">parent</span>.<span class="name">bottom</span>; <span class="name">bottomMargin</span>: <span class="number">10</span> }
+                  <span class="name">opacity</span>: <span class="name">recipe</span>.<span class="name">detailsOpacity</span>
+              }
+
+              <span class="comment">// A button to close the detailed view, i.e. set the state back to default ('').</span>
+              <span class="type">TextButton</span> {
+                  <span class="name">y</span>: <span class="number">10</span>
+                  <span class="type">anchors</span> { <span class="name">right</span>: <span class="name">background</span>.<span class="name">right</span>; <span class="name">rightMargin</span>: <span class="number">10</span> }
+                  <span class="name">opacity</span>: <span class="name">recipe</span>.<span class="name">detailsOpacity</span>
+                  <span class="name">text</span>: <span class="string">&quot;Close&quot;</span>
+
+                  <span class="name">onClicked</span>: <span class="name">recipe</span>.<span class="name">state</span> <span class="operator">=</span> <span class="string">''</span>;
+              }
+
+              <span class="name">states</span>: <span class="name">State</span> {
+                  <span class="name">name</span>: <span class="string">&quot;Details&quot;</span>
+
+                  <span class="type"><a href="qml-qtquick-propertychanges.html">PropertyChanges</a></span> { <span class="name">target</span>: <span class="name">background</span>; <span class="name">color</span>: <span class="string">&quot;white&quot;</span> }
+                  <span class="type"><a href="qml-qtquick-propertychanges.html">PropertyChanges</a></span> { <span class="name">target</span>: <span class="name">recipeImage</span>; <span class="name">width</span>: <span class="number">130</span>; <span class="name">height</span>: <span class="number">130</span> } <span class="comment">// Make picture bigger</span>
+                  <span class="type"><a href="qml-qtquick-propertychanges.html">PropertyChanges</a></span> { <span class="name">target</span>: <span class="name">recipe</span>; <span class="name">detailsOpacity</span>: <span class="number">1</span>; <span class="name">x</span>: <span class="number">0</span> } <span class="comment">// Make details visible</span>
+                  <span class="type"><a href="qml-qtquick-propertychanges.html">PropertyChanges</a></span> { <span class="name">target</span>: <span class="name">recipe</span>; <span class="name">height</span>: <span class="name">listView</span>.<span class="name">height</span> } <span class="comment">// Fill the entire list area with the detailed view</span>
+
+                  <span class="comment">// Move the list so that this item is at the top.</span>
+                  <span class="type"><a href="qml-qtquick-propertychanges.html">PropertyChanges</a></span> { <span class="name">target</span>: <span class="name">recipe</span>.<span class="name">ListView</span>.<span class="name">view</span>; <span class="name">explicit</span>: <span class="number">true</span>; <span class="name">contentY</span>: <span class="name">recipe</span>.<span class="name">y</span> }
+
+                  <span class="comment">// Disallow flicking while we're in detailed view</span>
+                  <span class="type"><a href="qml-qtquick-propertychanges.html">PropertyChanges</a></span> { <span class="name">target</span>: <span class="name">recipe</span>.<span class="name">ListView</span>.<span class="name">view</span>; <span class="name">interactive</span>: <span class="number">false</span> }
+              }
+
+              <span class="name">transitions</span>: <span class="name">Transition</span> {
+                  <span class="comment">// Make the state changes smooth</span>
+                  <span class="type"><a href="qml-qtquick-parallelanimation.html">ParallelAnimation</a></span> {
+                      <span class="type"><a href="qml-qtquick-coloranimation.html">ColorAnimation</a></span> { <span class="name">property</span>: <span class="string">&quot;color&quot;</span>; <span class="name">duration</span>: <span class="number">500</span> }
+                      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">duration</span>: <span class="number">300</span>; <span class="name">properties</span>: <span class="string">&quot;detailsOpacity,x,contentY,height,width&quot;</span> }
+                  }
+              }
+          }
+
+</pre>
+<a name="highlight"></a>
+<h2 id="highlight">高亮</h2>
+<p><i>高亮</i>演示了向<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>添加自定义高亮。</p>
+<pre class="qml">
+
+      <span class="comment">// Define a highlight with customized movement between items.</span>
+      <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">highlightBar</span>
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="number">50</span>
+              <span class="name">color</span>: <span class="string">&quot;#FFFF88&quot;</span>
+              <span class="name">y</span>: <span class="name">listView</span>.<span class="name">currentItem</span>.<span class="name">y</span>;
+              Behavior on <span class="name">y</span> { <span class="type"><a href="qml-qtquick-springanimation.html">SpringAnimation</a></span> { <span class="name">spring</span>: <span class="number">2</span>; <span class="name">damping</span>: <span class="number">0.1</span> } }
+          }
+      }
+
+      <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+          <span class="name">id</span>: <span class="name">listView</span>
+          <span class="name">width</span>: <span class="number">200</span>; <span class="name">height</span>: <span class="name">parent</span>.<span class="name">height</span>
+          <span class="name">x</span>: <span class="number">30</span>
+
+          <span class="name">model</span>: <span class="name">PetsModel</span> {}
+          <span class="name">delegate</span>: <span class="name">petDelegate</span>
+          <span class="name">focus</span>: <span class="number">true</span>
+
+          <span class="comment">// Set the highlight delegate. Note we must also set highlightFollowsCurrentItem</span>
+          <span class="comment">// to false so the highlight delegate can control how the highlight is moved.</span>
+          <span class="name">highlight</span>: <span class="name">highlightBar</span>
+          <span class="name">highlightFollowsCurrentItem</span>: <span class="number">false</span>
+      }
+
+</pre>
+<a name="highlight-ranges"></a>
+<h2 id="highlight-ranges">高亮显示范围</h2>
+<p><i>亮显示范围展示了</i><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>的三种不同的高亮范围模式。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">root</span>
+      property <span class="type"><a href="../qtqml/qml-int.html">int</a></span> <span class="name">current</span>: <span class="number">0</span>
+      property <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span> <span class="name">increasing</span>: <span class="number">true</span>
+      <span class="comment">// Example index automation for convenience, disabled on click or tap</span>
+      <span class="type"><a href="qml-qtquick-sequentialanimation.html">SequentialAnimation</a></span> {
+          <span class="name">id</span>: <span class="name">anim</span>
+          <span class="name">loops</span>: -<span class="number">1</span>
+          <span class="name">running</span>: <span class="number">true</span>
+          <span class="type"><a href="qml-qtquick-scriptaction.html">ScriptAction</a></span> {
+              <span class="name">script</span>: <span class="keyword">if</span> (<span class="name">increasing</span>) {
+                          current++;
+                          <span class="keyword">if</span> (<span class="name">current</span> <span class="operator">&gt;=</span> <span class="name">aModel</span>.<span class="name">count</span> <span class="operator">-</span><span class="number">1</span>) {
+                              <span class="name">current</span> <span class="operator">=</span> <span class="name">aModel</span>.<span class="name">count</span> <span class="operator">-</span> <span class="number">1</span>;
+                              <span class="name">increasing</span> <span class="operator">=</span> !<span class="name">increasing</span>;
+                          }
+                      } <span class="keyword">else</span> {
+                          current--;
+                          <span class="keyword">if</span> (<span class="name">current</span> <span class="operator">&lt;=</span> <span class="number">0</span>) {
+                              <span class="name">current</span> <span class="operator">=</span> <span class="number">0</span>;
+                              <span class="name">increasing</span> <span class="operator">=</span> !<span class="name">increasing</span>;
+                          }
+                      }
+          }
+
+          <span class="type"><a href="qml-qtquick-pauseanimation.html">PauseAnimation</a></span> { <span class="name">duration</span>: <span class="number">500</span> }
+      }
+      <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+          <span class="name">id</span>: <span class="name">list1</span>
+          <span class="name">height</span>: <span class="number">50</span>; <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>
+          <span class="name">model</span>: <span class="name">PetsModel</span> {<span class="name">id</span>: <span class="name">aModel</span>}
+          <span class="name">delegate</span>: <span class="name">petDelegate</span>
+          <span class="name">orientation</span>: <span class="name">ListView</span>.<span class="name">Horizontal</span>
+
+          <span class="name">highlight</span>: <span class="name">Rectangle</span> { <span class="name">color</span>: <span class="string">&quot;lightsteelblue&quot;</span> }
+          <span class="name">currentIndex</span>: <span class="name">root</span>.<span class="name">current</span>
+          <span class="name">onCurrentIndexChanged</span>: <span class="name">root</span>.<span class="name">current</span> <span class="operator">=</span> <span class="name">currentIndex</span>
+          <span class="name">focus</span>: <span class="number">true</span>
+      }
+
+      <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+          <span class="name">id</span>: <span class="name">list2</span>
+          <span class="name">y</span>: <span class="number">160</span>
+          <span class="name">height</span>: <span class="number">50</span>; <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>
+          <span class="name">model</span>: <span class="name">PetsModel</span> {}
+          <span class="name">delegate</span>: <span class="name">petDelegate</span>
+          <span class="name">orientation</span>: <span class="name">ListView</span>.<span class="name">Horizontal</span>
+
+          <span class="name">highlight</span>: <span class="name">Rectangle</span> { <span class="name">color</span>: <span class="string">&quot;yellow&quot;</span> }
+          <span class="name">currentIndex</span>: <span class="name">root</span>.<span class="name">current</span>
+          <span class="name">preferredHighlightBegin</span>: <span class="number">80</span>; <span class="name">preferredHighlightEnd</span>: <span class="number">220</span>
+          <span class="name">highlightRangeMode</span>: <span class="name">ListView</span>.<span class="name">ApplyRange</span>
+      }
+
+      <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+          <span class="name">id</span>: <span class="name">list3</span>
+          <span class="name">y</span>: <span class="number">320</span>
+          <span class="name">height</span>: <span class="number">50</span>; <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>
+          <span class="name">model</span>: <span class="name">PetsModel</span> {}
+          <span class="name">delegate</span>: <span class="name">petDelegate</span>
+          <span class="name">orientation</span>: <span class="name">ListView</span>.<span class="name">Horizontal</span>
+
+          <span class="name">highlight</span>: <span class="name">Rectangle</span> { <span class="name">color</span>: <span class="string">&quot;yellow&quot;</span> }
+          <span class="name">currentIndex</span>: <span class="name">root</span>.<span class="name">current</span>
+          <span class="name">onCurrentIndexChanged</span>: <span class="name">root</span>.<span class="name">current</span> <span class="operator">=</span> <span class="name">currentIndex</span>
+          <span class="name">preferredHighlightBegin</span>: <span class="number">125</span>; <span class="name">preferredHighlightEnd</span>: <span class="number">125</span>
+          <span class="name">highlightRangeMode</span>: <span class="name">ListView</span>.<span class="name">StrictlyEnforceRange</span>
+      }
+  }
+
+</pre>
+<a name="sections"></a>
+<h2 id="sections">段落</h2>
+<p><i>段落</i>演示了<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>可用的各种节页眉和页脚。</p>
+<pre class="qml">
+
+      <span class="comment">// The delegate for each section header</span>
+      <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">sectionHeading</span>
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">width</span>: <span class="name">container</span>.<span class="name">width</span>
+              <span class="name">height</span>: <span class="name">childrenRect</span>.<span class="name">height</span>
+              <span class="name">color</span>: <span class="string">&quot;lightsteelblue&quot;</span>
+
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> {
+                  <span class="name">text</span>: <span class="name">section</span>
+                  <span class="name">font</span>.bold: <span class="number">true</span>
+                  <span class="name">font</span>.pixelSize: <span class="number">20</span>
+              }
+          }
+      }
+
+      <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+          <span class="name">id</span>: <span class="name">view</span>
+          <span class="name">anchors</span>.top: <span class="name">parent</span>.<span class="name">top</span>
+          <span class="name">anchors</span>.bottom: <span class="name">buttonBar</span>.<span class="name">top</span>
+          <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>
+          <span class="name">model</span>: <span class="name">animalsModel</span>
+          <span class="name">delegate</span>: <span class="name">Text</span> { <span class="name">text</span>: <span class="name">name</span>; <span class="name">font</span>.pixelSize: <span class="number">18</span> }
+
+          <span class="name">section</span>.property: <span class="string">&quot;size&quot;</span>
+          <span class="name">section</span>.criteria: <span class="name">ViewSection</span>.<span class="name">FullString</span>
+          <span class="name">section</span>.delegate: <span class="name">sectionHeading</span>
+      }
+
+</pre>
+<a name="packages"></a>
+<h2 id="packages">包</h2>
+<p><i>包</i>使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/package-qmlmodule.html">Package</a>类型在两个视图之间转换委托。</p>
+<p>它有一个 Package 对象，它定义了每个视图的委托项目和一个可以在委托之间传输的项目。</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtqml/qml-package.html">Package</a></span> {
+      <span class="type"><a href="qml-qtquick-text.html">Text</a></span> { <span class="name">id</span>: <span class="name">listDelegate</span>; <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>; <span class="name">height</span>: <span class="number">25</span>; <span class="name">text</span>: <span class="string">'Empty'</span>; <span class="name">Package</span>.name: <span class="string">'list'</span> }
+      <span class="type"><a href="qml-qtquick-text.html">Text</a></span> { <span class="name">id</span>: <span class="name">gridDelegate</span>; <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span> <span class="operator">/</span> <span class="number">2</span>; <span class="name">height</span>: <span class="number">50</span>; <span class="name">text</span>: <span class="string">'Empty'</span>; <span class="name">Package</span>.name: <span class="string">'grid'</span> }
+
+      <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+          <span class="name">id</span>: <span class="name">wrapper</span>
+          <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>; <span class="name">height</span>: <span class="number">25</span>
+          <span class="name">color</span>: <span class="string">'lightsteelblue'</span>
+
+          <span class="type"><a href="qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="name">display</span>; <span class="name">anchors</span>.centerIn: <span class="name">parent</span> }
+          <span class="name">state</span>: <span class="name">root</span>.<span class="name">upTo</span> <span class="operator">&gt;</span> <span class="name">index</span> ? <span class="string">'inGrid'</span> : <span class="string">'inList'</span>
+          <span class="name">states</span>: [
+              <span class="type"><a href="qml-qtquick-state.html">State</a></span> {
+                  <span class="name">name</span>: <span class="string">'inList'</span>
+                  <span class="type"><a href="qml-qtquick-parentchange.html">ParentChange</a></span> { <span class="name">target</span>: <span class="name">wrapper</span>; <span class="name">parent</span>: <span class="name">listDelegate</span> }
+              },
+              <span class="type"><a href="qml-qtquick-state.html">State</a></span> {
+                  <span class="name">name</span>: <span class="string">'inGrid'</span>
+                  <span class="type"><a href="qml-qtquick-parentchange.html">ParentChange</a></span> {
+                      <span class="name">target</span>: <span class="name">wrapper</span>; <span class="name">parent</span>: <span class="name">gridDelegate</span>
+                      <span class="name">x</span>: <span class="number">0</span>; <span class="name">y</span>: <span class="number">0</span>; <span class="name">width</span>: <span class="name">gridDelegate</span>.<span class="name">width</span>; <span class="name">height</span>: <span class="name">gridDelegate</span>.<span class="name">height</span>
+                  }
+              }
+          ]
+
+          <span class="name">transitions</span>: [
+              <span class="type"><a href="qml-qtquick-transition.html">Transition</a></span> {
+                  <span class="type"><a href="qml-qtquick-parentanimation.html">ParentAnimation</a></span> {
+                      <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">properties</span>: <span class="string">'x,y,width,height'</span>; <span class="name">duration</span>: <span class="number">300</span> }
+                  }
+              }
+          ]
+      }
+  }
+
+</pre>
+<p><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a>允许各个视图从共享包委托访问其特定项目。</p>
+<pre class="qml">
+
+  <span class="type"><a href="../qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a></span> {
+      <span class="name">id</span>: <span class="name">visualModel</span>
+      <span class="name">delegate</span>: <span class="name">Delegate</span> {}
+      <span class="name">model</span>: <span class="name">myModel</span>
+  }
+
+  <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+      <span class="name">id</span>: <span class="name">lv</span>
+      <span class="name">height</span>: <span class="name">parent</span>.<span class="name">height</span><span class="operator">/</span><span class="number">2</span>
+      <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>
+
+      <span class="name">model</span>: <span class="name">visualModel</span>.<span class="name">parts</span>.<span class="name">list</span>
+  }
+  <span class="type"><a href="qml-qtquick-gridview.html">GridView</a></span> {
+      <span class="name">y</span>: <span class="name">parent</span>.<span class="name">height</span><span class="operator">/</span><span class="number">2</span>
+      <span class="name">height</span>: <span class="name">parent</span>.<span class="name">height</span><span class="operator">/</span><span class="number">2</span>
+      <span class="name">width</span>: <span class="name">parent</span>.<span class="name">width</span>
+      <span class="name">cellWidth</span>: <span class="name">width</span> <span class="operator">/</span> <span class="number">2</span>
+      <span class="name">cellHeight</span>: <span class="number">50</span>
+      <span class="name">model</span>: <span class="name">visualModel</span>.<span class="name">parts</span>.<span class="name">grid</span>
+  }
+
+</pre>
+<a name="objectmodel"></a>
+<h2 id="objectmodel">对象模型</h2>
+<p><i>对象模型</i>对模型使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-views-example.html#objectmodel">ObjectModel</a>而不是<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-listmodel.html">ListModel</a>。</p>
+<pre class="qml">
+
+      <span class="type"><a href="../qtqml/qml-qtqml-models-objectmodel.html">ObjectModel</a></span> {
+          <span class="name">id</span>: <span class="name">itemModel</span>
+
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">width</span>: <span class="name">view</span>.<span class="name">width</span>; <span class="name">height</span>: <span class="name">view</span>.<span class="name">height</span>
+              <span class="name">color</span>: <span class="string">&quot;#FFFEF0&quot;</span>
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">&quot;Page 1&quot;</span>; <span class="name">font</span>.bold: <span class="number">true</span>; <span class="name">anchors</span>.centerIn: <span class="name">parent</span> }
+
+              <span class="name">Component</span>.onDestruction: <span class="keyword">if</span> (<span class="name">printDestruction</span>) <span class="name">print</span>(<span class="string">&quot;destroyed 1&quot;</span>)
+          }
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">width</span>: <span class="name">view</span>.<span class="name">width</span>; <span class="name">height</span>: <span class="name">view</span>.<span class="name">height</span>
+              <span class="name">color</span>: <span class="string">&quot;#F0FFF7&quot;</span>
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">&quot;Page 2&quot;</span>; <span class="name">font</span>.bold: <span class="number">true</span>; <span class="name">anchors</span>.centerIn: <span class="name">parent</span> }
+
+              <span class="name">Component</span>.onDestruction: <span class="keyword">if</span> (<span class="name">printDestruction</span>) <span class="name">print</span>(<span class="string">&quot;destroyed 2&quot;</span>)
+          }
+          <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+              <span class="name">width</span>: <span class="name">view</span>.<span class="name">width</span>; <span class="name">height</span>: <span class="name">view</span>.<span class="name">height</span>
+              <span class="name">color</span>: <span class="string">&quot;#F4F0FF&quot;</span>
+              <span class="type"><a href="qml-qtquick-text.html">Text</a></span> { <span class="name">text</span>: <span class="string">&quot;Page 3&quot;</span>; <span class="name">font</span>.bold: <span class="number">true</span>; <span class="name">anchors</span>.centerIn: <span class="name">parent</span> }
+
+              <span class="name">Component</span>.onDestruction: <span class="keyword">if</span> (<span class="name">printDestruction</span>) <span class="name">print</span>(<span class="string">&quot;destroyed 3&quot;</span>)
+          }
+      }
+
+      <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+          <span class="name">id</span>: <span class="name">view</span>
+          <span class="type">anchors</span> { <span class="name">fill</span>: <span class="name">parent</span>; <span class="name">bottomMargin</span>: <span class="number">30</span> }
+          <span class="name">model</span>: <span class="name">itemModel</span>
+          <span class="name">preferredHighlightBegin</span>: <span class="number">0</span>; <span class="name">preferredHighlightEnd</span>: <span class="number">0</span>
+          <span class="name">highlightRangeMode</span>: <span class="name">ListView</span>.<span class="name">StrictlyEnforceRange</span>
+          <span class="name">orientation</span>: <span class="name">ListView</span>.<span class="name">Horizontal</span>
+          <span class="name">snapMode</span>: <span class="name">ListView</span>.<span class="name">SnapOneItem</span>; <span class="name">flickDeceleration</span>: <span class="number">2000</span>
+          <span class="name">cacheBuffer</span>: <span class="number">200</span>
+      }
+
+</pre>
+<a name="display-margins"></a>
+<h2 id="display-margins">显示边距</h2>
+<p><i>显示边距</i>使用委托来显示项目并实现一个简单的页眉和页脚组件。</p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-views-delegatemodel-delegatemodel-qmlproject.html">views/delegatemodel/delegatemodel.qmlproject</a></li>
+<li><a href="qtquick-views-delegatemodel-dragselection-qml.html">views/delegatemodel/dragselection.qml</a></li>
+<li><a href="qtquick-views-delegatemodel-slideshow-qml.html">views/delegatemodel/slideshow.qml</a></li>
+<li><a href="qtquick-views-gridview-gridview-example-qml.html">views/gridview/gridview-example.qml</a></li>
+<li><a href="qtquick-views-listview-content-petsmodel-qml.html">views/listview/content/PetsModel.qml</a></li>
+<li><a href="qtquick-views-listview-content-pressandholdbutton-qml.html">views/listview/content/PressAndHoldButton.qml</a></li>
+<li><a href="qtquick-views-listview-content-recipesmodel-qml.html">views/listview/content/RecipesModel.qml</a></li>
+<li><a href="qtquick-views-listview-content-smalltext-qml.html">views/listview/content/SmallText.qml</a></li>
+<li><a href="qtquick-views-listview-content-textbutton-qml.html">views/listview/content/TextButton.qml</a></li>
+<li><a href="qtquick-views-listview-content-togglebutton-qml.html">views/listview/content/ToggleButton.qml</a></li>
+<li><a href="qtquick-views-listview-displaymargin-qml.html">views/listview/displaymargin.qml</a></li>
+<li><a href="qtquick-views-listview-dynamiclist-qml.html">views/listview/dynamiclist.qml</a></li>
+<li><a href="qtquick-views-listview-expandingdelegates-qml.html">views/listview/expandingdelegates.qml</a></li>
+<li><a href="qtquick-views-listview-highlight-qml.html">views/listview/highlight.qml</a></li>
+<li><a href="qtquick-views-listview-highlightranges-qml.html">views/listview/highlightranges.qml</a></li>
+<li><a href="qtquick-views-listview-sections-qml.html">views/listview/sections.qml</a></li>
+<li><a href="qtquick-views-main-cpp.html">views/main.cpp</a></li>
+<li><a href="qtquick-views-objectmodel-objectmodel-qml.html">views/objectmodel/objectmodel.qml</a></li>
+<li><a href="qtquick-views-package-delegate-qml.html">views/package/Delegate.qml</a></li>
+<li><a href="qtquick-views-package-view-qml.html">views/package/view.qml</a></li>
+<li><a href="qtquick-views-pathview-pathview-example-qml.html">views/pathview/pathview-example.qml</a></li>
+<li><a href="qtquick-views-views-pro.html">views/views.pro</a></li>
+<li><a href="qtquick-views-views-qml.html">views/views.qml</a></li>
+<li><a href="qtquick-views-views-qmlproject.html">views/views.qmlproject</a></li>
+<li><a href="qtquick-views-views-qrc.html">views/views.qrc</a></li>
+</ul>
+<p>图片：</p>
+<ul>
+<li><a href="images/used-in-examples/views/gridview/pics/AddressBook_48.png">views/gridview/pics/AddressBook_48.png</a></li>
+<li><a href="images/used-in-examples/views/gridview/pics/AudioPlayer_48.png">views/gridview/pics/AudioPlayer_48.png</a></li>
+<li><a href="images/used-in-examples/views/gridview/pics/Camera_48.png">views/gridview/pics/Camera_48.png</a></li>
+<li><a href="images/used-in-examples/views/gridview/pics/DateBook_48.png">views/gridview/pics/DateBook_48.png</a></li>
+<li><a href="images/used-in-examples/views/gridview/pics/EMail_48.png">views/gridview/pics/EMail_48.png</a></li>
+<li><a href="images/used-in-examples/views/gridview/pics/TodoList_48.png">views/gridview/pics/TodoList_48.png</a></li>
+<li><a href="images/used-in-examples/views/gridview/pics/VideoPlayer_48.png">views/gridview/pics/VideoPlayer_48.png</a></li>
+<li><a href="images/used-in-examples/views/listview/content/pics/arrow-down.png">views/listview/content/pics/arrow-down.png</a></li>
+<li><a href="images/used-in-examples/views/listview/content/pics/arrow-up.png">views/listview/content/pics/arrow-up.png</a></li>
+<li><a href="images/used-in-examples/views/listview/content/pics/fruit-salad.jpg">views/listview/content/pics/fruit-salad.jpg</a></li>
+<li><a href="images/used-in-examples/views/listview/content/pics/hamburger.jpg">views/listview/content/pics/hamburger.jpg</a></li>
+<li><a href="images/used-in-examples/views/listview/content/pics/lemonade.jpg">views/listview/content/pics/lemonade.jpg</a></li>
+<li><a href="images/used-in-examples/views/listview/content/pics/list-delete.png">views/listview/content/pics/list-delete.png</a></li>
+<li><a href="images/used-in-examples/views/listview/content/pics/minus-sign.png">views/listview/content/pics/minus-sign.png</a></li>
+<li><a href="images/used-in-examples/views/listview/content/pics/moreDown.png">views/listview/content/pics/moreDown.png</a></li>
+<li><a href="images/used-in-examples/views/listview/content/pics/moreUp.png">views/listview/content/pics/moreUp.png</a></li>
+<li><a href="images/used-in-examples/views/listview/content/pics/pancakes.jpg">views/listview/content/pics/pancakes.jpg</a></li>
+<li><a href="images/used-in-examples/views/listview/content/pics/plus-sign.png">views/listview/content/pics/plus-sign.png</a></li>
+<li><a href="images/used-in-examples/views/listview/content/pics/vegetable-soup.jpg">views/listview/content/pics/vegetable-soup.jpg</a></li>
+<li><a href="images/used-in-examples/views/pathview/pics/AddressBook_48.png">views/pathview/pics/AddressBook_48.png</a></li>
+<li><a href="images/used-in-examples/views/pathview/pics/AudioPlayer_48.png">views/pathview/pics/AudioPlayer_48.png</a></li>
+<li><a href="images/used-in-examples/views/pathview/pics/Camera_48.png">views/pathview/pics/Camera_48.png</a></li>
+<li><a href="images/used-in-examples/views/pathview/pics/DateBook_48.png">views/pathview/pics/DateBook_48.png</a></li>
+<li><a href="images/used-in-examples/views/pathview/pics/EMail_48.png">views/pathview/pics/EMail_48.png</a></li>
+<li><a href="images/used-in-examples/views/pathview/pics/TodoList_48.png">views/pathview/pics/TodoList_48.png</a></li>
+<li><a href="images/used-in-examples/views/pathview/pics/VideoPlayer_48.png">views/pathview/pics/VideoPlayer_48.png</a></li>
+</ul>
+</div>
+<!-- @@@views -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

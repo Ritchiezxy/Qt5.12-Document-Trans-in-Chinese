@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- dynamicview-tutorial.qdoc -->
+  <title>QML Dynamic View Ordering Tutorial 3 - Moving Dragged Items | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >QML 动态视图排序教程 3 - 移动拖动项</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+  <link rel="prev" href="qtquick-tutorials-dynamicview-dynamicview2-example.html" />
+  <link rel="next" href="qtquick-tutorials-dynamicview-dynamicview4-example.html" />
+<p class="naviNextPrevious headerNavi">
+<a class="prevPage" href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-dynamicview-dynamicview2-example.html">QML 动态视图排序教程 2 - 拖动视图项目</a>
+<span class="naviSeparator">  &#9702;  
+<a class="nextPage" href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-dynamicview-dynamicview4-example.html">QML 动态视图排序教程 4 - 排序项目</a></span>
+</p><p/>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level2"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-dynamicview-dynamicview3-example.html#walkthrough">演练</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QML 动态视图排序教程 3 - 移动拖动项</h1>
+<span class="subtitle"></span>
+<!-- $$$tutorials/dynamicview/dynamicview3-description -->
+<div class="descr"> <a name="details"></a>
+<p>应用程序的下一步是在列表中拖动项目，以便对列表重新排序。为了实现这一点，我们在应用程序中引入了三种新类型;<a href="../qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a>，<a href="qml-qtquick-drag.html">Drag</a> 
+和<a href="qml-qtquick-droparea.html">DropArea</a>。</p>
+<pre class="qml">
+
+  <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+      <span class="name">id</span>: <span class="name">root</span>
+
+      <span class="name">width</span>: <span class="number">300</span>; <span class="name">height</span>: <span class="number">400</span>
+
+      <span class="type"><a href="../qtqml/qml-qtqml-component.html">Component</a></span> {
+          <span class="name">id</span>: <span class="name">dragDelegate</span>
+
+          <span class="type"><a href="qml-qtquick-mousearea.html">MouseArea</a></span> {
+              <span class="name">id</span>: <span class="name">dragArea</span>
+
+              property <span class="type"><a href="../qtqml/qml-bool.html">bool</a></span> <span class="name">held</span>: <span class="number">false</span>
+
+              <span class="type">anchors</span> { <span class="name">left</span>: <span class="name">parent</span>.<span class="name">left</span>; <span class="name">right</span>: <span class="name">parent</span>.<span class="name">right</span> }
+              <span class="name">height</span>: <span class="name">content</span>.<span class="name">height</span>
+
+              <span class="name">drag</span>.target: <span class="name">held</span> ? <span class="name">content</span> : <span class="name">undefined</span>
+              <span class="name">drag</span>.axis: <span class="name">Drag</span>.<span class="name">YAxis</span>
+
+              <span class="name">onPressAndHold</span>: <span class="name">held</span> <span class="operator">=</span> <span class="number">true</span>
+              <span class="name">onReleased</span>: <span class="name">held</span> <span class="operator">=</span> <span class="number">false</span>
+
+              <span class="type"><a href="qml-qtquick-rectangle.html">Rectangle</a></span> {
+                  <span class="name">id</span>: <span class="name">content</span>
+                  <span class="name">Drag</span>.active: <span class="name">dragArea</span>.<span class="name">held</span>
+                  <span class="name">Drag</span>.source: <span class="name">dragArea</span>
+                  <span class="name">Drag</span>.hotSpot.x: <span class="name">width</span> <span class="operator">/</span> <span class="number">2</span>
+                  <span class="name">Drag</span>.hotSpot.y: <span class="name">height</span> <span class="operator">/</span> <span class="number">2</span>
+              }
+              <span class="type"><a href="qml-qtquick-droparea.html">DropArea</a></span> {
+                  <span class="type">anchors</span> { <span class="name">fill</span>: <span class="name">parent</span>; <span class="name">margins</span>: <span class="number">10</span> }
+
+                  <span class="name">onEntered</span>: {
+                      <span class="name">visualModel</span>.<span class="name">items</span>.<span class="name">move</span>(
+                              <span class="name">drag</span>.<span class="name">source</span>.<span class="name">DelegateModel</span>.<span class="name">itemsIndex</span>,
+                              <span class="name">dragArea</span>.<span class="name">DelegateModel</span>.<span class="name">itemsIndex</span>)
+                  }
+              }
+          }
+      }
+  }
+
+</pre>
+<a name="walkthrough"></a>
+<h3 >演练</h3>
+<p>为了对视图重新排序，我们需要确定一个项目何时被拖到另一个项目上。使用 Drag 附加属性，我们可以生成事件，只要它附加到的项目移动，这些事件就会发送到场景图。</p>
+<pre class="qml">
+
+                  <span class="name">Drag</span>.active: <span class="name">dragArea</span>.<span class="name">held</span>
+                  <span class="name">Drag</span>.source: <span class="name">dragArea</span>
+                  <span class="name">Drag</span>.hotSpot.x: <span class="name">width</span> <span class="operator">/</span> <span class="number">2</span>
+                  <span class="name">Drag</span>.hotSpot.y: <span class="name">height</span> <span class="operator">/</span> <span class="number">2</span>
+
+</pre>
+<p>只有在 active 属性为 true 时才会发送拖动事件，因此在此示例中，将在持有委托时发送第一个事件，并在拖动时发送其他事件。hotSpot属性指定拖动事件在被拖动项目中的相对位置，<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-drag.html#hotSpot-attached-prop">即</a>该实例中项目的中心。</p>
+<p>然后我们在每个视图项中使用一个<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-droparea.html">DropArea</a>来确定被拖动项的热点何时与另一个项相交，当拖动进入这些 DropArea 之一时，我们可以将被拖动项移动到被拖动项的索引处。</p>
+<pre class="qml">
+
+              <span class="type"><a href="qml-qtquick-droparea.html">DropArea</a></span> {
+                  <span class="type">anchors</span> { <span class="name">fill</span>: <span class="name">parent</span>; <span class="name">margins</span>: <span class="number">10</span> }
+
+                  <span class="name">onEntered</span>: {
+                      <span class="name">visualModel</span>.<span class="name">items</span>.<span class="name">move</span>(
+                              <span class="name">drag</span>.<span class="name">source</span>.<span class="name">DelegateModel</span>.<span class="name">itemsIndex</span>,
+                              <span class="name">dragArea</span>.<span class="name">DelegateModel</span>.<span class="name">itemsIndex</span>)
+                  }
+              }
+
+</pre>
+<p>要在视图中移动项目，我们使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a>。视图类型使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a>类型从模型数据中实例化委托项，并且在显式构造时可用于过滤和重新排序提供给<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>的模型项。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a>的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#items-prop">items</a>属性提供对视图项目的访问，并允许我们在不修改源模型的情况下更改可见顺序。为了确定项目的当前可见索引，我们使用委托项目的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a>附加属性上的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#itemsIndex-attached-prop">itemsIndex</a> {itemsIndex} 属性。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"></a><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#itemsIndex-attached-prop"></a><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html"></a></p>
+<p>要将<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a>与<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>结合使用，我们将其绑定到视图的<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html#model-prop">模型</a>属性，并将<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#model-attached-prop">模型</a>和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html#delegate-prop">委托</a>绑定到<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a>。</p>
+<pre class="qml">
+
+      <span class="type"><a href="../qtqml/qml-qtqml-models-delegatemodel.html">DelegateModel</a></span> {
+          <span class="name">id</span>: <span class="name">visualModel</span>
+
+          <span class="name">model</span>: <span class="name">PetsModel</span> {}
+          <span class="name">delegate</span>: <span class="name">dragDelegate</span>
+      }
+
+      <span class="type"><a href="qml-qtquick-listview.html">ListView</a></span> {
+          <span class="name">id</span>: <span class="name">view</span>
+
+          <span class="type">anchors</span> { <span class="name">fill</span>: <span class="name">parent</span>; <span class="name">margins</span>: <span class="number">2</span> }
+
+          <span class="name">model</span>: <span class="name">visualModel</span>
+
+          <span class="name">spacing</span>: <span class="number">4</span>
+          <span class="name">cacheBuffer</span>: <span class="number">50</span>
+      }
+
+</pre>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-tutorials-dynamicview-dynamicview3-petsmodel-qml.html">tutorials/dynamicview/dynamicview3/PetsModel.qml</a></li>
+<li><a href="qtquick-tutorials-dynamicview-dynamicview3-dynamicview-qml.html">tutorials/dynamicview/dynamicview3/dynamicview.qml</a></li>
+<li><a href="qtquick-tutorials-dynamicview-dynamicview3-dynamicview3-qmlproject.html">tutorials/dynamicview/dynamicview3/dynamicview3.qmlproject</a></li>
+</ul>
+</div>
+<!-- @@@tutorials/dynamicview/dynamicview3 -->
+<p class="naviNextPrevious footerNavi">
+<a class="prevPage" href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-dynamicview-dynamicview2-example.html">QML 动态视图排序教程 2 - 拖动视图项目</a>
+<span class="naviSeparator">  &#9702;  
+<a class="nextPage" href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-tutorials-dynamicview-dynamicview4-example.html">QML 动态视图排序教程 4 - 排序项目</a></span>
+</p>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

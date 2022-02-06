@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- text.qdoc -->
+  <title>Qt Quick 示例 - Text | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >Qt Quick 示例 - 文本</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#hello">Hello</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-text-example.html#fonts">字体</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-text-example.html#available-fonts">可用字体</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-text-example.html#banner">横幅</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-text-example.html#img-tag">图片标签</a></li>
+<li class="level1"><a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qtquick-text-example.html#text-layout">文本布局</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 示例 - 文本</h1>
+<span class="subtitle"></span>
+<!-- $$$text-brief -->
+<p>这是与文本相关的 QML 示例集合。</p>
+<!-- @@@text -->
+<!-- $$$text-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-text-example.png" alt="" /></p><p><i>文本</i>是与文本相关的小型 QML 示例的集合。每个示例都是一个小的 QML 文件，通常包含或强调特定类型或特性。您可以运行并观察每个示例的行为。</p>
+<a name="hello"></a>
+<h2 id="hello">Hello</h2>
+<p><i>Hello</i>展示了如何更改<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-text.html">Text</a>类型的字母间距并为其设置动画。它使用顺序动画首先将 font.letterSpacing 属性设置<code>0</code>为<code>50</code>3 秒以上，然后将文本移动到屏幕上的随机位置：</p>
+<pre class="qml">
+
+              SequentialAnimation on <span class="name">font</span>.letterSpacing {
+                  <span class="name">loops</span>: <span class="name">Animation</span>.<span class="name">Infinite</span>;
+                  <span class="type"><a href="qml-qtquick-numberanimation.html">NumberAnimation</a></span> { <span class="name">from</span>: <span class="number">0</span>; <span class="name">to</span>: <span class="number">50</span>; <span class="name">easing</span>.type: <span class="name">Easing</span>.<span class="name">InQuad</span>; <span class="name">duration</span>: <span class="number">3000</span> }
+                  <span class="type"><a href="qml-qtquick-scriptaction.html">ScriptAction</a></span> {
+                      <span class="name">script</span>: {
+                          <span class="name">container</span>.<span class="name">y</span> <span class="operator">=</span> (<span class="name">screen</span>.<span class="name">height</span> <span class="operator">/</span> <span class="number">4</span>) <span class="operator">+</span> (<span class="name">Math</span>.<span class="name">random</span>() <span class="operator">*</span> <span class="name">screen</span>.<span class="name">height</span> <span class="operator">/</span> <span class="number">2</span>)
+                          <span class="name">container</span>.<span class="name">x</span> <span class="operator">=</span> (<span class="name">screen</span>.<span class="name">width</span> <span class="operator">/</span> <span class="number">4</span>) <span class="operator">+</span> (<span class="name">Math</span>.<span class="name">random</span>() <span class="operator">*</span> <span class="name">screen</span>.<span class="name">width</span> <span class="operator">/</span> <span class="number">2</span>)
+                      }
+                  }
+              }
+
+</pre>
+<a name="fonts"></a>
+<h2 id="fonts">字体</h2>
+<p><i>字体</i>显示了使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-text.html">Text</a>类型的字体的不同方式。只需按名称，直接使用 font.family 属性：</p>
+<pre class="qml">
+
+              <span class="name">font</span>.family: <span class="string">&quot;Times&quot;</span>
+
+</pre>
+<p>或使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-fontloader.html">FontLoader</a>类型：</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-fontloader.html">FontLoader</a></span> { <span class="name">id</span>: <span class="name">fixedFont</span>; <span class="name">name</span>: <span class="string">&quot;Courier&quot;</span> }
+
+</pre>
+<p>或使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-fontloader.html">FontLoader</a>并指定本地字体文件：</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-fontloader.html">FontLoader</a></span> { <span class="name">id</span>: <span class="name">localFont</span>; <span class="name">source</span>: <span class="string">&quot;content/fonts/tarzeau_ocr_a.ttf&quot;</span> }
+
+</pre>
+<p>或者最后使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-fontloader.html">FontLoader</a>并指定一个远程字体文件：</p>
+<pre class="qml">
+
+      <span class="type"><a href="qml-qtquick-fontloader.html">FontLoader</a></span> { <span class="name">id</span>: <span class="name">webFont</span>; <span class="name">source</span>: <span class="string">&quot;http://www.princexml.com/fonts/steffmann/Starburst.ttf&quot;</span> }
+
+</pre>
+<a name="available-fonts"></a>
+<h2 id="available-fonts">可用字体</h2>
+<p><i>可用字体</i>展示了如何使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtqml/qml-qtqml-qt.html">Qt</a>全局对象和列表视图来显示系统上所有可用的字体。<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-listview.html">ListView</a>类型使用可用的字体列表作为其模型：</p>
+<pre class="qml">
+
+          <span class="name">model</span>: <span class="name">Qt</span>.<span class="name">fontFamilies</span>()
+
+</pre>
+<p>在委托内部，字体系列使用 modelData 设置：</p>
+<pre class="qml">
+
+                  <span class="name">font</span>.family: <span class="name">modelData</span>
+
+</pre>
+<a name="banner"></a>
+<h2 id="banner">横幅</h2>
+<p><i>Banner</i>是一个简单的示例，展示了如何使用一行文本类型和<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-numberanimation.html">NumberAnimation</a>创建横幅。</p>
+<a name="img-tag"></a>
+<h2 id="img-tag">图片标签</h2>
+<p>Img标记显示了使用 <code>&lt;img&gt;</code>标记在文本对象中显示图像的不同方法。</p>
+<a name="text-layout"></a>
+<h2 id="text-layout">文本布局</h2>
+<p><i>文本布局</i>展示了如何为文本项创建更复杂的布局。此示例使用 onLineLaidOut 处理程序将文本布置在两列中，该处理程序允许您定位和调整每行的大小：</p>
+<pre class="qml">
+
+          <span class="name">onLineLaidOut</span>: {
+              <span class="name">line</span>.<span class="name">width</span> <span class="operator">=</span> <span class="name">width</span> <span class="operator">/</span> <span class="number">2</span>  <span class="operator">-</span> (<span class="name">margin</span>)
+
+              <span class="keyword">if</span> (<span class="name">line</span>.<span class="name">y</span> <span class="operator">+</span> <span class="name">line</span>.<span class="name">height</span> <span class="operator">&gt;=</span> <span class="name">height</span>) {
+                  <span class="name">line</span>.<span class="name">y</span> <span class="operator">-=</span> <span class="name">height</span> <span class="operator">-</span> <span class="name">margin</span>
+                  <span class="name">line</span>.<span class="name">x</span> <span class="operator">=</span> <span class="name">width</span> <span class="operator">/</span> <span class="number">2</span> <span class="operator">+</span> <span class="name">margin</span>
+              }
+          }
+
+</pre>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-text-fonts-availablefonts-qml.html">text/fonts/availableFonts.qml</a></li>
+<li><a href="qtquick-text-fonts-banner-qml.html">text/fonts/banner.qml</a></li>
+<li><a href="qtquick-text-fonts-fonts-qml.html">text/fonts/fonts.qml</a></li>
+<li><a href="qtquick-text-fonts-hello-qml.html">text/fonts/hello.qml</a></li>
+<li><a href="qtquick-text-imgtag-textwithimage-qml.html">text/imgtag/TextWithImage.qml</a></li>
+<li><a href="qtquick-text-imgtag-imgtag-qml.html">text/imgtag/imgtag.qml</a></li>
+<li><a href="qtquick-text-main-cpp.html">text/main.cpp</a></li>
+<li><a href="qtquick-text-styledtext-layout-qml.html">text/styledtext-layout.qml</a></li>
+<li><a href="qtquick-text-text-pro.html">text/text.pro</a></li>
+<li><a href="qtquick-text-text-qml.html">text/text.qml</a></li>
+<li><a href="qtquick-text-text-qmlproject.html">text/text.qmlproject</a></li>
+<li><a href="qtquick-text-text-qrc.html">text/text.qrc</a></li>
+<li><a href="qtquick-text-textselection-textselection-qml.html">text/textselection/textselection.qml</a></li>
+</ul>
+<p>图片：</p>
+<ul>
+<li><a href="images/used-in-examples/text/imgtag/images/face-sad.png">text/imgtag/images/face-sad.png</a></li>
+<li><a href="images/used-in-examples/text/imgtag/images/face-smile-big.png">text/imgtag/images/face-smile-big.png</a></li>
+<li><a href="images/used-in-examples/text/imgtag/images/face-smile.png">text/imgtag/images/face-smile.png</a></li>
+<li><a href="images/used-in-examples/text/imgtag/images/heart200.png">text/imgtag/images/heart200.png</a></li>
+<li><a href="images/used-in-examples/text/imgtag/images/qtlogo.png">text/imgtag/images/qtlogo.png</a></li>
+<li><a href="images/used-in-examples/text/imgtag/images/starfish_2.png">text/imgtag/images/starfish_2.png</a></li>
+<li><a href="images/used-in-examples/text/textselection/pics/endHandle.png">text/textselection/pics/endHandle.png</a></li>
+<li><a href="images/used-in-examples/text/textselection/pics/startHandle.png">text/textselection/pics/startHandle.png</a></li>
+</ul>
+</div>
+<!-- @@@text -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

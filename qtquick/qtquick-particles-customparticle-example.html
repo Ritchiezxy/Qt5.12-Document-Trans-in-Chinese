@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- customparticle.qdoc -->
+  <title>Qt Quick Particles Examples - CustomParticle | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td >
+			Qt Quick 粒子示例 - CustomParticle</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Qt Quick 粒子示例 - CustomParticle</h1>
+<span class="subtitle"></span>
+<!-- $$$particles/customparticle-brief -->
+<p>这是在QML粒子系统中使用<a href="qml-qtquick-particles-customparticle.html">CustomParticle</a>的示例集合。</p>
+<!-- @@@particles/customparticle -->
+<!-- $$$particles/customparticle-description -->
+<div class="descr"> <a name="details"></a>
+<p class="centerAlign"><img src="images/qml-customparticle-example.png" alt="" /></p><p>
+	这是一个关于在粒子系统中使用<a href="qml-qtquick-particles-customparticle.html">CustomParticle</a>的小型QML示例集合。每个示例都是一个小QML文件，强调使用<a href="qml-qtquick-particles-customparticle.html">CustomParticle</a>的不同方式。</p>
+<p>模糊粒子为粒子添加模糊效果，该效果会随着粒子的生命周期而增加。它使用自定义顶点着色器：</p>
+<pre class="qml">
+
+  <span class="name">vertexShader</span>:<span class="string">&quot;
+      uniform lowp float qt_Opacity;
+      varying lowp float fFade;
+      varying lowp float fBlur;
+
+      void main() {
+          defaultMain();
+          highp float t = (qt_Timestamp - qt_ParticleData.x) / qt_ParticleData.y;
+          highp float fadeIn = min(t * 10., 1.);
+          highp float fadeOut = 1. - max(0., min((t - 0.75) * 4., 1.));
+
+          fFade = fadeIn * fadeOut * qt_Opacity;
+          fBlur = max(0.2 * t, t * qt_ParticleR);
+      }
+  &quot;</span>
+
+</pre>
+<p>
+<font>
+将生命周期模拟传播到自定义片段着色器：</font></p>
+<pre class="qml">
+
+  <span class="name">fragmentShader</span>: <span class="string">&quot;
+      uniform sampler2D source;
+      uniform sampler2D blurred;
+      varying highp vec2 qt_TexCoord0;
+      varying highp float fBlur;
+      varying highp float fFade;
+      void main() {
+          gl_FragColor = mix(texture2D(source, qt_TexCoord0), texture2D(blurred, qt_TexCoord0), min(1.0,fBlur*3.0)) * fFade;
+      }&quot;</span>
+
+</pre>
+<p>
+<font>
+它可以访问普通图像采样器和模糊采样器，图像加上<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-shadereffect.html">ShaderEffect</a>。</font></p>
+<p>
+<font>
+Fragment Shader 只是使用粒子系统作为顶点传递系统。</font></p>
+<pre class="qml">
+
+  <span class="name">fragmentShader</span>: <span class="string">&quot;
+      varying highp vec2 fPos;
+      varying lowp float fFade;
+      varying highp vec2 qt_TexCoord0;
+      void main() {//*2 because this generates dark colors mostly
+          highp vec2 circlePos = qt_TexCoord0*2.0 - vec2(1.0,1.0);
+          highp float dist = length(circlePos);
+          highp float circleFactor = max(min(1.0 - dist, 1.0), 0.0);
+          gl_FragColor = vec4(fPos.x*2.0 - fPos.y, fPos.y*2.0 - fPos.x, fPos.x*fPos.y*2.0, 0.0) * circleFactor * fFade;
+      }&quot;</span>
+
+</pre>
+<p>
+<font>
+Image Colors 使用<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qml-qtquick-particles-customparticle.html">CustomParticle</a>根据粒子在图片中的位置为粒子分配颜色。顶点着色器，</font></p>
+<pre class="qml">
+
+  <span class="name">vertexShader</span>:<span class="string">&quot;
+      uniform highp float maxWidth;
+      uniform highp float maxHeight;
+      varying highp vec2 fTex2;
+      varying lowp float fFade;
+      uniform lowp float qt_Opacity;
+
+      void main() {
+
+          fTex2 = vec2(qt_ParticlePos.x, qt_ParticlePos.y);
+          //Uncomment this next line for each particle to use full texture, instead of the solid color at the center of the particle.
+          //fTex2 = fTex2 + ((- qt_ParticleData.z / 2. + qt_ParticleData.z) * qt_ParticleTex); //Adjusts size so it's like a chunk of image.
+          fTex2 = fTex2 / vec2(maxWidth, maxHeight);
+          highp float t = (qt_Timestamp - qt_ParticleData.x) / qt_ParticleData.y;
+          fFade = min(t*4., (1.-t*t)*.75) * qt_Opacity;
+          defaultMain();
+      }
+  &quot;</span>
+
+</pre>
+<p>
+<font>
+将每个顶点的起始位置传递给片段着色器，</font></p>
+<pre class="qml">
+
+  <span class="name">fragmentShader</span>: <span class="string">&quot;
+      uniform sampler2D particleTexture;
+      uniform sampler2D pictureTexture;
+      varying highp vec2 qt_TexCoord0;
+      varying highp vec2 fTex2;
+      varying lowp float fFade;
+      void main() {
+          gl_FragColor = texture2D(pictureTexture, fTex2) * texture2D(particleTexture, qt_TexCoord0).w * fFade;
+  }&quot;</span>
+
+</pre>
+<p>
+<font>
+它使用它来确定该粒子的颜色。</font></p>
+<p>文件：</p>
+<ul>
+<li><a href="qtquick-particles-customparticle-content-blurparticles-qml.html">particles/customparticle/content/blurparticles.qml</a></li>
+<li><a href="qtquick-particles-customparticle-content-fragmentshader-qml.html">particles/customparticle/content/fragmentshader.qml</a></li>
+<li><a href="qtquick-particles-customparticle-content-imagecolors-qml.html">particles/customparticle/content/imagecolors.qml</a></li>
+<li><a href="qtquick-particles-customparticle-customparticle-pro.html">particles/customparticle/customparticle.pro</a></li>
+<li><a href="qtquick-particles-customparticle-customparticle-qml.html">particles/customparticle/customparticle.qml</a></li>
+<li><a href="qtquick-particles-customparticle-customparticle-qmlproject.html">particles/customparticle/customparticle.qmlproject</a></li>
+<li><a href="qtquick-particles-customparticle-customparticle-qrc.html">particles/customparticle/customparticle.qrc</a></li>
+<li><a href="qtquick-particles-customparticle-main-cpp.html">particles/customparticle/main.cpp</a></li>
+</ul>
+</div>
+<!-- @@@particles/customparticle -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

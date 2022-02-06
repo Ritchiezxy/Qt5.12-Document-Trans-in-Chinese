@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- particles.qdoc -->
+  <title>Particle System Performance Guide | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td >
+			粒子系统性能指南</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">粒子系统性能指南</h1>
+<span class="subtitle"></span>
+<!-- $$$qtquick-particles-performance.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>
+粒子系统的性能随它所保持的粒子数量而变化。在建立理想效果的原型之后，性能可以通过降低粒子数来提高。相反地，如果性能在可接受的范围内，您可以增加粒子的数量，直到达到那个点(这会改善效果)。</p>
+<p>
+请注意，粒子数通常是由粒子系统估计的，在某些情况下，明确地提供关于需要多少粒子的提示将提高性能。你可以通过在发射器上设置maximumemitter来做到这一点，它通常对不连续发射粒子的发射器很有用。</p>
+<p>和<a href="qml-qtquick-shadereffect.html">ShaderEffect</a>一样，粒子系统的性能很大程度上依赖于它所运行的图形硬件。但影响者是个例外。对于不包括影响器的系统，粒子的大部分性能成本将在GPU上。由于GPU在并行处理大量操作方面做得更好，当不使用影响器时，更多的粒子可以在60FPS下绘制。</p>
+<p>
+影响器，特别是如果修改javascript中的粒子，可能会相对缓慢，并增加使用粒子的CPU成本。尽可能避免在大容量系统中使用它们。一些简单的情况下，影响器可以避免使用定时<a href="qml-qtquick-particles-particlegroup.html">粒子组</a>过渡而不是时间触发的影响器，或设置加速度由于重力在发射器的加速度属性而不是重力影响器。</p>
+</div>
+<!-- @@@qtquick-particles-performance.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

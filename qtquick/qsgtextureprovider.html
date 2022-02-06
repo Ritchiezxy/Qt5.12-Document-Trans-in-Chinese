@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qsgtextureprovider.cpp -->
+  <title>QSGTextureProvider 类 | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick 模块</a></td><td ><a href="qtquick-module.html">C++ 类</a></td><td >QSGTextureProvider</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">目录</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">公用函数</a></li>
+<li class="level1"><a href="#signals">信号</a></li>
+<li class="level1"><a href="#static-public-members">静态公用成员</a></li>
+<li class="level1"><a href="#details">详细信息</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QSGTextureProvider 类</h1>
+<!-- $$$QSGTextureProvider-brief -->
+<p><a href="qsgtextureprovider.html">QSGTextureProvider</a>类在 QML中封装了基于纹理的实体。 <a href="#details">更多...</a></p>
+<!-- @@@QSGTextureProvider -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign">头文件：</td><td class="memItemRight bottomAlign">   <span class="preprocessor">#include &lt;QSGTextureProvider&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += quick</td></tr><tr><td class="memItemLeft rightAlign topAlign">继承自：</td><td class="memItemRight bottomAlign"> <a href="../qtcore/qobject.html">QObject</a></td></tr></table></div><ul>
+<li><a href="qsgtextureprovider-members.html">所有成员的列表，包括继承成员</a></li>
+<li><a href="qsgtextureprovider-obsolete.html">废弃的成员</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">公用函数</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSGTexture *</td><td class="memItemRight bottomAlign"><b><a href="qsgtextureprovider.html#texture">texture</a></b>() const = 0</td></tr>
+</table></div>
+<ul>
+<li class="fn">31 个公用函数继承自<a href="../qtcore/qobject.html#public-functions">QObject</a></li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">信号</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qsgtextureprovider.html#textureChanged">textureChanged</a></b>()</td></tr>
+</table></div>
+<ul>
+<li class="fn">2 个信号继承自<a href="../qtcore/qobject.html#signals">QObject</a></li>
+</ul>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">静态公用成员</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> const QMetaObject </td><td class="memItemRight bottomAlign"><b><a href="qsgtextureprovider.html#staticMetaObject-var">staticMetaObject</a></b></td></tr>
+</table></div>
+<ul>
+<li class="fn">9 个静态公用成员继承自<a href="../qtcore/qobject.html#static-public-members">QObject</a></li>
+</ul>
+<h3>额外的继承成员</h3>
+<ul>
+<li class="fn">1 个属性继承自<a href="../qtcore/qobject.html#properties">QObject</a></li>
+<li class="fn">1 个公用槽函数继承自<a href="../qtcore/qobject.html#public-slots">QObject</a></li>
+<li class="fn">9 个保护函数继承自<a href="../qtcore/qobject.html#protected-functions">QObject</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QSGTextureProvider-description -->
+<div class="descr">
+<h2 id="details">详细信息</h2>
+<p><a href="qsgtextureprovider.html">QSGTextureProvider</a>类将基于纹理的实体封装在 QML 中<a href="file:///E:/WLL/work/Qt5.12-Document-Trans-in-Chinese/qtquick/qsgtextureprovider.html">。</a></p>
+<p><a href="qsgtextureprovider.html">QSGTextureProvider</a>主要存在于场景图渲染线程中。</p>
+</div>
+<p><b>请参考 </b><a href="qtquick-scenegraph-twotextureproviders-example.html">
+场景视图-两个纹理提供程序</a>。</p>
+<!-- @@@QSGTextureProvider -->
+<div class="func">
+<h2>成员函数文档</h2>
+<!-- $$$texture[overload1]$$$texture -->
+<h3 class="fn" id="texture"><a name="texture"></a><code>[pure virtual] </code><span class="type"><a href="qsgtexture.html">QSGTexture</a></span> *QSGTextureProvider::<span class="name">texture</span>() const</h3>
+<p>返回指向纹理对象的指针。</p>
+<!-- @@@texture -->
+<!-- $$$textureChanged[overload1]$$$textureChanged -->
+<h3 class="fn" id="textureChanged"><a name="textureChanged"></a><code>[signal] </code><span class="type">void</span> QSGTextureProvider::<span class="name">textureChanged</span>()</h3>
+<p>当纹理发生变化时会发出此信号。</p>
+<!-- @@@textureChanged -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

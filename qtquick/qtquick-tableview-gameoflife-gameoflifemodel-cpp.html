@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>gameoflifemodel.cpp 示例文件 | Qt Quick 5.12.3</title>
+  <link rel="stylesheet" type="text/css" href="style/offline-simple.css" />
+  <script type="text/javascript">
+    document.getElementsByTagName("link").item(0).setAttribute("href", "style/offline.css");
+    // loading style sheet breaks anchors that were jumped to before
+    // so force jumping to anchor again
+    setTimeout(function() {
+        var anchor = location.hash;
+        // need to jump to different anchor first (e.g. none)
+        location.hash = "#";
+        setTimeout(function() {
+            location.hash = anchor;
+        }, 0);
+    }, 0);
+  </script>
+</head>
+<body>
+<div class="header" id="qtdocheader">
+  <div class="main">
+    <div class="main-rounded">
+      <div class="navigationbar">
+        <table><tr>
+<td ><a href="../qtdoc/index.html">Qt 5.12</a></td><td ><a href="qtquick-index.html">Qt Quick</a></td><td ><a href="qtquick-tableview-gameoflife-example.html">Qt Quick TableView examples - Conway’s Game of Life</a></td><td >gameoflifemodel.cpp 示例文件</td></tr></table><table class="buildversion"><tr>
+<td id="buildversion" width="100%" align="right"><a href="qtquick-index.html">Qt 5.12.3 参考指南</a></td>
+        </tr></table>
+      </div>
+    </div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">gameoflifemodel.cpp 示例文件</h1>
+<span class="subtitle">tableview/gameoflife/gameoflifemodel.cpp</span>
+<!-- $$$tableview/gameoflife/gameoflifemodel.cpp-description -->
+<div class="descr"> <a name="details"></a>
+<pre class="cpp">
+
+  <span class="comment">/****************************************************************************
+  **
+  ** Copyright (C) 2018 The Qt Company Ltd.
+  ** Contact: https://www.qt.io/licensing/
+  **
+  ** This file is part of the examples of the Qt Toolkit.
+  **
+  ** $QT_BEGIN_LICENSE:BSD$
+  ** Commercial License Usage
+  ** Licensees holding valid commercial Qt licenses may use this file in
+  ** accordance with the commercial license agreement provided with the
+  ** Software or, alternatively, in accordance with the terms contained in
+  ** a written agreement between you and The Qt Company. For licensing terms
+  ** and conditions see https://www.qt.io/terms-conditions. For further
+  ** information use the contact form at https://www.qt.io/contact-us.
+  **
+  ** BSD License Usage
+  ** Alternatively, you may use this file under the terms of the BSD license
+  ** as follows:
+  **
+  ** &quot;Redistribution and use in source and binary forms, with or without
+  ** modification, are permitted provided that the following conditions are
+  ** met:
+  **   * Redistributions of source code must retain the above copyright
+  **     notice, this list of conditions and the following disclaimer.
+  **   * Redistributions in binary form must reproduce the above copyright
+  **     notice, this list of conditions and the following disclaimer in
+  **     the documentation and/or other materials provided with the
+  **     distribution.
+  **   * Neither the name of The Qt Company Ltd nor the names of its
+  **     contributors may be used to endorse or promote products derived
+  **     from this software without specific prior written permission.
+  **
+  **
+  ** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  ** &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  ** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  ** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  ** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  ** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  ** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  ** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  ** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  ** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&quot;
+  **
+  ** $QT_END_LICENSE$
+  **
+  ****************************************************************************/</span>
+
+  <span class="preprocessor">#include &quot;gameoflifemodel.h&quot;</span>
+  <span class="preprocessor">#include &lt;QFile&gt;</span>
+  <span class="preprocessor">#include &lt;QTextStream&gt;</span>
+  <span class="preprocessor">#include &lt;QRect&gt;</span>
+
+  GameOfLifeModel<span class="operator">::</span>GameOfLifeModel(<span class="type"><a href="../qtcore/qobject.html">QObject</a></span> <span class="operator">*</span>parent)
+      : <span class="type"><a href="../qtcore/qabstracttablemodel.html">QAbstractTableModel</a></span>(parent)
+  {
+      clear();
+  }
+
+  <span class="type">int</span> GameOfLifeModel<span class="operator">::</span>rowCount(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>parent) <span class="keyword">const</span>
+  {
+      <span class="keyword">if</span> (parent<span class="operator">.</span>isValid())
+          <span class="keyword">return</span> <span class="number">0</span>;
+
+      <span class="keyword">return</span> height;
+  }
+
+  <span class="type">int</span> GameOfLifeModel<span class="operator">::</span>columnCount(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>parent) <span class="keyword">const</span>
+  {
+      <span class="keyword">if</span> (parent<span class="operator">.</span>isValid())
+          <span class="keyword">return</span> <span class="number">0</span>;
+
+      <span class="keyword">return</span> width;
+  }
+
+  <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> GameOfLifeModel<span class="operator">::</span>data(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>index<span class="operator">,</span> <span class="type">int</span> role) <span class="keyword">const</span>
+  {
+      <span class="keyword">if</span> (<span class="operator">!</span>index<span class="operator">.</span>isValid() <span class="operator">|</span><span class="operator">|</span> role <span class="operator">!</span><span class="operator">=</span> CellRole)
+          <span class="keyword">return</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span>();
+
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span>(m_currentState<span class="operator">[</span>cellIndex({index<span class="operator">.</span>column()<span class="operator">,</span> index<span class="operator">.</span>row()})<span class="operator">]</span>);
+  }
+
+  bool GameOfLifeModel<span class="operator">::</span>setData(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>index<span class="operator">,</span> <span class="keyword">const</span> <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> <span class="operator">&amp;</span>value<span class="operator">,</span> <span class="type">int</span> role)
+  {
+      <span class="keyword">if</span> (role <span class="operator">!</span><span class="operator">=</span> CellRole <span class="operator">|</span><span class="operator">|</span> data(index<span class="operator">,</span> role) <span class="operator">=</span><span class="operator">=</span> value)
+          <span class="keyword">return</span> <span class="keyword">false</span>;
+
+      m_currentState<span class="operator">[</span>cellIndex({index<span class="operator">.</span>column()<span class="operator">,</span> index<span class="operator">.</span>row()})<span class="operator">]</span> <span class="operator">=</span> value<span class="operator">.</span>toBool();
+      <span class="keyword">emit</span> dataChanged(index<span class="operator">,</span> index<span class="operator">,</span> {role});
+
+      <span class="keyword">return</span> <span class="keyword">true</span>;
+  }
+
+  <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>ItemFlags GameOfLifeModel<span class="operator">::</span>flags(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qmodelindex.html">QModelIndex</a></span> <span class="operator">&amp;</span>index) <span class="keyword">const</span>
+  {
+      <span class="keyword">if</span> (<span class="operator">!</span>index<span class="operator">.</span>isValid())
+          <span class="keyword">return</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>NoItemFlags;
+
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qt.html">Qt</a></span><span class="operator">::</span>ItemIsEditable;
+  }
+
+  <span class="type">void</span> GameOfLifeModel<span class="operator">::</span>nextStep()
+  {
+      StateContainer newValues;
+
+      <span class="keyword">for</span> (std<span class="operator">::</span>size_t i <span class="operator">=</span> <span class="number">0</span>; i <span class="operator">&lt;</span> size; <span class="operator">+</span><span class="operator">+</span>i) {
+          bool currentState <span class="operator">=</span> m_currentState<span class="operator">[</span>i<span class="operator">]</span>;
+
+          <span class="type">int</span> cellNeighborsCount <span class="operator">=</span> <span class="keyword">this</span><span class="operator">-</span><span class="operator">&gt;</span>cellNeighborsCount(cellCoordinatesFromIndex(<span class="keyword">static_cast</span><span class="operator">&lt;</span><span class="type">int</span><span class="operator">&gt;</span>(i)));
+
+          newValues<span class="operator">[</span>i<span class="operator">]</span> <span class="operator">=</span> currentState <span class="operator">=</span><span class="operator">=</span> <span class="keyword">true</span>
+                  <span class="operator">?</span> cellNeighborsCount <span class="operator">=</span><span class="operator">=</span> <span class="number">2</span> <span class="operator">|</span><span class="operator">|</span> cellNeighborsCount <span class="operator">=</span><span class="operator">=</span> <span class="number">3</span>
+                  : cellNeighborsCount <span class="operator">=</span><span class="operator">=</span> <span class="number">3</span>;
+      }
+
+      m_currentState <span class="operator">=</span> std<span class="operator">::</span>move(newValues);
+
+      <span class="keyword">emit</span> dataChanged(index(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span>)<span class="operator">,</span> index(height <span class="operator">-</span> <span class="number">1</span><span class="operator">,</span> width <span class="operator">-</span> <span class="number">1</span>)<span class="operator">,</span> {CellRole});
+  }
+
+  bool GameOfLifeModel<span class="operator">::</span>loadFile(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>fileName)
+  {
+      <span class="type"><a href="../qtcore/qfile.html">QFile</a></span> file(fileName);
+      <span class="keyword">if</span> (<span class="operator">!</span>file<span class="operator">.</span>open(<span class="type"><a href="../qtcore/qiodevice.html">QIODevice</a></span><span class="operator">::</span>ReadOnly))
+          <span class="keyword">return</span> <span class="keyword">false</span>;
+
+      <span class="type"><a href="../qtcore/qtextstream.html">QTextStream</a></span> in(<span class="operator">&amp;</span>file);
+      loadPattern(in<span class="operator">.</span>readAll());
+
+      <span class="keyword">return</span> <span class="keyword">true</span>;
+  }
+
+  <span class="type">void</span> GameOfLifeModel<span class="operator">::</span>loadPattern(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="operator">&amp;</span>plainText)
+  {
+      clear();
+
+      <span class="type"><a href="../qtcore/qstringlist.html">QStringList</a></span> rows <span class="operator">=</span> plainText<span class="operator">.</span>split(<span class="string">&quot;\n&quot;</span>);
+      <span class="type"><a href="../qtcore/qsize.html">QSize</a></span> patternSize(<span class="number">0</span><span class="operator">,</span> rows<span class="operator">.</span>count());
+      <span class="keyword">for</span> (<span class="type"><a href="../qtcore/qstring.html">QString</a></span> row : rows) {
+          <span class="keyword">if</span> (row<span class="operator">.</span>size() <span class="operator">&gt;</span> patternSize<span class="operator">.</span>width())
+              patternSize<span class="operator">.</span>setWidth(row<span class="operator">.</span>size());
+      }
+
+      <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> patternLocation((width <span class="operator">-</span> patternSize<span class="operator">.</span>width()) <span class="operator">/</span> <span class="number">2</span><span class="operator">,</span> (height <span class="operator">-</span> patternSize<span class="operator">.</span>height()) <span class="operator">/</span> <span class="number">2</span>);
+
+      <span class="keyword">for</span> (<span class="type">int</span> y <span class="operator">=</span> <span class="number">0</span>; y <span class="operator">&lt;</span> patternSize<span class="operator">.</span>height(); <span class="operator">+</span><span class="operator">+</span>y) {
+          <span class="keyword">const</span> <span class="type"><a href="../qtcore/qstring.html">QString</a></span> line <span class="operator">=</span> rows<span class="operator">[</span>y<span class="operator">]</span>;
+
+          <span class="keyword">for</span> (<span class="type">int</span> x <span class="operator">=</span> <span class="number">0</span>; x <span class="operator">&lt;</span> line<span class="operator">.</span>length(); <span class="operator">+</span><span class="operator">+</span>x) {
+              <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> cellPosition(x <span class="operator">+</span> patternLocation<span class="operator">.</span>x()<span class="operator">,</span> y <span class="operator">+</span> patternLocation<span class="operator">.</span>y());
+              m_currentState<span class="operator">[</span>cellIndex(cellPosition)<span class="operator">]</span> <span class="operator">=</span> line<span class="operator">[</span>x<span class="operator">]</span> <span class="operator">=</span><span class="operator">=</span> <span class="char">'O'</span>;
+          }
+      }
+
+      <span class="keyword">emit</span> dataChanged(index(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span>)<span class="operator">,</span> index(height <span class="operator">-</span> <span class="number">1</span><span class="operator">,</span> width <span class="operator">-</span> <span class="number">1</span>)<span class="operator">,</span> {CellRole});
+  }
+
+  <span class="type">void</span> GameOfLifeModel<span class="operator">::</span>clear()
+  {
+      m_currentState<span class="operator">.</span>fill(<span class="keyword">false</span>);
+      <span class="keyword">emit</span> dataChanged(index(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span>)<span class="operator">,</span> index(height <span class="operator">-</span> <span class="number">1</span><span class="operator">,</span> width <span class="operator">-</span> <span class="number">1</span>)<span class="operator">,</span> {CellRole});
+  }
+
+  <span class="type">int</span> GameOfLifeModel<span class="operator">::</span>cellNeighborsCount(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> <span class="operator">&amp;</span>cellCoordinates) <span class="keyword">const</span>
+  {
+      <span class="type">int</span> count <span class="operator">=</span> <span class="number">0</span>;
+
+      <span class="keyword">for</span> (<span class="type">int</span> x <span class="operator">=</span> <span class="operator">-</span><span class="number">1</span>; x <span class="operator">&lt;</span><span class="operator">=</span> <span class="number">1</span>; <span class="operator">+</span><span class="operator">+</span>x) {
+          <span class="keyword">for</span> (<span class="type">int</span> y <span class="operator">=</span> <span class="operator">-</span><span class="number">1</span>; y <span class="operator">&lt;</span><span class="operator">=</span> <span class="number">1</span>; <span class="operator">+</span><span class="operator">+</span>y) {
+              <span class="keyword">if</span> (x <span class="operator">=</span><span class="operator">=</span> <span class="number">0</span> <span class="operator">&amp;</span><span class="operator">&amp;</span> y <span class="operator">=</span><span class="operator">=</span> <span class="number">0</span>)
+                  <span class="keyword">continue</span>;
+
+              <span class="keyword">const</span> <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> neighborPosition { cellCoordinates<span class="operator">.</span>x() <span class="operator">+</span> x<span class="operator">,</span> cellCoordinates<span class="operator">.</span>y() <span class="operator">+</span> y };
+              <span class="keyword">if</span> (<span class="operator">!</span>areCellCoordinatesValid(neighborPosition))
+                  <span class="keyword">continue</span>;
+
+              <span class="keyword">if</span> (m_currentState<span class="operator">[</span>cellIndex(neighborPosition)<span class="operator">]</span>)
+                  <span class="operator">+</span><span class="operator">+</span>count;
+
+              <span class="keyword">if</span> (count <span class="operator">&gt;</span> <span class="number">3</span>)
+                  <span class="keyword">return</span> count;
+          }
+      }
+
+      <span class="keyword">return</span> count;
+  }
+
+  bool GameOfLifeModel<span class="operator">::</span>areCellCoordinatesValid(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> <span class="operator">&amp;</span>coordinates)
+  {
+      <span class="keyword">return</span> <span class="type"><a href="../qtcore/qrect.html">QRect</a></span>(<span class="number">0</span><span class="operator">,</span> <span class="number">0</span><span class="operator">,</span> width<span class="operator">,</span> height)<span class="operator">.</span>contains(coordinates);
+  }
+
+  <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> GameOfLifeModel<span class="operator">::</span>cellCoordinatesFromIndex(<span class="type">int</span> cellIndex)
+  {
+      <span class="keyword">return</span> {cellIndex <span class="operator">%</span> width<span class="operator">,</span> cellIndex <span class="operator">/</span> width};
+  }
+
+  std<span class="operator">::</span>size_t GameOfLifeModel<span class="operator">::</span>cellIndex(<span class="keyword">const</span> <span class="type"><a href="../qtcore/qpoint.html">QPoint</a></span> <span class="operator">&amp;</span>coordinates)
+  {
+      <span class="keyword">return</span> std<span class="operator">::</span>size_t(coordinates<span class="operator">.</span>y() <span class="operator">*</span> width <span class="operator">+</span> coordinates<span class="operator">.</span>x());
+  }
+
+</pre>
+</div>
+<!-- @@@tableview/gameoflife/gameoflifemodel.cpp -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2019 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br/>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br/>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
